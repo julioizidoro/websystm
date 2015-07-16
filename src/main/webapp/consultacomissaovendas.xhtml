@@ -60,10 +60,12 @@
                                 <f:convertNumber currencySymbol="" type="currency"/>
                             </h:outputText>
                         </p:column>
-                        <p:column headerText="Alterar"  style="width:52px;background:#ffffff;color:#1F8871;text-align:center;">
-                            <p>
-                                <p:commandButton   onclick="PF('consultar').show()" icon="ui-icon-pencil" title="Alterar"></p:commandButton>
-                            </p>
+                        <p:column headerText="Alterar"  style="z-index: 3!important;overflow: visible!important;background:#ffffff;color:#1F8871;text-align:center;">
+                            <p:menubar> 
+                                <p:submenu style="" icon=" ui-icon-plus ">
+                                     <p:menuitem class="submenu" value="Editar" action="#{vendasComissaoMB.editar()}" />
+                                 </p:submenu>
+                            </p:menubar>
                         </p:column>
                     </p:dataTable>
                     <br></br>

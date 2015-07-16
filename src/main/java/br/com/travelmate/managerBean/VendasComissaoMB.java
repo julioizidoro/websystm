@@ -51,4 +51,7 @@ public class VendasComissaoMB implements Serializable{
             listaVendasComissao = new ArrayList<Vendascomissao>();
         }
     }
+    public String editar(){
+        return "editarComissaovendas";
+    }
 }
