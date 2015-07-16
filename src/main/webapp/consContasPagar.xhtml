@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/WEB-INF/templates/default.xhtml">
+        <ui:define name="corpo">
+            <h:form>
+                <div id="centro">
+                    <p:growl id="growl" showDetail="true" sticky="true"/>
+                        <br></br> <br></br> <br></br>
+                        
+                       <p:accordionPanel class="painel" activeIndex="-1" >
+                           <p:tab titleStyle="color:#000;font-size:11px;background:#c7d95f;" title="Pesquisar">
+                                <h:panelGrid columns="7" cellpadding="3">
+                                    <p:outputLabel value="Unidade" for="unidade" class="fontebranca"/> 
+                                    <p:outputLabel value="Data Inicial" for="dataIni" class="left2"/> 
+                                    <p:outputLabel value="Data Final" for="dataFinal" class="left3"/>
+                                    <p:selectBooleanCheckbox  class="left4" value="#{ContasPagarMB.liberadas}"/>
+                                    <h:outputText value="Liberadas"  class="fontebranca"/>
+                                    <p:selectBooleanCheckbox  class="left3" value="#" />
+                                    <h:outputText value="Autorizadas"  class="fontebranca"/>    
+
+                                </h:panelGrid>
+                                <h:panelGrid columns="6" cellpadding="1">
+
+                                    <p:inputText id="unidade" size="44" maxlength="100" class="fontebranca"   readonly="true"/>
+                                    <p:calendar id="dataIni" class="espacocampospesquisa"  pattern="dd/MM/yyyy" mask="true" size="10" maxlength="15" >
+                                         <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                                    </p:calendar>
+                                    <p:calendar id="dataFinal" class="espacocampospesquisa2"  pattern="dd/MM/yyyy" mask="true" size="10" maxlength="15">
+                                        <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                                    </p:calendar>
+                                    <p:commandButton value="Pesquisar" class="botao"  icon=" ui-icon-search " update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#"/>
+                                    <p:commandButton value="Limpar" icon="ui-icon-arrowrefresh-1-w"  class="botao3" update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#"/>
+                                </h:panelGrid>  
+                                <br></br>
+                           </p:tab>
+                       </p:accordionPanel>
+                         <br></br>
+                        <legend id="iUsu2" ><b>Consulta de Contas a Pagar </b></legend>
+                        <h:panelGrid columns="6" cellpadding="1" class="vertical">
+                            <p:commandButton value="Adicionar" icon=" ui-icon-plus " class="btn btn-default" action="#{menuMB.cadContaPagar()}"/>
+                            <p:commandButton value="Excluir" class="btn btn-default" icon=" ui-icon-trash " update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" actionListener="#{mensagem.excluiMessagem()}"  action="#"/>
+                            <p:commandButton value="Liberar" class="btn btn-default" icon=" ui-icon-check " update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#"  />
+                            <p:commandButton value="Autorizar" class="btn btn-default" icon=" ui-icon-check " update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#" actionListener="#"  />
+                            <p:commandButton value="Arquivo" class="btn btn-default" icon="ui-icon-folder-open "  action="#" />
+                            <p:commandButton value="Usuários" class="btn btn-default" icon="ui-icon-person" action="#"/>
+                        </h:panelGrid>
+                        <p:dataTable id="contaPagar" var="contasPagar"  value="#{vendasMB.listaVendaComissao}" class="tabela" 
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+                                     paginator="true" rows="10" style="margin-bottom:20px" >
+                            <f:facet name="{Exporters}">
+                                <h:commandLink>
+                                    <img src="resources/img/excel.png" width="20" class="imagens"/>
+                                    <p:dataExporter type="xls" target="contaPagar" fileName="contas" />
+                                </h:commandLink>
+                            </f:facet>
+                            <p:column headerText="Status"  style="width:47px;background:#ffffff;color:#1F8871;text-align:left;" styleClass="alinharCenter">
+                                <p:graphicImage  value="#"/>
+                            </p:column>
+                            <p:column headerText="Data Vencimento" style="width:115px;background:#ffffff;color:#1F8871;text-align:center;">
+                                <h:outputText  >
+                                     <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                                </h:outputText>
+                            </p:column>
+                            <p:column headerText="Cliente"  style="width:120px;background:#ffffff;color:#1F8871;text-align:center;">
+                                <h:outputText value="#{contasPagar.produtos.descricao}"/>
+                            </p:column>
+                            <p:column headerText="Descrição" style="background:#ffffff;color:#1F8871;text-align:center;" >
+                                <h:outputText value="#"/>
+                            </p:column>
+                            <p:column headerText="Autorizadas"  style="width:80px;background:#ffffff;color:#1F8871;text-align:center;" styleClass="alinharCenter" >
+                                <p:graphicImage value="#"/>
+                            </p:column>
+                            <p:column headerText="Fornecedor" style="width:120px;background:#ffffff;color:#1F8871;text-align:center;" >
+                                <h:outputText value="#"/>
+                            </p:column>
+                            <p:column headerText="Valor Conta" style="width:85px;background:#ffffff;color:#1F8871;text-align: right;" styleClass="alinharCenter">
+                                <h:outputText >
+                                    <f:convertNumber currencySymbol="" type="currency"/>
+                                </h:outputText>                                    
+                            </p:column>
+                             <p:column style="width:42px;background:#ffffff;color:#1F8871;text-align: center">
+                                 <p:commandButton title="Editar" icon="ui-icon-pencil"/>
+                            </p:column>
+                        </p:dataTable>
+                        <h:panelGrid columns="4" cellpadding="3">
+                            <p:outputLabel value="Total Contas Vencidas" for="contasVenc" class="left" /> 
+                            <p:outputLabel value="Total Contas Vencendo" for="contasVencendo" class="left1"/> 
+                            <p:outputLabel value="Total Contas a Vencer" for="contasVencer" class="left1"/>
+                            <p:outputLabel value="Total Contas a Pagar" for="contasPagar" class="left1"/>
+                        </h:panelGrid>
+                        <h:panelGrid columns="5" cellpadding="1">
+
+                            <p:inputText id="contasVenc" size="21" maxlength="100" class="leftcampoo"   readonly="true"/>
+                            <p:inputText id="contasVencendo" size="22" maxlength="100" class="left1campo"   readonly="true"/>
+                            <p:inputText id="contasVencer" size="21" maxlength="100" class="left1campo"   readonly="true"/>
+                            <p:inputText id="contasPagar" size="17" maxlength="100" class="left1campo"   readonly="true"/>
+                        </h:panelGrid>  
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                </div>
+            </h:form>     
+           
+        </ui:define>
+    </ui:composition>
+</html>

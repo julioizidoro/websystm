@@ -1,0 +1,84 @@
+<h:form xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:h="http://java.sun.com/jsf/html">
+    <script>
+        $('.collapse').on('shown.bs.collapse', function (e) {
+            $('.collapse').not(this).removeClass('in');
+        });
+
+        $('[data-toggle=collapse]').click(function (e) {
+            $('[data-toggle=collapse]').parent('li').removeClass('active');
+            $(this).parent('li').toggleClass('active');
+        });
+
+    </script>
+    <script >
+        $(document).ready(function () {
+// mostra esconde menu
+            $("a.mostra-esconde-menu").click(function () {
+                $(".menu_mluv_retratil").toggleClass('esconder');
+                if ($(this).text() === "Voltar")
+                    //$("#iconcambio").attr("src", "resources/img/dinheiro.png"); 
+                    $(this).text("Câmbio");
+                else
+                    $(this).text("Voltar");
+            });
+        });
+    </script>
+    <img src="resources/img/dinheiro.png" height="50" width="38" class="iconcambio"/>
+    <div id="tudo">
+       
+        <navBar class="navbar navbar-default " role="navigation" >
+                    <img src="resources/img/logo.png" width="110" height="46" class="logo"/>  
+                    <a class="usuariologado" >Usuario Logado</a>
+                    <p:commandButton icon=" ui-icon-closethick" title="Sair" class="botaodeslogar"/>
+        </navBar>
+         <navBar class="navbar navbar-default " role="navigation">
+            <div class="container">
+                <div class="nav navbar-nav">
+                    <ul class="menu">
+                        <li><a>Financeiro</a>
+                            <ul class="submenu-1"> 
+                                <li class="comissao"><h:commandLink action="#{menuMB.comissaoVendas()}" value="Comissão"></h:commandLink></li>
+                                <li class="comissao"><h:commandLink action="#{menuMB.contasPagar()}" value="Contas a Pagar"></h:commandLink></li>
+                                <li class="comissao"> <h:commandLink action="#{menuMB.contasReceber()}" value="Contas a Receber"></h:commandLink></li>
+                                <h:commandLink action="#"  >  
+                                    <button class="acaocambio">
+                                        <img id="iconcambio" class="imagemm" src="resources/img/dinheiro.png"/>
+                                        <a>Câmbio</a>
+                                    </button>  
+                                </h:commandLink>  
+                                
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>		
+        </navBar>
+        <h:panelGrid columns="7" cellpadding="1" class="menuTravel">
+            <img src="resources/img/cursos.jpg" alt="portrait" class="imagemlogo"/>
+            <img src="resources/img/high-school.jpg" class="imagemlogos"/>
+            <img src="resources/img/teens.jpg" class="imagemlogos"/>
+            <img src="resources/img/trabalho.jpg" class="imagemlogos"/>
+            <img src="resources/img/turismo.jpg" class="imagemlogos"/>
+            <img src="resources/img/universidade.jpg" class="imagemlogos"/>
+            <img src="resources/img/work.jpg" class="imagemlogos"/>
+        </h:panelGrid>
+        <h:panelGrid columns="7" cellpadding="1" class="menuTravel2">
+            <p:outputLabel class="cursomenu" value="Cursos"/>
+            <p:outputLabel class="highmenu"  value="High-School"/>
+            <p:outputLabel class="teensmenu" value="Cursos Teens"/>
+            <p:outputLabel class="traineemenu" value="Trainee"/>
+            <p:outputLabel class="turismomenu" value="Turismo"/>
+            <p:outputLabel class="" value="Universidade"/>
+            <p:outputLabel class="" value="Work and Travel"/>
+        </h:panelGrid>
+        
+        <div class="menu_mluv_retratil">
+            <a class="mostra-esconde-menu" href="javascript:void(0);">Câmbio </a>
+            <p:outputLabel >fffffffffffffffffffffffffffffffffffffffffffffffffffffffff</p:outputLabel>
+        </div>
+        <br></br>
+        <br></br>
+    </div>
+</h:form>

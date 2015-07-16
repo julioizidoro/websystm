@@ -1,0 +1,350 @@
+body {
+    font-size:10px;
+    font-family: tahoma;
+    background-color: #F0FFFF;
+    color: #333;
+}
+
+h1 {
+    margin: 10px 20px 10px 20px;
+}
+#tudo {
+    top:-15px;
+    position: relative;
+    background: #ffffff;
+    margin: 0px 0 20px -390px;
+    width: 900px;
+    left:19.7%;
+    margin-top:-15px;
+    border: 0px solid #aaa;
+    margin-left:-10px;
+}
+.cambio2{
+    background: -moz-linear-gradient(
+        top,
+        #EEE5DE 0%,
+        #EEE5DE 10%,
+        #EEE5DE 30%,
+        #c7d95f);
+    width: 900px;
+    height: 25px;
+    margin-top:-28px;
+}
+
+.menuTravel{
+    font-size:10px;
+    margin-top:-30px;
+    height:67px;
+    width: 900px;
+    color:#4F4F4F;
+    background:#fff;
+}
+.menuTravel2{
+    font-size:11px;
+    margin-top:-10px;
+    height:33px;
+    width: 900px;
+    color:#4F4F4F;
+    background:#fff;
+}
+#centro {
+    font-size:10px;
+    top:-76px;
+    position: relative;
+    background:#1F8871;
+
+    margin: 0px 0 20px -390px;
+    width: 900px;
+    left:19.7%;
+
+    border: 0px solid #aaa;
+    margin-left:-10px;
+    //borda arredondada
+    -webkit-border-bottom-right-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -moz-border-radius-bottomright: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    //////////
+    //borda sombreada
+    box-shadow: 5px 4px 10px #828282;
+    -moz-box-shadow: 5px 4px 10px #828282;
+    -webkit-box-shadow: 5px 4px 10px #828282;
+    -khtml-box-shadow: 5px 4px 10px #828282;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(color=#ccc,direction=120,strength=4)"; /* IE8+ */
+    filter:progid:DXImageTransform.Microsoft.Shadow(color=#ccc,direction=120,strength=4); /* IE7 and lower */
+    ///////
+}
+.logo{
+    margin-left: 0px;
+}
+.cambiovalores2{
+    margin-left:160px;
+    font-size:10px;
+}
+.cambiovalores3{
+    margin-left:-10px;
+    font-size:10px;
+}
+.cambiovalores{
+    margin-left:30px;
+    font-size:10px;
+}
+.iata{
+    margin-left:10px;
+    font-size:10px;
+}
+.iata{
+    margin-left:80px;
+    font-size:10px;
+}
+.tabela{
+    margin-top:0px;
+    width: 900px;
+    margin-left:0px;
+    font-size:11px;color:#1F8871;
+}
+.tabela2{
+    width: 840px;
+    margin-left:27px;
+    font-size:11px;color:#1F8871;
+}
+.dialog{
+    margin-top: 25px;
+     margin-left:70px;
+     position:fixed;
+     margin-left:-150px;
+     background-color: #F0FFFF;
+     font-size:10px;
+}
+.botaodialog{
+    margin-left:300px;
+}
+.botaodialog2{
+    margin-left:20px;
+}
+
+.espacocampos{
+    font-size:10px;
+    margin-left:30px;
+    height:25px;
+}
+.espacocampos2{
+    font-size:10px;
+    height:25px;
+}
+.espacocampos3{
+    font-size:10px;
+    margin-left:27px;
+    height:25px;
+}
+.espacocampospesquisa{
+    font-size:10px;
+    margin-left:124px;
+    height:25px;
+}
+.espacocampospesquisa2{
+    font-size:10px;
+    margin-left:45px;
+    height:25px;
+}
+.botaodeslogar{
+    margin-top:8px;
+    position: fixed;
+    margin-left:740px;
+    width: 30px;
+    height: 25px; 
+}
+.usuariologado{
+    margin-top:8px;
+    position: fixed;
+    margin-left:550px; 
+    width:120px;
+    color:#000;
+}
+#centro legend#iUsu2 b{
+    font-size: 14px;
+    font-family: tahoma;
+    margin-left:370px;
+    color:#ffffff;
+}
+#centro legend#iUsu2 {
+    width: 900px;
+}
+.leftcampo{
+    font-size: 10px;
+    margin-left:100px;
+}
+.leftcampoo{
+    font-size: 10px;
+    margin-left:100px;
+    text-align: right;
+}
+.left{
+    font-size: 10px;
+    margin-left:100px;
+    color: #fff;
+}
+.left1{
+    color: #fff;
+    font-size: 10px;
+    margin-left:100px;
+}
+.left1campo{
+    font-size: 10px;
+    margin-left:90px;
+    text-align: right;
+}
+.left2{
+    font-size: 10px;
+    margin-left:295px;
+}
+.left3{
+    font-size: 10px;
+    margin-left:60px;
+}
+.left4{
+    font-size: 10px;
+    margin-left:80px;
+}
+.fontebranca{
+    font-size: 11px;
+}
+.botao{
+    margin-left:50px;
+    color:#1F8871;
+}
+.botao2{
+    margin-left:20px;
+    color:#1F8871;
+}
+.botao3{
+    margin-left:40px;
+    color:#1F8871;
+}
+.painel{
+    color:#fff;
+    width:840px;
+    margin-left: 25px;
+}
+.acaocambio{
+    margin-top:-30px;
+    background:#c7d95f;
+    color:#000;
+    border:#c7d95f ;
+    margin-left:165px;
+    text-align: center;
+    -moz-box-shadow:1px 1px 1px #c7d95f;
+    -webkit-box-shadow:1px 1px 1px #c7d95f;
+    border-radius:0px 0px 0px 0px;
+    -moz-border-radius:0px 0px 0px 0px;
+    -webkit-border-radius:0px 0px 0px 0px;
+    height: 85px;
+    width:115px;
+}
+.imagemlogo{
+    margin-left:270px;
+    overflow: hidden;
+}
+.imagemlogos{
+    margin-left:25px;
+}
+.menuTravel img {
+  height: 60px;
+  width: 60px;
+ 
+  -webkit-transition: all 1s ease;
+     -moz-transition: all 1s ease;
+       -o-transition: all 1s ease;
+      -ms-transition: all 1s ease;
+          transition: all 1s ease;
+}
+ 
+.menuTravel img:hover {
+  width:50px;
+  height:50px;
+}
+.cursomenu{
+    font-size: 11px;
+    margin-left:280px;
+}
+.highmenu{
+    font-size: 11px;
+    margin-left:-60px;
+}
+.teensmenu{
+    font-size: 11px;
+    margin-left:30px;
+}
+.turismomenu{
+    font-size: 11px;
+    margin-left:30px;
+}
+.traineemenu{
+    font-size: 11px;
+    margin-left:-10px;
+}
+.comissao { 
+    top:5px; 
+}
+.imagemm {
+    margin-left:9px;
+}
+
+.menulinha{
+    color: #fff;
+    font-size: 15px;
+}
+.iconcambio{
+    position: absolute;
+    margin-top: 108px;
+    margin-left: 263px;
+    z-index: 3!important;
+overflow: visible!important; 
+}
+.espacocampos{
+    color: #000;
+    font-size: 10px;
+    margin-left:30px;
+}
+.espacodialog{
+    color: #000;
+    font-size: 10px;
+    margin-left:80px;
+}
+.espacodialog2{
+    color: #000;
+    font-size: 10px;
+    margin-left:47px;
+}
+.espacodialog3{
+    color: #000;
+    font-size: 10px;
+    margin-left:105px;
+}
+.espacodialog4{
+    color: #000;
+    font-size: 10px;
+    margin-left:75px;
+}
+.espacodialog5{
+    color: #000;
+    font-size: 10px;
+    margin-left:35px;
+}
+.espacodialog6{
+    color: #000;
+    font-size: 10px;
+    margin-left:27px;
+}
+.espacodialog7{
+    color: #000;
+    font-size: 10px;
+    margin-left:107px;
+}
+.espacodialog8{
+    color: #000;
+    font-size: 10px;
+    margin-left:130px;
+}

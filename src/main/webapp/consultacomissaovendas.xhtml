@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/WEB-INF/templates/default.xhtml">
+        <ui:define name="corpo">
+            <h:form>
+                <div id="centro">
+                    <br></br><br></br>
+                    <p:accordionPanel class="painel" activeIndex="-1" >
+                        <p:tab titleStyle="color:#000;font-size:11px;background:#c7d95f;" title="Pesquisar">
+                            <h:panelGrid columns="3" cellpadding="3">
+                                <p:outputLabel value="Loja" for="loja" class="fontebranca"/> 
+                                <p:outputLabel value="Data Inicial" for="dataIni" class="left2"/> 
+                                <p:outputLabel value="Data Final" for="dataFinal" class="left3"/>
+                            </h:panelGrid>
+                            <h:panelGrid columns="4" cellpadding="1">
+                                <p:inputText id="loja" size="40" maxlength="100" class="fontebranca" />
+                                <p:calendar id="dataIni" class="espacocampospesquisa"  pattern="dd/MM/yyyy" mask="true" size="9" maxlength="15" >
+                                    <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                                </p:calendar>
+                                <p:calendar id="dataFinal" class="espacocampospesquisa2"  pattern="dd/MM/yyyy" mask="true" size="9" maxlength="15">
+                                    <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                                </p:calendar>
+                                <p:commandButton value="Pesquisar" class="botaodialog2"  icon=" ui-icon-search " update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#{vendaComissaoMB.teste()}"/>
+                            </h:panelGrid>  
+                        </p:tab>
+                    </p:accordionPanel><br></br><br></br>
+                    <p:dataTable var="consVendaComissao" value="#{vendasComissaoMB.listaVendasComissao}" class="tabela2" 
+                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                  paginator="true" rows="10"    rowIndexVar="rowIx">
+                         <p:column headerText="Nº Venda" style="background:#ffffff;color:#1F8871;text-align:center;" sortBy="#">
+                             <h:outputText value="#{consVendaComissao.vendas.idvendas}" >
+                                <f:convertNumber type="number" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column headerText="Loja" style="background:#ffffff;color:#1F8871;text-align:center;" sortBy="#">
+                            <h:outputText value="#{consVendaComissao.vendas.unidadenegocio.nomeFantasia}" />
+                        </p:column>
+                        <p:column headerText="Valor Bruto" style="width:82px;background:#ffffff;color:#1F8871;text-align:right;" sortBy="#">
+                            <h:outputText value="#{consVendaComissao.valorbruto}">
+                                <f:convertNumber currencySymbol="" type="currency"/>
+                            </h:outputText>
+                        </p:column>
+                        <p:column headerText="Valor Fornecedor" style="width:120px;background:#ffffff;color:#1F8871;text-align:right;">
+                            <h:outputText value="#{consVendaComissao.valorfornecedor}" >
+                                <f:convertNumber currencySymbol="" type="currency"/>
+                            </h:outputText>
+                        </p:column> 
+                        <p:column headerText="Comissão TM" style="width:97px;background:#ffffff;color:#1F8871;text-align:right;">
+                            <h:outputText value="#{consVendaComissao.comissaotm}" >
+                                <f:convertNumber currencySymbol="" type="currency"/>
+                            </h:outputText>
+                        </p:column>
+                        <p:column headerText="Comissão Franquia" style="width:130px;background:#ffffff;color:#1F8871;text-align:right;">
+                            <h:outputText value="#{consVendaComissao.comissaofraquia}" >
+                                <f:convertNumber currencySymbol="" type="currency"/>
+                            </h:outputText>
+                        </p:column>
+                        <p:column headerText="Alterar"  style="width:52px;background:#ffffff;color:#1F8871;text-align:center;">
+                            <p>
+                                <p:commandButton   onclick="PF('consultar').show()" icon="ui-icon-pencil" title="Alterar"></p:commandButton>
+                            </p>
+                        </p:column>
+                    </p:dataTable>
+                    <br></br>
+                   
+                    <br></br>
+                    <p:dialog id="cadastro" header="Editar" class="dialog" widgetVar="consultar" resizable="false"  width="38%" height="60%" style="font-size:10px;">
+                        <p:outputLabel value="Valor Bruto" />
+                        <p:outputLabel value="Valor Fornecedor" class="espacodialog"/>
+                        <p:outputLabel value="Comissão TM" class="espacodialog2"/>
+                        <br></br>
+                        <p:inputText value="#" size="15" class="espacocampos2"/>
+                        <p:inputText value="#" size="15" class="espacocampos"/>
+                        <p:inputText value="#" size="15" class="espacocampos"/>
+                        <br></br><br></br>
+                        
+                        <p:outputLabel value="Taxa TM" />
+                        <p:outputLabel value="Desconto TM" class="espacodialog3"/>
+                        <p:outputLabel value="Comissão Emissor" class="espacodialog4"/>
+                        <br></br>
+                        <p:inputText value="#" size="15" class="espacocampos2"/>
+                        <p:inputText value="#" size="15"  class="espacocampos"/>
+                        <p:inputText value="#" size="15"  class="espacocampos"/>
+                        <br></br><br></br>
+                        
+                        <p:outputLabel value="Comissão Gerente" />
+                        <p:outputLabel value="Comissão Terceiros" class="espacodialog5"/>
+                        <p:outputLabel value="Comissão Franquia" class="espacodialog6"/>
+                        <br></br>
+                        <p:inputText value="#" size="15" class="espacocampos2"/>
+                        <p:inputText value="#" size="15"  class="espacocampos" />
+                        <p:inputText value="#" size="15"  class="espacocampos"/>
+                        <br></br><br></br>
+                        
+                        <p:outputLabel value="Desagio" />
+                        <p:outputLabel value="Total" class="espacodialog7"/>
+                        <p:outputLabel value="Paga?" class="espacodialog8"/>
+                        <br></br>
+                        <p:inputText value="#" size="15" class="espacocampos2"/>
+                        <p:inputText value="#" size="15"   class="espacocampos"/>
+                        <select class="espacocampos3" style="width:135px;">
+                            <option value="sim">Sim</option>
+                            <option value="nao">Não</option>
+                          </select>
+                        <br></br><br></br>
+                        
+                        <p:outputLabel value="Produto" />
+                        <p:outputLabel value="Consultor" class="espacodialog7"/>
+                        <br></br>
+                        <p:inputText value="#" size="15" class="espacocampos2"/>
+                        <p:inputText value="#" size="15"  class="espacocampos" />
+                        <br></br><br></br>
+                         <p>
+                            <p:commandButton class="botaodialog" onclick="" value="Editar"></p:commandButton>
+                            <p:commandButton class="botaodialog2" onclick="" value="Fechar"></p:commandButton>
+                        </p>
+                    </p:dialog>
+                </div>
+            </h:form>     
+           
+        </ui:define>
+    </ui:composition>
+</html>
