@@ -35,6 +35,8 @@ import javax.validation.constraints.Size;
 @NamedQueries({
     @NamedQuery(name = "Vendas.findAll", query = "SELECT v FROM Vendas v")})
 public class Vendas implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendas")
+    private List<Contasreceber> contasreceberList;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -254,6 +256,14 @@ public class Vendas implements Serializable {
     @Override
     public String toString() {
         return "br.com.travelmate.model.Vendas[ idvendas=" + idvendas + " ]";
+    }
+
+    public List<Contasreceber> getContasreceberList() {
+        return contasreceberList;
+    }
+
+    public void setContasreceberList(List<Contasreceber> contasreceberList) {
+        this.contasreceberList = contasreceberList;
     }
     
 }
