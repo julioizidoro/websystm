@@ -36,8 +36,6 @@ public class Fornecedorcidade implements Serializable {
     @Basic(optional = false)
     @Column(name = "idfornecedorcidade")
     private Integer idfornecedorcidade;
-    @Column(name = "codigo")
-    private Integer codigo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedorcidade")
     private List<Vendas> vendasList;
     @JoinColumn(name = "cidade_idcidade", referencedColumnName = "idcidade")
@@ -65,14 +63,7 @@ public class Fornecedorcidade implements Serializable {
         this.idfornecedorcidade = idfornecedorcidade;
     }
 
-    public Integer getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(Integer codigo) {
-        this.codigo = codigo;
-    }
-
+   
     public List<Vendas> getVendasList() {
         return vendasList;
     }

@@ -18,6 +18,10 @@
     <class>br.com.travelmate.model.Vendas</class>
     <class>br.com.travelmate.model.Vendascomissao</class>
     <class>br.com.travelmate.model.Cambio</class>
+    <class>br.com.travelmate.model.Contasreceber</class>
+    <class>br.com.travelmate.model.Parametrosprodutos</class>
+    <class>br.com.travelmate.model.Pincambio</class>
+    <class>br.com.travelmate.model.Planoconta</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties/>
   </persistence-unit>

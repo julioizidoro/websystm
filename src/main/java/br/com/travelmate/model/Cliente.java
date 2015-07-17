@@ -551,7 +551,7 @@ public class Cliente implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.travelmate.model.Cliente[ idcliente=" + idcliente + " ]";
+        return getNome();
     }
     
 }

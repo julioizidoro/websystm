@@ -317,7 +317,7 @@ public class Unidadenegocio implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.travelmate.model.Unidadenegocio[ idunidadeNegocio=" + idunidadeNegocio + " ]";
+        return getNomeFantasia();
     }
     
 }

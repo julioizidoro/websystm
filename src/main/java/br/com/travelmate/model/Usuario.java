@@ -219,7 +219,7 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.travelmate.model.Usuario[ idusuario=" + idusuario + " ]";
+        return getNome();
     }
 
     public List<Pincambio> getPincambioList() {

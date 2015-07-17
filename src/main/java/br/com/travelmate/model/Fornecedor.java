@@ -258,7 +258,7 @@ public class Fornecedor implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.travelmate.model.Fornecedor[ idfornecedor=" + idfornecedor + " ]";
+        return getNome();
     }
     
 }

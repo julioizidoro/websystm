@@ -7,124 +7,123 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:composition template="/WEB-INF/templates/default.xhtml">
         <ui:define name="corpo">
-            <h:form>
+            <h:form id="consultacomissao">
                 <div id="centro">
                     <br></br><br></br>
                     <p:accordionPanel class="painel" activeIndex="-1" >
                         <p:tab titleStyle="color:#000;font-size:11px;background:#c7d95f;" title="Pesquisar">
-                            <h:panelGrid columns="3" cellpadding="3">
-                                <p:outputLabel value="Loja" for="loja" class="fontebranca"/> 
-                                <p:outputLabel value="Data Inicial" for="dataIni" class="left2"/> 
-                                <p:outputLabel value="Data Final" for="dataFinal" class="left3"/>
+                            <h:panelGrid columns="5" cellpadding="3">
+                                <p:outputLabel value="Período" for="periodo" class="espacodialog8"/> 
+                                <p:outputLabel value="Produto" for="produto" class="left19"/>
+                                <p:outputLabel value="Paga"  class="left20"/>
                             </h:panelGrid>
-                            <h:panelGrid columns="4" cellpadding="1">
-                                <p:inputText id="loja" size="40" maxlength="100" class="fontebranca" />
-                                <p:calendar id="dataIni" class="espacocampospesquisa"  pattern="dd/MM/yyyy" mask="true" size="9" maxlength="15" >
+                            <h:panelGrid columns="6" cellpadding="1">
+                                <p:calendar id="periodo"  class="espacodialog8"  pattern="dd/MM/yyyy" mask="true" size="10" maxlength="15" >
                                     <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                                 </p:calendar>
-                                <p:calendar id="dataFinal" class="espacocampospesquisa2"  pattern="dd/MM/yyyy" mask="true" size="9" maxlength="15">
+                                <p:calendar id="periodos" class="iata"  pattern="dd/MM/yyyy" mask="true" size="10" maxlength="15">
                                     <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                                 </p:calendar>
+                                <p:selectOneMenu id="produto" value="#" style="width:245px;font-size: 10px" class="espacocampos">
+                                    <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true"/> 
+                                </p:selectOneMenu>
+                                <p:selectOneMenu id="paga" value="#" style="width:110px;font-size: 10px" class="espacocampos">
+                                    <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true" /> 
+                                    <f:selectItem itemLabel="Sim" itemValue="Sim" />  
+                                    <f:selectItem itemLabel="Não" itemValue="Não" />      
+                                </p:selectOneMenu>
+                            </h:panelGrid>  <br></br>
+                            <h:panelGrid columns="5" cellpadding="3">
+                                <p:outputLabel value="Unidade" for="unidade" class="espacodialog8"/> 
+                                <p:outputLabel value="Consultor" for="consultor" class="left21"/>
+                            </h:panelGrid>
+                            <h:panelGrid columns="6" cellpadding="1">
+                                <p:selectOneMenu id="unidade" value="#" style="width:200px;font-size: 10px" class="espacodialog8">
+                                    <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true"/> 
+                                </p:selectOneMenu>
+                                <p:selectOneMenu id="consultor" value="#" style="width:230px;font-size: 10px" class="espacodialog2">
+                                    <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true"/> 
+                                </p:selectOneMenu>
                                 <p:commandButton value="Pesquisar" class="botaodialog2"  icon=" ui-icon-search " update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#{vendaComissaoMB.teste()}"/>
                             </h:panelGrid>  
                         </p:tab>
                     </p:accordionPanel><br></br><br></br>
                     <p:dataTable var="consVendaComissao" value="#{vendasComissaoMB.listaVendasComissao}" class="tabela2" 
-                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-                                  paginator="true" rows="10"    rowIndexVar="rowIx">
-                         <p:column headerText="Nº Venda" style="background:#ffffff;color:#1F8871;text-align:center;" sortBy="#">
-                             <h:outputText value="#{consVendaComissao.vendas.idvendas}" >
-                                <f:convertNumber type="number" />
-                            </h:outputText>
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                 paginator="true" rows="10"    rowIndexVar="rowIx">
+
+                        <p:column  style="background:#ffffff;color:#1F8871;text-align:center;width:48px;z-index: 3!important;overflow: visible!important;">
+                            <p:menubar style="min-width:10px;min-height:10px;height:25px;margin-top:-4px;"> 
+                                <p:submenu style="margin-top:-7px;" >
+                                    <p:menuitem style="float:right;" value="Editar" action="#{vendasComissaoMB.editar()}" />
+                                    <p:menuitem style="float:right;" value="Pagamento" action="#" />
+                                </p:submenu>
+                            </p:menubar>
                         </p:column>
-                        <p:column headerText="Loja" style="background:#ffffff;color:#1F8871;text-align:center;" sortBy="#">
+                        <p:column headerText="Nº Venda" style="background:#ffffff;text-decoration-color:#1F8871;color:#1F8871;text-align:center;width:85px;" sortBy="#{consVendaComissao.vendas.idvendas}">
+                            <p:commandLink actionListener="#{vendasComissaoMB.visualizar(consVendaComissao)}" value="#{consVendaComissao.vendas.idvendas}"  update="consultacomissao:dialog_visualizacao" oncomplete="popAprovar.hide(); #{meuBean.objetos}" onclick="PF('visualizacao').show()" >
+
+                            </p:commandLink>
+                        </p:column>
+                        <p:column headerText="Loja" style="background:#ffffff;color:#1F8871;text-align:center;" sortBy="#{consVendaComissao.vendas.unidadenegocio.nomeFantasia}">
                             <h:outputText value="#{consVendaComissao.vendas.unidadenegocio.nomeFantasia}" />
                         </p:column>
-                        <p:column headerText="Valor Bruto" style="width:82px;background:#ffffff;color:#1F8871;text-align:right;" sortBy="#">
+                        <p:column headerText="Valor Bruto" style="width:95px;background:#ffffff;color:#1F8871;text-align:right;" sortBy="#{consVendaComissao.valorbruto}">
                             <h:outputText value="#{consVendaComissao.valorbruto}">
                                 <f:convertNumber currencySymbol="" type="currency"/>
                             </h:outputText>
                         </p:column>
-                        <p:column headerText="Valor Fornecedor" style="width:120px;background:#ffffff;color:#1F8871;text-align:right;">
+                        <p:column headerText="Valor Fornecedor" style="width:105px;background:#ffffff;color:#1F8871;text-align:right;">
                             <h:outputText value="#{consVendaComissao.valorfornecedor}" >
                                 <f:convertNumber currencySymbol="" type="currency"/>
                             </h:outputText>
                         </p:column> 
-                        <p:column headerText="Comissão TM" style="width:97px;background:#ffffff;color:#1F8871;text-align:right;">
+                        <p:column headerText="Comissão TM" style="width:90px;background:#ffffff;color:#1F8871;text-align:right;">
                             <h:outputText value="#{consVendaComissao.comissaotm}" >
                                 <f:convertNumber currencySymbol="" type="currency"/>
                             </h:outputText>
                         </p:column>
-                        <p:column headerText="Comissão Franquia" style="width:130px;background:#ffffff;color:#1F8871;text-align:right;">
+                        <p:column headerText="Comissão Franquia" style="width:117px;background:#ffffff;color:#1F8871;text-align:right;">
                             <h:outputText value="#{consVendaComissao.comissaofraquia}" >
                                 <f:convertNumber currencySymbol="" type="currency"/>
                             </h:outputText>
                         </p:column>
-                        <p:column headerText="Alterar"  style="z-index: 3!important;overflow: visible!important;background:#ffffff;color:#1F8871;text-align:center;">
-                            <p:menubar> 
-                                <p:submenu style="" icon=" ui-icon-plus ">
-                                     <p:menuitem class="submenu" value="Editar" action="#{vendasComissaoMB.editar()}" />
-                                 </p:submenu>
-                            </p:menubar>
-                        </p:column>
                     </p:dataTable>
                     <br></br>
-                   
+
                     <br></br>
-                    <p:dialog id="cadastro" header="Editar" class="dialog" widgetVar="consultar" resizable="false"  width="38%" height="60%" style="font-size:10px;">
-                        <p:outputLabel value="Valor Bruto" />
-                        <p:outputLabel value="Valor Fornecedor" class="espacodialog"/>
-                        <p:outputLabel value="Comissão TM" class="espacodialog2"/>
+                    <p:dialog id="dialog_visualizacao" header="#{vendasComissaoMB.tituloDialog}" widgetVar="visualizacao"  width="40%" class="dialog" style="background:#d0e9c6" >
+                        <p:outputLabel value="Valor" class="espacocampos" style="font-size: 11px"/>
+                        <p:outputLabel value="Data" class="leftcampo" style="font-size: 11px"/>
+                        <p:outputLabel value="Produto" class="espacodialog3" style="font-size: 11px"/>
                         <br></br>
-                        <p:inputText value="#" size="15" class="espacocampos2"/>
-                        <p:inputText value="#" size="15" class="espacocampos"/>
-                        <p:inputText value="#" size="15" class="espacocampos"/>
+
+                        <p:inputText  size="12" value="#{vendasComissaoMB.vendascomissao.vendas.valor}" id="valor" class="espacocamposright" style="font-size: 11px">
+                            <f:convertNumber currencySymbol="" type="currency"/>
+                        </p:inputText>
+                        <p:calendar id="data" value="#{vendasComissaoMB.vendascomissao.vendas.dataVenda}" style="font-size: 11px" class="espacocampos"  pattern="dd/MM/yyyy" mask="true" size="11" maxlength="15" >
+                            <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                        </p:calendar>
+                        <p:inputText value="#{vendasComissaoMB.vendascomissao.vendas.produtos.descricao}" size="27" id="produto" class="espacocampos" style="font-size: 11px"/>
                         <br></br><br></br>
-                        
-                        <p:outputLabel value="Taxa TM" />
-                        <p:outputLabel value="Desconto TM" class="espacodialog3"/>
-                        <p:outputLabel value="Comissão Emissor" class="espacodialog4"/>
+
+                        <p:outputLabel value="Unidade" style="font-size: 11px" class="espacocampos"/>
+                        <p:outputLabel value="Cliente" class="left22" style="font-size: 11px"/>
                         <br></br>
-                        <p:inputText value="#" size="15" class="espacocampos2"/>
-                        <p:inputText value="#" size="15"  class="espacocampos"/>
-                        <p:inputText value="#" size="15"  class="espacocampos"/>
+                        <p:inputText value="#{vendasComissaoMB.vendascomissao.vendas.unidadenegocio}" size="31" id="unidade" class="espacocampos" style="font-size: 11px"/>
+                        <p:inputText value="#{vendasComissaoMB.vendascomissao.vendas.cliente}" size="32" id="cliente" class="espacocampos" style="font-size: 11px"/>
                         <br></br><br></br>
-                        
-                        <p:outputLabel value="Comissão Gerente" />
-                        <p:outputLabel value="Comissão Terceiros" class="espacodialog5"/>
-                        <p:outputLabel value="Comissão Franquia" class="espacodialog6"/>
+
+                        <p:outputLabel value="Consultor" style="font-size: 11px" class="espacocampos"/>
+                        <p:outputLabel value="Parceiro"  class="left22" style="font-size: 11px"/>
                         <br></br>
-                        <p:inputText value="#" size="15" class="espacocampos2"/>
-                        <p:inputText value="#" size="15"  class="espacocampos" />
-                        <p:inputText value="#" size="15"  class="espacocampos"/>
+                        <p:inputText value="#{vendasComissaoMB.vendascomissao.vendas.usuario}" id="consultor" size="32" class="espacocampos" style="font-size: 11px"/>
+                        <p:inputText value="#{vendasComissaoMB.vendascomissao.vendas.fornecedor}" id="parceiro" size="31"  class="espacocampos" style="font-size: 11px"/>
                         <br></br><br></br>
-                        
-                        <p:outputLabel value="Desagio" />
-                        <p:outputLabel value="Total" class="espacodialog7"/>
-                        <p:outputLabel value="Paga?" class="espacodialog8"/>
-                        <br></br>
-                        <p:inputText value="#" size="15" class="espacocampos2"/>
-                        <p:inputText value="#" size="15"   class="espacocampos"/>
-                        <select class="espacocampos3" style="width:135px;">
-                            <option value="sim">Sim</option>
-                            <option value="nao">Não</option>
-                          </select>
-                        <br></br><br></br>
-                        
-                        <p:outputLabel value="Produto" />
-                        <p:outputLabel value="Consultor" class="espacodialog7"/>
-                        <br></br>
-                        <p:inputText value="#" size="15" class="espacocampos2"/>
-                        <p:inputText value="#" size="15"  class="espacocampos" />
-                        <br></br><br></br>
-                         <p>
-                            <p:commandButton class="botaodialog" onclick="" value="Editar"></p:commandButton>
-                            <p:commandButton class="botaodialog2" onclick="" value="Fechar"></p:commandButton>
-                        </p>
                     </p:dialog>
                 </div>
             </h:form>     
-           
+
         </ui:define>
     </ui:composition>
 </html>

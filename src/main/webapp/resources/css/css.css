@@ -95,10 +95,6 @@ h1 {
     margin-left:10px;
     font-size:10px;
 }
-.iata{
-    margin-left:80px;
-    font-size:10px;
-}
 .tabela{
     margin-top:0px;
     width: 900px;
@@ -108,11 +104,12 @@ h1 {
 .tabela2{
     width: 840px;
     margin-left:27px;
-    font-size:11px;color:#1F8871;
+    font-size:10px;
+    color:#1F8871;
 }
 .dialog{
     margin-top: 25px;
-     margin-left:70px;
+     margin-left:300px;
      position:fixed;
      margin-left:-150px;
      background-color: #F0FFFF;
@@ -122,10 +119,17 @@ h1 {
     margin-left:300px;
 }
 .botaodialog2{
+    font-size: 13px;
     margin-left:20px;
 }
 
 .espacocampos{
+    font-size:10px;
+    margin-left:30px;
+    height:25px;
+}
+.espacocamposright{
+    text-align: right;
     font-size:10px;
     margin-left:30px;
     height:25px;
@@ -208,6 +212,18 @@ h1 {
     font-size: 10px;
     margin-left:80px;
 }
+.left19{
+    font-size: 10px;
+    margin-left:150px;
+}
+.left21{
+    font-size: 10px;
+    margin-left:200px;
+}
+.left22{
+    font-size: 10px;
+    margin-left:175px;
+}
 .fontebranca{
     font-size: 11px;
 }
@@ -273,6 +289,10 @@ h1 {
 .cursomenu{
     font-size: 11px;
     margin-left:280px;
+}
+.left20{
+    font-size: 10px;
+    margin-left:235px;
 }
 .highmenu{
     font-size: 11px;
