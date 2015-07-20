@@ -661,4 +661,15 @@ public class Formatacao {
         scambio = "IATA " + iata + "   UDS " + usd + "   EUR " + euro  + "   GBP " + gbp + "   CAD " + cad + "   AUD " + aud + "   NZD " + nzd + "   CHF " + chf;
         return scambio;
     }
+  
+  public static Date ConvercaoStringDataBrasil(String data) {
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        Date dataFormatada = null;
+        try {
+            dataFormatada = df.parse(data);
+        } catch (ParseException ex) {
+            Logger.getLogger(Formatacao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return dataFormatada;
+    }
 }

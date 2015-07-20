@@ -18,6 +18,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -64,6 +65,8 @@ public class Contasreceber implements Serializable {
     @JoinColumn(name = "recebimento_idrecebimento", referencedColumnName = "idrecebimento")
     @ManyToOne(optional = false)
     private Recebimento recebimento;
+    @Transient
+    private boolean selecionado;
 
     public Contasreceber() {
     }
@@ -158,6 +161,14 @@ public class Contasreceber implements Serializable {
 
     public void setRecebimento(Recebimento recebimento) {
         this.recebimento = recebimento;
+    }
+
+    public boolean isSelecionado() {
+        return selecionado;
+    }
+
+    public void setSelecionado(boolean selecionado) {
+        this.selecionado = selecionado;
     }
 
     @Override

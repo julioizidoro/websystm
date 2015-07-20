@@ -43,9 +43,6 @@ public class Cobranca implements Serializable {
     @JoinColumn(name = "vendas_idvendas", referencedColumnName = "idvendas")
     @ManyToOne(optional = false)
     private Vendas vendas;
-    @JoinColumn(name = "cliente_idcliente", referencedColumnName = "idcliente")
-    @ManyToOne(optional = false)
-    private Cliente cliente;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cobranca")
     private List<Historicocobranca> historicocobrancaList;
 
@@ -79,15 +76,7 @@ public class Cobranca implements Serializable {
     public void setVendas(Vendas vendas) {
         this.vendas = vendas;
     }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-
+    
     public List<Historicocobranca> getHistoricocobrancaList() {
         return historicocobrancaList;
     }
