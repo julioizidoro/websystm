@@ -10,8 +10,6 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -20,6 +18,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
@@ -33,8 +32,8 @@ import javax.validation.constraints.Size;
 public class Contasreceber implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
+    @NotNull
     @Column(name = "idcontasreceber")
     private Integer idcontasreceber;
     @Size(max = 30)
@@ -48,21 +47,11 @@ public class Contasreceber implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "valorparcela")
     private Float valorparcela;
-    @Column(name = "juros")
-    private Float juros;
-    @Column(name = "desagio")
-    private Float desagio;
-    @Column(name = "datapagamento")
-    @Temporal(TemporalType.DATE)
-    private Date datapagamento;
-    @Column(name = "valorpago")
-    private Float valorpago;
     @Size(max = 50)
     @Column(name = "tipodocumento")
     private String tipodocumento;
-    @Size(max = 1)
     @Column(name = "boletogerado")
-    private String boletogerado;
+    private Boolean boletogerado;
     @JoinColumn(name = "banco_idbanco", referencedColumnName = "idbanco")
     @ManyToOne(optional = false)
     private Banco banco;
@@ -72,6 +61,9 @@ public class Contasreceber implements Serializable {
     @JoinColumn(name = "vendas_idvendas", referencedColumnName = "idvendas")
     @ManyToOne(optional = false)
     private Vendas vendas;
+    @JoinColumn(name = "recebimento_idrecebimento", referencedColumnName = "idrecebimento")
+    @ManyToOne(optional = false)
+    private Recebimento recebimento;
 
     public Contasreceber() {
     }
@@ -120,38 +112,6 @@ public class Contasreceber implements Serializable {
         this.valorparcela = valorparcela;
     }
 
-    public Float getJuros() {
-        return juros;
-    }
-
-    public void setJuros(Float juros) {
-        this.juros = juros;
-    }
-
-    public Float getDesagio() {
-        return desagio;
-    }
-
-    public void setDesagio(Float desagio) {
-        this.desagio = desagio;
-    }
-
-    public Date getDatapagamento() {
-        return datapagamento;
-    }
-
-    public void setDatapagamento(Date datapagamento) {
-        this.datapagamento = datapagamento;
-    }
-
-    public Float getValorpago() {
-        return valorpago;
-    }
-
-    public void setValorpago(Float valorpago) {
-        this.valorpago = valorpago;
-    }
-
     public String getTipodocumento() {
         return tipodocumento;
     }
@@ -160,11 +120,11 @@ public class Contasreceber implements Serializable {
         this.tipodocumento = tipodocumento;
     }
 
-    public String getBoletogerado() {
+    public Boolean getBoletogerado() {
         return boletogerado;
     }
 
-    public void setBoletogerado(String boletogerado) {
+    public void setBoletogerado(Boolean boletogerado) {
         this.boletogerado = boletogerado;
     }
 
@@ -190,6 +150,14 @@ public class Contasreceber implements Serializable {
 
     public void setVendas(Vendas vendas) {
         this.vendas = vendas;
+    }
+
+    public Recebimento getRecebimento() {
+        return recebimento;
+    }
+
+    public void setRecebimento(Recebimento recebimento) {
+        this.recebimento = recebimento;
     }
 
     @Override

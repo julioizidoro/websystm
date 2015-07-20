@@ -29,6 +29,12 @@ import javax.validation.constraints.Size;
 @NamedQueries({
     @NamedQuery(name = "Banco.findAll", query = "SELECT b FROM Banco b")})
 public class Banco implements Serializable {
+    @Size(max = 1)
+    @Column(name = "digioagencia")
+    private String digioagencia;
+    @Size(max = 1)
+    @Column(name = "digitoconta")
+    private String digitoconta;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "banco")
     private List<Contasreceber> contasreceberList;
     private static final long serialVersionUID = 1L;
@@ -182,6 +188,22 @@ public class Banco implements Serializable {
 
     public void setContasreceberList(List<Contasreceber> contasreceberList) {
         this.contasreceberList = contasreceberList;
+    }
+
+    public String getDigioagencia() {
+        return digioagencia;
+    }
+
+    public void setDigioagencia(String digioagencia) {
+        this.digioagencia = digioagencia;
+    }
+
+    public String getDigitoconta() {
+        return digitoconta;
+    }
+
+    public void setDigitoconta(String digitoconta) {
+        this.digitoconta = digitoconta;
     }
     
 }

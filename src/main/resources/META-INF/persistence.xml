@@ -4,24 +4,27 @@
     <jta-data-source>jdbc/websystmDS</jta-data-source>
     <class>br.com.travelmate.model.Acesso</class>
     <class>br.com.travelmate.model.Banco</class>
+    <class>br.com.travelmate.model.Cambio</class>
     <class>br.com.travelmate.model.Cidade</class>
     <class>br.com.travelmate.model.Cliente</class>
+    <class>br.com.travelmate.model.Cobranca</class>
+    <class>br.com.travelmate.model.Contasreceber</class>
     <class>br.com.travelmate.model.Fornecedor</class>
     <class>br.com.travelmate.model.Fornecedorcidade</class>
     <class>br.com.travelmate.model.Grupoacesso</class>
+    <class>br.com.travelmate.model.Historicocobranca</class>
     <class>br.com.travelmate.model.Moedas</class>
     <class>br.com.travelmate.model.Pais</class>
+    <class>br.com.travelmate.model.Parametrosprodutos</class>
+    <class>br.com.travelmate.model.Pincambio</class>
+    <class>br.com.travelmate.model.Planoconta</class>
     <class>br.com.travelmate.model.Produtos</class>
     <class>br.com.travelmate.model.Publicidade</class>
+    <class>br.com.travelmate.model.Recebimento</class>
     <class>br.com.travelmate.model.Unidadenegocio</class>
     <class>br.com.travelmate.model.Usuario</class>
     <class>br.com.travelmate.model.Vendas</class>
     <class>br.com.travelmate.model.Vendascomissao</class>
-    <class>br.com.travelmate.model.Cambio</class>
-    <class>br.com.travelmate.model.Contasreceber</class>
-    <class>br.com.travelmate.model.Parametrosprodutos</class>
-    <class>br.com.travelmate.model.Pincambio</class>
-    <class>br.com.travelmate.model.Planoconta</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties/>
   </persistence-unit>
