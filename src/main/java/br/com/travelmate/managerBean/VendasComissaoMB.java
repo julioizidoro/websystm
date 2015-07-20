@@ -6,7 +6,6 @@
 package br.com.travelmate.managerBean;
 
 import br.com.travelmate.facade.VendasComissaoFacade;
-import br.com.travelmate.model.Vendas;
 import br.com.travelmate.model.Vendascomissao;
 import java.io.Serializable;
 import java.util.ArrayList;
