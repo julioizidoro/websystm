@@ -56,7 +56,7 @@
                             <p:menubar style="min-width:10px;min-height:10px;height:25px;margin-top:-4px;"> 
                                 <p:submenu style="margin-top:-7px;" >
                                     <p:menuitem style="float:right;" value="Editar" action="#{vendasComissaoMB.editar()}" />
-                                    <p:menuitem style="float:right;" value="Pagamento" action="#" />
+                                    <p:menuitem style="float:right;" value="Calcular Comissão" update="comissao:dialog_comissao" oncomplete="PF('comissao').show()" />
                                 </p:submenu>
                             </p:menubar>
                         </p:column>
@@ -123,6 +123,55 @@
                         <p:inputText value="#{vendasComissaoMB.vendascomissao.vendas.fornecedor}" id="parceiro" size="31"  class="espacocampos" style="font-size: 11px"/>
                         <br></br><br></br>
                     </p:dialog>
+                 
+            </h:form>
+            <h:form id="comissao">
+                <p:dialog id="dialog_comissao" header="Calcular Comissao" widgetVar="comissao"  width="40%" class="dialog2" style="background:#d0e9c6" >
+                    <p:outputLabel value="Período" for="periodo" class="espacocampos"/> 
+                   
+                    <br></br>
+                    <p:calendar id="periodo"  class="espacocampos"  pattern="dd/MM/yyyy" mask="true" size="12" maxlength="15" >
+                        <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                    </p:calendar>
+                    <p:calendar id="periodos" class="iata"  pattern="dd/MM/yyyy" mask="true" size="12" maxlength="15">
+                        <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                    </p:calendar>
+                     <p:commandButton value="Calcular" class="left19" icon="	ui-icon-calculator"/>
+                     <br></br> <br></br>
+                     <p:outputLabel value="Consultor" for="periodo" class="espacocampos"/> 
+                     <br></br>
+                     <p:selectOneMenu id="consultorcomissao" value="#" style="width:300px;font-size: 10px" class="espacocampos">
+                        <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true" /> 
+                    </p:selectOneMenu>
+                     <p:commandButton value="Fechar" class="espacocampos" icon="ui-icon-close"/>
+                     <br></br><br></br><br></br>
+                     <p:dataTable id="comissaotabela" var="comissaotabela"  value="" class="tabela3" 
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+                                     paginator="true" rows="10" style="margin-bottom:20px;font-size: 10px;" >
+                            <f:facet name="{Exporters}">
+                                <h:commandLink>
+                                    <img src="resources/img/excel.png" width="20" class="imagens"/>
+                                    <p:dataExporter type="xls" target="recebimentotabela" fileName="recebimento" />
+                                </h:commandLink>
+                            </f:facet>
+                            <p:column headerText="Consultor" styleClass="">
+                                <h:outputText value=""/>
+                            </p:column>
+                            <p:column headerText="Unidade">
+                                <h:outputText value=""/>
+                            </p:column>
+                            <p:column headerText="Venda Bruta" style="width:90px">
+                                <h:outputText value="" >
+                                <f:convertNumber currencySymbol="" type="currency"/>
+                            </h:outputText>
+                            </p:column>
+                             <p:column headerText="Comissão" style="width:90px">
+                               <h:outputText value="" >
+                                    <f:convertNumber currencySymbol="" type="currency"/>
+                                </h:outputText>
+                            </p:column>
+                        </p:dataTable>
+                </p:dialog>
             </h:form>
         </ui:define>
     </ui:composition>

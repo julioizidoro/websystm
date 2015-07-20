@@ -25,7 +25,7 @@
             });
         });
     </script>
-    <img src="resources/img/dinheiro.png" height="50" width="38" class="iconcambio"/>
+    
     <div id="tudo">
        
         <navBar class="navbar navbar-default " role="navigation" >
@@ -33,7 +33,9 @@
                     <a class="usuariologado" >Usuario Logado</a>
                     <p:commandButton icon=" ui-icon-closethick" title="Sair" class="botaodeslogar"/>
         </navBar>
+        
          <navBar class="navbar navbar-default " role="navigation">
+            <img src="resources/img/dinheiro.png" height="50" width="38" class="iconcambio"/> 
             <div class="container">
                 <div class="nav navbar-nav">
                     <ul class="menu">
@@ -55,6 +57,7 @@
                 </div>
             </div>		
         </navBar>
+         
         <h:panelGrid columns="7" cellpadding="1" class="menuTravel">
             <img src="resources/img/cursos.jpg" alt="portrait" class="imagemlogo"/>
             <img src="resources/img/high-school.jpg" class="imagemlogos"/>
@@ -73,10 +76,11 @@
             <p:outputLabel class="" value="Universidade"/>
             <p:outputLabel class="" value="Work and Travel"/>
         </h:panelGrid>
-        
+       
         <div class="menu_mluv_retratil">
-            <a class="mostra-esconde-menu" href="javascript:void(0);">Câmbio </a>
-            <p:outputLabel >fffffffffffffffffffffffffffffffffffffffffffffffffffffffff</p:outputLabel>
+             
+            <a class="mostra-esconde-menu" href="javascript:void(0);">Câmbio</a>
+            <p:outputLabel value="#{vendasComissaoMB.teste}"></p:outputLabel>
         </div>
         <br></br>
         <br></br>

@@ -26,6 +26,7 @@ public class VendasComissaoMB implements Serializable{
     private Vendascomissao vendascomissao;
     private List<Vendascomissao> listaVendasComissao;
     private String tituloDialog;
+    private String teste="teste";
 
     public VendasComissaoMB() {
         
@@ -62,6 +63,15 @@ public class VendasComissaoMB implements Serializable{
     public void setTituloDialog(String tituloDialog) {
         this.tituloDialog = tituloDialog;
     }
+
+    public String getTeste() {
+        return teste;
+    }
+
+    public void setTeste(String teste) {
+        this.teste = teste;
+    }
+    
     
     
     public void gerarListaVendaComissao(String sql){

@@ -26,7 +26,7 @@ public class MenuMB implements Serializable{
     }
     
     public String contasReceber(){
-        return "consultacomissaovendas";
+        return "consContasReceber";
     }
     
 }
