@@ -8,7 +8,6 @@ package br.com.travelmate.bean;
 import br.com.travelmate.facade.ProdutoFacade;
 import br.com.travelmate.facade.UsuarioFacade;
 import br.com.travelmate.facade.VendasComissaoFacade;
-import br.com.travelmate.model.Parametrosprodutos;
 import br.com.travelmate.model.Produtos;
 import br.com.travelmate.model.Usuario;
 import br.com.travelmate.model.Vendascomissao;
@@ -29,6 +28,8 @@ public class CalcularComissao {
         this.dataInical = dataInical;
         this.dataFinal = dataFinal;
         listaComissao = new  ArrayList<ComissaoBean>();
+        iniciarCalculoComissao();
+        System.out.println("");
     }
 
     
@@ -60,9 +61,11 @@ public class CalcularComissao {
     public void iniciarCalculoComissao(){
         ProdutoFacade produtoFacade = new ProdutoFacade();
         List<Produtos> listaProduto = produtoFacade.listarProdutos("");
-        if (listaProduto!=null){
-            for(int i=0;i<listaProduto.size();i++){
-                gerarComissaoGeretes(listaProduto.get(i).getIdprodutos(), listaProduto.get(i).getIdgerente(), listaProduto.get(i).getDescricao());
+        if (listaProduto != null) {
+            for (int i = 0; i < listaProduto.size(); i++) {
+                if (listaProduto.get(i).getIdgerente() > 0) {
+                    gerarComissaoGeretes(listaProduto.get(i).getIdprodutos(), listaProduto.get(i).getIdgerente(), listaProduto.get(i).getDescricao());
+                }
             }
         }
         UsuarioFacade usuarioFacade = new UsuarioFacade();
@@ -96,7 +99,7 @@ public class CalcularComissao {
     public void gerarComissaoGeretes(int idProduto, int idGerente, String produto){
         VendasComissaoFacade vendasComissaoFacade = new VendasComissaoFacade();
         String sql = "Select v from Vendascomissao v where v.vendas.dataVenda>='" + dataInical +
-                "' and v.vendas.dataVenda<='" + dataFinal + "' and v.vendas.produtos.idproduto=" + idProduto;
+                "' and v.vendas.dataVenda<='" + dataFinal + "' and v.vendas.produtos.idprodutos=" + idProduto;
         List<Vendascomissao> lista = vendasComissaoFacade.listar(sql);
         float valorComissao=0.0f;
         float valorBruto=0.0f;

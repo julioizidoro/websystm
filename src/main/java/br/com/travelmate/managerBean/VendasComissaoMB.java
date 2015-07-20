@@ -5,10 +5,13 @@
  */
 package br.com.travelmate.managerBean;
 
+import br.com.travelmate.bean.CalcularComissao;
 import br.com.travelmate.facade.VendasComissaoFacade;
 import br.com.travelmate.model.Vendascomissao;
+import br.com.travelmate.util.Formatacao;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
@@ -25,7 +28,9 @@ public class VendasComissaoMB implements Serializable{
     private Vendascomissao vendascomissao;
     private List<Vendascomissao> listaVendasComissao;
     private String tituloDialog;
-    private String teste="teste";
+    private Date dataInicial;
+    private Date dataFinal;
+    private CalcularComissao calcularComissao;
 
     public VendasComissaoMB() {
     }
@@ -62,13 +67,31 @@ public class VendasComissaoMB implements Serializable{
         this.tituloDialog = tituloDialog;
     }
 
-    public String getTeste() {
-        return teste;
+    public Date getDataInicial() {
+        return dataInicial;
     }
 
-    public void setTeste(String teste) {
-        this.teste = teste;
+    public void setDataInicial(Date dataInicial) {
+        this.dataInicial = dataInicial;
     }
+
+    public Date getDataFinal() {
+        return dataFinal;
+    }
+
+    public void setDataFinal(Date dataFinal) {
+        this.dataFinal = dataFinal;
+    }
+
+    public CalcularComissao getCalcularComissao() {
+        return calcularComissao;
+    }
+
+    public void setCalcularComissao(CalcularComissao calcularComissao) {
+        this.calcularComissao = calcularComissao;
+    }
+
+    
     
     
     public void gerarListaVendaComissao(String sql){
@@ -84,12 +107,17 @@ public class VendasComissaoMB implements Serializable{
     }
     public String visualizar(Vendascomissao vendascomissao){
         this.vendascomissao = vendascomissao;
-        System.out.println("teste");
         return null;
     }
     
     public String tituloDialog(){
         tituloDialog = "Venda No. " + vendascomissao.getVendas().getIdvendas();
         return tituloDialog;
+    }
+    
+    public String calculoComissao(){
+        calcularComissao = new CalcularComissao(Formatacao.ConvercaoDataSql(dataInicial),
+            Formatacao.ConvercaoDataSql(dataFinal));
+        return "";
     }
 }

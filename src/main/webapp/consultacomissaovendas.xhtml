@@ -44,7 +44,7 @@
                                 <p:selectOneMenu id="consultor" value="#" style="width:230px;font-size: 10px" class="espacodialog2">
                                     <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true"/> 
                                 </p:selectOneMenu>
-                                <p:commandButton value="Pesquisar" class="botaodialog2"  icon=" ui-icon-search " update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#{vendaComissaoMB.teste()}"/>
+                                <p:commandButton value="Pesquisar" class="botaodialog2"  icon=" ui-icon-search " update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" />
                             </h:panelGrid>  
                         </p:tab>
                     </p:accordionPanel><br></br><br></br>
@@ -130,13 +130,13 @@
                     <p:outputLabel value="Período" for="periodo" class="espacocampos"/> 
                    
                     <br></br>
-                    <p:calendar id="periodo"  class="espacocampos"  pattern="dd/MM/yyyy" mask="true" size="12" maxlength="15" >
+                    <p:calendar id="periodo"  class="espacocampos"  pattern="dd/MM/yyyy" mask="true" size="12" maxlength="15" value="#{vendasComissaoMB.dataInicial}">
                         <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                     </p:calendar>
-                    <p:calendar id="periodos" class="iata"  pattern="dd/MM/yyyy" mask="true" size="12" maxlength="15">
+                    <p:calendar id="periodos" class="iata"  pattern="dd/MM/yyyy" mask="true" size="12" maxlength="15" value="#{vendasComissaoMB.dataFinal}">
                         <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                     </p:calendar>
-                     <p:commandButton value="Calcular" class="left19" icon="	ui-icon-calculator"/>
+                    <p:commandButton value="Calcular" class="left19" icon="	ui-icon-calculator" action="#{vendasComissaoMB.calculoComissao()}"/>
                      <br></br> <br></br>
                      <p:outputLabel value="Consultor" for="periodo" class="espacocampos"/> 
                      <br></br>
@@ -145,7 +145,7 @@
                     </p:selectOneMenu>
                      <p:commandButton value="Fechar" class="espacocampos" icon="ui-icon-close"/>
                      <br></br><br></br><br></br>
-                     <p:dataTable id="comissaotabela" var="comissaotabela"  value="" class="tabela3" 
+                     <p:dataTable id="comissaotabela" var="comissaotabela"  value="#{vendasComissaoMB.calcularComissao.listaComissao}" class="tabela3" 
                                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
                                      paginator="true" rows="10" style="margin-bottom:20px;font-size: 10px;" >
                             <f:facet name="{Exporters}">
@@ -155,18 +155,21 @@
                                 </h:commandLink>
                             </f:facet>
                             <p:column headerText="Consultor" styleClass="">
-                                <h:outputText value=""/>
+                                <h:outputText value="#{comissaotabela.nome}"/>
+                            </p:column>
+                            <p:column headerText="Cargo" styleClass="">
+                                <h:outputText value="#{comissaotabela.cargo}"/>
                             </p:column>
                             <p:column headerText="Unidade">
-                                <h:outputText value=""/>
+                                <h:outputText value="#{comissaotabela.unidade}"/>
                             </p:column>
                             <p:column headerText="Venda Bruta" style="width:90px">
-                                <h:outputText value="" >
+                                <h:outputText value="#{comissaotabela.valorBruto}" >
                                 <f:convertNumber currencySymbol="" type="currency"/>
                             </h:outputText>
                             </p:column>
                              <p:column headerText="Comissão" style="width:90px">
-                               <h:outputText value="" >
+                                 <h:outputText value="#{comissaotabela.comissao}" >
                                     <f:convertNumber currencySymbol="" type="currency"/>
                                 </h:outputText>
                             </p:column>
