@@ -56,7 +56,7 @@
                         <p:commandButton value="Receber" class="btn btn-default" icon="ui-icon-folder-open" update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#" actionListener="#"  />
                         <p:commandButton value="Gerar Boletos" class="btn btn-default" icon=" ui-icon-document" action="#"/>
                     </h:panelGrid>
-                    <p:dataTable id="contasreceber" var="contasreceber"  value="#" class="tabela" 
+                    <p:dataTable id="contasreceber" var="contasreceber"  value="" class="tabela" 
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
                                  paginator="true" rows="10" style="margin-bottom:20px" >
                         <f:facet name="{Exporters}">

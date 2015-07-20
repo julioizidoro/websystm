@@ -29,7 +29,6 @@ public class VendasComissaoMB implements Serializable{
     private String teste="teste";
 
     public VendasComissaoMB() {
-        
     }
     
     @PostConstruct
@@ -71,7 +70,6 @@ public class VendasComissaoMB implements Serializable{
     public void setTeste(String teste) {
         this.teste = teste;
     }
-    
     
     
     public void gerarListaVendaComissao(String sql){

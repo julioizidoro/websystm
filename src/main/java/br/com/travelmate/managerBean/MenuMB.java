@@ -22,11 +22,10 @@ public class MenuMB implements Serializable{
     }
     
     public String contasPagar(){
-        return "consultacomissaovendas";
+        return "consContasPagar";
     }
     
     public String contasReceber(){
         return "consContasReceber";
     }
-    
 }
