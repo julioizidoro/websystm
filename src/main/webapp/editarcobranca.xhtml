@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/WEB-INF/templates/default.xhtml">
+        <ui:define name="corpo">
+            <h:form>
+                <div id="centro">
+                    <br></br><br></br>
+                   <p:accordionPanel class="paineleditar" >
+                        <p:tab titleStyle="color:#000;font-size:10px;background:#c7d95f;" title="Editar">
+                        <p:outputLabel value="Valor Bruto" />
+                        <p:outputLabel value="Valor Fornecedor" class="espacodialog"/>
+                        <p:outputLabel value="Comissão TM" class="espacodialog2"/>
+                        <br></br>
+                        <p:inputText value="#{vendasComissaoMB.vendascomissao.valorbruto}" size="17" class="espacocampos2"/>
+                        <p:inputText value="#{vendasComissaoMB.vendascomissao.valorfornecedor}" size="15" class="espacocampos"/>
+                        <p:inputText value="#{vendasComissaoMB.vendascomissao.comissaotm}" size="16" class="espacocampos"/>
+                        <br></br><br></br>
+                        <p:outputLabel value="Taxa TM" />
+                        <p:outputLabel value="Desconto TM" class="espacodialog3"/>
+                        <p:outputLabel value="Comissão Emissor" class="espacodialog4"/>
+                        <br></br>
+                        <p:inputText value="#{vendasComissaoMB.vendascomissao.taxatm}" size="18" class="espacocampos2"/>
+                        <p:inputText value="#{vendasComissaoMB.vendascomissao.descontotm}" size="15"  class="espacocampos"/>
+                        <p:inputText value="#{vendasComissaoMB.vendascomissao.comissaoemissor}" size="15"  class="espacocampos"/>
+                        <br></br><br></br>
+                        <p:outputLabel value="Comissão Gerente" />
+                        <p:outputLabel value="Comissão Terceiros" class="espacodialog5"/>
+                        <p:outputLabel value="Comissão Franquia" class="espacodialog6"/>
+                        <br></br>
+                        <p:inputText value="#{vendasComissaoMB.vendascomissao.comissaogerente}" size="16" class="espacocampos2"/>
+                        <p:inputText value="#{vendasComissaoMB.vendascomissao.comissaoterceiros}" size="17"  class="espacocampos" />
+                        <p:inputText value="#{vendasComissaoMB.vendascomissao.comissaofraquia}" size="15"  class="espacocampos"/>
+                        <br></br><br></br>
+                        <p:outputLabel value="Desagio" />
+                        <p:outputLabel value="Total" class="espacodialog7"/>
+                        <p:outputLabel value="Paga?" class="espacodialog8"/>
+                        <br></br>
+                        <p:inputText value="#{vendasComissaoMB.vendascomissao.desagio}" size="16" class="espacocampos2"/>
+                        <p:inputText value="#{vendasComissaoMB.vendascomissao.paga}" size="15"   class="espacocampos"/>
+                        <select class="espacocampos3" style="width:100px;">
+                            <option value="sim">Sim</option>
+                            <option value="nao">Não</option>
+                        </select>
+                        <br></br><br></br>
+                        <p:outputLabel value="Produto" />
+                        <p:outputLabel value="Consultor" class="espacodialog7"/>
+                        <br></br>
+                        <p:inputText value="#{vendasComissaoMB.vendascomissao.produtos}" size="15" class="espacocampos2"/>
+                        <p:inputText value="#{vendasComissaoMB.vendascomissao.usuario}" size="15"  class="espacocampos" />
+                        <br></br><br></br>
+                        <p:outputLabel value="Incentivo" />
+                        <br></br>
+                        <p:inputText value="#" size="15" class="espacocampos2"/>
+                        <p>
+                            <p:commandButton class="botaodialog" onclick="" value="Editar"></p:commandButton>
+                            <p:commandButton class="botaodialog2" onclick="" value="Fechar"></p:commandButton>
+                        </p>
+                    </p:tab>
+                    </p:accordionPanel>
+                    <br></br><br></br><br></br>
+                </div>
+            </h:form>     
+        </ui:define>
+    </ui:composition>
+</html>

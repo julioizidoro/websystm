@@ -7,6 +7,7 @@ package br.com.travelmate.managerBean;
 
 import br.com.travelmate.facade.ContasReceberFacade;
 import br.com.travelmate.model.Contasreceber;
+import br.com.travelmate.model.Vendas;
 import br.com.travelmate.util.Formatacao;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -35,11 +36,11 @@ public class ContasReceberMB implements Serializable{
     private Float contasVencidas;
     private Float contasVencer;
     private Float contasVencendo;
-     
+    private Vendas vendas;
     
     @PostConstruct
     public void init(){
-        String sql = "Select c from Contasreceber c where recebimento.idrecebimento=1 order by c.datavencimento, c.vendas.cliente.nome";
+        String sql = "Select c from Contasreceber c where c.recebimento.idrecebimento=1 order by c.datavencimento, c.vendas.cliente.nome";
         carregarContasReceber(sql);
         conta = new Contasreceber();
     }
@@ -91,6 +92,14 @@ public class ContasReceberMB implements Serializable{
     public void setContasVencendo(Float contasVencendo) {
         this.contasVencendo = contasVencendo;
     }
+
+    public Vendas getVendas() {
+        return vendas;
+    }
+
+    public void setVendas(Vendas vendas) {
+        this.vendas = vendas;
+    }
     
     
     public void carregarContasReceber(String sql){
@@ -141,5 +150,19 @@ public class ContasReceberMB implements Serializable{
                 contasVencer = contasVencer + listaContas.get(i).getValorparcela();
             }
         }
+    }
+    public String visualizar(Vendas vendas){
+        this.vendas = vendas;
+        return null;
+    }
+    public String telarecebimento(){
+        return "recebimento";
+    }
+    public String voltar(){
+        return "consConsultaReceber";
+    }
+    
+    public String editar(){
+        return "editarContasReceber";
     }
 }

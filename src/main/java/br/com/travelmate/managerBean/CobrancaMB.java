@@ -116,6 +116,9 @@ public class CobrancaMB implements Serializable{
     public void verHistorico(Historicocobranca historico){
         this.historico = historico;
     }
+    public String voltar(){
+        return "cobranca";
+    }
 }
 
 

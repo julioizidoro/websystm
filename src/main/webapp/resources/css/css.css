@@ -179,7 +179,6 @@ h1 {
 #centro legend#iUsu2 b{
     font-size: 14px;
     font-family: tahoma;
-    margin-left:370px;
     color:#ffffff;
 }
 #centro legend#iUsu2 {
@@ -236,6 +235,11 @@ h1 {
 .fontebranca{
     font-size: 11px;
 }
+.fontebrancaa{
+    font-size: 11px;
+    text-align: right;
+    
+}
 .botao{
     margin-left:50px;
     color:#1F8871;
@@ -257,6 +261,13 @@ h1 {
     color:#fff;
     width:50%;
     margin-left:260px;
+    text-align: left;
+}
+.painelcobranca{
+    color:#fff;
+    width:70%;
+    margin-left:160px;
+    text-align: left;
 }
 .acaocambio{
     margin-top:-30px;

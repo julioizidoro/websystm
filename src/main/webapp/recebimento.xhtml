@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/WEB-INF/templates/default.xhtml">
+        <ui:define name="corpo">
+            <h:form>
+                <div id="centro">
+                    <br></br><br></br>
+                    <p:accordionPanel class="painelcobranca" >
+                        <p:tab titleStyle="color:#000;font-size:11px;background:#c7d95f;" title="Recebimento">
+
+                            <br></br><br></br>
+                            <p:dataTable id="recebimento" var="recebimento"  value="#" class="tabela3" 
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                         paginator="true" rows="10" style="margin-bottom:20px;font-size: 10px;" >
+
+                                <p:column headerText="Nº Documento" style="width:90px">
+                                    <h:outputText value="">
+                                        <f:convertNumber currencySymbol="" type="currency"/>
+                                    </h:outputText>
+                                </p:column>
+                                <p:column headerText="Parcela" style="width:90px">
+                                    <h:outputText value="">
+                                        <f:convertNumber currencySymbol="" type="currency"/>
+                                    </h:outputText>
+                                </p:column>
+                                <p:column headerText="Valor" style="width:90px;text-align: right">
+                                    <h:outputText value="">
+                                        <f:convertNumber currencySymbol="" type="currency"/>
+                                    </h:outputText>   
+                                </p:column>
+                                <p:column headerText="Cliente" >
+                                    <h:outputText value="" ></h:outputText>
+                                </p:column>
+                                <p:column headerText="Data Vencimento" style="width:90px" >
+                                    <h:outputText value="" >
+                                        <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                                    </h:outputText>
+                                </p:column>
+                            </p:dataTable>
+                            <h:panelGrid columns="4" cellpadding="3">
+                                <p:outputLabel value="Total Receber" for="totalconta" class="fontebranca" style="font-size: 11px"/> 
+                                <p:outputLabel value="Total de Juros" for="totaljuros" class="espacodialog4" style="font-size: 11px"/>
+                                <p:outputLabel value="Total de Desconto" for="totaldesconto" class="espacodialog4" style="font-size: 11px"/>
+                                <p:outputLabel value="Total Valor Recebido" for="totalrecebido" class="espacodialog4" style="font-size: 11px"/>
+                                <p:inputText id="totalconta" size="15" maxlength="100" class="fontebrancaa" value="#{ContasReceberMB.totalconta}"  />
+                                <p:inputText id="totaljuros" size="15" maxlength="100" class="espacodialog4" value="#{ContasReceberMB.totaljuros}"  />
+                                 <p:inputText id="totaldesconto" size="15" maxlength="100" class="espacodialog4" value="#{ContasReceberMB.totaldesconto}"  />   
+                                <p:inputText id="totalrecebido" size="15" maxlength="100" class="espacodialog4" value="#{ContasReceberMB.totalrecebido}"  />
+                            
+                            </h:panelGrid>
+                            <br></br>
+                            <h:panelGrid columns="8" cellpadding="1">
+                                <p:outputLabel value="Forma de Pagamento" class="fontebranca" style="font-size: 10px;color:#000"/>  
+                                <p:outputLabel value="Banco"  class="leftcampo" style="font-size: 10spx;color:#000"/>  
+                            </h:panelGrid>
+                            <h:panelGrid columns="8" cellpadding="1">
+                                <p:selectOneMenu id="formapag" value="#" style="width:170px;font-size: 10px" class="fontebranca">
+                                    <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true"/> 
+                                    <f:selectItem itemLabel="Cartão" itemValue="Cartão" />  
+                                    <f:selectItem itemLabel="Débito em Conta" itemValue="debito em conta" /> 
+                                    <f:selectItem itemLabel="Boleto" itemValue="Boleto" />  
+                                    <f:selectItem itemLabel="Dinheiro" itemValue="Dinheiro" />
+                                    <f:selectItem itemLabel="Cheque" itemValue="Cheque" />  
+                                    <f:selectItem itemLabel="Depósito" itemValue="Depósito" /> 
+                                </p:selectOneMenu>
+                                <p:selectOneMenu id="banco" value="#" style="width:220px;font-size: 10px" class="espacocampos">
+                                    <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true"/> 
+                                </p:selectOneMenu>
+                                
+                                <p:commandButton value="Confirmar" icon="ui-icon-check" action="#" class="imagemm"/>
+                    <p:commandButton value="Voltar" icon="ui-icon-close" action="#{contasReceberMB.voltar()}" class="espacocampos"/>
+                            </h:panelGrid>
+                            <br></br><br></br>
+                        </p:tab>
+                    </p:accordionPanel>
+                    <br></br><br></br><br></br>
+                </div>
+            </h:form>   
+            <h:form id="cobrancaform">
+                <p:dialog id="dialog_novo" header="Novo Historico" widgetVar="historico"  width="34%" class="dialog2" style="background:#d0e9c6" >
+                    <h:panelGrid columns="1" cellpadding="3">
+                        <p:outputLabel value="Contato" for="contato" class="fontebranca" style="font-size: 10px"/> 
+                        <p:inputText id="contato" size="30" maxlength="100" class="fontebranca" value="#{cobrancaMB.historico.contato}"  />
+                        <br></br>
+                        <p:outputLabel value="Data" for="data" class="fontebranca" style="font-size: 11px"/> 
+                        <p:calendar id="data" size="15" maxlength="100" class="fontebranca" value="#{cobrancaMB.historico.data}"  />
+                        <br></br>
+                        <p:outputLabel value="Assunto" for="assunto" class="fontebranca" style="font-size: 11px"/> 
+                        <p:inputTextarea id="assunto" rows="2" cols="60" maxlength="100" class="fontebranca" value="#{cobrancaMB.historico.data}"  />
+                        <br></br><br></br>
+                    </h:panelGrid>
+                    <p:commandButton value="Confirmar" icon="ui-icon-check" action="#"/>
+                    <p:commandButton value="Cancelar" icon="ui-icon-close" action="#" class="espacocampos"/>
+                </p:dialog>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

@@ -7,7 +7,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:composition template="/WEB-INF/templates/default.xhtml">
         <ui:define name="corpo">
-            <h:form>
+            <h:form id="telacontareceber">
                 <div id="centro">
                     <p:growl id="growl" showDetail="true" sticky="true"/>
                     <br></br> <br></br> <br></br>
@@ -21,7 +21,7 @@
                             </h:panelGrid>
                             <h:panelGrid columns="8" cellpadding="1">
 
-                                <p:inputText id="cliente" size="44" maxlength="100" class="fontebranca"   readonly="true"/>
+                                <p:inputText id="cliente" size="44" maxlength="100" class="fontebranca"  value="#"/>
                                 <p:commandButton icon="ui-icon-search" class="botaopesquisar"/>
                                 <p:calendar id="dataIni" class="left4"  pattern="dd/MM/yyyy" mask="true" size="11" maxlength="15" >
                                     <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
@@ -35,16 +35,22 @@
                             </h:panelGrid><br></br>
                             <h:panelGrid columns="8" cellpadding="1">
                                 <h:outputText value="Forma de Pagamento"  class="fontebranca"/>  
-                                <h:outputText value="Banco"  class="left3"/>  
+                                <h:outputText value="Banco"  class="leftcampo"/>  
                             </h:panelGrid>
                             <h:panelGrid columns="8" cellpadding="1">
-                                <p:selectOneMenu id="unidades" value="#" style="width:220px;font-size: 10px" class="fontebranca">
+                                <p:selectOneMenu id="formapag" value="#" style="width:170px;font-size: 10px" class="fontebranca">
+                                    <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true"/> 
+                                    <f:selectItem itemLabel="Cartão" itemValue="Cartão" />  
+                                    <f:selectItem itemLabel="Débito em Conta" itemValue="debito em conta" /> 
+                                    <f:selectItem itemLabel="Boleto" itemValue="Boleto" />  
+                                    <f:selectItem itemLabel="Dinheiro" itemValue="Dinheiro" />
+                                    <f:selectItem itemLabel="Cheque" itemValue="Cheque" />  
+                                    <f:selectItem itemLabel="Depósito" itemValue="Depósito" /> 
+                                </p:selectOneMenu>
+                                <p:selectOneMenu id="banco" value="#" style="width:220px;font-size: 10px" class="espacocampos">
                                     <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true"/> 
                                 </p:selectOneMenu>
-                                <p:selectOneMenu id="unidades" value="#" style="width:220px;font-size: 10px" class="espacocampos">
-                                    <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true"/> 
-                                </p:selectOneMenu>
-                                <p:commandButton value="Pesquisar" class="botao"  icon=" ui-icon-search " update="contasreceber"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#"/>
+                                <p:commandButton value="Pesquisar" class="cambiovalores2"  icon=" ui-icon-search " update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#"/>
                                 <p:commandButton value="Limpar" icon="ui-icon-arrowrefresh-1-w"  class="botao3" update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#"/>
                             </h:panelGrid>
                             <br></br>
@@ -52,11 +58,7 @@
                     </p:accordionPanel>
                     <br></br>
                     <legend id="iUsu2" ><b>Consulta de Contas a Receber </b></legend>
-                    <h:panelGrid columns="2" cellpadding="1" class="vertical">
-                        <p:commandButton value="Receber" class="btn btn-default" icon="ui-icon-folder-open" update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#" actionListener="#"  />
-                        <p:commandButton value="Gerar Boletos" class="btn btn-default" icon=" ui-icon-document" action="#"/>
-                    </h:panelGrid>
-                    <p:dataTable id="contasreceber" var="contasreceber"  value="" class="tabela" 
+                    <p:dataTable id="contasRecebe" var="contasrecebe"  value="#{contasReceberMB.listaContas}" class="tabela" 
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
                                  paginator="true" rows="10" style="margin-bottom:20px" >
                         <f:facet name="{Exporters}">
@@ -65,58 +67,72 @@
                                 <p:dataExporter type="xls" target="contaPagar" fileName="contas" />
                             </h:commandLink>
                         </f:facet>
-                        <p:column headerText="Data Vencimento" style="width:40px;background:#ffffff;color:#1F8871;text-align:center;">
-                            <h:outputText  >
-                                <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
-                            </h:outputText>
+                        <p:column  style="background:#ffffff;color:#1F8871;text-align:center;width:48px;z-index: 3!important;overflow: visible!important;">
+                            <p:menubar style="min-width:10px;min-height:10px;height:25px;margin-top:-4px;"> 
+                                <p:submenu style="margin-top:-7px;" >
+                                    <p:menuitem style="float:right;" value="Editar" action="#{contasReceberMB.editar()}" />
+                                    <p:menuitem style="float:right;" value="Receber" action="#{contasReceberMB.telarecebimento()}" />
+                                    <p:menuitem style="float:right;" value="Receber Lote" />
+                                    <p:menuitem style="float:right;" value="Gerar Boleto"  />
+                                    <p:menuitem style="float:right;" value="Histórico"  />
+                                    <p:menuitem style="float:right;" value="Totais" update=":totais:dialog_totais" oncomplete="PF('totais').show()"/>
+                                </p:submenu>
+                            </p:menubar>
                         </p:column>
-                        <p:column headerText="Cliente"  style="width:110px;background:#ffffff;color:#1F8871;text-align:center;">
-                            <h:outputText value="#"/>
+                        <p:column headerText="Nº Venda" style="background:#ffffff;text-decoration-color:#1F8871;color:#1F8871;text-align:center;width:70px;" sortBy="#{contasrecebe.vendas.idvendas}">
+                            <p:commandLink actionListener="#{contasReceberMB.visualizar(contasrecebe)}" value="#{contasrecebe.vendas.idvendas}"  >
+                             </p:commandLink>
                         </p:column>
                         <p:column headerText="Nº Documento" style="background:#ffffff;color:#1F8871;text-align:center;" >
-                            <h:outputText value="#"/>
+                            <h:outputText value="#{contasrecebe.numerodocumento}"/>
                         </p:column>
-                        <p:column headerText="Nº Parcela"  style="width:80px;background:#ffffff;color:#1F8871;text-align:center;" styleClass="alinharCenter" >
-                            <h:outputText value="#"/>
+                        <p:column headerText="Cliente"  style="width:150px;background:#ffffff;color:#1F8871;text-align:center;" styleClass="alinharCenter" sortBy="#{contasrecebe.vendas.cliente}">
+                            <h:outputText value="#{contasrecebe.vendas.cliente}"/>
                         </p:column>
-                        <p:column headerText="Valor Parcela" style="width:120px;background:#ffffff;color:#1F8871;text-align:center;" >
-                            <h:outputText >
+                        <p:column headerText="Nº Parcela"  style="width:65px;background:#ffffff;color:#1F8871;text-align:center;" styleClass="alinharCenter" >
+                            <h:outputText value="#{contasrecebe.numeroparcelas}"/>
+                        </p:column>
+                        <p:column headerText="Valor" style="width:80px;background:#ffffff;color:#1F8871;text-align:right;" >
+                            <h:outputText value="#{contasrecebe.valorparcela}">
                                 <f:convertNumber currencySymbol="" type="currency"/>
                             </h:outputText>  
                         </p:column>
-                        <p:column headerText="Juros" style="width:70px;background:#ffffff;color:#1F8871;text-align: right;" styleClass="alinharCenter">
-                            <h:outputText >
-                                <f:convertNumber currencySymbol="" type="currency"/>
-                            </h:outputText>                                    
+                        <p:column headerText="Banco" style="width:100px;background:#ffffff;color:#1F8871;text-align: center;" styleClass="alinharCenter">
+                            <h:outputText value="#{contasrecebe.banco}"/>                                   
                         </p:column>
-                        <p:column headerText="Desagio" style="width:80px;background:#ffffff;color:#1F8871;text-align: right;" styleClass="alinharCenter">
-                            <h:outputText >
-                                <f:convertNumber currencySymbol="" type="currency"/>
-                            </h:outputText>                                    
+                        <p:column headerText="Unidade" style="width:160px;background:#ffffff;color:#1F8871;text-align: center;" styleClass="alinharCenter"  sortBy="#{contasrecebe.vendas.unidadenegocio}">
+                            <h:outputText value="#{contasrecebe.vendas.unidadenegocio}"/>                                   
                         </p:column>
-                        <p:column headerText="Forma Pagamento" style="width:85px;background:#ffffff;color:#1F8871;text-align: center;" styleClass="alinharCenter">
-                            <h:outputText value="#"/>                               
+                        <p:column headerText="Boleto Gerado" style="width:70px;background:#ffffff;color:#1F8871;text-align: center;" styleClass="alinharCenter">
+                            <p:selectBooleanCheckbox value="#{contasrecebe.boletogerado}"/>                                 
                         </p:column>
-                        <p:column headerText="Unidade" style="width:85px;background:#ffffff;color:#1F8871;text-align: center;" styleClass="alinharCenter">
-                            <h:outputText value="#"/>                                   
-                        </p:column>
-                        <p:column headerText="Boleto Gerado" style="width:85px;background:#ffffff;color:#1F8871;text-align: center;" styleClass="alinharCenter">
-                            <h:outputText value="#"/>                                   
-                        </p:column>
-                        <p:column style="width:20px;background:#ffffff;color:#1F8871;text-align: center">
-                            <p:selectBooleanCheckbox />
-                        </p:column>
-                        <p:column style="width:42px;background:#ffffff;color:#1F8871;text-align: center">
-                            <p:commandButton title="Editar" icon="ui-icon-pencil"/>
+                        <p:column style="width:35px;background:#ffffff;color:#1F8871;text-align: center">
+                            <p:selectBooleanCheckbox value="#{contasrecebe.selecionado}"/>
                         </p:column>
                     </p:dataTable>
-
-                    <br></br>
                     <br></br>
                     <br></br>
                 </div>
             </h:form>     
-
+            <h:form id="totais">
+                <p:dialog id="dialog_totais" header="Totais" widgetVar="totais"  width="34%" class="dialog2" style="background:#d0e9c6" >
+                   <h:panelGrid columns="2" cellpadding="3">
+                        <p:outputLabel value="Total Valor Conta" for="totalconta" class="fontebranca" style="font-size: 11px"/> 
+                        <p:outputLabel value="Total de Juros" for="totaljuros" class="leftcampo" style="font-size: 11px"/>
+                        <p:inputText id="totalconta" size="15" maxlength="100" class="fontebrancaa" value="#{ContasReceberMB.totalconta}"  readonly="true"/>
+                        <p:inputText id="totaljuros" size="15" maxlength="100" class="leftcampoo" value="#{ContasReceberMB.totaljuros}"  readonly="true"/>
+                       
+                    </h:panelGrid>
+                    <h:panelGrid columns="2" cellpadding="1">
+                        <p:outputLabel value="Total de Desconto" for="totaldesconto" class="fontebranca" style="font-size: 11px"/>
+                        <p:outputLabel value="Total Valor Recebido" for="totalrecebido" class="leftcampo" style="font-size: 11px"/>
+                         <p:inputText id="totaldesconto" size="15" maxlength="100" class="fontebrancaa" value="#{ContasReceberMB.totaldesconto}"  readonly="true"/>
+                        <p:inputText id="totalrecebido" size="15" maxlength="100" class="leftcampoo" value="#{ContasReceberMB.totalrecebido}"  readonly="true"/>
+                    </h:panelGrid>   
+                     <br></br><br></br>
+                     <br></br>
+                </p:dialog>
+            </h:form>
         </ui:define>
     </ui:composition>
 </html>
