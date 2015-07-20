@@ -109,9 +109,8 @@ h1 {
 }
 .dialog{
     margin-top: 25px;
-     margin-left:300px;
+     margin-left:50px;
      position:fixed;
-     margin-left:-150px;
      background-color: #F0FFFF;
      font-size:10px;
 }

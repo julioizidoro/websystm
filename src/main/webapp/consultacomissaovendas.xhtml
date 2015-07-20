@@ -61,8 +61,8 @@
                             </p:menubar>
                         </p:column>
                         <p:column headerText="Nº Venda" style="background:#ffffff;text-decoration-color:#1F8871;color:#1F8871;text-align:center;width:85px;" sortBy="#{consVendaComissao.vendas.idvendas}">
-                            <p:commandLink actionListener="#{vendasComissaoMB.visualizar(consVendaComissao)}" value="#{consVendaComissao.vendas.idvendas}"  update="consultacomissao:dialog_visualizacao" oncomplete="popAprovar.hide(); #{meuBean.objetos}" onclick="PF('visualizacao').show()" >
-
+                            <p:commandLink actionListener="#{vendasComissaoMB.visualizar(consVendaComissao)}" value="#{consVendaComissao.vendas.idvendas}"  update=":dialog:dialog_visualizacao"  oncomplete="PF('visualizacao').show()" >
+                                <!--<f:setPropertyActionListener target="#{consVendaComissao}" value="#{consVendaComissao.vendas.idvendas}"/> -->
                             </p:commandLink>
                         </p:column>
                         <p:column headerText="Loja" style="background:#ffffff;color:#1F8871;text-align:center;" sortBy="#{consVendaComissao.vendas.unidadenegocio.nomeFantasia}">
@@ -90,9 +90,11 @@
                         </p:column>
                     </p:dataTable>
                     <br></br>
-
                     <br></br>
-                    <p:dialog id="dialog_visualizacao" header="#{vendasComissaoMB.tituloDialog}" widgetVar="visualizacao"  width="40%" class="dialog" style="background:#d0e9c6" >
+                </div>
+            </h:form>     
+            <h:form id="dialog">
+                <p:dialog id="dialog_visualizacao" header="#{vendasComissaoMB.tituloDialog}" widgetVar="visualizacao"  width="40%" class="dialog" style="background:#d0e9c6" >
                         <p:outputLabel value="Valor" class="espacocampos" style="font-size: 11px"/>
                         <p:outputLabel value="Data" class="leftcampo" style="font-size: 11px"/>
                         <p:outputLabel value="Produto" class="espacodialog3" style="font-size: 11px"/>
@@ -121,9 +123,7 @@
                         <p:inputText value="#{vendasComissaoMB.vendascomissao.vendas.fornecedor}" id="parceiro" size="31"  class="espacocampos" style="font-size: 11px"/>
                         <br></br><br></br>
                     </p:dialog>
-                </div>
-            </h:form>     
-
+            </h:form>
         </ui:define>
     </ui:composition>
 </html>
