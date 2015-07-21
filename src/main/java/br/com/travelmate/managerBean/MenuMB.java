@@ -28,5 +28,19 @@ public class MenuMB implements Serializable{
     public String contasReceber(){
         return "consContasReceber";
     }
-    
+    public String passagem(){
+        return "consPassagem";
+    }
+    public String adcPassagem(){
+        return "cadPassagem";
+    }
+    public String cliente(){
+        return "consCliente";
+    }
+    public String fornecedor(){
+        return "consFornecedor";
+    }
+    public String curso(){
+        return "consCurso";
+    }
 }

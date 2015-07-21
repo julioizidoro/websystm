@@ -53,7 +53,7 @@ h1 {
     top:-76px;
     position: relative;
     background:#1F8871;
-
+text-align: left;
     margin: 0px 0 20px -390px;
     width: 900px;
     left:19.7%;
@@ -105,6 +105,18 @@ h1 {
 .tabela2{
     width: 840px;
     margin-left:27px;
+    font-size:10px;
+    color:#1F8871;
+}
+.tabela4{
+    width: 50%;
+    margin-left:25%;
+    font-size:10px;
+    color:#1F8871;
+}
+.tabela5{
+    width:80%;
+    margin-left:10%;
     font-size:10px;
     color:#1F8871;
 }
@@ -181,9 +193,19 @@ h1 {
     font-size: 14px;
     font-family: tahoma;
     color:#ffffff;
+    margin-left: 43%;
+    
 }
 #centro legend#iUsu2 {
     width: 900px;
+}
+#centro legend#iUsu3 b{
+    font-size: 14px;
+    font-family: tahoma;
+    color:#ffffff;
+}
+#centro legend#iUsu3 {
+    width: 100%;
 }
 .leftcampo{
     font-size: 10px;
@@ -241,6 +263,10 @@ h1 {
     text-align: right;
     
 }
+.fontebrancas{
+    color: #fff;
+    font-size: 11px;
+}
 .botao{
     margin-left:50px;
     color:#1F8871;
@@ -268,6 +294,13 @@ h1 {
     color:#fff;
     width:70%;
     margin-left:160px;
+    text-align: left;
+}
+.painelcobranca2{
+    background: #fff;
+    color:#fff;
+    width:85%;
+    margin-left:7%;
     text-align: left;
 }
 .acaocambio{
@@ -395,6 +428,8 @@ h1 {
     margin-left:100px;
 }
 .tabela3{
+    float: left;
+    top: 5px;
     font-size: 10px;
 }
 .botaopesquisar{
@@ -404,4 +439,152 @@ h1 {
 .espacocampos4{
     margin-left: 274px;
     font-size: 10px;
+}
+.add{
+    margin-left:0.5%;
+    color:#fff;
+    background: #1F8871;
+}
+.imgadd{
+    margin-left:80%;
+}
+.tab{
+    background: #fff;
+    background-color: #fff;
+}
+////////////////////////
+.camposs{
+    font-size: 11px;
+    position: relative;
+}
+.campossr{
+    font-size: 11px;
+    position: relative;
+    text-align: right;
+}
+.campos{
+    font-size: 11px;
+    margin-left:10%;
+    position: relative;
+}
+.camposr{
+    font-size: 11px;
+    margin-left:10%;
+    text-align: right;
+    position: relative;
+}
+.campos1s{
+    font-size: 11px;
+    margin-left:30%;
+    position: relative;
+    text-align: right;
+}
+.campos1{
+    font-size: 11px;
+    margin-left:30%;
+    position: relative;
+}
+.campos2{
+    font-size: 11px;
+    margin-left:50%;
+    position: relative;
+}
+.campos3{
+    font-size: 11px;
+    margin-left:74%;
+    position: relative;
+}
+.campos4{
+    font-size: 11px;
+    margin-left:56%;
+    position: relative;
+}
+.campos2r{
+    font-size: 11px;
+    margin-left:70%;
+    text-align: right;
+    position: relative;
+}
+.espaco0{
+    color: #fff;
+    font-size: 11px;
+    position: relative;
+}
+.espaco{
+    color: #fff;
+    font-size: 11px;
+    margin-left:40%;
+    position: relative;
+}
+.espaco1{
+    color: #fff;
+    font-size: 11px;
+    margin-left:60%;
+    position: relative;
+}
+.espaco2{
+    color: #fff;
+    font-size: 11px;
+    margin-left:80%;
+    position: relative;
+}
+.espaco3{
+    color: #fff;
+    font-size: 11px;
+    margin-left:59%;
+    position: relative;
+}
+.espaco4{
+    color: #fff;
+    font-size: 11px;
+    margin-left:74%;
+    position: relative;
+}
+.espaco5{
+    color: #fff;
+    font-size: 11px;
+    margin-left:83%;
+    position: relative;
+}
+.espaco6{
+    color: #fff;
+    font-size: 11px;
+    margin-left:70%;
+    position: relative;
+}
+.espaco7{
+    color: #fff;
+    font-size: 11px;
+    margin-left:89%;
+    position: relative;
+}
+.espaco8{
+    color: #fff;
+    font-size: 11px;
+    margin-left:79%;
+    position: relative;
+}
+.espaco9{
+    color: #fff;
+    font-size: 11px;
+    margin-left:55%;
+    position: relative;
+}
+.espaco10{
+    color: #fff;
+    font-size: 11px;
+    margin-left:75%;
+    position: relative;
+}
+.espaco11{
+    color: #fff;
+    font-size: 11px;
+    margin-left:25%;
+    position: relative;
+}
+.espaco12{
+    color: #fff;
+    font-size: 11px;
+    margin-left:50%;
+    position: relative;
 }

@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/WEB-INF/templates/default.xhtml">
+        <ui:define name="corpo">
+            <h:form id="consultaPassagem">
+                <div id="centro">
+                    <p:growl id="growl" showDetail="true" sticky="true"/>
+                    <br></br> 
+                    <img src="resources/img/add.png" class="imgadd"/>
+                    <p:commandLink value="Nova Passagem"  action="#{menuMB.adcPassagem}" class="add"/>
+                    <legend id="iUsu2" ><b>Consulta de Passagens</b></legend>
+                    <p:dataTable id="passagens" var="passagens"  value="#{passagemMB.listaPassagem}" class="tabela" 
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+                                 paginator="true" rows="10" style="margin-bottom:20px" >
+                        <f:facet name="{Exporters}">
+                            <h:commandLink>
+                                <img src="resources/img/excel.png" width="20" class="imagens"/>
+                                <p:dataExporter type="xls" target="passagens" fileName="contas" />
+                            </h:commandLink>
+                        </f:facet>
+                        <p:column  style="background:#ffffff;color:#1F8871;text-align:center;width:40px;z-index: 3!important;overflow: visible!important;">
+                            <p:menubar style="min-width:10px;min-height:10px;height:25px;margin-top:-4px;"> 
+                                <p:submenu style="margin-top:-7px;" >
+                                    <p:menuitem style="float:right;" value="Editar" action="#{contasReceberMB.editar()}" />
+                                    <p:menuitem style="float:right;" value="Imprimir" action="#" />
+                                    <p:menuitem style="float:right;" value="Cancelar" action="#" />
+                                </p:submenu>
+                            </p:menubar>
+                        </p:column>
+                        <p:column headerText="Cliente" style="background:#ffffff;text-decoration-color:#1F8871;color:#1F8871;text-align:center;width:150px;" sortBy="#">
+                            <h:outputText value="#{passagens.vendas.cliente.nome}" />
+                        </p:column>
+                        <p:column headerText="Data Inscrição" style="width:80px;background:#ffffff;color:#1F8871;text-align:center;" >
+                            <h:outputText value="#{passagens.dataEmissao}">
+                                <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                            </h:outputText>
+                        </p:column>
+                            <p:column headerText="Curso"  style="width:130px;background:#ffffff;color:#1F8871;text-align:center;" styleClass="alinharCenter" sortBy="#">
+                                <h:outputText value="#"/>
+                        </p:column>
+                        <p:column headerText="Unidade"  style="width:130px;background:#ffffff;color:#1F8871;text-align:center;" styleClass="alinharCenter" >
+                            <h:outputText value="#{passagens.vendas.unidadenegocio.nomeFantasia}"/>
+                        </p:column>
+                        <p:column headerText="Agente"  style="width:130px;background:#ffffff;color:#1F8871;text-align:center;" styleClass="alinharCenter" >
+                            <h:outputText value="#{passagens.atendente}"/>
+                        </p:column>
+                    </p:dataTable>
+                    <br></br>
+                    <br></br>
+                </div>
+            </h:form>     
+        </ui:define>
+    </ui:composition>
+</html>
