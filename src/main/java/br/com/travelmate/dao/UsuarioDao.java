@@ -64,7 +64,7 @@ public class UsuarioDao {
     public List<Usuario> listaUsuarioUnidade(int idUnidade) throws SQLException{
         manager = ConectionFactory.getConnection();
          manager.getTransaction().begin();
-        Query q = manager.createQuery("select u from Usuario u where u.unidadenegocio=" + idUnidade + " order by u.nome");
+        Query q = manager.createQuery("select u from Usuario u where u.unidadenegocio.idunidadeNegocio=" + idUnidade + " order by u.nome");
        manager.getTransaction().commit();
         if (q.getResultList().size()>0){
             return q.getResultList();

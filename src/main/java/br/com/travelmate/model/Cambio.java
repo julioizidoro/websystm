@@ -34,6 +34,8 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "Cambio.findAll", query = "SELECT c FROM Cambio c")})
 public class Cambio implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cambio")
+    private List<Orcamento> orcamentoList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cambio")
     private List<Pacotes> pacotesList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cambio")
     private List<Pacotepasseio> pacotepasseioList;
@@ -201,6 +203,14 @@ public class Cambio implements Serializable {
 
     public void setPacotepassagemList(List<Pacotepassagem> pacotepassagemList) {
         this.pacotepassagemList = pacotepassagemList;
+    }
+
+    public List<Orcamento> getOrcamentoList() {
+        return orcamentoList;
+    }
+
+    public void setOrcamentoList(List<Orcamento> orcamentoList) {
+        this.orcamentoList = orcamentoList;
     }
     
 }

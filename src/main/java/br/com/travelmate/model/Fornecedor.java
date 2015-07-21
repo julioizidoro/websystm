@@ -29,6 +29,8 @@ import javax.validation.constraints.Size;
 @NamedQueries({
     @NamedQuery(name = "Fornecedor.findAll", query = "SELECT f FROM Fornecedor f")})
 public class Fornecedor implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedor")
+    private List<Passagemaerea> passagemaereaList;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -259,6 +261,14 @@ public class Fornecedor implements Serializable {
     @Override
     public String toString() {
         return getNome();
+    }
+
+    public List<Passagemaerea> getPassagemaereaList() {
+        return passagemaereaList;
+    }
+
+    public void setPassagemaereaList(List<Passagemaerea> passagemaereaList) {
+        this.passagemaereaList = passagemaereaList;
     }
     
 }

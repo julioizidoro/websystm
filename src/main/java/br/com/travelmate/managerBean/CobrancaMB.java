@@ -44,7 +44,9 @@ public class CobrancaMB implements Serializable{
         if (venda==null){
             venda = new Vendas();
         }else {
-            cobranca = venda.getCobrancaList().get(0);
+            if (venda.getCobrancaList().size()>0){
+                cobranca = venda.getCobrancaList().get(0);
+            }
         }
         if (cobranca==null){
             cobranca = new Cobranca();

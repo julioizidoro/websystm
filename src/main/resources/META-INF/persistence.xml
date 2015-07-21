@@ -25,6 +25,21 @@
     <class>br.com.travelmate.model.Usuario</class>
     <class>br.com.travelmate.model.Vendas</class>
     <class>br.com.travelmate.model.Vendascomissao</class>
+    <class>br.com.travelmate.model.Pacotecarro</class>
+    <class>br.com.travelmate.model.Pacotecruzeiro</class>
+    <class>br.com.travelmate.model.Pacotehotel</class>
+    <class>br.com.travelmate.model.Pacoteingresso</class>
+    <class>br.com.travelmate.model.Pacotepassagem</class>
+    <class>br.com.travelmate.model.Pacotepasseio</class>
+    <class>br.com.travelmate.model.Pacotes</class>
+    <class>br.com.travelmate.model.Pacotetransfer</class>
+    <class>br.com.travelmate.model.Pacotetrecho</class>
+    <class>br.com.travelmate.model.Pacotetrem</class>
+    <class>br.com.travelmate.model.Passagemaerea</class>
+    <class>br.com.travelmate.model.Formapagamento</class>
+    <class>br.com.travelmate.model.Orcamento</class>
+    <class>br.com.travelmate.model.Parcelamentopagamento</class>
+    <class>br.com.travelmate.model.Produtosorcamento</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties/>
   </persistence-unit>

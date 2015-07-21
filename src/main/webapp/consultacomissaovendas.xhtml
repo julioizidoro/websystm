@@ -136,7 +136,8 @@
                     <p:calendar id="periodos" class="iata"  pattern="dd/MM/yyyy" mask="true" size="12" maxlength="15" value="#{vendasComissaoMB.dataFinal}">
                         <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                     </p:calendar>
-                    <p:commandButton value="Calcular" class="left19" icon="	ui-icon-calculator" action="#{vendasComissaoMB.calculoComissao()}"/>
+                    <p:commandButton value="Calcular" class="left19" icon="	ui-icon-calculator" action="#{vendasComissaoMB.calculoComissao()}" process="@form" update="comissaotabela" />
+
                      <br></br> <br></br>
                      <p:outputLabel value="Consultor" for="periodo" class="espacocampos"/> 
                      <br></br>
