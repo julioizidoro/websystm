@@ -124,6 +124,7 @@ h1 {
      text-align: left;
 }
 .botaodialog{
+    font-size: 10px;
     margin-left:200px;
 }
 .botaodialog2{
@@ -399,4 +400,8 @@ h1 {
 .botaopesquisar{
     width: 30px;
     margin-left:10px;
+}
+.espacocampos4{
+    margin-left: 274px;
+    font-size: 10px;
 }

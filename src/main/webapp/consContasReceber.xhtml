@@ -71,11 +71,11 @@
                             <p:menubar style="min-width:10px;min-height:10px;height:25px;margin-top:-4px;"> 
                                 <p:submenu style="margin-top:-7px;" >
                                     <p:menuitem style="float:right;" value="Editar" action="#{contasReceberMB.editar()}" />
-                                    <p:menuitem style="float:right;" value="Receber" action="#{contasReceberMB.telarecebimento()}" />
+                                    <p:menuitem style="float:right;" value="Receber" action="#{contasReceberMB.recebimento()}" />
                                     <p:menuitem style="float:right;" value="Receber Lote" />
                                     <p:menuitem style="float:right;" value="Gerar Boleto"  />
-                                    <p:menuitem style="float:right;" value="Histórico"  />
-                                    <p:menuitem style="float:right;" value="Totais" update=":totais:dialog_totais" oncomplete="PF('totais').show()"/>
+                                    <p:menuitem style="float:right;" value="Cobrança" action="#{contasReceberMB.iniciarCobranca(contasrecebe)}" />
+                                    <p:menuitem style="float:right;" value="Totais" action="#{contasReceberMB.calcularTotais()}" update=":totais:dialog_totais" oncomplete="PF('totais').show()" />
                                 </p:submenu>
                             </p:menubar>
                         </p:column>
@@ -117,18 +117,22 @@
             <h:form id="totais">
                 <p:dialog id="dialog_totais" header="Totais" widgetVar="totais"  width="34%" class="dialog2" style="background:#d0e9c6" >
                    <h:panelGrid columns="2" cellpadding="3">
-                        <p:outputLabel value="Total Valor Conta" for="totalconta" class="fontebranca" style="font-size: 11px"/> 
-                        <p:outputLabel value="Total de Juros" for="totaljuros" class="leftcampo" style="font-size: 11px"/>
-                        <p:inputText id="totalconta" size="15" maxlength="100" class="fontebrancaa" value="#{ContasReceberMB.totalconta}"  readonly="true"/>
-                        <p:inputText id="totaljuros" size="15" maxlength="100" class="leftcampoo" value="#{ContasReceberMB.totaljuros}"  readonly="true"/>
+                        <p:outputLabel value="Total Contas Vencidas" for="contasVenc" class="fontebranca" style="font-size: 11px"/> 
+                        <p:outputLabel value="Total Contas Vencendo" for="contasVencendo" class="leftcampo" style="font-size: 11px"/>
+                        <p:inputText id="contasVenc" size="15" maxlength="100" class="fontebrancaa" value="#{contasReceberMB.contasVencidas}"  readonly="true">
+                             <f:convertNumber currencySymbol="" type="currency"/>
+                        </p:inputText>
+                        <p:inputText id="contasVencendo" size="15" maxlength="100" class="leftcampoo" value="#{contasReceberMB.contasVencendo}"  readonly="true">
+                             <f:convertNumber currencySymbol="" type="currency"/>
+                        </p:inputText>
                        
                     </h:panelGrid>
-                    <h:panelGrid columns="2" cellpadding="1">
-                        <p:outputLabel value="Total de Desconto" for="totaldesconto" class="fontebranca" style="font-size: 11px"/>
-                        <p:outputLabel value="Total Valor Recebido" for="totalrecebido" class="leftcampo" style="font-size: 11px"/>
-                         <p:inputText id="totaldesconto" size="15" maxlength="100" class="fontebrancaa" value="#{ContasReceberMB.totaldesconto}"  readonly="true"/>
-                        <p:inputText id="totalrecebido" size="15" maxlength="100" class="leftcampoo" value="#{ContasReceberMB.totalrecebido}"  readonly="true"/>
-                    </h:panelGrid>   
+                    <h:panelGrid columns="1" cellpadding="1">
+                        <p:outputLabel value="Total Contas a Vencer" for="contasVencer" style="font-size: 11px"/>
+                        <p:inputText id="contasVencer" size="15" maxlength="100" class="fontebrancaa" value="#{contasReceberMB.contasVencer}"  readonly="true">
+                                <f:convertNumber currencySymbol="" type="currency"/>
+                        </p:inputText>
+                     </h:panelGrid>   
                      <br></br><br></br>
                      <br></br>
                 </p:dialog>

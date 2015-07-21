@@ -115,7 +115,7 @@ public class ContasReceberMB implements Serializable{
         FacesContext context = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) context.getExternalContext().getSession(false);  
         session.setAttribute("venda", conta.getVendas());
-        return "pagina de cobranca";
+        return "cobranca";
     }
     
     public String recebimento(){
@@ -129,7 +129,7 @@ public class ContasReceberMB implements Serializable{
             FacesContext context = FacesContext.getCurrentInstance();
             HttpSession session = (HttpSession) context.getExternalContext().getSession(false);  
             session.setAttribute("listarecebimento", lista);
-            return "pagina de recebimento";
+            return "recebimento";
         }
         return " ";
     }
@@ -155,14 +155,14 @@ public class ContasReceberMB implements Serializable{
         this.vendas = vendas;
         return null;
     }
-    public String telarecebimento(){
-        return "recebimento";
-    }
     public String voltar(){
-        return "consConsultaReceber";
+        return "consContasReceber";
     }
     
     public String editar(){
         return "editarContasReceber";
+    }
+    public String cobranca(){
+        return "cobranca";
     }
 }

@@ -119,6 +119,9 @@ public class CobrancaMB implements Serializable{
     public String voltar(){
         return "cobranca";
     }
+    public String editar(){
+        return "editarcobranca";
+    }
 }
 
 
