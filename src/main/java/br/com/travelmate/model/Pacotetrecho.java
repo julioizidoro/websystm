@@ -6,7 +6,6 @@
 package br.com.travelmate.model;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -16,127 +15,74 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.validation.constraints.Size;
 
 /**
  *
  * @author Wolverine
  */
 @Entity
-@Table(name = "cambio")
+@Table(name = "pacotetrecho")
 @NamedQueries({
-    @NamedQuery(name = "Cambio.findAll", query = "SELECT c FROM Cambio c")})
-public class Cambio implements Serializable {
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cambio")
-    private List<Pacotes> pacotesList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cambio")
-    private List<Pacotepasseio> pacotepasseioList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cambio")
-    private List<Pacotecarro> pacotecarroList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cambio")
-    private List<Pacotetransfer> pacotetransferList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cambio")
-    private List<Pacotetrem> pacotetremList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cambio")
-    private List<Pacotehotel> pacotehotelList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cambio")
-    private List<Pacotecruzeiro> pacotecruzeiroList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cambio")
-    private List<Pacoteingresso> pacoteingressoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cambio")
-    private List<Pacotepassagem> pacotepassagemList;
+    @NamedQuery(name = "Pacotetrecho.findAll", query = "SELECT p FROM Pacotetrecho p")})
+public class Pacotetrecho implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "idcambio")
-    private Integer idcambio;
-    @Column(name = "data")
-    @Temporal(TemporalType.DATE)
-    private Date data;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "valor")
-    private Float valor;
-    @JoinColumn(name = "moedas_idmoedas", referencedColumnName = "idmoedas")
+    @Column(name = "idpacotetrecho")
+    private Integer idpacotetrecho;
+    @Lob
+    @Size(max = 16777215)
+    @Column(name = "descritivo")
+    private String descritivo;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pacotetrecho")
+    private List<Pacotepasseio> pacotepasseioList;
+    @JoinColumn(name = "pacotes_idpacotes", referencedColumnName = "idpacotes")
     @ManyToOne(optional = false)
-    private Moedas moedas;
+    private Pacotes pacotes;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pacotetrecho")
+    private List<Pacotecarro> pacotecarroList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pacotetrecho")
+    private List<Pacotetransfer> pacotetransferList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pacotetrecho")
+    private List<Pacotetrem> pacotetremList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pacotetrecho")
+    private List<Pacotehotel> pacotehotelList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pacotetrecho")
+    private List<Pacotecruzeiro> pacotecruzeiroList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pacotetrecho")
+    private List<Pacoteingresso> pacoteingressoList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pacotetrecho")
+    private List<Pacotepassagem> pacotepassagemList;
 
-    public Cambio() {
+    public Pacotetrecho() {
     }
 
-    public Cambio(Integer idcambio) {
-        this.idcambio = idcambio;
+    public Pacotetrecho(Integer idpacotetrecho) {
+        this.idpacotetrecho = idpacotetrecho;
     }
 
-    public Integer getIdcambio() {
-        return idcambio;
+    public Integer getIdpacotetrecho() {
+        return idpacotetrecho;
     }
 
-    public void setIdcambio(Integer idcambio) {
-        this.idcambio = idcambio;
+    public void setIdpacotetrecho(Integer idpacotetrecho) {
+        this.idpacotetrecho = idpacotetrecho;
     }
 
-    public Date getData() {
-        return data;
+    public String getDescritivo() {
+        return descritivo;
     }
 
-    public void setData(Date data) {
-        this.data = data;
-    }
-
-    public Float getValor() {
-        return valor;
-    }
-
-    public void setValor(Float valor) {
-        this.valor = valor;
-    }
-
-    public Moedas getMoedas() {
-        return moedas;
-    }
-
-    public void setMoedas(Moedas moedas) {
-        this.moedas = moedas;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idcambio != null ? idcambio.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Cambio)) {
-            return false;
-        }
-        Cambio other = (Cambio) object;
-        if ((this.idcambio == null && other.idcambio != null) || (this.idcambio != null && !this.idcambio.equals(other.idcambio))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "br.com.travelmate.model.Cambio[ idcambio=" + idcambio + " ]";
-    }
-
-    public List<Pacotes> getPacotesList() {
-        return pacotesList;
-    }
-
-    public void setPacotesList(List<Pacotes> pacotesList) {
-        this.pacotesList = pacotesList;
+    public void setDescritivo(String descritivo) {
+        this.descritivo = descritivo;
     }
 
     public List<Pacotepasseio> getPacotepasseioList() {
@@ -145,6 +91,14 @@ public class Cambio implements Serializable {
 
     public void setPacotepasseioList(List<Pacotepasseio> pacotepasseioList) {
         this.pacotepasseioList = pacotepasseioList;
+    }
+
+    public Pacotes getPacotes() {
+        return pacotes;
+    }
+
+    public void setPacotes(Pacotes pacotes) {
+        this.pacotes = pacotes;
     }
 
     public List<Pacotecarro> getPacotecarroList() {
@@ -201,6 +155,31 @@ public class Cambio implements Serializable {
 
     public void setPacotepassagemList(List<Pacotepassagem> pacotepassagemList) {
         this.pacotepassagemList = pacotepassagemList;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (idpacotetrecho != null ? idpacotetrecho.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Pacotetrecho)) {
+            return false;
+        }
+        Pacotetrecho other = (Pacotetrecho) object;
+        if ((this.idpacotetrecho == null && other.idpacotetrecho != null) || (this.idpacotetrecho != null && !this.idpacotetrecho.equals(other.idpacotetrecho))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "br.com.travelmate.model.Pacotetrecho[ idpacotetrecho=" + idpacotetrecho + " ]";
     }
     
 }
