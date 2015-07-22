@@ -5,7 +5,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <ui:composition template="/WEB-INF/templates/default.xhtml">
+    <ui:composition template="/pages/templates/default.xhtml">
         <ui:define name="corpo">
             <h:form>
                 <div id="centro">
@@ -214,8 +214,8 @@
                             </h:panelGrid>
                             <h:panelGrid columns="7" cellpadding="3" >
                                 <p:inputText id="cambio" size="12"  class="campossr" value="#{passagemMB.passagem.valorCambio}"  />
-                                <p:inputText id="unitaria1" size="9" class="campos1s" value="#{passagemMB.passagem.tuadtme}"/>
-                                <p:inputText id="unitaria2" size="9" class="campos1s" value="#{passagemMB.passagem.tuadtml}"/>
+                                <p:inputText onfocus="this.value='US$';" id="unitaria1" size="9" class="campos1s" value="#{passagemMB.passagem.tuadtme}"/>
+                                <p:inputText onfocus="this.value='R$';" id="unitaria2" size="9" class="campos1s" value="#{passagemMB.passagem.tuadtml}"/>
                                 <p:inputText id="embarque" size="9" class="campos1s" value="#{passagemMB.passagem.teme}"  />
                                 <p:inputText id="embarque1" size="9" class="campos1s" value="#{passagemMB.passagem.teml}"  />
                                 <p:inputText id="chd" size="9" class="campos1s" value="#{passagemMB.passagem.tuchdme}"  />
@@ -287,7 +287,7 @@
                             <h:panelGrid columns="5" cellpadding="3" title="Consolidador">
                                 <p:selectBooleanCheckbox id="vendamatriz" />
                                 <p:outputLabel value="Venda pela matriz" for="vendamatriz" class="fontebrancas" style="font-size: 11px"/> 
-                                <p:inputText value="#{passagemMB.passagem.valorentrada}" size="21" id="saldoreceber" class="campos2r" style="font-size: 11px"/> 
+                                <p:inputText  value="#{passagemMB.passagem.valorentrada}" size="21" id="saldoreceber" class="campos2r" style="font-size: 11px"/> 
                                 <p:inputText value="#{passagemMB.passagem.valorparcela}" size="23" id="saldoparcelar" class="camposr" style="font-size: 11px"/> 
                             </h:panelGrid>
                             <br></br><br></br><br></br>

@@ -5,15 +5,15 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <ui:composition template="/WEB-INF/templates/default.xhtml">
+   <ui:composition template="/pages/templates/default.xhtml">
         <ui:define name="corpo">
             <h:form id="consultafornecedor">
                 <div id="centro">
                     <p:growl id="growl" showDetail="true" sticky="true"/>
                      <br></br> 
-                    <p:outputLabel value="País" for="pais" class="espaco1" style="font-size: 11px"/>
-                    <p:outputLabel value="Produto" for="produto" class="espaco2" style="font-size: 11px"/>
-                    <p:outputLabel value="Cidade" for="cidade" class="espaco3" style="font-size: 11px"/>
+                    <p:outputLabel value="País" for="pais" class="espaco13" style="font-size: 11px"/>
+                    <p:outputLabel value="Produto" for="produto" class="espaco14" style="font-size: 11px"/>
+                    <p:outputLabel value="Cidade" for="cidade" class="espaco15" style="font-size: 11px"/>
                     <br></br>
                     <p:selectOneMenu id="pais" value="#" style="width:220px;font-size: 10px" class="espacocampos">
                         <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true"/> 
@@ -31,7 +31,7 @@
                                  paginator="true" rows="10" style="margin-bottom:20px" >
                         <f:facet name="{Exporters}">
                             <h:commandLink>
-                                <img src="resources/img/excel.png" width="20" class="imagens"/>
+                                <img src="../../resources/img/excel.png" width="20" class="imagens"/>
                                 <p:dataExporter type="xls" target="fornecedor" fileName="fornecedor" />
                             </h:commandLink>
                         </f:facet>

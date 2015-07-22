@@ -5,29 +5,29 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <ui:composition template="/WEB-INF/templates/default.xhtml">
+    <ui:composition template="/pages/templates/default.xhtml">
         <ui:define name="corpo">
             <h:form>
                 <div id="centro">
                     <br></br><br></br>
-                   <p:accordionPanel class="paineleditar" >
+                   <p:accordionPanel class="paineleditar2" >
                         <p:tab titleStyle="color:#000;font-size:10px;background:#c7d95f;" title="Editar">
                         <p:outputLabel value="Nº Documento" />
-                        <p:outputLabel value="Nº Parcelas" class="espacodialog"/>
+                        <p:outputLabel value="Nº Parcelas" class="espacodialog2"/>
                         <p:outputLabel value="Valor Parcela" class="espacodialog2"/>
-                         <p:outputLabel value="Data Vencimento" />
+                         <p:outputLabel value="Data Vencimento" class="espacodialog4"/>
                         <br></br>
                         <p:inputText value="#{contasReceberMB.conta.numerodocumento}" size="12" class="espacocampos2"/>
-                        <p:inputText value="#{contasReceberMB.conta.numeroparcelas}" size="12" class="espacocampos"/>
+                        <p:inputText value="#{contasReceberMB.conta.numeroparcelas}" size="9" class="espacocampos"/>
                         <p:inputText value="#{contasReceberMB.conta.valorparcela}" size="15" class="espacocamposright"/>
-                        <p:calendar value="#{contasReceberMB.conta.datavencimento}" class="espacocampos"/>
-                        <br></br><br></br>
+                        <p:calendar value="#{contasReceberMB.conta.datavencimento}" size="15" class="espacocampos"/>
+                        <br></br><br></br><br></br>
                        
                         <p:outputLabel value="Tipo de Documento" />
                         <p:outputLabel value="Banco" class="espacodialog"/>
-                        <br></br><br></br>
+                        <br></br>
                         
-                        <p:selectOneMenu id="tipoDocumento" class="espacocampos2" style="width:130px" value="#{contasReceberMB.conta.tipodocumento}">
+                        <p:selectOneMenu id="tipoDocumento" class="espacocampos2" style="width:140px" value="#{contasReceberMB.conta.tipodocumento}">
                             <f:selectItem itemLabel="Selecione" itemValue="" noSelectionOption="true"/> 
                             <f:selectItem itemLabel="Boleto" itemValue="Boleto" />  
                             <f:selectItem itemLabel="Guia de Imposto" itemValue="Guia de Imposto" /> 
@@ -40,9 +40,9 @@
                             <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true"/> 
                         </p:selectOneMenu>
                         <br></br>
-                        <p>
-                            <p:commandButton class="botaodialog" onclick="" value="Confirmar" action="#"></p:commandButton>
-                            <p:commandButton class="botaodialog2" onclick="" value="Cancelar" action="#{contasReceberMB.voltar()}"></p:commandButton>
+                        <p class="botaoeditareceber"><br></br>
+                            <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Confirmar" action="#"></p:commandButton>
+                            <p:commandButton class="espacocampos" onclick="" icon="ui-icon-close" value="Cancelar" action="#{contasReceberMB.voltar()}"></p:commandButton>
                         </p>
                     </p:tab>
                     </p:accordionPanel>

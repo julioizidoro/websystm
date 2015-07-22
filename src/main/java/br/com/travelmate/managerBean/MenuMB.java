@@ -22,25 +22,25 @@ public class MenuMB implements Serializable{
     }
     
     public String contasPagar(){
-        return "consContasPagar";
+        return "consultacontaspagar";
     }
     
     public String contasReceber(){
         return "consultacontasreceber";
     }
     public String passagem(){
-        return "consPassagem";
+        return "consultapassagens";
     }
-    public String adcPassagem(){
-        return "cadPassagem";
+    public String pacoteso(){
+        return "consultapacotesoperadora";
     }
     public String cliente(){
-        return "consCliente";
+        return "consultacliente";
     }
     public String fornecedor(){
-        return "consFornecedor";
+        return "consultafornecedor";
     }
     public String curso(){
-        return "consCurso";
+        return "consultafichacurso";
     }
 }

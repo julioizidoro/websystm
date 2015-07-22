@@ -5,7 +5,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <ui:composition template="/WEB-INF/templates/default.xhtml">
+    <ui:composition template="/pages/templates/default.xhtml">
         <ui:define name="corpo">
             <h:form>
                 <div id="centro">
@@ -44,13 +44,13 @@
                             </p:dataTable>
                             <h:panelGrid columns="4" cellpadding="3">
                                 <p:outputLabel value="Total Receber" for="totalconta" class="fontebranca" style="font-size: 11px"/> 
-                                <p:outputLabel value="Total de Juros" for="totaljuros" class="espacodialog4" style="font-size: 11px"/>
-                                <p:outputLabel value="Total de Desconto" for="totaldesconto" class="espacodialog4" style="font-size: 11px"/>
-                                <p:outputLabel value="Total Valor Recebido" for="totalrecebido" class="espacodialog4" style="font-size: 11px"/>
+                                <p:outputLabel value="Valor de Juros" for="totaljuros" class="espacodialog4" style="font-size: 11px"/>
+                                <p:outputLabel value="Valor de Desconto" for="totaldesconto" class="espacodialog4" style="font-size: 11px"/>
+                                <p:outputLabel value="Valor Recebido" for="totalrecebido" class="espacodialog4" style="font-size: 11px"/>
                                 <p:inputText id="totalconta" size="15" maxlength="100" class="fontebrancaa" value="#{ContasReceberMB.totalconta}"  />
-                                <p:inputText id="totaljuros" size="15" maxlength="100" class="espacodialog4" value="#{ContasReceberMB.totaljuros}"  />
-                                 <p:inputText id="totaldesconto" size="15" maxlength="100" class="espacodialog4" value="#{ContasReceberMB.totaldesconto}"  />   
-                                <p:inputText id="totalrecebido" size="15" maxlength="100" class="espacodialog4" value="#{ContasReceberMB.totalrecebido}"  />
+                                <p:inputText id="totaljuros" size="15" maxlength="100" class="espacodialog4right" value="#{ContasReceberMB.totaljuros}"  />
+                                 <p:inputText id="totaldesconto" size="17" maxlength="100" class="espacodialog4right" value="#{ContasReceberMB.totaldesconto}"  />   
+                                <p:inputText id="totalrecebido" size="15" maxlength="100" class="espacodialog4right" value="#{ContasReceberMB.totalrecebido}"  />
                             
                             </h:panelGrid>
                             <br></br>
@@ -60,9 +60,9 @@
                             </h:panelGrid>
                             <h:panelGrid columns="8" cellpadding="1">
                                 <p:selectOneMenu id="formapag" value="#" style="width:170px;font-size: 10px" class="fontebranca">
-                                    <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true"/> 
-                                    <f:selectItem itemLabel="Cartão" itemValue="Cartão" />  
-                                    <f:selectItem itemLabel="Débito em Conta" itemValue="debito em conta" /> 
+                                    <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true" class="fontedez"/> 
+                                    <f:selectItem itemLabel="Cartão" itemValue="Cartão" class="fontedez"/>  
+                                    <f:selectItem itemLabel="Débito em Conta" itemValue="debito em conta" class="fontedez"/> 
                                     <f:selectItem itemLabel="Boleto" itemValue="Boleto" />  
                                     <f:selectItem itemLabel="Dinheiro" itemValue="Dinheiro" />
                                     <f:selectItem itemLabel="Cheque" itemValue="Cheque" />  
@@ -72,10 +72,13 @@
                                     <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true"/> 
                                 </p:selectOneMenu>
                                 
-                                <p:commandButton value="Confirmar" icon="ui-icon-check" action="#" class="imagemm"/>
-                    <p:commandButton value="Voltar" icon="ui-icon-close" action="#{contasReceberMB.voltar()}" class="espacocampos"/>
                             </h:panelGrid>
-                            <br></br><br></br>
+                            <p class="botaoreceber">
+                                 <br></br>
+                                    <p:commandButton value="Confirmar" icon="ui-icon-check" action="#" class="imagemm"/>
+                                    <p:commandButton value="Cancelar" icon="ui-icon-close" action="#{contasReceberMB.voltar()}" class="espacocampos"/>
+                              <br></br><br></br>
+                            </p>
                         </p:tab>
                     </p:accordionPanel>
                     <br></br><br></br><br></br>

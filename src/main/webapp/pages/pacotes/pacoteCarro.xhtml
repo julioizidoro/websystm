@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/pages/templates/default.xhtml">
+        <ui:define name="corpo">
+            <h:form id="cadastropacotecarro">
+                <div id="centro">
+                    <br></br><br></br>
+                    <p:accordionPanel class="painelPacote" >
+                        <p:tab titleStyle="color:#000;font-size:10px;background:#c7d95f;" title="Carro">
+                            <p:outputLabel value="Localizador" for="localizador"/>
+                            <p:outputLabel value="Loca Retirada" for="locaretirada" class="espacopreto"/>
+                            <p:outputLabel value="Data Retirada" for="dataretirada" class="espacopreto"/>
+                            <p:outputLabel value="Hora Retirada" for="horaretirada" class="espacopreto"/>
+                            <br></br>
+                            <p:inputText id="localizador" value="#" size="35" maxlength="45" class="espacocampos2"/>
+                            <p:inputText id="locaretirada" value="#" size="65" maxlength="100" class="espacocampos"/>
+                            <p:calendar id="dataretirada" value="#" size="15"  class="espacocampos">
+                                <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                            </p:calendar>
+                            <p:inputMask id="horaretirada" value="#" size="35" mask="99:99" class="espacocampos2"/>
+                            <br></br><br></br>
+                            
+                            <p:outputLabel value="Data Devolução" for="datadevolucao"/>
+                            <p:outputLabel value="Hora Devolução" for="horadevolucao" class="espacopreto"/>
+                            <p:outputLabel value="Categoria" for="categoria" class="espacopreto"/>
+                            <p:outputLabel value="Qntd Adulto" for="qntdAdulto" class="espacopreto"/>
+                            <p:outputLabel value="Qntd Criança" for="qntdClianca" class="espacopreto"/>
+                            <br></br>
+                            <p:calendar id="datadevolucao" value="#" size="15"  class="espacocampos">
+                                <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                            </p:calendar>
+                            <p:inputMask id="horadevolucao" value="#" size="15" mask="99:99" class="espacocampos2"/>
+                            <p:inputText id="categoria" value="#" size="25" maxlength="15" class="espacocampos"/>
+                            <p:inputText id="qntdAdulto" value="#" size="15" class="espacocampos"/>
+                            <p:inputText id="qntdClianca" value="#" size="15" class="espacocampos"/>
+                            <br></br><br></br>
+                            
+                            <p:outputLabel value="Moeda" for="moeda" class=""/>
+                            <p:outputLabel value="Valor do Câmbio" for="cambio" class="espacocobranca5"/>
+                            <p:outputLabel value="Valor Net" for="valornet"/>
+                            <p:outputLabel value="Valor Gross" for="valorgross" class="espacopreto"/>
+                            <p:outputLabel value="Comissão" for="comissao" class="espacopreto"/>
+                            <p:outputLabel value="Valor Moeda Nacional" for="moedanascional" class="espacopreto"/>
+                            <br></br>
+                            <p:selectOneMenu class="espacocampos5" style="width:65px;" id="moeda"  value="#" >
+                                <f:selectItem itemLabel="Sim" itemValue="Sim"/> 
+                                <f:selectItem itemLabel="Não" itemValue="Não" /> 
+                            </p:selectOneMenu>
+                            <p:inputText id="cambio" value="" size="15" class="espacocampos">
+                                <f:convertNumber currencySymbol="" type="currency"/>
+                            </p:inputText>  
+                            <h:commandLink action="#"  title="Editar Câmbio">  
+                                <img id="editarcambio" class="" src="../../resources/img/cambio_1.png"/>
+                            </h:commandLink>
+                            <p:calendar id="datadevolucao" value="#" size="15"  class="espacocampos">
+                                <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                            </p:calendar>
+                            <p:inputText id="valornet" value="#" size="15" class="espacocampos2">
+                                <f:convertNumber currencySymbol="" type="currency"/>
+                            </p:inputText>
+                            <p:inputText id="valorgross" value="#" size="25" maxlength="15" class="espacocampos">
+                                <f:convertNumber currencySymbol="" type="currency"/>
+                            </p:inputText>
+                            <p:inputText id="comissao" value="#" size="15" class="espacocampos">
+                                <f:convertNumber currencySymbol="" type="currency"/>
+                            </p:inputText>
+                            <p:inputText id="moedanascional" value="#" size="15" class="espacocampos">
+                                <f:convertNumber currencySymbol="" type="currency"/>
+                            </p:inputText>
+                            
+                            <br></br><br></br>
+                            <p:outputLabel value="Descritivo" for="descritivo"/>
+                            <br></br>
+                            <p:inputText id="descritivo" value="#" size="35" maxlength="45" class="espacocampos2"/>
+                            
+                            <p class="botaocadpacote"><br></br>
+                                <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Confirmar" action="#"></p:commandButton>
+                                <p:commandButton class="espacocampos" onclick="" icon="ui-icon-close" value="Cancelar" action="#"></p:commandButton>
+                            </p>
+                        </p:tab>
+                    </p:accordionPanel>
+                    <br></br><br></br><br></br>
+                </div>
+            </h:form>     
+        </ui:define>
+    </ui:composition>
+</html>

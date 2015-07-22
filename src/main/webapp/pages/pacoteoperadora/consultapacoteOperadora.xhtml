@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/pages/templates/default.xhtml">
+        <ui:define name="corpo">
+            <h:form id="telapacotesoperadora">
+                <div id="centro">
+                    <p:growl id="growl" showDetail="true" sticky="true"/>
+                    <br></br> <br></br> <br></br>
+
+                    <p:accordionPanel class="painel" activeIndex="-1" >
+                        <p:tab titleStyle="color:#000;font-size:11px;background:#c7d95f;" title="Pesquisar">
+                            <h:panelGrid columns="7" cellpadding="3">
+                                <p:outputLabel value="Unidade" for="unidade" class="left3"/> 
+                                <p:outputLabel value="Periodo" for="dataIni" class="left20"/> 
+                            </h:panelGrid>
+                            <h:panelGrid columns="8" cellpadding="1">
+                                <p:inputText id="unidade" size="41" maxlength="100" class="left3"  value="#"/>
+                                <p:calendar id="dataIni" class="left4"  pattern="dd/MM/yyyy" mask="true" size="11" maxlength="15" >
+                                    <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                                </p:calendar>
+                                <p:calendar id="dataFinal" class="espacocampospesquisa2"  pattern="dd/MM/yyyy" mask="true" size="11" maxlength="15">
+                                    <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                                </p:calendar>
+                                 <p:commandButton value="Pesquisar" class="espacodialog2"  icon=" ui-icon-search " update="telapacotesoperadora:conspacoteoperadora"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#"/>
+                            </h:panelGrid><br></br>
+                            <br></br>
+                        </p:tab>
+                    </p:accordionPanel>
+                    <br></br>
+                    <img src="../../resources/img/add.png" class="imgadd"/>
+                    <p:commandLink value="Novo Pacote"  class="add" action="#{passagemMB.pacotenovo()}"/>
+                    <legend id="iUsu2" ><b>Consulta de Pacotes </b></legend>
+                    <p:dataTable id="conspacoteoperadora" var="conspacoteoperadora"  value="#" class="tabela" 
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+                                 paginator="true" rows="10" style="margin-bottom:20px" >
+                        <f:facet name="{Exporters}">
+                            <h:commandLink>
+                                <img src="../../resources/img/excel.png" width="20" class="imagens"/>
+                                <p:dataExporter type="xls" target="contaPagar" fileName="contas" />
+                            </h:commandLink>
+                        </f:facet>
+                        <p:column  style="background:#ffffff;color:#1F8871;text-align:center;width:48px;z-index: 3!important;overflow: visible!important;">
+                            <p:menubar style="min-width:10px;min-height:10px;height:25px;margin-top:-4px;"> 
+                                <p:submenu style="margin-top:-7px;" >
+                                    <p:menuitem style="float:right;" value="Editar" action="#" />
+                                </p:submenu>
+                            </p:menubar>
+                        </p:column>
+                        <p:column headerText="Descrição"  style="width:210px;background:#ffffff;color:#1F8871;text-align:center;" styleClass="alinharCenter" sortBy="#{contasrecebe.vendas.cliente}">
+                            <h:outputText value="#"/>
+                        </p:column>
+                        <p:column headerText="Unidade"  style="width:200px;background:#ffffff;color:#1F8871;text-align:center;" styleClass="alinharCenter" >
+                            <h:outputText value="#"/>
+                        </p:column>
+                        <p:column headerText="Data Início" style="width:80px;background:#ffffff;color:#1F8871;text-align:center;" >
+                            <h:outputText value="">
+                                <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                            </h:outputText>  
+                        </p:column>
+                        <p:column headerText="Data Termino" style="width:80px;background:#ffffff;color:#1F8871;text-align: center;" styleClass="alinharCenter">
+                            <h:outputText value="">
+                                <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                            </h:outputText>                           
+                        </p:column>
+                        <p:column style="width:35px;background:#ffffff;color:#1F8871;text-align: center">
+                            <p:selectBooleanCheckbox value="#"/>
+                        </p:column>
+                    </p:dataTable>
+                    <br></br>
+                    <br></br>
+                </div>
+            </h:form>     
+           
+        </ui:define>
+    </ui:composition>
+</html>

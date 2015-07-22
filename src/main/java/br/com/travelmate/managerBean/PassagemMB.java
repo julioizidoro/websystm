@@ -109,7 +109,11 @@ public class PassagemMB implements Serializable{
         this.listaParcelamento = listaParcelamento;
     }
     
+    public String novaPassagem(){
+        return "cadPassagem";
+    }
     
-    
-    
+    public String pacotenovo(){
+        return "cadPacoteOperadora";
+    }
 }

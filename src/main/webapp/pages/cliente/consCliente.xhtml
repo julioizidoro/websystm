@@ -5,14 +5,14 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <ui:composition template="/WEB-INF/templates/default.xhtml">
+    <ui:composition template="/pages/templates/default.xhtml">
         <ui:define name="corpo">
             <h:form id="consultacliente">
                 <div id="centro">
                     <p:growl id="growl" showDetail="true" sticky="true"/>
                      <br></br> 
-                    <p:outputLabel value="Pesquisar Nome Cliente" for="cliente" class="espaco1" style="font-size: 11px"/> <br></br>
-                    <p:inputText id="cliente" size="50" maxlength="100" class="espaco1" value="#"  />
+                    <p:outputLabel value="Pesquisar Nome Cliente" for="cliente" class="espaco0" style="font-size: 11px"/> <br></br>
+                    <p:inputText id="cliente" size="50" maxlength="100" class="camposs" value="#"  />
                     <br></br> <br></br>
                     <legend id="iUsu2" ><b>Consulta de Clientes</b></legend>
                     <p:dataTable id="clientetabela" var="cliente"  value="#" class="tabela" 
@@ -20,7 +20,7 @@
                                  paginator="true" rows="10" style="margin-bottom:20px" >
                         <f:facet name="{Exporters}">
                             <h:commandLink>
-                                <img src="resources/img/excel.png" width="20" class="imagens"/>
+                                <img src="../../resources/img/excel.png" width="20" class="imagens"/>
                                 <p:dataExporter type="xls" target="cliente" fileName="cliente" />
                             </h:commandLink>
                         </f:facet>

@@ -5,24 +5,25 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <ui:composition template="/WEB-INF/templates/default.xhtml">
+    <ui:composition template="/pages/templates/default.xhtml">
         <ui:define name="corpo">
             <h:form id="consultacursos">
                 <div id="centro">
                     <p:growl id="growl" showDetail="true" sticky="true"/>
                      <br></br> 
-                    <p:outputLabel value="Pesquisar Nome Cliente" for="cliente" class="espaco1" style="font-size: 11px"/> <br></br>
-                    <p:inputText id="cliente" size="50" maxlength="100" class="espaco1" value="#"  />
-                    <img src="resources/img/add.png" class="imgadd"/>
-                    <p:commandLink value="Nova Ficha de Curso"  action="#{menuMB.adcPassagem}" class="add"/>
-                    <br></br> <br></br>
+                    <p:outputLabel value="Pesquisar Nome Cliente" for="cliente" class="espaco0" style="font-size: 11px"/> <br></br>
+                    <p:inputText id="cliente" size="50" maxlength="100" class="camposs" value="#"  />
+                  <br></br> 
+                    <img src="../../resources/img/add.png" class="imgadd"/>
+                    <p:commandLink value="Nova Ficha de Curso"  action="#" class="add"/>
+                    
                     <legend id="iUsu2" ><b>Consulta Ficha de Cursos</b></legend>
                     <p:dataTable id="cursos" var="cursos"  value="#" class="tabela" 
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
                                  paginator="true" rows="10" style="margin-bottom:20px" >
                         <f:facet name="{Exporters}">
                             <h:commandLink>
-                                <img src="resources/img/excel.png" width="20" class="imagens"/>
+                                <img src="../../resources/img/excel.png" width="20" class="imagens"/>
                                 <p:dataExporter type="xls" target="cliente" fileName="cliente" />
                             </h:commandLink>
                         </f:facet>

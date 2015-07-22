@@ -5,73 +5,79 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <ui:composition template="/WEB-INF/templates/default.xhtml">
+    <ui:composition template="/pages/templates/default.xhtml">
         <ui:define name="corpo">
             <h:form>
                 <div id="centro">
                     <br></br><br></br>
-                   <p:accordionPanel class="painelcobranca" >
+                    <p:accordionPanel class="painelcobranca" >
                         <p:tab titleStyle="color:#000;font-size:10px;background:#c7d95f;" title="Cobrança">
-                        <p:outputLabel value="Nome:" />
-                        <p:outputLabel value="#{cobrancaMB.venda.cliente.nome}" />
-                        <br></br><br></br>
-                        <p:outputLabel value="nº Venda:" class=""/>
-                        <p:outputLabel value="#{cobrancaMB.venda.idvendas}" class="espacodialog2"/>
-                        <p:outputLabel value="Data Venda:" class="espacodialog"/>
-                        <p:outputLabel value="#{cobrancaMB.venda.dataVenda}" class=""/>
-                        <p:outputLabel value="Consultor:" class="espacodialog7"/>
-                        <p:outputLabel value="#{cobrancaMB.venda.usuario.nome}" class=""/>
-                        <br></br><br></br>
-                        <p:outputLabel value="Fone Contato:" class=""/>
-                        <br></br>
-                        <p:inputMask  mask="(99)9999-9999" value="#{cobrancaMB.cobranca.fone}"/>
-                        <p:outputLabel value="Unidade:" class="espacocampos"/>
-                        <p:outputLabel value="#{cobrancaMB.venda.unidadenegocio}" class="espacodialog2"/>
-                        
-                        <br></br><br></br>
-                        <p:dataTable id="cobranca" var="cobranca"  value="#" class="tabela3" 
-                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-                                     paginator="true" rows="10" style="margin-bottom:20px;font-size: 10px;" >
-                            <p:column  style="background:#ffffff;color:#1F8871;text-align:center;width:48px;z-index: 3!important;overflow: visible!important;">
-                            <p:menubar style="min-width:10px;min-height:10px;height:25px;margin-top:-4px;"> 
-                                <p:submenu style="margin-top:-7px;" >
-                                    <p:menuitem style="float:right;" value="Editar" action="#{cobrancaMB.editar()}" />
-                                    <p:menuitem style="float:right;" value="Novo Histórico" action="#{cobrancaMB.novoHistorico()}" update=":cobrancaform:dialog_novo" oncomplete="PF('historico').show()"/>
-                                </p:submenu>
-                            </p:menubar>
-                        </p:column>
-                            <p:column headerText="Data" style="width:110px">
-                                <h:outputText value="">
-                                    <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
-                                </h:outputText>
-                            </p:column>
-                            <p:column headerText="Contato">
-                                <h:outputText value="#"/>
-                            </p:column>
-                            <p:column headerText="Usuário" >
-                                <h:outputText value="" >
-                                <f:convertNumber currencySymbol="" type="currency"/>
-                            </h:outputText>
-                            </p:column>
-                        </p:dataTable>
-                    </p:tab>
+                            <p:outputLabel value="Nº Venda:" class="espacocinza"/>
+                            <p:outputLabel value="Data Venda:" class="espacodialogcinza"/>
+                            <p:outputLabel value="Unidade:" class="espacodialogcinza"/>
+                            <br></br>
+                            <p:inputText value="#{cobrancaMB.venda.idvendas}" size="13" class="espacocobranca"/>
+                            <p:inputText value="#{cobrancaMB.venda.dataVenda}" class="espacocobranca3">
+                                <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                            </p:inputText>
+                            <p:inputText value="#{cobrancaMB.venda.unidadenegocio}" size="47" class="espacocobranca2"/>
+                            <br></br><br></br>
+
+                            <p:outputLabel value="Nome:" class="espacocinza"/>
+                            <p:outputLabel value="Consultor:" class="espacodialogcinza2"/>
+                            <p:outputLabel value="Fone Contato:" class="espacodialogcinza2"/>
+                            <br></br>
+
+                            <p:inputText  value="#{cobrancaMB.venda.cliente.nome}" size="35" class="espacocobranca"/>
+                            <p:inputText value="#{cobrancaMB.venda.usuario.nome}" size="40"  class="espacocobranca4"/>
+                            <p:inputMask  mask="(99)9999-9999" value="#{cobrancaMB.cobranca.fone}" size="18" class="espacocobranca4"/>
+                            <p:commandButton value="Salvar" icon="ui-icon-check" action="#" class="espacocobranca4" title="Gravar Telefone"/>
+                            <br></br>
+                            <br></br><br></br>
+                            <p:dataTable id="cobranca" var="cobranca"  value="#{cobrancaMB.listaHistorico}" class="tabela3" 
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                         paginator="true" rows="10" style="margin-bottom:20px;font-size: 10px;" >
+                                <p:column  style="background:#ffffff;color:#1F8871;text-align:center;width:48px;z-index: 3!important;overflow: visible!important;">
+                                    <p:menubar style="min-width:10px;min-height:10px;height:25px;margin-top:-4px;"> 
+                                        <p:submenu style="margin-top:-7px;" >
+                                            <p:menuitem style="float:right;" value="Editar" action="#{cobrancaMB.editar()}" />
+                                            <p:menuitem style="float:right;" value="Novo Histórico" action="#{cobrancaMB.novoHistorico()}" update=":cobrancaform:dialog_novo" oncomplete="PF('historico').show()"/>
+                                        </p:submenu>
+                                    </p:menubar>
+                                </p:column>
+                                <p:column headerText="Data" style="width:110px">
+                                    <h:outputText value="#{cobranca.data}">
+                                        <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                                    </h:outputText>
+                                </p:column>
+                                <p:column headerText="Contato">
+                                    <h:outputText value="#{cobranca.contato}"/>
+                                </p:column>
+                                <p:column headerText="Usuário" >
+                                    <h:outputText value="#{cobranca.usuario}" >
+                                        <f:convertNumber currencySymbol="" type="currency"/>
+                                    </h:outputText>
+                                </p:column>
+                            </p:dataTable>
+                            
+                        </p:tab>
                     </p:accordionPanel>
                     <br></br><br></br><br></br>
                 </div>
             </h:form>   
             <h:form id="cobrancaform">
                 <p:dialog id="dialog_novo" header="Novo Historico" widgetVar="historico"  width="34%" class="dialog2" style="background:#d0e9c6" >
-                   <h:panelGrid columns="1" cellpadding="3">
+                    <h:panelGrid columns="1" cellpadding="3">
                         <p:outputLabel value="Contato" for="contato" class="fontebranca" style="font-size: 10px"/> 
                         <p:inputText id="contato" size="30" maxlength="100" class="fontebranca" value="#{cobrancaMB.historico.contato}"  />
                         <br></br>
                         <p:outputLabel value="Data" for="data" class="fontebranca" style="font-size: 11px"/> 
                         <p:calendar id="data" size="15" maxlength="100" class="fontebranca" value="#{cobrancaMB.historico.data}"  />
-                       <br></br>
+                        <br></br>
                         <p:outputLabel value="Assunto" for="assunto" class="fontebranca" style="font-size: 11px"/> 
-                       <p:inputTextarea id="assunto" rows="2" cols="60" maxlength="100" class="fontebranca" value="#{cobrancaMB.historico.data}"  />
-                  <br></br><br></br>
-                   </h:panelGrid>
+                        <p:inputTextarea id="assunto" rows="2" cols="60" maxlength="100" class="fontebranca" value="#{cobrancaMB.historico.data}"  />
+                        <br></br><br></br>
+                    </h:panelGrid>
                     <p:commandButton value="Confirmar" icon="ui-icon-check" action="#{cobrancaMB.salvarHitorico()}" class=""/>
                     <p:commandButton value="Cancelar" icon="ui-icon-close" action="#{cobrancaMB.voltar()}" class="espacocampos"/>
                 </p:dialog>

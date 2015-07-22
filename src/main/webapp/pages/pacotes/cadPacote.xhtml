@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/pages/templates/default.xhtml">
+        <ui:define name="corpo">
+            <h:form id="cadastropacoteoperadora">
+                <div id="centro">
+                    <br></br><br></br>
+                    <p:accordionPanel class="painelPacote" >
+                        <p:tab titleStyle="color:#000;font-size:10px;background:#c7d95f;" title="Cadastro">
+                            <p:outputLabel value="Descrição" for="descricao"/>
+                            <p:outputLabel value="Cliente" for="cliente" class="espacopreto"/>
+                            <br></br>
+                            <p:inputText id="descricao" value="#" size="100" maxlength="200" class="espacocampos2"/>
+                            <p:inputText class="espacocampos" size="45" id="cliente"  value="#" />
+                            <br></br><br></br>
+
+                            <p:outputLabel value="Moeda" for="moeda" class=""/>
+                            <p:outputLabel value="Valor do Câmbio" for="cambio" class="espacocobranca5"/>
+                            <p:outputLabel value="Período" class="espacocobranca6"/>
+                            <br></br>
+                            <p:selectOneMenu class="espacocampos5" style="width:65px;" id="moeda"  value="#" >
+                                <f:selectItem itemLabel="Sim" itemValue="Sim"/> 
+                                <f:selectItem itemLabel="Não" itemValue="Não" /> 
+                            </p:selectOneMenu>
+                            <p:inputText id="cambio" value="" size="15" class="espacocampos">
+                                <f:convertNumber currencySymbol="" type="currency"/>
+                            </p:inputText>  
+                            <h:commandLink action="#"  title="Editar Câmbio">  
+                                <img id="editarcambio" class="" src="../../resources/img/cambio_1.png"/>
+                            </h:commandLink>
+                            <p:calendar id="datainicio"  size="17" class="espacocobranca7"/>
+                            <p:calendar id="datatermino"  size="17" class="espacocampos"/>
+                            <br></br><br></br>
+                            <p:outputLabel value="Trecho" for="trecho" class=""/>
+                            <br></br>
+                            <p:inputText id="trecho" value="#" size="129" maxlength="200" class="espacocampos2"/>
+                            <p:commandButton class="espacocobranca5" onclick="" icon="ui-icon-check" value="Adicionar" action="#"></p:commandButton>
+                            <br></br><br></br>
+                            <p:dataTable id="listapacotes" var="recebimento"  value="#" class="tabela3" 
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                         paginator="true" rows="10" style="margin-bottom:20px;font-size: 10px;" >
+                                <p:column  style="background:#ffffff;color:#1F8871;text-align:center;width:48px;z-index: 3!important;overflow: visible!important;">
+                                    <p:menubar style="min-width:10px;min-height:10px;height:25px;margin-top:-4px;z-index: 3!important; "> 
+                                        <p:submenu style="margin-top:-7px;z-index: 3!important;" >
+                                                <p:menuitem style="float:right;" value="Carro" />
+                                                <p:menuitem style="float:right;" value="Hotel" />
+                                                <p:menuitem style="float:right;" value="Aereo" />
+                                                <p:menuitem style="float:right;" value="Trasfer" />
+                                                <p:menuitem style="float:right;" value="Trem" />
+                                                <p:menuitem style="float:right;" value="Passeio" />
+                                                <p:menuitem style="float:right;" value="Ingresso" />
+                                                <p:menuitem style="float:right;" value="Cruzeiro" />
+                                                <p:menuitem style="float:right;" value="Exclir" />
+                                        </p:submenu>
+                                    </p:menubar>
+                                </p:column>
+                                <p:column headerText="Descrição" >
+                                    <h:outputText value="" ></h:outputText>
+                                </p:column>
+                                 <br></br><br></br><br></br>
+                            </p:dataTable>
+                             <br></br><br></br><br></br> <br></br><br></br><br></br> <br></br><br></br><br></br>
+                            <p class="botaocadpacote"><br></br>
+                                <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Confirmar" action="#"></p:commandButton>
+                                <p:commandButton class="espacocampos" onclick="" icon="ui-icon-close" value="Cancelar" action="#"></p:commandButton>
+                            </p>
+                        </p:tab>
+                    </p:accordionPanel>
+                    <br></br><br></br><br></br>
+                </div>
+            </h:form>     
+        </ui:define>
+    </ui:composition>
+</html>

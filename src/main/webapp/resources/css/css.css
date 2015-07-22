@@ -137,7 +137,7 @@ text-align: left;
 }
 .botaodialog{
     font-size: 10px;
-    margin-left:200px;
+    margin-left:150px;
 }
 .botaodialog2{
     font-size: 13px;
@@ -147,7 +147,11 @@ text-align: left;
 .espacocampos{
     font-size:10px;
     margin-left:30px;
-    height:25px;
+}
+.espacocamposgrande{
+    font-size:10px;
+    margin-left:30px;
+    height: 30px;
 }
 .espacocamposright{
     text-align: right;
@@ -159,15 +163,31 @@ text-align: left;
     font-size:10px;
     height:25px;
 }
+.espacocampos5{
+    font-size:10px;
+    height:30px;
+}
+.espacocampos2right{
+    font-size:10px;
+    height:25px;
+    text-align: right;
+}
 .espacocampos3{
     font-size:10px;
     margin-left:27px;
     height:25px;
 }
-.espacocampospesquisa{
+.espacocamposright{
+    text-align: right;
     font-size:10px;
-    margin-left:124px;
+    margin-left:30px;
     height:25px;
+}
+.espacocampos4right{
+    font-size:10px;
+    margin-left:10px;
+    height:25px;
+    text-align: right;
 }
 .espacocampospesquisa2{
     font-size:10px;
@@ -256,7 +276,12 @@ text-align: left;
     margin-left:175px;
 }
 .fontebranca{
+    color:#000;
     font-size: 11px;
+}
+.fontedez{
+    color:#000;
+    font-size: 10px !important;
 }
 .fontebrancaa{
     font-size: 11px;
@@ -286,7 +311,13 @@ text-align: left;
 }
 .paineleditar{
     color:#fff;
-    width:50%;
+    width:43%;
+    margin-left:260px;
+    text-align: left;
+}
+.paineleditar2{
+    color:#fff;
+    width:53%;
     margin-left:260px;
     text-align: left;
 }
@@ -392,6 +423,11 @@ text-align: left;
     font-size: 10px;
     margin-left:77px;
 }
+.espacodialogcinza{
+    color: #1F8871;
+    font-size: 10px;
+    margin-left:130px;
+}
 .espacodialog2{
     color: #000;
     font-size: 10px;
@@ -406,6 +442,12 @@ text-align: left;
     color: #000;
     font-size: 10px;
     margin-left:60px;
+}
+.espacodialog4right{
+    color: #000;
+    font-size: 10px;
+    margin-left:60px;
+    text-align: right;
 }
 .espacodialog5{
     color: #000;
@@ -422,10 +464,24 @@ text-align: left;
     font-size: 10px;
     margin-left:89px;
 }
+.espacodialog7cinza{
+    color: #1F8871;
+    font-size: 10px;
+    margin-left:89px;
+}
+.espacocinza{
+    color: #1F8871;
+    font-size: 10px;
+}
 .espacodialog8{
     color: #000;
     font-size: 10px;
     margin-left:100px;
+}
+.espacodialog9{
+    color: #000;
+    font-size:10px;
+    margin-left:50px;
 }
 .tabela3{
     float: left;
@@ -446,7 +502,7 @@ text-align: left;
     background: #1F8871;
 }
 .imgadd{
-    margin-left:80%;
+    margin-left:3%;
 }
 .tab{
     background: #fff;
@@ -516,14 +572,26 @@ text-align: left;
     margin-left:40%;
     position: relative;
 }
+.espacopreto{
+    color: #000;
+    font-size: 11px;
+    margin-left:57%;
+    position: relative;
+}
 .espaco1{
     color: #fff;
     font-size: 11px;
     margin-left:60%;
     position: relative;
 }
-.espaco2{
+.espaco1{
     color: #fff;
+    font-size: 11px;
+    margin-left:60%;
+    position: relative;
+}
+.espaco2preto{
+    color: #000;
     font-size: 11px;
     margin-left:80%;
     position: relative;
@@ -587,4 +655,86 @@ text-align: left;
     font-size: 11px;
     margin-left:50%;
     position: relative;
+}
+.espaco13{
+    color: #fff;
+    font-size: 11px;
+    margin-left:3%;
+    position: relative;
+}
+.espaco14{
+    color: #fff;
+    font-size: 11px;
+    margin-left:26%;
+    position: relative;
+}
+.espaco15{
+    color: #fff;
+    font-size: 11px;
+    margin-left:23%;
+    position: relative;
+}
+.botaoeditar{
+    width:108%;background:-moz-linear-gradient(
+        top,
+        #c7d95f 0%,
+        #EEE5DE 10%,
+        #c7d95f 30%,
+        #fff);margin-left: -15px;margin-top:5%; height:40px;border: #fff;text-align: center;
+}
+.botaoreceber{
+    width:105%;background:-moz-linear-gradient(
+        top,
+        #c7d95f 0%,
+        #EEE5DE 10%,
+        #c7d95f 30%,
+        #fff);margin-left: -15px;margin-top:15px; height:40px;border: #fff;text-align: center;
+}
+.botaoeditareceber{
+    width:106%;background:-moz-linear-gradient(
+        top,
+        #c7d95f 0%,
+        #EEE5DE 10%,
+        #c7d95f 30%,
+        #fff);margin-left: -15px;margin-top:15px; height:40px;border: #fff;text-align: center;
+}
+.espacocobranca{
+    margin-left:0%;
+}
+.espacocobranca2{
+    margin-left:13%;
+}
+.espacocobranca3{
+    margin-left:15%;
+}
+.espacocobranca4{
+    margin-left:3%;
+}
+.espacocobranca5{
+    margin-left:9%;
+}
+.espacocobranca6{
+    margin-left:39%;
+}
+.espacodialogcinza2{
+    color: #1F8871;
+    font-size: 10px;
+    margin-left:160px;
+}
+.painelPacote{
+    color:#fff;
+    width:84%;
+    margin-left:7%;
+    text-align: left;
+}
+.botaocadpacote{
+    width:104%;background:-moz-linear-gradient(
+        top,
+        #c7d95f 0%,
+        #EEE5DE 10%,
+        #c7d95f 30%,
+        #fff);margin-left: -15px;margin-top:15px; height:40px;border: #fff;text-align: center;
+}
+.espacocobranca7{
+    margin-left:35%;
 }

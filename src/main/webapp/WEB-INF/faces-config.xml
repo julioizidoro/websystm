@@ -14,4 +14,60 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
+        <navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>consultapassagens</from-outcome>
+			<to-view-id>/pages/passagem/consPassagem.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+        <navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>consultapacotesoperadora</from-outcome>
+			<to-view-id>/pages/pacoteoperadora/consultapacoteOperadora.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+        <navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>consultacomissaovendas</from-outcome>
+			<to-view-id>/pages/comissao/consultacomissaovendas.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+        <navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>consultacontaspagar</from-outcome>
+			<to-view-id>/pages/contaspagar/consContasPagar.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+        <navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>consultacliente</from-outcome>
+			<to-view-id>/pages/cliente/consCliente.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+        <navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>consultafornecedor</from-outcome>
+			<to-view-id>/pages/fornecedor/consFornecedor.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+        <navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>consultafichacurso</from-outcome>
+			<to-view-id>/pages/cursos/consCurso.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
 </faces-config>

@@ -135,7 +135,7 @@ public class Produtos implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.travelmate.model.Produtos[ idprodutos=" + idprodutos + " ]";
+        return getDescricao();
     }
     
 }
