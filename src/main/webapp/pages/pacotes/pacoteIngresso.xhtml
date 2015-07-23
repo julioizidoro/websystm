@@ -7,7 +7,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:composition template="/pages/templates/default.xhtml">
         <ui:define name="corpo">
-            <h:form id="telapacotepasseio">
+            <h:form id="telapacoteingresso">
                 <div id="centro">
                     <p:growl id="growl" showDetail="true" sticky="true"/>
                     <br></br> <br></br> <br></br>
@@ -15,105 +15,106 @@
                     <p:accordionPanel class="painelPacote" >
                         <p:tab titleStyle="color:#000;font-size:10px;background:#c7d95f;" title="Ingresso">
                             <p:outputLabel value="País" for="pais" class=""/>
-                            <p:outputLabel value="Cidade" for="cidade" class=""/>
-                            <p:outputLabel value="Data" for="data" class=""/>
-                           
+                            <p:outputLabel value="Cidade" for="cidade" class="espacocobranca6"/>
+                            <p:outputLabel value="Data" for="data" class="espacocobranca13"/>
+
                             <br></br>
-                            <p:inputText id="pais" value="#" size="45" maxlength="50" class="espacocampos2"/>
-                            <p:inputText id="cidade" value="#" size="45" maxlength="50" class="espacocampos"/>
+                            <p:inputText id="pais" value="#" size="60" maxlength="50" class="espacocampos2"/>
+                            <p:inputText id="cidade" value="#" size="60" maxlength="50" class="espacocampos"/>
                             <p:calendar id="data" value="" size="15"  class="espacocampos">
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </p:calendar>
-                            
-                            
-                            <br></br><br></br>
-                            <p:outputLabel value="Tipo de Quarto" for="tipoquarto" class=""/>
-                            <p:outputLabel value="Categoria" for="categoria" class=""/>
-                            <p:outputLabel value="Regime" for="regime" class=""/>
-                             <p:outputLabel value="Qntd Adulto" for="qntdAdulto" class=""/>
-                            <p:outputLabel value="Qntd Criança" for="qntdClianca" class=""/>
+
+
+                            <br></br><br></br><br></br>
+                            <p:outputLabel value="Qntd Adolescente" for="qntdAdolescente" class=""/>
+                            <p:outputLabel value="Qntd Adulto" for="qntdAdulto" class="espacocobranca5"/>
+                            <p:outputLabel value="Qntd Criança" for="qntdClianca" class="espacocobranca2"/>
                             <br></br>
-                            <p:inputText id="tipoquarto" value="#" size="20" maxlength="10" class="espacocampos2"/>
-                            <p:inputText id="categoria" value="#" size="20" maxlength="10" class="espacocampos"/>
-                            <p:inputText id="regime" value="#" size="25" maxlength="20" class="espacocampos"/>
-                            <p:inputText id="qntdAdulto" value="#" size="20" class="espacocampos"/>
-                            <p:inputText id="qntdClianca" value="#" size="19" class="espacocampos"/>
-                            <br></br><br></br>
-                            
-                            
+                            <p:inputText id="qntdAdolescente" value="#" size="22" maxlength="10" class="espacocampos2"/>
+                            <p:inputText id="qntdAdulto" value="#" size="22" class="espacocampos"/>
+                            <p:inputText id="qntdClianca" value="#" size="16" class="espacocampos"/>
+                            <br></br><br></br><br></br>
+
+
                             <p:outputLabel value="Moeda" for="moeda" class=""/>
-                            <p:outputLabel value="Valor do Câmbio" for="cambio" class=""/>
-                            <p:outputLabel value="Valor Net" for="valornet"/>
-                            <p:outputLabel value="Valor Gross" for="valorgross" class=""/>
-                            <p:outputLabel value="Comissão" for="comissao" class=""/>
+                            <p:outputLabel value="Valor do Câmbio" for="cambio" class="espacocobranca5"/>
+                            <p:outputLabel value="Valor Net" for="valornet" class="espacocobranca5"/>
+                            <p:outputLabel value="Valor Gross" for="valorgross" class="espacocobranca11"/>
+                            <p:outputLabel value="Comissão" for="comissao" class="espacocobranca5"/>
                             <br></br>
                             <p:selectOneMenu class="espacocampos5" style="width:65px;" id="moeda"  value="#" >
                                 <f:selectItem itemLabel="Sim" itemValue="Sim"/> 
                                 <f:selectItem itemLabel="Não" itemValue="Não" /> 
                             </p:selectOneMenu>
-                            <p:inputText id="cambio" value="" size="15" class="espacocampos">
+                            <p:inputText id="cambio" value="" size="16" class="espacocamposright">
                                 <f:convertNumber currencySymbol="" type="currency"/>
                             </p:inputText>  
                             <h:commandLink action="#"  title="Editar Câmbio">  
                                 <img id="editarcambio" class="" src="../../resources/img/cambio_1.png"/>
                             </h:commandLink>
-                            <p:calendar id="datadevolucao" value="" size="15"  class="espacocampos">
-                                <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
-                            </p:calendar>
-                            <p:inputText id="valornet" value="" size="15" class="espacocampos">
+                            <p:inputText id="valornet" value="" size="15" class="espacocamposright">
                                 <f:convertNumber currencySymbol="" type="currency"/>
                             </p:inputText>
-                            <p:inputText id="valorgross" value="" size="15" maxlength="15" class="espacocampos">
+                            <p:inputText id="valorgross" value="" size="15" maxlength="15" class="espacocamposright">
                                 <f:convertNumber currencySymbol="" type="currency"/>
                             </p:inputText>
-                            <p:inputText id="comissao" value="" size="15" class="espacocampos">
+                            <p:inputText id="comissao" value="" size="15" class="espacocamposright">
                                 <f:convertNumber currencySymbol="" type="currency"/>
                             </p:inputText>
-                            <br></br><br></br>
+                            <br></br><br></br><br></br>
                             <p:outputLabel value="Descritivo" for="descritivo"/>
-                            <p:outputLabel value="Trecho" for="treco"/>
+                            <p:outputLabel value="Trecho" for="treco" class="espacocobranca10"/>
                             <br></br>
-                            <p:inputText id="descritivo" value="#" size="50" maxlength="45" class="espacocampos2"/>
-                            <p:inputText id="treco" value="#" size="50" maxlength="45" class="espacocampos"/>
-                            
-                                <p:commandButton class="espacocampos" onclick="" icon="ui-icon-check" value="Adicionar" action="#"></p:commandButton>
-                                <p:commandButton class="espacocampos" onclick="" icon="ui-icon-close" value="Excluir" action="#"></p:commandButton>
-                            
+                            <p:inputText id="descritivo" value="#" size="48" maxlength="45" class="espacocampos2"/>
+                            <p:inputText id="treco" value="#" size="52" maxlength="45" class="espacocampos"/>
+
+                            <p:commandButton class="espacocampos" onclick="" icon="ui-icon-check" value="Adicionar" action="#"></p:commandButton>
+                            <p:commandButton class="espacocampos" onclick="" icon="ui-icon-close" value="Excluir" action="#"></p:commandButton>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <p:dataTable id="pacoteingresso" var="pacoteingresso"  value="#" class="tabela3" 
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+                                         paginator="true" rows="10" style="margin-bottom:20px" >
+                                <f:facet name="{Exporters}">
+                                    <h:commandLink>
+                                        <img src="../../resources/img/excel.png" width="20" class="imagens"/>
+                                        <p:dataExporter type="xls" target="pacoteingresso" fileName="listaingresso" />
+                                    </h:commandLink>
+                                </f:facet>
+                                <p:column headerText="Descrição"  style="width:210px;background:#ffffff;color:#1F8871;text-align:center;" styleClass="alinharCenter" sortBy="#{contasrecebe.vendas.cliente}">
+                                    <h:outputText value="#"/>
+                                </p:column>
+                                <p:column headerText="Cidade"  style="width:200px;background:#ffffff;color:#1F8871;text-align:center;" styleClass="alinharCenter" >
+                                    <h:outputText value="#"/>
+                                </p:column>
+                                <p:column headerText="País" style="width:200px;background:#ffffff;color:#1F8871;text-align:center;" >
+                                    <h:outputText value="#"/>
+                                </p:column>
+                                <p:column headerText="Data" style="width:80px;background:#ffffff;color:#1F8871;text-align: center;" styleClass="alinharCenter">
+                                    <h:outputText value="">
+                                        <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                                    </h:outputText>                           
+                                </p:column>
+                                <p:column style="width:35px;background:#ffffff;color:#1F8871;text-align: center">
+                                    <p:selectBooleanCheckbox value="#"/>
+                                </p:column>
+                            </p:dataTable><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+                            <p class="botaocadpacote"><br></br>
+                                <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Confirmar" action="#"></p:commandButton>
+                                <p:commandButton class="espacocampos" onclick="" icon="ui-icon-close" value="Cancelar" action="#"></p:commandButton>
+                            </p>
                         </p:tab>
+
                     </p:accordionPanel>
                     <br></br>
-                    <p:dataTable id="pacotepasseio" var="pacotepasseio"  value="#" class="tabela" 
-                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
-                                 paginator="true" rows="10" style="margin-bottom:20px" >
-                        <f:facet name="{Exporters}">
-                            <h:commandLink>
-                                <img src="../../resources/img/excel.png" width="20" class="imagens"/>
-                                <p:dataExporter type="xls" target="pacotepasseio" fileName="listapasseio" />
-                            </h:commandLink>
-                        </f:facet>
-                        <p:column headerText="Descrição"  style="width:210px;background:#ffffff;color:#1F8871;text-align:center;" styleClass="alinharCenter" sortBy="#{contasrecebe.vendas.cliente}">
-                            <h:outputText value="#"/>
-                        </p:column>
-                        <p:column headerText="Cidade"  style="width:200px;background:#ffffff;color:#1F8871;text-align:center;" styleClass="alinharCenter" >
-                            <h:outputText value="#"/>
-                        </p:column>
-                        <p:column headerText="País" style="width:200px;background:#ffffff;color:#1F8871;text-align:center;" >
-                             <h:outputText value="#"/>
-                        </p:column>
-                        <p:column headerText="Data" style="width:80px;background:#ffffff;color:#1F8871;text-align: center;" styleClass="alinharCenter">
-                            <h:outputText value="">
-                                <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
-                            </h:outputText>                           
-                        </p:column>
-                        <p:column style="width:35px;background:#ffffff;color:#1F8871;text-align: center">
-                            <p:selectBooleanCheckbox value="#"/>
-                        </p:column>
-                    </p:dataTable>
+
                     <br></br>
                     <br></br>
                 </div>
             </h:form>     
-            
+
         </ui:define>
     </ui:composition>
 </html>

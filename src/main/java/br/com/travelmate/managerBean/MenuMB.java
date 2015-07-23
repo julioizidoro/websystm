@@ -46,7 +46,4 @@ public class MenuMB implements Serializable{
     public String curso(){
         return "consultafichacurso";
     }
-    public String ingresso(){
-        return "pacoteingresso";
-    }
 }
