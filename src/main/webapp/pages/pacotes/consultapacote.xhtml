@@ -26,7 +26,7 @@
                                 <p:calendar id="dataFinal" class="espacocampospesquisa2"  pattern="dd/MM/yyyy" mask="true" size="11" maxlength="15">
                                     <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                                 </p:calendar>
-                                 <p:commandButton value="Pesquisar" class="espacodialog2"  icon=" ui-icon-search " update="telapacotesoperadora:conspacoteoperadora"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#"/>
+                                 <p:commandButton value="Pesquisar" class="espacodialog2"  icon=" ui-icon-search " update="telapacotes:conspacote"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#"/>
                             </h:panelGrid><br></br>
                             <br></br>
                         </p:tab>
@@ -58,12 +58,12 @@
                             <h:outputText value="#"/>
                         </p:column>
                         <p:column headerText="Data Início" style="width:80px;background:#ffffff;color:#1F8871;text-align:center;" >
-                            <h:outputText value="#">
+                            <h:outputText value="">
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </h:outputText>  
                         </p:column>
-                        <p:column headerText="Data Termino" style="width:800px;background:#ffffff;color:#1F8871;text-align: center;" styleClass="alinharCenter">
-                            <h:outputText value="#">
+                        <p:column headerText="Data Termino" style="width:80px;background:#ffffff;color:#1F8871;text-align: center;" styleClass="alinharCenter">
+                            <h:outputText value="">
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </h:outputText>                           
                         </p:column>

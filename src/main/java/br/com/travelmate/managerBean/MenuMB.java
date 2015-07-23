@@ -34,6 +34,9 @@ public class MenuMB implements Serializable{
     public String pacoteso(){
         return "consultapacotesoperadora";
     }
+    public String pacotesa(){
+        return "consultapacotesagencia";
+    }
     public String cliente(){
         return "consultacliente";
     }
@@ -42,5 +45,8 @@ public class MenuMB implements Serializable{
     }
     public String curso(){
         return "consultafichacurso";
+    }
+    public String ingresso(){
+        return "pacoteingresso";
     }
 }

@@ -30,11 +30,19 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
+         <navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>consultapacotesoperadora</from-outcome>
+			<to-view-id>/pages/pacoteoperadora/consultapacoteOperadora.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
         <navigation-rule>
 		<from-view-id>*</from-view-id>
 		<navigation-case>
-			<from-outcome>consultacomissaovendas</from-outcome>
-			<to-view-id>/pages/comissao/consultacomissaovendas.xhtml</to-view-id>
+			<from-outcome>consultapacotesagencia</from-outcome>
+			<to-view-id>/pages/pacotes/consultapacote.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>

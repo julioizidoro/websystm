@@ -116,4 +116,7 @@ public class PassagemMB implements Serializable{
     public String pacotenovo(){
         return "cadPacoteOperadora";
     }
+    public String pacotenovos(){
+        return "cadPacote";
+    }
 }

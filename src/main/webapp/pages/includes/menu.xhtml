@@ -54,8 +54,13 @@
                         <li><a>Emissão</a>
                             <ul class="submenu-1"> 
                                 <li class="comissao"><h:commandLink action="#{menuMB.curso()}" value="Curso"></h:commandLink></li>
-                                <li class="comissao"><h:commandLink action="#{menuMB.pacoteso()}" value="Pacotes"></h:commandLink></li> 
-                                <li class="comissao"><h:commandLink action="#{menuMB.passagem()}" value="Passagem Aérea"></h:commandLink></li>
+                                <li class="comissao"><a>Turismo</a>
+                                    <ul class="submenu-1">
+                                        <li class="comissao"><h:commandLink action="#{menuMB.pacoteso()}" value="Pacotes Operadora"></h:commandLink></li> 
+                                        <li class="comissao"><h:commandLink action="#{menuMB.pacotesa()}" value="Pacotes Agencia"></h:commandLink></li> 
+                                        <li class="comissao"><h:commandLink action="#{menuMB.passagem()}" value="Passagem Aérea"></h:commandLink></li>
+                                    </ul>
+                                </li>
                             </ul>
                         </li>
                         <li><a>Consulta</a>
