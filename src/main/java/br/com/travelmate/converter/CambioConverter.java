@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.travelmate.bean.converter;
+package br.com.travelmate.converter;
 
 import br.com.travelmate.model.Cambio;
 import java.util.List;
