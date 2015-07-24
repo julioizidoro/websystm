@@ -5,9 +5,11 @@
  */
 package br.com.travelmate.util;
 
+import br.com.travelmate.facade.FornecedorCidadeFacade;
 import br.com.travelmate.facade.PacoteTrechoFacade;
 import br.com.travelmate.facade.PacotesFacade;
 import br.com.travelmate.facade.UnidadeNegocioFacade;
+import br.com.travelmate.model.Fornecedorcidade;
 import br.com.travelmate.model.Pacotes;
 import br.com.travelmate.model.Pacotetrecho;
 import br.com.travelmate.model.Unidadenegocio;
@@ -43,4 +45,12 @@ public class GerarListas {
         return lista;
     }
     
+    public static List<Fornecedorcidade> listarFornecedorCidade(String sql){
+        FornecedorCidadeFacade fornecedorCidadeFacede = new FornecedorCidadeFacade();
+        List<Fornecedorcidade> listafornecedor = listarFornecedorCidade(sql);
+        if (listafornecedor==null){
+            listafornecedor = new ArrayList<Fornecedorcidade>();
+        }
+        return listafornecedor;
+    }
 }

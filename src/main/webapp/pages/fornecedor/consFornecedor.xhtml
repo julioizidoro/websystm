@@ -18,7 +18,7 @@
                     <p:selectOneMenu id="pais" value="#" style="width:220px;font-size: 10px" class="espacocampos">
                         <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true"/> 
                     </p:selectOneMenu>
-                    <p:selectOneMenu id="produto" value="#" style="width:220px;font-size: 10px" class="espacocampos">
+                    <p:selectOneMenu id="produto" value="#{consultaFornecedorMB.fornecedorcidade.produtos.descricao}" style="width:220px;font-size: 10px" class="espacocampos">
                         <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true"/> 
                     </p:selectOneMenu>
                     <p:selectOneMenu id="cidade" value="#" style="width:220px;font-size: 10px" class="espacocampos">
@@ -36,7 +36,7 @@
                             </h:commandLink>
                         </f:facet>
                         <p:column headerText="Fornecedor" style="background:#ffffff;text-decoration-color:#1F8871;color:#1F8871;text-align:center;" sortBy="#">
-                            <h:outputText value="#" />
+                            <h:outputText value="#{fornecedor.fornecedor.nome}" />
                         </p:column>
                     </p:dataTable>
                     <br></br>
