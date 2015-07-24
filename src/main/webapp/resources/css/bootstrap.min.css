@@ -71,6 +71,13 @@ overflow: visible!important; }
 
 .menu2{width: 900px;background:yellow}
 
+.menu li:hover > ul.submenu-2{ display:block;  left:100%; padding:5px; width:200px; border-radius:0 10px 10px 10px; }
+.menu ul.submenu-2 a{float:right;   padding:0 0px; border-radius:5px; z-index: 3!important;
+overflow: visible!important;  }
+.submenu-2{ background:#000; z-index: 3!important;
+overflow: visible!important; }
+.submenu-2 a{color:#fff;font-size:12px;}
+.submenu-2 li:hover > a{ background:#1F8871; } /*Configuração do menu hover*/
 
 
 /* ==== menu retrátil madlyluv.com ==== */

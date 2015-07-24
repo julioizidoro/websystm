@@ -94,9 +94,33 @@
         </h:panelGrid>
        
         <div class="menu_mluv_retratil">
-             
+
             <a class="mostra-esconde-menu" href="javascript:void(0);">Câmbio</a>
-           
+            <table border="0" class="espacocobranca2">
+                <tr>
+                    <td style="width:100px;text-align:center ">Data</td>
+                    <td style="width:100px;text-align:center ">IATA</td>
+                    <td style="width:100px;text-align:center ">USD</td>
+                    <td style="width:100px;text-align:center ">EUR</td>
+                    <td style="width:100px;text-align:center ">GBP</td>
+                    <td style="width:100px;text-align:center ">CAD</td>
+                    <td style="width:100px;text-align:center ">AUD</td>
+                    <td style="width:100px;text-align:center ">NZD</td>
+                    <td style="width:100px;text-align:center ">CHF</td>
+                </tr>
+                <tr>
+                    <td style="width:100px;text-align:center "><p:outputLabel value="#{usuarioLogadoMB.datacambio}"/></td>
+                    <td style="width:100px;text-align:center "><p:outputLabel value="#{usuarioLogadoMB.iata}"/></td>
+                    <td style="width:100px;text-align:center "><p:outputLabel value="#{usuarioLogadoMB.uds}"/></td>
+                    <td style="width:100px;text-align:center "><p:outputLabel value="#{usuarioLogadoMB.eur}"/></td>
+                    <td style="width:100px;text-align:center "><p:outputLabel value="#{usuarioLogadoMB.gbp}"/></td>
+                    <td style="width:100px;text-align:center "><p:outputLabel value="#{usuarioLogadoMB.cad}"/></td>
+                    <td style="width:100px;text-align:center "><p:outputLabel value="#{usuarioLogadoMB.aud}"/></td>
+                    <td style="width:100px;text-align:center "><p:outputLabel value="#{usuarioLogadoMB.nzd}"/></td>
+                    <td style="width:100px;text-align:center "><p:outputLabel value="#{usuarioLogadoMB.chf}"/></td>
+
+                </tr>
+            </table>
         </div>
         <br></br>
         <br></br>

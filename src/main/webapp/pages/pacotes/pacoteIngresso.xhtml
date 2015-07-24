@@ -65,13 +65,11 @@
                             </p:inputText>
                             <br></br><br></br><br></br>
                             <p:outputLabel value="Descritivo" for="descritivo"/>
-                            <p:outputLabel value="Trecho" for="treco" class="espacocobranca10"/>
                             <br></br>
-                            <p:inputText id="descritivo" value="#" size="48" maxlength="45" class="espacocampos2"/>
-                            <p:inputText id="treco" value="#" size="52" maxlength="45" class="espacocampos"/>
+                            <p:inputText id="descritivo" value="#{trechosMB.pacoteingresso.descritivo}" size="48" maxlength="45" class="espacocampos2"/>
 
-                            <p:commandButton class="espacocampos" onclick="" icon="ui-icon-check" value="Adicionar" action="#"></p:commandButton>
-                            <p:commandButton class="espacocampos" onclick="" icon="ui-icon-close" value="Excluir" action="#"></p:commandButton>
+                            <p:commandButton class="espacocampos" icon="ui-icon-check" value="Adicionar" action="#" update=":telapacoteingresso:pacoteingresso"></p:commandButton>
+                            <p:commandButton class="espacocampos" icon="ui-icon-close" value="Excluir" action="#" ></p:commandButton>
                             <br></br>
                             <br></br>
                             <br></br>

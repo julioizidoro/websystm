@@ -3,7 +3,7 @@ body {
     font-family: tahoma;
     background-color: #F0FFFF;
     color: #333;
-      text-align: center;
+    text-align: center;
 }
 
 h1 {
@@ -19,6 +19,16 @@ h1 {
     margin-top:-15px;
     border: 0px solid #aaa;
     margin-left:-10px;text-align: left;
+}
+.login{
+    margin-top:13%;
+    margin-left: -2%;
+    width: 102.50%;
+    background: #1F8871;
+}
+.tabelalogin{
+    text-align:left; 
+    width: 100%;
 }
 .cambio2{
     background: -moz-linear-gradient(
@@ -769,6 +779,10 @@ text-align: left;
 .espacocobranca13{
     margin-left:37%;
 }
+.espacoco13{
+    margin-left:37%;
+    color: #fff;
+}
 .espacocobranca14{
     margin-left:6%;
 }
@@ -795,4 +809,21 @@ text-align: left;
 }
 .espacocobranca22{
     margin-left:25%;
+}
+.espacologin{
+    margin-left:40%;
+     font-size: 10px;
+}
+.espacologinbra{
+    margin-left:40%;
+    color: #fff;
+     font-size: 10px;
+}
+.loginButton{
+    margin-left:43%;
+    font-size: 10px;
+}
+.loginButton2{
+    margin-left:1%;
+    font-size: 10px;
 }

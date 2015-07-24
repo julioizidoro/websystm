@@ -15,7 +15,7 @@ public class PacoteTremFacade {
         try {
             return pacotesDao.salvar(pacote);
         } catch (SQLException ex) {
-            Logger.getLogger(PacotesHotelFacade.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PacoteTremFacade.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
     }
@@ -25,7 +25,7 @@ public class PacoteTremFacade {
         try {
             pacotesDao.excluir(idPacote);
         } catch (SQLException ex) {
-            Logger.getLogger(PacotesHotelFacade.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PacoteTremFacade.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -34,7 +34,7 @@ public class PacoteTremFacade {
         try {
             return pacotesDao.consultar(idTrecho);
         } catch (SQLException ex) {
-            Logger.getLogger(PacotesHotelFacade.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PacoteTremFacade.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
     }

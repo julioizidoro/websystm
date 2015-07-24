@@ -36,6 +36,15 @@ public class UsuarioLogadoMB implements Serializable{
     private String novaSenha;
     private String confirmaNovaSenha;
     private List<Cambio> listaCambio;
+    private String iata;
+    private String uds;
+    private String eur;
+    private String gbp;
+    private String cad;
+    private String aud;
+    private String nzd;
+    private String chf;
+    private String datacambio;
 
     @PostConstruct
     public void ini(){
@@ -84,6 +93,85 @@ public class UsuarioLogadoMB implements Serializable{
     public void setListaCambio(List<Cambio> listaCambio) {
         this.listaCambio = listaCambio;
     }
+
+    public String getIata() {
+        return iata;
+    }
+
+    public void setIata(String iata) {
+        this.iata = iata;
+    }
+
+    public String getUds() {
+        return uds;
+    }
+
+    public void setUds(String uds) {
+        this.uds = uds;
+    }
+
+    public String getEur() {
+        return eur;
+    }
+
+    public void setEur(String eur) {
+        this.eur = eur;
+    }
+
+    public String getGbp() {
+        return gbp;
+    }
+
+    public void setGbp(String gbp) {
+        this.gbp = gbp;
+    }
+
+    public String getCad() {
+        return cad;
+    }
+
+    public void setCad(String cad) {
+        this.cad = cad;
+    }
+
+    public String getAud() {
+        return aud;
+    }
+
+    public void setAud(String aud) {
+        this.aud = aud;
+    }
+
+    public String getNzd() {
+        return nzd;
+    }
+
+    public void setNzd(String nzd) {
+        this.nzd = nzd;
+    }
+
+    public String getChf() {
+        return chf;
+    }
+
+    public void setChf(String chf) {
+        this.chf = chf;
+    }
+
+    public String getDatacambio() {
+        return datacambio;
+    }
+
+    public void setDatacambio(String datacambio) {
+        this.datacambio = datacambio;
+    }
+
+    
+    
+   
+    
+    
+    
     
     public String validarUsuario(){
         if ((usuario.getLogin()!=null) && (usuario.getSenha()==null)){
@@ -167,37 +255,38 @@ public class UsuarioLogadoMB implements Serializable{
         }
         
         
-//        if (listaCambio==null){
-//            dataCambiojLabel.setText("Erro");
-//            iatajLabel.setText("0,0000");
-//            turismojLabel.setText("0,0000");
-//            eurojLabel.setText("0,0000");
-//            librajLabel.setText("0,0000");
-//            cadjLabel.setText("0,0000");
-//            audjLabel.setText("0,0000");
-//            nzdjLabel.setText("0,0000");
-//        }else {
-//            dataCambiojLabel.setText(Formatacao.ConvercaoDataPadrao(listaCambio.get(0).getData()));
-//            for(int i=0;i<listaCambio.size();i++){
-//                if (listaCambio.get(i).getMoedas().getSigla().equalsIgnoreCase("IATA")){
-//                    iatajLabel.setText(Formatacao.formatarValorCambio(listaCambio.get(i).getValor()));
-//                }else if (listaCambio.get(i).getMoedas().getSigla().equalsIgnoreCase("USD")){
-//                    turismojLabel.setText(Formatacao.formatarValorCambio(listaCambio.get(i).getValor()));
-//                }else if (listaCambio.get(i).getMoedas().getSigla().equalsIgnoreCase("EUR")){
-//                    eurojLabel.setText(Formatacao.formatarValorCambio(listaCambio.get(i).getValor()));
-//                }else if (listaCambio.get(i).getMoedas().getSigla().equalsIgnoreCase("GBP")){
-//                    librajLabel.setText(Formatacao.formatarValorCambio(listaCambio.get(i).getValor()));
-//                }else if (listaCambio.get(i).getMoedas().getSigla().equalsIgnoreCase("cad")){
-//                    cadjLabel.setText(Formatacao.formatarValorCambio(listaCambio.get(i).getValor()));
-//                }else if (listaCambio.get(i).getMoedas().getSigla().equalsIgnoreCase("aud")){
-//                    audjLabel.setText(Formatacao.formatarValorCambio(listaCambio.get(i).getValor()));
-//                }else if (listaCambio.get(i).getMoedas().getSigla().equalsIgnoreCase("nzd")){
-//                    nzdjLabel.setText(Formatacao.formatarValorCambio(listaCambio.get(i).getValor()));
-//                }else if (listaCambio.get(i).getMoedas().getSigla().equalsIgnoreCase("chf")){
-//                    chfjLabel.setText(Formatacao.formatarValorCambio(listaCambio.get(i).getValor()));
-//                }
-//            }
-//        }
+        if (listaCambio==null){
+            datacambio = "Erro";
+            iata = "0,0000";
+            uds = "0,0000";
+            eur = "0,0000";
+            gbp = "0,0000";
+            cad = "0,0000";
+            aud = "0,0000";
+            nzd = "0,0000";
+            chf = "0,0000";
+        }else {
+           datacambio = (Formatacao.ConvercaoDataPadrao(listaCambio.get(0).getData()));
+            for(int i=0;i<listaCambio.size();i++){
+                if (listaCambio.get(i).getMoedas().getSigla().equalsIgnoreCase("IATA")){
+                    iata = (Formatacao.formatarValorCambio(listaCambio.get(i).getValor()));
+                }else if (listaCambio.get(i).getMoedas().getSigla().equalsIgnoreCase("USD")){
+                    uds=(Formatacao.formatarValorCambio(listaCambio.get(i).getValor()));
+                }else if (listaCambio.get(i).getMoedas().getSigla().equalsIgnoreCase("EUR")){
+                    eur=(Formatacao.formatarValorCambio(listaCambio.get(i).getValor()));
+                }else if (listaCambio.get(i).getMoedas().getSigla().equalsIgnoreCase("GBP")){
+                    gbp=(Formatacao.formatarValorCambio(listaCambio.get(i).getValor()));
+                }else if (listaCambio.get(i).getMoedas().getSigla().equalsIgnoreCase("cad")){
+                    cad=(Formatacao.formatarValorCambio(listaCambio.get(i).getValor()));
+                }else if (listaCambio.get(i).getMoedas().getSigla().equalsIgnoreCase("aud")){
+                    aud=(Formatacao.formatarValorCambio(listaCambio.get(i).getValor()));
+                }else if (listaCambio.get(i).getMoedas().getSigla().equalsIgnoreCase("nzd")){
+                    nzd=(Formatacao.formatarValorCambio(listaCambio.get(i).getValor()));
+                }else if (listaCambio.get(i).getMoedas().getSigla().equalsIgnoreCase("chf")){
+                    chf=(Formatacao.formatarValorCambio(listaCambio.get(i).getValor()));
+                }
+            }
+        }
         
     }
 }

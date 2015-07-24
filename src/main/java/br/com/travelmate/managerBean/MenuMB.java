@@ -6,7 +6,9 @@
 package br.com.travelmate.managerBean;
 
 import java.io.Serializable;
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
@@ -16,6 +18,24 @@ import javax.inject.Named;
 @Named
 @SessionScoped
 public class MenuMB implements Serializable{
+    
+    @Inject
+    private UsuarioLogadoMB usuarioLogadoMB;
+    
+    @PostConstruct
+    public void init(){
+        usuarioLogadoMB.carregarCambioDia();
+    }
+
+    public UsuarioLogadoMB getUsuarioLogadoMB() {
+        return usuarioLogadoMB;
+    }
+
+    public void setUsuarioLogadoMB(UsuarioLogadoMB usuarioLogadoMB) {
+        this.usuarioLogadoMB = usuarioLogadoMB;
+    }
+    
+    
     
     public String comissaoVendas(){
         return "consultacomissaovendas";
