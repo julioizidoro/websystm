@@ -19,6 +19,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
@@ -43,7 +44,8 @@ public class Pais implements Serializable {
     @Size(max = 5)
     @Column(name = "sigla")
     private String sigla;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pais")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pais" )
+    @OrderBy("nome")
     private List<Cidade> cidadeList;
     @JoinColumn(name = "moedas_idmoedas", referencedColumnName = "idmoedas")
     @ManyToOne(optional = false)

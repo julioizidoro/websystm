@@ -15,18 +15,30 @@
                     <p:outputLabel value="Produto" for="produto" class="espaco14" style="font-size: 11px"/>
                     <p:outputLabel value="Cidade" for="cidade" class="espaco15" style="font-size: 11px"/>
                     <br></br>
-                    <p:selectOneMenu id="pais" value="#" style="width:220px;font-size: 10px" class="espacocampos">
-                        <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true"/> 
+                    <p:selectOneMenu id="pais" value="#{fornecedorMB.pais}" style="width:220px;font-size: 10px" class="espacocampos" 
+                                     converter="PaisConverter" filter="true" filterMatchMode="startsWith">
+                        <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
+                        <f:selectItems id="idpais" value="#{fornecedorMB.listaPais}" var="cpais" itemLabel="#{cpais.nome}" itemValue="#{cpais}"/>
+                        <f:attribute name="listaPais" value="#{fornecedorMB.listaPais}"/>
+                        <p:ajax event="change" update=":consultafornecedor:cidade"/> 
                     </p:selectOneMenu>
-                    <p:selectOneMenu id="produto" value="#{consultaFornecedorMB.fornecedorcidade.produtos.descricao}" style="width:220px;font-size: 10px" class="espacocampos">
-                        <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true"/> 
+                    <p:selectOneMenu id="produto" value="#{fornecedorMB.produto}" style="width:220px;font-size: 10px" class="espacocampos" 
+                                     converter="ProdutoConverter" filter="true" filterMatchMode="startsWith">
+                        <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
+                        <f:selectItems id="idproduto" value="#{fornecedorMB.listaProdutos}" var="cproduto" itemLabel="#{cproduto.descricao}" itemValue="#{cproduto}"/>
+                        <f:attribute name="listaProdutos" value="#{fornecedorMB.listaProdutos}"/>
+                        <p:ajax event="change" />
                     </p:selectOneMenu>
-                    <p:selectOneMenu id="cidade" value="#" style="width:220px;font-size: 10px" class="espacocampos">
-                        <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true"/> 
+                    <p:selectOneMenu id="cidade" value="#{fornecedorMB.cidade}" style="width:220px;font-size: 10px" class="espacocampos" 
+                                     converter="CidadeConverter" filter="true" filterMatchMode="startsWith">
+                        <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
+                        <f:selectItems id="idcidade" value="#{fornecedorMB.pais.cidadeList}" var="ccidade" itemLabel="#{ccidade.nome}" itemValue="#{ccidade}"/>
+                        <f:attribute name="listaCidade" value="#{fornecedorMB.pais.cidadeList}"/>
+                        <p:ajax event="change" listener="#{fornecedorMB.listarFornecedorCidade()}" update=":consultafornecedor:tabelafornecedor" />
                     </p:selectOneMenu>
                     <br></br> <br></br>
                     <legend id="iUsu2" ><b>Consulta de Fornecedor</b></legend>
-                    <p:dataTable id="fornecedor" var="fornecedor"  value="#" class="tabela4" 
+                    <p:dataTable id="tabelafornecedor" var="fornecedor"  value="#{fornecedorMB.listaFornecedorCidade}" class="tabela4" 
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
                                  paginator="true" rows="10" style="margin-bottom:20px" >
                         <f:facet name="{Exporters}">
@@ -36,7 +48,7 @@
                             </h:commandLink>
                         </f:facet>
                         <p:column headerText="Fornecedor" style="background:#ffffff;text-decoration-color:#1F8871;color:#1F8871;text-align:center;" sortBy="#">
-                            <h:outputText value="#{fornecedor.fornecedor.nome}" />
+                            <p:commandLink value="#{fornecedor.fornecedor.nome}" action="#{fornecedorMB.selecionaFornecedorCidade(fornecedor)}" />
                         </p:column>
                     </p:dataTable>
                     <br></br>
