@@ -91,7 +91,7 @@
                         <p:inputText id="contato" size="30" maxlength="100" class="fontebranca" value="#{cobrancaMB.historico.contato}"  />
                         <br></br>
                         <p:outputLabel value="Data" for="data" class="fontebranca" style="font-size: 11px"/> 
-                        <p:calendar id="data" size="15" maxlength="100" class="fontebranca" value="#{cobrancaMB.historico.data}"  />
+                        <p:calendar id="data" size="15" maxlength="100" class="fontebranca" value="#{cobrancaMB.historico.data}" locale="pt"  pattern="dd/MM/yyyy"  />
                         <br></br>
                         <p:outputLabel value="Assunto" for="assunto" class="fontebranca" style="font-size: 11px"/> 
                         <p:inputTextarea id="assunto" rows="2" cols="60" maxlength="100" class="fontebranca" value="#{cobrancaMB.historico.data}"  />

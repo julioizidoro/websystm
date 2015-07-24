@@ -20,10 +20,10 @@
                             </h:panelGrid>
                             <h:panelGrid columns="8" cellpadding="1">
                                 <p:inputText id="cliente" size="41" maxlength="100" class="left3"  value="#"/>
-                                <p:calendar id="dataIni" class="left4"  pattern="dd/MM/yyyy" mask="true" size="11" maxlength="15" >
+                                <p:calendar id="dataIni" class="left4"  locale="pt"  pattern="dd/MM/yyyy"  mask="true" size="11" maxlength="15" >
                                     <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                                 </p:calendar>
-                                <p:calendar id="dataFinal" class="espacocampospesquisa2"  pattern="dd/MM/yyyy" mask="true" size="11" maxlength="15">
+                                <p:calendar id="dataFinal" class="espacocampospesquisa2" locale="pt"  pattern="dd/MM/yyyy"  mask="true" size="11" maxlength="15">
                                     <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                                 </p:calendar>
                                  <p:commandButton value="Pesquisar" class="espacodialog2"  icon=" ui-icon-search " update="telapacotes:conspacote"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#"/>

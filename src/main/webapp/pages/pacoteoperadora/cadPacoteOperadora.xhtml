@@ -38,8 +38,8 @@
                             <h:commandLink action="#"  title="Editar Câmbio">  
                                 <img id="editarcambio" class="" src="../../resources/img/cambio_1.png"/>
                             </h:commandLink>
-                            <p:calendar id="datainicio"  size="17" class="espacocobranca11"/>
-                            <p:calendar id="datatermino"  size="17" class="espacocampos"/>
+                            <p:calendar id="datainicio"  size="17" class="espacocobranca11" locale="pt"  pattern="dd/MM/yyyy"  />
+                            <p:calendar id="datatermino"  size="17" class="espacocampos" locale="pt"   pattern="dd/MM/yyyy" />
                             <p:commandButton class="espacocobranca4" onclick="" icon="ui-icon-triangle-1-e" value="Iniciar" action="#{pacoteMB.iniciarPacote()}" />
                             <p:commandButton class="espacocobranca4" onclick="" icon="ui-icon-check" value="Finalizar" action="#{pacoteMB.finalizar()}"  />
                             <br></br><br></br>

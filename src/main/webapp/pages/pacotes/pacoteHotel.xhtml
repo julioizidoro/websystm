@@ -20,7 +20,7 @@
                             <br></br>
                             <p:inputText id="pais" value="#{trechosMB.pacotehotel.pais}" size="39" maxlength="50" class="espacocampos2"/>
                             <p:inputText id="cidade" value="#{trechosMB.pacotehotel.cidade}" size="41" maxlength="50" class="espacocampos"/>
-                            <p:calendar id="dataCheckin" value="#{trechosMB.pacotehotel.datacheckin}" size="12"  class="left4">
+                            <p:calendar id="dataCheckin" value="#{trechosMB.pacotehotel.datacheckin}" size="12"  class="left4" locale="pt"  pattern="dd/MM/yyyy" >
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </p:calendar>
                             <p:inputMask id="horaCheckin" value="#{trechosMB.pacotehotel.horacheckin}" mask="99:99" size="12" class="espacocampos"/>
@@ -35,7 +35,7 @@
                             <p:inputText id="tipoquarto" value="#{trechosMB.pacotehotel.tipoquarto}" size="18" maxlength="10" class="espacocampos2"/>
                             <p:inputText id="categoria" value="#{trechosMB.pacotehotel.categoria}" size="19" maxlength="10" class="espacocampos"/>
                             <p:inputText id="regime" value="#{trechosMB.pacotehotel.regime}" size="28" maxlength="20" class="espacocampos"/>
-                            <p:calendar id="dataCheckout" value="#{trechosMB.pacotehotel.datacheckout}" size="11"  class="left4">
+                            <p:calendar id="dataCheckout" value="#{trechosMB.pacotehotel.datacheckout}" size="11"  class="left4" locale="pt"  pattern="dd/MM/yyyy" >
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </p:calendar>
                             <p:inputMask id="horaCheckout" value="#{trechosMB.pacotehotel.horacheckout}" mask="99:99" size="12" class="espacocampos"/>

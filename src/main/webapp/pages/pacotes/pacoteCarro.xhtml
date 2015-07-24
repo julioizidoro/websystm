@@ -19,7 +19,7 @@
                             <br></br>
                             <p:inputText id="localizador" value="#{trechosMB.pacotecarro.localizador}" size="36" maxlength="45" class="espacocampos2"/>
                             <p:inputText id="locaretirada" value="#{trechosMB.pacotecarro.locaretirada}" size="50" maxlength="100" class="espacocampos"/>
-                            <p:calendar id="dataretirada" value="#{trechosMB.pacotecarro.dataretirada}" size="18"  class="espacocampos">
+                            <p:calendar id="dataretirada" value="#{trechosMB.pacotecarro.dataretirada}" size="18"  class="espacocampos" locale="pt"  pattern="dd/MM/yyyy" >
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </p:calendar>
                             <p:inputMask id="horaretirada" value="#{trechosMB.pacotecarro.horaritirada}" size="11" mask="99:99" class="espacocampos"/>
@@ -31,7 +31,7 @@
                             <p:outputLabel value="Qntd Adulto" for="qntdAdulto" class="espacocobranca16"/>
                             <p:outputLabel value="Qntd Criança" for="qntdClianca" class="espacocobranca11"/>
                             <br></br>
-                            <p:calendar id="datadevolucao" value="#{trechosMB.pacotecarro.datadevolucao}" size="14"  class="espacocampos2">
+                            <p:calendar id="datadevolucao" value="#{trechosMB.pacotecarro.datadevolucao}" size="14"  class="espacocampos2" locale="pt"  pattern="dd/MM/yyyy" >
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </p:calendar>
                             <p:inputMask id="horadevolucao" value="#{trechosMB.pacotecarro.horadevolucao}" size="18" mask="99:99" class="espacocampos"/>

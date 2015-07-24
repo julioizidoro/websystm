@@ -27,10 +27,10 @@
                                 <h:panelGrid columns="6" cellpadding="1">
 
                                     <p:inputText id="unidade" size="44" maxlength="100" class="fontebranca"   readonly="true"/>
-                                    <p:calendar id="dataIni" class="espacocampospesquisa"  pattern="dd/MM/yyyy" mask="true" size="10" maxlength="15" >
+                                    <p:calendar id="dataIni" class="espacocampospesquisa"  locale="pt"  pattern="dd/MM/yyyy"  mask="true" size="10" maxlength="15" >
                                          <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                                     </p:calendar>
-                                    <p:calendar id="dataFinal" class="espacocampospesquisa2"  pattern="dd/MM/yyyy" mask="true" size="10" maxlength="15">
+                                    <p:calendar id="dataFinal" class="espacocampospesquisa2" locale="pt"  pattern="dd/MM/yyyy"  mask="true" size="10" maxlength="15">
                                         <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                                     </p:calendar>
                                     <p:commandButton value="Pesquisar" class="botao"  icon=" ui-icon-search " update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#"/>

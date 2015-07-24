@@ -41,8 +41,8 @@
                             <h:panelGrid columns="4" cellpadding="3" >
                                 <p:inputText id="cliente" size="41" maxlength="100" class="camposs" value="#{passagemMB.passagem.vendas.cliente.nome}"  />
                                 <p:commandButton icon="ui-icon-arrowthickstop-1-s" value="Selecionar" action="#" class="espacocampos"/>
-                                <p:calendar id="dataviagem" size="18"  class="campos" value="#{passagemMB.passagem.dataEmbarque}"  />
-                                <p:calendar id="datavolta" size="18"  class="campos1" value="#{passagemMB.passagem.dataVolta}"  />
+                                <p:calendar id="dataviagem" size="18"  class="campos" value="#{passagemMB.passagem.dataEmbarque}"  locale="pt"  pattern="dd/MM/yyyy" />
+                                <p:calendar id="datavolta" size="18"  class="campos1" value="#{passagemMB.passagem.dataVolta}"  locale="pt"  pattern="dd/MM/yyyy" />
                             </h:panelGrid>
                             <br></br>
                             <br></br><br></br>
@@ -82,7 +82,7 @@
                             <h:panelGrid columns="4" cellpadding="3" >
                                 <p:inputText id="nome" size="40"  class="camposs" value="#{passagemMB.passagem.pax01}"  />
                                 <p:inputText id="tipo" class="campos" value="#{passagemMB.passagem.tipopax1}"/>
-                                <p:calendar id="datasnac" size="15" class="campos1" value="#{passagemMB.passagem.dataNascimentopax01}"  />
+                                <p:calendar id="datasnac" size="15" class="campos1" value="#{passagemMB.passagem.dataNascimentopax01}"  locale="pt"  pattern="dd/MM/yyyy" />
                                 <p:inputText id="rgPassaporte" size="15"  class="campos2" value="#{passagemMB.passagem.passaporte01}"  />
                             </h:panelGrid>
                             <br></br> <br></br>
@@ -95,7 +95,7 @@
                             <h:panelGrid columns="5" cellpadding="3" >
                                 <p:inputText id="nome2" size="40"  class="camposs" value="#{passagemMB.passagem.pax02}"  />
                                 <p:inputText id="tipo2" class="campos" value="#{passagemMB.passagem.tipopax2}"/>
-                                <p:calendar id="datasnac2" size="15" class="campos1" value="#{passagemMB.passagem.dataNascimentopax02}"  />
+                                <p:calendar id="datasnac2" size="15" class="campos1" value="#{passagemMB.passagem.dataNascimentopax02}"  locale="pt"  pattern="dd/MM/yyyy" />
                                 <p:inputText id="rgPassaporte2" size="15"  class="campos2" value="#{passagemMB.passagem.passaporte02}"  />
                             </h:panelGrid>
                              <br></br> <br></br>
@@ -108,7 +108,7 @@
                             <h:panelGrid columns="4" cellpadding="3" >
                                 <p:inputText id="nome3" size="40"  class="camposs" value="#{passagemMB.passagem.pax03}"  />
                                 <p:inputText id="tipo3" class="campos" value="#{passagemMB.passagem.tipopax3}"/>
-                                <p:calendar id="datasnac3" size="15" class="campos1" value="#{passagemMB.passagem.dataNascimentopax03}"  />
+                                <p:calendar id="datasnac3" size="15" class="campos1" value="#{passagemMB.passagem.dataNascimentopax03}" locale="pt"  pattern="dd/MM/yyyy"  />
                                 <p:inputText id="rgPassaporte3" size="15"  class="campos2" value="#{passagemMB.passagem.passaporte03}"  />
                             </h:panelGrid>
                             <br></br> <br></br>
@@ -121,7 +121,7 @@
                             <h:panelGrid columns="4" cellpadding="3" >
                                 <p:inputText id="nome4" size="40"  class="camposs" value="#{passagemMB.passagem.pax04}"  />
                                 <p:inputText id="tipo4" class="campos" value="#{passagemMB.passagem.tipopax4}"/>
-                                <p:calendar id="datasnac4" size="15" class="campos1" value="#{passagemMB.passagem.dataNascimentopax04}"  />
+                                <p:calendar id="datasnac4" size="15" class="campos1" value="#{passagemMB.passagem.dataNascimentopax04}" locale="pt"  pattern="dd/MM/yyyy"  />
                                 <p:inputText id="rgPassaporte4" size="15"  class="campos2" value="#{passagemMB.passagem.passaporte04}"  />
                             </h:panelGrid>
                             <br></br> <br></br>
@@ -134,7 +134,7 @@
                             <h:panelGrid columns="4" cellpadding="3" >
                                 <p:inputText id="nome5" size="40"  class="camposs" value="#{passagemMB.passagem.pax05}"  />
                                 <p:inputText id="tipo5" class="campos" value="#{passagemMB.passagem.tipopax5}"/>
-                                <p:calendar id="datasnac5" size="15" class="campos1" value="#{passagemMB.passagem.dataNascimentopax05}"  />
+                                <p:calendar id="datasnac5" size="15" class="campos1" value="#{passagemMB.passagem.dataNascimentopax05}" locale="pt"  pattern="dd/MM/yyyy"  />
                                 <p:inputText id="rgPassaporte5" size="15"  class="campos2" value="#{passagemMB.passagem.passaporte05}"  />
                             </h:panelGrid>
                             <br></br> <br></br>
@@ -147,7 +147,7 @@
                             <h:panelGrid columns="4" cellpadding="3" >
                                 <p:inputText id="nome6" size="40"  class="camposs" value="#{passagemMB.passagem.pax06}"  />
                                 <p:inputText id="tipo6" class="campos" value="#{passagemMB.passagem.tipopax6}"/>
-                                <p:calendar id="datasnac6" size="15" class="campos1" value="#{passagemMB.passagem.dataNascimentopax06}"  />
+                                <p:calendar id="datasnac6" size="15" class="campos1" value="#{passagemMB.passagem.dataNascimentopax06}"locale="pt"  pattern="dd/MM/yyyy"   />
                                 <p:inputText id="rgPassaporte6" size="15"  class="campos2" value="#{passagemMB.passagem.passaporte06}"  />
                             </h:panelGrid>
                             <br></br> <br></br>
@@ -160,7 +160,7 @@
                             <h:panelGrid columns="4" cellpadding="3" >
                                 <p:inputText id="nome7" size="40"  class="camposs" value="#{passagemMB.passagem.pax07}"  />
                                 <p:inputText id="tipo7" class="campos" value="#{passagemMB.passagem.tipopax7}"/>
-                                <p:calendar id="datasnac7" size="15" class="campos1" value="#{passagemMB.passagem.dataNascimentopax07}"  />
+                                <p:calendar id="datasnac7" size="15" class="campos1" value="#{passagemMB.passagem.dataNascimentopax07}" locale="pt"  pattern="dd/MM/yyyy"  />
                                 <p:inputText id="rgPassaporte7" size="15"  class="campos2" value="#{passagemMB.passagem.passaporte07}"  />
                             </h:panelGrid>
                             <br></br> <br></br>
@@ -173,7 +173,7 @@
                             <h:panelGrid columns="4" cellpadding="3" >
                                 <p:inputText id="nome8" size="40"  class="camposs" value="#{passagemMB.passagem.pax08}"  />
                                 <p:inputText id="tipo8" class="campos" value="#{passagemMB.passagem.tipopax8}"/>
-                                <p:calendar id="datasnac8" size="15" class="campos1" value="#{passagemMB.passagem.dataNascimentopax08}"  />
+                                <p:calendar id="datasnac8" size="15" class="campos1" value="#{passagemMB.passagem.dataNascimentopax08}" locale="pt"  pattern="dd/MM/yyyy"  />
                                 <p:inputText id="rgPassaporte8" size="15"  class="campos2" value="#{passagemMB.passagem.passaporte08}"  />
                             </h:panelGrid>
                             <br></br> <br></br>
@@ -186,7 +186,7 @@
                             <h:panelGrid columns="4" cellpadding="3" >
                                 <p:inputText id="nome9" size="40"  class="camposs" value="#{passagemMB.passagem.pax09}"  />
                                 <p:inputText id="tipo9" class="campos" value="#{passagemMB.passagem.tipopax9}"/>
-                                <p:calendar id="datasnac9" size="15" class="campos1" value="#{passagemMB.passagem.dataNascimentopax09}"  />
+                                <p:calendar id="datasnac9" size="15" class="campos1" value="#{passagemMB.passagem.dataNascimentopax09}" locale="pt"  pattern="dd/MM/yyyy"  />
                                 <p:inputText id="rgPassaporte9" size="15"  class="campos2" value="#{passagemMB.passagem.passaporte09}"  />
                             </h:panelGrid>
                             <br></br> <br></br>
@@ -199,7 +199,7 @@
                             <h:panelGrid columns="4" cellpadding="3" >
                                 <p:inputText id="nome10" size="40"  class="camposs" value="#{passagemMB.passagem.pax10}"  />
                                 <p:inputText id="tipo10" class="campos" value="#{passagemMB.passagem.tipopax10}"/>
-                                <p:calendar id="datasnac10" size="15" class="campos1" value="#{passagemMB.passagem.dataNascimentopax10}"  />
+                                <p:calendar id="datasnac10" size="15" class="campos1" value="#{passagemMB.passagem.dataNascimentopax10}" locale="pt"  pattern="dd/MM/yyyy"  />
                                 <p:inputText id="rgPassaporte10" size="15"  class="campos2" value="#{passagemMB.passagem.passaporte10}"  />
                             </h:panelGrid>
                         </p:tab>
@@ -312,7 +312,7 @@
                                     <f:selectItem itemLabel="Loja" itemValue="loja" /> 
                                     <f:selectItem itemLabel="Fornecedor" itemValue="Fornecedor" class="fontebranca"/> 
                                 </p:selectOneMenu>
-                                <p:calendar id="primeirovencimento" size="25" class="campos2" />
+                                <p:calendar id="primeirovencimento" size="25" class="campos2" locale="pt"  pattern="dd/MM/yyyy" />
                             </h:panelGrid>
                             <br></br><br></br>
                             <h:panelGrid columns="3" cellpadding="3" title="Consolidador">

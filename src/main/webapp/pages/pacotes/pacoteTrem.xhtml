@@ -20,7 +20,7 @@
                             <br></br>
                             <p:inputText id="de" value="#{trechosMB.pacotetrem.de}" size="37" maxlength="100" class=""/>
                             <p:inputText id="para" value="#{trechosMB.pacotetrem.para}" size="37" maxlength="100" class="espacocampos"/>
-                            <p:calendar id="data" value="#{trechosMB.pacotetrem.data}" size="8"  class="espacocampos">
+                            <p:calendar id="data" value="#{trechosMB.pacotetrem.data}" size="8"  class="espacocampos" locale="pt"  pattern="dd/MM/yyyy" >
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </p:calendar>
                             <p:inputMask id="horasaida" value="#{trechosMB.pacotetrem.horasaida}" mask="99:99" size="9" class="espacocampos"/>

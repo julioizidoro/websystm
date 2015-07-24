@@ -17,10 +17,10 @@
                             <p:outputLabel value="Intinerario" for="intinerario" class="espacocobranca15"/>
                             <p:outputLabel value="Tipo de Cabine" for="tipoCabine" class="espacocobranca17"/>
                             <br></br>
-                            <p:calendar id="datasaida" value="#{trechosMB.pacotecruzeiro.datasaida}" size="11"  class="espacocobranca11">
+                            <p:calendar id="datasaida" locale="pt"  pattern="dd/MM/yyyy"  value="#{trechosMB.pacotecruzeiro.datasaida}" size="11"  class="espacocobranca11">
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </p:calendar>
-                            <p:calendar id="datachegada" value="#{trechosMB.pacotecruzeiro.datechegada}" size="13"  class="espacocampos">
+                            <p:calendar id="datachegada" locale="pt"  pattern="dd/MM/yyyy"  value="#{trechosMB.pacotecruzeiro.datechegada}" size="13"  class="espacocampos">
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </p:calendar>
                             <p:inputText id="intinerario" value="#{trechosMB.pacotecruzeiro.intinerario}" size="45" class="espacocampos"/>

@@ -23,10 +23,10 @@
 
                                 <p:inputText id="cliente" size="44" maxlength="100" class="fontebranca"  value="#"/>
                                 <p:commandButton icon="ui-icon-search" class="botaopesquisar"/>
-                                <p:calendar id="dataIni" class="left4"  pattern="dd/MM/yyyy" mask="true" size="11" maxlength="15" >
+                                <p:calendar id="dataIni" class="left4"  locale="pt"  pattern="dd/MM/yyyy"  mask="true" size="11" maxlength="15" >
                                     <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                                 </p:calendar>
-                                <p:calendar id="dataFinal" class="espacocampospesquisa2"  pattern="dd/MM/yyyy" mask="true" size="11" maxlength="15">
+                                <p:calendar id="dataFinal" class="espacocampospesquisa2"  locale="pt"  pattern="dd/MM/yyyy"  mask="true" size="11" maxlength="15">
                                     <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                                 </p:calendar>
                                 <p:selectOneMenu id="unidades" value="#" style="width:220px;font-size: 10px" class="espacocampos">

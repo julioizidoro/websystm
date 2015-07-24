@@ -18,10 +18,10 @@
                                 <p:outputLabel value="Paga"  class="left20"/>
                             </h:panelGrid>
                             <h:panelGrid columns="6" cellpadding="1">
-                                <p:calendar id="periodo"  class="espacodialog8"  pattern="dd/MM/yyyy" mask="true" size="10" maxlength="15" >
+                                <p:calendar id="periodo"  class="espacodialog8"  locale="pt"  pattern="dd/MM/yyyy"  mask="true" size="10" maxlength="15" >
                                     <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                                 </p:calendar>
-                                <p:calendar id="periodos" class="iata"  pattern="dd/MM/yyyy" mask="true" size="10" maxlength="15">
+                                <p:calendar id="periodos" class="iata" locale="pt"  pattern="dd/MM/yyyy"  mask="true" size="10" maxlength="15">
                                     <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                                 </p:calendar>
                                 <p:selectOneMenu id="produto" value="#" style="width:245px;font-size: 10px" class="espacocampos">
