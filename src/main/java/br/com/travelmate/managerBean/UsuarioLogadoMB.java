@@ -165,16 +165,9 @@ public class UsuarioLogadoMB implements Serializable{
     public void setDatacambio(String datacambio) {
         this.datacambio = datacambio;
     }
-
-    
-    
-   
-    
-    
-    
     
     public String validarUsuario(){
-        if ((usuario.getLogin()!=null) && (usuario.getSenha()==null)){
+        if ((usuario.getLogin()==null) && (usuario.getSenha()==null)){
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro!", "Login Invalido."));
         }else{
             UsuarioFacade usuarioFacade = new UsuarioFacade();

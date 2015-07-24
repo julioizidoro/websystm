@@ -10,6 +10,7 @@ import br.com.travelmate.facade.PacoteTrechoFacade;
 import br.com.travelmate.facade.PacotesFacade;
 import br.com.travelmate.facade.ProdutoFacade;
 import br.com.travelmate.facade.VendasFacade;
+import br.com.travelmate.model.Cambio;
 import br.com.travelmate.model.Fornecedorcidade;
 import br.com.travelmate.model.Pacotecarro;
 import br.com.travelmate.model.Pacotecruzeiro;
@@ -59,13 +60,14 @@ public class PacoteMB implements Serializable{
     private Pacotetrem pacotetrem;
     private List<Unidadenegocio> listaUnidadeNegocio;
     @Inject
-    private UsuarioLogadoMB UsuarioLogadoMB;
+    private UsuarioLogadoMB usuarioLogadoMB;
+    private Cambio cambio;
+   
     
     
     
    @PostConstruct
    public void init(){
-       UsuarioLogadoMB.carregarCambioDia();
        pacotes = new Pacotes();
        pacotetrecho = new Pacotetrecho();
        String sql = "Select p from Pacotes p where p.operacao='" + tipoPacote + "' order by p.vendas.dataVenda, p.unidadenegocio.nomeFantasia";
@@ -185,6 +187,26 @@ public class PacoteMB implements Serializable{
     public void setListaUnidadeNegocio(List<Unidadenegocio> listaUnidadeNegocio) {
         this.listaUnidadeNegocio = listaUnidadeNegocio;
     }
+
+    public UsuarioLogadoMB getUsuarioLogadoMB() {
+        return usuarioLogadoMB;
+    }
+
+    public void setUsuarioLogadoMB(UsuarioLogadoMB usuarioLogadoMB) {
+        this.usuarioLogadoMB = usuarioLogadoMB;
+    }
+
+    
+
+    public Cambio getCambio() {
+        return cambio;
+    }
+
+    public void setCambio(Cambio cambio) {
+        this.cambio = cambio;
+    }
+
+    
     
     public String novoPacotes(){
         pacotes = new Pacotes();
@@ -193,12 +215,13 @@ public class PacoteMB implements Serializable{
         return "cadPacoteOperadora";
     }
     
-    public String salvar() {
+    public String iniciarPacote() {
         if (pacotes.getVendas() == null) {
             FornecedorCidadeFacade fornecedorCidadeFacade = new FornecedorCidadeFacade();
-            Fornecedorcidade fornecedorcidade = fornecedorCidadeFacade.getFornecedorCidade(UsuarioLogadoMB.getParametrosprodutos().getFornecedorpacote());
+            Fornecedorcidade fornecedorcidade = fornecedorCidadeFacade.getFornecedorCidade(usuarioLogadoMB.getParametrosprodutos().getFornecedorpacote());
             ProdutoFacade produtoFacade = new ProdutoFacade();
-            Produtos produto = produtoFacade.consultar(UsuarioLogadoMB.getParametrosprodutos().getPacotes());
+            Produtos produto = produtoFacade.consultar(usuarioLogadoMB.getParametrosprodutos().getPacotes());
+           
             Vendas venda = new Vendas();
             venda.setCliente(null);
             venda.setDataVenda(new Date());
@@ -206,8 +229,8 @@ public class PacoteMB implements Serializable{
             venda.setFornecedorcidade(fornecedorcidade);
             venda.setProdutos(produto);
             venda.setSituacao("Finalizada");
-            venda.setUnidadenegocio(UsuarioLogadoMB.getUsuario().getUnidadenegocio());
-            venda.setUsuario(UsuarioLogadoMB.getUsuario());
+            venda.setUnidadenegocio(usuarioLogadoMB.getUsuario().getUnidadenegocio());
+            venda.setUsuario(usuarioLogadoMB.getUsuario());
             venda.setValor(0.0f);
             venda.setVendasMatriz("S");
             venda.setVendaimportada(0);
@@ -216,28 +239,29 @@ public class PacoteMB implements Serializable{
             pacotes.setVendas(venda);
         }
         pacotes.setOperacao("Operadora");
-        pacotes.setUsuario(UsuarioLogadoMB.getUsuario());
+        pacotes.setUsuario(usuarioLogadoMB.getUsuario());
+        pacotes.setCambio(cambio);
         PacotesFacade pacotesFacade = new PacotesFacade();
         pacotes = pacotesFacade.salvar(pacotes);
         FacesContext context = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) context.getExternalContext().getSession(false);  
         session.setAttribute("pacote", pacotes);
-        pacotes = new Pacotes();
-        return "consultapacotesoperadora";
+        return "";
     }
     
-    public String cancelar(){
-        pacotes = new Pacotes();
-        return "consultapacotesoperadora";
-    }
     
-    public String salvarTrecho(){
+    public String adicionarTrecho(){
         pacotetrecho.setPacotes(pacotes);
         PacoteTrechoFacade pacoteTrechoFacade = new PacoteTrechoFacade();
         pacoteTrechoFacade.salvar(pacotetrecho);
         String sql = "Select p from Pacotetrecho p where p.pacotes.idpacotees=" + pacotetrecho.getPacotes().getIdpacotes();
         listaTrecho = GerarListas.listarPacoteTrecho(sql);
         pacotetrecho = new Pacotetrecho();
+        return "";
+    }
+    
+    public String finalizar(){
+        System.out.println("teste");
         return null;
     }
     

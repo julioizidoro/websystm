@@ -29,9 +29,13 @@ public class CambioConverter implements Converter{
                 }
             }
         } else {
-            return new Cambio();
+            Cambio cambio = new Cambio();
+            cambio.setValor(0.0f);
+            return cambio;
         }
-        return null;
+        Cambio cambio = new Cambio();
+        cambio.setValor(0.0f);
+        return cambio;
     }
 
     @Override

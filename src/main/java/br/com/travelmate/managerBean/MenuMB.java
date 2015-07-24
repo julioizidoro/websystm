@@ -18,23 +18,7 @@ import javax.inject.Named;
 @Named
 @SessionScoped
 public class MenuMB implements Serializable{
-    
-    @Inject
-    private UsuarioLogadoMB usuarioLogadoMB;
-    
-    @PostConstruct
-    public void init(){
-        usuarioLogadoMB.carregarCambioDia();
-    }
 
-    public UsuarioLogadoMB getUsuarioLogadoMB() {
-        return usuarioLogadoMB;
-    }
-
-    public void setUsuarioLogadoMB(UsuarioLogadoMB usuarioLogadoMB) {
-        this.usuarioLogadoMB = usuarioLogadoMB;
-    }
-    
     
     
     public String comissaoVendas(){

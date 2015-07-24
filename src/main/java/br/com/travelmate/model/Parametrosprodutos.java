@@ -103,6 +103,8 @@ public class Parametrosprodutos implements Serializable {
     private Float juros;
     @Column(name = "fornecedorpacote")
     private int fornecedorpacote;
+    @Column(name = "clientepacote")
+    private int clientepacote;
 
     public Parametrosprodutos() {
     }
@@ -381,6 +383,14 @@ public class Parametrosprodutos implements Serializable {
 
     public void setFornecedorpacote(int fornecedorpacote) {
         this.fornecedorpacote = fornecedorpacote;
+    }
+
+    public int getClientepacote() {
+        return clientepacote;
+    }
+
+    public void setClientepacote(int clientepacote) {
+        this.clientepacote = clientepacote;
     }
 
     @Override

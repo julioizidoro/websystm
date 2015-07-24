@@ -112,10 +112,7 @@ public class TrechosMB implements Serializable{
     
     
     
-    public String novoCarro(){
-        FacesContext fc = FacesContext.getCurrentInstance();  
-        HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);  
-        Pacotetrecho pacotetrecho = (Pacotetrecho) session.getAttribute("trecho");
+    public String novoCarro(Pacotetrecho pacotetrecho){
         if (pacotetrecho!=null){
             PacotesCarroFacade pacoteCarroFacade = new PacotesCarroFacade();
             pacotecarro = pacoteCarroFacade.consultar(pacotetrecho.getIdpacotetrecho());
@@ -142,10 +139,7 @@ public class TrechosMB implements Serializable{
     }
     
     
-    public String novoCruzeiro(){
-        FacesContext fc = FacesContext.getCurrentInstance();  
-        HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);  
-        Pacotetrecho pacotetrecho = (Pacotetrecho) session.getAttribute("trecho");
+    public String novoCruzeiro(Pacotetrecho pacotetrecho){
         if (pacotetrecho!=null){
             PacoteCruzeiroFacade pacoteCruzeiroFacade = new PacoteCruzeiroFacade();
             pacotecruzeiro = pacoteCruzeiroFacade.consultar(pacotetrecho.getIdpacotetrecho());
@@ -173,10 +167,7 @@ public class TrechosMB implements Serializable{
     
     
     
-    public String novoHotel(){
-        FacesContext fc = FacesContext.getCurrentInstance();  
-        HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);  
-        Pacotetrecho pacotetrecho = (Pacotetrecho) session.getAttribute("trecho");
+    public String novoHotel(Pacotetrecho pacotetrecho){
         if (pacotetrecho!=null){
             PacotesHotelFacade pacoteHotelFacade = new PacotesHotelFacade();
             pacotehotel = pacoteHotelFacade.consultar(pacotetrecho.getIdpacotetrecho());
@@ -203,10 +194,7 @@ public class TrechosMB implements Serializable{
     }
     
     
-    public void novoTrem(){
-        FacesContext fc = FacesContext.getCurrentInstance();  
-        HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);  
-        Pacotetrecho pacotetrecho = (Pacotetrecho) session.getAttribute("trecho");
+    public void novoTrem(Pacotetrecho pacotetrecho){
         if (pacotetrecho!=null){
             PacoteTremFacade pacoteTremFacade = new PacoteTremFacade();
             pacotetrem = pacoteTremFacade.consultar(pacotetrecho.getIdpacotetrecho());
@@ -231,10 +219,7 @@ public class TrechosMB implements Serializable{
     }
     
     
-    public void novoTransfer(){
-        FacesContext fc = FacesContext.getCurrentInstance();  
-        HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);  
-        Pacotetrecho pacotetrecho = (Pacotetrecho) session.getAttribute("trecho");
+    public void novoTransfer(Pacotetrecho pacotetrecho){
         if (pacotetrecho!=null){
             PacoteTransferFacade pacoteTransferFacade = new PacoteTransferFacade();
             pacotetransfer = pacoteTransferFacade.consultar(pacotetrecho.getIdpacotetrecho());
