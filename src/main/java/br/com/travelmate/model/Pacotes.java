@@ -23,6 +23,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 
 /**
@@ -52,15 +53,14 @@ public class Pacotes implements Serializable {
     @Size(max = 50)
     @Column(name = "controle")
     private String controle;
+    @Column(name = "operacao")
+    private String operacao;
     @JoinColumn(name = "cambio_idcambio", referencedColumnName = "idcambio")
     @ManyToOne(optional = false)
     private Cambio cambio;
     @JoinColumn(name = "vendas_idvendas", referencedColumnName = "idvendas")
     @ManyToOne(optional = false)
     private Vendas vendas;
-    @JoinColumn(name = "cliente_idcliente", referencedColumnName = "idcliente")
-    @ManyToOne(optional = false)
-    private Cliente cliente;
     @JoinColumn(name = "unidadeNegocio_idunidadeNegocio", referencedColumnName = "idunidadeNegocio")
     @ManyToOne(optional = false)
     private Unidadenegocio unidadenegocio;
@@ -69,6 +69,8 @@ public class Pacotes implements Serializable {
     private Usuario usuario;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pacotes")
     private List<Pacotetrecho> pacotetrechoList;
+    @Transient
+    private boolean selecionado;
 
     public Pacotes() {
     }
@@ -117,6 +119,14 @@ public class Pacotes implements Serializable {
         this.controle = controle;
     }
 
+    public String getOperacao() {
+        return operacao;
+    }
+
+    public void setOperacao(String operacao) {
+        this.operacao = operacao;
+    }
+
     public Cambio getCambio() {
         return cambio;
     }
@@ -131,14 +141,6 @@ public class Pacotes implements Serializable {
 
     public void setVendas(Vendas vendas) {
         this.vendas = vendas;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
     }
 
     public Unidadenegocio getUnidadenegocio() {
@@ -163,6 +165,14 @@ public class Pacotes implements Serializable {
 
     public void setPacotetrechoList(List<Pacotetrecho> pacotetrechoList) {
         this.pacotetrechoList = pacotetrechoList;
+    }
+
+    public boolean isSelecionado() {
+        return selecionado;
+    }
+
+    public void setSelecionado(boolean selecionado) {
+        this.selecionado = selecionado;
     }
 
     @Override

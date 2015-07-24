@@ -41,6 +41,7 @@ public class CobrancaMB implements Serializable{
         FacesContext fc = FacesContext.getCurrentInstance();  
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);  
         venda = (Vendas) session.getAttribute("venda");
+        session.removeAttribute("venda");
         if (venda==null){
             venda = new Vendas();
         }else {

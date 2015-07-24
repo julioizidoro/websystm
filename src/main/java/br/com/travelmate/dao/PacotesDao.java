@@ -7,6 +7,7 @@ package br.com.travelmate.dao;
 import br.com.travelmate.connection.ConectionFactory;
 import br.com.travelmate.model.Pacotes;
 import java.sql.SQLException;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
@@ -53,6 +54,18 @@ public class PacotesDao {
         manager.getTransaction().commit();
         if (q.getResultList().size() > 0) {
             return  (Pacotes) q.getResultList().get(0);
+        } else {
+            return null;
+        }
+    }
+    
+    public List<Pacotes> consultar(String sql) throws SQLException{
+        manager = ConectionFactory.getConnection();
+        manager.getTransaction().begin();
+        Query q = manager.createQuery(sql);
+        manager.getTransaction().commit();
+        if (q.getResultList().size() > 0) {
+            return  (List<Pacotes>) q.getResultList().get(0);
         } else {
             return null;
         }

@@ -33,9 +33,9 @@
                     </p:accordionPanel>
                     <br></br>
                     <img src="../../resources/img/add.png" class="imgadd"/>
-                    <p:commandLink value="Novo Pacote"  class="add" action="#{passagemMB.pacotenovo()}"/>
+                    <p:commandLink value="Novo Pacote"  class="add" action="#{pacoteMB.novoPacotes()}"/>
                     <legend id="iUsu2" ><b>Consulta de Pacotes </b></legend>
-                    <p:dataTable id="conspacoteoperadora" var="conspacoteoperadora"  value="#" class="tabela" 
+                    <p:dataTable id="conspacoteoperadora" var="conspacoteoperadora"  value="#{pacoteMB.listaPacotes}" class="tabela" 
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
                                  paginator="true" rows="10" style="margin-bottom:20px" >
                         <f:facet name="{Exporters}">
@@ -52,23 +52,23 @@
                             </p:menubar>
                         </p:column>
                         <p:column headerText="Descrição"  style="width:210px;background:#ffffff;color:#1F8871;text-align:center;" styleClass="alinharCenter" sortBy="#{contasrecebe.vendas.cliente}">
-                            <h:outputText value="#"/>
+                            <h:outputText value="#{conspacoteoperadora.descricao}"/>
                         </p:column>
                         <p:column headerText="Unidade"  style="width:200px;background:#ffffff;color:#1F8871;text-align:center;" styleClass="alinharCenter" >
-                            <h:outputText value="#"/>
+                            <h:outputText value="#{conspacoteoperadora.unidadenegocio.nomeFantasia}"/>
                         </p:column>
                         <p:column headerText="Data Início" style="width:80px;background:#ffffff;color:#1F8871;text-align:center;" >
-                            <h:outputText value="">
+                            <h:outputText value="#{conspacoteoperadora.datainicio}">
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </h:outputText>  
                         </p:column>
                         <p:column headerText="Data Termino" style="width:80px;background:#ffffff;color:#1F8871;text-align: center;" styleClass="alinharCenter">
-                            <h:outputText value="">
+                            <h:outputText value="#{conspacoteoperadora.datetermino}">
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </h:outputText>                           
                         </p:column>
                         <p:column style="width:35px;background:#ffffff;color:#1F8871;text-align: center">
-                            <p:selectBooleanCheckbox value="#"/>
+                            <p:selectBooleanCheckbox value="#{conspacoteoperadora.selecionado}"/>
                         </p:column>
                     </p:dataTable>
                     <br></br>

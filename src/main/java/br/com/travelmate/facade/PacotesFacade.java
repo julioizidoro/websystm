@@ -7,6 +7,7 @@ package br.com.travelmate.facade;
 import br.com.travelmate.dao.PacotesDao;
 import br.com.travelmate.model.Pacotes;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -41,6 +42,16 @@ public class PacotesFacade {
         pacotesDao = new PacotesDao();
         try {
             return pacotesDao.consultar(idVenda);
+        } catch (SQLException ex) {
+            Logger.getLogger(PacotesFacade.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    
+    public List<Pacotes> consultar(String sql) {
+        pacotesDao = new PacotesDao();
+        try {
+            return pacotesDao.consultar(sql);
         } catch (SQLException ex) {
             Logger.getLogger(PacotesFacade.class.getName()).log(Level.SEVERE, null, ex);
             return null;

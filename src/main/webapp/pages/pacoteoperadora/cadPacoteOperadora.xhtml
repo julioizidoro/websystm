@@ -15,9 +15,11 @@
                             <p:outputLabel value="Descrição" for="descricao"/>
                             <p:outputLabel value="Unidade" for="unidade" class="espacopreto"/>
                             <br></br>
-                            <p:inputText id="descricao" value="#" size="100" maxlength="200" class="espacocampos2"/>
-                            <p:selectOneMenu class="espacocamposgrande" style="width:230px;" id="unidade"  value="#" >
-                                <f:selectItem itemLabel="Selecione" itemValue="Selecione"/> 
+                            <p:inputText id="descricao" value="#{pacoteMB.pacotes.descricao}" size="100" maxlength="200" class="espacocampos2"/>
+                            <p:selectOneMenu class="espacocamposgrande" style="width:230px;" id="unidade"  value="#{pacoteMB.pacotes.unidadenegocio}" converter="UnidadeNegocioConverter" >
+                                <f:selectItem itemLabel="Selecione" itemValue="0"/>
+                                <f:selectItems id="idnidade" value="#{pacoteMB.listaUnidadeNegocio}" var="unidadeNegocio" itemLabel="#{unidadeNegocio.nomeFantasia}" itemValue="#{unidadeNegocio}"/>
+                                <f:attribute name="listaUnidade" value="#{pacoteMB.listaUnidadeNegocio}"/>
                             </p:selectOneMenu>
                             <br></br><br></br>
 
@@ -25,11 +27,12 @@
                             <p:outputLabel value="Valor do Câmbio" for="cambio" class="espacocobranca5"/>
                             <p:outputLabel value="Período" class="espacocobranca6"/>
                             <br></br>
-                            <p:selectOneMenu class="espacocampos5" style="width:65px;" id="moeda"  value="#" >
-                                <f:selectItem itemLabel="Sim" itemValue="Sim"/> 
-                                <f:selectItem itemLabel="Não" itemValue="Não" /> 
+                            <p:selectOneMenu class="espacocampos5" style="width:65px;" id="moeda"  value="#{pacoteMB.pacotes.cambio}" converter="CambioConverter">
+                                <f:selectItem itemLabel="Moedas" itemValue="0"/> 
+                                <f:selectItems id="idmoedas" value="#{usuarioLogadoMB.listaCambio}" var="cambio" itemLabel="#{cambio.moedas.sigla}" itemValue="#{cambio}"/>
+                                <f:attribute name="lsitaCambio" value="#{usuarioLogadoMB.listaCambio}"/>
                             </p:selectOneMenu>
-                            <p:inputText id="cambio" value="" size="15" class="espacocampos">
+                            <p:inputText id="cambio" value="#{pacoteMB.pacotes.cambio.valor}" size="15" class="espacocampos">
                                 <f:convertNumber currencySymbol="" type="currency"/>
                             </p:inputText>  
                             <h:commandLink action="#"  title="Editar Câmbio">  
@@ -40,10 +43,10 @@
                             <br></br><br></br>
                             <p:outputLabel value="Trecho" for="trecho" class=""/>
                             <br></br>
-                            <p:inputText id="trecho" value="#" size="129" maxlength="200" class="espacocampos2"/>
-                            <p:commandButton class="espacocobranca5" onclick="" icon="ui-icon-check" value="Adicionar" action="#"></p:commandButton>
+                            <p:inputText id="trecho" value="#{pacoteMB.pacotetrecho.descritivo}" size="129" maxlength="200" class="espacocampos2"/>
+                            <p:commandButton class="espacocobranca5" onclick="" icon="ui-icon-check" value="Adicionar" action="#{pacoteMB.salvarTrecho()}" update="idlistatrechos" />
                             <br></br><br></br>
-                            <p:dataTable id="listapacotes" var="recebimento"  value="#" class="tabela3" 
+                            <p:dataTable id="idlistatrechos" var="trecho"  value="#{pacoteMB.listaTrecho}" class="tabela3" 
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
                                          paginator="true" rows="10" style="margin-bottom:20px;font-size: 10px;" >
                                 <p:column  style="background:#ffffff;color:#1F8871;text-align:center;width:48px;z-index: 3!important;overflow: visible!important;">
@@ -62,7 +65,7 @@
                                     </p:menubar>
                                 </p:column>
                                 <p:column headerText="Descrição" >
-                                    <h:outputText value="" ></h:outputText>
+                                    <h:outputText value="#{trecho.descritivo}" ></h:outputText>
                                 </p:column>
                                  <br></br><br></br><br></br>
                             </p:dataTable>
