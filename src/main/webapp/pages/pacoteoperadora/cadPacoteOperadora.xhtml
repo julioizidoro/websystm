@@ -25,26 +25,27 @@
 
                             <p:outputLabel value="Moeda" for="moeda" class=""/>
                             <p:outputLabel value="Valor do Câmbio" for="cambio" class="espacocobranca5"/>
-                            <p:outputLabel value="Período" class="espacocobranca6"/>
+                            <p:outputLabel value="Período" class="espacocobranca2"/>
                             <br></br>
                             <p:selectOneMenu class="espacocampos5" style="width:65px;" id="moeda"  value="#{pacoteMB.pacotes.cambio}" converter="CambioConverter">
                                 <f:selectItem itemLabel="Moedas" itemValue="0"/> 
                                 <f:selectItems id="idmoedas" value="#{usuarioLogadoMB.listaCambio}" var="cambio" itemLabel="#{cambio.moedas.sigla}" itemValue="#{cambio}"/>
                                 <f:attribute name="lsitaCambio" value="#{usuarioLogadoMB.listaCambio}"/>
                             </p:selectOneMenu>
-                            <p:inputText id="cambio" value="#{pacoteMB.pacotes.cambio.valor}" size="15" class="espacocampos">
+                            <p:inputText id="cambio" value="#{pacoteMB.pacotes.cambio.valor}" size="13" class="espacocampos">
                                 <f:convertNumber currencySymbol="" type="currency"/>
                             </p:inputText>  
                             <h:commandLink action="#"  title="Editar Câmbio">  
                                 <img id="editarcambio" class="" src="../../resources/img/cambio_1.png"/>
                             </h:commandLink>
-                            <p:calendar id="datainicio"  size="17" class="espacocobranca7"/>
+                            <p:calendar id="datainicio"  size="17" class="espacocobranca11"/>
                             <p:calendar id="datatermino"  size="17" class="espacocampos"/>
+                            <p:commandButton class="espacocobranca4" onclick="" icon="ui-icon-triangle-1-e" value="Iniciar" action="#"  />
+                            <p:commandButton class="espacocobranca4" onclick="" icon="ui-icon-check" value="Finalizar" action="#"  />
                             <br></br><br></br>
-                            <p:outputLabel value="Trecho" for="trecho" class=""/>
-                            <br></br>
+                            <legend id="iUsu4" ><b>Trecho</b></legend>
                             <p:inputText id="trecho" value="#{pacoteMB.pacotetrecho.descritivo}" size="129" maxlength="200" class="espacocampos2"/>
-                            <p:commandButton class="espacocobranca5" onclick="" icon="ui-icon-check" value="Adicionar" action="#{pacoteMB.salvarTrecho()}" update="idlistatrechos" />
+                            <p:commandButton class="espacocobranca5" onclick="" icon="ui-icon-plus" value="Adicionar" action="#{pacoteMB.salvarTrecho()}" update="idlistatrechos" />
                             <br></br><br></br>
                             <p:dataTable id="idlistatrechos" var="trecho"  value="#{pacoteMB.listaTrecho}" class="tabela3" 
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
@@ -55,7 +56,7 @@
                                             <p:menuitem style="float:right;" value="Aereo" />
                                             <p:menuitem style="float:right;" value="Carro"  action="#{trechosMB.novoCarro()}"/>
                                             <p:menuitem style="float:right;" value="Cruzeiro" action="#{trechosMB.novoCruzeiro()}"/>
-                                            <p:menuitem style="float:right;" value="Hotel" action="`#{trechosMB.novoHotel()}"/>
+                                            <p:menuitem style="float:right;" value="Hotel" action="#{trechosMB.novoHotel()}"/>
                                             <p:menuitem style="float:right;" value="Ingresso" />
                                             <p:menuitem style="float:right;" value="Passeio" />
                                             <p:menuitem style="float:right;" value="Trasfer" action="#{trechosMB.novoTransfer()}"/>

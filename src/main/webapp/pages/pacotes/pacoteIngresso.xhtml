@@ -54,14 +54,14 @@
                             <h:commandLink action="#"  title="Editar Câmbio">  
                                 <img id="editarcambio" class="" src="../../resources/img/cambio_1.png"/>
                             </h:commandLink>
-                            <p:inputText id="valornet" value="" size="15" class="espacocamposright">
+                            <p:inputText id="valornet" value="#{trechosMB.pacoteingresso.valornet}" size="15" class="espacocamposright">
                                 <f:convertNumber currencySymbol="" type="currency"/>
                             </p:inputText>
-                            <p:inputText id="valorgross" value="" size="15" maxlength="15" class="espacocamposright">
+                            <p:inputText id="valorgross" value="#{trechosMB.pacoteingresso.valorgross}" size="15" maxlength="15" class="espacocamposright">
                                 <f:convertNumber currencySymbol="" type="currency"/>
                             </p:inputText>
-                            <p:inputText id="comissao" value="" size="15" class="espacocamposright">
-                                <f:convertNumber currencySymbol="" type="currency"/>
+                            <p:inputText id="comissao" value="#{trechosMB.pacoteingresso.comissao}" size="15" class="espacocamposright">
+                                <f:convertNumber currencySymbol="" type="percent"/>
                             </p:inputText>
                             <br></br><br></br><br></br>
                             <p:outputLabel value="Descritivo" for="descritivo"/>

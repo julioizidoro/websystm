@@ -227,6 +227,15 @@ text-align: left;
 #centro legend#iUsu3 {
     width: 100%;
 }
+#centro legend#iUsu4 b{
+    font-size: 10px;
+    text-align: left;
+    font-family: tahoma;
+    color:#000;
+}
+#centro legend#iUsu4 {
+    width: 100%;
+}
 .leftcampo{
     font-size: 10px;
     margin-left:100px;
