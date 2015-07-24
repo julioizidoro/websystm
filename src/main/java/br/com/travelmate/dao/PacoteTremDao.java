@@ -1,24 +1,16 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.travelmate.dao;
 
 import br.com.travelmate.connection.ConectionFactory;
-import br.com.travelmate.model.Pacotehotel;
+import br.com.travelmate.model.Pacotetrem;
 import java.sql.SQLException;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-/**
- *
- * @author Wolverine
- */
-public class PacotesHotelDao {
+public class PacoteTremDao {
     
     private EntityManager manager;
     
-    public Pacotehotel salvar(Pacotehotel pacote) throws SQLException{
+    public Pacotetrem salvar(Pacotetrem pacote) throws SQLException{
         manager = ConectionFactory.getConnection();
         //abrindo uma transação
         manager.getTransaction().begin();
@@ -28,13 +20,13 @@ public class PacotesHotelDao {
         return pacote;
     }
     
-    public Pacotehotel consultar(int idTrecho) throws SQLException {
+    public Pacotetrem consultar(int idTrecho) throws SQLException{
         manager = ConectionFactory.getConnection();
-        manager.getTransaction().begin();
-        Query q = manager.createQuery("select p from Pacotehotel p where p.pacotetrecho.idpacotetrecho" + idTrecho);
+         manager.getTransaction().begin();
+        Query q = manager.createQuery("select p from Pacotetrem p where p.pacotetrecho.idpacotetrecho" + idTrecho);
         manager.getTransaction().commit();
         if (q.getResultList().size() > 0) {
-            return (Pacotehotel) q.getResultList().get(0);
+            return  (Pacotetrem) q.getResultList().get(0);
         } else {
             return null;
         }
@@ -44,7 +36,7 @@ public class PacotesHotelDao {
         manager = ConectionFactory.getConnection();
         //abrindo uma transação
         manager.getTransaction().begin();
-        Pacotehotel pacote = manager.find(Pacotehotel.class, idPacote);
+        Pacotetrem pacote = manager.find(Pacotetrem.class, idPacote);
         manager.remove(pacote);
         //fechando uma transação
         manager.getTransaction().commit();

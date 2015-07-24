@@ -18,13 +18,13 @@
                             <p:outputLabel value="Hora Saída" for="horasaida" class="espacocobranca11"/>
                             <p:outputLabel value="Hora Chegada" for="horachegada" class="espacocobranca14"/>
                             <br></br>
-                            <p:inputText id="de" value="#" size="37" maxlength="100" class=""/>
-                            <p:inputText id="para" value="#" size="37" maxlength="100" class="espacocampos"/>
-                            <p:calendar id="data" value="" size="8"  class="espacocampos">
+                            <p:inputText id="de" value="#{trechosMB.pacotetrem.de}" size="37" maxlength="100" class=""/>
+                            <p:inputText id="para" value="#{trechosMB.pacotetrem.para}" size="37" maxlength="100" class="espacocampos"/>
+                            <p:calendar id="data" value="#{trechosMB.pacotetrem.data}" size="8"  class="espacocampos">
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </p:calendar>
-                            <p:inputMask id="horasaida" value="#" mask="99:99" size="9" class="espacocampos"/>
-                            <p:inputMask id="horachegada" value="#" mask="99:99" size="9" class="espacocampos"/>
+                            <p:inputMask id="horasaida" value="#{trechosMB.pacotetrem.horasaida}" mask="99:99" size="9" class="espacocampos"/>
+                            <p:inputMask id="horachegada" value="#{trechosMB.pacotetrem.horachegada}" mask="99:99" size="9" class="espacocampos"/>
                             <br></br><br></br><br></br>
                             
                             <p:outputLabel value="Classe" for="classe" class=""/>
@@ -32,10 +32,10 @@
                             <p:outputLabel value="Qntd Infantil" for="qntdInfantil" class="espacocobranca2"/>
                             <p:outputLabel value="Qntd Adolescente" for="qntdAdolescente" class="espacocobranca2"/>
                             <br></br>
-                            <p:inputText id="classe" value="#" size="20" maxlength="20" class=""/>
-                            <p:inputText id="qntdadulto" value="#" size="13" class="espacocobranca11"/>
-                            <p:inputText id="qntdInfantil" value="#" size="12" class="espacocobranca11"/>
-                            <p:inputText id="qntdAdolescente" value="#" size="13" class="espacocobranca11"/>
+                            <p:inputText id="classe" value="#{trechosMB.pacotetrem.classe}" size="20" maxlength="20" class=""/>
+                            <p:inputText id="qntdadulto" value="#{trechosMB.pacotetrem.adt}" size="13" class="espacocobranca11"/>
+                            <p:inputText id="qntdInfantil" value="#{trechosMB.pacotetrem.inf}" size="12" class="espacocobranca11"/>
+                            <p:inputText id="qntdAdolescente" value="#{trechosMB.pacotetrem.chd}" size="13" class="espacocobranca11"/>
                             <br></br><br></br><br></br>
                             
                             <p:outputLabel value="Moeda" for="moeda" class=""/>
@@ -44,35 +44,30 @@
                             <p:outputLabel value="Valor Gross" for="valorgross" class="espacocobranca11"/>
                             <p:outputLabel value="Comissão" for="comissao" class="espacocobranca5"/>
                             <br></br>
-                            <p:selectOneMenu class="espacocampos5" style="width:65px;" id="moeda"  value="#" >
-                                <f:selectItem itemLabel="Sim" itemValue="Sim"/> 
-                                <f:selectItem itemLabel="Não" itemValue="Não" /> 
+                            <p:selectOneMenu class="espacocampos5" style="width:65px;" id="moeda"  value="#{trechosMB.pacotetrem.cambio}" >
+                               <f:selectItem itemLabel="Moedas" itemValue="0"/> 
+                                <f:selectItems id="idmoedas" value="#{trechosMB.usuarioLogadoMB.listaCambio}" var="cambio" itemLabel="#{cambio.moedas.sigla}" itemValue="#{cambio}"/>
+                                <f:attribute name="lsitaCambio" value="#{trechosMB.usuarioLogadoMB.listaCambio}"/>
                             </p:selectOneMenu>
-                            <p:inputText id="cambio" value="" size="16" class="espacocamposright">
+                            <p:inputText id="cambio" value="#{trechosMB.pacotetrem.cambio.valor}" size="16" class="espacocamposright">
                                 <f:convertNumber currencySymbol="" type="currency"/>
                             </p:inputText>  
                             <h:commandLink action="#"  title="Editar Câmbio">  
                                 <img id="editarcambio" class="" src="../../resources/img/cambio_1.png"/>
                             </h:commandLink>
-                            <p:inputText id="valornet" value="" size="15" class="espacocamposright">
+                            <p:inputText id="valornet" value="#{trechosMB.pacotetrem.valornet}" size="15" class="espacocamposright">
                                 <f:convertNumber currencySymbol="" type="currency"/>
                             </p:inputText>
-                            <p:inputText id="valorgross" value="" size="15" maxlength="15" class="espacocamposright">
+                            <p:inputText id="valorgross" value="#{trechosMB.pacotetrem.valorgross}" size="15" maxlength="15" class="espacocamposright">
                                 <f:convertNumber currencySymbol="" type="currency"/>
                             </p:inputText>
-                            <p:inputText id="comissao" value="" size="15" class="espacocamposright">
+                            <p:inputText id="comissao" value="#{trechosMB.pacotetrem.comissao}" size="15" class="espacocamposright">
                                 <f:convertNumber currencySymbol="" type="currency"/>
                             </p:inputText>
-                            <br></br><br></br><br></br>
-                            <p:outputLabel value="Descritivo" for="descritivo"/>
-                            <p:outputLabel value="Trecho" for="treco" class="espacocobranca10"/>
-                            <br></br>
-                            <p:inputText id="descritivo" value="#" size="48" maxlength="45" class="espacocampos2"/>
-                            <p:inputText id="treco" value="#" size="52" maxlength="45" class="espacocampos"/>
-
+                            <br></br><br></br>
                             
                             <p class="botaocadpacote"><br></br>
-                                <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Confirmar" action="#"></p:commandButton>
+                                <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Confirmar" action="#{trechosMB.salvarTrem()}"></p:commandButton>
                                 <p:commandButton class="espacocampos" onclick="" icon="ui-icon-close" value="Cancelar" action="#"></p:commandButton>
                             </p>
                         </p:tab>

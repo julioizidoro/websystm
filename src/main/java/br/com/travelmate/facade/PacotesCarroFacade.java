@@ -37,10 +37,10 @@ public class PacotesCarroFacade {
         }
     }
     
-    public Pacotecarro consultar(int idPacote)  {
+    public Pacotecarro consultar(int idTrecho)  {
         pacotesDao = new PacotesCarroDao();
         try {
-            return pacotesDao.consultar(idPacote);
+            return pacotesDao.consultar(idTrecho);
         } catch (SQLException ex) {
             Logger.getLogger(PacotesCarroFacade.class.getName()).log(Level.SEVERE, null, ex);
             return null;

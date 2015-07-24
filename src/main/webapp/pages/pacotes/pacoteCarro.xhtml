@@ -17,12 +17,12 @@
                             <p:outputLabel value="Data Retirada" for="dataretirada" class="espacocobranca17"/>
                             <p:outputLabel value="Hora Retirada" for="horaretirada" class="espacocobranca5"/>
                             <br></br>
-                            <p:inputText id="localizador" value="#" size="36" maxlength="45" class="espacocampos2"/>
-                            <p:inputText id="locaretirada" value="#" size="50" maxlength="100" class="espacocampos"/>
-                            <p:calendar id="dataretirada" value="" size="18"  class="espacocampos">
+                            <p:inputText id="localizador" value="#{trechosMB.pacotecarro.localizador}" size="36" maxlength="45" class="espacocampos2"/>
+                            <p:inputText id="locaretirada" value="#{trechosMB.pacotecarro.locaretirada}" size="50" maxlength="100" class="espacocampos"/>
+                            <p:calendar id="dataretirada" value="#{trechosMB.pacotecarro.dataretirada}" size="18"  class="espacocampos">
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </p:calendar>
-                            <p:inputMask id="horaretirada" value="#" size="11" mask="99:99" class="espacocampos"/>
+                            <p:inputMask id="horaretirada" value="#{trechosMB.pacotecarro.horaritirada}" size="11" mask="99:99" class="espacocampos"/>
                             <br></br><br></br><br></br>
                             
                             <p:outputLabel value="Data Devolução" for="datadevolucao"/>
@@ -31,13 +31,13 @@
                             <p:outputLabel value="Qntd Adulto" for="qntdAdulto" class="espacocobranca16"/>
                             <p:outputLabel value="Qntd Criança" for="qntdClianca" class="espacocobranca11"/>
                             <br></br>
-                            <p:calendar id="datadevolucao" value="" size="14"  class="espacocampos2">
+                            <p:calendar id="datadevolucao" value="#{trechosMB.pacotecarro.datadevolucao}" size="14"  class="espacocampos2">
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </p:calendar>
-                            <p:inputMask id="horadevolucao" value="#" size="18" mask="99:99" class="espacocampos"/>
-                            <p:inputText id="categoria" value="#" size="34" maxlength="15" class="espacocampos"/>
-                            <p:inputText id="qntdAdulto" value="#" size="16" class="espacocampos"/>
-                            <p:inputText id="qntdClianca" value="#" size="17" class="espacocampos"/>
+                            <p:inputMask id="horadevolucao" value="#{trechosMB.pacotecarro.horadevolucao}" size="18" mask="99:99" class="espacocampos"/>
+                            <p:inputText id="categoria" value="#{trechosMB.pacotecarro.categoria}" size="34" maxlength="15" class="espacocampos"/>
+                            <p:inputText id="qntdAdulto" value="#{trechosMB.pacotecarro.adt}" size="16" class="espacocampos"/>
+                            <p:inputText id="qntdClianca" value="#{trechosMB.pacotecarro.chd}" size="17" class="espacocampos"/>
                             <br></br><br></br><br></br>
                             
                             <p:outputLabel value="Moeda" for="moeda" class=""/>
@@ -45,40 +45,39 @@
                             <p:outputLabel value="Valor Net" for="valornet" class="espacocobranca5"/>
                             <p:outputLabel value="Valor Gross" for="valorgross" class="espacocobranca11"/>
                             <p:outputLabel value="Comissão" for="comissao" class="espacocobranca5"/>
-                            <p:outputLabel value="Valor Moeda Nacional" for="moedanascional" class="espacocobranca14"/>
+                            <p:outputLabel value="Valor Moeda Nacional" for="moedanacional" class="espacocobranca14"/>
                             <br></br>
-                            <p:selectOneMenu class="espacocampos5" style="width:65px;" id="moeda"  value="#" >
-                                <f:selectItem itemLabel="Sim" itemValue="Sim"/> 
-                                <f:selectItem itemLabel="Não" itemValue="Não" /> 
+                            <p:selectOneMenu class="espacocampos5" style="width:65px;" id="moeda"  value="#{trechosMB.pacotecarro.cambio}" >
+                                <f:selectItem itemLabel="Moedas" itemValue="0"/> 
+                                <f:selectItems value="#{trechosMB.usuarioLogadoMB.listaCambio}" var="cambioselecionado" itemLabel="#{cambioselecionado.moedas.sigla}" itemValue="#{cambioselecionado}"/>
+                                <f:attribute name="lsitaCambio" value="#{usuarioLogadoMB.listaCambio}"/>
                             </p:selectOneMenu>
-                            <p:inputText id="cambio" value="" size="16" class="espacocamposright">
+                            <p:inputText id="cambio" value="#{trechosMB.pacotecarro.cambio.valor}" size="16" class="espacocamposright">
                                 <f:convertNumber currencySymbol="" type="currency"/>
                             </p:inputText>  
                             <h:commandLink action="#"  title="Editar Câmbio">  
                                 <img id="editarcambio" class="" src="../../resources/img/cambio_1.png"/>
                             </h:commandLink>
-                            <p:inputText id="valornet" value="" size="14" class="espacocamposright">
+                            <p:inputText id="valornet" value="#{trechosMB.pacotecarro.valornet}" size="14" class="espacocamposright">
                                 <f:convertNumber currencySymbol="" type="currency"/>
                             </p:inputText>
-                            <p:inputText id="valorgross" value="" size="15" maxlength="15" class="espacocamposright">
+                            <p:inputText id="valorgross" value="#{trechosMB.pacotecarro.valorgross}" size="15" maxlength="15" class="espacocamposright">
                                 <f:convertNumber currencySymbol="" type="currency"/>
                             </p:inputText>
-                            <p:inputText id="comissao" value="" size="8" class="espacocamposright">
+                            <p:inputText id="comissao" value="#{trechosMB.pacotecarro.comissao}" size="8" class="espacocamposright">
                                 <f:convertNumber currencySymbol="" type="currency"/>
                             </p:inputText>
-                            <p:inputText id="moedanascional" value="" size="20" class="espacocampos">
+                            <p:inputText id="moedanacional" value="#{trechosMB.pacotecarro.valormoedanacional}" size="20" class="espacocampos">
                                 <f:convertNumber currencySymbol="" type="currency"/>
                             </p:inputText>
                             
                              <br></br><br></br><br></br>
                             <p:outputLabel value="Descritivo" for="descritivo"/>
-                            <p:outputLabel value="Trecho" for="treco" class="espacocobranca10"/>
                             <br></br>
-                            <p:inputText id="descritivo" value="#" size="48" maxlength="45" class="espacocampos2"/>
-                            <p:inputText id="treco" value="#" size="52" maxlength="45" class="espacocampos"/>
+                            <p:inputText id="descritivo" value="#{trechosMB.pacotecarro.descritivo}" size="48" maxlength="45" class="espacocampos2"/>
 
                             <p class="botaocadpacote"><br></br>
-                                <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Confirmar" action="#"></p:commandButton>
+                                <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Confirmar" action="#{trechosMB.salvarCarro()}"></p:commandButton>
                                 <p:commandButton class="espacocampos" onclick="" icon="ui-icon-close" value="Cancelar" action="#"></p:commandButton>
                             </p>
                         </p:tab>

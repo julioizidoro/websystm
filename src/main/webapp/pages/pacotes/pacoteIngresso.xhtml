@@ -19,9 +19,9 @@
                             <p:outputLabel value="Data" for="data" class="espacocobranca13"/>
 
                             <br></br>
-                            <p:inputText id="pais" value="#" size="60" maxlength="50" class="espacocampos2"/>
-                            <p:inputText id="cidade" value="#" size="60" maxlength="50" class="espacocampos"/>
-                            <p:calendar id="data" value="" size="15"  class="espacocampos">
+                            <p:inputText id="pais" value="#{trechosMB.pacoteingresso.pais}" size="60" maxlength="50" class="espacocampos2"/>
+                            <p:inputText id="cidade" value="#{trechosMB.pacoteingresso.cidade}" size="60" maxlength="50" class="espacocampos"/>
+                            <p:calendar id="data" value="#{trechosMB.pacoteingresso.data}" size="15"  class="espacocampos">
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </p:calendar>
 
@@ -31,9 +31,9 @@
                             <p:outputLabel value="Qntd Adulto" for="qntdAdulto" class="espacocobranca5"/>
                             <p:outputLabel value="Qntd Criança" for="qntdClianca" class="espacocobranca2"/>
                             <br></br>
-                            <p:inputText id="qntdAdolescente" value="#" size="22" maxlength="10" class="espacocampos2"/>
-                            <p:inputText id="qntdAdulto" value="#" size="22" class="espacocampos"/>
-                            <p:inputText id="qntdClianca" value="#" size="16" class="espacocampos"/>
+                            <p:inputText id="qntdAdolescente" value="#{trechosMB.pacoteingresso.inf}" size="22" maxlength="10" class="espacocampos2"/>
+                            <p:inputText id="qntdAdulto" value="#{trechosMB.pacoteingresso.adt}" size="22" class="espacocampos"/>
+                            <p:inputText id="qntdClianca" value="#{trechosMB.pacoteingresso.chd}" size="16" class="espacocampos"/>
                             <br></br><br></br><br></br>
 
 
@@ -43,11 +43,12 @@
                             <p:outputLabel value="Valor Gross" for="valorgross" class="espacocobranca11"/>
                             <p:outputLabel value="Comissão" for="comissao" class="espacocobranca5"/>
                             <br></br>
-                            <p:selectOneMenu class="espacocampos5" style="width:65px;" id="moeda"  value="#" >
-                                <f:selectItem itemLabel="Sim" itemValue="Sim"/> 
-                                <f:selectItem itemLabel="Não" itemValue="Não" /> 
-                            </p:selectOneMenu>
-                            <p:inputText id="cambio" value="" size="16" class="espacocamposright">
+                            <p:selectOneMenu class="espacocampos5" style="width:65px;" id="moeda"  value="#{trechosMB.pacoteingresso.cambio}" >
+                                <f:selectItem itemLabel="Moedas" itemValue="0"/> 
+                                <f:selectItems id="idmoedas" value="#{trechosMB.usuarioLogadoMB.listaCambio}" var="cambio" itemLabel="#{cambio.moedas.sigla}" itemValue="#{cambio}"/>
+                                <f:attribute name="lsitaCambio" value="#{trechosMB.usuarioLogadoMB.listaCambio}"/>
+                             </p:selectOneMenu>
+                            <p:inputText id="cambio" value="#{trechosMB.pacoteingresso.cambio.valor}" size="16" class="espacocamposright">
                                 <f:convertNumber currencySymbol="" type="currency"/>
                             </p:inputText>  
                             <h:commandLink action="#"  title="Editar Câmbio">  

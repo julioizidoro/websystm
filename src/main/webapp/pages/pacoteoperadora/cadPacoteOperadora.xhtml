@@ -52,15 +52,15 @@
                                 <p:column  style="background:#ffffff;color:#1F8871;text-align:center;width:48px;z-index: 3!important;overflow: visible!important;">
                                     <p:menubar style="min-width:10px;min-height:10px;height:25px;margin-top:-4px;z-index: 3!important; "> 
                                         <p:submenu style="margin-top:-7px;z-index: 3!important;" >
-                                                <p:menuitem style="float:right;" value="Carro" />
-                                                <p:menuitem style="float:right;" value="Hotel" />
-                                                <p:menuitem style="float:right;" value="Aereo" />
-                                                <p:menuitem style="float:right;" value="Trasfer" />
-                                                <p:menuitem style="float:right;" value="Trem" />
-                                                <p:menuitem style="float:right;" value="Passeio" />
-                                                <p:menuitem style="float:right;" value="Ingresso" />
-                                                <p:menuitem style="float:right;" value="Cruzeiro" />
-                                                <p:menuitem style="float:right;" value="Exclir" />
+                                            <p:menuitem style="float:right;" value="Aereo" />
+                                            <p:menuitem style="float:right;" value="Carro"  action="#{trechosMB.novoCarro()}"/>
+                                            <p:menuitem style="float:right;" value="Cruzeiro" action="#{trechosMB.novoCruzeiro()}"/>
+                                            <p:menuitem style="float:right;" value="Hotel" action="`#{trechosMB.novoHotel()}"/>
+                                            <p:menuitem style="float:right;" value="Ingresso" />
+                                            <p:menuitem style="float:right;" value="Passeio" />
+                                            <p:menuitem style="float:right;" value="Trasfer" action="#{trechosMB.novoTransfer()}"/>
+                                            <p:menuitem style="float:right;" value="Trem" action="#{trechosMB.novoTrem()}"/>
+                                            <p:menuitem style="float:right;" value="Exclir" />
                                         </p:submenu>
                                     </p:menubar>
                                 </p:column>

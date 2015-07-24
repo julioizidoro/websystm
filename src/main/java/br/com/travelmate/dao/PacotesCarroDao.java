@@ -28,10 +28,10 @@ public class PacotesCarroDao {
         return pacote;
     }
     
-    public Pacotecarro consultar(int idPacote) throws SQLException{
+    public Pacotecarro consultar(int idTrecho) throws SQLException{
         manager = ConectionFactory.getConnection();
          manager.getTransaction().begin();
-        Query q = manager.createQuery("select p from Pacotecarro p where p.pacotes=" + idPacote);
+        Query q = manager.createQuery("select p from Pacotecarro p where p.pacotetrecho.idpacotetrecho" + idTrecho);
         manager.getTransaction().commit();
         if (q.getResultList().size() > 0) {
             return  (Pacotecarro) q.getResultList().get(0);

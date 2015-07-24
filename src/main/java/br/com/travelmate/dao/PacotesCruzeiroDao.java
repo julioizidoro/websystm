@@ -1,24 +1,16 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.travelmate.dao;
 
 import br.com.travelmate.connection.ConectionFactory;
-import br.com.travelmate.model.Pacotehotel;
+import br.com.travelmate.model.Pacotecruzeiro;
 import java.sql.SQLException;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-/**
- *
- * @author Wolverine
- */
-public class PacotesHotelDao {
-    
+
+public class PacotesCruzeiroDao {
     private EntityManager manager;
     
-    public Pacotehotel salvar(Pacotehotel pacote) throws SQLException{
+    public Pacotecruzeiro salvar(Pacotecruzeiro pacote) throws SQLException{
         manager = ConectionFactory.getConnection();
         //abrindo uma transação
         manager.getTransaction().begin();
@@ -28,13 +20,13 @@ public class PacotesHotelDao {
         return pacote;
     }
     
-    public Pacotehotel consultar(int idTrecho) throws SQLException {
+    public Pacotecruzeiro consultar(int idTrecho) throws SQLException{
         manager = ConectionFactory.getConnection();
-        manager.getTransaction().begin();
-        Query q = manager.createQuery("select p from Pacotehotel p where p.pacotetrecho.idpacotetrecho" + idTrecho);
+         manager.getTransaction().begin();
+        Query q = manager.createQuery("select p from Pacotecruzeiro p where p.pacotetrecho.idpacotetrecho" + idTrecho);
         manager.getTransaction().commit();
         if (q.getResultList().size() > 0) {
-            return (Pacotehotel) q.getResultList().get(0);
+            return  (Pacotecruzeiro) q.getResultList().get(0);
         } else {
             return null;
         }
@@ -44,10 +36,9 @@ public class PacotesHotelDao {
         manager = ConectionFactory.getConnection();
         //abrindo uma transação
         manager.getTransaction().begin();
-        Pacotehotel pacote = manager.find(Pacotehotel.class, idPacote);
+        Pacotecruzeiro pacote = manager.find(Pacotecruzeiro.class, idPacote);
         manager.remove(pacote);
         //fechando uma transação
         manager.getTransaction().commit();
     }
-    
 }

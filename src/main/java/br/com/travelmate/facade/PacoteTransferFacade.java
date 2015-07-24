@@ -1,25 +1,19 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.travelmate.facade;
 
-import br.com.travelmate.dao.PacotesHotelDao;
-import br.com.travelmate.model.Pacotehotel;
+import br.com.travelmate.dao.PacoteTransferDao;
+import br.com.travelmate.model.Pacotetransfer;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Wolverine
- */
-public class PacotesHotelFacade {
+
+
+public class PacoteTransferFacade {
     
-    PacotesHotelDao pacotesDao;
+    PacoteTransferDao pacotesDao;
     
-    public Pacotehotel salvar(Pacotehotel pacote) {
-        pacotesDao = new PacotesHotelDao();
+    public Pacotetransfer salvar(Pacotetransfer pacote) {
+        pacotesDao = new PacoteTransferDao();
         try {
             return pacotesDao.salvar(pacote);
         } catch (SQLException ex) {
@@ -29,7 +23,7 @@ public class PacotesHotelFacade {
     }
     
     public void excluir(int idPacote) {
-        pacotesDao = new PacotesHotelDao();
+        pacotesDao = new PacoteTransferDao();
         try {
             pacotesDao.excluir(idPacote);
         } catch (SQLException ex) {
@@ -37,8 +31,8 @@ public class PacotesHotelFacade {
         }
     }
     
-    public Pacotehotel consultar(int idTrecho) {
-        pacotesDao = new PacotesHotelDao();
+    public Pacotetransfer consultar(int idTrecho) {
+        pacotesDao = new PacoteTransferDao();
         try {
             return pacotesDao.consultar(idTrecho);
         } catch (SQLException ex) {
@@ -46,5 +40,4 @@ public class PacotesHotelFacade {
             return null;
         }
     }
-    
 }
