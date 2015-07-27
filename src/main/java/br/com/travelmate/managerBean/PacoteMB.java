@@ -33,6 +33,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -275,6 +276,10 @@ public class PacoteMB implements Serializable{
     }
     
     public String finalizar(){
+        FacesContext fc = FacesContext.getCurrentInstance();  
+        HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+        session.removeAttribute("tipoOepracaoPacote");
+        session.removeAttribute("pacoteTrecho");
         System.out.println("teste");
         return null;
     }
@@ -284,6 +289,104 @@ public class PacoteMB implements Serializable{
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);  
         session.setAttribute("pacote", pacote);
         return "cadPacoteOperadora";
+    }
+    
+    public String novoCarro(Pacotetrecho pacotetrecho){
+        if (pacotetrecho!=null){
+            FacesContext fc = FacesContext.getCurrentInstance();  
+            HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+            session.setAttribute("tipoOepracaoPacote", "carro");
+            session.setAttribute("pacoteTrecho", pacotetrecho);
+            return "pacotecarro";
+        }else {
+            FacesMessage mensagem = new FacesMessage("Atenção! ", "Trecho Não Localizado.");
+            FacesContext.getCurrentInstance().addMessage(null, mensagem);
+        }
+        return "";
+    }
+    
+    public String novoCruzeiro(Pacotetrecho pacotetrecho){
+        if (pacotetrecho!=null){
+            FacesContext fc = FacesContext.getCurrentInstance();  
+            HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+            session.setAttribute("tipoOepracaoPacote", "cruzeiro");
+            session.setAttribute("pacoteTrecho", pacotetrecho);
+            return "pacotecruzeiro";
+        }else {
+            FacesMessage mensagem = new FacesMessage("Atenção! ", "Trecho Não Localizado.");
+            FacesContext.getCurrentInstance().addMessage(null, mensagem);
+        }
+        return "";
+    }
+    
+    public String novoHotel(Pacotetrecho pacotetrecho){
+        if (pacotetrecho!=null){
+            FacesContext fc = FacesContext.getCurrentInstance();  
+            HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+            session.setAttribute("tipoOepracaoPacote", "hotel");
+            session.setAttribute("pacoteTrecho", pacotetrecho);
+            return "pacotehotel";
+        }else {
+            FacesMessage mensagem = new FacesMessage("Atenção! ", "Trecho Não Localizado.");
+            FacesContext.getCurrentInstance().addMessage(null, mensagem);
+        }
+        return "";
+    }
+    
+    public String novoTrem(Pacotetrecho pacotetrecho){
+        if (pacotetrecho!=null){
+            FacesContext fc = FacesContext.getCurrentInstance();  
+            HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+            session.setAttribute("tipoOepracaoPacote", "trem");
+            session.setAttribute("pacoteTrecho", pacotetrecho);
+            return "pacotetrem";
+        }else {
+            FacesMessage mensagem = new FacesMessage("Atenção! ", "Trecho Não Localizado.");
+            FacesContext.getCurrentInstance().addMessage(null, mensagem);
+        }
+        return "";
+    }
+    
+    public String novoTransfer(Pacotetrecho pacotetrecho){
+        if (pacotetrecho!=null){
+            FacesContext fc = FacesContext.getCurrentInstance();  
+            HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+            session.setAttribute("tipoOepracaoPacote", "transfer");
+            session.setAttribute("pacoteTrecho", pacotetrecho);
+            return "pacotetransfer";
+        }else {
+            FacesMessage mensagem = new FacesMessage("Atenção! ", "Trecho Não Localizado.");
+            FacesContext.getCurrentInstance().addMessage(null, mensagem);
+        }
+        return "";
+    }
+    
+    public String novoIngresso(Pacotetrecho pacotetrecho){
+        if (pacotetrecho!=null){
+            FacesContext fc = FacesContext.getCurrentInstance();  
+            HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+            session.setAttribute("tipoOepracaoPacote", "ingresso");
+            session.setAttribute("pacoteTrecho", pacotetrecho);
+            return "pacoteIngresso";
+        }else {
+            FacesMessage mensagem = new FacesMessage("Atenção! ", "Trecho Não Localizado.");
+            FacesContext.getCurrentInstance().addMessage(null, mensagem);
+        }
+        return "";
+    }
+    
+    public String novoPasseio(Pacotetrecho pacotetrecho){
+        if (pacotetrecho!=null){
+            FacesContext fc = FacesContext.getCurrentInstance();  
+            HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+            session.setAttribute("tipoOepracaoPacote", "passeio");
+            session.setAttribute("pacoteTrecho", pacotetrecho);
+            return "pacotePasseio";
+        }else {
+            FacesMessage mensagem = new FacesMessage("Atenção! ", "Trecho Não Localizado.");
+            FacesContext.getCurrentInstance().addMessage(null, mensagem);
+        }
+        return "";
     }
     
 }

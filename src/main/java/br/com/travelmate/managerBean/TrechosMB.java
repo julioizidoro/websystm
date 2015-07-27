@@ -1,6 +1,8 @@
 package br.com.travelmate.managerBean;
 
 import br.com.travelmate.facade.PacoteCruzeiroFacade;
+import br.com.travelmate.facade.PacoteIngressoFacade;
+import br.com.travelmate.facade.PacotePasseioFacade;
 import br.com.travelmate.facade.PacoteTransferFacade;
 import br.com.travelmate.facade.PacoteTremFacade;
 import br.com.travelmate.facade.PacotesCarroFacade;
@@ -16,11 +18,15 @@ import br.com.travelmate.model.Pacotetransfer;
 import br.com.travelmate.model.Pacotetrecho;
 import br.com.travelmate.model.Pacotetrem;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 
 @Named
 @ViewScoped
@@ -38,6 +44,70 @@ public class TrechosMB implements Serializable{
     private Pacoteingresso pacoteingresso;
     private Pacotepasseio pacotepasseio;
     private Cambio cambio;
+    private List<Pacoteingresso> listaPacoteIngresso;
+    private List<Pacotepasseio> listaPacotePasseio;
+    
+    
+    
+    @PostConstruct
+    public void init(){
+        FacesContext fc = FacesContext.getCurrentInstance();  
+        HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+        String tipo = (String) session.getAttribute("tipoOepracaoPacote");
+        Pacotetrecho pacotetrecho = (Pacotetrecho) session.getAttribute("pacoteTrecho");
+        if (tipo.equalsIgnoreCase("carro")) {
+            PacotesCarroFacade pacoteCarroFacade = new PacotesCarroFacade();
+            pacotecarro = pacoteCarroFacade.consultar(pacotetrecho.getIdpacotetrecho());
+            if (pacotecarro == null) {
+                pacotecarro = new Pacotecarro();
+                pacotecarro.setPacotetrecho(pacotetrecho);
+            }
+        } else if (tipo.equalsIgnoreCase("cruzeiro")) {
+            PacoteCruzeiroFacade pacoteCruzeiroFacade = new PacoteCruzeiroFacade();
+            pacotecruzeiro = pacoteCruzeiroFacade.consultar(pacotetrecho.getIdpacotetrecho());
+            if(pacotecruzeiro==null){
+                pacotecruzeiro = new Pacotecruzeiro();
+                pacotecruzeiro.setPacotetrecho(pacotetrecho);
+            }
+        }else if (tipo.equalsIgnoreCase("hotel")){
+            PacotesHotelFacade pacoteHotelFacade = new PacotesHotelFacade();
+            pacotehotel = pacoteHotelFacade.consultar(pacotetrecho.getIdpacotetrecho());
+            if(pacotehotel==null){
+                pacotehotel = new Pacotehotel();
+                pacotehotel.setPacotetrecho(pacotetrecho);
+            }
+        }else if (tipo.equalsIgnoreCase("ingresso")){
+            listaPacoteIngresso = pacotetrecho.getPacoteingressoList();
+            pacoteingresso = new Pacoteingresso();
+            pacoteingresso.setPacotetrecho(pacotetrecho);
+            if (listaPacoteIngresso==null){
+                listaPacoteIngresso = new ArrayList<Pacoteingresso>();
+            }
+        }else if (tipo.equalsIgnoreCase("passagem")){
+            
+        }else if (tipo.equalsIgnoreCase("passeio")){
+            pacotepasseio=new Pacotepasseio();
+            pacotepasseio.setPacotetrecho(pacotetrecho);
+            listaPacotePasseio = pacotetrecho.getPacotepasseioList();
+            if (listaPacotePasseio==null){
+                listaPacotePasseio = new ArrayList<Pacotepasseio>();
+            }
+        }else if (tipo.equalsIgnoreCase("trem")){
+            PacoteTremFacade pacoteTremFacade = new PacoteTremFacade();
+            pacotetrem = pacoteTremFacade.consultar(pacotetrecho.getIdpacotetrecho());
+            if(pacotetrem==null){
+                pacotetrem = new Pacotetrem();
+                pacotetrem.setPacotetrecho(pacotetrecho);
+            }
+        }else if (tipo.equalsIgnoreCase("transfer")){
+            PacoteTransferFacade pacoteTransferFacade = new PacoteTransferFacade();
+            pacotetransfer = pacoteTransferFacade.consultar(pacotetrecho.getIdpacotetrecho());
+            if(pacotetransfer==null){
+                pacotetransfer = new Pacotetransfer();
+                pacotetransfer.setPacotetrecho(pacotetrecho);
+            }
+        }
+    }
     
     public Pacotecarro getPacotecarro() {
         return pacotecarro;
@@ -118,24 +188,26 @@ public class TrechosMB implements Serializable{
     public void setCambio(Cambio cambio) {
         this.cambio = cambio;
     }
-    
-    
-    
-    public String novoCarro(Pacotetrecho pacotetrecho){
-        if (pacotetrecho!=null){
-            PacotesCarroFacade pacoteCarroFacade = new PacotesCarroFacade();
-            pacotecarro = pacoteCarroFacade.consultar(pacotetrecho.getIdpacotetrecho());
-            if(pacotecarro==null){
-                pacotecarro = new Pacotecarro();
-                pacotecarro.setPacotetrecho(pacotetrecho);
-                return "pacotecarro";
-            }
-        }else {
-            FacesMessage mensagem = new FacesMessage("Atenção! ", "Trecho Não Localizado.");
-            FacesContext.getCurrentInstance().addMessage(null, mensagem);
-        }
-        return "";
+
+    public List<Pacoteingresso> getListaPacoteIngresso() {
+        return listaPacoteIngresso;
     }
+
+    public void setListaPacoteIngresso(List<Pacoteingresso> listaPacoteIngresso) {
+        this.listaPacoteIngresso = listaPacoteIngresso;
+    }
+
+    public List<Pacotepasseio> getListaPacotePasseio() {
+        return listaPacotePasseio;
+    }
+
+    public void setListaPacotePasseio(List<Pacotepasseio> listaPacotePasseio) {
+        this.listaPacotePasseio = listaPacotePasseio;
+    }
+    
+    
+    
+    
     
     public String salvarCarro(){
         PacotesCarroFacade pacotesCarroFacade = new PacotesCarroFacade();
@@ -148,21 +220,7 @@ public class TrechosMB implements Serializable{
     }
     
     
-    public String novoCruzeiro(Pacotetrecho pacotetrecho){
-        if (pacotetrecho!=null){
-            PacoteCruzeiroFacade pacoteCruzeiroFacade = new PacoteCruzeiroFacade();
-            pacotecruzeiro = pacoteCruzeiroFacade.consultar(pacotetrecho.getIdpacotetrecho());
-            if(pacotecruzeiro==null){
-                pacotecruzeiro = new Pacotecruzeiro();
-                pacotecruzeiro.setPacotetrecho(pacotetrecho);
-                return "pacotecruzeiro";
-            }
-        }else {
-            FacesMessage mensagem = new FacesMessage("Atenção! ", "Trecho Não Localizado.");
-            FacesContext.getCurrentInstance().addMessage(null, mensagem);
-        }
-        return "";
-    }
+    
     
     public String salvarCruzeiro(){
         PacoteCruzeiroFacade pacoteCruzeiroFacade = new PacoteCruzeiroFacade();
@@ -176,21 +234,7 @@ public class TrechosMB implements Serializable{
     
     
     
-    public String novoHotel(Pacotetrecho pacotetrecho){
-        if (pacotetrecho!=null){
-            PacotesHotelFacade pacoteHotelFacade = new PacotesHotelFacade();
-            pacotehotel = pacoteHotelFacade.consultar(pacotetrecho.getIdpacotetrecho());
-            if(pacotehotel==null){
-                pacotehotel = new Pacotehotel();
-                pacotehotel.setPacotetrecho(pacotetrecho);
-                return "pacotehotel";
-            }
-        }else {
-            FacesMessage mensagem = new FacesMessage("Atenção! ", "Trecho Não Localizado.");
-            FacesContext.getCurrentInstance().addMessage(null, mensagem);
-        }
-        return "";
-    }
+    
     
     public String salvarHotel(){
         PacotesHotelFacade pacoteHotelFacade = new PacotesHotelFacade();
@@ -203,21 +247,7 @@ public class TrechosMB implements Serializable{
     }
     
     
-    public String novoTrem(Pacotetrecho pacotetrecho){
-        if (pacotetrecho!=null){
-            PacoteTremFacade pacoteTremFacade = new PacoteTremFacade();
-            pacotetrem = pacoteTremFacade.consultar(pacotetrecho.getIdpacotetrecho());
-            if(pacotetrem==null){
-                pacotetrem = new Pacotetrem();
-                pacotetrem.setPacotetrecho(pacotetrecho);
-                return "pacotetrem";
-            }
-        }else {
-            FacesMessage mensagem = new FacesMessage("Atenção! ", "Trecho Não Localizado.");
-            FacesContext.getCurrentInstance().addMessage(null, mensagem);
-        }
-        return "";
-    }
+    
     
     public String salvarTrem(){
         PacoteTremFacade pacoteTremFacade = new PacoteTremFacade();
@@ -230,21 +260,7 @@ public class TrechosMB implements Serializable{
     }
     
     
-    public String novoTransfer(Pacotetrecho pacotetrecho){
-        if (pacotetrecho!=null){
-            PacoteTransferFacade pacoteTransferFacade = new PacoteTransferFacade();
-            pacotetransfer = pacoteTransferFacade.consultar(pacotetrecho.getIdpacotetrecho());
-            if(pacotetransfer==null){
-                pacotetransfer = new Pacotetransfer();
-                pacotetransfer.setPacotetrecho(pacotetrecho);
-                return "pacotetransfer";
-            }
-        }else {
-            FacesMessage mensagem = new FacesMessage("Atenção! ", "Trecho Não Localizado.");
-            FacesContext.getCurrentInstance().addMessage(null, mensagem);
-        }
-        return "";
-    }
+    
     
     public String salvarTransfer(){
         PacoteTransferFacade pacoteTransferFacade = new PacoteTransferFacade();
@@ -255,6 +271,35 @@ public class TrechosMB implements Serializable{
         context.addMessage(null, new FacesMessage("Salvo com Sucesso", ""));
         return "consultapacote";
     }
+    
+    public String salvarIngresso(){
+        PacoteIngressoFacade pacoteIngressoFacade = new PacoteIngressoFacade();
+        pacoteingresso.setFornecedorcidade(consultaFornecedorMB.getFornecedorcidade());
+        pacoteingresso = pacoteIngressoFacade.salvar(pacoteingresso);
+        listaPacoteIngresso.add(pacoteingresso);
+        Pacotetrecho pacotetrecho = pacoteingresso.getPacotetrecho();
+        pacoteingresso = new Pacoteingresso();
+        pacoteingresso.setPacotetrecho(pacotetrecho);
+        consultaFornecedorMB.setFornecedorcidade(new Fornecedorcidade());
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage("Salvo com Sucesso", ""));
+        return "";
+    }
+    
+    public String salvarPasseio(){
+        PacotePasseioFacade pacotePasseioFacade = new PacotePasseioFacade();
+        pacotepasseio.setFornecedorcidade(consultaFornecedorMB.getFornecedorcidade());
+        pacotepasseio = pacotePasseioFacade.salvar(pacotepasseio);
+        listaPacotePasseio.add(pacotepasseio);
+        Pacotetrecho pacotetrecho = pacotepasseio.getPacotetrecho();
+        pacotepasseio = new Pacotepasseio();
+        pacotepasseio.setPacotetrecho(pacotetrecho);
+        consultaFornecedorMB.setFornecedorcidade(new Fornecedorcidade());
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage("Salvo com Sucesso", ""));
+        return "";
+    }
+    
     
     public String imagemAereo(Pacotetrecho pacotetrecho) {
 //        if(pacoteaereo!=null){
