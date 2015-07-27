@@ -16,7 +16,7 @@
                     <p:outputLabel value="Cidade" for="cidade" class="espaco15" style="font-size: 11px"/>
                     <br></br>
                     <p:selectOneMenu id="pais" value="#{fornecedorMB.pais}" style="width:220px;font-size: 10px" class="espacocampos" 
-                                     converter="PaisConverter" filter="true" filterMatchMode="startsWith">
+                                     converter="PaisConverter" filter="true" filterMatchMode="startsWith" >
                         <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
                         <f:selectItems id="idpais" value="#{fornecedorMB.listaPais}" var="cpais" itemLabel="#{cpais.nome}" itemValue="#{cpais}"/>
                         <f:attribute name="listaPais" value="#{fornecedorMB.listaPais}"/>

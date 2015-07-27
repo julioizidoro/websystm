@@ -798,6 +798,10 @@ text-align: left;
 .espacocobranca18{
     margin-left:20%;
 }
+.espacocobranca18rig{
+    margin-left:20%;
+    text-align: right;
+}
 .espacocobranca19{
     margin-left:17%;
 }
@@ -809,6 +813,12 @@ text-align: left;
 }
 .espacocobranca22{
     margin-left:25%;
+}
+.espacocobranca23{
+    margin-left:11%;
+}
+.espacocobranca24{
+    margin-left:8%;
 }
 .espacologin{
     margin-left:40%;

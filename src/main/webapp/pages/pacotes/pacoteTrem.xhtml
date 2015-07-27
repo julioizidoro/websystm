@@ -28,21 +28,22 @@
                             <br></br><br></br><br></br>
                             
                             <p:outputLabel value="Classe" for="classe" class=""/>
-                            <p:outputLabel value="Qntd Adultos" for="qntdadulto" class="espacocobranca16"/>
+                            <p:outputLabel value="Qntd Adultos" for="qntdadulto" class="espacocobranca13"/>
                             <p:outputLabel value="Qntd Infantil" for="qntdInfantil" class="espacocobranca2"/>
-                            <p:outputLabel value="Qntd Adolescente" for="qntdAdolescente" class="espacocobranca2"/>
+                            <p:outputLabel value="Qntd Criança" for="qntdAdolescente" class="espacocobranca2"/>
                             <br></br>
-                            <p:inputText id="classe" value="#{trechosMB.pacotetrem.classe}" size="20" maxlength="20" class=""/>
+                            <p:inputText id="classe" value="#{trechosMB.pacotetrem.classe}" size="49" maxlength="20" class=""/>
                             <p:inputText id="qntdadulto" value="#{trechosMB.pacotetrem.adt}" size="13" class="espacocobranca11"/>
                             <p:inputText id="qntdInfantil" value="#{trechosMB.pacotetrem.inf}" size="12" class="espacocobranca11"/>
-                            <p:inputText id="qntdAdolescente" value="#{trechosMB.pacotetrem.chd}" size="13" class="espacocobranca11"/>
+                            <p:inputText id="qntdAdolescente" value="#{trechosMB.pacotetrem.chd}" size="10" class="espacocobranca11"/>
                             <br></br><br></br><br></br>
                             
                             <p:outputLabel value="Moeda" for="moeda" class=""/>
                             <p:outputLabel value="Valor do Câmbio" for="cambio" class="espacocobranca5"/>
-                            <p:outputLabel value="Valor Net" for="valornet" class="espacocobranca5"/>
-                            <p:outputLabel value="Valor Gross" for="valorgross" class="espacocobranca11"/>
-                            <p:outputLabel value="Comissão" for="comissao" class="espacocobranca5"/>
+                            <p:outputLabel value="Valor Net" for="valornet" class="espacocobranca22"/>
+                            <p:outputLabel value="Comissão" for="comissao" class="espacocobranca11"/>
+                            <p:outputLabel value="Valor Gross" for="valorgross" class="espacocobranca5"/>
+                            
                             <br></br>
                             <p:selectOneMenu class="espacocampos5" style="width:65px;" id="moeda"  value="#{trechosMB.cambio}"  converter="CambioConverter">
                                <f:selectItem itemLabel="Moedas" itemValue="0"/> 
@@ -55,15 +56,16 @@
                             <h:commandLink action="#"  title="Editar Câmbio">  
                                 <img id="editarcambio" class="" src="../../resources/img/cambio_1.png"/>
                             </h:commandLink>
-                            <p:inputText id="valornet" value="#{trechosMB.pacotetrem.valornet}" size="15" class="espacocamposright">
+                            <p:inputText id="valornet" value="#{trechosMB.pacotetrem.valornet}" size="14" class="espacocobranca18rig">
+                                <f:convertNumber currencySymbol="" type="currency"/>
+                            </p:inputText>
+                            <p:inputText id="comissao" value="#{trechosMB.pacotetrem.comissao}" size="14" class="espacocamposright">
                                 <f:convertNumber currencySymbol="" type="currency"/>
                             </p:inputText>
                             <p:inputText id="valorgross" value="#{trechosMB.pacotetrem.valorgross}" size="15" maxlength="15" class="espacocamposright">
                                 <f:convertNumber currencySymbol="" type="currency"/>
                             </p:inputText>
-                            <p:inputText id="comissao" value="#{trechosMB.pacotetrem.comissao}" size="15" class="espacocamposright">
-                                <f:convertNumber currencySymbol="" type="currency"/>
-                            </p:inputText>
+                            
                             <br></br><br></br>
                             
                             <p class="botaocadpacote"><br></br>

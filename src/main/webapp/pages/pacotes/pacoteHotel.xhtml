@@ -43,14 +43,14 @@
                             
                             <p:outputLabel value="Moeda" for="moeda" class=""/>
                             <p:outputLabel value="Valor do Câmbio" for="cambio" class="espacocobranca5"/>
-                            <p:outputLabel value="Valor Net" for="valornet" class="espacocobranca5"/>
-                            <p:outputLabel value="Valor Gross" for="valorgross" class="espacocobranca11"/>
-                            <p:outputLabel value="Comissão" for="comissao" class="espacocobranca5"/>
-                            <p:outputLabel value="Valor Moeda Nacional" for="moedanascional" class="espacocobranca14"/>
+                            <p:outputLabel value="Valor Net" for="valornet" class="espacocobranca22"/>
+                            <p:outputLabel value="Comissão" for="comissao" class="espacocobranca11"/>
+                            <p:outputLabel value="Valor Gross" for="valorgross" class="espacocobranca5"/>
+                            
                             <br></br>
                             <p:selectOneMenu class="espacocampos5" style="width:65px;" id="moeda"  value="#{trechosMB.cambio}" converter="CambioConverter">
                                 <f:selectItem itemLabel="Moedas" itemValue="0"/> 
-                                <f:selectItems id="idmoedas" value="#{usuarioLogadoMB.listaCambio}" var="cambio" itemLabel="#{cambio.moedas.sigla}" itemValue="#{cambio}"/>
+                                <f:selectItems value="#{usuarioLogadoMB.listaCambio}" var="cambio" itemLabel="#{cambio.moedas.sigla}" itemValue="#{cambioselecionado}"/>
                                 <f:attribute name="lsitaCambio" value="#{usuarioLogadoMB.listaCambio}"/>
                             </p:selectOneMenu>
                             <p:inputText id="cambio" value="#{trechosMB.cambio.valor}" size="16" class="espacocamposright">
@@ -59,22 +59,19 @@
                             <h:commandLink action="#"  title="Editar Câmbio">  
                                 <img id="editarcambio" class="" src="../../resources/img/cambio_1.png"/>
                             </h:commandLink>
-                            <p:inputText id="valornet" value="#{trechosMB.pacotehotel.valornet}" size="14" class="espacocamposright">
+                            <p:inputText id="valornet" value="#{trechosMB.pacotehotel.valornet}" size="15" class="espacocobranca18">
+                                <f:convertNumber currencySymbol="" type="currency"/>
+                            </p:inputText>
+                            <p:inputText id="comissao" value="#{trechosMB.pacotehotel.comissao}" size="12" class="espacocamposright">
                                 <f:convertNumber currencySymbol="" type="currency"/>
                             </p:inputText>
                             <p:inputText id="valorgross" value="#{trechosMB.pacotehotel.valorgross}" size="15" maxlength="15" class="espacocamposright">
                                 <f:convertNumber currencySymbol="" type="currency"/>
                             </p:inputText>
-                            <p:inputText id="comissao" value="#{trechosMB.pacotehotel.comissao}" size="8" class="espacocamposright">
-                                <f:convertNumber currencySymbol="" type="currency"/>
-                            </p:inputText>
-                            <p:inputText id="moedanascional" value="#{trechosMB.pacotehotel.valormoedanacional}" size="20" class="espacocamposright">
-                                <f:convertNumber currencySymbol="" type="currency"/>
-                            </p:inputText>
                             <br></br><br></br><br></br>
                             <p:outputLabel value="Descritivo" for="descritivo" class=""/>
                             <br></br>
-                            <p:inputText id="descritivo" value="#{trechosMB.pacotehotel.descritivo}" size="48" maxlength="45" class="espacocampos2"/>
+                            <p:inputText id="descritivo" value="#{trechosMB.pacotehotel.descritivo}" size="164" maxlength="45" class="espacocampos2"/>
 
                             <p class="botaocadpacote"><br></br>
                                 <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Confirmar" action="#{trechosMB.salvarHotel()}"></p:commandButton>

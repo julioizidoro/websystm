@@ -46,14 +46,12 @@ public class TrechosMB implements Serializable{
     private Cambio cambio;
     private List<Pacoteingresso> listaPacoteIngresso;
     private List<Pacotepasseio> listaPacotePasseio;
-    
-    
-    
-    @PostConstruct
-    public void init(){
+
+    public TrechosMB() {
         FacesContext fc = FacesContext.getCurrentInstance();  
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
         String tipo = (String) session.getAttribute("tipoOepracaoPacote");
+        if (tipo!=null){
         Pacotetrecho pacotetrecho = (Pacotetrecho) session.getAttribute("pacoteTrecho");
         if (tipo.equalsIgnoreCase("carro")) {
             PacotesCarroFacade pacoteCarroFacade = new PacotesCarroFacade();
@@ -107,6 +105,7 @@ public class TrechosMB implements Serializable{
                 pacotetransfer.setPacotetrecho(pacotetrecho);
             }
         }
+    }
     }
     
     public Pacotecarro getPacotecarro() {
@@ -310,7 +309,13 @@ public class TrechosMB implements Serializable{
     }
     
     public String imagemCarro(Pacotetrecho pacotetrecho) {
-        if(pacotecarro!=null){
+         boolean verdade = true;
+        if (pacotetrecho.getPacotecarroList()==null){
+            verdade = false;
+        }else if (pacotetrecho.getPacotecarroList().size()==0){
+            verdade=false;
+        }
+        if(verdade){
             return "../../resources/img/carroverde.png";
         }else{
              return "../../resources/img/carrovermelho.png";
@@ -318,7 +323,13 @@ public class TrechosMB implements Serializable{
     }
     
     public String imagemCruzeiro(Pacotetrecho pacotetrecho) {
-        if(pacotecruzeiro!=null){
+        boolean verdade = true;
+        if (pacotetrecho.getPacotecruzeiroList()==null){
+            verdade = false;
+        }else if (pacotetrecho.getPacotecruzeiroList().size()==0){
+            verdade=false;
+        }
+        if(verdade){
             return "../../resources/img/cruzeiroverde.png";
         }else{
             return "../../resources/img/cruzeirovermelho.png";
@@ -326,7 +337,13 @@ public class TrechosMB implements Serializable{
     }
     
     public String imagemHotel(Pacotetrecho pacotetrecho) {
-        if(pacotehotel!=null){
+         boolean verdade = true;
+        if (pacotetrecho.getPacotehotelList()==null){
+            verdade = false;
+        }else if (pacotetrecho.getPacotehotelList().size()==0){
+            verdade=false;
+        }
+        if(verdade){
             return "../../resources/img/hotelverde.png";
         } else {
             return "../../resources/img/hotelvermelho.png";
@@ -335,7 +352,13 @@ public class TrechosMB implements Serializable{
     }
     
     public String imagemIngresso(Pacotetrecho pacotetrecho) {
-        if(pacoteingresso!=null){
+         boolean verdade = true;
+        if (pacotetrecho.getPacoteingressoList()==null){
+            verdade = false;
+        }else if (pacotetrecho.getPacoteingressoList().size()==0){
+            verdade=false;
+        }
+        if(verdade){
             return "../../resources/img/ingressoverde.png";
         }else{
             return "../../resources/img/ingressovermelho.png";
@@ -343,7 +366,13 @@ public class TrechosMB implements Serializable{
     }
     
     public String imagemPasseio(Pacotetrecho pacotetrecho) {
-         if(pacotepasseio!=null){
+        boolean verdade = true;
+        if (pacotetrecho.getPacotepasseioList()==null){
+            verdade = false;
+        }else if (pacotetrecho.getPacotepasseioList().size()==0){
+            verdade=false;
+        }
+        if(verdade){
             return "../../resources/img/passeioverdeb.png";
         }else{
              return "../../resources/img/passeiovermelhob.png";
@@ -351,15 +380,27 @@ public class TrechosMB implements Serializable{
     }
     
     public String imagemTransfer(Pacotetrecho pacotetrecho) {
-         if(pacotetransfer!=null){
-            return "../../resources/img/transferverde.png";
+        boolean verdade = true;
+        if (pacotetrecho.getPacotetransferList()==null){
+            verdade = false;
+        }else if (pacotetrecho.getPacotetransferList().size()==0){
+            verdade=false;
+        }
+        if(verdade){
+            return "../../resources/img/tranferverde.png";
         }else{
              return "../../resources/img/transfervermelho.png";
         }
     }
     
     public String imagemTrem(Pacotetrecho pacotetrecho) {
-         if(pacotetrem!=null){
+        boolean verdade = true;
+        if (pacotetrecho.getPacotetremList()==null){
+            verdade = false;
+        }else if (pacotetrecho.getPacotetremList().size()==0){
+            verdade=false;
+        }
+        if(verdade){
             return "../../resources/img/tremverde.png";
         }else{
               return "../../resources/img/tremvermelho.png";

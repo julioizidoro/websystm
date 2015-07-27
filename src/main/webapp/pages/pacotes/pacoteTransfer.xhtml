@@ -26,8 +26,9 @@
                             <p:outputLabel value="Moeda" for="moeda" class="espacocampos"/>
                             <p:outputLabel value="Valor do Câmbio" for="cambio" class="espacocobranca5"/>
                             <p:outputLabel value="Valor Net" for="valornet" class="espacocobranca5"/>
-                            <p:outputLabel value="Valor Gross" for="valorgross" class="espacocobranca11"/>
-                            <p:outputLabel value="Comissão" for="comissao" class="espacocobranca5"/>
+                            <p:outputLabel value="Comissão" for="comissao" class="espacocobranca11"/>
+                            <p:outputLabel value="Valor Gross" for="valorgross" class="espacocobranca5"/>
+                            
                             <br></br>
                             <p:selectOneMenu class="espacocampos" style="width:65px;" id="moeda"  value="#{trechosMB.cambio}"  converter="CambioConverter">
                                 <f:selectItem itemLabel="Moedas" itemValue="0"/> 
@@ -40,15 +41,16 @@
                             <h:commandLink action="#"  title="Editar Câmbio">  
                                 <img id="editarcambio" class="" src="../../resources/img/cambio_1.png"/>
                             </h:commandLink>
-                            <p:inputText id="valornet" value="#{trechosMB.pacotetransfer.valornet}" size="15" class="espacocamposright">
+                            <p:inputText id="valornet" value="#{trechosMB.pacotetransfer.valornet}" size="14" class="espacocamposright">
                                 <f:convertNumber currencySymbol="" type="currency"/>
                             </p:inputText>
-                            <p:inputText id="valorgross" value="#{trechosMB.pacotetransfer.valorgross}" size="15" maxlength="15" class="espacocamposright">
+                            <p:inputText id="comissao" value="#{trechosMB.pacotetransfer.comissao}" size="14" class="espacocamposright">
                                 <f:convertNumber currencySymbol="" type="currency"/>
                             </p:inputText>
-                            <p:inputText id="comissao" value="#{trechosMB.pacotetransfer.comissao}" size="15" class="espacocamposright">
+                            <p:inputText id="valorgross" value="#{trechosMB.pacotetransfer.valorgross}" size="17" maxlength="15" class="espacocamposright">
                                 <f:convertNumber currencySymbol="" type="currency"/>
                             </p:inputText>
+                            
                             <br></br><br></br>
                             
                             <p class="botaocadpacote"><br></br>
