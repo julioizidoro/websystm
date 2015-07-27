@@ -5,6 +5,7 @@ import br.com.travelmate.facade.PacoteTransferFacade;
 import br.com.travelmate.facade.PacoteTremFacade;
 import br.com.travelmate.facade.PacotesCarroFacade;
 import br.com.travelmate.facade.PacotesHotelFacade;
+import br.com.travelmate.model.Cambio;
 import br.com.travelmate.model.Fornecedorcidade;
 import br.com.travelmate.model.Pacotecarro;
 import br.com.travelmate.model.Pacotecruzeiro;
@@ -36,6 +37,7 @@ public class TrechosMB implements Serializable{
     private Pacotecarro pacotecarro;
     private Pacoteingresso pacoteingresso;
     private Pacotepasseio pacotepasseio;
+    private Cambio cambio;
     
     public Pacotecarro getPacotecarro() {
         return pacotecarro;
@@ -108,6 +110,14 @@ public class TrechosMB implements Serializable{
     public void setPacotepasseio(Pacotepasseio pacotepasseio) {
         this.pacotepasseio = pacotepasseio;
     }
+
+    public Cambio getCambio() {
+        return cambio;
+    }
+
+    public void setCambio(Cambio cambio) {
+        this.cambio = cambio;
+    }
     
     
     
@@ -118,7 +128,7 @@ public class TrechosMB implements Serializable{
             if(pacotecarro==null){
                 pacotecarro = new Pacotecarro();
                 pacotecarro.setPacotetrecho(pacotetrecho);
-                return "pacoteCarro";
+                return "pacotecarro";
             }
         }else {
             FacesMessage mensagem = new FacesMessage("Atenção! ", "Trecho Não Localizado.");
@@ -145,7 +155,7 @@ public class TrechosMB implements Serializable{
             if(pacotecruzeiro==null){
                 pacotecruzeiro = new Pacotecruzeiro();
                 pacotecruzeiro.setPacotetrecho(pacotetrecho);
-                return "pacoteCruzeiro";
+                return "pacotecruzeiro";
             }
         }else {
             FacesMessage mensagem = new FacesMessage("Atenção! ", "Trecho Não Localizado.");
@@ -173,7 +183,7 @@ public class TrechosMB implements Serializable{
             if(pacotehotel==null){
                 pacotehotel = new Pacotehotel();
                 pacotehotel.setPacotetrecho(pacotetrecho);
-                return "pacoteHotel";
+                return "pacotehotel";
             }
         }else {
             FacesMessage mensagem = new FacesMessage("Atenção! ", "Trecho Não Localizado.");
@@ -193,18 +203,20 @@ public class TrechosMB implements Serializable{
     }
     
     
-    public void novoTrem(Pacotetrecho pacotetrecho){
+    public String novoTrem(Pacotetrecho pacotetrecho){
         if (pacotetrecho!=null){
             PacoteTremFacade pacoteTremFacade = new PacoteTremFacade();
             pacotetrem = pacoteTremFacade.consultar(pacotetrecho.getIdpacotetrecho());
             if(pacotetrem==null){
                 pacotetrem = new Pacotetrem();
                 pacotetrem.setPacotetrecho(pacotetrecho);
+                return "pacotetrem";
             }
         }else {
             FacesMessage mensagem = new FacesMessage("Atenção! ", "Trecho Não Localizado.");
             FacesContext.getCurrentInstance().addMessage(null, mensagem);
         }
+        return "";
     }
     
     public String salvarTrem(){
@@ -218,18 +230,20 @@ public class TrechosMB implements Serializable{
     }
     
     
-    public void novoTransfer(Pacotetrecho pacotetrecho){
+    public String novoTransfer(Pacotetrecho pacotetrecho){
         if (pacotetrecho!=null){
             PacoteTransferFacade pacoteTransferFacade = new PacoteTransferFacade();
             pacotetransfer = pacoteTransferFacade.consultar(pacotetrecho.getIdpacotetrecho());
             if(pacotetransfer==null){
                 pacotetransfer = new Pacotetransfer();
                 pacotetransfer.setPacotetrecho(pacotetrecho);
+                return "pacotetransfer";
             }
         }else {
             FacesMessage mensagem = new FacesMessage("Atenção! ", "Trecho Não Localizado.");
             FacesContext.getCurrentInstance().addMessage(null, mensagem);
         }
+        return "";
     }
     
     public String salvarTransfer(){
@@ -240,5 +254,70 @@ public class TrechosMB implements Serializable{
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage("Salvo com Sucesso", ""));
         return "consultapacote";
+    }
+    
+    public String imagemAereo(Pacotetrecho pacotetrecho) {
+//        if(pacoteaereo!=null){
+//            return "../../resources/img/aereoverde.png";
+//        }else{
+            return "../../resources/img/aereovermelho.png";
+    //    }
+    }
+    
+    public String imagemCarro(Pacotetrecho pacotetrecho) {
+        if(pacotecarro!=null){
+            return "../../resources/img/carroverde.png";
+        }else{
+             return "../../resources/img/carrovermelho.png";
+        }
+    }
+    
+    public String imagemCruzeiro(Pacotetrecho pacotetrecho) {
+        if(pacotecruzeiro!=null){
+            return "../../resources/img/cruzeiroverde.png";
+        }else{
+            return "../../resources/img/cruzeirovermelho.png";
+        }
+    }
+    
+    public String imagemHotel(Pacotetrecho pacotetrecho) {
+        if(pacotehotel!=null){
+            return "../../resources/img/hotelverde.png";
+        } else {
+            return "../../resources/img/hotelvermelho.png";
+        }
+
+    }
+    
+    public String imagemIngresso(Pacotetrecho pacotetrecho) {
+        if(pacoteingresso!=null){
+            return "../../resources/img/ingressoverde.png";
+        }else{
+            return "../../resources/img/ingressovermelho.png";
+        }
+    }
+    
+    public String imagemPasseio(Pacotetrecho pacotetrecho) {
+         if(pacotepasseio!=null){
+            return "../../resources/img/passeioverdeb.png";
+        }else{
+             return "../../resources/img/passeiovermelhob.png";
+         }
+    }
+    
+    public String imagemTransfer(Pacotetrecho pacotetrecho) {
+         if(pacotetransfer!=null){
+            return "../../resources/img/transferverde.png";
+        }else{
+             return "../../resources/img/transfervermelho.png";
+        }
+    }
+    
+    public String imagemTrem(Pacotetrecho pacotetrecho) {
+         if(pacotetrem!=null){
+            return "../../resources/img/tremverde.png";
+        }else{
+              return "../../resources/img/tremvermelho.png";
+         }
     }
 }

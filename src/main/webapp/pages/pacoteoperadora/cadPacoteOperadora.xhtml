@@ -23,8 +23,9 @@
                             </p:selectOneMenu>
                             <br></br><br></br>
 
-                            <p:outputLabel value="Moeda" for="moeda" class=""/>
-                            <p:outputLabel value="Valor do Câmbio" for="idvalorcambio" class="espacocobranca5"/>
+                           
+                             <p:outputLabel value="Moeda" for="moeda" class=""/>
+                             <p:outputLabel value="Valor do Câmbio" for="idvalorcambio" class="espacocobranca5"/>
                             <p:outputLabel value="Período" class="espacocobranca2"/>
                             <br></br>
                             <p:selectOneMenu class="espacocampos5" style="width:65px;" id="moeda"  value="#{pacoteMB.cambio}" converter="CambioConverter">
@@ -32,9 +33,9 @@
                                 <f:selectItems id="idmoedas" value="#{usuarioLogadoMB.listaCambio}" var="cambio" itemLabel="#{cambio.moedas.sigla}" itemValue="#{cambio}"/>
                                 <f:attribute name="listaCambio" value="#{usuarioLogadoMB.listaCambio}"/>
                             </p:selectOneMenu>
-                            <p:inputText id="idvalorcambio" value="#{pacoteMB.cambio.valor}" size="13" class="espacocampos">
-                                <f:convertNumber currencySymbol="" type="currency"/>
-                            </p:inputText>  
+                             <p:inputText id="idvalorcambio" value="#{pacoteMB.cambio.valor}" size="13" class="espacocamposright">
+                              
+                            </p:inputText> 
                             <h:commandLink action="#"  title="Editar Câmbio">  
                                 <img id="editarcambio" class="" src="../../resources/img/cambio_1.png"/>
                             </h:commandLink>
@@ -51,37 +52,39 @@
                             <p:dataTable id="idlistatrechos" var="trecho"  value="#{pacoteMB.listaTrecho}" class="tabela3" 
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
                                          paginator="true" rows="10" style="margin-bottom:20px;font-size: 10px;" >
-                                <p:column  style="background:#ffffff;color:#1F8871;text-align:center;width:48px;z-index: 3!important;overflow: visible!important;">
-                                    <p:menubar style="min-width:10px;min-height:10px;height:25px;margin-top:-4px;z-index: 3!important; "> 
-                                        <p:submenu style="margin-top:-7px;z-index: 3!important;" >
-                                            <p:menuitem style="float:right;" value="Aereo" />
-                                            <p:menuitem style="float:right;" value="Carro"  action="#{trechosMB.novoCarro(trecho)}"/>
-                                            <p:menuitem style="float:right;" value="Cruzeiro" action="#{trechosMB.novoCruzeiro(trecho)}"/>
-                                            <p:menuitem style="float:right;" value="Hotel" action="#{trechosMB.novoHotel(trecho)}"/>
-                                            <p:menuitem style="float:right;" value="Ingresso" />
-                                            <p:menuitem style="float:right;" value="Passeio" />
-                                            <p:menuitem style="float:right;" value="Trasfer" action="#{trechosMB.novoTransfer(trecho)}"/>
-                                            <p:menuitem style="float:right;" value="Trem" action="#{trechosMB.novoTrem(trecho)}"/>
-                                            <p:menuitem style="float:right;" value="Exclir" />
-                                        </p:submenu>
-                                    </p:menubar>
-                                </p:column>
+                                
                                 <p:column headerText="Descrição" >
                                     <h:outputText value="#{trecho.descritivo}" ></h:outputText>
                                 </p:column>
-                                <p:column headerText="Itens" >
-                                    <p:commandLink value="A" />
-                                    <p:commandLink value="C" action="#{trechosMB.novoCarro(trecho)}" />
-                                    <p:commandLink value="Cr" />
-                                    <p:commandLink value="H" />
-                                    <p:commandLink value="I" />
-                                    <p:commandLink value="P" />
-                                    <p:commandLink value="T" />
-                                    <p:commandLink value="Tr" />
+                                 
+                                <p:column headerText="Itens" style="width: 35%">    
+                                     <p:commandLink  title="Aereo">
+                                         <img  src="#{trechosMB.imagemAereo(trecho)}" />
+                                    </p:commandLink>
+                                    <p:commandLink  action="#{trechosMB.novoCarro(trecho)}" title="Carro" style="margin-left:2%;">
+                                        <img  src="#{trechosMB.imagemCarro(trecho)}" />
+                                    </p:commandLink>
+                                    <p:commandLink action="#{trechosMB.novoCruzeiro(trecho)}" title="Cruzeiro" style="margin-left:2%;">
+                                         <img  src="#{trechosMB.imagemCruzeiro(trecho)}" />
+                                    </p:commandLink>
+                                    <p:commandLink  action="#{trechosMB.novoHotel(trecho)}" title="Hotel" style="margin-left:2%;">
+                                         <img  src="#{trechosMB.imagemHotel(trecho)}" />
+                                    </p:commandLink>
+                                    <p:commandLink  title="Ingresso"  style="margin-left:2%;">
+                                         <img  src="#{trechosMB.imagemIngresso(trecho)}" />
+                                    </p:commandLink>
+                                    <p:commandLink  title="Passeio"  style="margin-left:2%;">
+                                         <img  src="#{trechosMB.imagemPasseio(trecho)}" />
+                                    </p:commandLink>
+                                    <p:commandLink  action="#{trechosMB.novoTransfer(trecho)}" title="Transfer"  style="margin-left:2%;">
+                                         <img  src="#{trechosMB.imagemTransfer(trecho)}" />
+                                    </p:commandLink>
+                                    <p:commandLink  action="#{trechosMB.novoTrem(trecho)}" title="Trem"  style="margin-left:2%;">
+                                         <img  src="#{trechosMB.imagemTrem(trecho)}" />
+                                    </p:commandLink>
                                 </p:column>
-                                 <br></br><br></br><br></br>
                             </p:dataTable>
-                             <br></br><br></br><br></br> <br></br><br></br><br></br> <br></br><br></br><br></br>
+                             <br></br><br></br><br></br> <br></br><br></br><br></br> <br></br><br></br><br></br><br></br><br></br><br></br>
                             <p class="botaocadpacote"><br></br>
                                 <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Confirmar" action="#"></p:commandButton>
                                 <p:commandButton class="espacocampos" onclick="" icon="ui-icon-close" value="Cancelar" action="#"></p:commandButton>
@@ -90,6 +93,7 @@
                     </p:accordionPanel>
                     <br></br><br></br><br></br>
                 </div>
+                
             </h:form>     
         </ui:define>
     </ui:composition>

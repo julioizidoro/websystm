@@ -47,12 +47,12 @@
                             <p:outputLabel value="Comissão" for="comissao" class="espacocobranca5"/>
                             <p:outputLabel value="Valor Moeda Nacional" for="moedanacional" class="espacocobranca14"/>
                             <br></br>
-                            <p:selectOneMenu class="espacocampos5" style="width:65px;" id="moeda"  value="#{trechosMB.pacotecarro.cambio}" >
+                            <p:selectOneMenu class="espacocampos5" style="width:65px;" id="moeda"  value="#{trechosMB.cambio}" converter="CambioConverter">
                                 <f:selectItem itemLabel="Moedas" itemValue="0"/> 
-                                <f:selectItems value="#{trechosMB.usuarioLogadoMB.listaCambio}" var="cambioselecionado" itemLabel="#{cambioselecionado.moedas.sigla}" itemValue="#{cambioselecionado}"/>
+                                <f:selectItems value="#{usuarioLogadoMB.listaCambio}" var="cambio" itemLabel="#{cambio.moedas.sigla}" itemValue="#{cambioselecionado}"/>
                                 <f:attribute name="lsitaCambio" value="#{usuarioLogadoMB.listaCambio}"/>
                             </p:selectOneMenu>
-                            <p:inputText id="cambio" value="#{trechosMB.pacotecarro.cambio.valor}" size="16" class="espacocamposright">
+                            <p:inputText id="cambio" value="#{trechosMB.cambio.valor}" size="16" class="espacocamposright">
                                 <f:convertNumber currencySymbol="" type="currency"/>
                             </p:inputText>  
                             <h:commandLink action="#"  title="Editar Câmbio">  
@@ -67,7 +67,7 @@
                             <p:inputText id="comissao" value="#{trechosMB.pacotecarro.comissao}" size="8" class="espacocamposright">
                                 <f:convertNumber currencySymbol="" type="currency"/>
                             </p:inputText>
-                            <p:inputText id="moedanacional" value="#{trechosMB.pacotecarro.valormoedanacional}" size="20" class="espacocampos">
+                            <p:inputText id="moedanacional" value="#{trechosMB.pacotecarro.valormoedanacional}" size="20" class="espacocamposright">
                                 <f:convertNumber currencySymbol="" type="currency"/>
                             </p:inputText>
                             

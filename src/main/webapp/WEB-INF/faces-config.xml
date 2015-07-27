@@ -78,5 +78,60 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
-        
+        <navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>pacotehotel</from-outcome>
+			<to-view-id>/pages/pacotes/pacoteHotel.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+        <navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>pacotecarro</from-outcome>
+			<to-view-id>/pages/pacotes/pacoteCarro.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+        <navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>pacotecruzeiro</from-outcome>
+			<to-view-id>/pages/pacotes/pacoteCruzeiro.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+        <navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>pacotetransfer</from-outcome>
+			<to-view-id>/pages/pacotes/pacoteTransfer.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+        <navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>pacotetrem</from-outcome>
+			<to-view-id>/pages/pacotes/pacoteTrem.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+        <navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>pacoteingresso</from-outcome>
+			<to-view-id>/pages/pacotes/pacoteIngresso.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+        <navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>pacotepasseio</from-outcome>
+			<to-view-id>/pages/pacotes/pacotePasseio.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
 </faces-config>

@@ -43,12 +43,12 @@
                             <p:outputLabel value="Valor Gross" for="valorgross" class="espacocobranca11"/>
                             <p:outputLabel value="Comissão" for="comissao" class="espacocobranca5"/>
                             <br></br>
-                            <p:selectOneMenu class="espacocampos5" style="width:65px;" id="moeda"  value="#{trechosMB.pacotepasseio.cambio}" >
+                            <p:selectOneMenu class="espacocampos5" style="width:65px;" id="moeda"  value="#{trechosMB.cambio}"  converter="CambioConverter">
                                 <f:selectItem itemLabel="Moedas" itemValue="0"/> 
-                                <f:selectItems id="idmoedas" value="#{trechosMB.usuarioLogadoMB.listaCambio}" var="cambio" itemLabel="#{cambio.moedas.sigla}" itemValue="#{cambio}"/>
-                                <f:attribute name="lsitaCambio" value="#{trechosMB.usuarioLogadoMB.listaCambio}"/>
+                                <f:selectItems id="idmoedas" value="#{usuarioLogadoMB.listaCambio}" var="cambio" itemLabel="#{cambio.moedas.sigla}" itemValue="#{cambio}"/>
+                                <f:attribute name="lsitaCambio" value="#{usuarioLogadoMB.listaCambio}"/>
                             </p:selectOneMenu>
-                            <p:inputText id="cambio" value="#{trechosMB.pacotepasseio.cambio.valor}" size="16" class="espacocamposright">
+                            <p:inputText id="cambio" value="#{trechosMB.cambio.valor}" size="16" class="espacocamposright">
                                 <f:convertNumber currencySymbol="" type="currency"/>
                             </p:inputText>  
                             <h:commandLink action="#"  title="Editar Câmbio">  
