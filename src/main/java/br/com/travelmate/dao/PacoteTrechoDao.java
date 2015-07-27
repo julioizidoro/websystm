@@ -34,10 +34,10 @@ public class PacoteTrechoDao {
     public List<Pacotetrecho> listar(String sql) throws SQLException{
         manager = ConectionFactory.getConnection();
         manager.getTransaction().begin();
-        Query q = manager.createQuery("sql");
+        Query q = manager.createQuery(sql);
         List<Pacotetrecho> lista = null;
         if (q.getResultList().size()>0){
-            lista = q.getResultList();
+            lista = (List<Pacotetrecho>) q.getResultList();
         }
         manager.getTransaction().commit();
         return lista;

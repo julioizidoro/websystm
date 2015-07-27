@@ -38,8 +38,8 @@
                             <h:commandLink action="#"  title="Editar Câmbio">  
                                 <img id="editarcambio" class="" src="../../resources/img/cambio_1.png"/>
                             </h:commandLink>
-                            <p:calendar id="datainicio"  size="17" class="espacocobranca11" locale="pt"  pattern="dd/MM/yyyy"  />
-                            <p:calendar id="datatermino"  size="17" class="espacocampos" locale="pt"   pattern="dd/MM/yyyy" />
+                            <p:calendar id="datainicio"  size="17" class="espacocobranca11" locale="pt"  pattern="dd/MM/yyyy" value="#{pacoteMB.pacotes.datainicio}" />
+                            <p:calendar id="datatermino"  size="17" class="espacocampos" locale="pt"   pattern="dd/MM/yyyy" value="#{pacoteMB.pacotes.datetermino}"/>
                             <p:commandButton class="espacocobranca4" onclick="" icon="ui-icon-triangle-1-e" value="Iniciar" action="#{pacoteMB.iniciarPacote()}" />
                             <p:commandButton class="espacocobranca4" onclick="" icon="ui-icon-check" value="Finalizar" action="#{pacoteMB.finalizar()}"  />
                             <br></br><br></br>
@@ -68,6 +68,16 @@
                                 </p:column>
                                 <p:column headerText="Descrição" >
                                     <h:outputText value="#{trecho.descritivo}" ></h:outputText>
+                                </p:column>
+                                <p:column headerText="Itens" >
+                                    <p:commandLink value="A" />
+                                    <p:commandLink value="C" action="#{trechosMB.novoCarro(trecho)}" />
+                                    <p:commandLink value="Cr" />
+                                    <p:commandLink value="H" />
+                                    <p:commandLink value="I" />
+                                    <p:commandLink value="P" />
+                                    <p:commandLink value="T" />
+                                    <p:commandLink value="Tr" />
                                 </p:column>
                                  <br></br><br></br><br></br>
                             </p:dataTable>

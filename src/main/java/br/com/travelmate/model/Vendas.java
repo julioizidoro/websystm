@@ -35,18 +35,6 @@ import javax.validation.constraints.Size;
 @NamedQueries({
     @NamedQuery(name = "Vendas.findAll", query = "SELECT v FROM Vendas v")})
 public class Vendas implements Serializable {
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendas")
-    private List<Orcamento> orcamentoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendas")
-    private List<Formapagamento> formapagamentoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendas")
-    private List<Passagemaerea> passagemaereaList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendas")
-    private List<Pacotes> pacotesList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendas")
-    private List<Cobranca> cobrancaList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendas")
-    private List<Contasreceber> contasreceberList;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -79,8 +67,6 @@ public class Vendas implements Serializable {
     private Date datacancelamento;
     @Column(name = "usuariocancelamento")
     private Integer usuariocancelamento;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendas")
-    private List<Vendascomissao> vendascomissaoList;
     @JoinColumn(name = "cliente_idcliente", referencedColumnName = "idcliente")
     @ManyToOne(optional = false)
     private Cliente cliente;
@@ -99,6 +85,9 @@ public class Vendas implements Serializable {
     @JoinColumn(name = "usuario_idusuario", referencedColumnName = "idusuario")
     @ManyToOne(optional = false)
     private Usuario usuario;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendas")
+    private List<Cobranca> cobrancaList;
+    
 
     public Vendas() {
     }
@@ -187,14 +176,6 @@ public class Vendas implements Serializable {
         this.usuariocancelamento = usuariocancelamento;
     }
 
-    public List<Vendascomissao> getVendascomissaoList() {
-        return vendascomissaoList;
-    }
-
-    public void setVendascomissaoList(List<Vendascomissao> vendascomissaoList) {
-        this.vendascomissaoList = vendascomissaoList;
-    }
-
     public Cliente getCliente() {
         return cliente;
     }
@@ -268,14 +249,6 @@ public class Vendas implements Serializable {
         return "br.com.travelmate.model.Vendas[ idvendas=" + idvendas + " ]";
     }
 
-    public List<Contasreceber> getContasreceberList() {
-        return contasreceberList;
-    }
-
-    public void setContasreceberList(List<Contasreceber> contasreceberList) {
-        this.contasreceberList = contasreceberList;
-    }
-
     public List<Cobranca> getCobrancaList() {
         return cobrancaList;
     }
@@ -284,36 +257,4 @@ public class Vendas implements Serializable {
         this.cobrancaList = cobrancaList;
     }
 
-    public List<Pacotes> getPacotesList() {
-        return pacotesList;
-    }
-
-    public void setPacotesList(List<Pacotes> pacotesList) {
-        this.pacotesList = pacotesList;
-    }
-
-    public List<Passagemaerea> getPassagemaereaList() {
-        return passagemaereaList;
-    }
-
-    public void setPassagemaereaList(List<Passagemaerea> passagemaereaList) {
-        this.passagemaereaList = passagemaereaList;
-    }
-
-    public List<Orcamento> getOrcamentoList() {
-        return orcamentoList;
-    }
-
-    public void setOrcamentoList(List<Orcamento> orcamentoList) {
-        this.orcamentoList = orcamentoList;
-    }
-
-    public List<Formapagamento> getFormapagamentoList() {
-        return formapagamentoList;
-    }
-
-    public void setFormapagamentoList(List<Formapagamento> formapagamentoList) {
-        this.formapagamentoList = formapagamentoList;
-    }
-    
 }

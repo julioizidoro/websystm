@@ -40,7 +40,7 @@ public class GerarListas {
     
     public static List<Pacotetrecho> listarPacoteTrecho(String sql){
         PacoteTrechoFacade pacoteTrechoFacade = new PacoteTrechoFacade();
-        List<Pacotetrecho> lista = listarPacoteTrecho(sql);
+        List<Pacotetrecho> lista = pacoteTrechoFacade.listar(sql);
         if (lista==null){
             lista = new ArrayList<Pacotetrecho>();
         }

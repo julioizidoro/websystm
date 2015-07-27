@@ -69,6 +69,9 @@ public class Pacotes implements Serializable {
     private Usuario usuario;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pacotes")
     private List<Pacotetrecho> pacotetrechoList;
+    @JoinColumn(name = "cliente_idcliente", referencedColumnName = "idcliente")
+    @ManyToOne(optional = false)
+    private Cliente cliente;
     @Transient
     private boolean selecionado;
 
@@ -173,6 +176,14 @@ public class Pacotes implements Serializable {
 
     public void setSelecionado(boolean selecionado) {
         this.selecionado = selecionado;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     @Override

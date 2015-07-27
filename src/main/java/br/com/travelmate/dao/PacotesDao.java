@@ -65,7 +65,7 @@ public class PacotesDao {
         Query q = manager.createQuery(sql);
         manager.getTransaction().commit();
         if (q.getResultList().size() > 0) {
-            return  (List<Pacotes>) q.getResultList().get(0);
+            return  (List<Pacotes>) q.getResultList();
         } else {
             return null;
         }

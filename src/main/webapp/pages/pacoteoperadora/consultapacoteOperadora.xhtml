@@ -20,11 +20,11 @@
                             </h:panelGrid>
                             <h:panelGrid columns="8" cellpadding="1">
                                 <p:inputText id="unidade" size="41" maxlength="100" class="left3"  value="#"/>
-                                <p:calendar id="dataIni" class="left4"  pattern="dd/MM/yyyy" mask="true" size="11" maxlength="15" locale="pt"  pattern="dd/MM/yyyy"  >
-                                    <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                                <p:calendar id="dataIni" class="left4"  pattern="dd/MM/yyyy" mask="true" size="11" maxlength="15" locale="pt"  >
+                                    <f:convertDateTime    timeZone="America/Sao_Paulo"/>
                                 </p:calendar>
-                                <p:calendar id="dataFinal" class="espacocampospesquisa2"  pattern="dd/MM/yyyy" mask="true" size="11" maxlength="15" locale="pt"  pattern="dd/MM/yyyy" >
-                                    <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                                <p:calendar id="dataFinal" class="espacocampospesquisa2"  pattern="dd/MM/yyyy" mask="true" size="11" maxlength="15" locale="pt"   >
+                                    <f:convertDateTime    timeZone="America/Sao_Paulo"/>
                                 </p:calendar>
                                  <p:commandButton value="Pesquisar" class="espacodialog2"  icon=" ui-icon-search " update="telapacotesoperadora:conspacoteoperadora"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#"/>
                             </h:panelGrid><br></br>
@@ -47,7 +47,7 @@
                         <p:column  style="background:#ffffff;color:#1F8871;text-align:center;width:48px;z-index: 3!important;overflow: visible!important;">
                             <p:menubar style="min-width:10px;min-height:10px;height:25px;margin-top:-4px;"> 
                                 <p:submenu style="margin-top:-7px;" >
-                                    <p:menuitem style="float:right;" value="Editar" action="#" />
+                                    <p:menuitem style="float:right;" value="Editar" action="#{pacoteMB.editarPacote(conspacoteoperadora)}" />
                                 </p:submenu>
                             </p:menubar>
                         </p:column>
@@ -66,9 +66,6 @@
                             <h:outputText value="#{conspacoteoperadora.datetermino}">
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </h:outputText>                           
-                        </p:column>
-                        <p:column style="width:35px;background:#ffffff;color:#1F8871;text-align: center">
-                            <p:selectBooleanCheckbox value="#{conspacoteoperadora.selecionado}"/>
                         </p:column>
                     </p:dataTable>
                     <br></br>

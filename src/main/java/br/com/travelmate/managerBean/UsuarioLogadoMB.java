@@ -11,8 +11,10 @@ import br.com.travelmate.facade.UsuarioFacade;
 import br.com.travelmate.model.Cambio;
 import br.com.travelmate.model.Parametrosprodutos;
 import br.com.travelmate.model.Usuario;
+import br.com.travelmate.util.Criptografia;
 import br.com.travelmate.util.Formatacao;
 import java.io.Serializable;
+import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -168,8 +170,15 @@ public class UsuarioLogadoMB implements Serializable{
     
     public String validarUsuario(){
         if ((usuario.getLogin()==null) && (usuario.getSenha()==null)){
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro!", "Login Invalido."));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro!", "Acesso Nrgado."));
         }else{
+            String senha = "";
+            try {
+                senha = Criptografia.encript(usuario.getSenha());
+            } catch (NoSuchAlgorithmException ex) {
+                Logger.getLogger(UsuarioLogadoMB.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            usuario.setSenha(senha);
             UsuarioFacade usuarioFacade = new UsuarioFacade();
             usuario = usuarioFacade.consultar(usuario.getLogin(), usuario.getSenha());
             if (usuario==null){
