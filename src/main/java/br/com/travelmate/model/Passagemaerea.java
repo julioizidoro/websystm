@@ -256,6 +256,10 @@ public class Passagemaerea implements Serializable {
     private Float totalTaxaEmbarqueNacionall;
     @Column(name = "totalOPTaxas")
     private Float totalOPTaxas;
+    @Column(name = "valornet")
+    private Float valornet;
+    @Column(name = "valorgorss")
+    private Float valorgorss;
     @JoinColumn(name = "fornecedor_idfornecedor", referencedColumnName = "idfornecedor")
     @ManyToOne(optional = false)
     private Fornecedor fornecedor;
@@ -908,6 +912,22 @@ public class Passagemaerea implements Serializable {
 
     public void setTotalOPTaxas(Float totalOPTaxas) {
         this.totalOPTaxas = totalOPTaxas;
+    }
+
+    public Float getValornet() {
+        return valornet;
+    }
+
+    public void setValornet(Float valornet) {
+        this.valornet = valornet;
+    }
+
+    public Float getValorgorss() {
+        return valorgorss;
+    }
+
+    public void setValorgorss(Float valorgorss) {
+        this.valorgorss = valorgorss;
     }
 
     public Fornecedor getFornecedor() {

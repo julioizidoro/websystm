@@ -35,6 +35,11 @@ import javax.validation.constraints.Size;
 @NamedQueries({
     @NamedQuery(name = "Pacotes.findAll", query = "SELECT p FROM Pacotes p")})
 public class Pacotes implements Serializable {
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "valorgross")
+    private Float valorgross;
+    @Column(name = "valornet")
+    private Float valornet;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -209,6 +214,22 @@ public class Pacotes implements Serializable {
     @Override
     public String toString() {
         return "br.com.travelmate.model.Pacotes[ idpacotes=" + idpacotes + " ]";
+    }
+
+    public Float getValorgross() {
+        return valorgross;
+    }
+
+    public void setValorgross(Float valorgross) {
+        this.valorgross = valorgross;
+    }
+
+    public Float getValornet() {
+        return valornet;
+    }
+
+    public void setValornet(Float valornet) {
+        this.valornet = valornet;
     }
     
 }

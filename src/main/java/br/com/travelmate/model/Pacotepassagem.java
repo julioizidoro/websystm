@@ -256,6 +256,10 @@ public class Pacotepassagem implements Serializable {
     private Float totalTaxaEmbarqueNacionall;
     @Column(name = "totalOPTaxas")
     private Float totalOPTaxas;
+    @Column(name = "valornet")
+    private Float valornet;
+    @Column(name = "valorgross")
+    private Float valorgross;
     @JoinColumn(name = "cambio_idcambio", referencedColumnName = "idcambio")
     @ManyToOne(optional = false)
     private Cambio cambio;
@@ -911,6 +915,22 @@ public class Pacotepassagem implements Serializable {
 
     public void setTotalOPTaxas(Float totalOPTaxas) {
         this.totalOPTaxas = totalOPTaxas;
+    }
+
+    public Float getValornet() {
+        return valornet;
+    }
+
+    public void setValornet(Float valornet) {
+        this.valornet = valornet;
+    }
+
+    public Float getValorgross() {
+        return valorgross;
+    }
+
+    public void setValorgross(Float valorgross) {
+        this.valorgross = valorgross;
     }
 
     public Cambio getCambio() {
