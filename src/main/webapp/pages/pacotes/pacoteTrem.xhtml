@@ -63,37 +63,39 @@
                             <p:inputText id="qntdAdolescente" value="#{trechosMB.pacotetrem.chd}" size="10" class="espacocobranca11"/>
                             <br></br><br></br><br></br>
                             
+                            
                             <p:outputLabel value="Câmbio" for="moeda" class=""/>
                             <p:outputLabel value="Valor do Câmbio" for="idvalorcambio" class="espacocobranca5"/>
-                            <p:outputLabel value="Valor Net" for="valornet" class="espacocobranca22"/>
+                            <p:outputLabel value="Valor Net" for="valornet" class="espacocobranca24"/>
                             <p:outputLabel value="Comissão" for="comissao" class="espacocobranca11"/>
                             <p:outputLabel value="Valor Gross" for="valorgross" class="espacocobranca5"/>
-                            
+                            <p:outputLabel value="Valor Moeda Nacional" for="moedanacional" class="espacocobranca5"/>
                             <br></br>
-                            <p:selectOneMenu class="espacocampos5" style="width:65px;" id="moeda"  value="#{trechosMB.cambio}"  converter="CambioConverter">
-                               <f:selectItem itemLabel="Câmbio" itemValue="0"/> 
-                                <f:selectItems id="idmoedas" value="#{usuarioLogadoMB.listaCambio}" var="cambio" itemLabel="#{cambio.moedas.sigla}" itemValue="#{cambio}"/>
+                            <p:selectOneMenu class="espacocampos5" style="width:70px;" id="moeda"  value="#{trechosMB.cambio}" converter="CambioConverter">
+                                <f:selectItem itemLabel="Moedas" itemValue="0"/> 
+                                <f:selectItems value="#{usuarioLogadoMB.listaCambio}" var="cambio" itemLabel="#{cambio.moedas.sigla}" itemValue="#{cambio}"/>
                                 <f:attribute name="listaCambio" value="#{usuarioLogadoMB.listaCambio}"/>
                                 <p:ajax event="change" update="idvalorcambio" />
                             </p:selectOneMenu>
-                            <p:inputText id="idvalorcambio" value="#{trechosMB.cambio.valor}" size="16" class="espacocamposright">
+                            <p:inputText id="idvalorcambio" value="#{trechosMB.cambio.valor}" size="14" class="espacocamposright">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>  
                             <h:commandLink action="#"  title="Editar Câmbio">  
                                 <img id="editarcambio" class="" src="../../resources/img/cambio_1.png"/>
                             </h:commandLink>
-                            <p:inputText id="valornet" value="#{trechosMB.pacotetrem.valornet}" size="14" class="espacocobranca18rig">
+                            <p:inputText id="valornet" value="#{trechosMB.pacotetrem.valornet}" size="14" class="espacocobranca20">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
-                            <p:inputText id="comissao" value="#{trechosMB.pacotetrem.comissao}" size="14" class="espacocamposright">
+                            <p:inputText id="comissao" value="#{trechosMB.pacotetrem.comissao}" size="12" class="espacocamposright">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
-                            <p:inputText id="valorgross" value="#{trechosMB.pacotetrem.valorgross}" size="15" maxlength="15" class="espacocamposright">
+                            <p:inputText id="valorgross" value="#{trechosMB.pacotetrem.valorgross}" size="14" maxlength="15" class="espacocamposright">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
-                            
-                            <br></br><br></br>
-                            
+                            <p:inputText id="moedanacional" value="" size="19" maxlength="15" class="espacocamposright">
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                            </p:inputText>
+                            <br></br><br></br><br></br>
                             <p class="botaocadpacote"><br></br>
                                 <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Confirmar" action="#{trechosMB.salvarTrem()}"></p:commandButton>
                                 <p:commandButton class="espacocampos" onclick="" icon="ui-icon-close" value="Cancelar" action="#"></p:commandButton>
