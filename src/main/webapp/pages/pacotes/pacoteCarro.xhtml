@@ -4,7 +4,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <ui:composition template="/pages/templates/default.xhtml">
         <ui:define name="corpo">
             <h:form id="cadastropacotecarro">
@@ -37,11 +38,16 @@
                             </p:calendar>
                             <p:inputMask id="horadevolucao" value="#{trechosMB.pacotecarro.horadevolucao}" size="12" mask="99:99" class="espacocampos"/>
                             <p:inputText id="categoria" value="#{trechosMB.pacotecarro.categoria}" size="18" maxlength="15" class="espacocampos"/>
-                            <p:inputText id="qntdAdulto" value="#{trechosMB.pacotecarro.adt}" size="12" class="espacocampos"/>
-                            <p:inputText id="qntdClianca" value="#{trechosMB.pacotecarro.chd}" size="15" class="espacocampos"/>
-                            <p:inputText id="qntdInfantil" value="#{trechosMB.pacotecarro.inf}" size="13" class="espacocampos"/>
+                            <p:inputText id="qntdAdulto" value="#{trechosMB.pacotecarro.adt}" size="12" class="espacocampos">
+                                <f:convertNumber  type="number"/>
+                            </p:inputText>
+                            <p:inputText id="qntdClianca" value="#{trechosMB.pacotecarro.chd}" size="15" class="espacocampos">
+                                  <f:convertNumber  type="number"/>
+                            </p:inputText>
+                            <p:inputText id="qntdInfantil" value="#{trechosMB.pacotecarro.inf}" size="13" class="espacocampos">
+                                  <f:convertNumber  type="number"/>
+                            </p:inputText>
                             <br></br><br></br><br></br>
-                            
                             <p:outputLabel value="Moeda" for="moeda" class=""/>
                             <p:outputLabel value="Valor do Câmbio" for="cambio" class="espacocobranca5"/>
                             <p:outputLabel value="Valor Net" for="valornet" class="espacocobranca22"/>
@@ -55,19 +61,19 @@
                                 <f:attribute name="lsitaCambio" value="#{usuarioLogadoMB.listaCambio}"/>
                             </p:selectOneMenu>
                             <p:inputText id="cambio" value="#{trechosMB.cambio.valor}" size="16" class="espacocamposright">
-                                <f:convertNumber currencySymbol="" type="currency"/>
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>  
                             <h:commandLink action="#"  title="Editar Câmbio">  
                                 <img id="editarcambio" class="" src="../../resources/img/cambio_1.png"/>
                             </h:commandLink>
                             <p:inputText id="valornet" value="#{trechosMB.pacotecarro.valornet}" size="15" class="espacocobranca18rig">
-                                <f:convertNumber currencySymbol="" type="currency"/>
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
                             <p:inputText id="comissao" value="#{trechosMB.pacotecarro.comissao}" size="12" class="espacocamposright">
-                                <f:convertNumber currencySymbol="" type="currency"/>
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
                             <p:inputText id="valorgross" value="#{trechosMB.pacotecarro.valorgross}" size="15" maxlength="15" class="espacocamposright">
-                                <f:convertNumber currencySymbol="" type="currency"/>
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
                             
                             

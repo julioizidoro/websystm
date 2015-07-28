@@ -80,7 +80,7 @@
                             </p:column>
                             <p:column headerText="Valor Conta" style="width:85px;background:#ffffff;color:#1F8871;text-align: right;" styleClass="alinharCenter">
                                 <h:outputText >
-                                    <f:convertNumber currencySymbol="" type="currency"/>
+                                    <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 </h:outputText>                                    
                             </p:column>
                              <p:column style="width:42px;background:#ffffff;color:#1F8871;text-align: center">

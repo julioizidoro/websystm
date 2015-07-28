@@ -71,22 +71,22 @@
                         </p:column>
                         <p:column headerText="Valor Bruto" style="width:95px;background:#ffffff;color:#1F8871;text-align:right;" sortBy="#{consVendaComissao.valorbruto}">
                             <h:outputText value="#{consVendaComissao.valorbruto}">
-                                <f:convertNumber currencySymbol="" type="currency"/>
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </h:outputText>
                         </p:column>
                         <p:column headerText="Valor Fornecedor" style="width:105px;background:#ffffff;color:#1F8871;text-align:right;">
                             <h:outputText value="#{consVendaComissao.valorfornecedor}" >
-                                <f:convertNumber currencySymbol="" type="currency"/>
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </h:outputText>
                         </p:column> 
                         <p:column headerText="Comissão TM" style="width:90px;background:#ffffff;color:#1F8871;text-align:right;">
                             <h:outputText value="#{consVendaComissao.comissaotm}" >
-                                <f:convertNumber currencySymbol="" type="currency"/>
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </h:outputText>
                         </p:column>
                         <p:column headerText="Comissão Franquia" style="width:117px;background:#ffffff;color:#1F8871;text-align:right;">
                             <h:outputText value="#{consVendaComissao.comissaofraquia}" >
-                                <f:convertNumber currencySymbol="" type="currency"/>
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </h:outputText>
                         </p:column>
                     </p:dataTable>
@@ -102,7 +102,7 @@
                     <br></br>
 
                     <p:inputText  size="12" value="#{vendasComissaoMB.vendascomissao.vendas.valor}" id="valor" class="espacocamposright" style="font-size: 11px">
-                        <f:convertNumber currencySymbol="" type="currency"/>
+                        <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                     </p:inputText>
                     <p:calendar id="data" value="#{vendasComissaoMB.vendascomissao.vendas.dataVenda}" style="font-size: 11px" class="espacocampos"  pattern="dd/MM/yyyy" mask="true" size="11" maxlength="15" >
                         <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
@@ -159,12 +159,12 @@
                         </p:column>
                         <p:column headerText="Venda Bruta" style="width:90px">
                             <h:outputText value="#{comissaotabela.valorBruto}" >
-                                <f:convertNumber currencySymbol="" type="currency"/>
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </h:outputText>
                         </p:column>
                         <p:column headerText="Comissão" style="width:90px">
                             <h:outputText value="#{comissaotabela.comissao}" >
-                                <f:convertNumber currencySymbol="" type="currency"/>
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </h:outputText>
                         </p:column>
                     </p:dataTable>

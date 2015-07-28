@@ -94,7 +94,7 @@
                         </p:column>
                         <p:column headerText="Valor" style="width:80px;background:#ffffff;color:#1F8871;text-align:right;" >
                             <h:outputText value="#{contasrecebe.valorparcela}">
-                                <f:convertNumber currencySymbol="" type="currency"/>
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </h:outputText>  
                         </p:column>
                         <p:column headerText="Banco" style="width:100px;background:#ffffff;color:#1F8871;text-align: center;" styleClass="alinharCenter">
@@ -120,17 +120,17 @@
                         <p:outputLabel value="Total Contas Vencidas" for="contasVenc" class="fontebranca" style="font-size: 11px"/> 
                         <p:outputLabel value="Total Contas Vencendo" for="contasVencendo" class="leftcampo" style="font-size: 11px"/>
                         <p:inputText id="contasVenc" size="15" maxlength="100" class="fontebrancaa" value="#{contasReceberMB.contasVencidas}"  readonly="true">
-                             <f:convertNumber currencySymbol="" type="currency"/>
+                             <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                         </p:inputText>
                         <p:inputText id="contasVencendo" size="15" maxlength="100" class="leftcampoo" value="#{contasReceberMB.contasVencendo}"  readonly="true">
-                             <f:convertNumber currencySymbol="" type="currency"/>
+                             <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                         </p:inputText>
                        
                     </h:panelGrid>
                     <h:panelGrid columns="1" cellpadding="1">
                         <p:outputLabel value="Total Contas a Vencer" for="contasVencer" style="font-size: 11px"/>
                         <p:inputText id="contasVencer" size="15" maxlength="100" class="fontebrancaa" value="#{contasReceberMB.contasVencer}"  readonly="true">
-                                <f:convertNumber currencySymbol="" type="currency"/>
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                         </p:inputText>
                      </h:panelGrid>   
                      <br></br><br></br>

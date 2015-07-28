@@ -264,7 +264,7 @@
                                 </p:selectOneMenu>
                                 <p:inputText id="valorOrca" size="12" class="campos1s" value="">
 
-                                    <f:convertNumber currencySymbol="" type="currency"/>
+                                    <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 </p:inputText>
                                 <p:selectOneMenu id="acrejuros" value="#{passagemMB.passagem.formaPagamento}" style="width:130px;font-size: 10px" class="espaco11" >
                                     <f:selectItem itemLabel="Sim" itemValue="sim"/> 
@@ -272,11 +272,11 @@
                                 </p:selectOneMenu>
                                 <p:inputText id="valorJuros" size="14" class="campos1s" value="">
 
-                                    <f:convertNumber currencySymbol="" type="currency"/>
+                                    <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 </p:inputText>
                                 <p:inputText id="totalpag" size="15" class="campos1s" value="">
 
-                                    <f:convertNumber currencySymbol="" type="currency"/>
+                                    <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 </p:inputText>
                             </h:panelGrid>
                             <br></br><br></br>
@@ -364,7 +364,7 @@
                                 </p:column>
                                 <p:column headerText="Valor a Parcelar" style="background:#ffffff;text-decoration-color:#1F8871;color:#1F8871;text-align:center;" sortBy="#">
                                     <h:outputText value="" >
-                                        <f:convertNumber currencySymbol="" type="currency"/>
+                                        <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                     </h:outputText>
                                 </p:column>
                                 <p:column headerText="Nº Parcelas" style="background:#ffffff;text-decoration-color:#1F8871;color:#1F8871;text-align:center;" sortBy="#">
@@ -372,7 +372,7 @@
                                 </p:column>
                                 <p:column headerText="Valor Parcela" style="background:#ffffff;text-decoration-color:#1F8871;color:#1F8871;text-align:center;" sortBy="#">
                                     <h:outputText value="" >
-                                        <f:convertNumber currencySymbol="" type="currency"/>
+                                        <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                     </h:outputText>
                                 </p:column>
                             </p:dataTable>

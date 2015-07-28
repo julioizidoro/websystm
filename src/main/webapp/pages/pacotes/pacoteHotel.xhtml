@@ -54,19 +54,19 @@
                                 <f:attribute name="lsitaCambio" value="#{usuarioLogadoMB.listaCambio}"/>
                             </p:selectOneMenu>
                             <p:inputText id="cambio" value="#{trechosMB.cambio.valor}" size="16" class="espacocamposright">
-                                <f:convertNumber currencySymbol="" type="currency"/>
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>  
                             <h:commandLink action="#"  title="Editar Câmbio">  
                                 <img id="editarcambio" class="" src="../../resources/img/cambio_1.png"/>
                             </h:commandLink>
                             <p:inputText id="valornet" value="#{trechosMB.pacotehotel.valornet}" size="15" class="espacocobranca18">
-                                <f:convertNumber currencySymbol="" type="currency"/>
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
                             <p:inputText id="comissao" value="#{trechosMB.pacotehotel.comissao}" size="12" class="espacocamposright">
-                                <f:convertNumber currencySymbol="" type="currency"/>
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
                             <p:inputText id="valorgross" value="#{trechosMB.pacotehotel.valorgross}" size="15" maxlength="15" class="espacocamposright">
-                                <f:convertNumber currencySymbol="" type="currency"/>
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
                             <br></br><br></br><br></br>
                             <p:outputLabel value="Descritivo" for="descritivo" class=""/>

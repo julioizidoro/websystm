@@ -55,7 +55,7 @@
                                 </p:column>
                                 <p:column headerText="Usuário" >
                                     <h:outputText value="#{cobranca.usuario}" >
-                                        <f:convertNumber currencySymbol="" type="currency"/>
+                                        <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                     </h:outputText>
                                 </p:column>
                             </p:dataTable>
