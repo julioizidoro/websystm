@@ -35,6 +35,10 @@ import javax.validation.constraints.Size;
 @NamedQueries({
     @NamedQuery(name = "Pacotes.findAll", query = "SELECT p FROM Pacotes p")})
 public class Pacotes implements Serializable {
+    @Column(name = "comissao")
+    private Double comissao;
+    @Column(name = "valormoedanacional")
+    private Float valormoedanacional;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "valorgross")
     private Float valorgross;
@@ -230,6 +234,22 @@ public class Pacotes implements Serializable {
 
     public void setValornet(Float valornet) {
         this.valornet = valornet;
+    }
+
+    public Double getComissao() {
+        return comissao;
+    }
+
+    public void setComissao(Double comissao) {
+        this.comissao = comissao;
+    }
+
+    public Float getValormoedanacional() {
+        return valormoedanacional;
+    }
+
+    public void setValormoedanacional(Float valormoedanacional) {
+        this.valormoedanacional = valormoedanacional;
     }
     
 }

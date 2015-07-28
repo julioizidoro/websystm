@@ -12,6 +12,13 @@ public class ConsultaFornecedorMB implements Serializable{
     private Fornecedorcidade fornecedorcidade;
     private String retorno;
 
+    public ConsultaFornecedorMB() {
+        this.fornecedorcidade = new Fornecedorcidade()
+                ;
+    }
+    
+    
+
     public Fornecedorcidade getFornecedorcidade() {
         return fornecedorcidade;
     }

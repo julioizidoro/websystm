@@ -60,6 +60,8 @@ public class Pacoteingresso implements Serializable {
     private Float valorgross;
     @Column(name = "comissao")
     private Float comissao;
+    @Column(name = "valormoedanacional")
+    private Float valormoedanacional;
     @Lob
     @Size(max = 16777215)
     @Column(name = "descritivo")
@@ -159,6 +161,14 @@ public class Pacoteingresso implements Serializable {
 
     public void setComissao(Float comissao) {
         this.comissao = comissao;
+    }
+
+    public Float getValormoedanacional() {
+        return valormoedanacional;
+    }
+
+    public void setValormoedanacional(Float valormoedanacional) {
+        this.valormoedanacional = valormoedanacional;
     }
 
     public String getDescritivo() {

@@ -7,31 +7,32 @@ package br.com.travelmate.converter;
 
 import br.com.travelmate.model.Cambio;
 import br.com.travelmate.model.Cidade;
+import br.com.travelmate.model.Fornecedorcidade;
 import java.util.List;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
-
+import org.hibernate.dialect.FrontBaseDialect;
 
 /**
  *
  * @author Wolverine
  */
-@FacesConverter(value="CidadeConverter")
-public class CidadeConverter  implements Converter{
+@FacesConverter(value="FornecedorCidadeConverter")
+public class FornecedorCidadeConverter implements Converter{
     
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
-        List<Cidade> listaCidade = (List<Cidade>) component.getAttributes().get("listaCidade");
-        if (listaCidade != null) {
-            for (Cidade cidade : listaCidade) {
-                if (cidade.getNome().equalsIgnoreCase(value)) {
-                    return cidade;
+        List<Fornecedorcidade> listaFornecedorCidade = (List<Fornecedorcidade>) component.getAttributes().get("listaFornecedorCidade");
+        if (listaFornecedorCidade != null) {
+            for (Fornecedorcidade fornecedorCidade : listaFornecedorCidade) {
+                if (fornecedorCidade.getFornecedor().getNome().equalsIgnoreCase(value)) {
+                    return fornecedorCidade;
                 }
             }
         } else {
-            return new Cidade();
+            return new Fornecedorcidade();
         }
         return null;
     }
@@ -39,11 +40,11 @@ public class CidadeConverter  implements Converter{
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
         if (value.toString().equalsIgnoreCase("0")){
-            return "Selecione";
+            return "Fornecdor";
         }else {
-            if (value instanceof Cidade){
-                Cidade cidade = (Cidade) value;
-            return cidade.getNome();
+            if (value instanceof Fornecedorcidade){
+                Fornecedorcidade fornecedorcidade = (Fornecedorcidade) value;
+            return fornecedorcidade.getFornecedor().getNome();
             }else return "";
         }
     }

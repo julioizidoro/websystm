@@ -64,6 +64,8 @@ public class Pacotepasseio implements Serializable {
     private Float valorgross;
     @Column(name = "comissao")
     private Float comissao;
+    @Column(name = "valormoedanacional")
+    private Float valormoedanacional;
     @JoinColumn(name = "cambio_idcambio", referencedColumnName = "idcambio")
     @ManyToOne(optional = false)
     private Cambio cambio;
@@ -167,6 +169,14 @@ public class Pacotepasseio implements Serializable {
 
     public void setComissao(Float comissao) {
         this.comissao = comissao;
+    }
+
+    public Float getValormoedanacional() {
+        return valormoedanacional;
+    }
+
+    public void setValormoedanacional(Float valormoedanacional) {
+        this.valormoedanacional = valormoedanacional;
     }
 
     public Cambio getCambio() {
