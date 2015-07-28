@@ -12,6 +12,32 @@
                     <br></br><br></br>
                     <p:accordionPanel class="painelPacote" >
                         <p:tab titleStyle="color:#000;font-size:10px;background:#c7d95f;" title="Hotel">
+                            
+                            <p:outputLabel value="Pais" for="pais1" />
+                            <p:outputLabel value="Cidade" for="cidade1" class="espacocobranca10"/>
+                            <p:outputLabel value="Fornecedor" for="fornecedor" class="espacocobranca9"/>
+                            <br></br>
+                            <p:selectOneMenu id="pais1" value="#{trechosMB.pais}" style="width:197px;font-size: 10px" class="espacocampos2" 
+                                             converter="PaisConverter" filter="true" filterMatchMode="startsWith" >
+                                <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
+                                <f:selectItems id="idpais" value="#{trechosMB.listaPais}" var="cpais" itemLabel="#{cpais.nome}" itemValue="#{cpais}"/>
+                                <f:attribute name="listaPais" value="#{trechosMB.listaPais}"/>
+                                <p:ajax event="change" update="cidade"/> 
+                            </p:selectOneMenu>
+                            <p:selectOneMenu id="cidade1" value="#{trechosMB.cidade}" style="width:227px;font-size: 10px" class="espacocampos" 
+                                             converter="CidadeConverter" filter="true" filterMatchMode="startsWith">
+                                <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
+                                <f:selectItems id="idcidade" value="#{trechosMB.pais.cidadeList}" var="ccidade" itemLabel="#{ccidade.nome}" itemValue="#{ccidade}"/>
+                                <f:attribute name="listaCidade" value="#{trechosMB.pais.cidadeList}"/>
+                                <p:ajax event="change" listener="#{trechosMB.listarFornecedorCidade()}" update="fornecedor" />
+                            </p:selectOneMenu>
+                            <p:selectOneMenu id="fornecedor" value="#{trechosMB.fornecedorcidade}" style="width:200px;font-size: 10px" class="espacocampos" 
+                                              filter="true" filterMatchMode="startsWith">
+                                <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
+                                <f:selectItems id="idfornecedor" value="#{trechosMB.listaFornecedorCidade}" var="fornecedor" itemLabel="#{fornecedor.fornecedor.nome}" itemValue="#{fornecedor}"/>
+                                <f:attribute name="listafornecedor" value="#{trechosMB.listaFornecedorCidade}"/>
+                            </p:selectOneMenu>
+                            <br></br><br></br><br></br> 
                             <p:outputLabel value="País" for="pais" class=""/>
                             <p:outputLabel value="Cidade" for="cidade" class="espacocobranca17"/>
                             <p:outputLabel value="Data Check in" for="dataCheckin" class="espacocobranca21"/>

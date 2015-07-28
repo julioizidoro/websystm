@@ -59,7 +59,7 @@
                                 </p:column>
                                  
                                 <p:column headerText="Itens" style="width: 35%">    
-                                     <p:commandLink  title="Aereo">
+                                    <p:commandLink  title="Aereo" action="#{pacoteMB.novoPassagem(trecho)}">
                                          <img  src="#{trechosMB.imagemAereo(trecho)}" />
                                     </p:commandLink>
                                     <p:commandLink  action="#{pacoteMB.novoCarro(trecho)}" title="Carro" style="margin-left:2%;">

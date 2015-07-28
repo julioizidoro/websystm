@@ -50,6 +50,7 @@ public class TrechosMB implements Serializable{
     private Fornecedorcidade fornecedorcidade;
     private List<Pais> listaPais;
     private Cidade cidade;
+    private Pais pais;
     private List<Fornecedorcidade> listaFornecedorCidade;
 
     public TrechosMB() {
@@ -191,6 +192,14 @@ public class TrechosMB implements Serializable{
         return listaPacoteIngresso;
     }
 
+    public Pais getPais() {
+        return pais;
+    }
+
+    public void setPais(Pais pais) {
+        this.pais = pais;
+    }
+    
     public void setListaPacoteIngresso(List<Pacoteingresso> listaPacoteIngresso) {
         this.listaPacoteIngresso = listaPacoteIngresso;
     }

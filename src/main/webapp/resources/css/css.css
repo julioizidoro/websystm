@@ -307,8 +307,9 @@ text-align: left;
     text-align: right;
     
 }
-.fontebrancas{
-    color: #fff;
+
+.fontepretas{
+    color: #000;
     font-size: 11px;
 }
 .botao{
@@ -525,7 +526,7 @@ text-align: left;
 }
 .tab{
     background: #fff;
-    background-color: #fff;
+    background-color: #000;
 }
 ////////////////////////
 .camposs{
@@ -585,8 +586,25 @@ text-align: left;
     font-size: 11px;
     position: relative;
 }
+.espaco0p{
+    color: #000;
+    font-size: 11px;
+    position: relative;
+}
 .espaco{
     color: #fff;
+    font-size: 11px;
+    margin-left:40%;
+    position: relative;
+}
+.espacor{
+    font-size: 11px;
+    margin-left:50%;
+    position: relative;
+    text-align: right;
+}
+.espacop{
+    color: #000;
     font-size: 11px;
     margin-left:40%;
     position: relative;
@@ -621,8 +639,20 @@ text-align: left;
     margin-left:59%;
     position: relative;
 }
+.espaco3p{
+    color: #000;
+    font-size: 11px;
+    margin-left:59%;
+    position: relative;
+}
 .espaco4{
     color: #fff;
+    font-size: 11px;
+    margin-left:74%;
+    position: relative;
+}
+.espaco4p{
+    color: #000;
     font-size: 11px;
     margin-left:74%;
     position: relative;
@@ -633,8 +663,20 @@ text-align: left;
     margin-left:83%;
     position: relative;
 }
+.espaco5p{
+    color: #000;
+    font-size: 11px;
+    margin-left:83%;
+    position: relative;
+}
 .espaco6{
     color: #fff;
+    font-size: 11px;
+    margin-left:70%;
+    position: relative;
+}
+.espaco6p{
+    color: #000;
     font-size: 11px;
     margin-left:70%;
     position: relative;
@@ -645,8 +687,20 @@ text-align: left;
     margin-left:89%;
     position: relative;
 }
+.espaco7p{
+    color: #000;
+    font-size: 11px;
+    margin-left:89%;
+    position: relative;
+}
 .espaco8{
     color: #fff;
+    font-size: 11px;
+    margin-left:79%;
+    position: relative;
+}
+.espaco8p{
+    color: #000;
     font-size: 11px;
     margin-left:79%;
     position: relative;
@@ -657,8 +711,20 @@ text-align: left;
     margin-left:55%;
     position: relative;
 }
+.espaco9p{
+    color: #000;
+    font-size: 11px;
+    margin-left:55%;
+    position: relative;
+}
 .espaco10{
     color: #fff;
+    font-size: 11px;
+    margin-left:75%;
+    position: relative;
+}
+.espaco10p{
+    color: #000;
     font-size: 11px;
     margin-left:75%;
     position: relative;
@@ -669,8 +735,20 @@ text-align: left;
     margin-left:25%;
     position: relative;
 }
+.espaco11p{
+    color: #000;
+    font-size: 11px;
+    margin-left:25%;
+    position: relative;
+}
 .espaco12{
     color: #fff;
+    font-size: 11px;
+    margin-left:50%;
+    position: relative;
+}
+.espaco12p{
+    color: #000;
     font-size: 11px;
     margin-left:50%;
     position: relative;
@@ -691,6 +769,18 @@ text-align: left;
     color: #fff;
     font-size: 11px;
     margin-left:23%;
+    position: relative;
+}
+.espaco16p{
+    color: #000;
+    font-size: 11px;
+    margin-left:85%;
+    position: relative;
+}
+.espaco17p{
+    color: #000;
+    font-size: 11px;
+    margin-left:87.5%;
     position: relative;
 }
 .botaoeditar{
@@ -746,6 +836,12 @@ text-align: left;
     margin-left:7%;
     text-align: left;
 }
+.painelPacote{
+    background: #1F8871;
+    width:84%;
+    margin-left:7%;
+    text-align: left;
+}
 .painelPacotecruzeiro{
     color:#fff;
     width:72%;
@@ -779,6 +875,7 @@ text-align: left;
 .espacocobranca13{
     margin-left:37%;
 }
+
 .espacoco13{
     margin-left:37%;
     color: #fff;
@@ -819,6 +916,12 @@ text-align: left;
 }
 .espacocobranca24{
     margin-left:8%;
+}
+.espacocobranca25{
+    margin-left:43%;
+}
+.espacocobranca26{
+    margin-left:22%;
 }
 .espacologin{
     margin-left:40%;

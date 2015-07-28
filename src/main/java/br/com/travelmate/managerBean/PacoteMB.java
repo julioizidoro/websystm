@@ -367,7 +367,7 @@ public class PacoteMB implements Serializable{
             HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
             session.setAttribute("tipoOepracaoPacote", "ingresso");
             session.setAttribute("pacoteTrecho", pacotetrecho);
-            return "pacoteIngresso";
+            return "pacoteingresso";
         }else {
             FacesMessage mensagem = new FacesMessage("Atenção! ", "Trecho Não Localizado.");
             FacesContext.getCurrentInstance().addMessage(null, mensagem);
@@ -381,13 +381,25 @@ public class PacoteMB implements Serializable{
             HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
             session.setAttribute("tipoOepracaoPacote", "passeio");
             session.setAttribute("pacoteTrecho", pacotetrecho);
-            return "pacotePasseio";
+            return "pacotepasseio";
         }else {
             FacesMessage mensagem = new FacesMessage("Atenção! ", "Trecho Não Localizado.");
             FacesContext.getCurrentInstance().addMessage(null, mensagem);
         }
         return "";
     }
-    
+    public String novoPassagem(Pacotetrecho pacotetrecho){
+        if (pacotetrecho!=null){
+            FacesContext fc = FacesContext.getCurrentInstance();  
+            HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+            session.setAttribute("tipoOepracaoPacote", "passagem");
+            session.setAttribute("pacoteTrecho", pacotetrecho);
+            return "pacoteaereo";
+        }else {
+            FacesMessage mensagem = new FacesMessage("Atenção! ", "Trecho Não Localizado.");
+            FacesContext.getCurrentInstance().addMessage(null, mensagem);
+        }
+        return "";
+    }
 }
 
