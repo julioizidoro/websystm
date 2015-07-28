@@ -16,34 +16,34 @@
                             <p:outputLabel value="Cidade" for="cidade1" class="espacocobranca10"/>
                             <p:outputLabel value="Fornecedor" for="fornecedor" class="espacocobranca9"/>
                             <br></br>
-                            <p:selectOneMenu id="pais1" value="#{trechosMB.pais}" style="width:197px;font-size: 10px"  class="espacocampos" 
+                            <p:selectOneMenu id="pais1" value="#{pacoteTransferMB.pais}" style="width:197px;font-size: 10px"  class="espacocampos" 
                                              converter="PaisConverter" filter="true" filterMatchMode="startsWith" >
                                 <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
-                                <f:selectItems id="idpais" value="#{trechosMB.listaPais}" var="cpais" itemLabel="#{cpais.nome}" itemValue="#{cpais}"/>
-                                <f:attribute name="listaPais" value="#{trechosMB.listaPais}"/>
+                                <f:selectItems id="idpais" value="#{pacoteTransferMB.listaPais}" var="cpais" itemLabel="#{cpais.nome}" itemValue="#{cpais}"/>
+                                <f:attribute name="listaPais" value="#{pacoteTransferMB.listaPais}"/>
                                 <p:ajax event="change" update="cidade1"/> 
                             </p:selectOneMenu>
-                            <p:selectOneMenu id="cidade1" value="#{trechosMB.cidade}" style="width:227px;font-size: 10px" class="espacocampos" 
+                            <p:selectOneMenu id="cidade1" value="#{pacoteTransferMB.cidade}" style="width:227px;font-size: 10px" class="espacocampos" 
                                              converter="CidadeConverter" filter="true" filterMatchMode="startsWith">
                                 <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
-                                <f:selectItems id="idcidade" value="#{trechosMB.pais.cidadeList}" var="ccidade" itemLabel="#{ccidade.nome}" itemValue="#{ccidade}"/>
-                                <f:attribute name="listaCidade" value="#{trechosMB.pais.cidadeList}"/>
-                                <p:ajax event="change" listener="#{trechosMB.listarFornecedorCidade()}" update="fornecedor" />
+                                <f:selectItems id="idcidade" value="#{pacoteTransferMB.pais.cidadeList}" var="ccidade" itemLabel="#{ccidade.nome}" itemValue="#{ccidade}"/>
+                                <f:attribute name="listaCidade" value="#{pacoteTransferMB.pais.cidadeList}"/>
+                                <p:ajax event="change" listener="#{pacoteTransferMB.listarFornecedorCidade()}" update="fornecedor" />
                             </p:selectOneMenu>
-                            <p:selectOneMenu id="fornecedor" value="#{trechosMB.fornecedorcidade}" style="width:200px;font-size: 10px" class="espacocampos" 
+                            <p:selectOneMenu id="fornecedor" value="#{pacoteTransferMB.fornecedorcidade}" style="width:200px;font-size: 10px" class="espacocampos" 
                                               filter="true" filterMatchMode="startsWith">
                                 <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
-                                <f:selectItems id="idfornecedor" value="#{trechosMB.listaFornecedorCidade}" var="fornecedor" itemLabel="#{fornecedor.fornecedor.nome}" itemValue="#{fornecedor}"/>
-                                <f:attribute name="listafornecedor" value="#{trechosMB.listaFornecedorCidade}"/>
+                                <f:selectItems id="idfornecedor" value="#{pacoteTransferMB.listaFornecedorCidade}" var="fornecedor" itemLabel="#{fornecedor.fornecedor.nome}" itemValue="#{fornecedor}"/>
+                                <f:attribute name="listafornecedor" value="#{pacoteTransferMB.listaFornecedorCidade}"/>
                             </p:selectOneMenu>
                             <br></br><br></br><br></br> 
                             <p:outputLabel value="De" for="de" class="espacocampos"/>
                             <p:outputLabel value="Para" for="para" class="espacocobranca7"/>
                             <p:outputLabel value="Data" for="data" class="espacocobranca10"/>
                             <br></br>
-                            <p:inputText id="de" value="#{trechosMB.pacotetransfer.de}" size="51" maxlength="100" class="espacocampos"/>
-                            <p:inputText id="para" value="#{trechosMB.pacotetransfer.para}" size="41" maxlength="100" class="espacocampos"/>
-                            <p:calendar id="data" value="#{trechosMB.pacotetransfer.data}" size="13"  class="espacocampos" locale="pt"  pattern="dd/MM/yyyy" >
+                            <p:inputText id="de" value="#{pacoteTransferMB.pacotetransfer.de}" size="51" maxlength="100" class="espacocampos"/>
+                            <p:inputText id="para" value="#{pacoteTransferMB.pacotetransfer.para}" size="41" maxlength="100" class="espacocampos"/>
+                            <p:calendar id="data" value="#{pacoteTransferMB.pacotetransfer.data}" size="13"  class="espacocampos" locale="pt"  pattern="dd/MM/yyyy" >
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </p:calendar>
                             <br></br><br></br><br></br>
@@ -55,25 +55,25 @@
                             <p:outputLabel value="Valor Gross" for="valorgross" class="espacocobranca15"/>
                             <p:outputLabel value="Valor Moeda Nacional" for="moedanacional" class="espacocobranca15"/>
                             <br></br>
-                            <p:selectOneMenu class="espacocampos" style="width:60px;" id="moeda"  value="#{trechosMB.cambio}" converter="CambioConverter">
+                            <p:selectOneMenu class="espacocampos" style="width:60px;" id="moeda"  value="#{pacoteTransferMB.cambio}" converter="CambioConverter">
                                 <f:selectItem itemLabel="Câmbio" itemValue="0"/> 
                                 <f:selectItems value="#{usuarioLogadoMB.listaCambio}" var="cambio" itemLabel="#{cambio.moedas.sigla}" itemValue="#{cambio}"/>
                                 <f:attribute name="listaCambio" value="#{usuarioLogadoMB.listaCambio}"/>
                                 <p:ajax event="change" update="idvalorcambio" />
                             </p:selectOneMenu>
-                            <p:inputText id="idvalorcambio" value="#{trechosMB.cambio.valor}" size="12" class="esparight">
+                            <p:inputText id="idvalorcambio" value="#{pacoteTransferMB.cambio.valor}" size="12" class="esparight">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>  
                             <h:commandLink action="#"  title="Editar Câmbio">  
                                 <img id="editarcambio" class="" src="../../resources/img/cambio_1.png"/>
                             </h:commandLink>
-                            <p:inputText id="valornet" value="#{trechosMB.pacotetransfer.valornet}" size="13" class="esparight">
+                            <p:inputText id="valornet" value="#{pacoteTransferMB.pacotetransfer.valornet}" size="13" class="esparight">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
-                            <p:inputText id="comissao" value="#{trechosMB.pacotetransfer.comissao}" size="9" class="espacocamposright">
+                            <p:inputText id="comissao" value="#{pacoteTransferMB.pacotetransfer.comissao}" size="9" class="espacocamposright">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
-                            <p:inputText id="valorgross" value="#{trechosMB.pacotetransfer.valorgross}" size="11"  class="espacocamposright">
+                            <p:inputText id="valorgross" value="#{pacoteTransferMB.pacotetransfer.valorgross}" size="11"  class="espacocamposright">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
                             <p:inputText id="moedanacional" value="" size="26"  class="espacocamposright">
@@ -81,7 +81,7 @@
                             </p:inputText>
                             
                             <p class="botaocadpacote"><br></br>
-                                <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Confirmar" action="#{trechosMB.salvarTransfer()}"></p:commandButton>
+                                <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Confirmar" action="#{pacoteTransferMB.salvarTransfer()}"></p:commandButton>
                                 <p:commandButton class="espacocampos" onclick="" icon="ui-icon-close" value="Cancelar" action="#"></p:commandButton>
                             </p>
                         </p:tab>

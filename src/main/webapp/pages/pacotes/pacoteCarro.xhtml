@@ -17,25 +17,25 @@
                             <p:outputLabel value="Cidade" for="cidade" class="espacocobranca10"/>
                             <p:outputLabel value="Fornecedor" for="fornecedor" class="espacocobranca9"/>
                             <br></br>
-                            <p:selectOneMenu id="pais" value="#{trechosMB.pais}" style="width:197px;font-size: 10px" class="espacocampos2" 
+                            <p:selectOneMenu id="pais" value="#{pacoteCarroMB.pais}" style="width:197px;font-size: 10px" class="espacocampos2" 
                                              converter="PaisConverter" filter="true" filterMatchMode="startsWith" panelStyle="width:180px" >
                                 <f:selectItem itemLabel="País" itemValue="0" noSelectionOption="true"/> 
-                                <f:selectItems id="idpais" value="#{trechosMB.listaPais}" var="cpais" itemLabel="#{cpais.nome}" itemValue="#{cpais}"/>
-                                <f:attribute name="listaPais" value="#{trechosMB.listaPais}"/>
+                                <f:selectItems id="idpais" value="#{pacoteCarroMB.listaPais}" var="cpais" itemLabel="#{cpais.nome}" itemValue="#{cpais}"/>
+                                <f:attribute name="listaPais" value="#{pacoteCarroMB.listaPais}"/>
                                 <p:ajax event="change" update="cidade"/> 
                             </p:selectOneMenu>
-                            <p:selectOneMenu id="cidade" value="#{trechosMB.cidade}" style="width:227px;font-size: 10px" class="espacocampos" 
+                            <p:selectOneMenu id="cidade" value="#{pacoteCarroMB.cidade}" style="width:227px;font-size: 10px" class="espacocampos" 
                                              converter="CidadeConverter" filter="true" filterMatchMode="startsWith">
                                 <f:selectItem itemLabel="Cidade" itemValue="0" noSelectionOption="true"/> 
-                                <f:selectItems id="idcidade" value="#{trechosMB.pais.cidadeList}" var="ccidade" itemLabel="#{ccidade.nome}" itemValue="#{ccidade}"/>
-                                <f:attribute name="listaCidade" value="#{trechosMB.pais.cidadeList}"/>
-                                <p:ajax event="change" listener="#{trechosMB.listarFornecedorCidade()}" update="fornecedor" />
+                                <f:selectItems id="idcidade" value="#{pacoteCarroMB.pais.cidadeList}" var="ccidade" itemLabel="#{ccidade.nome}" itemValue="#{ccidade}"/>
+                                <f:attribute name="listaCidade" value="#{pacoteCarroMB.pais.cidadeList}"/>
+                                <p:ajax event="change" listener="#{pacoteCarroMB.listarFornecedorCidade()}" update="fornecedor" />
                             </p:selectOneMenu>
-                            <p:selectOneMenu id="fornecedor" value="#{trechosMB.fornecedorcidade}" style="width:200px;font-size: 10px" class="espacocampos" 
+                            <p:selectOneMenu id="fornecedor" value="#{pacoteCarroMB.fornecedorcidade}" style="width:200px;font-size: 10px" class="espacocampos" 
                                              converter="FornecedorCidadeConverter" filter="true" filterMatchMode="startsWith">
                                 <f:selectItem itemLabel="Fornecedor" itemValue="0" noSelectionOption="true"/> 
-                                <f:selectItems id="idfornecedor" value="#{trechosMB.listaFornecedorCidade}" var="fornecedor" itemLabel="#{fornecedor.fornecedor.nome}" itemValue="#{fornecedor}"/>
-                                <f:attribute name="listaFornecedorCidade" value="#{trechosMB.listaFornecedorCidade}"/>
+                                <f:selectItems id="idfornecedor" value="#{pacoteCarroMB.listaFornecedorCidade}" var="fornecedor" itemLabel="#{fornecedor.fornecedor.nome}" itemValue="#{fornecedor}"/>
+                                <f:attribute name="listaFornecedorCidade" value="#{pacoteCarroMB.listaFornecedorCidade}"/>
                             </p:selectOneMenu>
                             <br></br><br></br><br></br>
                             <p:outputLabel value="Localizador" for="localizador"/>
@@ -43,12 +43,12 @@
                             <p:outputLabel value="Data Retirada" for="dataretirada" class="espacocobranca17"/>
                             <p:outputLabel value="Hora Retirada" for="horaretirada" class="espacocobranca5"/>
                             <br></br>
-                            <p:inputText id="localizador" value="#{trechosMB.pacotecarro.localizador}" size="36" maxlength="45" class="espacocampos2"/>
-                            <p:inputText id="locaretirada" value="#{trechosMB.pacotecarro.locaretirada}" size="50" maxlength="100" class="espacocampos"/>
-                            <p:calendar id="dataretirada" value="#{trechosMB.pacotecarro.dataretirada}" size="18"  class="espacocampos" locale="pt"  pattern="dd/MM/yyyy" >
+                            <p:inputText id="localizador" value="#{pacoteCarroMB.pacotecarro.localizador}" size="36" maxlength="45" class="espacocampos2"/>
+                            <p:inputText id="locaretirada" value="#{pacoteCarroMB.pacotecarro.locaretirada}" size="50" maxlength="100" class="espacocampos"/>
+                            <p:calendar id="dataretirada" value="#{pacoteCarroMB.pacotecarro.dataretirada}" size="18"  class="espacocampos" locale="pt"  pattern="dd/MM/yyyy" >
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </p:calendar>
-                            <p:inputMask id="horaretirada" value="#{trechosMB.pacotecarro.horaritirada}" size="11" mask="99:99" class="espacocampos"/>
+                            <p:inputMask id="horaretirada" value="#{pacoteCarroMB.pacotecarro.horaritirada}" size="11" mask="99:99" class="espacocampos"/>
                             <br></br><br></br><br></br>
                             
                             <p:outputLabel value="Data Devolução" for="datadevolucao"/>
@@ -58,18 +58,18 @@
                             <p:outputLabel value="Qntd Criança" for="qntdClianca" class="espacocobranca24"/>
                             <p:outputLabel value="Qntd Infantil" for="qntdInfantil" class="espacocobranca24"/>
                             <br></br>
-                            <p:calendar id="datadevolucao" value="#{trechosMB.pacotecarro.datadevolucao}" size="14"  class="espacocampos2" locale="pt"  pattern="dd/MM/yyyy" >
+                            <p:calendar id="datadevolucao" value="#{pacoteCarroMB.pacotecarro.datadevolucao}" size="14"  class="espacocampos2" locale="pt"  pattern="dd/MM/yyyy" >
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </p:calendar>
-                            <p:inputMask id="horadevolucao" value="#{trechosMB.pacotecarro.horadevolucao}" size="12" mask="99:99" class="espacocampos"/>
-                            <p:inputText id="categoria" value="#{trechosMB.pacotecarro.categoria}" size="18" maxlength="15" class="espacocampos"/>
-                            <p:inputText id="qntdAdulto" value="#{trechosMB.pacotecarro.adt}" size="12" class="espacocampos">
+                            <p:inputMask id="horadevolucao" value="#{pacoteCarroMB.pacotecarro.horadevolucao}" size="12" mask="99:99" class="espacocampos"/>
+                            <p:inputText id="categoria" value="#{pacoteCarroMB.pacotecarro.categoria}" size="18" maxlength="15" class="espacocampos"/>
+                            <p:inputText id="qntdAdulto" value="#{pacoteCarroMB.pacotecarro.adt}" size="12" class="espacocampos">
                                 <f:convertNumber  type="number"/>
                             </p:inputText>
-                            <p:inputText id="qntdClianca" value="#{trechosMB.pacotecarro.chd}" size="15" class="espacocampos">
+                            <p:inputText id="qntdClianca" value="#{pacoteCarroMB.pacotecarro.chd}" size="15" class="espacocampos">
                                   <f:convertNumber  type="number"/>
                             </p:inputText>
-                            <p:inputText id="qntdInfantil" value="#{trechosMB.pacotecarro.inf}" size="13" class="espacocampos">
+                            <p:inputText id="qntdInfantil" value="#{pacoteCarroMB.pacotecarro.inf}" size="13" class="espacocampos">
                                   <f:convertNumber  type="number"/>
                             </p:inputText>
                             <br></br><br></br><br></br>
@@ -80,25 +80,25 @@
                             <p:outputLabel value="Valor Gross" for="valorgross" class="espacocobranca5"/>
                             
                             <br></br>
-                            <p:selectOneMenu class="espacocampos5" style="width:65px;" id="moeda"  value="#{trechosMB.cambio}" converter="CambioConverter">
+                            <p:selectOneMenu class="espacocampos5" style="width:65px;" id="moeda"  value="#{pacoteCarroMB.cambio}" converter="CambioConverter">
                                 <f:selectItem itemLabel="Câmbio" itemValue="0"/> 
                                 <f:selectItems value="#{usuarioLogadoMB.listaCambio}" var="cambio" itemLabel="#{cambio.moedas.sigla}" itemValue="#{cambio}"/>
                                 <f:attribute name="listaCambio" value="#{usuarioLogadoMB.listaCambio}"/>
                                 <p:ajax event="change"  update="idvalorcambio"/>
                             </p:selectOneMenu>
-                            <p:inputText id="idvalorcambio" value="#{trechosMB.cambio.valor}" size="16" class="espacocamposright">
+                            <p:inputText id="idvalorcambio" value="#{pacoteCarroMB.cambio.valor}" size="16" class="espacocamposright">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>  
                             <h:commandLink action="#"  title="Editar Câmbio">  
                                 <img id="editarcambio" class="" src="../../resources/img/cambio_1.png"/>
                             </h:commandLink>
-                            <p:inputText id="valornet" value="#{trechosMB.pacotecarro.valornet}" size="15" class="espacocobranca18rig">
+                            <p:inputText id="valornet" value="#{pacoteCarroMB.pacotecarro.valornet}" size="15" class="espacocobranca18rig">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
-                            <p:inputText id="comissao" value="#{trechosMB.pacotecarro.comissao}" size="12" class="espacocamposright">
+                            <p:inputText id="comissao" value="#{pacoteCarroMB.pacotecarro.comissao}" size="12" class="espacocamposright">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
-                            <p:inputText id="valorgross" value="#{trechosMB.pacotecarro.valorgross}" size="15" maxlength="15" class="espacocamposright">
+                            <p:inputText id="valorgross" value="#{pacoteCarroMB.pacotecarro.valorgross}" size="15" maxlength="15" class="espacocamposright">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
                             
@@ -106,10 +106,10 @@
                              <br></br><br></br><br></br>
                             <p:outputLabel value="Descritivo" for="descritivo"/>
                             <br></br>
-                            <p:inputText id="descritivo" value="#{trechosMB.pacotecarro.descritivo}" size="163" maxlength="45" class="espacocampos2"/>
+                            <p:inputText id="descritivo" value="#{pacoteCarroMB.pacotecarro.descritivo}" size="163" maxlength="45" class="espacocampos2"/>
 
                             <p class="botaocadpacote"><br></br>
-                                <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Confirmar" action="#{trechosMB.salvarCarro()}"></p:commandButton>
+                                <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Confirmar" action="#{pacoteCarroMB.salvarCarro()}"></p:commandButton>
                                 <p:commandButton class="espacocampos" onclick="" icon="ui-icon-close" value="Cancelar" action="#"></p:commandButton>
                             </p>
                         </p:tab>

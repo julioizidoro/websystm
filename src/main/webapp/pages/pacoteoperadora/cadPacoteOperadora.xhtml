@@ -15,11 +15,11 @@
                             <p:outputLabel value="Descrição" for="descricao"/>
                             <p:outputLabel value="Unidade" for="unidade" class="espacopreto"/>
                             <br></br>
-                            <p:inputText id="descricao" value="#{pacoteMB.pacotes.descricao}" size="100" maxlength="200" class="espacocampos2"/>
-                            <p:selectOneMenu class="espacocamposgrande" style="width:230px;" id="unidade"  value="#{pacoteMB.pacotes.unidadenegocio}" converter="UnidadeNegocioConverter" >
+                            <p:inputText id="descricao" value="#{cadPacoteOperadoraMB.pacotes.descricao}" size="100" maxlength="200" class="espacocampos2"/>
+                            <p:selectOneMenu class="espacocamposgrande" style="width:230px;" id="unidade"  value="#{cadPacoteOperadoraMB.pacotes.unidadenegocio}" converter="UnidadeNegocioConverter" >
                                 <f:selectItem itemLabel="Selecione" itemValue="0"/>
-                                <f:selectItems id="idnidade" value="#{pacoteMB.listaUnidadeNegocio}" var="unidadeNegocio" itemLabel="#{unidadeNegocio.nomeFantasia}" itemValue="#{unidadeNegocio}"/>
-                                <f:attribute name="listaUnidade" value="#{pacoteMB.listaUnidadeNegocio}"/>
+                                <f:selectItems id="idnidade" value="#{cadPacoteOperadoraMB.listaUnidadeNegocio}" var="unidadeNegocio" itemLabel="#{unidadeNegocio.nomeFantasia}" itemValue="#{unidadeNegocio}"/>
+                                <f:attribute name="listaUnidade" value="#{cadPacoteOperadoraMB.listaUnidadeNegocio}"/>
                             </p:selectOneMenu>
                             <br></br><br></br>
 
@@ -28,29 +28,29 @@
                              <p:outputLabel value="Valor do Câmbio" for="idvalorcambio" class="espacocobranca5"/>
                             <p:outputLabel value="Período" class="espacocobranca2"/>
                             <br></br>
-                            <p:selectOneMenu class="espacocampos5" style="width:65px;" id="moeda"  value="#{pacoteMB.cambio}" converter="CambioConverter">
+                            <p:selectOneMenu class="espacocampos5" style="width:65px;" id="moeda"  value="#{cadPacoteOperadoraMB.cambio}" converter="CambioConverter">
                                 <f:selectItem itemLabel="Câmbio" itemValue="0"/> 
                                 <f:selectItems id="idmoedas" value="#{usuarioLogadoMB.listaCambio}" var="cambio" itemLabel="#{cambio.moedas.sigla}" itemValue="#{cambio}"/>
                                 <f:attribute name="listaCambio" value="#{usuarioLogadoMB.listaCambio}"/>
                                 <p:ajax event="change" update="idvalorcambio" />
                             </p:selectOneMenu>
-                             <p:inputText id="idvalorcambio" value="#{pacoteMB.cambio.valor}" size="13" class="espacocamposright">
+                             <p:inputText id="idvalorcambio" value="#{cadPacoteOperadoraMB.cambio.valor}" size="13" class="espacocamposright">
                                  <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText> 
                             <h:commandLink action="#"  title="Editar Câmbio">  
                                 <img id="editarcambio" class="" src="../../resources/img/cambio_1.png"/>
                             </h:commandLink>
-                            <p:calendar id="datainicio"  size="17" class="espacocobranca11" locale="pt"  pattern="dd/MM/yyyy" value="#{pacoteMB.pacotes.datainicio}" />
-                            <p:calendar id="datatermino"  size="17" class="espacocampos" locale="pt"   pattern="dd/MM/yyyy" value="#{pacoteMB.pacotes.datetermino}"/>
-                            <p:commandButton class="espacocobranca4" onclick="" icon="ui-icon-triangle-1-e" value="Iniciar" action="#{pacoteMB.iniciarPacote()}" />
-                            <p:commandButton class="espacocobranca4" onclick="" icon="ui-icon-check" value="Finalizar" action="#{pacoteMB.finalizar()}"  />
+                            <p:calendar id="datainicio"  size="17" class="espacocobranca11" locale="pt"  pattern="dd/MM/yyyy" value="#{cadPacoteOperadoraMB.pacotes.datainicio}" />
+                            <p:calendar id="datatermino"  size="17" class="espacocampos" locale="pt"   pattern="dd/MM/yyyy" value="#{cadPacoteOperadoraMB.pacotes.datetermino}"/>
+                            <p:commandButton class="espacocobranca4" onclick="" icon="ui-icon-triangle-1-e" value="Iniciar" action="#{cadPacoteOperadoraMB.iniciarPacote()}" />
+                            <p:commandButton class="espacocobranca4" onclick="" icon="ui-icon-check" value="Finalizar" action="#{cadPacoteOperadoraMB.finalizar()}"  />
                             <br></br><br></br>
                             <legend id="iUsu4" ><b>Trecho</b></legend>
-                            <p:inputText id="trecho" value="#{pacoteMB.pacotetrecho.descritivo}" size="129" maxlength="200" class="espacocampos2"/>
-                            <p:commandButton class="espacocobranca5" onclick="" icon="ui-icon-plus" value="Adicionar" action="#{pacoteMB.adicionarTrecho()}" 
+                            <p:inputText id="trecho" value="#{cadPacoteOperadoraMB.pacotetrecho.descritivo}" size="129" maxlength="200" class="espacocampos2"/>
+                            <p:commandButton class="espacocobranca5" onclick="" icon="ui-icon-plus" value="Adicionar" action="#{cadPacoteOperadoraMB.adicionarTrecho()}" 
                                              update="idlistatrechos"  />
                             <br></br><br></br>
-                            <p:dataTable id="idlistatrechos" var="trecho"  value="#{pacoteMB.listaTrecho}" class="tabela3" 
+                            <p:dataTable id="idlistatrechos" var="trecho"  value="#{cadPacoteOperadoraMB.listaTrecho}" class="tabela3" 
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
                                          paginator="true" rows="10" style="margin-bottom:20px;font-size: 10px;" >
                                 
@@ -59,29 +59,29 @@
                                 </p:column>
                                  
                                 <p:column headerText="Itens" style="width: 35%">    
-                                    <p:commandLink  title="Aereo" action="#{pacoteMB.novoPassagem(trecho)}">
-                                         <img  src="#{trechosMB.imagemAereo(trecho)}" />
+                                    <p:commandLink  title="Aereo" action="#{cadPacoteOperadoraMB.novoPassagem(trecho)}">
+                                         <img  src="#{cadPacoteOperadoraMB.imagemAereo(trecho)}" />
                                     </p:commandLink>
-                                    <p:commandLink  action="#{pacoteMB.novoCarro(trecho)}" title="Carro" style="margin-left:2%;">
-                                        <img  src="#{trechosMB.imagemCarro(trecho)}" />
+                                    <p:commandLink  action="#{cadPacoteOperadoraMB.novoCarro(trecho)}" title="Carro" style="margin-left:2%;">
+                                        <img  src="#{cadPacoteOperadoraMB.imagemCarro(trecho)}" />
                                     </p:commandLink>
-                                    <p:commandLink action="#{pacoteMB.novoCruzeiro(trecho)}" title="Cruzeiro" style="margin-left:2%;">
-                                         <img  src="#{trechosMB.imagemCruzeiro(trecho)}" />
+                                    <p:commandLink action="#{cadPacoteOperadoraMB.novoCruzeiro(trecho)}" title="Cruzeiro" style="margin-left:2%;">
+                                         <img  src="#{cadPacoteOperadoraMB.imagemCruzeiro(trecho)}" />
                                     </p:commandLink>
-                                    <p:commandLink  action="#{pacoteMB.novoHotel(trecho)}" title="Hotel" style="margin-left:2%;">
-                                         <img  src="#{trechosMB.imagemHotel(trecho)}" />
+                                    <p:commandLink  action="#{cadPacoteOperadoraMB.novoHotel(trecho)}" title="Hotel" style="margin-left:2%;">
+                                         <img  src="#{cadPacoteOperadoraMB.imagemHotel(trecho)}" />
                                     </p:commandLink>
-                                    <p:commandLink action="#{pacoteMB.novoIngresso(trecho)}" title="Ingresso"  style="margin-left:2%;">
-                                         <img  src="#{trechosMB.imagemIngresso(trecho)}" />
+                                    <p:commandLink action="#{cadPacoteOperadoraMB.novoIngresso(trecho)}" title="Ingresso"  style="margin-left:2%;">
+                                         <img  src="#{cadPacoteOperadoraMB.imagemIngresso(trecho)}" />
                                     </p:commandLink>
-                                    <p:commandLink action="#{pacoteMB.novoPasseio(trecho)}" title="Passeio"  style="margin-left:2%;">
-                                         <img  src="#{trechosMB.imagemPasseio(trecho)}" />
+                                    <p:commandLink action="#{cadPacoteOperadoraMB.novoPasseio(trecho)}" title="Passeio"  style="margin-left:2%;">
+                                         <img  src="#{cadPacoteOperadoraMB.imagemPasseio(trecho)}" />
                                     </p:commandLink>
-                                    <p:commandLink  action="#{pacoteMB.novoTransfer(trecho)}" title="Transfer"  style="margin-left:2%;">
-                                         <img  src="#{trechosMB.imagemTransfer(trecho)}" />
+                                    <p:commandLink  action="#{cadPacoteOperadoraMB.novoTransfer(trecho)}" title="Transfer"  style="margin-left:2%;">
+                                         <img  src="#{cadPacoteOperadoraMB.imagemTransfer(trecho)}" />
                                     </p:commandLink>
-                                    <p:commandLink  action="#{pacoteMB.novoTrem(trecho)}" title="Trem"  style="margin-left:2%;">
-                                         <img  src="#{trechosMB.imagemTrem(trecho)}" />
+                                    <p:commandLink  action="#{cadPacoteOperadoraMB.novoTrem(trecho)}" title="Trem"  style="margin-left:2%;">
+                                         <img  src="#{cadPacoteOperadoraMB.imagemTrem(trecho)}" />
                                     </p:commandLink>
                                 </p:column>
                             </p:dataTable>

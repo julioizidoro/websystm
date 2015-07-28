@@ -270,4 +270,111 @@ public class CadPacoteOperadoraMB  implements Serializable{
         return "";
     }
     
+    public String imagemAereo(Pacotetrecho pacotetrecho) {
+//        if(pacoteaereo!=null){
+//            return "../../resources/img/aereoverde.png";
+//        }else{
+            return "../../resources/img/aereovermelho.png";
+    //    }
+    }
+    
+    public String imagemCarro(Pacotetrecho pacotetrecho) {
+         boolean verdade = true;
+        if (pacotetrecho.getPacotecarroList()==null){
+            verdade = false;
+        }else if (pacotetrecho.getPacotecarroList().size()==0){
+            verdade=false;
+        }
+        if(verdade){
+            return "../../resources/img/carroverde.png";
+        }else{
+             return "../../resources/img/carrovermelho.png";
+        }
+    }
+    
+    public String imagemCruzeiro(Pacotetrecho pacotetrecho) {
+        boolean verdade = true;
+        if (pacotetrecho.getPacotecruzeiroList()==null){
+            verdade = false;
+        }else if (pacotetrecho.getPacotecruzeiroList().size()==0){
+            verdade=false;
+        }
+        if(verdade){
+            return "../../resources/img/cruzeiroverde.png";
+        }else{
+            return "../../resources/img/cruzeirovermelho.png";
+        }
+    }
+    
+    public String imagemHotel(Pacotetrecho pacotetrecho) {
+         boolean verdade = true;
+        if (pacotetrecho.getPacotehotelList()==null){
+            verdade = false;
+        }else if (pacotetrecho.getPacotehotelList().size()==0){
+            verdade=false;
+        }
+        if(verdade){
+            return "../../resources/img/hotelverde.png";
+        } else {
+            return "../../resources/img/hotelvermelho.png";
+        }
+
+    }
+    
+    public String imagemIngresso(Pacotetrecho pacotetrecho) {
+         boolean verdade = true;
+        if (pacotetrecho.getPacoteingressoList()==null){
+            verdade = false;
+        }else if (pacotetrecho.getPacoteingressoList().size()==0){
+            verdade=false;
+        }
+        if(verdade){
+            return "../../resources/img/ingressoverde.png";
+        }else{
+            return "../../resources/img/ingressovermelho.png";
+        }
+    }
+    
+    public String imagemPasseio(Pacotetrecho pacotetrecho) {
+        boolean verdade = true;
+        if (pacotetrecho.getPacotepasseioList()==null){
+            verdade = false;
+        }else if (pacotetrecho.getPacotepasseioList().size()==0){
+            verdade=false;
+        }
+        if(verdade){
+            return "../../resources/img/passeioverdeb.png";
+        }else{
+             return "../../resources/img/passeiovermelhob.png";
+         }
+    }
+    
+    public String imagemTransfer(Pacotetrecho pacotetrecho) {
+        boolean verdade = true;
+        if (pacotetrecho.getPacotetransferList()==null){
+            verdade = false;
+        }else if (pacotetrecho.getPacotetransferList().size()==0){
+            verdade=false;
+        }
+        if(verdade){
+            return "../../resources/img/tranferverde.png";
+        }else{
+             return "../../resources/img/transfervermelho.png";
+        }
+    }
+    
+    public String imagemTrem(Pacotetrecho pacotetrecho) {
+        boolean verdade = true;
+        if (pacotetrecho.getPacotetremList()==null){
+            verdade = false;
+        }else if (pacotetrecho.getPacotetremList().size()==0){
+            verdade=false;
+        }
+        if(verdade){
+            return "../../resources/img/tremverde.png";
+        }else{
+              return "../../resources/img/tremvermelho.png";
+         }
+    }
+    
 }

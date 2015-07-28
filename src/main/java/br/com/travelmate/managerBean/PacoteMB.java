@@ -30,7 +30,7 @@ public class PacoteMB implements Serializable{
 
     public PacoteMB() {
         String sql = "Select p from Pacotes p where p.operacao='Operadora' order by p.vendas.dataVenda";
-        listaPacotes = GerarListas.listarPacotes(sql)
+        listaPacotes = GerarListas.listarPacotes(sql);
     }
     
     
