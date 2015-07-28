@@ -7,7 +7,9 @@ import br.com.travelmate.facade.PacoteTransferFacade;
 import br.com.travelmate.facade.PacoteTremFacade;
 import br.com.travelmate.facade.PacotesCarroFacade;
 import br.com.travelmate.facade.PacotesHotelFacade;
+import br.com.travelmate.facade.PaisFacade;
 import br.com.travelmate.model.Cambio;
+import br.com.travelmate.model.Cidade;
 import br.com.travelmate.model.Fornecedorcidade;
 import br.com.travelmate.model.Pacotecarro;
 import br.com.travelmate.model.Pacotecruzeiro;
@@ -17,6 +19,8 @@ import br.com.travelmate.model.Pacotepasseio;
 import br.com.travelmate.model.Pacotetransfer;
 import br.com.travelmate.model.Pacotetrecho;
 import br.com.travelmate.model.Pacotetrem;
+import br.com.travelmate.model.Pais;
+import br.com.travelmate.util.GerarListas;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,8 +37,6 @@ public class TrechosMB implements Serializable{
     
     @Inject
     private UsuarioLogadoMB usuarioLogadoMB;
-    @Inject
-    private ConsultaFornecedorMB consultaFornecedorMB;
     private Pacotehotel pacotehotel;
     private Pacotetrem pacotetrem;
     private Pacotetransfer pacotetransfer;
@@ -45,12 +47,18 @@ public class TrechosMB implements Serializable{
     private Cambio cambio;
     private List<Pacoteingresso> listaPacoteIngresso;
     private List<Pacotepasseio> listaPacotePasseio;
+    private Fornecedorcidade fornecedorcidade;
+    private List<Pais> listaPais;
+    private Cidade cidade;
+    private List<Fornecedorcidade> listaFornecedorCidade;
 
     public TrechosMB() {
         FacesContext fc = FacesContext.getCurrentInstance();  
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
         String tipo = (String) session.getAttribute("tipoOepracaoPacote");
         if (tipo!=null){
+        PaisFacade paisFacade = new PaisFacade();
+        listaPais = paisFacade.listar("");
         Pacotetrecho pacotetrecho = (Pacotetrecho) session.getAttribute("pacoteTrecho");
         if (tipo.equalsIgnoreCase("carro")) {
             PacotesCarroFacade pacoteCarroFacade = new PacotesCarroFacade();
@@ -147,14 +155,6 @@ public class TrechosMB implements Serializable{
         this.pacotecruzeiro = pacotecruzeiro;
     }
 
-    public ConsultaFornecedorMB getConsultaFornecedorMB() {
-        return consultaFornecedorMB;
-    }
-
-    public void setConsultaFornecedorMB(ConsultaFornecedorMB consultaFornecedorMB) {
-        this.consultaFornecedorMB = consultaFornecedorMB;
-    }
-
     public UsuarioLogadoMB getUsuarioLogadoMB() {
         return usuarioLogadoMB;
     }
@@ -202,17 +202,51 @@ public class TrechosMB implements Serializable{
     public void setListaPacotePasseio(List<Pacotepasseio> listaPacotePasseio) {
         this.listaPacotePasseio = listaPacotePasseio;
     }
+
+    public List<Pais> getListaPais() {
+        return listaPais;
+    }
+
+    public void setListaPais(List<Pais> listaPais) {
+        this.listaPais = listaPais;
+    }
+
+    public List<Fornecedorcidade> getListaFornecedorCidade() {
+        return listaFornecedorCidade;
+    }
+
+    public void setListaFornecedorCidade(List<Fornecedorcidade> listaFornecedorCidade) {
+        this.listaFornecedorCidade = listaFornecedorCidade;
+    }
+
+    public Fornecedorcidade getFornecedorcidade() {
+        return fornecedorcidade;
+    }
+
+    public void setFornecedorcidade(Fornecedorcidade fornecedorcidade) {
+        this.fornecedorcidade = fornecedorcidade;
+    }
+
+    public Cidade getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(Cidade cidade) {
+        this.cidade = cidade;
+    }
     
-    
-    
-    
+    public void listarFornecedorCidade(){
+        if ((usuarioLogadoMB.getParametrosprodutos().getPacotes()!=null) && (cidade!=null)){
+            listaFornecedorCidade = GerarListas.listarFornecedorCidade(usuarioLogadoMB.getParametrosprodutos().getPacotes(), cidade.getIdcidade());
+        }
+    }
     
     public String salvarCarro(){
         PacotesCarroFacade pacotesCarroFacade = new PacotesCarroFacade();
-        pacotecarro.setFornecedorcidade(consultaFornecedorMB.getFornecedorcidade());
+        pacotecarro.setFornecedorcidade(fornecedorcidade);
         pacotecarro.setCambio(cambio);
         pacotecarro = pacotesCarroFacade.salvar(pacotecarro);
-        consultaFornecedorMB.setFornecedorcidade(new Fornecedorcidade());
+        
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage("Salvo com Sucesso", ""));
         return "consultapacote";
@@ -223,10 +257,10 @@ public class TrechosMB implements Serializable{
     
     public String salvarCruzeiro(){
         PacoteCruzeiroFacade pacoteCruzeiroFacade = new PacoteCruzeiroFacade();
-        pacotecruzeiro.setFornecedorcidade(consultaFornecedorMB.getFornecedorcidade());
+        pacotecruzeiro.setFornecedorcidade(fornecedorcidade);
         pacotecruzeiro.setCambio(cambio);
         pacotecruzeiro = pacoteCruzeiroFacade.salvar(pacotecruzeiro);
-        consultaFornecedorMB.setFornecedorcidade(new Fornecedorcidade());
+        fornecedorcidade = new Fornecedorcidade();
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage("Salvo com Sucesso", ""));
         return "consultapacote";
@@ -238,10 +272,10 @@ public class TrechosMB implements Serializable{
     
     public String salvarHotel(){
         PacotesHotelFacade pacoteHotelFacade = new PacotesHotelFacade();
-        pacotehotel.setFornecedorcidade(consultaFornecedorMB.getFornecedorcidade());
+        pacotehotel.setFornecedorcidade(fornecedorcidade);
         pacotehotel.setCambio(cambio);
         pacotehotel = pacoteHotelFacade.salvar(pacotehotel);
-        consultaFornecedorMB.setFornecedorcidade(new Fornecedorcidade());
+        fornecedorcidade = new Fornecedorcidade();
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage("Salvo com Sucesso", ""));
         return "consultapacote";
@@ -252,10 +286,10 @@ public class TrechosMB implements Serializable{
     
     public String salvarTrem(){
         PacoteTremFacade pacoteTremFacade = new PacoteTremFacade();
-        pacotetrem.setFornecedorcidade(consultaFornecedorMB.getFornecedorcidade());
+        pacotetrem.setFornecedorcidade(fornecedorcidade);
         pacotetrem.setCambio(cambio);
         pacotetrem = pacoteTremFacade.salvar(pacotetrem);
-        consultaFornecedorMB.setFornecedorcidade(new Fornecedorcidade());
+        fornecedorcidade = new Fornecedorcidade();
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage("Salvo com Sucesso", ""));
         return "consultapacote";
@@ -266,10 +300,10 @@ public class TrechosMB implements Serializable{
     
     public String salvarTransfer(){
         PacoteTransferFacade pacoteTransferFacade = new PacoteTransferFacade();
-        pacotetransfer.setFornecedorcidade(consultaFornecedorMB.getFornecedorcidade());
+        pacotetransfer.setFornecedorcidade(fornecedorcidade);
         pacotetransfer.setCambio(cambio);
         pacotetransfer = pacoteTransferFacade.salvar(pacotetransfer);
-        consultaFornecedorMB.setFornecedorcidade(new Fornecedorcidade());
+        fornecedorcidade = new Fornecedorcidade();
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage("Salvo com Sucesso", ""));
         return "consultapacote";
@@ -277,14 +311,14 @@ public class TrechosMB implements Serializable{
     
     public String salvarIngresso(){
         PacoteIngressoFacade pacoteIngressoFacade = new PacoteIngressoFacade();
-        pacoteingresso.setFornecedorcidade(consultaFornecedorMB.getFornecedorcidade());
+        pacoteingresso.setFornecedorcidade(fornecedorcidade);
         pacoteingresso.setCambio(cambio);
         pacoteingresso = pacoteIngressoFacade.salvar(pacoteingresso);
         listaPacoteIngresso.add(pacoteingresso);
         Pacotetrecho pacotetrecho = pacoteingresso.getPacotetrecho();
         pacoteingresso = new Pacoteingresso();
         pacoteingresso.setPacotetrecho(pacotetrecho);
-        consultaFornecedorMB.setFornecedorcidade(new Fornecedorcidade());
+        fornecedorcidade = new Fornecedorcidade();
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage("Salvo com Sucesso", ""));
         return "";
@@ -292,14 +326,14 @@ public class TrechosMB implements Serializable{
     
     public String salvarPasseio(){
         PacotePasseioFacade pacotePasseioFacade = new PacotePasseioFacade();
-        pacotepasseio.setFornecedorcidade(consultaFornecedorMB.getFornecedorcidade());
+        pacotepasseio.setFornecedorcidade(fornecedorcidade);
         pacotepasseio.setCambio(cambio);
         pacotepasseio = pacotePasseioFacade.salvar(pacotepasseio);
         listaPacotePasseio.add(pacotepasseio);
         Pacotetrecho pacotetrecho = pacotepasseio.getPacotetrecho();
         pacotepasseio = new Pacotepasseio();
         pacotepasseio.setPacotetrecho(pacotetrecho);
-        consultaFornecedorMB.setFornecedorcidade(new Fornecedorcidade());
+        fornecedorcidade = new Fornecedorcidade();
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage("Salvo com Sucesso", ""));
         return "";
