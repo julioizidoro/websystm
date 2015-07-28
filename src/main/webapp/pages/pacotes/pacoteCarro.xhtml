@@ -13,14 +13,30 @@
                     <br></br><br></br>
                     <p:accordionPanel class="painelPacote" >
                         <p:tab titleStyle="color:#000;font-size:10px;background:#c7d95f;" title="Carro">
-                            <p:outputLabel value="Fornecedor" for="fornecedor"/>
-                            <p:outputLabel value="País" for="pais" class="espacologin"/>
-                            <p:outputLabel value="Cidade" for="cidade" class="espacocobranca26"/>
+                            <p:outputLabel value="Pais" for="pais"/>
+                            <p:outputLabel value="Cidade" for="cidade" class="espacocobranca10"/>
+                            <p:outputLabel value="Fornecedor" for="fornecedor" class="espacocobranca9"/>
                             <br></br>
-                            <p:inputText id="fornecedor" value="#{trechosMB.pacotecarro.fornecedorcidade.fornecedor.nome}" size="40" maxlength="45" class="espacocampos2" />
-                            <p:commandButton class="espacocobranca20" icon="ui-icon-search" value="Selecionar" action="#"></p:commandButton>
-                            <p:inputText id="pais" value="#{trechosMB.pacotecarro.fornecedorcidade.cidade.pais}" size="30" maxlength="100" class="espacocampos"/>
-                            <p:inputText id="cidade" value="#{trechosMB.pacotecarro.fornecedorcidade.cidade.nome}" size="30" maxlength="100" class="espacocampos"/>
+                            <p:selectOneMenu id="pais" value="#{fornecedorMB.pais}" style="width:197px;font-size: 10px" class="espacocampos2" 
+                                             converter="PaisConverter" filter="true" filterMatchMode="startsWith" >
+                                <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
+                                <f:selectItems id="idpais" value="#{fornecedorMB.listaPais}" var="cpais" itemLabel="#{cpais.nome}" itemValue="#{cpais}"/>
+                                <f:attribute name="listaPais" value="#{fornecedorMB.listaPais}"/>
+                                <p:ajax event="change" update="cidade"/> 
+                            </p:selectOneMenu>
+                            <p:selectOneMenu id="cidade" value="#{fornecedorMB.cidade}" style="width:227px;font-size: 10px" class="espacocampos" 
+                                             converter="CidadeConverter" filter="true" filterMatchMode="startsWith">
+                                <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
+                                <f:selectItems id="idcidade" value="#{fornecedorMB.pais.cidadeList}" var="ccidade" itemLabel="#{ccidade.nome}" itemValue="#{ccidade}"/>
+                                <f:attribute name="listaCidade" value="#{fornecedorMB.pais.cidadeList}"/>
+                                <p:ajax event="change" listener="#{fornecedorMB.listarFornecedorCidade()}" update="fornecedor" />
+                            </p:selectOneMenu>
+                            <p:selectOneMenu id="fornecedor" value="#{fornecedorMB.fornecedorCidade}" style="width:200px;font-size: 10px" class="espacocampos" 
+                                              filter="true" filterMatchMode="startsWith">
+                                <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
+                                <f:selectItems id="idfornecedor" value="#{fornecedorMB.listaFornecedorCidade}" var="fornecedor" itemLabel="#{fornecedor.fornecedor.nome}" itemValue="#{fornecedor}"/>
+                                <f:attribute name="listafornecedor" value="#{fornecedorMB.listaFornecedorCidade}"/>
+                            </p:selectOneMenu>
                             <br></br><br></br><br></br>
                             <p:outputLabel value="Localizador" for="localizador"/>
                             <p:outputLabel value="Local Retirada" for="locaretirada" class="espacocobranca16"/>
