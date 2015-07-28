@@ -65,6 +65,8 @@ public class Pacotecruzeiro implements Serializable {
     private Float valornet;
     @Column(name = "comissao")
     private Float comissao;
+    @Column(name = "valormoedanacional")
+    private Float valormoedanacional;
     @JoinColumn(name = "cambio_idcambio", referencedColumnName = "idcambio")
     @ManyToOne(optional = false)
     private Cambio cambio;
@@ -160,6 +162,14 @@ public class Pacotecruzeiro implements Serializable {
 
     public void setComissao(Float comissao) {
         this.comissao = comissao;
+    }
+
+    public Float getValormoedanacional() {
+        return valormoedanacional;
+    }
+
+    public void setValormoedanacional(Float valormoedanacional) {
+        this.valormoedanacional = valormoedanacional;
     }
 
     public Cambio getCambio() {

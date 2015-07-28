@@ -16,6 +16,7 @@ import br.com.travelmate.model.Pacotecruzeiro;
 import br.com.travelmate.model.Pacotehotel;
 import br.com.travelmate.model.Pacoteingresso;
 import br.com.travelmate.model.Pacotepasseio;
+import br.com.travelmate.model.Pacotes;
 import br.com.travelmate.model.Pacotetransfer;
 import br.com.travelmate.model.Pacotetrecho;
 import br.com.travelmate.model.Pacotetrem;
@@ -50,70 +51,109 @@ public class TrechosMB implements Serializable{
     private Fornecedorcidade fornecedorcidade;
     private List<Pais> listaPais;
     private Cidade cidade;
-    private Pais pais;
     private List<Fornecedorcidade> listaFornecedorCidade;
+    private Pais pais;
+    private String tipoPacote;
 
     public TrechosMB() {
-        FacesContext fc = FacesContext.getCurrentInstance();  
+        FacesContext fc = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
         String tipo = (String) session.getAttribute("tipoOepracaoPacote");
-        if (tipo!=null){
-        PaisFacade paisFacade = new PaisFacade();
-        listaPais = paisFacade.listar("");
-        Pacotetrecho pacotetrecho = (Pacotetrecho) session.getAttribute("pacoteTrecho");
-        if (tipo.equalsIgnoreCase("carro")) {
-            PacotesCarroFacade pacoteCarroFacade = new PacotesCarroFacade();
-            pacotecarro = pacoteCarroFacade.consultar(pacotetrecho.getIdpacotetrecho());
-            if (pacotecarro == null) {
-                pacotecarro = new Pacotecarro();
-                pacotecarro.setPacotetrecho(pacotetrecho);
+        tipoPacote = (String) session.getAttribute("tipoPacote");
+        session.removeAttribute("tipoOperacaoPacote");
+        session.removeAttribute("tipoPacote");
+        if (tipo != null) {
+            PaisFacade paisFacade = new PaisFacade();
+            listaPais = paisFacade.listar("");
+            Pacotetrecho pacotetrecho = (Pacotetrecho) session.getAttribute("pacoteTrecho");
+            session.removeAttribute("pacoteTrecho");
+            int idProduto = 0;
+            if (pacotetrecho!=null){
+                idProduto = pacotetrecho.getPacotes().getVendas().getProdutos().getIdprodutos();
             }
-        } else if (tipo.equalsIgnoreCase("cruzeiro")) {
-            PacoteCruzeiroFacade pacoteCruzeiroFacade = new PacoteCruzeiroFacade();
-            pacotecruzeiro = pacoteCruzeiroFacade.consultar(pacotetrecho.getIdpacotetrecho());
-            if(pacotecruzeiro==null){
-                pacotecruzeiro = new Pacotecruzeiro();
-                pacotecruzeiro.setPacotetrecho(pacotetrecho);
+            if (tipo.equalsIgnoreCase("carro")) {
+                PacotesCarroFacade pacoteCarroFacade = new PacotesCarroFacade();
+                pacotecarro = pacoteCarroFacade.consultar(pacotetrecho.getIdpacotetrecho());
+                if (pacotecarro == null) {
+                    pacotecarro = new Pacotecarro();
+                    pacotecarro.setPacotetrecho(pacotetrecho);
+                } else {
+                    cambio = pacotecarro.getCambio();
+                    fornecedorcidade = pacotecarro.getFornecedorcidade();
+                }
+            } else if (tipo.equalsIgnoreCase("cruzeiro")) {
+                PacoteCruzeiroFacade pacoteCruzeiroFacade = new PacoteCruzeiroFacade();
+                pacotecruzeiro = pacoteCruzeiroFacade.consultar(pacotetrecho.getIdpacotetrecho());
+                if (pacotecruzeiro == null) {
+                    pacotecruzeiro = new Pacotecruzeiro();
+                    pacotecruzeiro.setPacotetrecho(pacotetrecho);
+                } else {
+                    cambio = pacotecruzeiro.getCambio();
+                    fornecedorcidade = pacotecruzeiro.getFornecedorcidade();
+                }
+            } else if (tipo.equalsIgnoreCase("hotel")) {
+                PacotesHotelFacade pacoteHotelFacade = new PacotesHotelFacade();
+                pacotehotel = pacoteHotelFacade.consultar(pacotetrecho.getIdpacotetrecho());
+                if (pacotehotel == null) {
+                    pacotehotel = new Pacotehotel();
+                    pacotehotel.setPacotetrecho(pacotetrecho);
+                } else {
+                    cambio = pacotehotel.getCambio();
+                    fornecedorcidade = pacotehotel.getFornecedorcidade();
+                }
+            } else if (tipo.equalsIgnoreCase("ingresso")) {
+                listaPacoteIngresso = pacotetrecho.getPacoteingressoList();
+                pacoteingresso = new Pacoteingresso();
+                pacoteingresso.setPacotetrecho(pacotetrecho);
+                if (listaPacoteIngresso == null) {
+                    listaPacoteIngresso = new ArrayList<Pacoteingresso>();
+                } else {
+                    cambio = pacoteingresso.getCambio();
+                    fornecedorcidade = pacoteingresso.getFornecedorcidade();
+                }
+            } else if (tipo.equalsIgnoreCase("passagem")) {
+
+            } else if (tipo.equalsIgnoreCase("passeio")) {
+                pacotepasseio = new Pacotepasseio();
+                pacotepasseio.setPacotetrecho(pacotetrecho);
+                listaPacotePasseio = pacotetrecho.getPacotepasseioList();
+                if (listaPacotePasseio == null) {
+                    listaPacotePasseio = new ArrayList<Pacotepasseio>();
+                } else {
+                    cambio = pacotepasseio.getCambio();
+                    fornecedorcidade = pacotepasseio.getFornecedorcidade();
+                }
+            } else if (tipo.equalsIgnoreCase("trem")) {
+                PacoteTremFacade pacoteTremFacade = new PacoteTremFacade();
+                pacotetrem = pacoteTremFacade.consultar(pacotetrecho.getIdpacotetrecho());
+                if (pacotetrem == null) {
+                    pacotetrem = new Pacotetrem();
+                    pacotetrem.setPacotetrecho(pacotetrecho);
+                } else {
+                    cambio = pacotetrem.getCambio();
+                    fornecedorcidade = pacotetrem.getFornecedorcidade();
+                }
+            } else if (tipo.equalsIgnoreCase("transfer")) {
+                PacoteTransferFacade pacoteTransferFacade = new PacoteTransferFacade();
+                pacotetransfer = pacoteTransferFacade.consultar(pacotetrecho.getIdpacotetrecho());
+                if (pacotetransfer == null) {
+                    pacotetransfer = new Pacotetransfer();
+                    pacotetransfer.setPacotetrecho(pacotetrecho);
+                } else {
+                    cambio = pacotetransfer.getCambio();
+                    fornecedorcidade = pacotetransfer.getFornecedorcidade();
+                }
             }
-        }else if (tipo.equalsIgnoreCase("hotel")){
-            PacotesHotelFacade pacoteHotelFacade = new PacotesHotelFacade();
-            pacotehotel = pacoteHotelFacade.consultar(pacotetrecho.getIdpacotetrecho());
-            if(pacotehotel==null){
-                pacotehotel = new Pacotehotel();
-                pacotehotel.setPacotetrecho(pacotetrecho);
-            }
-        }else if (tipo.equalsIgnoreCase("ingresso")){
-            listaPacoteIngresso = pacotetrecho.getPacoteingressoList();
-            pacoteingresso = new Pacoteingresso();
-            pacoteingresso.setPacotetrecho(pacotetrecho);
-            if (listaPacoteIngresso==null){
-                listaPacoteIngresso = new ArrayList<Pacoteingresso>();
-            }
-        }else if (tipo.equalsIgnoreCase("passagem")){
-            
-        }else if (tipo.equalsIgnoreCase("passeio")){
-            pacotepasseio=new Pacotepasseio();
-            pacotepasseio.setPacotetrecho(pacotetrecho);
-            listaPacotePasseio = pacotetrecho.getPacotepasseioList();
-            if (listaPacotePasseio==null){
-                listaPacotePasseio = new ArrayList<Pacotepasseio>();
-            }
-        }else if (tipo.equalsIgnoreCase("trem")){
-            PacoteTremFacade pacoteTremFacade = new PacoteTremFacade();
-            pacotetrem = pacoteTremFacade.consultar(pacotetrecho.getIdpacotetrecho());
-            if(pacotetrem==null){
-                pacotetrem = new Pacotetrem();
-                pacotetrem.setPacotetrecho(pacotetrecho);
-            }
-        }else if (tipo.equalsIgnoreCase("transfer")){
-            PacoteTransferFacade pacoteTransferFacade = new PacoteTransferFacade();
-            pacotetransfer = pacoteTransferFacade.consultar(pacotetrecho.getIdpacotetrecho());
-            if(pacotetransfer==null){
-                pacotetransfer = new Pacotetransfer();
-                pacotetransfer.setPacotetrecho(pacotetrecho);
+            if (fornecedorcidade!=null){
+                pais = fornecedorcidade.getCidade().getPais();
+                cidade  = fornecedorcidade.getCidade();
+                listarFornecedorCidade(idProduto);
+            }else {
+                fornecedorcidade = new Fornecedorcidade();
+                pais = new Pais();
+                cidade = new Cidade();
             }
         }
-    }
     }
     
     public Pacotecarro getPacotecarro() {
@@ -192,14 +232,6 @@ public class TrechosMB implements Serializable{
         return listaPacoteIngresso;
     }
 
-    public Pais getPais() {
-        return pais;
-    }
-
-    public void setPais(Pais pais) {
-        this.pais = pais;
-    }
-    
     public void setListaPacoteIngresso(List<Pacoteingresso> listaPacoteIngresso) {
         this.listaPacoteIngresso = listaPacoteIngresso;
     }
@@ -236,6 +268,7 @@ public class TrechosMB implements Serializable{
         this.fornecedorcidade = fornecedorcidade;
     }
 
+
     public Cidade getCidade() {
         return cidade;
     }
@@ -243,11 +276,28 @@ public class TrechosMB implements Serializable{
     public void setCidade(Cidade cidade) {
         this.cidade = cidade;
     }
+
+    public Pais getPais() {
+        return pais;
+    }
+
+    public void setPais(Pais pais) {
+        this.pais = pais;
+    }
     
-    public void listarFornecedorCidade(){
-        if ((usuarioLogadoMB.getParametrosprodutos().getPacotes()!=null) && (cidade!=null)){
-            listaFornecedorCidade = GerarListas.listarFornecedorCidade(usuarioLogadoMB.getParametrosprodutos().getPacotes(), cidade.getIdcidade());
+    public void listarFornecedorCidade(int idProduto){
+        if (usuarioLogadoMB!=null){
+            idProduto = usuarioLogadoMB.getParametrosprodutos().getPacotes();
         }
+        if ((idProduto>0) && (cidade!=null)){
+            listaFornecedorCidade = GerarListas.listarFornecedorCidade(idProduto, cidade.getIdcidade());
+        }
+    }
+    
+    public void iniciarPacoteSessao(Pacotes pacote){
+        FacesContext fc = FacesContext.getCurrentInstance();  
+        HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);  
+        session.setAttribute("pacote", pacote);
     }
     
     public String salvarCarro(){
@@ -258,7 +308,8 @@ public class TrechosMB implements Serializable{
         
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage("Salvo com Sucesso", ""));
-        return "consultapacote";
+        iniciarPacoteSessao(pacotecarro.getPacotetrecho().getPacotes());
+        return "cadPacote";
     }
     
     
@@ -456,3 +507,10 @@ public class TrechosMB implements Serializable{
          }
     }
 }
+
+
+
+
+
+
+
