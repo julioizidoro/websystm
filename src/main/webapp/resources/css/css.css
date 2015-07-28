@@ -238,7 +238,7 @@ text-align: left;
 #centro legend#iUsu3 b{
     font-size: 14px;
     font-family: tahoma;
-    color:#ffffff;
+    color:#000;
 }
 #centro legend#iUsu3 {
     width: 100%;
@@ -571,6 +571,7 @@ text-align: left;
     margin-left:50%;
     position: relative;
 }
+
 .campos3{
     font-size: 11px;
     margin-left:74%;
@@ -583,7 +584,7 @@ text-align: left;
 }
 .campos2r{
     font-size: 11px;
-    margin-left:70%;
+    margin-left:50%;
     text-align: right;
     position: relative;
 }
@@ -789,6 +790,12 @@ text-align: left;
     margin-left:87.5%;
     position: relative;
 }
+.espaco18p{
+    color: #000;
+    font-size: 11px;
+    margin-left:75%;
+    position: relative;
+}
 .botaoeditar{
     width:108%;background:-moz-linear-gradient(
         top,
@@ -855,12 +862,18 @@ text-align: left;
     text-align: left;
 }
 .botaocadpacote{
-    width:104%;background:-moz-linear-gradient(
+    width:100%;background:-moz-linear-gradient(
         top,
         #c7d95f 0%,
         #EEE5DE 10%,
         #c7d95f 30%,
-        #fff);margin-left: -15px;margin-top:15px; height:40px;border: #fff;text-align: center;
+        #fff);margin-left: 0px;margin-top:3%;border: #fff;text-align: center;
+    -webkit-border-bottom-right-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -moz-border-radius-bottomright: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 .espacocobranca7{
     margin-left:35%;
@@ -945,4 +958,15 @@ text-align: left;
 .loginButton2{
     margin-left:1%;
     font-size: 10px;
+}
+.espacocampos6right{
+    margin-left:2%;
+    font-size: 10px;
+    text-align: right;
+    
+}
+.espacocampos6{
+    margin-left:6%;
+    font-size: 10px;
+    
 }
