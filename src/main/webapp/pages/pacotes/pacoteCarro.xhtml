@@ -13,6 +13,15 @@
                     <br></br><br></br>
                     <p:accordionPanel class="painelPacote" >
                         <p:tab titleStyle="color:#000;font-size:10px;background:#c7d95f;" title="Carro">
+                            <p:outputLabel value="Fornecedor" for="fornecedor"/>
+                            <p:outputLabel value="País" for="pais" class="espacologin"/>
+                            <p:outputLabel value="Cidade" for="cidade" class="espacocobranca26"/>
+                            <br></br>
+                            <p:inputText id="fornecedor" value="#{trechosMB.pacotecarro.fornecedorcidade.fornecedor.nome}" size="40" maxlength="45" class="espacocampos2" />
+                            <p:commandButton class="espacocobranca20" icon="ui-icon-search" value="Selecionar" action="#"></p:commandButton>
+                            <p:inputText id="pais" value="#{trechosMB.pacotecarro.fornecedorcidade.cidade.pais}" size="30" maxlength="100" class="espacocampos"/>
+                            <p:inputText id="cidade" value="#{trechosMB.pacotecarro.fornecedorcidade.cidade.nome}" size="30" maxlength="100" class="espacocampos"/>
+                            <br></br><br></br><br></br>
                             <p:outputLabel value="Localizador" for="localizador"/>
                             <p:outputLabel value="Local Retirada" for="locaretirada" class="espacocobranca16"/>
                             <p:outputLabel value="Data Retirada" for="dataretirada" class="espacocobranca17"/>
