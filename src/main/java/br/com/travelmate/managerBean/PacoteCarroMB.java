@@ -66,7 +66,7 @@ public class PacoteCarroMB implements Serializable{
             fornecedorcidade = pacotecarro.getFornecedorcidade();
             pais = fornecedorcidade.getCidade().getPais();
             cidade = fornecedorcidade.getCidade();
-            listarFornecedorCidade(idProduto);
+            listarFornecedorCidade(String.valueOf(idProduto));
         }
     }
     
@@ -136,7 +136,8 @@ public class PacoteCarroMB implements Serializable{
         this.pais = pais;
     }
     
-    public void listarFornecedorCidade(int idProduto){
+    public void listarFornecedorCidade(String id){
+        int idProduto = Integer.parseInt(id);
         if (usuarioLogadoMB!=null){
             idProduto = usuarioLogadoMB.getParametrosprodutos().getPacotes();
         }
@@ -187,14 +188,4 @@ public class PacoteCarroMB implements Serializable{
         }
         pacotecarro.setComissao(comissao);
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }

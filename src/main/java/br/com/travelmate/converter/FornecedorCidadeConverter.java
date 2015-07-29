@@ -5,15 +5,12 @@
  */
 package br.com.travelmate.converter;
 
-import br.com.travelmate.model.Cambio;
-import br.com.travelmate.model.Cidade;
 import br.com.travelmate.model.Fornecedorcidade;
 import java.util.List;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
-import org.hibernate.dialect.FrontBaseDialect;
 
 /**
  *
@@ -44,7 +41,9 @@ public class FornecedorCidadeConverter implements Converter{
         }else {
             if (value instanceof Fornecedorcidade){
                 Fornecedorcidade fornecedorcidade = (Fornecedorcidade) value;
-            return fornecedorcidade.getFornecedor().getNome();
+                if (fornecedorcidade.getIdfornecedorcidade()==null){
+                    return "";
+                }else return fornecedorcidade.getFornecedor().getNome();
             }else return "";
         }
     }

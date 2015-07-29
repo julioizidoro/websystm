@@ -65,7 +65,7 @@ public class PacoteCruzeiroMB implements Serializable{
             fornecedorcidade = pacotecruzeiro.getFornecedorcidade();
             pais = fornecedorcidade.getCidade().getPais();
             cidade = fornecedorcidade.getCidade();
-            listarFornecedorCidade(idProduto);
+            listarFornecedorCidade(String.valueOf(idProduto));
         }
     }
 
@@ -133,7 +133,8 @@ public class PacoteCruzeiroMB implements Serializable{
         this.pais = pais;
     }
     
-    public void listarFornecedorCidade(int idProduto){
+    public void listarFornecedorCidade(String id){
+        int idProduto = Integer.parseInt(id);
         if (usuarioLogadoMB!=null){
             idProduto = usuarioLogadoMB.getParametrosprodutos().getPacotes();
         }
@@ -151,5 +152,35 @@ public class PacoteCruzeiroMB implements Serializable{
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage("Salvo com Sucesso", ""));
         return "cadPacote";
+    }
+    
+    public void calcularValorMoedaNcional(){
+        pacotecruzeiro.setValormoedanacional(pacotecruzeiro.getValorgross() * cambio.getValor());
+    }
+    
+    public void calcularValorGross(){
+        float valorNet = pacotecruzeiro.getValornet();
+        float comissao = pacotecruzeiro.getComissao();
+        float valorGross = 0.0f;
+        if ((valorNet>0) && (comissao>0)){
+            comissao = comissao /100;
+            comissao = comissao + 1;
+            valorGross = valorNet * comissao;
+        }
+        pacotecruzeiro.setValorgross(valorGross);
+        pacotecruzeiro.setValormoedanacional(pacotecruzeiro.getValorgross() * cambio.getValor());
+    }
+    
+    public void calcularComissao(){
+        float valorNet = pacotecruzeiro.getValornet();
+        float comissao = pacotecruzeiro.getComissao();
+        float valorGross = pacotecruzeiro.getValorgross();
+        if ((valorNet>0) && (valorGross>0)){
+            comissao = valorGross / valorNet;
+            comissao = comissao - 1;
+            comissao = comissao * 100;
+        }
+        pacotecruzeiro.setComissao(comissao);
+        pacotecruzeiro.setValormoedanacional(pacotecruzeiro.getValorgross() * cambio.getValor());
     }
 }

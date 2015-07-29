@@ -29,7 +29,7 @@
                                 <f:selectItem itemLabel="Cidade" itemValue="0" noSelectionOption="true"/> 
                                 <f:selectItems id="idcidade" value="#{pacoteCarroMB.pais.cidadeList}" var="ccidade" itemLabel="#{ccidade.nome}" itemValue="#{ccidade}"/>
                                 <f:attribute name="listaCidade" value="#{pacoteCarroMB.pais.cidadeList}"/>
-                                <p:ajax event="change" listener="#{pacoteCarroMB.listarFornecedorCidade()}" update="fornecedor" />
+                                <p:ajax event="change" listener="#{pacoteCarroMB.listarFornecedorCidade("0")}" update="fornecedor" />
                             </p:selectOneMenu>
                             <p:selectOneMenu id="fornecedor" value="#{pacoteCarroMB.fornecedorcidade}" style="width:200px;font-size: 10px" class="espacocampos" 
                                              converter="FornecedorCidadeConverter" filter="true" filterMatchMode="startsWith">
@@ -94,17 +94,17 @@
                             </h:commandLink>
                             <p:inputText id="valornet" value="#{pacoteCarroMB.pacotecarro.valornet}" size="15" class="espacocobranca18rig">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                                <p:ajax event="blur" />
                             </p:inputText>
                             <p:inputText id="comissao" value="#{pacoteCarroMB.pacotecarro.comissao}" size="12" class="espacocamposright">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
-                                <p:ajax event="blur update="valorgross" listener="#{pacoteCarroMB.calcularValorGross()}" />
+                                <p:ajax event="blur" update="valorgross" listener="#{pacoteCarroMB.calcularValorGross()}" />
                             </p:inputText>
                             <p:inputText id="valorgross" value="#{pacoteCarroMB.pacotecarro.valorgross}" size="15" maxlength="15" class="espacocamposright">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
-                                <p:ajax event="blur update="comissao" listener="#{pacoteCarroMB.calcularComissao()}"/>
+                                <p:ajax event="blur" update="comissao" listener="#{pacoteCarroMB.calcularComissao()}"/>
+                                <p:ajax event="blur" update="comissao" listener="#{pacoteCarroMB.calcularComissao()}"/>
                             </p:inputText>
-                            
-                            
                              <br></br><br></br><br></br>
                             <p:outputLabel value="Descritivo" for="descritivo"/>
                             <br></br>
