@@ -30,11 +30,19 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
-         <navigation-rule>
+        <navigation-rule>
 		<from-view-id>*</from-view-id>
 		<navigation-case>
 			<from-outcome>consultapacotesoperadora</from-outcome>
 			<to-view-id>/pages/pacoteoperadora/consultapacoteOperadora.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+         <navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>cadpacotesoperadora</from-outcome>
+			<to-view-id>/pages/pacoteoperadora/cadPacoteOperadora.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
@@ -139,6 +147,14 @@
 		<navigation-case>
 			<from-outcome>pacoteaereo</from-outcome>
 			<to-view-id>/pages/pacotes/pacotePassagem.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+        <navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>cadpacote</from-outcome>
+			<to-view-id>/pages/pacotes/cadPacote.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>

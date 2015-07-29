@@ -86,7 +86,7 @@
                                 <f:attribute name="listaCambio" value="#{usuarioLogadoMB.listaCambio}"/>
                                 <p:ajax event="change"  update="idvalorcambio"/>
                             </p:selectOneMenu>
-                            <p:inputText id="idvalorcambio" value="#{pacoteCarroMB.cambio.valor}" size="16" class="espacocamposright">
+                            <p:inputText id="idvalorcambio" value="#{pacoteCarroMB.cambio.valor}" size="16" class="espacocamposright" readonly="true">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>  
                             <h:commandLink action="#"  title="Editar Câmbio">  
@@ -97,9 +97,11 @@
                             </p:inputText>
                             <p:inputText id="comissao" value="#{pacoteCarroMB.pacotecarro.comissao}" size="12" class="espacocamposright">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                                <p:ajax event="blur update="valorgross" listener="#{pacoteCarroMB.calcularValorGross()}" />
                             </p:inputText>
                             <p:inputText id="valorgross" value="#{pacoteCarroMB.pacotecarro.valorgross}" size="15" maxlength="15" class="espacocamposright">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                                <p:ajax event="blur update="comissao" listener="#{pacoteCarroMB.calcularComissao()}"/>
                             </p:inputText>
                             
                             

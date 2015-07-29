@@ -155,11 +155,37 @@ public class PacoteCarroMB implements Serializable{
         context.addMessage(null, new FacesMessage("Salvo com Sucesso", ""));
         HttpSession session = (HttpSession) context.getExternalContext().getSession(false);  
         session.setAttribute("pacote", pacotecarro.getPacotetrecho().getPacotes());
-        return "cadPacote";
+        if (pacotecarro.getPacotetrecho().getPacotes().getOperacao().equalsIgnoreCase("Operadora")){
+            return "cadpacotesoperadora";
+        }else return "cadPacote";
     }
     
     public void calcularValorMoedaNcional(){
         pacotecarro.setValormoedanacional(pacotecarro.getValorgross() * cambio.getValor());
+    }
+    
+    public void calcularValorGross(){
+        float valorNet = pacotecarro.getValornet();
+        float comissao = pacotecarro.getComissao();
+        float valorGross = 0.0f;
+        if ((valorNet>0) && (comissao>0)){
+            comissao = comissao /100;
+            comissao = comissao + 1;
+            valorGross = valorNet * comissao;
+        }
+        pacotecarro.setValorgross(valorGross);
+    }
+    
+    public void calcularComissao(){
+        float valorNet = pacotecarro.getValornet();
+        float comissao = pacotecarro.getComissao();
+        float valorGross = pacotecarro.getValorgross();
+        if ((valorNet>0) && (valorGross>0)){
+            comissao = valorGross / valorNet;
+            comissao = comissao - 1;
+            comissao = comissao * 100;
+        }
+        pacotecarro.setComissao(comissao);
     }
     
     
