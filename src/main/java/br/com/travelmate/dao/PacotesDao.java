@@ -50,7 +50,7 @@ public class PacotesDao {
     public Pacotes consultar(int idVenda) throws SQLException{
         manager = ConectionFactory.getConnection();
         manager.getTransaction().begin();
-        Query q = manager.createQuery("select p from Pacotes p where p.vendas=" + idVenda);
+        Query q = manager.createQuery("select p from Pacotes p where p.vendas.idvendas=" + idVenda);
         manager.getTransaction().commit();
         if (q.getResultList().size() > 0) {
             return  (Pacotes) q.getResultList().get(0);

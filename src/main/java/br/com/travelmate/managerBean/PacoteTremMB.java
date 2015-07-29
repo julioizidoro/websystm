@@ -10,7 +10,6 @@ import br.com.travelmate.facade.PaisFacade;
 import br.com.travelmate.model.Cambio;
 import br.com.travelmate.model.Cidade;
 import br.com.travelmate.model.Fornecedorcidade;
-import br.com.travelmate.model.Pacotecarro;
 import br.com.travelmate.model.Pacotetrecho;
 import br.com.travelmate.model.Pacotetrem;
 import br.com.travelmate.model.Pais;
@@ -151,7 +150,37 @@ public class PacoteTremMB implements Serializable{
         fornecedorcidade = new Fornecedorcidade();
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage("Salvo com Sucesso", ""));
-        return "cadPacote";
+        HttpSession session = (HttpSession) context.getExternalContext().getSession(false);  
+        session.setAttribute("pacote", pacotetrem.getPacotetrecho().getPacotes());
+        if (pacotetrem.getPacotetrecho().getPacotes().getOperacao().equalsIgnoreCase("Operadora")){
+            return "cadpacotesoperadora";
+        }else return "cadPacote";
+    }
+    
+    public void calcularValorGross(){
+        float valorNet = pacotetrem.getValornet();
+        float comissao = pacotetrem.getComissao();
+        float valorGross = 0.0f;
+        if ((valorNet>0) && (comissao>0)){
+            comissao = comissao /100;
+            comissao = comissao + 1;
+            valorGross = valorNet * comissao;
+        }
+        pacotetrem.setValorgross(valorGross);
+        pacotetrem.setValormoedanacional(pacotetrem.getValorgross() * cambio.getValor());
+    }
+    
+    public void calcularComissao(){
+        float valorNet = pacotetrem.getValornet();
+        float comissao = pacotetrem.getComissao();
+        float valorGross = pacotetrem.getValorgross();
+        if ((valorNet>0) && (valorGross>0)){
+            comissao = valorGross / valorNet;
+            comissao = comissao - 1;
+            comissao = comissao * 100;
+        }
+        pacotetrem.setComissao(comissao);
+        pacotetrem.setValormoedanacional(pacotetrem.getValorgross() * cambio.getValor());
     }
     
     

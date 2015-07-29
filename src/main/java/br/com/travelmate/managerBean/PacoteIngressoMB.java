@@ -164,6 +164,40 @@ public class PacoteIngressoMB implements Serializable{
         return "";
     }
     
+    public void calcularValorGross(){
+        float valorNet = pacoteingresso.getValornet();
+        float comissao = pacoteingresso.getComissao();
+        float valorGross = 0.0f;
+        if ((valorNet>0) && (comissao>0)){
+            comissao = comissao /100;
+            comissao = comissao + 1;
+            valorGross = valorNet * comissao;
+        }
+        pacoteingresso.setValorgross(valorGross);
+        pacoteingresso.setValormoedanacional(pacoteingresso.getValorgross() * cambio.getValor());
+    }
     
+    public void calcularComissao(){
+        float valorNet = pacoteingresso.getValornet();
+        float comissao = pacoteingresso.getComissao();
+        float valorGross = pacoteingresso.getValorgross();
+        if ((valorNet>0) && (valorGross>0)){
+            comissao = valorGross / valorNet;
+            comissao = comissao - 1;
+            comissao = comissao * 100;
+        }
+        pacoteingresso.setComissao(comissao);
+        pacoteingresso.setValormoedanacional(pacoteingresso.getValorgross() * cambio.getValor());
+    }
+    
+    public String cancelar(){
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage("Salvo com Sucesso", ""));
+        HttpSession session = (HttpSession) context.getExternalContext().getSession(false);  
+        session.setAttribute("pacote", pacoteingresso.getPacotetrecho().getPacotes());
+        if (pacoteingresso.getPacotetrecho().getPacotes().getOperacao().equalsIgnoreCase("Operadora")){
+            return "cadpacotesoperadora";
+        }else return "cadPacote";
+    }
     
 }

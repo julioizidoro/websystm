@@ -28,13 +28,13 @@
                                 <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
                                 <f:selectItems id="idcidade" value="#{pacoteTremMB.pais.cidadeList}" var="ccidade" itemLabel="#{ccidade.nome}" itemValue="#{ccidade}"/>
                                 <f:attribute name="listaCidade" value="#{pacoteTremMB.pais.cidadeList}"/>
-                                <p:ajax event="change" listener="#{pacoteTremMB.listarFornecedorCidade()}" update="fornecedor" />
+                                <p:ajax event="change" listener="#{pacoteTremMB.listarFornecedorCidade(0)}" update="fornecedor" />
                             </p:selectOneMenu>
                             <p:selectOneMenu id="fornecedor" value="#{pacoteTremMB.fornecedorcidade}" style="width:200px;font-size: 10px" class="espacocampos" 
-                                              filter="true" filterMatchMode="startsWith">
+                                              converter="FornecedorCidadeConverter" filter="true" filterMatchMode="startsWith">
                                 <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
                                 <f:selectItems id="idfornecedor" value="#{pacoteTremMB.listaFornecedorCidade}" var="fornecedor" itemLabel="#{fornecedor.fornecedor.nome}" itemValue="#{fornecedor}"/>
-                                <f:attribute name="listafornecedor" value="#{pacoteTremMB.listaFornecedorCidade}"/>
+                                <f:attribute name="listaFornecedorCidade" value="#{pacoteTremMB.listaFornecedorCidade}"/>
                             </p:selectOneMenu>
                             <br></br><br></br><br></br> 
                             <p:outputLabel value="De" for="de" class=""/>
@@ -77,7 +77,7 @@
                                 <f:attribute name="listaCambio" value="#{usuarioLogadoMB.listaCambio}"/>
                                 <p:ajax event="change" update="idvalorcambio" />
                             </p:selectOneMenu>
-                            <p:inputText id="idvalorcambio" value="#{pacoteTremMB.cambio.valor}" size="14" class="espacocamposright">
+                            <p:inputText id="idvalorcambio" value="#{pacoteTremMB.cambio.valor}" size="14" class="espacocamposright" readonly="true">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>  
                             <h:commandLink action="#"  title="Editar Câmbio">  
@@ -85,14 +85,19 @@
                             </h:commandLink>
                             <p:inputText id="valornet" value="#{pacoteTremMB.pacotetrem.valornet}" size="14" class="espacocobranca20">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                                <p:ajax event="blur" />
                             </p:inputText>
                             <p:inputText id="comissao" value="#{pacoteTremMB.pacotetrem.comissao}" size="12" class="espacocamposright">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                                <p:ajax event="blur" update="valorgross" listener="#{pacoteTremMB.calcularValorGross()}" />
+                                <p:ajax event="blur" update="moedanacional" />
                             </p:inputText>
                             <p:inputText id="valorgross" value="#{pacoteTremMB.pacotetrem.valorgross}" size="14" maxlength="15" class="espacocamposright">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                                <p:ajax event="blur" update="comissao" listener="#{pacoteTremMB.calcularComissao()}"/>
+                                <p:ajax event="blur" update="moedanacional" />
                             </p:inputText>
-                            <p:inputText id="moedanacional" value="" size="19" maxlength="15" class="espacocamposright">
+                            <p:inputText id="moedanacional" value="#{pacoteTremMB.pacotetrem.valormoedanacional}" size="19" maxlength="15" class="espacocamposright" readonly="true">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
                             <br></br><br></br><br></br>

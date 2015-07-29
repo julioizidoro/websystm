@@ -103,7 +103,6 @@
                             <p:inputText id="valorgross" value="#{pacoteCarroMB.pacotecarro.valorgross}" size="15" maxlength="15" class="espacocamposright">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 <p:ajax event="blur" update="comissao" listener="#{pacoteCarroMB.calcularComissao()}"/>
-                                <p:ajax event="blur" update="comissao" listener="#{pacoteCarroMB.calcularComissao()}"/>
                             </p:inputText>
                              <br></br><br></br><br></br>
                             <p:outputLabel value="Descritivo" for="descritivo"/>

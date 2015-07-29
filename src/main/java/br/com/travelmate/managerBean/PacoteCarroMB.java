@@ -161,10 +161,6 @@ public class PacoteCarroMB implements Serializable{
         }else return "cadPacote";
     }
     
-    public void calcularValorMoedaNcional(){
-        pacotecarro.setValormoedanacional(pacotecarro.getValorgross() * cambio.getValor());
-    }
-    
     public void calcularValorGross(){
         float valorNet = pacotecarro.getValornet();
         float comissao = pacotecarro.getComissao();
@@ -175,6 +171,7 @@ public class PacoteCarroMB implements Serializable{
             valorGross = valorNet * comissao;
         }
         pacotecarro.setValorgross(valorGross);
+        pacotecarro.setValormoedanacional(pacotecarro.getValorgross() * cambio.getValor());
     }
     
     public void calcularComissao(){
@@ -187,5 +184,6 @@ public class PacoteCarroMB implements Serializable{
             comissao = comissao * 100;
         }
         pacotecarro.setComissao(comissao);
+        pacotecarro.setValormoedanacional(pacotecarro.getValorgross() * cambio.getValor());
     }
 }

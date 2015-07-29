@@ -34,7 +34,8 @@
                                               converter="FornecedorCidadeConverter" filter="true" filterMatchMode="startsWith">
                                 <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
                                 <f:selectItems id="idfornecedor" value="#{pacoteCruzeiroMB.listaFornecedorCidade}" var="fornecedor" itemLabel="#{fornecedor.fornecedor.nome}" itemValue="#{fornecedor}"/>
-                                <f:attribute name="listafornecedor" value="#{pacoteCruzeiroMB.listaFornecedorCidade}"/>
+                                <f:attribute name="listaFornecedorCidade" value="#{pacoteCruzeiroMB.listaFornecedorCidade}"/>
+                                <p:ajax event="change" />
                             </p:selectOneMenu>
                             <br></br><br></br><br></br> 
                             <p:outputLabel value="Data Saída" for="datasaida" class="espacocobranca11"/>
@@ -89,9 +90,9 @@
                             <p:inputText id="valorgross" value="#{pacoteCruzeiroMB.pacotecruzeiro.valorgross}" size="11"  class="espacocamposright" >
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 <p:ajax event="blur" update="comissao" listener="#{pacoteCruzeiroMB.calcularComissao()}"/>
-                                <p:ajax event="blur" update="moedanacional"/>
+                                <p:ajax event="blur" update="moedanacional" />
                             </p:inputText>
-                            <p:inputText id="moedanacional" value="" size="19"  class="espacocamposright" readonly="true">
+                            <p:inputText id="moedanacional" value="#{pacoteCruzeiroMB.pacotecruzeiro.valormoedanacional}" size="19"  class="espacocamposright" readonly="true">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
                             <p class="botaocadpacote"><br></br>

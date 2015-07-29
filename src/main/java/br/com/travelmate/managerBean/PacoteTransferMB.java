@@ -150,7 +150,37 @@ public class PacoteTransferMB implements Serializable{
         fornecedorcidade = new Fornecedorcidade();
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage("Salvo com Sucesso", ""));
-        return "cadPacote";
+        HttpSession session = (HttpSession) context.getExternalContext().getSession(false);  
+        session.setAttribute("pacote", pacotetransfer.getPacotetrecho().getPacotes());
+        if (pacotetransfer.getPacotetrecho().getPacotes().getOperacao().equalsIgnoreCase("Operadora")){
+            return "cadpacotesoperadora";
+        }else return "cadPacote";
+    }
+    
+    public void calcularValorGross(){
+        float valorNet = pacotetransfer.getValornet();
+        float comissao = pacotetransfer.getComissao();
+        float valorGross = 0.0f;
+        if ((valorNet>0) && (comissao>0)){
+            comissao = comissao /100;
+            comissao = comissao + 1;
+            valorGross = valorNet * comissao;
+        }
+        pacotetransfer.setValorgross(valorGross);
+        pacotetransfer.setValormoedanacional(pacotetransfer.getValorgross() * cambio.getValor());
+    }
+    
+    public void calcularComissao(){
+        float valorNet = pacotetransfer.getValornet();
+        float comissao = pacotetransfer.getComissao();
+        float valorGross = pacotetransfer.getValorgross();
+        if ((valorNet>0) && (valorGross>0)){
+            comissao = valorGross / valorNet;
+            comissao = comissao - 1;
+            comissao = comissao * 100;
+        }
+        pacotetransfer.setComissao(comissao);
+        pacotetransfer.setValormoedanacional(pacotetransfer.getValorgross() * cambio.getValor());
     }
     
     

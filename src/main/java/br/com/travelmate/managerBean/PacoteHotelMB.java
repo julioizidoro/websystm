@@ -77,13 +77,15 @@ public class PacoteHotelMB implements Serializable{
         this.usuarioLogadoMB = usuarioLogadoMB;
     }
 
-    public Pacotehotel getPacoteHotel() {
+    public Pacotehotel getPacotehotel() {
         return pacotehotel;
     }
 
-    public void setPacoteHotel(Pacotehotel pacotehotel) {
+    public void setPacotehotel(Pacotehotel pacotehotel) {
         this.pacotehotel = pacotehotel;
     }
+
+    
 
     public Cambio getCambio() {
         return cambio;
@@ -150,6 +152,36 @@ public class PacoteHotelMB implements Serializable{
         fornecedorcidade = new Fornecedorcidade();
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage("Salvo com Sucesso", ""));
-        return "cadPacote";
+        HttpSession session = (HttpSession) context.getExternalContext().getSession(false);  
+        session.setAttribute("pacote", pacotehotel.getPacotetrecho().getPacotes());
+        if (pacotehotel.getPacotetrecho().getPacotes().getOperacao().equalsIgnoreCase("Operadora")){
+            return "cadpacotesoperadora";
+        }else return "cadPacote";
+    }
+    
+    public void calcularValorGross(){
+        float valorNet = pacotehotel.getValornet();
+        float comissao = pacotehotel.getComissao();
+        float valorGross = 0.0f;
+        if ((valorNet>0) && (comissao>0)){
+            comissao = comissao /100;
+            comissao = comissao + 1;
+            valorGross = valorNet * comissao;
+        }
+        pacotehotel.setValorgross(valorGross);
+        pacotehotel.setValormoedanacional(pacotehotel.getValorgross() * cambio.getValor());
+    }
+    
+    public void calcularComissao(){
+        float valorNet = pacotehotel.getValornet();
+        float comissao = pacotehotel.getComissao();
+        float valorGross = pacotehotel.getValorgross();
+        if ((valorNet>0) && (valorGross>0)){
+            comissao = valorGross / valorNet;
+            comissao = comissao - 1;
+            comissao = comissao * 100;
+        }
+        pacotehotel.setComissao(comissao);
+        pacotehotel.setValormoedanacional(pacotehotel.getValorgross() * cambio.getValor());
     }
 }

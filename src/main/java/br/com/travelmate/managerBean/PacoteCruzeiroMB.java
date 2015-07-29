@@ -151,7 +151,11 @@ public class PacoteCruzeiroMB implements Serializable{
         fornecedorcidade = new Fornecedorcidade();
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage("Salvo com Sucesso", ""));
-        return "cadPacote";
+        HttpSession session = (HttpSession) context.getExternalContext().getSession(false);  
+        session.setAttribute("pacote", pacotecruzeiro.getPacotetrecho().getPacotes());
+        if (pacotecruzeiro.getPacotetrecho().getPacotes().getOperacao().equalsIgnoreCase("Operadora")){
+            return "cadpacotesoperadora";
+        }else return "cadPacote";
     }
     
     public void calcularValorMoedaNcional(){

@@ -26,8 +26,7 @@
                                      converter="ProdutoConverter" filter="true" filterMatchMode="startsWith">
                         <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
                         <f:selectItems id="idproduto" value="#{fornecedorMB.listaProdutos}" var="cproduto" itemLabel="#{cproduto.descricao}" itemValue="#{cproduto}"/>
-                        <f:attribute name="listaProdutos" value="#{fornecedorMB.listaProdutos}"/>
-                        <p:ajax event="change" />
+                        <f:attribute name="listaFornecedorCidade" value="#{fornecedorMB.listaProdutos}"/>
                     </p:selectOneMenu>
                     <p:selectOneMenu id="cidade" value="#{fornecedorMB.cidade}" style="width:220px;font-size: 10px" class="espacocampos" 
                                      converter="CidadeConverter" filter="true" filterMatchMode="startsWith">

@@ -22,20 +22,20 @@
                                 <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
                                 <f:selectItems id="idpais" value="#{pacoteHotelMB.listaPais}" var="cpais" itemLabel="#{cpais.nome}" itemValue="#{cpais}"/>
                                 <f:attribute name="listaPais" value="#{pacoteHotelMB.listaPais}"/>
-                                <p:ajax event="change" update="cidade"/> 
+                                <p:ajax event="change" update="cidade1"/> 
                             </p:selectOneMenu>
                             <p:selectOneMenu id="cidade1" value="#{pacoteHotelMB.cidade}" style="width:227px;font-size: 10px" class="espacocampos" 
                                              converter="CidadeConverter" filter="true" filterMatchMode="startsWith">
                                 <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
                                 <f:selectItems id="idcidade" value="#{pacoteHotelMB.pais.cidadeList}" var="ccidade" itemLabel="#{ccidade.nome}" itemValue="#{ccidade}"/>
                                 <f:attribute name="listaCidade" value="#{pacoteHotelMB.pais.cidadeList}"/>
-                                <p:ajax event="change" listener="#{pacoteHotelMB.listarFornecedorCidade()}" update="fornecedor" />
+                                <p:ajax event="change" listener="#{pacoteHotelMB.listarFornecedorCidade(0)}" update="fornecedor" />
                             </p:selectOneMenu>
                             <p:selectOneMenu id="fornecedor" value="#{pacoteHotelMB.fornecedorcidade}" style="width:200px;font-size: 10px" class="espacocampos" 
-                                              filter="true" filterMatchMode="startsWith">
+                                              converter="FornecedorCidadeConverter" filter="true" filterMatchMode="startsWith">
                                 <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
                                 <f:selectItems id="idfornecedor" value="#{pacoteHotelMB.listaFornecedorCidade}" var="fornecedor" itemLabel="#{fornecedor.fornecedor.nome}" itemValue="#{fornecedor}"/>
-                                <f:attribute name="listafornecedor" value="#{pacoteHotelMB.listaFornecedorCidade}"/>
+                                <f:attribute name="listaFornecedorCidade" value="#{pacoteHotelMB.listaFornecedorCidade}"/>
                             </p:selectOneMenu>
                             <br></br><br></br><br></br> 
                             <p:outputLabel value="País" for="pais" class=""/>
@@ -80,7 +80,7 @@
                                 <f:attribute name="listaCambio" value="#{usuarioLogadoMB.listaCambio}"/>
                                 <p:ajax event="change" update="idvalorcambio" />
                             </p:selectOneMenu>
-                            <p:inputText id="idvalorcambio" value="#{pacoteHotelMB.cambio.valor}" size="14" class="espacocamposright">
+                            <p:inputText id="idvalorcambio" value="#{pacoteHotelMB.cambio.valor}" size="14" class="espacocamposright" readonly="true">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>  
                             <h:commandLink action="#"  title="Editar Câmbio">  
@@ -88,14 +88,19 @@
                             </h:commandLink>
                             <p:inputText id="valornet" value="#{pacoteHotelMB.pacotehotel.valornet}" size="14" class="espacocobranca20">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                                 <p:ajax event="blur" />
                             </p:inputText>
                             <p:inputText id="comissao" value="#{pacoteHotelMB.pacotehotel.comissao}" size="12" class="espacocamposright">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                                <p:ajax event="blur" update="valorgross" listener="#{pacoteHotelMB.calcularValorGross()}" />
+                                <p:ajax event="blur" update="moedanacional"/>
                             </p:inputText>
                             <p:inputText id="valorgross" value="#{pacoteHotelMB.pacotehotel.valorgross}" size="14" maxlength="15" class="espacocamposright">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                                <p:ajax event="blur" update="comissao" listener="#{pacoteHotelMB.calcularComissao()}"/>
+                                <p:ajax event="blur" update="moedanacional" />
                             </p:inputText>
-                            <p:inputText id="moedanacional" value="#{pacoteHotelMB.pacotehotel.valormoedanacional}" size="18" maxlength="15" class="espacocamposright">
+                            <p:inputText id="moedanacional" value="#{pacoteHotelMB.pacotehotel.valormoedanacional}" size="18" maxlength="15" class="espacocamposright" readonly="true">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
                             <br></br><br></br><br></br>
