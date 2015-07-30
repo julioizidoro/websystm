@@ -20,7 +20,7 @@
                             <p:selectOneMenu id="pais" value="#{pacoteCarroMB.pais}" style="width:27%;font-size: 10px" class="espacocampos2" 
                                              converter="PaisConverter" filter="true" filterMatchMode="startsWith" panelStyle="width:180px" >
                                 <f:selectItem itemLabel="País" itemValue="0" noSelectionOption="true"/> 
-                                <f:selectItems id="idpais" value="#{pacoteCarroMB.listaPais}" var="cpais" itemLabel="#{cpais.nome}" itemValue="#{cpais}"/>
+                                <f:selectItems id="idpais" value="#{pacoteCarroMB.listaPais}" var="cpais" itemLabel="#{cpais.pais.nome}" itemValue="#{cpais.pais}"/>
                                 <f:attribute name="listaPais" value="#{pacoteCarroMB.listaPais}"/>
                                 <p:ajax event="change" update="cidade"/> 
                             </p:selectOneMenu>

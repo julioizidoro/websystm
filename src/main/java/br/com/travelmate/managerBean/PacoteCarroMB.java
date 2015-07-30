@@ -2,12 +2,14 @@ package br.com.travelmate.managerBean;
 
 import br.com.travelmate.facade.PacotesCarroFacade;
 import br.com.travelmate.facade.PaisFacade;
+import br.com.travelmate.facade.PaisProdutoFacade;
 import br.com.travelmate.model.Cambio;
 import br.com.travelmate.model.Cidade;
 import br.com.travelmate.model.Fornecedorcidade;
 import br.com.travelmate.model.Pacotecarro;
 import br.com.travelmate.model.Pacotetrecho;
 import br.com.travelmate.model.Pais;
+import br.com.travelmate.model.Paisproduto;
 import br.com.travelmate.util.GerarListas;
 import java.io.Serializable;
 import java.util.List;
@@ -37,7 +39,7 @@ public class PacoteCarroMB implements Serializable{
     private Pacotecarro pacotecarro;
     private Cambio cambio;
     private Fornecedorcidade fornecedorcidade;
-    private List<Pais> listaPais;
+    private List<Paisproduto> listaPais;
     private Cidade cidade;
     private List<Fornecedorcidade> listaFornecedorCidade;
     private Pais pais;
@@ -45,13 +47,13 @@ public class PacoteCarroMB implements Serializable{
     public PacoteCarroMB() {
         FacesContext fc = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
-        PaisFacade paisFacade = new PaisFacade();
-        listaPais = paisFacade.listar("");
         Pacotetrecho pacotetrecho = (Pacotetrecho) session.getAttribute("pacoteTrecho");
         session.removeAttribute("pacoteTrecho");
         int idProduto = 0;
         if (pacotetrecho != null) {
+            PaisProdutoFacade paisProdutoFacade = new PaisProdutoFacade();
             idProduto = pacotetrecho.getPacotes().getVendas().getProdutos().getIdprodutos();
+            listaPais = paisProdutoFacade.listar(idProduto);
         }
         PacotesCarroFacade pacoteCarroFacade = new PacotesCarroFacade();
         pacotecarro = pacoteCarroFacade.consultar(pacotetrecho.getIdpacotetrecho());
@@ -104,13 +106,14 @@ public class PacoteCarroMB implements Serializable{
         this.fornecedorcidade = fornecedorcidade;
     }
 
-    public List<Pais> getListaPais() {
+    public List<Paisproduto> getListaPais() {
         return listaPais;
     }
 
-    public void setListaPais(List<Pais> listaPais) {
+    public void setListaPais(List<Paisproduto> listaPais) {
         this.listaPais = listaPais;
     }
+
 
     public Cidade getCidade() {
         return cidade;

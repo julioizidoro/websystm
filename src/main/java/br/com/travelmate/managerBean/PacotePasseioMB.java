@@ -7,12 +7,14 @@ package br.com.travelmate.managerBean;
 
 import br.com.travelmate.facade.PacotePasseioFacade;
 import br.com.travelmate.facade.PaisFacade;
+import br.com.travelmate.facade.PaisProdutoFacade;
 import br.com.travelmate.model.Cambio;
 import br.com.travelmate.model.Cidade;
 import br.com.travelmate.model.Fornecedorcidade;
 import br.com.travelmate.model.Pacotepasseio;
 import br.com.travelmate.model.Pacotetrecho;
 import br.com.travelmate.model.Pais;
+import br.com.travelmate.model.Paisproduto;
 import br.com.travelmate.util.GerarListas;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -37,7 +39,7 @@ public class PacotePasseioMB implements Serializable{
     private Pacotepasseio pacotepasseio;
     private Cambio cambio;
     private Fornecedorcidade fornecedorcidade;
-    private List<Pais> listaPais;
+    private List<Paisproduto> listaPais;
     private Cidade cidade;
     private List<Fornecedorcidade> listaFornecedorCidade;
     private Pais pais;
@@ -46,13 +48,13 @@ public class PacotePasseioMB implements Serializable{
     public PacotePasseioMB() {
         FacesContext fc = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
-        PaisFacade paisFacade = new PaisFacade();
-        listaPais = paisFacade.listar("");
         Pacotetrecho pacotetrecho = (Pacotetrecho) session.getAttribute("pacoteTrecho");
         session.removeAttribute("pacoteTrecho");
         int idProduto = 0;
         if (pacotetrecho != null) {
+            PaisProdutoFacade paisProdutoFacade = new PaisProdutoFacade();
             idProduto = pacotetrecho.getPacotes().getVendas().getProdutos().getIdprodutos();
+            listaPais = paisProdutoFacade.listar(idProduto);
         }
         listaPacotePasseio = pacotetrecho.getPacotepasseioList();
         pacotepasseio = new Pacotepasseio();
@@ -100,13 +102,14 @@ public class PacotePasseioMB implements Serializable{
         this.fornecedorcidade = fornecedorcidade;
     }
 
-    public List<Pais> getListaPais() {
+    public List<Paisproduto> getListaPais() {
         return listaPais;
     }
 
-    public void setListaPais(List<Pais> listaPais) {
+    public void setListaPais(List<Paisproduto> listaPais) {
         this.listaPais = listaPais;
     }
+
 
     public Cidade getCidade() {
         return cidade;
