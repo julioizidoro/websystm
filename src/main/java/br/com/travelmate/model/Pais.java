@@ -19,7 +19,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
@@ -32,6 +31,8 @@ import javax.validation.constraints.Size;
 @NamedQueries({
     @NamedQuery(name = "Pais.findAll", query = "SELECT p FROM Pais p")})
 public class Pais implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pais")
+    private List<Cidade> cidadeList;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,9 +45,8 @@ public class Pais implements Serializable {
     @Size(max = 5)
     @Column(name = "sigla")
     private String sigla;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pais" )
-    @OrderBy("nome")
-    private List<Cidade> cidadeList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pais")
+    private List<Paisproduto> paisprodutoList;
     @JoinColumn(name = "moedas_idmoedas", referencedColumnName = "idmoedas")
     @ManyToOne(optional = false)
     private Moedas moedas;
@@ -82,12 +82,12 @@ public class Pais implements Serializable {
         this.sigla = sigla;
     }
 
-    public List<Cidade> getCidadeList() {
-        return cidadeList;
+    public List<Paisproduto> getPaisprodutoList() {
+        return paisprodutoList;
     }
 
-    public void setCidadeList(List<Cidade> cidadeList) {
-        this.cidadeList = cidadeList;
+    public void setPaisprodutoList(List<Paisproduto> paisprodutoList) {
+        this.paisprodutoList = paisprodutoList;
     }
 
     public Moedas getMoedas() {
@@ -121,6 +121,14 @@ public class Pais implements Serializable {
     @Override
     public String toString() {
         return "br.com.travelmate.model.Pais[ idpais=" + idpais + " ]";
+    }
+
+    public List<Cidade> getCidadeList() {
+        return cidadeList;
+    }
+
+    public void setCidadeList(List<Cidade> cidadeList) {
+        this.cidadeList = cidadeList;
     }
     
 }

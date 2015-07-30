@@ -23,7 +23,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 
 /**
@@ -35,15 +34,6 @@ import javax.validation.constraints.Size;
 @NamedQueries({
     @NamedQuery(name = "Pacotes.findAll", query = "SELECT p FROM Pacotes p")})
 public class Pacotes implements Serializable {
-    @Column(name = "comissao")
-    private Double comissao;
-    @Column(name = "valormoedanacional")
-    private Float valormoedanacional;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "valorgross")
-    private Float valorgross;
-    @Column(name = "valornet")
-    private Float valornet;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -62,27 +52,44 @@ public class Pacotes implements Serializable {
     @Size(max = 50)
     @Column(name = "controle")
     private String controle;
+    @Size(max = 10)
     @Column(name = "operacao")
     private String operacao;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "valorgross")
+    private Float valorgross;
+    @Column(name = "valornet")
+    private Float valornet;
+    @Column(name = "comissao")
+    private Double comissao;
+    @Column(name = "valormoedanacional")
+    private Float valormoedanacional;
+    @Size(max = 3)
+    @Column(name = "cartaovtm")
+    private String cartaovtm;
+    @Size(max = 50)
+    @Column(name = "numerocartaovtm")
+    private String numerocartaovtm;
+    @Size(max = 10)
+    @Column(name = "moeda")
+    private String moeda;
     @JoinColumn(name = "cambio_idcambio", referencedColumnName = "idcambio")
     @ManyToOne(optional = false)
     private Cambio cambio;
-    @JoinColumn(name = "vendas_idvendas", referencedColumnName = "idvendas")
+    @JoinColumn(name = "cliente_idcliente", referencedColumnName = "idcliente")
     @ManyToOne(optional = false)
-    private Vendas vendas;
+    private Cliente cliente;
     @JoinColumn(name = "unidadeNegocio_idunidadeNegocio", referencedColumnName = "idunidadeNegocio")
     @ManyToOne(optional = false)
     private Unidadenegocio unidadenegocio;
     @JoinColumn(name = "usuario_idusuario", referencedColumnName = "idusuario")
     @ManyToOne(optional = false)
     private Usuario usuario;
+    @JoinColumn(name = "vendas_idvendas", referencedColumnName = "idvendas")
+    @ManyToOne(optional = false)
+    private Vendas vendas;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pacotes")
     private List<Pacotetrecho> pacotetrechoList;
-    @JoinColumn(name = "cliente_idcliente", referencedColumnName = "idcliente")
-    @ManyToOne(optional = false)
-    private Cliente cliente;
-    @Transient
-    private boolean selecionado;
 
     public Pacotes() {
     }
@@ -139,87 +146,6 @@ public class Pacotes implements Serializable {
         this.operacao = operacao;
     }
 
-    public Cambio getCambio() {
-        return cambio;
-    }
-
-    public void setCambio(Cambio cambio) {
-        this.cambio = cambio;
-    }
-
-    public Vendas getVendas() {
-        return vendas;
-    }
-
-    public void setVendas(Vendas vendas) {
-        this.vendas = vendas;
-    }
-
-    public Unidadenegocio getUnidadenegocio() {
-        return unidadenegocio;
-    }
-
-    public void setUnidadenegocio(Unidadenegocio unidadenegocio) {
-        this.unidadenegocio = unidadenegocio;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
-    public List<Pacotetrecho> getPacotetrechoList() {
-        return pacotetrechoList;
-    }
-
-    public void setPacotetrechoList(List<Pacotetrecho> pacotetrechoList) {
-        this.pacotetrechoList = pacotetrechoList;
-    }
-
-    public boolean isSelecionado() {
-        return selecionado;
-    }
-
-    public void setSelecionado(boolean selecionado) {
-        this.selecionado = selecionado;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idpacotes != null ? idpacotes.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Pacotes)) {
-            return false;
-        }
-        Pacotes other = (Pacotes) object;
-        if ((this.idpacotes == null && other.idpacotes != null) || (this.idpacotes != null && !this.idpacotes.equals(other.idpacotes))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "br.com.travelmate.model.Pacotes[ idpacotes=" + idpacotes + " ]";
-    }
-
     public Float getValorgross() {
         return valorgross;
     }
@@ -250,6 +176,103 @@ public class Pacotes implements Serializable {
 
     public void setValormoedanacional(Float valormoedanacional) {
         this.valormoedanacional = valormoedanacional;
+    }
+
+    public String getCartaovtm() {
+        return cartaovtm;
+    }
+
+    public void setCartaovtm(String cartaovtm) {
+        this.cartaovtm = cartaovtm;
+    }
+
+    public String getNumerocartaovtm() {
+        return numerocartaovtm;
+    }
+
+    public void setNumerocartaovtm(String numerocartaovtm) {
+        this.numerocartaovtm = numerocartaovtm;
+    }
+
+    public String getMoeda() {
+        return moeda;
+    }
+
+    public void setMoeda(String moeda) {
+        this.moeda = moeda;
+    }
+
+    public Cambio getCambio() {
+        return cambio;
+    }
+
+    public void setCambio(Cambio cambio) {
+        this.cambio = cambio;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Unidadenegocio getUnidadenegocio() {
+        return unidadenegocio;
+    }
+
+    public void setUnidadenegocio(Unidadenegocio unidadenegocio) {
+        this.unidadenegocio = unidadenegocio;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Vendas getVendas() {
+        return vendas;
+    }
+
+    public void setVendas(Vendas vendas) {
+        this.vendas = vendas;
+    }
+
+    public List<Pacotetrecho> getPacotetrechoList() {
+        return pacotetrechoList;
+    }
+
+    public void setPacotetrechoList(List<Pacotetrecho> pacotetrechoList) {
+        this.pacotetrechoList = pacotetrechoList;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (idpacotes != null ? idpacotes.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Pacotes)) {
+            return false;
+        }
+        Pacotes other = (Pacotes) object;
+        if ((this.idpacotes == null && other.idpacotes != null) || (this.idpacotes != null && !this.idpacotes.equals(other.idpacotes))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "br.com.travelmate.model.Pacotes[ idpacotes=" + idpacotes + " ]";
     }
     
 }
