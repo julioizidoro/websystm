@@ -15,7 +15,7 @@
                             <p:outputLabel value="Descrição" for="descricao"/>
                             <p:outputLabel value="Unidade" for="unidade" class="espacopreto"/>
                             <br></br>
-                            <p:inputText id="descricao" value="#{cadPacoteOperadoraMB.pacotes.descricao}" size="100" maxlength="200" class="espacocampos2"/>
+                            <p:inputText id="descricao" value="#{cadPacoteOperadoraMB.pacotes.descricao}" style="width:59%" maxlength="200" class="espacocampos2"/>
                             <p:selectOneMenu class="espacocamposgrande" style="width:230px;" id="unidade"  value="#{cadPacoteOperadoraMB.pacotes.unidadenegocio}" converter="UnidadeNegocioConverter" >
                                 <f:selectItem itemLabel="Selecione" itemValue="0"/>
                                 <f:selectItems id="idnidade" value="#{cadPacoteOperadoraMB.listaUnidadeNegocio}" var="unidadeNegocio" itemLabel="#{unidadeNegocio.nomeFantasia}" itemValue="#{unidadeNegocio}"/>
@@ -45,6 +45,21 @@
                             <p:commandButton class="espacocobranca4" onclick="" icon="ui-icon-triangle-1-e" value="Iniciar" action="#{cadPacoteOperadoraMB.iniciarPacote()}" />
                             <p:commandButton class="espacocobranca4" onclick="" icon="ui-icon-check" value="Finalizar" action="#{cadPacoteOperadoraMB.finalizar()}"  />
                             <br></br><br></br>
+                             <p:outputLabel value="Cartão VTM" for="cartaovtm" class=""/>
+                             <p:outputLabel value="Número do Cartão" for="numerocartao" class="espacocobranca5"/>
+                            <p:outputLabel value="Moeda" class="espacop" for="moedas"/>
+                            <br></br>
+                            <p:selectOneMenu  id="cartaovtm"  value="#" class="espacocampos5" style="width:90px;">
+                                <f:selectItem itemLabel="Não" itemValue="nao"/> 
+                                <f:selectItem itemLabel="Sim" itemValue="sim"/> 
+                            </p:selectOneMenu>
+                            <p:inputText id="numerocartao" value="#" size="70" class="espacocamposright"/>
+                            <p:selectOneMenu id="moedas" value="#" class="espacocobranca3" style="width:150px;">
+                                <f:selectItem itemLabel="Moeda" itemValue="0"/> 
+                                <f:selectItems id="idmoeda" value="#" var="moeda" itemLabel="#" itemValue="#"/>
+                                <f:attribute name="listaMoeda" value="#"/>
+                            </p:selectOneMenu>
+                            <br></br><br></br>
                             <legend id="iUsu4" ><b>Trecho</b></legend>
                             <p:inputText id="trecho" value="#{cadPacoteOperadoraMB.pacotetrecho.descritivo}" size="129" maxlength="200" class="espacocampos2"/>
                             <p:commandButton class="espacocobranca5" onclick="" icon="ui-icon-plus" value="Adicionar" action="#{cadPacoteOperadoraMB.adicionarTrecho()}" 
@@ -58,7 +73,7 @@
                                     <h:outputText value="#{trecho.descritivo}" ></h:outputText>
                                 </p:column>
                                  
-                                <p:column headerText="Itens" style="width: 35%">    
+                                <p:column headerText="Itens" style="width: 40%">    
                                     <p:commandLink  title="Aereo" action="#{cadPacoteOperadoraMB.novoPassagem(trecho)}">
                                          <img  src="#{cadPacoteOperadoraMB.imagemAereo(trecho)}" />
                                     </p:commandLink>
@@ -82,6 +97,9 @@
                                     </p:commandLink>
                                     <p:commandLink  action="#{cadPacoteOperadoraMB.novoTrem(trecho)}" title="Trem"  style="margin-left:2%;">
                                          <img  src="#{cadPacoteOperadoraMB.imagemTrem(trecho)}" />
+                                    </p:commandLink>
+                                    <p:commandLink  action="#{cadPacoteOperadoraMB.novoSeguro(trecho)}" title="Seguro Viagem"  style="margin-left:2%;">
+                                        <img  src="#{cadPacoteOperadoraMB.imagemSeguro(trecho)}" />
                                     </p:commandLink>
                                 </p:column>
                             </p:dataTable>
