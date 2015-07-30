@@ -30,7 +30,7 @@
                                 <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
                                 <f:selectItems id="idcidade" value="#{pacoteIngressoMB.pais.cidadeList}" var="ccidade" itemLabel="#{ccidade.nome}" itemValue="#{ccidade}"/>
                                 <f:attribute name="listaCidade" value="#{pacoteIngressoMB.pais.cidadeList}"/>
-                                <p:ajax event="change" listener="#{pacoteIngressoMB.listarFornecedorCidade()}" update="fornecedor" />
+                                <p:ajax event="change" listener="#{pacoteIngressoMB.listarFornecedorCidade(0)}" update="fornecedor" />
                             </p:selectOneMenu>
                             <p:selectOneMenu id="fornecedor" value="#{pacoteIngressoMB.fornecedorcidade}" style="width:210px;font-size: 10px" class="espacocampos" 
                                               converter="FornecedorCidadeConverter" filter="true" filterMatchMode="startsWith">
@@ -102,8 +102,9 @@
                             <br></br>
                             <p:inputText id="descritivo" value="#{pacoteIngressoMB.pacoteingresso.descritivo}" size="48" maxlength="45" class="espacocampos2"/>
 
-                            <p:commandButton class="espacocampos" icon="ui-icon-check" value="Adicionar" action="#" update="pacoteingresso"></p:commandButton>
-                            <p:commandButton class="espacocampos" icon="ui-icon-close" value="Excluir" action="#{pacoteIngressoMB.cancelar()}" ></p:commandButton>
+                            <p:commandButton class="espacocampos" icon="ui-icon-check" value="Adicionar" action="#{pacoteIngressoMB.salvarIngresso()}" update="pacoteingresso" resetValues="true">
+                            </p:commandButton>
+                            <p:commandButton class="espacocampos" icon="ui-icon-close" value="Excluir" action="#{pacoteIngressoMB.cancelar()}"  resetValues="true"></p:commandButton>
                             <br></br>
                             <br></br>
                             <br></br>
@@ -135,7 +136,7 @@
                                 </p:column>
                             </p:dataTable><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
                             <p class="botaocadpacote"><br></br>
-                                <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Confirmar" action="#{pacoteIngressoMB.salvarIngresso()}"></p:commandButton>
+                                <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Finalizar" action="#{pacoteIngressoMB.finalizar()}"></p:commandButton>
                                 <p:commandButton class="espacocampos" onclick="" icon="ui-icon-close" value="Cancelar" action="#"></p:commandButton>
                             </p>
                         </p:tab>

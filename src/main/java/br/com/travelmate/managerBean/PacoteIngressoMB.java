@@ -61,12 +61,6 @@ public class PacoteIngressoMB implements Serializable{
         pacoteingresso.setPacotetrecho(pacotetrecho);
         if (listaPacoteIngresso == null) {
             listaPacoteIngresso = new ArrayList<Pacoteingresso>();
-        } else {
-            cambio = pacoteingresso.getCambio();
-            fornecedorcidade = pacoteingresso.getFornecedorcidade();
-            pais = fornecedorcidade.getCidade().getPais();
-            cidade = fornecedorcidade.getCidade();
-            listarFornecedorCidade(idProduto);
         }
     }
 
@@ -195,8 +189,17 @@ public class PacoteIngressoMB implements Serializable{
     }
     
     public String cancelar(){
+        Pacotetrecho pacotetrecho = pacoteingresso.getPacotetrecho();
+        pacoteingresso = new Pacoteingresso();
+        pacoteingresso.setPacotetrecho(pacotetrecho);
+        fornecedorcidade = new Fornecedorcidade();
         FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage("Salvo com Sucesso", ""));
+        context.addMessage(null, new FacesMessage("Cancelado", ""));
+        return "";
+    }
+    
+    public String finalizar(){
+        FacesContext context = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) context.getExternalContext().getSession(false);  
         session.setAttribute("pacote", pacoteingresso.getPacotetrecho().getPacotes());
         if (pacoteingresso.getPacotetrecho().getPacotes().getOperacao().equalsIgnoreCase("Operadora")){
