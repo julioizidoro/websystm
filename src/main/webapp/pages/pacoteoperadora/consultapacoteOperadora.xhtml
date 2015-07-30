@@ -44,12 +44,8 @@
                                 <p:dataExporter type="xls" target="contaPagar" fileName="contas" />
                             </h:commandLink>
                         </f:facet>
-                        <p:column  style="background:#ffffff;color:#1F8871;text-align:center;width:48px;z-index: 3!important;overflow: visible!important;">
-                            <p:menubar style="min-width:10px;min-height:10px;height:25px;margin-top:-4px;"> 
-                                <p:submenu style="margin-top:-7px;" >
-                                    <p:menuitem style="float:right;" value="Editar" action="#{pacoteMB.editarPacote(conspacoteoperadora)}" />
-                                </p:submenu>
-                            </p:menubar>
+                        <p:column  style="background:#ffffff;color:#1F8871;text-align:center;width:48px;">
+                             <p:commandButton  id="editar" icon="ui-icon-pencil" title="Editar" action="#{pacoteMB.editarPacote(conspacoteoperadora)}" />
                         </p:column>
                         <p:column headerText="Descrição"  style="width:210px;background:#ffffff;color:#1F8871;text-align:center;" styleClass="alinharCenter" sortBy="#{contasrecebe.vendas.cliente}">
                             <h:outputText value="#{conspacoteoperadora.descricao}"/>

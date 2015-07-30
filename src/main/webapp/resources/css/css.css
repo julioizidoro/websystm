@@ -828,11 +828,11 @@ text-align: left;
 }
 .espacocobranca3{
     margin-left:15%;
-    height:30px;
+    
 }
 .espacocobranca3combo{
     margin-left:15%;
-    height:0 ;
+   height:30px;
 }
 .espacocobranca4{
     margin-left:3%;
@@ -942,6 +942,10 @@ text-align: left;
 }
 .espacocobranca20{
     margin-left:5%;
+}
+.espacocobranca20rig{
+    margin-left:5%;
+    text-align: right;
 }
 .espacocobranca21{
     margin-left:34%;
