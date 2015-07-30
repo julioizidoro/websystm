@@ -61,13 +61,7 @@ public class PacotePasseioMB implements Serializable{
         pacotepasseio.setPacotetrecho(pacotetrecho);
         if (listaPacotePasseio == null) {
             listaPacotePasseio = new ArrayList<Pacotepasseio>();
-        } else {
-            cambio = pacotepasseio.getCambio();
-            fornecedorcidade = pacotepasseio.getFornecedorcidade();
-            pais = fornecedorcidade.getCidade().getPais();
-            cidade = fornecedorcidade.getCidade();
-            listarFornecedorCidade(idProduto);
-        }
+        } 
     }
 
     public UsuarioLogadoMB getUsuarioLogadoMB() {
