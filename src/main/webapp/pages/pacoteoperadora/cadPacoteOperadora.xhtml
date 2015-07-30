@@ -49,13 +49,14 @@
                              <p:outputLabel value="Número do Cartão" for="numerocartao" class="espacocobranca5"/>
                             <p:outputLabel value="Moeda" class="espacop" for="moedas"/>
                             <br></br>
-                            <p:selectOneMenu  id="cartaovtm"  value="#" class="espacocampos5" style="width:12%">
+                            <p:selectOneMenu  id="cartaovtm"  value="#{cadPacoteOperadoraMB.pacotes.cartaovtm} class="espacocampos5" style="width:12%">
                                 <f:selectItem itemLabel="Não" itemValue="nao"/> 
                                 <f:selectItem itemLabel="Sim" itemValue="sim"/> 
                             </p:selectOneMenu>
-                            <p:inputText id="numerocartao" value="#" style="width:38%" class="espacocamposright"/>
-                            <p:selectOneMenu id="moedas" value="#" class="espacocobranca3" style="width:27%">
-                                <f:selectItem itemLabel="Moedas" itemValue="0"/> 
+                            <p:inputText id="numerocartao" value="#{cadPacoteOperadoraMB.pacotes.numerocartaovtm}" style="width:38%" class="espacocamposright"/>
+                            <p:selectOneMenu id="moedas" value="#{cadPacoteOperadoraMB.pacotes.moeda}" class="espacocobranca3" style="width:27%">
+                                <f:selectItem itemLabel="Moedas" itemValue="0"/>
+                                <f:selectItems value="#{usuarioLogadoMB.listaCambio}" var="cambio" itemLabel="#{cambio.moedas.sigla}" itemValue="#{cadPacoteOperadoraMB.pacotes.moeda}"/>
                             </p:selectOneMenu>
                             <br></br><br></br>
                             <legend id="iUsu4" ><b>Trecho</b></legend>

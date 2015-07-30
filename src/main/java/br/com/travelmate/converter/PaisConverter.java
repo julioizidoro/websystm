@@ -6,6 +6,7 @@
 package br.com.travelmate.converter;
 
 import br.com.travelmate.model.Pais;
+import br.com.travelmate.model.Paisproduto;
 import java.util.List;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -21,11 +22,11 @@ public class PaisConverter implements Converter{
     
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
-        List<Pais> listaPais = (List<Pais>) component.getAttributes().get("listaPais");
+        List<Paisproduto> listaPais = (List<Paisproduto>) component.getAttributes().get("listaPais");
         if (listaPais != null) {
-            for (Pais pais : listaPais) {
-                if (pais.getNome().equalsIgnoreCase(value)) {
-                    return pais;
+            for (Paisproduto paisProduto : listaPais) {
+                if (paisProduto.getPais().getNome().equalsIgnoreCase(value)) {
+                    return paisProduto.getPais();
                 }
             }
         } else {

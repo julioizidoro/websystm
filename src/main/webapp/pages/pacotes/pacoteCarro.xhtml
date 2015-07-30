@@ -105,10 +105,12 @@
                             <p:inputText id="comissao" value="#{pacoteCarroMB.pacotecarro.comissao}" style="width:12%" class="espacocamposright">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 <p:ajax event="blur" update="valorgross" listener="#{pacoteCarroMB.calcularValorGross()}" />
+                                <p:ajax event="blur" update="moedanacional"/>
                             </p:inputText>
                             <p:inputText id="valorgross" value="#{pacoteCarroMB.pacotecarro.valorgross}" style="width:13%" maxlength="15" class="espacocamposright">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 <p:ajax event="blur" update="comissao" listener="#{pacoteCarroMB.calcularComissao()}"/>
+                                <p:ajax event="blur" update="moedanacional"/>
                             </p:inputText>
                             <p:inputText id="moedanacional" value="#{pacoteCarroMB.pacotecarro.valormoedanacional}" style="width:15%" maxlength="15" class="espacocamposright" readonly="true">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
