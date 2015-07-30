@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="contratoCursoPagina05" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="666abdab-7fed-446b-9feb-6a84b646f03c">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="177"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="idvendas" class="java.lang.Integer"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
@@ -328,39 +328,94 @@ where
 	<pageHeader>
 		<band height="726" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="6" width="555" height="701" uuid="270baed3-abc6-4621-9536-cc5166ce4d5e"/>
+				<reportElement x="0" y="6" width="555" height="264" uuid="270baed3-abc6-4621-9536-cc5166ce4d5e"/>
 				<textElement textAlignment="Justified">
 					<font isBold="false"/>
 				</textElement>
-				<text><![CDATA[9.4 Em todos os casos de desistência antes do embarque, por quaisquer motivos e em qualquer momento do processo, a devolução do valor pago pelo programa, excluindo os 30% de multa citados no item 10.1, segue as normas da organização internacional contratada pela TM.
-9.5 Após o embarque do(a) PARTICIPANTE para realização do programa/curso, não há reembolso ou devolução de qualquer valor pago a TM ou parceiro internacional referente ao curso, acomodação, taxas consulares e demais serviços contratados.
-9.6 A devolução de qualquer quantia, por parte da Travelmate, será efetuada em Reais, de acordo com o câmbio utilizado no dia do pagamento.
+				<text><![CDATA[Parágrafo Único: Todavia, caso a TM, por seu mera liberalidade, resolva, ao invés de rescindir o contrato, continuar com a prestação dos serviços e realizar somente a cobrança dos valores inadimplidos, sob estes, incidirão a cobrança de juros moratórios de 1% ao mês de forma capitalizada, correção monetária, multa moratória no valor de 2% (dois por cento) sobre o total do serviço contratado, bem como honorários advocatícios no importe de 20% (vinte por cento) e demais custas judiciais caso a cobrança seja feita em juízo.
 
-10.  DA RESCISÃO POR JUSTA CAUSA
+13) DAS DISPOSIÇÕES SUPLEMENTARES — Os passeios opcionais, não estão inclusos no preço de programa da viagem, não cabendo qualquer responsabilidade da TM quanto a execução dos mesmos, devendo o cliente contratar diretamente com a empresa realizadora dos mesmos. Os clientes que, no decorrer da viagem, necessitarem de assistência médica ou remédios, deverão suportar tais encargos. A TM orienta para que, os titulares de seguro saúde ou assistência médica, portem sempre consigo os documentos necessários para atendimento fora do domicílio habitual. Se o cliente se interessar por seguros que deem coberturas especiais, bem superiores aos mínimos legais, para o tempo de duração da viagem, deverá adquiri-lo nas agências de viagem.
 
-10.1 O presente contrato será rescindido por justa causa, mediante simples notificação ao(à) PARTICIPANTE, sem direito a qualquer reembolso ou indenização, quando:
-a) O(A) PARTICIPANTE desrespeitar as regras estipuladas pela administração da acomodação ou família hospedeira, e parceiro internacional, no tocante a horários, saídas sem consentimentos, desrespeito com terceiros e aos próprios familiares ou colegas de acomodação, bem como tomar atitudes contrárias a um convívio harmonioso junto à família hospedeira, colegas de acomodação e colegas de classe;
-b) O(a) PARTICIPANTE receber reclamações comportamentais no ambiente escolar/acadêmico, cuja gravidade será analisada pelo parceiro internacional responsável pelo curso/programa;
-c)  Cometer qualquer tipo de ato ilícito penal sob as normas do direito do país em questão;
-d) O(a) PARTICIPANTE  abandonar a acomodação ou família hospededeira original sem autorização do parceiro internacional em questão. Neste caso, o(a) PARTICIPANTE será desligado(a) do programa e terá seu visto cancelado, devendo deixar o país dentro de 10 (dez) dias da data do seu desligamento.
-e) Após sua chegada no país de destino, o(a) PARTICIPANTE deixar de cumprir as regras de chegada (orientação de chegada, parceiro internacional, ou “check-in”, por exemplo) estabelecidas pelo programa em questão. Neste caso, o(a) PARTICIPANTE será desligado(a) do programa e terá seu visto cancelado, devendo deixar o país dentro de 10 (dez) dias da data do seu desligamento.
+Sendo que o(a)CONTRATANTE afirma estar ciente dos termos deste contrato, concordando com as regras e condições para prestação do serviço tal como proposto pela TM, celebram o presente contrato em 02 vias de igual teor e forma e na presença de 2 (duas) testemunhas.
 
-11. DISPOSIÇÕES FINAIS E OBSERVAÇÕES
-
-11.1 A despesa de obtenção do visto consular, seguros outros (além do seguro saúde incluído pelo parceiro internacional contratado, quando houver), passagens aéreas (outras não inclusas no valor do programa, quando houver), taxas de aeroportos, custos de embarque e desembarque, excesso de bagagem, alfândega e o transfer entre o aeroporto e a acomodação (ida e volta) não estão incluídos no valor do programa/pacote pago à Travelmate, salvo quando especificado no programa/pacote.
-11.2 O(A) PARTICIPANTE deverá levar quantia de dinheiro suficiente para cobrir suas despesas no país de destino (custo com transporte local, materiais, livros, alimentação que não esteja inclusa no programa/pacote, moradia que não esteja inclusa no programa/pacote, etc..), mesmo quando exista a possibilidade de trabalho legal no país em questão;
-11.3  Custos ou despesas para despesas pessoais diárias são de responsabilidade do PARTICIPANTE;
-11.4 Custos de transporte diário durante a realização do programa/pacote, alimentação e uniformes exigidos para realização do programa não estão incluídos no valor do programa/pacote;
-
-12. PAGAMENTO
-
-12.1 O custo do programa é fixado na moeda local do país em questão e o pagamento do mesmo deve ser feito em reais de acordo com o câmbio da moeda obtido com à TM no dia de pagamento.
-12.2 O pagamento da inscrição deve ser efetivado no momento do preenchimento da ficha de inscrição.
-12.3 O pagamento do Saldo Total do Programa deverá ser quitado conforme plano de pagamento abaixo:
-
-
+As partes elegem o foro da Comarca de Florianópolis para dirimir quaisquer problemas provenientes do presente contrato, renunciando expressamente a qualquer outro por mais privilegiado que seja.
 ]]></text>
 			</staticText>
+			<rectangle>
+				<reportElement x="10" y="385" width="386" height="1" backcolor="#000000" uuid="426d71cc-7933-4499-9f15-d0ee2e9defa5"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="10" y="390" width="190" height="14" uuid="d9d6f428-56e0-4e84-9c71-789312e646fd"/>
+				<text><![CDATA[Assinatura do(a) CONTRATANTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="429" y="373" width="113" height="13" uuid="cd2613db-264d-4725-9322-1d02d3103a19"/>
+				<text><![CDATA[_____/_____/_________]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="13" y="466" width="383" height="13" uuid="bd7f7b0c-8a83-4fa2-9554-86ab5e7ec097"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$F{razaoSocial} + " - CNPJ/MF nº " + $F{cnpjunidadeNegocio}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="432" y="450" width="113" height="13" uuid="c433c293-5d4d-4764-bc71-ab8ee2086032"/>
+				<text><![CDATA[_____/_____/_________]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="13" y="462" width="386" height="1" backcolor="#000000" uuid="4e31fbb3-776e-4544-8245-013a8e368373"/>
+			</rectangle>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="275" y="287" width="215" height="13" uuid="a4398712-b75e-409c-8d0b-8ed6d267848c"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="10" y="620" width="386" height="1" backcolor="#000000" uuid="decd58c9-576d-4c9f-ad01-73b6b8ac0772"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="432" y="608" width="113" height="13" uuid="88e40680-ebb9-4ef2-9689-6d897bd6d8f6"/>
+				<text><![CDATA[_____/_____/_________]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="89" y="287" width="184" height="13" uuid="f00116d4-d772-4979-91bc-b46f910ec015"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{cidadeunidadeNegocio} + ", "]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="13" y="621" width="366" height="14" uuid="f1a98a57-987e-4df1-9ea3-f0824afaff70"/>
+				<text><![CDATA[TESTEMUNHA]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="10" y="528" width="386" height="1" backcolor="#000000" uuid="fe2e91b8-5a42-4380-8172-8f78a7a748c0"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="13" y="529" width="366" height="14" uuid="3745c7fa-31ea-4056-8083-d329ac2fc3d9"/>
+				<text><![CDATA[TESTEMUNHA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="432" y="516" width="113" height="13" uuid="e7e6edd5-f302-42d5-a911-e9917f4c85c4"/>
+				<text><![CDATA[_____/_____/_________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="543" width="36" height="14" uuid="921cc035-6f5a-4659-8858-8e070b62bd6f"/>
+				<text><![CDATA[Nome:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="557" width="36" height="14" uuid="82ae8d56-854e-42d0-a15c-d13587e8b28c"/>
+				<text><![CDATA[CPF:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="649" width="36" height="14" uuid="eb7bfc63-1167-4bed-9807-1b7347ef80b4"/>
+				<text><![CDATA[CPF:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="635" width="36" height="14" uuid="1337856b-3eba-43b3-ad84-849d968144fe"/>
+				<text><![CDATA[Nome:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="13" y="404" width="383" height="13" uuid="8e41f630-02e7-48d5-857b-9a503b7772b0"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageHeader>
 	<summary>

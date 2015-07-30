@@ -269,6 +269,19 @@ public class CadPacoteOperadoraMB  implements Serializable{
         }
         return "";
     }
+     public String novoSeguro(Pacotetrecho pacotetrecho){
+        if (pacotetrecho!=null){
+            FacesContext fc = FacesContext.getCurrentInstance();  
+            HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+            session.setAttribute("tipoOepracaoPacote", "trem");
+            session.setAttribute("pacoteTrecho", pacotetrecho);
+            return "pacoteseguro";
+        }else {
+            FacesMessage mensagem = new FacesMessage("Atenção! ", "Trecho Não Localizado.");
+            FacesContext.getCurrentInstance().addMessage(null, mensagem);
+        }
+        return "";
+    }
     
     public String imagemAereo(Pacotetrecho pacotetrecho) {
 //        if(pacoteaereo!=null){
@@ -376,5 +389,8 @@ public class CadPacoteOperadoraMB  implements Serializable{
               return "../../resources/img/tremvermelho.png";
          }
     }
-    
+    public String imagemSeguro(Pacotetrecho pacotetrecho) {
+        
+            return "../../resources/img/segurovermelho.png";
+    }
 }

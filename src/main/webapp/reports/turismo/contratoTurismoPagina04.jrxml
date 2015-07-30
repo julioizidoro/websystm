@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="contratoCursoPagina04" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="666abdab-7fed-446b-9feb-6a84b646f03c">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="168"/>
+	<property name="ireport.y" value="437"/>
 	<parameter name="idvendas" class="java.lang.Integer"/>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
@@ -332,28 +332,26 @@ where
 				<textElement textAlignment="Justified">
 					<font isBold="false"/>
 				</textElement>
-				<text><![CDATA[6.8 No caso de alimentação fornecida pela família hospedeira ou acomodação contratada, existe variação de refeições conforme cada família ou acomodação, cultura e costumes locais, podendo tais refeições diferirem muito da alimentação que o(a) PARTICIPANTE tem no Brasil, e a TM não tem responsabilidade por isso. Se houver insatisfação do(a) PARTICIPANTE quanto à alimentação, o(a) mesmo(a) deve tratar diretamente com a família hospedeira ou acomodação na qual está hospedado(a).
+				<text><![CDATA[Parágrafo Primeiro: As acomodações dos hotéis variam muito, a critério e disponibilidade dos meios de hospedagem, o apartamento duplo poderá ter camas separadas ou de casal e o apartamento triplo ou quádruplo poderá ser constituído de cama dobrável, articulada ou sofá-cama, camas Queen ou King Size. Se necessário, para acomodação das pessoas excedentes, através de camas articuláveis, dobráveis ou sofá-cama, deverá o(a) CONTRATANTE, no ato da aquisição dos serviços, informar à TM, a fim de que esta verifique a disponibilidade perante o hotel contratado.
 
-7. TRANSFER
+Parágrafo Segundo: Conforme estabelecido pelo Regulamento Internacional de Hotelaria, a entrada(check in) nos apartamentos inicia-se as 15:00 e saída(check out) deverá ser feita até as 12:00 horas. O não cumprimento das regras internacionais implicará na cobrança de uma nova diária.Os horários de entrada e saída nos apartamentos dos hotéis, não podem variar em razão dos horários de voo (chegada ou partida). Havendo entrada antecipada ou saída posterior, quando disponíveis, deverá o(a) CONTRATANTE assumir os encargos (se houver), diretamente com o hotel.
 
-7.1 O(A)PARTICIPANTE que optar pela contratação do serviço de transfer, com chegada ou retorno ao aeroporto, no país de destino, poderá fazê-lo por intermédio da TM (salvo quando tal serviço não esteja includo no pacote/programa), sem que a mesma tenha qualquer ingerência ou participação em tal ato e, ainda, deverá obedecer aos seguintes critérios:
-a) O(A) PARTICIPANTE deverá ter em sua posse o número de emergência da empresa contratada, para o caso de ocorrência de atraso no vôo, mudança de escala ou outra situação que afete ou atrase o cronograma previamente combinado e contratado;
-b) O(A) PARTICIPANTE deverá observar as regras de conduta/adequação à cultura do país de destino sobre o serviço de transfer, declarando-se ciente que em caso de ocorrência de atraso de vôo ou alguma outra modificação que acarrete na não utilização do serviço, o mesmo será considerado pela empresa contratada como serviço efetivamente prestado, oportunidade em que não há reembolso de valores;
-7.2. A contratação do transfer por parte do(a) PARTICIPANTE deve acontecer com no mínimo 4 semanas de antecedência da data de embarque para o exterior;
 
-8. PASSAGEM AÉREA
+Parágrafo Terceiro: Nas ocasiões, em que por qualquer motivo, possam comprometer a execução dos serviços contratados, poderá aTM alterar os hotéis, devendo acomodar os passageiros em hotel de categoria similar ou superior ao contratado.
 
-8.1 No que se refere à passagem aérea, fica a critério do(a)PARTICIPANTE a sua aquisição, podendo ser efetuada com a TM ou diretamente com a companhia aérea que melhor se adequar a seu roteiro ou ainda com qualquer empresa de turismo que disponibilize a emissão de passagens.
-8.2 O(A)PARTICIPANTE declara, pela assinatura deste instrumento, ter ciência de que deverá obedecer a todas as normas referentes ao transporte aéreo internacional, bem como ter conhecimento de ser da Companhia Aérea contratada a responsabilidade referente à prestação deste serviço.
+Parágrafo Quarto: A TM orienta os clientes para que, as quantias em dinheiro maiores do que aquelas necessárias ao uso diário, documentos importantes, e demais objetos de alta estima ou valor, sejam guardados nos cofres dos hotéis. Na impossibilidade de uso dos cofres (pelo tamanho ou características dos objetos guardados), deverá o cliente informar, por escrito, o objeto (características, acessórios e valor) ao hotel, para que lhe seja facultada outra possibilidade de guarda, estando a TM exonerada de qualquer responsabilidade.
 
-Parágrafo 1º: O(A)PARTICIPANTE, após a emissão do bilhete, deverá observar todos os procedimentos referentes à categoria de sua passagem, de acordo com as regras do transporte aéreo e do contrato efetuado com a Companhia Aérea, observando, quando houver, cláusulas especiais referentes ao seu tipo de bilhete, especialmente no tocante ao endosso, reembolso, multas por cancelamento, remarcação, reitineração e limite de peso da bagagem;
-Parágrafo 2º: O(A)PARTICIPANTE deverá seguir os procedimentos indicados oportunamente pela TM (caso a passagem seja adquirida por intermédio da TM) para efetuar a marcação ou qualquer alteração em sua passagem aérea, sujeitando-se à disponibilidade na mesma classe tarifária, bem como às taxas de remarcação, cancelamento e reitineração estabelecidas pelas companhias aéreas.
+Parágrafo Quinto: O(A)CONTRATANTE está ciente que hotel poderá solicitar o número de um cartão de crédito a fim de garantir eventuais danos patrimoniais e/ou despesas extra, restando claro que tal prática, comum a rede hoteleira de todo o mundo, não tem qualquer relação com o pagamento das diárias, não podendo em qualquer hipótese alegar falta de pagamento por parte da TM em razão de tal fato. Ademais, é de conhecimento do(a)CONTRATANTE que demais taxas decorrentes de serviços acessórios à hospedagem não estão inclusas no valor já pago por este, como por exemplo, estacionamento de veículo automotor, taxas não governamentais, Resort Fee, entre outras taxas que deverão ser pagas diretamente no hotel.
 
-9. DESISTÊNCIA E/OU CANCELAMENTO DO PROGRAMA
+10) DA ALIMENTAÇÃO — A alimentação ocorrerá de acordo com a modalidade contratada. O café da manhã, por exemplo, é comumente incluso nas diárias dos hotéis brasileiros. Na modalidade “meia pensão”, será disponibilizado ao cliente o café da manhã e outra refeição (podendo ser almoço ou jantar). Na modalidade “pensão completa”, é disponibilizado café da manhã, almoço e jantar. As refeições poderão ocorrer dentro do hotel ou em qualquer outro estabelecimento de igual nível. O café da manhã em hotéis internacionais, podem variar de acordo com o meio de hospedagem e os costumes locais. Não existe obrigatoriedade na quantidade e variedade de alimentos oferecidos nesta refeição.
 
-9.1 Caso o(a) PARTICIPANTE opte em desistir e/ou cancelar o programa  antes de realizar seu embarque para o país de destino, o  montante equivalente a 30% (trinta por cento) do valor do programa/pacote pago a TM (não incluindo passagem aérea e serviço de assessoria para aplicação de vistos), o qual corresponde à taxa de inscrição, não é reembolsável, salvo em caso da organização internacional escolhida ficar impossibilitada de receber o participante por falta de vagas.
-9.2 Após a inscrição, em qualquer momento do processo, por quaisquer motivos (vistos consulares, alterações e/ou atraso de vôos, indisponibilidade do participante, etc), se o(a) PARTICIPANTE tiver que alterar o curso/programa, a instituição internacional cobrará diferença de valores e multa para tal(is) mudança(s), sendo o pagamento de total responsabilidade do(a) PARTICIPANTE. A TM não garante a possibilidade de quaisquer alterações do curso/programa solicitadas após emissão da carta de aceitação por parte do parceiro internacional, estando sujeitas à disponibilidade da organização internacional.
-9.3 Em caso de cancelamento do curso/programa devido à não obtenção do visto de entrada do país escolhido, o participante está sujeito às regras já mencionadas no item 9.1
+Parágrafo Único: Nos casos de dieta alimentar ou na exigência de qualquer item especial na alimentação, se faz necessário consulta prévia sobre a possibilidade de atendimento. Podendo nestes casos haver cobrança extra.
+
+11)  DOS SERVIÇOS DE TRASLADOS – são serviços regulares ou privativos de turismo, podendo ser compartido com outros passageiros (no caso do traslado regular), e serão realizados em veículos de tamanho proporcional ao número de pessoas. O(A)CONTRATANTE deverá comparecer para o início dos serviços no local e horário determinado, pois o transportador não poderá retardar o traslado somente para aguardá-lo(a), mesmo que o atraso se dê de forma justificada, como nas hipóteses de retenção por autoridades de imigração e alfândega, localização de bagagem, atraso de voo ou qualquer natureza. Nestes casos, o serviço não será realizado e não haverá qualquer reembolso do mesmo.
+
+12) DA RESCISÃO DO CONTRATO POR JUSTA CAUSA –   O presente contrato será rescindido por justa causa, mediante simples notificação a ser enviada ao(à) CONTRATANTE e sem direito a qualquer reembolso ou indenização, em caso de inadimplemento dos valores descritos no “Campo 10 – DESCRIÇÃO E VALORES”, e nos campos “VALOR DE PACOTE”, “TAXAS”, CÂMBIO” e principalmente “FORMA DE PAGAMENTO”, todos inseridos no referido “Campo 10” da Ficha de Inscrição anexa a este contrato.
+
+
 
 ]]></text>
 			</staticText>
