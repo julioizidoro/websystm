@@ -17,21 +17,21 @@
                             <p:outputLabel value="Cidade" for="cidade" class="espacocobranca10"/>
                             <p:outputLabel value="Fornecedor" for="fornecedor" class="espacocobranca9"/>
                             <br></br>
-                            <p:selectOneMenu id="pais" value="#{fornecedorMB.pais}" style="width:197px;font-size: 10px" class="espacocampos2" 
+                            <p:selectOneMenu id="pais" value="#{fornecedorMB.pais}" style="width:27%;font-size: 10px" class="espacocampos2" 
                                              converter="PaisConverter" filter="true" filterMatchMode="startsWith" >
                                 <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
                                 <f:selectItems id="idpais" value="#{fornecedorMB.listaPais}" var="cpais" itemLabel="#{cpais.nome}" itemValue="#{cpais}"/>
                                 <f:attribute name="listaPais" value="#{fornecedorMB.listaPais}"/>
                                 <p:ajax event="change" update="cidade"/> 
                             </p:selectOneMenu>
-                            <p:selectOneMenu id="cidade" value="#{fornecedorMB.cidade}" style="width:227px;font-size: 10px" class="espacocampos" 
+                            <p:selectOneMenu id="cidade" value="#{fornecedorMB.cidade}" style="width:32%;font-size: 10px" class="espacocampos" 
                                              converter="CidadeConverter" filter="true" filterMatchMode="startsWith">
                                 <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
                                 <f:selectItems id="idcidade" value="#{fornecedorMB.pais.cidadeList}" var="ccidade" itemLabel="#{ccidade.nome}" itemValue="#{ccidade}"/>
                                 <f:attribute name="listaCidade" value="#{fornecedorMB.pais.cidadeList}"/>
                                 <p:ajax event="change" listener="#{fornecedorMB.listarFornecedorCidade()}" update="fornecedor" />
                             </p:selectOneMenu>
-                            <p:selectOneMenu id="fornecedor" value="#{fornecedorMB.fornecedorCidade}" style="width:200px;font-size: 10px" class="espacocampos" 
+                            <p:selectOneMenu id="fornecedor" value="#{fornecedorMB.fornecedorCidade}" style="width:30%;font-size: 10px" class="espacocampos" 
                                               filter="true" filterMatchMode="startsWith">
                                 <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
                                 <f:selectItems id="idfornecedor" value="#{fornecedorMB.listaFornecedorCidade}" var="fornecedor" itemLabel="#{fornecedor.fornecedor.nome}" itemValue="#{fornecedor}"/>
@@ -43,11 +43,11 @@
                                 <p:outputLabel value="Cia aérea" for="cia" class="espaco2preto" style="font-size: 11px"/> 
                                 <p:outputLabel value="Localizador" for="localizador" class="espaco4p" style="font-size: 11px"/> 
                             </h:panelGrid>
-                            <h:panelGrid columns="3" cellpadding="3" >
-                                <p:inputText id="atendente" size="40" maxlength="100" class="camposs" value="#{passagemMB.passagem.atendente}"  />
-                                <p:inputText id="cia" size="35" maxlength="100" class="campos" value="#{passagemMB.passagem.ciaAerea}"  />
-                                <p:inputText id="localizador" size="35" maxlength="100" class="campos" value="#{passagemMB.passagem.localizador}"  />
-                            </h:panelGrid>
+                           
+                                <p:inputText id="atendente" style="width:26%;" maxlength="100" class="camposs" value="#{passagemMB.passagem.atendente}"  />
+                                <p:inputText id="cia" style="width:22%;" maxlength="100" class="campos" value="#{passagemMB.passagem.ciaAerea}"  />
+                                <p:inputText id="localizador" style="width:29%;" maxlength="100" class="campos" value="#{passagemMB.passagem.localizador}"  />
+                           
                             <br></br>
                             <legend id="iUsu3" ><b>Cliente</b></legend>
                             <h:panelGrid columns="3" cellpadding="3" >
@@ -55,35 +55,13 @@
                                 <p:outputLabel value="Data Viagem" for="dataviagem" class="espaco16p" style="font-size: 11px"/> 
                                 <p:outputLabel value="Data Volta" for="datavolta" class="espaco3p" style="font-size: 11px"/>
                             </h:panelGrid>
-                            <h:panelGrid columns="4" cellpadding="3" >
-                                <p:inputText id="cliente" size="44" maxlength="100" class="camposs" value="#{passagemMB.passagem.vendas.cliente.nome}"  />
+                          
+                                <p:inputText id="cliente" style="width:29%;" maxlength="100" class="camposs" value="#{passagemMB.passagem.vendas.cliente.nome}"  />
                                 <p:commandButton icon="ui-icon-arrowthickstop-1-s" value="Selecionar" action="#" class="espacocampos"/>
-                                <p:calendar id="dataviagem" size="20"  class="espacocobranca25" value="#{passagemMB.passagem.dataEmbarque}"  locale="pt"  pattern="dd/MM/yyyy" />
-                                <p:calendar id="datavolta" size="18"  class="espaco12" value="#{passagemMB.passagem.dataVolta}"  locale="pt"  pattern="dd/MM/yyyy" />
-                            </h:panelGrid>
-                            <br></br>
-                            <legend id="iUsu3" ><b>Cartão</b></legend>
-                            <h:panelGrid columns="4" cellpadding="3" >
-                                <p:outputLabel value="Titular" for="titular" class="espaco0p" style="font-size: 11px"/> 
-                                <p:outputLabel value="Bandeira" for="bandeira" class="espaco5p" style="font-size: 11px"/> 
-                                <p:outputLabel value="Validade" for="validade" class="espaco6p" style="font-size: 11px"/>
-                                <p:outputLabel value="CS" for="cs" class="espaco7p" style="font-size: 11px"/>
-                            </h:panelGrid>
-                            <h:panelGrid columns="4" cellpadding="3" >
-                                <p:inputText id="titular" size="38" maxlength="100" class="camposs" value="#{passagemMB.passagem.titularcartao}"  />
-                                <p:inputText id="bandeira" size="15" maxlength="100" class="campos1" value="#{passagemMB.passagem.bandeira}"  />
-                                <p:inputText id="validade" size="15" maxlength="100" class="campos1" value="#{passagemMB.passagem.valiade}"  />
-                                <p:inputText id="cs" size="15" maxlength="100" class="campos1" value="#{passagemMB.passagem.codigoseguranca}"  />
-                            </h:panelGrid><br></br>
-                            <h:panelGrid columns="2" cellpadding="3" >
-                                <p:outputLabel value="Número" for="numero" class="espaco0p" style="font-size: 11px"/> 
-                                <p:outputLabel value="Autorização" for="autorizacao" class="espaco17p" style="font-size: 11px"/> 
-                            </h:panelGrid>
-                            <h:panelGrid columns="2" cellpadding="3" >
-                                <p:inputText id="numero" size="52" maxlength="100" class="camposs" value="#{passagemMB.passagem.numerocartao}"  />
-                                <p:inputText id="autorizacao" size="33" maxlength="100" class="campos2" value="#{passagemMB.passagem.autorizacao}"  />
-                            </h:panelGrid>
-                            <br></br>
+                                <p:calendar id="dataviagem" size="17"  class="espacocobranca2" value="#{passagemMB.passagem.dataEmbarque}"  locale="pt"  pattern="dd/MM/yyyy" />
+                                <p:calendar id="datavolta" style="width:9%;"  class="imgadd" value="#{passagemMB.passagem.dataVolta}"  locale="pt"  pattern="dd/MM/yyyy" />
+                           
+                            
                         </p:tab>
 
                         <p:tab titleStyle="color:#fff;background: #ccc;" title="Passageiros">
@@ -95,129 +73,117 @@
                                 <p:outputLabel value="Data Nascimento" for="datasnac" class="espaco9p" style="font-size: 11px"/>
                                 <p:outputLabel value="RG/Passaporte" for="rgPassaporte" class="espaco9p" style="font-size: 11px"/>
                             </h:panelGrid>
-                            <h:panelGrid columns="4" cellpadding="3" >
-                                <p:inputText id="nome" size="40"  class="camposs" value="#{passagemMB.passagem.pax01}"  />
-                                <p:inputText id="tipo" class="campos" value="#{passagemMB.passagem.tipopax1}"/>
-                                <p:calendar id="datasnac" size="15" class="campos1" value="#{passagemMB.passagem.dataNascimentopax01}"  locale="pt"  pattern="dd/MM/yyyy" />
-                                <p:inputText id="rgPassaporte" size="15"  class="campos2" value="#{passagemMB.passagem.passaporte01}"  />
-                            </h:panelGrid>
-                            <br></br> <br></br>
+                           
+                                <p:inputText id="nome" style="width:32%;" class="camposs" value="#{passagemMB.passagem.pax01}"  />
+                                <p:inputText id="tipo" style="width:19%;" class="espacocobranca29" value="#{passagemMB.passagem.tipopax1}"/>
+                                <p:calendar id="datasnac" size="15" class="espacocobranca28" value="#{passagemMB.passagem.dataNascimentopax01}"  locale="pt"  pattern="dd/MM/yyyy" />
+                                <p:inputText id="rgPassaporte" style="width:15%;"  class="espacocobranca23" value="#{passagemMB.passagem.passaporte01}"  />
+                            
+                            <br></br> 
+                            
                             <h:panelGrid columns="4" cellpadding="3" >
                                 <p:outputLabel value="Nome" for="nome2" class="espaco0p" style="font-size: 11px"/> 
                                 <p:outputLabel value="Tipo(A/C/I)" for="tipo2" class="espaco8p" style="font-size: 11px"/> 
                                 <p:outputLabel value="Data Nascimento" for="datasnac2" class="espaco9p" style="font-size: 11px"/>
                                 <p:outputLabel value="RG/Passaporte" for="rgPassaporte2" class="espaco9p" style="font-size: 11px"/>
                             </h:panelGrid>
-                            <h:panelGrid columns="5" cellpadding="3" >
-                                <p:inputText id="nome2" size="40"  class="camposs" value="#{passagemMB.passagem.pax02}"  />
-                                <p:inputText id="tipo2" class="campos" value="#{passagemMB.passagem.tipopax2}"/>
-                                <p:calendar id="datasnac2" size="15" class="campos1" value="#{passagemMB.passagem.dataNascimentopax02}"  locale="pt"  pattern="dd/MM/yyyy" />
-                                <p:inputText id="rgPassaporte2" size="15"  class="campos2" value="#{passagemMB.passagem.passaporte02}"  />
-                            </h:panelGrid>
-                             <br></br> <br></br>
+                           
+                                <p:inputText id="nome2" style="width:32%;" class="camposs" value="#{passagemMB.passagem.pax02}"  />
+                                <p:inputText id="tipo2" style="width:19%;" class="espacocobranca29" value="#{passagemMB.passagem.tipopax2}"/>
+                                <p:calendar id="datasnac2" size="15" class="espacocobranca28" value="#{passagemMB.passagem.dataNascimentopax02}"  locale="pt"  pattern="dd/MM/yyyy" />
+                                <p:inputText id="rgPassaporte2" style="width:15%;"  class="espacocobranca23" value="#{passagemMB.passagem.passaporte02}"  />
+                          
+                             <br></br> 
                             <h:panelGrid columns="4" cellpadding="3" >
                                 <p:outputLabel value="Nome" for="nome3" class="espaco0p" style="font-size: 11px"/> 
                                 <p:outputLabel value="Tipo(A/C/I)" for="tipo3" class="espaco8p" style="font-size: 11px"/> 
                                 <p:outputLabel value="Data Nascimento" for="datasnac3" class="espaco9p" style="font-size: 11px"/>
                                 <p:outputLabel value="RG/Passaporte" for="rgPassaporte3" class="espaco9p" style="font-size: 11px"/>
                             </h:panelGrid>
-                            <h:panelGrid columns="4" cellpadding="3" >
-                                <p:inputText id="nome3" size="40"  class="camposs" value="#{passagemMB.passagem.pax03}"  />
-                                <p:inputText id="tipo3" class="campos" value="#{passagemMB.passagem.tipopax3}"/>
-                                <p:calendar id="datasnac3" size="15" class="campos1" value="#{passagemMB.passagem.dataNascimentopax03}" locale="pt"  pattern="dd/MM/yyyy"  />
-                                <p:inputText id="rgPassaporte3" size="15"  class="campos2" value="#{passagemMB.passagem.passaporte03}"  />
-                            </h:panelGrid>
-                            <br></br> <br></br>
+                                <p:inputText id="nome3" style="width:32%;" class="camposs" value="#{passagemMB.passagem.pax03}"  />
+                                <p:inputText id="tipo3" style="width:19%;" class="espacocobranca29" value="#{passagemMB.passagem.tipopax3}"/>
+                                <p:calendar id="datasnac3" size="15" class="espacocobranca28" value="#{passagemMB.passagem.dataNascimentopax03}" locale="pt"  pattern="dd/MM/yyyy"  />
+                                <p:inputText id="rgPassaporte3" style="width:15%;"  class="espacocobranca23" value="#{passagemMB.passagem.passaporte03}"  />
+                           <br></br> 
                             <h:panelGrid columns="4" cellpadding="3" >
                                 <p:outputLabel value="Nome" for="nome4" class="espaco0p" style="font-size: 11px"/> 
                                 <p:outputLabel value="Tipo(A/C/I)" for="tipo4" class="espaco8p" style="font-size: 11px"/> 
                                 <p:outputLabel value="Data Nascimento" for="datasnac4" class="espaco9p" style="font-size: 11px"/>
                                 <p:outputLabel value="RG/Passaporte" for="rgPassaporte4" class="espaco9p" style="font-size: 11px"/>
                             </h:panelGrid>
-                            <h:panelGrid columns="4" cellpadding="3" >
-                                <p:inputText id="nome4" size="40"  class="camposs" value="#{passagemMB.passagem.pax04}"  />
-                                <p:inputText id="tipo4" class="campos" value="#{passagemMB.passagem.tipopax4}"/>
-                                <p:calendar id="datasnac4" size="15" class="campos1" value="#{passagemMB.passagem.dataNascimentopax04}" locale="pt"  pattern="dd/MM/yyyy"  />
-                                <p:inputText id="rgPassaporte4" size="15"  class="campos2" value="#{passagemMB.passagem.passaporte04}"  />
-                            </h:panelGrid>
-                            <br></br> <br></br>
+                                <p:inputText id="nome4" style="width:32%;" class="camposs" value="#{passagemMB.passagem.pax04}"  />
+                                <p:inputText id="tipo4" style="width:19%;" class="espacocobranca29" value="#{passagemMB.passagem.tipopax4}"/>
+                                <p:calendar id="datasnac4" size="15" class="espacocobranca28"  value="#{passagemMB.passagem.dataNascimentopax04}" locale="pt"  pattern="dd/MM/yyyy"  />
+                                <p:inputText id="rgPassaporte4" style="width:15%;"  class="espacocobranca23" value="#{passagemMB.passagem.passaporte04}"  />
+                             <br></br>
                             <h:panelGrid columns="4" cellpadding="3" >
                                 <p:outputLabel value="Nome" for="nome5" class="espaco0p" style="font-size: 11px"/> 
                                 <p:outputLabel value="Tipo(A/C/I)" for="tipo5" class="espaco8p" style="font-size: 11px"/> 
                                 <p:outputLabel value="Data Nascimento" for="datasnac5" class="espaco9p" style="font-size: 11px"/>
                                 <p:outputLabel value="RG/Passaporte" for="rgPassaporte5" class="espaco9p" style="font-size: 11px"/>
                             </h:panelGrid>
-                            <h:panelGrid columns="4" cellpadding="3" >
-                                <p:inputText id="nome5" size="40"  class="camposs" value="#{passagemMB.passagem.pax05}"  />
-                                <p:inputText id="tipo5" class="campos" value="#{passagemMB.passagem.tipopax5}"/>
-                                <p:calendar id="datasnac5" size="15" class="campos1" value="#{passagemMB.passagem.dataNascimentopax05}" locale="pt"  pattern="dd/MM/yyyy"  />
-                                <p:inputText id="rgPassaporte5" size="15"  class="campos2" value="#{passagemMB.passagem.passaporte05}"  />
-                            </h:panelGrid>
-                            <br></br> <br></br>
+                                <p:inputText id="nome5" style="width:32%;" class="camposs" value="#{passagemMB.passagem.pax05}"  />
+                                <p:inputText id="tipo5" style="width:19%;" class="espacocobranca29" value="#{passagemMB.passagem.tipopax5}"/>
+                                <p:calendar id="datasnac5" size="15" class="espacocobranca28" value="#{passagemMB.passagem.dataNascimentopax05}" locale="pt"  pattern="dd/MM/yyyy"  />
+                                <p:inputText id="rgPassaporte5" style="width:15%;"  class="espacocobranca23" value="#{passagemMB.passagem.passaporte05}"  />
+                          <br></br> 
                             <h:panelGrid columns="4" cellpadding="3" >
                                 <p:outputLabel value="Nome" for="nome6" class="espaco0p" style="font-size: 11px"/> 
                                 <p:outputLabel value="Tipo(A/C/I)" for="tipo6" class="espaco8p" style="font-size: 11px"/> 
                                 <p:outputLabel value="Data Nascimento" for="datasnac6" class="espaco9p" style="font-size: 11px"/>
                                 <p:outputLabel value="RG/Passaporte" for="rgPassaporte6" class="espaco9p" style="font-size: 11px"/>
                             </h:panelGrid>
-                            <h:panelGrid columns="4" cellpadding="3" >
-                                <p:inputText id="nome6" size="40"  class="camposs" value="#{passagemMB.passagem.pax06}"  />
-                                <p:inputText id="tipo6" class="campos" value="#{passagemMB.passagem.tipopax6}"/>
-                                <p:calendar id="datasnac6" size="15" class="campos1" value="#{passagemMB.passagem.dataNascimentopax06}" locale="pt"  pattern="dd/MM/yyyy"   />
-                                <p:inputText id="rgPassaporte6" size="15"  class="campos2" value="#{passagemMB.passagem.passaporte06}"  />
-                            </h:panelGrid>
-                            <br></br> <br></br>
+                                <p:inputText id="nome6" style="width:32%;" class="camposs" value="#{passagemMB.passagem.pax06}"  />
+                                <p:inputText id="tipo6" style="width:19%;" class="espacocobranca29" value="#{passagemMB.passagem.tipopax6}"/>
+                                <p:calendar id="datasnac6" size="15" class="espacocobranca28" value="#{passagemMB.passagem.dataNascimentopax06}" locale="pt"  pattern="dd/MM/yyyy"   />
+                                <p:inputText id="rgPassaporte6" style="width:15%;"  class="espacocobranca23" value="#{passagemMB.passagem.passaporte06}"  />
+                            <br></br> 
                              <h:panelGrid columns="4" cellpadding="3" >
                                 <p:outputLabel value="Nome" for="nome7" class="espaco0p" style="font-size: 11px"/> 
                                 <p:outputLabel value="Tipo(A/C/I)" for="tipo7" class="espaco8p" style="font-size: 11px"/> 
                                 <p:outputLabel value="Data Nascimento" for="datasnac7" class="espaco9p" style="font-size: 11px"/>
                                 <p:outputLabel value="RG/Passaporte" for="rgPassaporte7" class="espaco9p" style="font-size: 11px"/>
                             </h:panelGrid>
-                            <h:panelGrid columns="4" cellpadding="3" >
-                                <p:inputText id="nome7" size="40"  class="camposs" value="#{passagemMB.passagem.pax07}"  />
-                                <p:inputText id="tipo7" class="campos" value="#{passagemMB.passagem.tipopax7}"/>
-                                <p:calendar id="datasnac7" size="15" class="campos1" value="#{passagemMB.passagem.dataNascimentopax07}" locale="pt"  pattern="dd/MM/yyyy"  />
-                                <p:inputText id="rgPassaporte7" size="15"  class="campos2" value="#{passagemMB.passagem.passaporte07}"  />
-                            </h:panelGrid>
-                            <br></br> <br></br>
+                                <p:inputText id="nome7" style="width:32%;" class="camposs" value="#{passagemMB.passagem.pax07}"  />
+                                <p:inputText id="tipo7" style="width:19%;" class="espacocobranca29" value="#{passagemMB.passagem.tipopax7}"/>
+                                <p:calendar id="datasnac7" size="15" class="espacocobranca28" value="#{passagemMB.passagem.dataNascimentopax07}" locale="pt"  pattern="dd/MM/yyyy"  />
+                                <p:inputText id="rgPassaporte7" style="width:15%;"  class="espacocobranca23" value="#{passagemMB.passagem.passaporte07}"  />
+                           
+                            <br></br> 
                             <h:panelGrid columns="4" cellpadding="3" >
                                 <p:outputLabel value="Nome" for="nome8" class="espaco0p" style="font-size: 11px"/> 
                                 <p:outputLabel value="Tipo(A/C/I)" for="tipo8" class="espaco8p" style="font-size: 11px"/> 
                                 <p:outputLabel value="Data Nascimento" for="datasnac8" class="espaco9p" style="font-size: 11px"/>
                                 <p:outputLabel value="RG/Passaporte" for="rgPassaporte8" class="espaco9p" style="font-size: 11px"/>
                             </h:panelGrid>
-                            <h:panelGrid columns="4" cellpadding="3" >
-                                <p:inputText id="nome8" size="40"  class="camposs" value="#{passagemMB.passagem.pax08}"  />
-                                <p:inputText id="tipo8" class="campos" value="#{passagemMB.passagem.tipopax8}"/>
-                                <p:calendar id="datasnac8" size="15" class="campos1" value="#{passagemMB.passagem.dataNascimentopax08}" locale="pt"  pattern="dd/MM/yyyy"  />
-                                <p:inputText id="rgPassaporte8" size="15"  class="campos2" value="#{passagemMB.passagem.passaporte08}"  />
-                            </h:panelGrid>
-                            <br></br> <br></br>
+                                <p:inputText id="nome8" style="width:32%;" class="camposs" value="#{passagemMB.passagem.pax08}"  />
+                                <p:inputText id="tipo8" style="width:19%;" class="espacocobranca29" value="#{passagemMB.passagem.tipopax8}"/>
+                                <p:calendar id="datasnac8" size="15" class="espacocobranca28" value="#{passagemMB.passagem.dataNascimentopax08}" locale="pt"  pattern="dd/MM/yyyy"  />
+                                <p:inputText id="rgPassaporte8" style="width:15%;"  class="espacocobranca23" value="#{passagemMB.passagem.passaporte08}"  />
+                           
+                            <br></br> 
                             <h:panelGrid columns="4" cellpadding="3" >
                                 <p:outputLabel value="Nome" for="nome9" class="espaco0p" style="font-size: 11px"/> 
                                 <p:outputLabel value="Tipo(A/C/I)" for="tipo9" class="espaco8p" style="font-size: 11px"/> 
                                 <p:outputLabel value="Data Nascimento" for="datasnac9" class="espaco9p" style="font-size: 11px"/>
                                 <p:outputLabel value="RG/Passaporte" for="rgPassaporte9" class="espaco9p" style="font-size: 11px"/>
                             </h:panelGrid>
-                            <h:panelGrid columns="4" cellpadding="3" >
-                                <p:inputText id="nome9" size="40"  class="camposs" value="#{passagemMB.passagem.pax09}"  />
-                                <p:inputText id="tipo9" class="campos" value="#{passagemMB.passagem.tipopax9}"/>
-                                <p:calendar id="datasnac9" size="15" class="campos1" value="#{passagemMB.passagem.dataNascimentopax09}" locale="pt"  pattern="dd/MM/yyyy"  />
-                                <p:inputText id="rgPassaporte9" size="15"  class="campos2" value="#{passagemMB.passagem.passaporte09}"  />
-                            </h:panelGrid>
-                            <br></br> <br></br>
+                                <p:inputText id="nome9" style="width:32%;" class="camposs" value="#{passagemMB.passagem.pax09}"  />
+                                <p:inputText id="tipo9" style="width:19%;" class="espacocobranca29" value="#{passagemMB.passagem.tipopax9}"/>
+                                <p:calendar id="datasnac9" size="15" class="espacocobranca28" value="#{passagemMB.passagem.dataNascimentopax09}" locale="pt"  pattern="dd/MM/yyyy"  />
+                                <p:inputText id="rgPassaporte9" style="width:15%;"  class="espacocobranca23"   value="#{passagemMB.passagem.passaporte09}"  />
+                          
+                            <br></br> 
                             <h:panelGrid columns="4" cellpadding="3" >
                                 <p:outputLabel value="Nome" for="nome10" class="espaco0p" style="font-size: 11px"/> 
                                 <p:outputLabel value="Tipo(A/C/I)" for="tipo10" class="espaco8p" style="font-size: 11px"/> 
                                 <p:outputLabel value="Data Nascimento" for="datasnac10" class="espaco9p" style="font-size: 11px"/>
                                 <p:outputLabel value="RG/Passaporte" for="rgPassaporte10" class="espaco9p" style="font-size: 11px"/>
                             </h:panelGrid>
-                            <h:panelGrid columns="4" cellpadding="3" >
-                                <p:inputText id="nome10" size="40"  class="camposs" value="#{passagemMB.passagem.pax10}"  />
-                                <p:inputText id="tipo10" class="campos" value="#{passagemMB.passagem.tipopax10}"/>
-                                <p:calendar id="datasnac10" size="15" class="campos1" value="#{passagemMB.passagem.dataNascimentopax10}" locale="pt"  pattern="dd/MM/yyyy"  />
-                                <p:inputText id="rgPassaporte10" size="15"  class="campos2" value="#{passagemMB.passagem.passaporte10}"  />
-                            </h:panelGrid>
+                                <p:inputText id="nome10" style="width:32%;" class="camposs" value="#{passagemMB.passagem.pax10}"  />
+                                <p:inputText id="tipo10" style="width:19%;" class="espacocobranca29" value="#{passagemMB.passagem.tipopax10}"/>
+                                <p:calendar id="datasnac10" size="15" class="espacocobranca28" value="#{passagemMB.passagem.dataNascimentopax10}" locale="pt"  pattern="dd/MM/yyyy"  />
+                                <p:inputText id="rgPassaporte10" style="width:15%;"  class="espacocobranca23" value="#{passagemMB.passagem.passaporte10}"  />
                         </p:tab>
 
                         <p:tab titleStyle="color:#fff;background: #ccc;" title="Valores">
@@ -330,22 +296,16 @@
                             </h:panelGrid>
                             <br></br><br></br>
                             <h:panelGrid columns="5" cellpadding="3"  >
-                                <p:outputLabel value="Saldo a Receber" for="saldoreceber" class="espaco18p" style="font-size: 11px"/> 
-                                <p:outputLabel value="Saldo a Parcelar" for="saldoparcelar" class="espaco6p" style="font-size: 11px"/> 
+                                <p:outputLabel value="Saldo a Receber" for="saldoreceber" class="espaco1p" style="font-size: 11px"/> 
+                                <p:outputLabel value="Saldo a Parcelar" for="saldoparcelar" class="espaco12p" style="font-size: 11px"/> 
+                                <p:outputLabel value="Forma de Pagamento" for="formPag2" class="espaco12p" style="font-size: 11px"/> 
                             </h:panelGrid>
                             <h:panelGrid columns="5" cellpadding="3"  >
                                 <p:selectBooleanCheckbox id="vendamatriz" />
                                 <p:outputLabel value="Venda pela matriz" for="vendamatriz" class="fontebranca" style="font-size: 11px"/> 
-                                <p:inputText  value="#{passagemMB.passagem.valorentrada}" size="21" id="saldoreceber" class="espacor" style="font-size: 11px"/> 
-                                <p:inputText value="#{passagemMB.passagem.valorparcela}" size="26" id="saldoparcelar" class="espacor" style="font-size: 11px"/> 
-                            </h:panelGrid>
-                            <br></br><br></br><br></br>
-                            <h:panelGrid columns="3" cellpadding="3"  >
-                                <p:outputLabel value="Forma de Pagamento" for="formPag2" class="espaco0p" style="font-size: 11px"/> 
-                                <p:outputLabel value="Tipo de Parcelamento" for="tipoparcelamento" class="espaco9p" style="font-size: 11px"/> 
-                                <p:outputLabel value="Data Primeiro Vencimento"  class="espaco12p" style="font-size: 11px"/> 
-
-                                <p:selectOneMenu id="formPag2" value="#{passagemMB.passagem.formaPagamento}" style="width:130px;font-size: 10px" class="camposs" >
+                                <p:inputText  value="#{passagemMB.passagem.valorentrada}" size="23" id="saldoreceber" class="espacocobranca24r" style="font-size: 11px"/> 
+                                <p:inputText value="#{passagemMB.passagem.valorparcela}" size="18" id="saldoparcelar" class="espacocamposright" style="font-size: 11px"/> 
+                                <p:selectOneMenu id="formPag2" value="#{passagemMB.passagem.formaPagamento}" style="width:130px;font-size: 10px" class="espacocobranca13" >
                                     <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true"/> 
                                     <f:selectItem itemLabel="Dinheiro" itemValue="Dinheiro" /> 
                                     <f:selectItem itemLabel="Boleto" itemValue="Boleto" /> 
@@ -356,21 +316,26 @@
                                     <f:selectItem itemLabel="Déposito" itemValue="Deposito" /> 
                                     <f:selectItem itemLabel="Financiamento banco" itemValue="Financiamentobanco" /> 
                                 </p:selectOneMenu>
-                                <p:selectOneMenu id="tipoparcelamento" value="#" style="width:130px;font-size: 10px" class="campos4" >
+                            </h:panelGrid>
+                            <br></br><br></br><br></br>
+                            <h:panelGrid columns="5" cellpadding="3"  >
+                                
+                                <p:outputLabel value="Tipo de Parcelamento" for="tipoparcelamento" class="camposs" style="font-size: 11px"/> 
+                                <p:outputLabel value="Data Primeiro Vencimento"  class="espacocobranca3" style="font-size: 11px"/> 
+                                <p:outputLabel value="Valor a Parcelar" for="valoraparcelar" class="espacocobranca3" style="font-size: 11px"/>
+                                <p:outputLabel value="Nº Parcelas" for="nparcela" class="espacocobranca13" style="font-size: 11px"/> 
+                                <p:outputLabel value="Valor Parcela" for="valorparcela" class="espaco12p" style="font-size: 11px"/> 
+                               
+                            </h:panelGrid>
+                            <h:panelGrid columns="5" cellpadding="3"  >
+                                <p:selectOneMenu id="tipoparcelamento" value="#" style="width:130px;font-size: 10px" class="espacocampos2" >
                                     <f:selectItem itemLabel="Matriz" itemValue="avista" noSelectionOption="true"/> 
                                     <f:selectItem itemLabel="Loja" itemValue="loja" /> 
-                                    <f:selectItem itemLabel="Fornecedor" itemValue="Fornecedor" class="fontebranca"/> 
+                                    <f:selectItem itemLabel="Fornecedor" itemValue="Fornecedor" /> 
                                 </p:selectOneMenu>
-                                <p:calendar id="primeirovencimento" size="25" class="campos2" locale="pt"  pattern="dd/MM/yyyy" />
-                            </h:panelGrid>
-                            <br></br><br></br>
-                            <h:panelGrid columns="3" cellpadding="3"  >
-                                <p:outputLabel value="Valor a Parcelar" for="valoraparcelar" class="espaco0p" style="font-size: 11px"/> 
-                                <p:outputLabel value="Nº Parcelas" for="nparcela" class="espaco9p" style="font-size: 11px"/> 
-                                <p:outputLabel value="Valor Parcela" for="valorparcela" class="espaco12p" style="font-size: 11px"/> 
-
-                                <p:inputText value="#" id="valoraparcelar" class="campossr" style="font-size: 11px"/> 
-                                <p:selectOneMenu id="nparcela" value="#" style="width:130px;font-size: 10px" class="campos4" >
+                                <p:calendar id="primeirovencimento" size="24" class="espacocobranca5" locale="pt"  pattern="dd/MM/yyyy" />
+                                <p:inputText value="#" id="valoraparcelar" class="espacocobranca3r" style="font-size: 11px;width:52%"/> 
+                                <p:selectOneMenu id="nparcela" value="#" style="width:110px;font-size: 10px" class="espacocamposnegativo" >
                                     <f:selectItem itemLabel="01" itemValue="01" noSelectionOption="true"/> 
                                     <f:selectItem itemLabel="02" itemValue="02" /> 
                                     <f:selectItem itemLabel="03" itemValue="03" /> 
@@ -396,8 +361,10 @@
                                     <f:selectItem itemLabel="23" itemValue="23" /> 
                                     <f:selectItem itemLabel="24" itemValue="24" /> 
                                 </p:selectOneMenu>
-                                <p:inputText value="#" id="valorparcela" class="campos2r" size="23" style="font-size: 11px"/> 
-                            </h:panelGrid><br></br><br></br>
+                                <p:inputText value="#" id="valorparcela" class="espacocampos2right"  style="font-size: 11px;width:130%"/> 
+                            </h:panelGrid>
+                            <br></br><br></br>
+                           
                             <h:panelGrid columns="2">
                                 <p:commandButton id="adicionarpagamento" value="Adicionar" icon="ui-icon-plusthick" class="campos3"/>
                                 <p:commandButton id="excluirpagamento" value="Excluir" icon=" ui-icon-close" class="espacocobranca26"/>

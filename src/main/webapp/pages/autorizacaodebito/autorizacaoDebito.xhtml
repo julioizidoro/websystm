@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/pages/templates/default.xhtml">
+        <ui:define name="corpo">
+            <h:form id="pacoteseguroviagem">
+                <div id="centro">
+                    <p:growl id="growl" showDetail="true" sticky="true"/>
+                    <br></br> <br></br> <br></br>
+
+                    <p:accordionPanel class="painelPacote" >
+                        <p:tab titleStyle="color:#000;font-size:11px;background:#c7d95f;" title="Autorização de Débito">
+                            <p:outputLabel value="Bandeira" for="bandeira" />
+                            <p:outputLabel value="No. Cartão de Credito" for="numerocartao" class="espacocobranca16"/>
+                            <p:outputLabel value="Validade" for="validade" class="espacocobranca3"/>
+                            <p:outputLabel value="Código de Segurança" for="codigoseguranca" class="espacocobranca19"/>
+                            
+
+                            <br></br>
+                            <p:inputText id="bandeira" value="#{autorizacaoDebitoMB.autorizacaoDebitoBean.bandeira}" style="width:23%" class="espacocampos2"/>
+                            <p:inputText id="numerocartao" value="#{autorizacaoDebitoMB.autorizacaoDebitoBean.numerocartao}" style="width:25%"  class="espacocampos"/>
+                            <p:inputText id="validade" value="#{autorizacaoDebitoMB.autorizacaoDebitoBean.validade}" style="width:13%"  class="espacocampos"/>
+                            <p:inputText id="codigoseguranca" value="#{autorizacaoDebitoMB.autorizacaoDebitoBean.codigoseguranca}" style="width:19%"  class="espacocobranca11"/>
+                            
+                            <br></br><br></br><br></br><br></br>
+                            <p:outputLabel value="Nome do Títular" for="nometitular" />
+                            <p:outputLabel value="CPF" for="cpf" class="espacocobranca18"/>
+                            <p:outputLabel value="Telefone" for="telefone" class="espacocobranca19"/>
+                            <p:outputLabel value="No. Reservas" for="numeroreservas" class="espacocobranca2"/>
+                            <p:outputLabel value="Data da Viagem" for="dataviagem" class="espacocobranca20"/>
+                            <br></br>
+                            <p:inputText id="nometitular" value="#{autorizacaoDebitoMB.autorizacaoDebitoBean.nometitular}" style="width:26%"  class="espacocampos2"/>
+                            <p:inputMask id="cpf" value="#{autorizacaoDebitoMB.autorizacaoDebitoBean.cpf}" style="width:16%" mask="999.999.999-99" class="espacocampos"/>
+                            <p:inputText id="telefone" value="#{autorizacaoDebitoMB.autorizacaoDebitoBean.fone}" style="width:14%"  class="espacocampos"/>
+                            <p:inputText id="numeroreservas" value="#{autorizacaoDebitoMB.autorizacaoDebitoBean.numreserva}" style="width:10%" class="espacocampos"/>
+                            <p:inputMask id="dataviagem" value="#{autorizacaoDebitoMB.autorizacaoDebitoBean.dataviagem}" style="width:15%"  class="espacocampos"   mask="99/99/9999" />
+                            <br></br><br></br><br></br><br></br>
+                            <p:outputLabel value="No. Parcelas" for="nparcelas" />
+                            <p:outputLabel value="Valor da Parcela" for="valorparcela" class="espacocobranca20"/>
+                            <p:outputLabel value="Valor Total Parcelado" for="totalparcelado" class="espacocobranca5"/>
+                            <p:outputLabel value="Valor Total da Compra" for="valortotal" class="espacocobranca14"/>
+                            <p:outputLabel value="Câmbio" for="moeda" class="espacocobranca4"/>
+                            <p:outputLabel value="Valor do Câmbio" for="idvalorcambio" class="espacocobranca5"/>
+                            <br></br>
+                            <p:inputText id="nparcelas" value="#{autorizacaoDebitoMB.autorizacaoDebitoBean.numparcelas}" style="width:10%"  class="espacocampos2"/>
+                            <p:inputText id="valorparcela" value="#{autorizacaoDebitoMB.autorizacaoDebitoBean.valorparcelas}" style="width:16%" class="espacocamposright">
+                            </p:inputText>
+                            <p:inputText id="totalparcelado" value="#{autorizacaoDebitoMB.autorizacaoDebitoBean.valorparcelado}" style="width:16%"  class="espacocamposright">
+                            </p:inputText>
+                            <p:inputText id="valortotal" value="#{autorizacaoDebitoMB.autorizacaoDebitoBean.valortotal}" style="width:15%" class="espacocamposright">
+                            </p:inputText>
+                            <p:selectOneMenu class="espacocobranca4combo" style="width:10%" id="moeda"  value="" >
+                                <f:selectItem itemLabel="Moedas" itemValue="0"/> 
+                                <f:selectItems value="#" var="cambio" itemLabel="" itemValue=""/>
+                                <f:attribute name="listaCambio" value=""/>
+                                <p:ajax event="change" update="idvalorcambio" />
+                            </p:selectOneMenu>
+                            <p:inputText id="idvalorcambio" value="#{autorizacaoDebitoMB.autorizacaoDebitoBean.valorcambio}" style="width:12%" class="espacocobranca4r">
+                            </p:inputText> 
+                            <br></br><br></br>
+                           
+                            <p class="botaoseguro"><br></br>
+                                <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Imprimir" action="#"></p:commandButton>
+                                <p:commandButton class="espacocampos" onclick="" icon="ui-icon-close" value="Fechar" action="#"></p:commandButton>
+                            </p>
+                        </p:tab>
+
+                    </p:accordionPanel>
+                    <br></br>
+
+                    <br></br>
+                    <br></br>
+                </div>
+            </h:form>     
+
+        </ui:define>
+    </ui:composition>
+</html>

@@ -175,6 +175,10 @@ text-align: left;
     margin-left:30px;
     height:25px;
 }
+.espacocamposnegativo{
+    font-size:10px;
+    margin-left: -15%;
+}
 .espacocampos2{
     font-size:10px;
     height:25px;
@@ -628,8 +632,8 @@ text-align: left;
     margin-left:60%;
     position: relative;
 }
-.espaco1{
-    color: #fff;
+.espaco1p{
+    color: #000;
     font-size: 11px;
     margin-left:60%;
     position: relative;
@@ -828,7 +832,10 @@ text-align: left;
 }
 .espacocobranca3{
     margin-left:15%;
-    
+}
+.espacocobranca3r{
+    margin-left:15%;
+    text-align: right;
 }
 .espacocobranca3combo{
     margin-left:15%;
@@ -836,6 +843,14 @@ text-align: left;
 }
 .espacocobranca4{
     margin-left:3%;
+}
+.espacocobranca4r{
+    margin-left:3%;
+    text-align: right;
+}
+.espacocobranca4combo{
+    margin-left:3%;
+    height:32px;
 }
 .espacocobranca5{
     margin-left:9%;
@@ -959,6 +974,10 @@ text-align: left;
 .espacocobranca24{
     margin-left:8%;
 }
+.espacocobranca24r{
+    margin-left:8%;
+    text-align: right;
+}
 .espacocobranca25{
     margin-left:43%;
 }
@@ -967,6 +986,12 @@ text-align: left;
 }
 .espacocobranca27{
     margin-left:29%;
+}
+.espacocobranca28{
+    margin-left:4%;
+}
+.espacocobranca29{
+    margin-left:2%;
 }
 .espacologin{
     margin-left:40%;
@@ -988,8 +1013,7 @@ text-align: left;
 .espacocampos6right{
     margin-left:2%;
     font-size: 10px;
-    text-align: right;
-    
+    text-align: right;  
 }
 .espacocampos6{
     margin-left:6%;
