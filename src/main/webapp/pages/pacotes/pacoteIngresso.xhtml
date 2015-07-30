@@ -18,21 +18,21 @@
                             <p:outputLabel value="Cidade" for="cidade1" class="espacocobranca10"/>
                             <p:outputLabel value="Fornecedor" for="fornecedor" class="espacocobranca9"/>
                             <br></br>
-                            <p:selectOneMenu id="pais1" value="#{pacoteIngressoMB.pais}" style="width:197px;font-size: 10px" class="espacocampos2"
+                            <p:selectOneMenu id="pais1" value="#{pacoteIngressoMB.pais}" style="width:27%;font-size: 10px" class="espacocampos2"
                                              converter="PaisConverter" filter="true" filterMatchMode="startsWith" >
                                 <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
                                 <f:selectItems id="idpais" value="#{pacoteIngressoMB.listaPais}" var="cpais" itemLabel="#{cpais.pais.nome}" itemValue="#{cpais.pais}"/>
                                 <f:attribute name="listaPais" value="#{pacoteIngressoMB.listaPais}"/>
                                 <p:ajax event="change" update="cidade1"/> 
                             </p:selectOneMenu>
-                            <p:selectOneMenu id="cidade1" value="#{pacoteIngressoMB.cidade}" style="width:227px;font-size: 10px" class="espacocampos" 
+                            <p:selectOneMenu id="cidade1" value="#{pacoteIngressoMB.cidade}" style="width:31%;font-size: 10px" class="espacocampos" 
                                              converter="CidadeConverter" filter="true" filterMatchMode="startsWith">
                                 <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
                                 <f:selectItems id="idcidade" value="#{pacoteIngressoMB.pais.cidadeList}" var="ccidade" itemLabel="#{ccidade.nome}" itemValue="#{ccidade}"/>
                                 <f:attribute name="listaCidade" value="#{pacoteIngressoMB.pais.cidadeList}"/>
                                 <p:ajax event="change" listener="#{pacoteIngressoMB.listarFornecedorCidade(0)}" update="fornecedor" />
                             </p:selectOneMenu>
-                            <p:selectOneMenu id="fornecedor" value="#{pacoteIngressoMB.fornecedorcidade}" style="width:210px;font-size: 10px" class="espacocampos" 
+                            <p:selectOneMenu id="fornecedor" value="#{pacoteIngressoMB.fornecedorcidade}" style="width:30%;font-size: 10px" class="espacocampos" 
                                               converter="FornecedorCidadeConverter" filter="true" filterMatchMode="startsWith">
                                 <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
                                 <f:selectItems id="idfornecedor" value="#{pacoteIngressoMB.listaFornecedorCidade}" var="fornecedor" itemLabel="#{fornecedor.fornecedor.nome}" itemValue="#{fornecedor}"/>
@@ -44,21 +44,26 @@
                             <p:outputLabel value="Data" for="data" class="espacocobranca13"/>
 
                             <br></br>
-                            <p:inputText id="pais" value="#{pacoteIngressoMB.pacoteingresso.pais}" size="60" maxlength="50" class="espacocampos2"/>
-                            <p:inputText id="cidade" value="#{pacoteIngressoMB.pacoteingresso.cidade}" size="60" maxlength="50" class="espacocampos"/>
-                            <p:calendar id="data" value="#{pacoteIngressoMB.pacoteingresso.data}" size="15"  class="espacocampos" locale="pt"  pattern="dd/MM/yyyy" >
+                            <p:inputText id="pais" value="#{pacoteIngressoMB.pacoteingresso.pais}" style="width:38%;" maxlength="50" class="espacocampos2"/>
+                            <p:inputText id="cidade" value="#{pacoteIngressoMB.pacoteingresso.cidade}" style="width:34%;" maxlength="50" class="espacocampos"/>
+                            <p:calendar id="data" value="#{pacoteIngressoMB.pacoteingresso.data}"  class="espacocampos" locale="pt"  pattern="dd/MM/yyyy" >
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </p:calendar>
 
 
                             <br></br><br></br><br></br>
-                            <p:outputLabel value="Qntd Adolescente" for="qntdAdolescente" class=""/>
-                            <p:outputLabel value="Qntd Adulto" for="qntdAdulto" class="espacocobranca5"/>
-                            <p:outputLabel value="Qntd Criança" for="qntdClianca" class="espacocobranca2"/>
+                            <p:outputLabel value="No. Adolescente" for="qntdAdolescente" class=""/>
+                            <p:outputLabel value="No. Adulto" for="qntdAdulto" class="espacocobranca5"/>
+                            <p:outputLabel value="No. Criança" for="qntdClianca" class="espacocobranca2"/>
                             <br></br>
-                            <p:inputText id="qntdAdolescente" value="#{pacoteIngressoMB.pacoteingresso.inf}" size="22" maxlength="10" class="espacocampos2"/>
-                            <p:inputText id="qntdAdulto" value="#{pacoteIngressoMB.pacoteingresso.adt}" size="22" class="espacocampos"/>
-                            <p:inputText id="qntdClianca" value="#{pacoteIngressoMB.pacoteingresso.chd}" size="16" class="espacocampos"/>
+                            <p:inputText id="qntdAdolescente" value="#{pacoteIngressoMB.pacoteingresso.inf}" style="width:16%;" maxlength="10" class="espacocampos2"/>
+                            <p:inputText id="qntdAdulto" value="#{pacoteIngressoMB.pacoteingresso.adt}" style="width:16%;" class="espacocampos"/>
+                            <p:inputText id="qntdClianca" value="#{pacoteIngressoMB.pacoteingresso.chd}" style="width:16%;" class="espacocampos"/>
+                            
+                            <br></br><br></br><br></br>
+                            <p:outputLabel value="Descritivo" for="descritivo"/>
+                            <br></br>
+                            <p:inputText id="descritivo" value="#{pacoteIngressoMB.pacoteingresso.descritivo}" style="width: 96%" maxlength="45" class="espacocampos2"/>
                             <br></br><br></br><br></br>
 
                             <p:outputLabel value="Câmbio" for="moeda" class=""/>
@@ -68,43 +73,41 @@
                             <p:outputLabel value="Valor Gross" for="valorgross" class="espacocobranca5"/>
                             <p:outputLabel value="Valor Moeda Nacional" for="moedanacional" class="espacocobranca5"/>
                             <br></br>
-                            <p:selectOneMenu class="espacocampos5" style="width:70px;" id="moeda"  value="#{pacoteIngressoMB.cambio}" converter="CambioConverter">
+                            <p:selectOneMenu class="espacocampos5" style="width:10%" id="moeda"  value="#{pacoteIngressoMB.cambio}" converter="CambioConverter">
                                 <f:selectItem itemLabel="Moedas" itemValue="0"/> 
                                 <f:selectItems value="#{usuarioLogadoMB.listaCambio}" var="cambio" itemLabel="#{cambio.moedas.sigla}" itemValue="#{cambio}"/>
                                 <f:attribute name="listaCambio" value="#{usuarioLogadoMB.listaCambio}"/>
                                 <p:ajax event="change" update="idvalorcambio" />
                             </p:selectOneMenu>
-                            <p:inputText id="idvalorcambio" value="#{pacoteIngressoMB.cambio.valor}" size="14" class="espacocamposright" readonly="true">
+                            <p:inputText id="idvalorcambio" value="#{pacoteIngressoMB.cambio.valor}" style="width:11%" class="espacocamposright" readonly="true">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>  
                             <h:commandLink action="#"  title="Editar Câmbio">  
                                 <img id="editarcambio" class="" src="../../resources/img/cambio_1.png"/>
                             </h:commandLink>
-                            <p:inputText id="valornet" value="#{pacoteIngressoMB.pacoteingresso.valornet}" size="14" class="espacocobranca20">
+                            <p:inputText id="valornet" value="#{pacoteIngressoMB.pacoteingresso.valornet}" style="width:12%" class="espacocobranca20">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 <p:ajax event="blur" />
                             </p:inputText>
-                            <p:inputText id="comissao" value="#{pacoteIngressoMB.pacoteingresso.comissao}" size="12" class="espacocamposright">
+                            <p:inputText id="comissao" value="#{pacoteIngressoMB.pacoteingresso.comissao}" style="width:12%" class="espacocamposright">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 <p:ajax event="blur" update="valorgross" listener="#{pacoteIngressoMB.calcularValorGross()}" />
                                 <p:ajax event="blur" update="moedanacional" />
                             </p:inputText>
-                            <p:inputText id="valorgross" value="#{pacoteIngressoMB.pacoteingresso.valorgross}" size="14" maxlength="15" class="espacocamposright">
+                            <p:inputText id="valorgross" value="#{pacoteIngressoMB.pacoteingresso.valorgross}" style="width:13%" maxlength="15" class="espacocamposright">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 <p:ajax event="blur" update="comissao" listener="#{pacoteIngressoMB.calcularComissao()}"/>
                                 <p:ajax event="blur" update="moedanacional" />
                             </p:inputText>
-                            <p:inputText id="moedanacional" value="" size="19" maxlength="15" class="espacocamposright" readonly="true">
+                            <p:inputText id="moedanacional" value="" style="width:15%" maxlength="15" class="espacocamposright" readonly="true">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
-                            <br></br><br></br><br></br>
-                            <p:outputLabel value="Descritivo" for="descritivo"/>
                             <br></br>
-                            <p:inputText id="descritivo" value="#{pacoteIngressoMB.pacoteingresso.descritivo}" size="48" maxlength="45" class="espacocampos2"/>
-
-                            <p:commandButton class="espacocampos" icon="ui-icon-check" value="Adicionar" action="#{pacoteIngressoMB.salvarIngresso()}" update="pacoteingresso" resetValues="true">
+                            <br></br>
+                            <br></br>
+                            <p:commandButton class="espacocobranca6" icon="ui-icon-check" value="Adicionar" action="#{pacoteIngressoMB.salvarIngresso()}" update="pacoteingresso" resetValues="true">
                             </p:commandButton>
-                            <p:commandButton class="espacocampos" icon="ui-icon-close" value="Excluir" action="#{pacoteIngressoMB.cancelar()}"  resetValues="true"></p:commandButton>
+                           
                             <br></br>
                             <br></br>
                             <br></br>
@@ -131,8 +134,8 @@
                                         <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                                     </h:outputText>                           
                                 </p:column>
-                                <p:column style="width:35px;background:#ffffff;color:#1F8871;text-align: center">
-                                    <p:selectBooleanCheckbox value="#"/>
+                                <p:column style="width:50px;background:#ffffff;color:#1F8871;text-align: center">
+                                    <p:commandButton  icon="ui-icon-close" title="Excluir" action="#{pacoteIngressoMB.cancelar()}"  resetValues="true"></p:commandButton>
                                 </p:column>
                             </p:dataTable><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
                             <p class="botaocadpacote"><br></br>

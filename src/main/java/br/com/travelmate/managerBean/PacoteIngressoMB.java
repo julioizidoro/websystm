@@ -49,7 +49,7 @@ public class PacoteIngressoMB implements Serializable{
         FacesContext fc = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
         Pacotetrecho pacotetrecho = (Pacotetrecho) session.getAttribute("pacoteTrecho");
-        session.removeAttribute("pacoteTrecho");
+        //session.removeAttribute("pacoteTrecho");
         int idProduto = 0;
         if (pacotetrecho != null) {
             PaisProdutoFacade paisProdutoFacade = new PaisProdutoFacade();
