@@ -166,7 +166,6 @@ public class CadPacoteOperadoraMB  implements Serializable{
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
         session.removeAttribute("tipoOepracaoPacote");
         session.removeAttribute("pacoteTrecho");
-        System.out.println("teste");
         return null;
     }
     
@@ -176,7 +175,6 @@ public class CadPacoteOperadoraMB  implements Serializable{
         if (pacotetrecho!=null){
             FacesContext fc = FacesContext.getCurrentInstance();  
             HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
-            session.setAttribute("tipoOepracaoPacote", "carro");
             session.setAttribute("pacoteTrecho", pacotetrecho);
             return "pacotecarro";
         }else {
@@ -190,7 +188,6 @@ public class CadPacoteOperadoraMB  implements Serializable{
         if (pacotetrecho!=null){
             FacesContext fc = FacesContext.getCurrentInstance();  
             HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
-            session.setAttribute("tipoOepracaoPacote", "cruzeiro");
             session.setAttribute("pacoteTrecho", pacotetrecho);
             return "pacotecruzeiro";
         }else {
@@ -204,7 +201,6 @@ public class CadPacoteOperadoraMB  implements Serializable{
         if (pacotetrecho!=null){
             FacesContext fc = FacesContext.getCurrentInstance();  
             HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
-            session.setAttribute("tipoOepracaoPacote", "hotel");
             session.setAttribute("pacoteTrecho", pacotetrecho);
             return "pacotehotel";
         }else {
@@ -218,7 +214,6 @@ public class CadPacoteOperadoraMB  implements Serializable{
         if (pacotetrecho!=null){
             FacesContext fc = FacesContext.getCurrentInstance();  
             HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
-            session.setAttribute("tipoOepracaoPacote", "trem");
             session.setAttribute("pacoteTrecho", pacotetrecho);
             return "pacotetrem";
         }else {
@@ -232,7 +227,6 @@ public class CadPacoteOperadoraMB  implements Serializable{
         if (pacotetrecho!=null){
             FacesContext fc = FacesContext.getCurrentInstance();  
             HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
-            session.setAttribute("tipoOepracaoPacote", "transfer");
             session.setAttribute("pacoteTrecho", pacotetrecho);
             return "pacotetransfer";
         }else {
@@ -246,7 +240,6 @@ public class CadPacoteOperadoraMB  implements Serializable{
         if (pacotetrecho!=null){
             FacesContext fc = FacesContext.getCurrentInstance();  
             HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
-            session.setAttribute("tipoOepracaoPacote", "ingresso");
             session.setAttribute("pacoteTrecho", pacotetrecho);
             return "pacoteingresso";
         }else {
@@ -260,7 +253,6 @@ public class CadPacoteOperadoraMB  implements Serializable{
         if (pacotetrecho!=null){
             FacesContext fc = FacesContext.getCurrentInstance();  
             HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
-            session.setAttribute("tipoOepracaoPacote", "passeio");
             session.setAttribute("pacoteTrecho", pacotetrecho);
             return "pacotepasseio";
         }else {
@@ -269,11 +261,11 @@ public class CadPacoteOperadoraMB  implements Serializable{
         }
         return "";
     }
+    
      public String novoSeguro(Pacotetrecho pacotetrecho){
         if (pacotetrecho!=null){
             FacesContext fc = FacesContext.getCurrentInstance();  
             HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
-            session.setAttribute("tipoOepracaoPacote", "trem");
             session.setAttribute("pacoteTrecho", pacotetrecho);
             return "pacoteseguro";
         }else {

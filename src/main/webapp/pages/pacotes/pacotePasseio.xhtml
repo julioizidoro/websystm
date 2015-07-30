@@ -12,7 +12,7 @@
                     <p:growl id="growl" showDetail="true" sticky="true"/>
                     <br></br> <br></br> <br></br>
 
-                    <p:accordionPanel class="painelPacote" >
+                    <p:accordionPanel  class="painelPacote" >
                         <p:tab titleStyle="color:#000;font-size:10px;background:#c7d95f;" title="Passeio">
                             <p:outputLabel value="Pais" for="pais1" />
                             <p:outputLabel value="Cidade" for="cidade1" class="espacocobranca10"/>
@@ -30,13 +30,13 @@
                                 <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
                                 <f:selectItems id="idcidade" value="#{pacotePasseioMB.pais.cidadeList}" var="ccidade" itemLabel="#{ccidade.nome}" itemValue="#{ccidade}"/>
                                 <f:attribute name="listaCidade" value="#{pacotePasseioMB.pais.cidadeList}"/>
-                                <p:ajax event="change" listener="#{pacotePasseioMB.listarFornecedorCidade()}" update="fornecedor" />
+                                <p:ajax event="change" listener="#{pacotePasseioMB.listarFornecedorCidade(0)}" update="fornecedor" />
                             </p:selectOneMenu>
                             <p:selectOneMenu id="fornecedor" value="#{pacotePasseioMB.fornecedorcidade}" style="width:30%;font-size: 10px" class="espacocampos" 
                                               filter="true" filterMatchMode="startsWith">
                                 <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
                                 <f:selectItems id="idfornecedor" value="#{pacotePasseioMB.listaFornecedorCidade}" var="fornecedor" itemLabel="#{fornecedor.fornecedor.nome}" itemValue="#{fornecedor}"/>
-                                <f:attribute name="listafornecedor" value="#{pacotePasseioMB.listaFornecedorCidade}"/>
+                                <f:attribute name="listaFornecedorCidade" value="#{pacotePasseioMB.listaFornecedorCidade}"/>
                             </p:selectOneMenu>
                             <br></br><br></br><br></br> 
                             <p:outputLabel value="País" for="pais" class=""/>
@@ -80,7 +80,7 @@
                                 <f:attribute name="listaCambio" value="#{usuarioLogadoMB.listaCambio}"/>
                                 <p:ajax event="change" update="idvalorcambio" />
                             </p:selectOneMenu>
-                            <p:inputText id="idvalorcambio" value="#{pacotePasseioMB.cambio.valor}" style="width:11%" class="espacocamposright">
+                            <p:inputText id="idvalorcambio" value="#{pacotePasseioMB.cambio.valor}" style="width:11%" class="espacocamposright" readonly="true">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>  
                             <h:commandLink action="#"  title="Editar Câmbio">  
@@ -88,53 +88,59 @@
                             </h:commandLink>
                             <p:inputText id="valornet" value="#{pacotePasseioMB.pacotepasseio.valornet}" style="width:12%" class="espacocobranca20">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                                <p:ajax event="blur" />
                             </p:inputText>
                             <p:inputText id="comissao" value="#{pacotePasseioMB.pacotepasseio.comissao}" style="width:12%" class="espacocamposright">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                                <p:ajax event="blur" update="valorgross" listener="#{pacotePasseioMB.calcularValorGross()}" />
+                                <p:ajax event="blur" update="moedanacional" />
                             </p:inputText>
                             <p:inputText id="valorgross" value="#{pacotePasseioMB.pacotepasseio.valorgross}" style="width:13%" maxlength="15" class="espacocamposright">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                                <p:ajax event="blur" update="comissao" listener="#{pacotePasseioMB.calcularComissao()}"/>
+                                <p:ajax event="blur" update="moedanacional" />
                             </p:inputText>
-                            <p:inputText id="moedanacional" value="" style="width:15%" maxlength="15" class="espacocamposright">
+                            <p:inputText id="moedanacional" value="#{pacotePasseioMB.pacotepasseio.valormoedanacional}" style="width:15%" maxlength="15" class="espacocamposright">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
                             <br></br>
                             <br></br><br></br>
-                            <p:commandButton class="espacocobranca6"  icon="ui-icon-check" value="Adicionar" action="#" update="pacotepasseio"></p:commandButton>
+                            <p:commandButton class="espacocobranca6"  icon="ui-icon-check" value="Adicionar" action="#{pacotePasseioMB.salvarPasseio()}" >
+                            </p:commandButton>
+                            <p:commandButton  icon="ui-icon-close" value="Cancelar" action="#{pacotePasseioMB.cancelar()}"  ></p:commandButton>
                             
                             <br></br>
                             <br></br>
                             <br></br>
-                            <p:dataTable id="pacotepasseio" var="pacotepasseio"  value="#" class="tabela3" 
+                            <p:dataTable id="tabelapacotepasseio" var="pacotepasseio"  value="#{pacotePasseioMB.listaPacotePasseio}" class="tabela3" 
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
-                                         paginator="true" rows="10" style="margin-bottom:20px" >
+                                         paginator="true" rows="10" style="margin-bottom:20px"  rowIndexVar="linha">
                                 <f:facet name="{Exporters}">
                                     <h:commandLink>
                                         <img src="../../resources/img/excel.png" width="20" class="imagens"/>
                                         <p:dataExporter type="xls" target="pacotepasseio" fileName="listapasseio" />
                                     </h:commandLink>
                                 </f:facet>
-                                <p:column headerText="Descrição"  style="width:210px;background:#ffffff;color:#1F8871;text-align:center;" styleClass="alinharCenter" sortBy="#{contasrecebe.vendas.cliente}">
-                                    <h:outputText value="#"/>
+                                <p:column headerText="Descrição"  style="width:210px;background:#ffffff;color:#1F8871;text-align:center;" styleClass="alinharCenter" sortBy="#{pacotePasseioMB.pacotepasseio.descritivo}">
+                                    <h:outputText value="#{pacotepasseio.descritivo}"/>
                                 </p:column>
                                 <p:column headerText="Cidade"  style="width:200px;background:#ffffff;color:#1F8871;text-align:center;" styleClass="alinharCenter" >
-                                    <h:outputText value="#"/>
+                                    <h:outputText value="#{pacotepasseio.cidade}"/>
                                 </p:column>
                                 <p:column headerText="País" style="width:200px;background:#ffffff;color:#1F8871;text-align:center;" >
-                                    <h:outputText value="#"/>
+                                    <h:outputText value="#{pacotepasseio.pais}"/>
                                 </p:column>
                                 <p:column headerText="Data" style="width:80px;background:#ffffff;color:#1F8871;text-align: center;" styleClass="alinharCenter">
-                                    <h:outputText value="">
+                                    <h:outputText value="#{pacotepasseio.data}">
                                         <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                                     </h:outputText>                           
                                 </p:column>
                                 <p:column style="width:50px;background:#ffffff;color:#1F8871;text-align: center">
-                                    <p:commandButton  icon="ui-icon-close" title="Excluir" action="#"  resetValues="true"></p:commandButton>
+                                    <p:commandButton  icon="ui-icon-close" title="Excluir" action="#{pacotePasseioMB.excluirItem(linha)}" update="tabelapacotepasseio" ></p:commandButton>
                                 </p:column>
                             </p:dataTable><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
                             <p class="botaocadpacote"><br></br>
-                                <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Confirmar" action="#"></p:commandButton>
-                                <p:commandButton class="espacocampos" onclick="" icon="ui-icon-close" value="Cancelar" action="#"></p:commandButton>
+                                <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Finalizar" action="#{pacotePasseioMB.finalizar()}"></p:commandButton>
                             </p>
                         </p:tab>
 

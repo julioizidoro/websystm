@@ -99,28 +99,28 @@
                                 <p:ajax event="blur" update="comissao" listener="#{pacoteIngressoMB.calcularComissao()}"/>
                                 <p:ajax event="blur" update="moedanacional" />
                             </p:inputText>
-                            <p:inputText id="moedanacional" value="" style="width:15%" maxlength="15" class="espacocamposright" readonly="true">
+                            <p:inputText id="moedanacional" value="#{pacoteIngressoMB.pacoteingresso.valormoedanacional}" style="width:15%" maxlength="15" class="espacocamposright" readonly="true">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
                             <br></br>
                             <br></br>
                             <br></br>
-                            <p:commandButton class="espacocobranca6" icon="ui-icon-check" value="Adicionar" action="#{pacoteIngressoMB.salvarIngresso()}" update="pacoteingresso" resetValues="true">
+                            <p:commandButton class="espacocobranca6" icon="ui-icon-check" value="Adicionar" action="#{pacoteIngressoMB.salvarIngresso()}">
                             </p:commandButton>
-                           
+                            <p:commandButton  icon="ui-icon-close" value="Cancelar"  action="#{pacoteIngressoMB.cancelar()}" ></p:commandButton>
                             <br></br>
                             <br></br>
                             <br></br>
                             <p:dataTable id="pacoteingresso" var="pacoteingresso"  value="#{pacoteIngressoMB.listaPacoteIngresso}" class="tabela3" 
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
-                                         paginator="true" rows="10" style="margin-bottom:20px" >
+                                         paginator="true" rows="10" style="margin-bottom:20px" rowIndexVar="linha">
                                 <f:facet name="{Exporters}">
                                     <h:commandLink>
                                         <img src="../../resources/img/excel.png" width="20" class="imagens"/>
                                         <p:dataExporter type="xls" target="pacoteingresso" fileName="listaingresso" />
                                     </h:commandLink>
                                 </f:facet>
-                                <p:column headerText="Descrição"  style="width:210px;background:#ffffff;color:#1F8871;text-align:center;" styleClass="alinharCenter" sortBy="#{contasrecebe.vendas.cliente}">
+                                <p:column headerText="Descrição"  style="width:210px;background:#ffffff;color:#1F8871;text-align:center;" styleClass="alinharCenter" sortBy="#{pacoteIngressoMB.pacoteingresso.descritivo}">
                                     <h:outputText value="#{pacoteingresso.descritivo}"/>
                                 </p:column>
                                 <p:column headerText="Cidade"  style="width:200px;background:#ffffff;color:#1F8871;text-align:center;" styleClass="alinharCenter" >
@@ -135,12 +135,11 @@
                                     </h:outputText>                           
                                 </p:column>
                                 <p:column style="width:50px;background:#ffffff;color:#1F8871;text-align: center">
-                                    <p:commandButton  icon="ui-icon-close" title="Excluir" action="#{pacoteIngressoMB.cancelar()}"  resetValues="true"></p:commandButton>
+                                    <p:commandButton  icon="ui-icon-close" title="Excluir" action="#{pacoteIngressoMB.excluirItem(linha)}" update="pacoteingresso" ></p:commandButton>
                                 </p:column>
                             </p:dataTable><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
                             <p class="botaocadpacote"><br></br>
                                 <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Finalizar" action="#{pacoteIngressoMB.finalizar()}"></p:commandButton>
-                                <p:commandButton class="espacocampos" onclick="" icon="ui-icon-close" value="Cancelar" action="#"></p:commandButton>
                             </p>
                         </p:tab>
 

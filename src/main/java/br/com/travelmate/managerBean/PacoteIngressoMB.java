@@ -49,7 +49,7 @@ public class PacoteIngressoMB implements Serializable{
         FacesContext fc = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
         Pacotetrecho pacotetrecho = (Pacotetrecho) session.getAttribute("pacoteTrecho");
-        //session.removeAttribute("pacoteTrecho");
+        session.removeAttribute("pacoteTrecho");
         int idProduto = 0;
         if (pacotetrecho != null) {
             PaisProdutoFacade paisProdutoFacade = new PaisProdutoFacade();
@@ -158,8 +158,10 @@ public class PacoteIngressoMB implements Serializable{
         pacoteingresso.setPacotetrecho(pacotetrecho);
         fornecedorcidade = new Fornecedorcidade();
         FacesContext context = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) context.getExternalContext().getSession(false);  
+        session.setAttribute("pacoteTrecho", pacotetrecho);
         context.addMessage(null, new FacesMessage("Salvo com Sucesso", ""));
-        return "";
+        return "pacoteingresso";
     }
     
     public void calcularValorGross(){
@@ -195,7 +197,9 @@ public class PacoteIngressoMB implements Serializable{
         fornecedorcidade = new Fornecedorcidade();
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage("Cancelado", ""));
-        return "";
+        HttpSession session = (HttpSession) context.getExternalContext().getSession(false);  
+        session.setAttribute("pacoteTrecho", pacotetrecho);
+        return "pacoteingresso";
     }
     
     public String finalizar(){
@@ -205,6 +209,19 @@ public class PacoteIngressoMB implements Serializable{
         if (pacoteingresso.getPacotetrecho().getPacotes().getOperacao().equalsIgnoreCase("Operadora")){
             return "cadpacotesoperadora";
         }else return "cadPacote";
+    }
+    
+    public String excluirItem(String linha){
+        int n = Integer.parseInt(linha);
+        if (n>=0){
+            Pacoteingresso pi = listaPacoteIngresso.get(n);
+            PacoteIngressoFacade pacoteIngressoFacade = new PacoteIngressoFacade();
+            pacoteIngressoFacade.excluir(pi.getIdpacoteingresso());
+            listaPacoteIngresso.remove(n);
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("Ingresso Excluído", ""));
+        }
+        return "";
     }
     
 }

@@ -5,12 +5,14 @@
  */
 package br.com.travelmate.managerBean;
 
+import br.com.travelmate.facade.PacoteIngressoFacade;
 import br.com.travelmate.facade.PacotePasseioFacade;
 import br.com.travelmate.facade.PaisFacade;
 import br.com.travelmate.facade.PaisProdutoFacade;
 import br.com.travelmate.model.Cambio;
 import br.com.travelmate.model.Cidade;
 import br.com.travelmate.model.Fornecedorcidade;
+import br.com.travelmate.model.Pacotepasseio;
 import br.com.travelmate.model.Pacotepasseio;
 import br.com.travelmate.model.Pacotetrecho;
 import br.com.travelmate.model.Pais;
@@ -157,7 +159,69 @@ public class PacotePasseioMB implements Serializable{
         pacotepasseio.setPacotetrecho(pacotetrecho);
         fornecedorcidade = new Fornecedorcidade();
         FacesContext context = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) context.getExternalContext().getSession(false);  
+        session.setAttribute("pacoteTrecho", pacotetrecho);
         context.addMessage(null, new FacesMessage("Salvo com Sucesso", ""));
+        return "pacotepasseio";
+    }
+    
+    public void calcularValorGross(){
+        float valorNet = pacotepasseio.getValornet();
+        float comissao = pacotepasseio.getComissao();
+        float valorGross = 0.0f;
+        if ((valorNet>0) && (comissao>0)){
+            comissao = comissao /100;
+            comissao = comissao + 1;
+            valorGross = valorNet * comissao;
+        }
+        pacotepasseio.setValorgross(valorGross);
+        pacotepasseio.setValormoedanacional(pacotepasseio.getValorgross() * cambio.getValor());
+    }
+    
+    public void calcularComissao(){
+        float valorNet = pacotepasseio.getValornet();
+        float comissao = pacotepasseio.getComissao();
+        float valorGross = pacotepasseio.getValorgross();
+        if ((valorNet>0) && (valorGross>0)){
+            comissao = valorGross / valorNet;
+            comissao = comissao - 1;
+            comissao = comissao * 100;
+        }
+        pacotepasseio.setComissao(comissao);
+        pacotepasseio.setValormoedanacional(pacotepasseio.getValorgross() * cambio.getValor());
+    }
+    
+    public String cancelar(){
+        Pacotetrecho pacotetrecho = pacotepasseio.getPacotetrecho();
+        pacotepasseio = new Pacotepasseio();
+        pacotepasseio.setPacotetrecho(pacotetrecho);
+        fornecedorcidade = new Fornecedorcidade();
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) context.getExternalContext().getSession(false);  
+        session.setAttribute("pacoteTrecho", pacotetrecho);
+        context.addMessage(null, new FacesMessage("Cancelado", ""));
+        return "pacotepasseio";
+    }
+    
+    public String finalizar(){
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) context.getExternalContext().getSession(false);  
+        session.setAttribute("pacote", pacotepasseio.getPacotetrecho().getPacotes());
+        if (pacotepasseio.getPacotetrecho().getPacotes().getOperacao().equalsIgnoreCase("Operadora")){
+            return "cadpacotesoperadora";
+        }else return "cadPacote";
+    }
+    
+    public String excluirItem(String linha){
+        int n = Integer.parseInt(linha);
+        if (n>=0){
+            Pacotepasseio pi = listaPacotePasseio.get(n);
+            PacoteIngressoFacade pacoteIngressoFacade = new PacoteIngressoFacade();
+            pacoteIngressoFacade.excluir(pi.getIdpacotepasseio());
+            listaPacotePasseio.remove(n);
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("Ingresso Excluído", ""));
+        }
         return "";
     }
     
