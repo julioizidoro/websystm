@@ -1,4 +1,4 @@
-package br.com.travelmate.bean;
+package br.com.travelmate.relatorios.turismo;
 
 
 public class AutorizacaoDebitoBean  {

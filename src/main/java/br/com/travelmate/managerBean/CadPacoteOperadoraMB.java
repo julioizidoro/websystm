@@ -276,6 +276,19 @@ public class CadPacoteOperadoraMB  implements Serializable{
         }
         return "";
     }
+     public String novoPassagem(Pacotetrecho pacotetrecho){
+        if (pacotetrecho!=null){
+            FacesContext fc = FacesContext.getCurrentInstance();  
+            HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+            session.setAttribute("pacoteTrecho", pacotetrecho);
+            //return "pacoteaereo";
+             RequestContext.getCurrentInstance().openDialog("pacoteaereo");
+        }else {
+            FacesMessage mensagem = new FacesMessage("Atenção! ", "Trecho Não Localizado.");
+            FacesContext.getCurrentInstance().addMessage(null, mensagem);
+        }
+        return "";
+    }
     
     public String imagemAereo(Pacotetrecho pacotetrecho) {
 //        if(pacoteaereo!=null){

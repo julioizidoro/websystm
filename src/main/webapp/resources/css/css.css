@@ -242,6 +242,7 @@ text-align: left;
 #centro legend#iUsu3 b{
     font-size: 14px;
     font-family: tahoma;
+    text-align: center;
     color:#000;
 }
 #centro legend#iUsu3 {
@@ -992,6 +993,10 @@ text-align: left;
 }
 .espacocobranca29{
     margin-left:2%;
+}
+.espacocobranca29r{
+    margin-left:2%;
+    text-align: right;
 }
 .espacologin{
     margin-left:40%;

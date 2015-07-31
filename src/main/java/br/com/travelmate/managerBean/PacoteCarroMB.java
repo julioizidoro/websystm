@@ -19,6 +19,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
+import org.primefaces.context.RequestContext;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -160,7 +161,9 @@ public class PacoteCarroMB implements Serializable{
         HttpSession session = (HttpSession) context.getExternalContext().getSession(false);  
         session.setAttribute("pacote", pacotecarro.getPacotetrecho().getPacotes());
         if (pacotecarro.getPacotetrecho().getPacotes().getOperacao().equalsIgnoreCase("Operadora")){
-            return "cadpacotesoperadora";
+            //return "cadpacotesoperadora";
+            RequestContext.getCurrentInstance().closeDialog("cadpacotesoperadora");
+            return "";
         }else return "cadPacote";
     }
     
