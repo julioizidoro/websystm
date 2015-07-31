@@ -191,7 +191,8 @@ public class CadPacoteOperadoraMB  implements Serializable{
             FacesContext fc = FacesContext.getCurrentInstance();  
             HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
             session.setAttribute("pacoteTrecho", pacotetrecho);
-            return "pacotecruzeiro";
+           // return "pacotecruzeiro";
+             RequestContext.getCurrentInstance().openDialog("pacotecruzeiro");
         }else {
             FacesMessage mensagem = new FacesMessage("Atenção! ", "Trecho Não Localizado.");
             FacesContext.getCurrentInstance().addMessage(null, mensagem);
@@ -204,7 +205,8 @@ public class CadPacoteOperadoraMB  implements Serializable{
             FacesContext fc = FacesContext.getCurrentInstance();  
             HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
             session.setAttribute("pacoteTrecho", pacotetrecho);
-            return "pacotehotel";
+            RequestContext.getCurrentInstance().openDialog("pacotehotel");
+            return "";
         }else {
             FacesMessage mensagem = new FacesMessage("Atenção! ", "Trecho Não Localizado.");
             FacesContext.getCurrentInstance().addMessage(null, mensagem);
@@ -217,7 +219,9 @@ public class CadPacoteOperadoraMB  implements Serializable{
             FacesContext fc = FacesContext.getCurrentInstance();  
             HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
             session.setAttribute("pacoteTrecho", pacotetrecho);
-            return "pacotetrem";
+            //return "pacotetrem";
+            RequestContext.getCurrentInstance().openDialog("pacotetrem");
+            return "";
         }else {
             FacesMessage mensagem = new FacesMessage("Atenção! ", "Trecho Não Localizado.");
             FacesContext.getCurrentInstance().addMessage(null, mensagem);
@@ -230,7 +234,9 @@ public class CadPacoteOperadoraMB  implements Serializable{
             FacesContext fc = FacesContext.getCurrentInstance();  
             HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
             session.setAttribute("pacoteTrecho", pacotetrecho);
-            return "pacotetransfer";
+           // return "pacotetransfer";
+             RequestContext.getCurrentInstance().openDialog("pacotetransfer");
+            return "";
         }else {
             FacesMessage mensagem = new FacesMessage("Atenção! ", "Trecho Não Localizado.");
             FacesContext.getCurrentInstance().addMessage(null, mensagem);
@@ -243,7 +249,9 @@ public class CadPacoteOperadoraMB  implements Serializable{
             FacesContext fc = FacesContext.getCurrentInstance();  
             HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
             session.setAttribute("pacoteTrecho", pacotetrecho);
-            return "pacoteingresso";
+           // return "pacoteingresso";
+            RequestContext.getCurrentInstance().openDialog("pacoteingresso");
+            return "";
         }else {
             FacesMessage mensagem = new FacesMessage("Atenção! ", "Trecho Não Localizado.");
             FacesContext.getCurrentInstance().addMessage(null, mensagem);
@@ -256,7 +264,9 @@ public class CadPacoteOperadoraMB  implements Serializable{
             FacesContext fc = FacesContext.getCurrentInstance();  
             HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
             session.setAttribute("pacoteTrecho", pacotetrecho);
-            return "pacotepasseio";
+           // return "pacotepasseio";
+            RequestContext.getCurrentInstance().openDialog("pacotepasseio");
+            return "";
         }else {
             FacesMessage mensagem = new FacesMessage("Atenção! ", "Trecho Não Localizado.");
             FacesContext.getCurrentInstance().addMessage(null, mensagem);
@@ -269,7 +279,8 @@ public class CadPacoteOperadoraMB  implements Serializable{
             FacesContext fc = FacesContext.getCurrentInstance();  
             HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
             session.setAttribute("pacoteTrecho", pacotetrecho);
-            return "pacoteseguro";
+            //return "pacoteseguro";
+            RequestContext.getCurrentInstance().openDialog("pacoteseguro");
         }else {
             FacesMessage mensagem = new FacesMessage("Atenção! ", "Trecho Não Localizado.");
             FacesContext.getCurrentInstance().addMessage(null, mensagem);
@@ -283,6 +294,7 @@ public class CadPacoteOperadoraMB  implements Serializable{
             session.setAttribute("pacoteTrecho", pacotetrecho);
             //return "pacoteaereo";
              RequestContext.getCurrentInstance().openDialog("pacoteaereo");
+              return "";
         }else {
             FacesMessage mensagem = new FacesMessage("Atenção! ", "Trecho Não Localizado.");
             FacesContext.getCurrentInstance().addMessage(null, mensagem);

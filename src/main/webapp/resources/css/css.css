@@ -524,6 +524,10 @@ text-align: left;
     top: 5px;
     font-size: 10px;
 }
+.tabela1{
+    width: 100%;
+    font-size: 10px;
+}
 .botaopesquisar{
     width: 30px;
     margin-left:10px;
@@ -911,12 +915,12 @@ text-align: left;
     border-bottom-left-radius: 5px;
 }
 .botaoseguro{
-    width:104%;background:-moz-linear-gradient(
+    width:100%;background:-moz-linear-gradient(
         top,
         #c7d95f 0%,
         #EEE5DE 10%,
         #c7d95f 30%,
-        #fff);margin-left:-15px;margin-top:3%;border: #fff;text-align: center;
+        #fff);border: #fff;text-align: center;
     -webkit-border-bottom-right-radius: 5px;
     -webkit-border-bottom-left-radius: 5px;
     -moz-border-radius-bottomright: 5px;

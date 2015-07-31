@@ -5,13 +5,41 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <ui:composition template="/pages/templates/default.xhtml">
-        <ui:define name="corpo">
-            <h:form id="cadastropacotetrem">
-                <div id="centro">
-                    <br></br><br></br>
-                    <p:accordionPanel class="painelPacote" >
-                        <p:tab titleStyle="color:#000;font-size:10px;background:#c7d95f;" title="Trem">
+   <h:head>
+        <link href="../../resources/css/css.css" rel="stylesheet" type="text/css" />
+         <link href="../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
+         <script>  
+                PrimeFaces.locales['pt'] = {  
+                    closeText: 'Fechar',  
+                    prevText: 'Anterior',  
+                    nextText: 'Próximo',  
+                    currentText: 'Começo',  
+                    monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],  
+                    monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],  
+                    dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],  
+                    dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],  
+                    dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],  
+                    weekHeader: 'Semana',  
+                    firstDay: 0,  
+                    isRTL: false,  
+                    showMonthAfterYear: false,  
+                    yearSuffix: '',  
+                    timeOnlyTitle: 'Só Horas',  
+                    timeText: 'Tempo',  
+                    hourText: 'Hora',  
+                    minuteText: 'Minuto',  
+                    secondText: 'Segundo',  
+                    ampm: false,  
+                    month: 'Mês',  
+                    week: 'Semana',  
+                    day: 'Dia',  
+                    allDayText: 'Todo o Dia'  
+                };  
+            </script>  
+    </h:head>
+    <h:body>
+        <h:form id="cadastropacotetransfer" style="text-align:left;font-size: 10px;">
+            <title>Trem</title>
                             <p:outputLabel value="Pais" for="pais1" />
                             <p:outputLabel value="Cidade" for="cidade1" class="espacocobranca10"/>
                             <p:outputLabel value="Fornecedor" for="fornecedor" class="espacocobranca9"/>
@@ -41,41 +69,42 @@
                             <p:outputLabel value="Para" for="para" class="espacocobranca10"/>
                             <p:outputLabel value="Hora Saída" for="horasaida" class="espacocobranca18"/>
                             <p:outputLabel value="Hora Chegada" for="horachegada" class="espacocobranca14"/>
-                            <p:outputLabel value="Data" for="data" class="espacocobranca20"/>
+                            <p:outputLabel value="Data" for="data" class="imgadd"/>
                             <br></br>
                             <p:inputText id="de" value="#{pacoteTremMB.pacotetrem.de}" style="width:25%;" maxlength="100" class=""/>
-                            <p:inputText id="para" value="#{pacoteTremMB.pacotetrem.para}" style="width:20%;" maxlength="100" class="espacocampos"/>
-                             <p:inputMask id="horasaida" value="#{pacoteTremMB.pacotetrem.horasaida}" mask="99:99" style="width:9%;" class="espacocampos"/>
-                            <p:inputMask id="horachegada" value="#{pacoteTremMB.pacotetrem.horachegada}" mask="99:99" style="width:10%;" class="espacocampos"/>
-                            <p:calendar id="data" value="#{pacoteTremMB.pacotetrem.data}"  class="espacocampos" locale="pt"  pattern="dd/MM/yyyy" >
+                            <p:inputText id="para" value="#{pacoteTremMB.pacotetrem.para}" style="width:19%;" maxlength="100" class="espacocampos"/>
+                             <p:inputMask id="horasaida" value="#{pacoteTremMB.pacotetrem.horasaida}" mask="99:99" style="width:10%;" class="espacocampos"/>
+                            <p:inputMask id="horachegada" value="#{pacoteTremMB.pacotetrem.horachegada}" mask="99:99" style="width:13%;" class="espacocampos"/>
+                            <p:calendar id="data" size="10" value="#{pacoteTremMB.pacotetrem.data}"  class="espacocobranca29" locale="pt"  pattern="dd/MM/yyyy" >
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </p:calendar>
                             <br></br><br></br><br></br>
                             
                             <p:outputLabel value="Classe" for="classe" class=""/>
                             <p:outputLabel value="Qntd Adultos" for="qntdadulto" class="espacocobranca13"/>
-                            <p:outputLabel value="Qntd Infantil" for="qntdInfantil" class="espacocobranca2"/>
-                            <p:outputLabel value="Qntd Criança" for="qntdAdolescente" class="espacocobranca2"/>
+                            <p:outputLabel value="Qntd Infantil" for="qntdInfantil" class="espacocobranca5"/>
+                            <p:outputLabel value="Qntd Criança" for="qntdAdolescente" class="espacocobranca5"/>
                             <br></br>
-                            <p:inputText id="classe" value="#{pacoteTremMB.pacotetrem.classe}" style="width:32%;" maxlength="20" class=""/>
-                            <p:inputText id="qntdadulto" value="#{pacoteTremMB.pacotetrem.adt}" style="width:11%;" class="espacocobranca11"/>
-                            <p:inputText id="qntdInfantil" value="#{pacoteTremMB.pacotetrem.inf}" style="width:11%;" class="espacocobranca11"/>
-                            <p:inputText id="qntdAdolescente" value="#{pacoteTremMB.pacotetrem.chd}" style="width:12%;" class="espacocobranca11"/>
+                            <p:inputText id="classe" value="#{pacoteTremMB.pacotetrem.classe}" style="width:33%;" maxlength="20" class=""/>
+                            <p:inputText id="qntdadulto" value="#{pacoteTremMB.pacotetrem.adt}" style="width:12%;" class="espacocobranca11"/>
+                            <p:inputText id="qntdInfantil" value="#{pacoteTremMB.pacotetrem.inf}" style="width:11%;" class="espacocobranca5"/>
+                            <p:inputText id="qntdAdolescente" value="#{pacoteTremMB.pacotetrem.chd}" style="width:14%;" class="espacocobranca24"/>
                             <br></br><br></br><br></br>
                             
                             
                             <p:outputLabel value="Câmbio" for="moeda" class=""/>
                             <p:outputLabel value="Valor do Câmbio" for="idvalorcambio" class="espacocobranca5"/>
-                            <p:outputLabel value="Valor Net" for="valornet" class="espacocobranca24"/>
-                            <p:outputLabel value="Comissão" for="comissao" class="espacocobranca11"/>
-                            <p:outputLabel value="Valor Gross" for="valorgross" class="espacocobranca5"/>
+                            <p:outputLabel value="Valor Net" for="valornet" class="espacocobranca29"/>
+                            <p:outputLabel value="Comissão" for="comissao" class="espacocampos6"/>
+                            <p:outputLabel value="Valor Gross" for="valorgross" class="espacocampos6"/>
                             <p:outputLabel value="Valor Moeda Nacional" for="moedanacional" class="espacocobranca5"/>
+                            
                             <br></br>
                             <p:selectOneMenu class="espacocampos5" style="width:10%" id="moeda"  value="#{pacoteTremMB.cambio}" converter="CambioConverter">
-                                <f:selectItem itemLabel="Moedas" itemValue="0"/> 
+                                <f:selectItem itemLabel="Câmbio" itemValue="0"/> 
                                 <f:selectItems value="#{usuarioLogadoMB.listaCambio}" var="cambio" itemLabel="#{cambio.moedas.sigla}" itemValue="#{cambio}"/>
                                 <f:attribute name="listaCambio" value="#{usuarioLogadoMB.listaCambio}"/>
-                                <p:ajax event="change" update="idvalorcambio" />
+                                <p:ajax event="change"  update="idvalorcambio"/>
                             </p:selectOneMenu>
                             <p:inputText id="idvalorcambio" value="#{pacoteTremMB.cambio.valor}" style="width:11%" class="espacocamposright" readonly="true">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
@@ -83,21 +112,21 @@
                             <h:commandLink action="#"  title="Editar Câmbio">  
                                 <img id="editarcambio" class="" src="../../resources/img/cambio_1.png"/>
                             </h:commandLink>
-                            <p:inputText id="valornet" value="#{pacoteTremMB.pacotetrem.valornet}" style="width:12%" class="espacocobranca20">
+                            <p:inputText id="valornet" value="#{pacoteTremMB.pacotetrem.valornet}" style="width:9%" class="imgadr">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 <p:ajax event="blur" />
                             </p:inputText>
-                            <p:inputText id="comissao" value="#{pacoteTremMB.pacotetrem.comissao}" style="width:12%" class="espacocamposright">
+                            <p:inputText id="comissao" value="#{pacoteTremMB.pacotetrem.comissao}" style="width:9%" class="espacocamposright">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 <p:ajax event="blur" update="valorgross" listener="#{pacoteTremMB.calcularValorGross()}" />
-                                <p:ajax event="blur" update="moedanacional" />
+                                <p:ajax event="blur" update="moedanacional"/>
                             </p:inputText>
-                            <p:inputText id="valorgross" value="#{pacoteTremMB.pacotetrem.valorgross}" style="width:13%" maxlength="15" class="espacocamposright">
+                            <p:inputText id="valorgross" value="#{pacoteTremMB.pacotetrem.valorgross}" style="width:14%" maxlength="15" class="espacocamposright">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 <p:ajax event="blur" update="comissao" listener="#{pacoteTremMB.calcularComissao()}"/>
-                                <p:ajax event="blur" update="moedanacional" />
+                                <p:ajax event="blur" update="moedanacional"/>
                             </p:inputText>
-                            <p:inputText id="moedanacional" value="#{pacoteTremMB.pacotetrem.valormoedanacional}" style="width:15%" maxlength="15" class="espacocamposright" readonly="true">
+                            <p:inputText id="moedanacional" value="#{pacoteTremMB.pacotetrem.valormoedanacional}" style="width:19%" maxlength="15" class="espacocamposright" readonly="true">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
                             <br></br><br></br><br></br>
@@ -105,11 +134,7 @@
                                 <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Confirmar" action="#{pacoteTremMB.salvarTrem()}"></p:commandButton>
                                 <p:commandButton class="espacocampos" onclick="" icon="ui-icon-close" value="Cancelar" action="#"></p:commandButton>
                             </p>
-                        </p:tab>
-                    </p:accordionPanel>
-                    <br></br><br></br><br></br>
-                </div>
+                        
             </h:form>     
-        </ui:define>
-    </ui:composition>
+    </h:body>
 </html>

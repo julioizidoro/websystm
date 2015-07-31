@@ -5,15 +5,41 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <ui:composition template="/pages/templates/default.xhtml">
-        <ui:define name="corpo">
-            <h:form id="telapacoteingresso">
-                <div id="centro">
-                    <p:growl id="growl" showDetail="true" sticky="true"/>
-                    <br></br> <br></br> <br></br>
-
-                    <p:accordionPanel class="painelPacote" >
-                        <p:tab titleStyle="color:#000;font-size:10px;background:#c7d95f;" title="Ingresso">
+     <h:head>
+        <link href="../../resources/css/css.css" rel="stylesheet" type="text/css" />
+         <link href="../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
+         <script>  
+                PrimeFaces.locales['pt'] = {  
+                    closeText: 'Fechar',  
+                    prevText: 'Anterior',  
+                    nextText: 'Próximo',  
+                    currentText: 'Começo',  
+                    monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],  
+                    monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],  
+                    dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],  
+                    dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],  
+                    dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],  
+                    weekHeader: 'Semana',  
+                    firstDay: 0,  
+                    isRTL: false,  
+                    showMonthAfterYear: false,  
+                    yearSuffix: '',  
+                    timeOnlyTitle: 'Só Horas',  
+                    timeText: 'Tempo',  
+                    hourText: 'Hora',  
+                    minuteText: 'Minuto',  
+                    secondText: 'Segundo',  
+                    ampm: false,  
+                    month: 'Mês',  
+                    week: 'Semana',  
+                    day: 'Dia',  
+                    allDayText: 'Todo o Dia'  
+                };  
+            </script>  
+    </h:head>
+    <h:body>
+        <h:form id="cadastropacoteingresso" style="text-align:left;font-size: 10px;">
+            <title>Ingresso</title>
                             <p:outputLabel value="Pais" for="pais1" />
                             <p:outputLabel value="Cidade" for="cidade1" class="espacocobranca10"/>
                             <p:outputLabel value="Fornecedor" for="fornecedor" class="espacocobranca9"/>
@@ -38,46 +64,47 @@
                                 <f:selectItems id="idfornecedor" value="#{pacoteIngressoMB.listaFornecedorCidade}" var="fornecedor" itemLabel="#{fornecedor.fornecedor.nome}" itemValue="#{fornecedor}"/>
                                 <f:attribute name="listaFornecedorCidade" value="#{pacoteIngressoMB.listaFornecedorCidade}"/>
                             </p:selectOneMenu>
-                            <br></br><br></br><br></br> 
+                            <br></br><br></br> 
                             <p:outputLabel value="País" for="pais" class=""/>
                             <p:outputLabel value="Cidade" for="cidade" class="espacocobranca6"/>
-                            <p:outputLabel value="Data" for="data" class="espacocobranca13"/>
+                            <p:outputLabel value="Data" for="data" class="espacocobranca21"/>
 
                             <br></br>
                             <p:inputText id="pais" value="#{pacoteIngressoMB.pacoteingresso.pais}" style="width:38%;" maxlength="50" class="espacocampos2"/>
-                            <p:inputText id="cidade" value="#{pacoteIngressoMB.pacoteingresso.cidade}" style="width:34%;" maxlength="50" class="espacocampos"/>
-                            <p:calendar id="data" value="#{pacoteIngressoMB.pacoteingresso.data}"  class="espacocampos" locale="pt"  pattern="dd/MM/yyyy" >
+                            <p:inputText id="cidade" value="#{pacoteIngressoMB.pacoteingresso.cidade}" style="width:35%;" maxlength="50" class="espacocampos"/>
+                            <p:calendar id="data" value="#{pacoteIngressoMB.pacoteingresso.data}" size="12" class="espacocampos" locale="pt"  pattern="dd/MM/yyyy" >
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </p:calendar>
 
 
-                            <br></br><br></br><br></br>
+                            <br></br><br></br>
                             <p:outputLabel value="No. Adolescente" for="qntdAdolescente" class=""/>
-                            <p:outputLabel value="No. Adulto" for="qntdAdulto" class="espacocobranca5"/>
-                            <p:outputLabel value="No. Criança" for="qntdClianca" class="espacocobranca2"/>
+                            <p:outputLabel value="No. Adulto" for="qntdAdulto" class="espacocobranca15"/>
+                            <p:outputLabel value="No. Criança" for="qntdClianca" class="espacocobranca23"/>
                             <br></br>
                             <p:inputText id="qntdAdolescente" value="#{pacoteIngressoMB.pacoteingresso.inf}" style="width:16%;" maxlength="10" class="espacocampos2"/>
                             <p:inputText id="qntdAdulto" value="#{pacoteIngressoMB.pacoteingresso.adt}" style="width:16%;" class="espacocampos"/>
                             <p:inputText id="qntdClianca" value="#{pacoteIngressoMB.pacoteingresso.chd}" style="width:16%;" class="espacocampos"/>
                             
-                            <br></br><br></br><br></br>
+                            <br></br><br></br>
                             <p:outputLabel value="Descritivo" for="descritivo"/>
                             <br></br>
-                            <p:inputText id="descritivo" value="#{pacoteIngressoMB.pacoteingresso.descritivo}" style="width: 96%" maxlength="45" class="espacocampos2"/>
-                            <br></br><br></br><br></br>
+                            <p:inputText id="descritivo" value="#{pacoteIngressoMB.pacoteingresso.descritivo}" style="width: 98%" maxlength="45" class="espacocampos2"/>
+                            <br></br><br></br>
 
-                            <p:outputLabel value="Câmbio" for="moeda" class=""/>
+                             <p:outputLabel value="Câmbio" for="moeda" class=""/>
                             <p:outputLabel value="Valor do Câmbio" for="idvalorcambio" class="espacocobranca5"/>
-                            <p:outputLabel value="Valor Net" for="valornet" class="espacocobranca24"/>
-                            <p:outputLabel value="Comissão" for="comissao" class="espacocobranca11"/>
-                            <p:outputLabel value="Valor Gross" for="valorgross" class="espacocobranca5"/>
+                            <p:outputLabel value="Valor Net" for="valornet" class="espacocobranca29"/>
+                            <p:outputLabel value="Comissão" for="comissao" class="espacocampos6"/>
+                            <p:outputLabel value="Valor Gross" for="valorgross" class="espacocampos6"/>
                             <p:outputLabel value="Valor Moeda Nacional" for="moedanacional" class="espacocobranca5"/>
+                            
                             <br></br>
                             <p:selectOneMenu class="espacocampos5" style="width:10%" id="moeda"  value="#{pacoteIngressoMB.cambio}" converter="CambioConverter">
-                                <f:selectItem itemLabel="Moedas" itemValue="0"/> 
+                                <f:selectItem itemLabel="Câmbio" itemValue="0"/> 
                                 <f:selectItems value="#{usuarioLogadoMB.listaCambio}" var="cambio" itemLabel="#{cambio.moedas.sigla}" itemValue="#{cambio}"/>
                                 <f:attribute name="listaCambio" value="#{usuarioLogadoMB.listaCambio}"/>
-                                <p:ajax event="change" update="idvalorcambio" />
+                                <p:ajax event="change"  update="idvalorcambio"/>
                             </p:selectOneMenu>
                             <p:inputText id="idvalorcambio" value="#{pacoteIngressoMB.cambio.valor}" style="width:11%" class="espacocamposright" readonly="true">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
@@ -85,48 +112,45 @@
                             <h:commandLink action="#"  title="Editar Câmbio">  
                                 <img id="editarcambio" class="" src="../../resources/img/cambio_1.png"/>
                             </h:commandLink>
-                            <p:inputText id="valornet" value="#{pacoteIngressoMB.pacoteingresso.valornet}" style="width:12%" class="espacocobranca20">
+                            <p:inputText id="valornet" value="#{pacoteIngressoMB.pacoteingresso.valornet}" style="width:9%" class="imgadr">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 <p:ajax event="blur" />
                             </p:inputText>
-                            <p:inputText id="comissao" value="#{pacoteIngressoMB.pacoteingresso.comissao}" style="width:12%" class="espacocamposright">
+                            <p:inputText id="comissao" value="#{pacoteIngressoMB.pacoteingresso.comissao}" style="width:9%" class="espacocamposright">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 <p:ajax event="blur" update="valorgross" listener="#{pacoteIngressoMB.calcularValorGross()}" />
-                                <p:ajax event="blur" update="moedanacional" />
+                                <p:ajax event="blur" update="moedanacional"/>
                             </p:inputText>
-                            <p:inputText id="valorgross" value="#{pacoteIngressoMB.pacoteingresso.valorgross}" style="width:13%" maxlength="15" class="espacocamposright">
+                            <p:inputText id="valorgross" value="#{pacoteIngressoMB.pacoteingresso.valorgross}" style="width:14%" maxlength="15" class="espacocamposright">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
-                                <p:ajax event="blur" update="comissao" listener="#{pacoteIngressoMB.calcularComissao()}"/>
-                                <p:ajax event="blur" update="moedanacional" />
+                                <p:ajax event="blur" update="comissao" listener="#{pacoteHotelMB.calcularComissao()}"/>
+                                <p:ajax event="blur" update="moedanacional"/>
                             </p:inputText>
-                            <p:inputText id="moedanacional" value="#{pacoteIngressoMB.pacoteingresso.valormoedanacional}" style="width:15%" maxlength="15" class="espacocamposright" readonly="true">
+                            <p:inputText id="moedanacional" value="#{pacoteIngressoMB.pacoteingresso.valormoedanacional}" style="width:19%" maxlength="15" class="espacocamposright" readonly="true">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
-                            <br></br>
-                            <br></br>
-                            <br></br>
+                            <br></br><br></br>
                             <p:commandButton class="espacocobranca6" icon="ui-icon-check" value="Adicionar" action="#{pacoteIngressoMB.salvarIngresso()}">
                             </p:commandButton>
                             <p:commandButton  icon="ui-icon-close" value="Cancelar"  action="#{pacoteIngressoMB.cancelar()}" ></p:commandButton>
                             <br></br>
                             <br></br>
-                            <br></br>
-                            <p:dataTable id="pacoteingresso" var="pacoteingresso"  value="#{pacoteIngressoMB.listaPacoteIngresso}" class="tabela3" 
+                            <p:dataTable id="pacoteingresso" var="pacoteingresso"  value="#{pacoteIngressoMB.listaPacoteIngresso}" class="tabela1" 
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
-                                         paginator="true" rows="10" style="margin-bottom:20px" rowIndexVar="linha">
+                                         paginator="true" rows="1" style="margin-bottom:20px" rowIndexVar="linha">
                                 <f:facet name="{Exporters}">
                                     <h:commandLink>
                                         <img src="../../resources/img/excel.png" width="20" class="imagens"/>
                                         <p:dataExporter type="xls" target="pacoteingresso" fileName="listaingresso" />
                                     </h:commandLink>
                                 </f:facet>
-                                <p:column headerText="Descrição"  style="width:210px;background:#ffffff;color:#1F8871;text-align:center;" styleClass="alinharCenter" sortBy="#{pacoteIngressoMB.pacoteingresso.descritivo}">
+                                <p:column headerText="Descrição"  style="width:180px;background:#ffffff;color:#1F8871;text-align:center;" styleClass="alinharCenter" sortBy="#{pacoteIngressoMB.pacoteingresso.descritivo}">
                                     <h:outputText value="#{pacoteingresso.descritivo}"/>
                                 </p:column>
-                                <p:column headerText="Cidade"  style="width:200px;background:#ffffff;color:#1F8871;text-align:center;" styleClass="alinharCenter" >
+                                <p:column headerText="Cidade"  style="width:140px;background:#ffffff;color:#1F8871;text-align:center;" styleClass="alinharCenter" >
                                     <h:outputText value="#{pacoteingresso.cidade}"/>
                                 </p:column>
-                                <p:column headerText="País" style="width:200px;background:#ffffff;color:#1F8871;text-align:center;" >
+                                <p:column headerText="País" style="width:140px;background:#ffffff;color:#1F8871;text-align:center;" >
                                     <h:outputText value="#{pacoteingresso.pais}"/>
                                 </p:column>
                                 <p:column headerText="Data" style="width:80px;background:#ffffff;color:#1F8871;text-align: center;" styleClass="alinharCenter">
@@ -137,20 +161,11 @@
                                 <p:column style="width:50px;background:#ffffff;color:#1F8871;text-align: center">
                                     <p:commandButton  icon="ui-icon-close" title="Excluir" action="#{pacoteIngressoMB.excluirItem(linha)}" update="pacoteingresso" ></p:commandButton>
                                 </p:column>
-                            </p:dataTable><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+                            </p:dataTable>
                             <p class="botaocadpacote"><br></br>
                                 <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Finalizar" action="#{pacoteIngressoMB.finalizar()}"></p:commandButton>
+                           <br></br><br></br>
                             </p>
-                        </p:tab>
-
-                    </p:accordionPanel>
-                    <br></br>
-
-                    <br></br>
-                    <br></br>
-                </div>
-            </h:form>     
-
-        </ui:define>
-    </ui:composition>
+                        </h:form>     
+    </h:body>
 </html>
