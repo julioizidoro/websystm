@@ -31,6 +31,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
+import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -176,7 +177,8 @@ public class CadPacoteOperadoraMB  implements Serializable{
             FacesContext fc = FacesContext.getCurrentInstance();  
             HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
             session.setAttribute("pacoteTrecho", pacotetrecho);
-            return "pacotecarro";
+            //return "pacotecarro";
+            RequestContext.getCurrentInstance().openDialog("pacotecarroteste");
         }else {
             FacesMessage mensagem = new FacesMessage("Atenção! ", "Trecho Não Localizado.");
             FacesContext.getCurrentInstance().addMessage(null, mensagem);
