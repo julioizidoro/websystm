@@ -44,7 +44,11 @@ public class CambioConverter implements Converter{
             return "Selecione";
         }else {
             Cambio cambio = (Cambio) value;
-            return cambio.getMoedas().getSigla();
+            if (cambio.getIdcambio()!=null){
+                return cambio.getMoedas().getSigla();
+            }else {
+                return "";
+            }
         }
     }
     

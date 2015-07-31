@@ -53,13 +53,14 @@
                             </p:inputText>
                             <p:inputText id="valortotal" value="#{autorizacaoDebitoMB.autorizacaoDebitoBean.valortotal}" style="width:15%" class="espacocamposright">
                             </p:inputText>
-                            <p:selectOneMenu class="espacocobranca4combo" style="width:10%" id="moeda"  value="" >
-                                <f:selectItem itemLabel="Moedas" itemValue="0"/> 
-                                <f:selectItems value="#" var="cambio" itemLabel="" itemValue=""/>
-                                <f:attribute name="listaCambio" value=""/>
+                            <p:selectOneMenu class="espacocobranca4combo" style="width:10%" id="moeda"  value="#{autorizacaoDebitoMB.cambio}"  converter="CambioConverter">
+                                <f:selectItem itemLabel="Câmbio" itemValue="0"/> 
+                                <f:selectItems value="#{autorizacaoDebitoMB.usuarioLogadoMB.listaCambio}" var="cambio" itemLabel="#{cambio.moedas.sigla}" itemValue="#{cambio}"/>
+                                <f:attribute name="listaCambio" value="#{autorizacaoDebitoMB.usuarioLogadoMB.listaCambio}"/>
                                 <p:ajax event="change" update="idvalorcambio" />
                             </p:selectOneMenu>
-                            <p:inputText id="idvalorcambio" value="#{autorizacaoDebitoMB.autorizacaoDebitoBean.valorcambio}" style="width:12%" class="espacocobranca4r">
+                            <p:inputText id="idvalorcambio" value="#{autorizacaoDebitoMB.cambio.valor}" style="width:12%" class="espacocobranca4r">
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText> 
                             <br></br><br></br>
                            

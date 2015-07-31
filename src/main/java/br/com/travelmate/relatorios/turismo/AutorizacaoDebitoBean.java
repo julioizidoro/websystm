@@ -18,6 +18,8 @@ public class AutorizacaoDebitoBean  {
     private String valorcambio;
     private String valorparcelado;
     private String valortotal;
+    private String moeda;
+    
 
     
     public Integer getIdautorizacaodebito() {
@@ -138,6 +140,14 @@ public class AutorizacaoDebitoBean  {
 
     public void setValortotal(String valortotal) {
         this.valortotal = valortotal;
+    }
+
+    public String getMoeda() {
+        return moeda;
+    }
+
+    public void setMoeda(String moeda) {
+        this.moeda = moeda;
     }
     
     

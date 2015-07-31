@@ -1,8 +1,9 @@
 package br.com.travelmate.managerBean;
 
-import br.com.travelmate.relatorios.turismo.AutorizacaoDebitoBean;
+import br.com.travelmate.model.Cambio;
 import br.com.travelmate.relatorios.turismo.AutorizacaoCartaoFactory;
 import br.com.travelmate.relatorios.turismo.AutorizacaoDebitoBean;
+import br.com.travelmate.util.Formatacao;
 import br.com.travelmate.util.GerarRelatorio;
 import java.io.IOException;
 import java.io.Serializable;
@@ -10,6 +11,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -24,6 +27,22 @@ public class AutorizacaoDebitoMB implements Serializable{
    @Inject
    private UsuarioLogadoMB usuarioLogadoMB;
    private AutorizacaoDebitoBean autorizacaoDebitoBean;
+   private Cambio cambio;
+
+    public AutorizacaoDebitoMB() {
+        autorizacaoDebitoBean = new AutorizacaoDebitoBean();
+        cambio = new Cambio();
+    }
+
+    public Cambio getCambio() {
+        return cambio;
+    }
+
+    public void setCambio(Cambio cambio) {
+        this.cambio = cambio;
+    }
+   
+   
 
     public AutorizacaoDebitoBean getAutorizacaoDebitoBean() {
         return autorizacaoDebitoBean;
@@ -32,13 +51,29 @@ public class AutorizacaoDebitoMB implements Serializable{
     public void setAutorizacaoDebitoBean(AutorizacaoDebitoBean autorizacaoDebitoBean) {
         this.autorizacaoDebitoBean = autorizacaoDebitoBean;
     }
+
+    public UsuarioLogadoMB getUsuarioLogadoMB() {
+        return usuarioLogadoMB;
+    }
+
+    public void setUsuarioLogadoMB(UsuarioLogadoMB usuarioLogadoMB) {
+        this.usuarioLogadoMB = usuarioLogadoMB;
+    }
     
-    public String imprimirAutorizacao(){
-        imprimirAutorizacao();
+    public String imprimirAutorizacao() throws IOException{
+        if (cambio!=null){
+            autorizacaoDebitoBean.setMoeda(cambio.getMoedas().getSigla());
+            autorizacaoDebitoBean.setValorcambio(Formatacao.formatarFloatString(cambio.getValor()));
+        }
+       try {
+           gerarRelatorioAutorizacao();
+       } catch (JRException ex) {
+           Logger.getLogger(AutorizacaoDebitoMB.class.getName()).log(Level.SEVERE, null, ex);
+       }
         return "";
     }
     
-    public void imprimirRelacaoAniversariantes() throws JRException, IOException{
+    public void gerarRelatorioAutorizacao() throws JRException, IOException{
         String caminhoRelatorio = "/reports/turismo/autorizacaoCartao.jasper";  
         Map parameters = new HashMap();
         String nomeArquivo = "AutorizacaoCartao.pdf";
@@ -51,6 +86,10 @@ public class AutorizacaoDebitoMB implements Serializable{
         JRDataSource jrds = new JRBeanCollectionDataSource(AutorizacaoCartaoFactory.getListaAutorizacaoCartao());
         GerarRelatorio gerarRelatorio = new GerarRelatorio();
         gerarRelatorio.gerarRelatorioDSPDF(caminhoRelatorio, parameters, jrds, nomeArquivo);
+    }
+    
+    public String fecahrTela(){
+        return "inicial";
     }
 
     
