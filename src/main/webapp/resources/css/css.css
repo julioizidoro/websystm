@@ -130,6 +130,11 @@ text-align: left;
     font-size:10px;
     color:#1F8871;
 }
+.tabela6{
+    width:98%;
+    font-size:10px;
+    color:#1F8871;
+}
 .dialog{
     margin-top: 25px;
      margin-left:50px;
@@ -535,12 +540,21 @@ text-align: left;
 .imgadd{
     margin-left:3%;
 }
+.imgadr{
+    margin-left:3%;
+    text-align: right;
+}
 .tab{
     background: #fff;
     background-color: #000;
 }
 ////////////////////////
 .camposs{
+    font-size: 11px;
+    position: relative;
+}
+.campossf{
+    height:32px;
     font-size: 11px;
     position: relative;
 }
@@ -923,6 +937,10 @@ text-align: left;
 .espacocobranca11{
     margin-left:10%;
 }
+.espacocobranca11r{
+    margin-left:7%;
+    text-align: right;
+}
 .espacocobranca12{
     margin-left:18%;
 }
@@ -997,6 +1015,17 @@ text-align: left;
 .espacocobranca29r{
     margin-left:2%;
     text-align: right;
+}
+.espacocobranca29rf{
+    height: 32px;
+    margin-left:2%;
+    text-align: right;
+}
+.espacocobranca30{
+    margin-left:14%;
+}
+.espacocobranca31{
+    margin-left:24%;
 }
 .espacologin{
     margin-left:40%;
