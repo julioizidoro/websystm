@@ -21,10 +21,14 @@
                             
 
                             <br></br>
-                            <p:inputText id="bandeira" value="#{autorizacaoDebitoMB.autorizacaoDebitoBean.bandeira}" style="width:23%" class="espacocampos2"/>
-                            <p:inputText id="numerocartao" value="#{autorizacaoDebitoMB.autorizacaoDebitoBean.numerocartao}" style="width:25%"  class="espacocampos"/>
-                            <p:inputText id="validade" value="#{autorizacaoDebitoMB.autorizacaoDebitoBean.validade}" style="width:13%"  class="espacocampos"/>
-                            <p:inputText id="codigoseguranca" value="#{autorizacaoDebitoMB.autorizacaoDebitoBean.codigoseguranca}" style="width:19%"  class="espacocobranca11"/>
+                            <p:selectOneMenu id="bandeira" value="#{autorizacaoDebitoMB.autorizacaoDebitoBean.bandeira}" style="width:23%;font-size: 10px" class="espacocampos2" >
+                                <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true"/> 
+                                <f:selectItem itemLabel="VISA" itemValue="visa" /> 
+                                <f:selectItem itemLabel="MASTER CARD" itemValue="master" /> 
+                            </p:selectOneMenu>
+                            <p:inputMask mask="9999.9999.9999.9999" id="numerocartao" value="#{autorizacaoDebitoMB.autorizacaoDebitoBean.numerocartao}" style="width:25%"  class="espacocampos"/>
+                            <p:inputMask mask="99/99" id="validade" value="#{autorizacaoDebitoMB.autorizacaoDebitoBean.validade}" style="width:13%"  class="espacocampos"/>
+                            <p:inputMask mask="999" id="codigoseguranca" value="#{autorizacaoDebitoMB.autorizacaoDebitoBean.codigoseguranca}" style="width:19%"  class="espacocobranca11"/>
                             
                             <br></br><br></br><br></br><br></br>
                             <p:outputLabel value="Nome do Títular" for="nometitular" />
@@ -37,14 +41,16 @@
                             <p:inputMask id="cpf" value="#{autorizacaoDebitoMB.autorizacaoDebitoBean.cpf}" style="width:16%" mask="999.999.999-99" class="espacocampos"/>
                             <p:inputText id="telefone" value="#{autorizacaoDebitoMB.autorizacaoDebitoBean.fone}" style="width:14%"  class="espacocampos"/>
                             <p:inputText id="numeroreservas" value="#{autorizacaoDebitoMB.autorizacaoDebitoBean.numreserva}" style="width:10%" class="espacocampos"/>
-                            <p:inputMask id="dataviagem" value="#{autorizacaoDebitoMB.autorizacaoDebitoBean.dataviagem}" style="width:15%"  class="espacocampos"   mask="99/99/9999" />
+                            <p:calendar id="dataviagem" value="#{autorizacaoDebitoMB.autorizacaoDebitoBean.dataviagem}" style="width:15%"  class="espacocampos"  locale="pt"  pattern="dd/MM/yyyy" >
+                                <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                            </p:calendar>
                             <br></br><br></br><br></br><br></br>
                             <p:outputLabel value="No. Parcelas" for="nparcelas" />
                             <p:outputLabel value="Valor da Parcela" for="valorparcela" class="espacocobranca20"/>
                             <p:outputLabel value="Valor Total Parcelado" for="totalparcelado" class="espacocobranca5"/>
                             <p:outputLabel value="Valor Total da Compra" for="valortotal" class="espacocobranca14"/>
                             <p:outputLabel value="Câmbio" for="moeda" class="espacocobranca4"/>
-                            <p:outputLabel value="Valor do Câmbio" for="idvalorcambio" class="espacocobranca5"/>
+                            <p:outputLabel value="Valor do Câmbio" for="idvalorcambio" class="espacocobranca24"/>
                             <br></br>
                             <p:inputText id="nparcelas" value="#{autorizacaoDebitoMB.autorizacaoDebitoBean.numparcelas}" style="width:10%"  class="espacocampos2"/>
                             <p:inputText id="valorparcela" value="#{autorizacaoDebitoMB.autorizacaoDebitoBean.valorparcelas}" style="width:16%" class="espacocamposright">
