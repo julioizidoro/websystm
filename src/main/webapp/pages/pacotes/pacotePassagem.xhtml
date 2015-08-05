@@ -49,7 +49,7 @@
                     <br></br>
                     <p:selectOneMenu id="pais" value="#{pacotePassagemMB.pais}" style="width:27%;font-size: 10px" class="espacocampos2" 
                                      converter="PaisConverter" filter="true" filterMatchMode="startsWith" panelStyle="width:180px" >
-                        <f:selectItem itemLabel="País" itemValue="0" noSelectionOption="true"/> 
+                       <f:selectItem itemLabel="País" itemValue="0" noSelectionOption="true"  />
                         <f:selectItems id="idpais" value="#{pacotePassagemMB.listaPais}" var="cpais" itemLabel="#{cpais.pais.nome}" itemValue="#{cpais.pais}"/>
                         <f:attribute name="listaPais" value="#{pacotePassagemMB.listaPais}"/>
                         <p:ajax event="change" update="cidade"/> 
@@ -61,9 +61,9 @@
                         <f:attribute name="listaCidade" value="#{pacotePassagemMB.pais.cidadeList}"/>
                         <p:ajax event="change" listener="#{pacotePassagemMB.listarFornecedorCidade(0)}" update="fornecedor" />
                     </p:selectOneMenu>
-                    <p:selectOneMenu id="fornecedor" value="#{pacotePassagemMB.fornecedorcidade}" style="width:28%;font-size: 10px" class="espacocampos" 
+                    <p:selectOneMenu id="fornecedor" value="#{pacotePassagemMB.fornecedorcidade}" style="width:30%;font-size: 10px" class="espacocampos" 
                                      converter="FornecedorCidadeConverter" filter="true" filterMatchMode="startsWith">
-                        <f:selectItem itemLabel="Fornecedor" itemValue="0" noSelectionOption="true"/> 
+                        <f:selectItem itemLabel="Fornecedor" itemValue="0" noSelectionOption="true"  />
                         <f:selectItems id="idfornecedor" value="#{pacotePassagemMB.listaFornecedorCidade}" var="fornecedor" itemLabel="#{fornecedor.fornecedor.nome}" itemValue="#{fornecedor}"/>
                         <f:attribute name="listaFornecedorCidade" value="#{pacotePassagemMB.listaFornecedorCidade}"/>
                     </p:selectOneMenu>
@@ -72,70 +72,69 @@
                     <p:outputLabel value="Cia aérea" for="cia" class="espacocobranca22" style="font-size:10px;"/> 
                     <p:outputLabel value="Localizador" for="localizador" class="espacocobranca17" style="font-size:10px;"/> 
                     <br></br>
-                    <p:inputText id="atendente" style="width:24%;" maxlength="100" class="camposs" value="#{pacotePassagemMB.pacotepassagem.atendente}"  />
+                    <p:inputText id="atendente" style="width:23%;" maxlength="100" class="camposs" value="#{pacotePassagemMB.pacotepassagem.atendente}"  />
                     <p:inputText id="cia" style="width:25%;" maxlength="100" class="campos" value="#{pacotePassagemMB.pacotepassagem.ciaAerea}"  />
                     <p:inputText id="localizador" style="width:30%;" maxlength="100" class="campos" value="#{pacotePassagemMB.pacotepassagem.localizador}"  />
 
                     <br></br><br></br>
-                    <p:outputLabel value="Data Viagem" for="dataviagem" class="campos2" style="font-size:10px;"/> 
+                    <p:outputLabel value="Data Viagem" for="dataviagem" class="espaco0p" style="font-size:10px;"/> 
                     <p:outputLabel value="Data Volta" for="datavolta" class="espacocobranca11" style="font-size:10px;"/>
                     <br></br>
-                    <p:calendar id="dataviagem" size="14"  class="espacocobranca15" value="#{pacotePassagemMB.pacotepassagem.dataEmbarque}"  locale="pt"  pattern="dd/MM/yyyy" />
+                    <p:calendar id="dataviagem" size="14"  class="espaco0p" value="#{pacotePassagemMB.pacotepassagem.dataEmbarque}"  locale="pt"  pattern="dd/MM/yyyy" />
                     <p:calendar id="datavolta" size="14" class="imgadd" value="#{pacotePassagemMB.pacotepassagem.dataVolta}"  locale="pt"  pattern="dd/MM/yyyy" />
 
 
                 </p:tab>
 
                 <p:tab id="tabpassageiro" titleStyle="color:#fff;background: #ccc;font-size:10px;" title="Passageiros">
-
-                    <legend id="iUsu3" style="font-size:11px;" ><b>Passageiro</b></legend>
                     <p:outputLabel value="Nome" for="nome" class="espaco0p" style="font-size:10px;"/> 
-                    <p:outputLabel value="Categoria" for="idpassageirotipo" class="espacocobranca27" style="font-size:10px;"/> 
-                    <p:outputLabel value="Data Nascimento" for="datasnac" class="espacocobranca2" style="font-size:10px;"/>
-                    <p:outputLabel value="RG/Passaporte" for="rgPassaporte" class="espacocobranca23" style="font-size:10px;"/>
+                    <p:outputLabel value="Data Nascimento" for="datasnac" class="espacocobranca27" style="font-size:10px;"/>
+                    <p:outputLabel value="RG/Passaporte" for="rgPassaporte" class="espacocobranca15" style="font-size:10px;"/>
+                    <p:outputLabel value="Categoria" for="idpassageirotipo" class="espacocobranca15" style="font-size:10px;"/> 
                     <br></br>
-                    <p:inputText id="nome" style="width:32%;" class="camposs" value="#{pacotePassagemMB.passageirosBean.nome}"  />
-                    <p:selectOneMenu  id="idpassageirotipo"  value="#{pacotePassagemMB.passageirosBean.tipo}" class="espacocampos5" style="width:12%">
-                        <f:selectItem itemLabel="ADT" itemValue="ADT"/> 
-                        <f:selectItem itemLabel="CHD" itemValue="CHD"/> 
-                        <f:selectItem itemLabel="INF" itemValue="INF"/> 
-                    </p:selectOneMenu>
-                    <p:inputMask mask="99/99/9999" id="datasnac" style="width:15%;" class="espacocobranca28" value="#{pacotePassagemMB.passageirosBean.dataNascimento}">
-                        <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
-                    </p:inputMask>
-                    <p:inputText id="rgPassaporte" style="width:15%;"  class="espacocobranca23" value="#{pacotePassagemMB.passageirosBean.passaporte}"  />
-                    <p:commandButton id="idbtnaddpassageiro" class="imagemm"  icon="ui-icon-check" value="Add" action="#{pacotePassagemMB.adicionarPassageiroBean()}" ajax="false">
-                        <p:ajax event="click" />
-                        <p:ajax event="click" update="idlistapassageiros" />
-                        <p:ajax event="click" update="@this" />
-                    </p:commandButton>
-                    <p:dataTable id="idlistapassageiros" var="passageiro"  value="#{pacotePassagemMB.listaPassageirosBean}" class="tabela3" 
+                        <p:inputText id="nome" style="width:30%;" class="camposs" value="#{pacotePassagemMB.passageirosBean.nome}"  />
+                        <p:inputMask mask="99/99/9999" id="datasnac" style="width:14%;" class="espacocobranca28" value="#{pacotePassagemMB.passageirosBean.dataNascimento}">
+                            <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                        </p:inputMask>
+                        <p:inputText id="rgPassaporte" style="width:16%;"  class="espacocobranca15" value="#{pacotePassagemMB.passageirosBean.passaporte}"  />
+                         <p:selectOneMenu  id="idpassageirotipo"  value="#{pacotePassagemMB.passageirosBean.tipo}" class="espacocobranca4" style="width:14%;height:32px; ">
+                            <f:selectItem itemLabel="Selecione" itemValue="selecione" noSelectionOption="true"  />
+                            <f:selectItem itemLabel="ADT" itemValue="ADT"/> 
+                            <f:selectItem itemLabel="CHD" itemValue="CHD"/> 
+                            <f:selectItem itemLabel="INF" itemValue="INF"/> 
+                        </p:selectOneMenu>
+                        <p:commandButton id="idbtnaddpassageiro" class="imagemm"  icon="ui-icon-check" value="Add" action="#{pacotePassagemMB.adicionarPassageiroBean()}" ajax="false">
+                            <p:ajax event="click" />
+                            <p:ajax event="click" update="idlistapassageiros" />
+                            <p:ajax event="click" update="@this" />
+                        </p:commandButton><br></br><br></br>
+                    <p:dataTable id="idlistapassageiros" var="passageiro"  value="#{pacotePassagemMB.listaPassageirosBean}" class="tabela1" 
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-                                 paginator="true" rows="10" style="margin-bottom:20px;font-size: 10px;" rowIndexVar="linha" >
+                                 paginator="true" rows="4" style="margin-bottom:20px;font-size: 10px;" rowIndexVar="linha" >
 
                         <p:column headerText="Nome" >
                             <h:outputText value="#{passageiro.nome}" />
                         </p:column>
 
-                        <p:column headerText="Categoria" style="width: 40%">    
+                        <p:column headerText="Categoria" style="width:15%">    
                             <p:outputLabel value="#{passageiro.tipo}" />
                         </p:column>
-                        <p:column headerText="Data Nascimento"  style="width:7%">
-                            <p:outputLabel value="#{passageiro.dataNascimento}"/>
+                        <p:column headerText="Data Nascimento"  style="width:18%">
+                            <p:outputLabel value="#{passageiro.dataNascimento}">
+                                <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                            </p:outputLabel>
                         </p:column>
-                        <p:column headerText="RG/Passaporte"  style="width:7%">
+                        <p:column headerText="RG/Passaporte"  style="width:16%">
                             <p:outputLabel value="#{passageiro.passaporte}"/>
                         </p:column>
-                        <p:column headerText="Data Nascimento"  style="width:7%">
+                        <p:column headerText=""  style="width:13%">
                             <p:commandButton value="Excluir" action="#{pacotePassagemMB.removerPassageiroBean(linha)}" ajax="false">
                                 <p:ajax event="click" update="idlistapassageiros" />
                             </p:commandButton> 
                         </p:column>
                     </p:dataTable>
 
-                    <br></br> 
                 </p:tab>
-
                 <p:tab titleStyle="color:#fff;background: #ccc;font-size:10px;" title="Valores">
                     <legend id="iUsu3" style="font-size:11px;"><b>Valores</b></legend>
 
@@ -147,7 +146,7 @@
                     <p:outputLabel value="Valor Moeda Nacional" for="moedanacional" class="espacocobranca28"/>
                     <br></br>
                     <p:selectOneMenu class="espacocampos2" style="width:12%;" id="moeda"  value="#{pacotePassagemMB.cambio}" converter="CambioConverter">
-                        <f:selectItem itemLabel="Moedas" itemValue="0"/> 
+                        <f:selectItem itemLabel="Moedas" itemValue="0"  noSelectionOption="true" /> 
                         <f:selectItems value="#{usuarioLogadoMB.listaCambio}" var="cambio" itemLabel="#{cambio.moedas.sigla}" itemValue="#{cambio}"/>
                         <f:attribute name="listaCambio" value="#{usuarioLogadoMB.listaCambio}"/>
                         <p:ajax event="change" update="idvalorcambio" />
@@ -171,29 +170,51 @@
                         <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                     </p:inputText>
                     <br></br><br></br><br></br>
+
                     <p:outputLabel value="Câmbio" for="cambio" class="espaco0p" style="font-size: 11px"/> 
                     <p:outputLabel value="Tarifa Unitária  ADT" for="unitaria1" class="espacocobranca2" style="font-size: 11px"/> 
                     <p:outputLabel value="Taxa Embarque" for="embarque" class="espacocobranca2" style="font-size: 11px"/>
                     <p:outputLabel value="Tarifa Unitária  CHD" for="chd" class="espacocobranca2" style="font-size: 11px"/>
                     <br></br>
-                    <p:inputText id="cambio" style="width:10%;"  class="campossr" value="#{pacotePassagemMB.pacotepassagem.valorCambio}"  />
-                    <p:inputText onfocus="this.value = 'US$';" id="unitaria1" style="width:12%;" class="espacocobranca20rig" value="#{pacotePassagemMB.pacotepassagem.tuadtme}"/>
-                    <p:inputText onfocus="this.value = 'R$';" id="unitaria2" style="width:10%;" class="imgadr" value="#{pacotePassagemMB.pacotepassagem.tuadtml}"/>
-                    <p:inputText id="embarque" style="width:11%;" class="espacocobranca20rig" value="#{pacotePassagemMB.pacotepassagem.teme}"  />
-                    <p:inputText id="embarque1" style="width:11%;" class="imgadr" value="#{pacotePassagemMB.pacotepassagem.teml}"  />
-                    <p:inputText id="chd" style="width:11%;"  class="espacocobranca20rig" value="#{pacotePassagemMB.pacotepassagem.tuchdme}"  />
-                    <p:inputText id="chd1" style="width:11%;" class="imgadr" value="#{pacotePassagemMB.pacotepassagem.tuchdml}"  />
+                    <p:inputText id="cambio" style="width:10%;"  class="campossr" value="#{pacotePassagemMB.pacotepassagem.valorCambio}"  >
+                        <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                    </p:inputText>  
+                    <p:inputText id="unitaria1" style="width:12%;" class="espacocobranca20rig" value="#{pacotePassagemMB.pacotepassagem.tuadtme}">
+                        <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                    </p:inputText>  
+                    <p:inputText id="unitaria2" style="width:10%;" class="imgadr" value="#{pacotePassagemMB.pacotepassagem.tuadtml}">
+                        <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                    </p:inputText>  
+                    <p:inputText id="embarque" style="width:11%;" class="espacocobranca20rig" value="#{pacotePassagemMB.pacotepassagem.teme}"  >
+                        <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                    </p:inputText>  
+                    <p:inputText id="embarque1" style="width:11%;" class="imgadr" value="#{pacotePassagemMB.pacotepassagem.teml}"  >
+                        <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                    </p:inputText>  
+                    <p:inputText id="chd" style="width:11%;"  class="espacocobranca20rig" value="#{pacotePassagemMB.pacotepassagem.tuchdme}"  >
+                        <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                    </p:inputText>  
+                    <p:inputText id="chd1" style="width:11%;" class="imgadr" value="#{pacotePassagemMB.pacotepassagem.tuchdml}"  >
+                        <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                    </p:inputText>  
                     <br></br><br></br>
                     <p:outputLabel value="Referência"  for="referencia" class="espaco0p" style="font-size: 11px"/> 
                     <p:outputLabel value="Tarifa Unitária  INF" for="inf" class="espacocobranca27" style="font-size: 11px"/> 
                     <p:outputLabel value="Taxa Outras" for="outras" class="espacocobranca22" style="font-size: 11px"/>
                     <br></br>
                     <p:inputText id="referencia" style="width:26%;"  class="camposs" value="#{pacotePassagemMB.pacotepassagem.referencia}"  />
-                    <p:inputText id="inf" style="width:12%;" class="camposr" value="#{pacotePassagemMB.pacotepassagem.tuinfme}"/>
-                    <p:inputText id="inf2" style="width:12%;" class="imgadr" value="#{pacotePassagemMB.pacotepassagem.tuinfml}"/>
-                    <p:inputText id="outras" style="width:12%;" class="camposr" value="#{pacotePassagemMB.pacotepassagem.tome}"  />
-                    <p:inputText id="outras1" style="width:12%;" class="imgadr" value="#{pacotePassagemMB.pacotepassagem.toml}"  />
-
+                    <p:inputText id="inf" style="width:12%;" class="camposr" value="#{pacotePassagemMB.pacotepassagem.tuinfme}">
+                        <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                    </p:inputText>  
+                    <p:inputText id="inf2" style="width:12%;" class="imgadr" value="#{pacotePassagemMB.pacotepassagem.tuinfml}">
+                        <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                    </p:inputText>  
+                    <p:inputText id="outras" style="width:12%;" class="camposr" value="#{pacotePassagemMB.pacotepassagem.tome}"  >
+                        <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                    </p:inputText>  
+                    <p:inputText id="outras1" style="width:12%;" class="imgadr" value="#{pacotePassagemMB.pacotepassagem.toml}"  >
+                        <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                    </p:inputText>  
                     <br></br><br></br>
                     <legend id="iUsu3" style="font-size:11px;"><b>Totais</b></legend>
                     <p:outputLabel value="Tarifas" for="tarifas" class="espaco0p" style="font-size: 11px"/> 
@@ -201,14 +222,19 @@
                     <p:outputLabel value="Geral" for="geral" class="espacocobranca22" style="font-size: 11px"/>
                     <br></br>
                     <p:inputText id="tarifas" style="width:20%;"  class="campossr" value="#"  />
-                    <p:inputText id="taxatotal" style="width:15%;" class="espacocobranca3r" value="#{pacotePassagemMB.pacotepassagem.totalOPTaxas}"/>
-                    <p:inputText id="geral" style="width:20%;" class="espacocobranca3r" value="#{pacotePassagemMB.pacotepassagem.geral}"/>
+                    <p:inputText id="taxatotal" style="width:15%;" class="espacocobranca3r" value="#{pacotePassagemMB.pacotepassagem.totalOPTaxas}">
+                        <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                    </p:inputText>
+                    <p:inputText id="geral" style="width:20%;" class="espacocobranca3r" value="#{pacotePassagemMB.pacotepassagem.geral}">
+                        <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                    </p:inputText>
 
                 </p:tab>
+              
             </p:tabView>
             <p class="botaocadpacote"><br></br>
-                <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Confirmar" action="#"></p:commandButton>
-                <p:commandButton class="espacocampos" onclick="" icon="ui-icon-close" value="Cancelar" action="#"></p:commandButton>
+                <p:commandButton class="imagemm"  icon="ui-icon-check" value="Confirmar" action="#{pacotePassagemMB.salvarPassagem()}"></p:commandButton>
+                <p:commandButton class="espacocampos"  icon="ui-icon-close" value="Cancelar" action="#{pacotePassagemMB.cancelar()}"></p:commandButton>
                 <br></br><br></br>
             </p>
         </h:form>   

@@ -30,22 +30,6 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "Fornecedorcidade.findAll", query = "SELECT f FROM Fornecedorcidade f")})
 public class Fornecedorcidade implements Serializable {
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedorcidade")
-    private List<Pacotepasseio> pacotepasseioList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedorcidade")
-    private List<Pacotecarro> pacotecarroList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedorcidade")
-    private List<Pacotetransfer> pacotetransferList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedorcidade")
-    private List<Pacotetrem> pacotetremList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedorcidade")
-    private List<Pacotehotel> pacotehotelList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedorcidade")
-    private List<Pacotecruzeiro> pacotecruzeiroList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedorcidade")
-    private List<Pacoteingresso> pacoteingressoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedorcidade")
-    private List<Pacotepassagem> pacotepassagemList;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -137,68 +121,4 @@ public class Fornecedorcidade implements Serializable {
         return "br.com.travelmate.model.Fornecedorcidade[ idfornecedorcidade=" + idfornecedorcidade + " ]";
     }
 
-    public List<Pacotepasseio> getPacotepasseioList() {
-        return pacotepasseioList;
-    }
-
-    public void setPacotepasseioList(List<Pacotepasseio> pacotepasseioList) {
-        this.pacotepasseioList = pacotepasseioList;
-    }
-
-    public List<Pacotecarro> getPacotecarroList() {
-        return pacotecarroList;
-    }
-
-    public void setPacotecarroList(List<Pacotecarro> pacotecarroList) {
-        this.pacotecarroList = pacotecarroList;
-    }
-
-    public List<Pacotetransfer> getPacotetransferList() {
-        return pacotetransferList;
-    }
-
-    public void setPacotetransferList(List<Pacotetransfer> pacotetransferList) {
-        this.pacotetransferList = pacotetransferList;
-    }
-
-    public List<Pacotetrem> getPacotetremList() {
-        return pacotetremList;
-    }
-
-    public void setPacotetremList(List<Pacotetrem> pacotetremList) {
-        this.pacotetremList = pacotetremList;
-    }
-
-    public List<Pacotehotel> getPacotehotelList() {
-        return pacotehotelList;
-    }
-
-    public void setPacotehotelList(List<Pacotehotel> pacotehotelList) {
-        this.pacotehotelList = pacotehotelList;
-    }
-
-    public List<Pacotecruzeiro> getPacotecruzeiroList() {
-        return pacotecruzeiroList;
-    }
-
-    public void setPacotecruzeiroList(List<Pacotecruzeiro> pacotecruzeiroList) {
-        this.pacotecruzeiroList = pacotecruzeiroList;
-    }
-
-    public List<Pacoteingresso> getPacoteingressoList() {
-        return pacoteingressoList;
-    }
-
-    public void setPacoteingressoList(List<Pacoteingresso> pacoteingressoList) {
-        this.pacoteingressoList = pacoteingressoList;
-    }
-
-    public List<Pacotepassagem> getPacotepassagemList() {
-        return pacotepassagemList;
-    }
-
-    public void setPacotepassagemList(List<Pacotepassagem> pacotepassagemList) {
-        this.pacotepassagemList = pacotepassagemList;
-    }
-    
 }

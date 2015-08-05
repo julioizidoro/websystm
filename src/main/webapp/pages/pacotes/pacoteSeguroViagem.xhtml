@@ -47,34 +47,27 @@
                             <br></br>
                             <p:selectOneMenu class="espacocampos2" style="width:26%;" id="seguradora"  value="#" >
                                 <f:selectItem itemLabel="Seguradora" itemValue="0"/> 
-                                <f:selectItems id="idseguradora" value="#" var="seguradoras" itemLabel="#" itemValue="#{seguradoras}"/>
                              </p:selectOneMenu>
-                            <p:inputText id="plano" value="#" style="width:25%" maxlength="50" class="espacocampos"/>
-                            <p:calendar id="periodo" value="" size="12"  class="espacocampos" locale="pt"  pattern="dd/MM/yyyy" >
+                            <p:inputText id="plano" value="#{seguroViagemMB.seguroviagem.plano}" style="width:25%" maxlength="50" class="espacocampos"/>
+                            <p:calendar id="periodo" value="#{seguroViagemMB.seguroviagem.dataInicio}" size="12"  class="espacocampos" locale="pt"  pattern="dd/MM/yyyy" >
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </p:calendar>
-                            <p:calendar id="periodo2" value="" size="12" class="espacocampos" locale="pt"  pattern="dd/MM/yyyy" >
+                            <p:calendar id="periodo2" value="#{seguroViagemMB.seguroviagem.dataTermino}" size="12" class="espacocampos" locale="pt"  pattern="dd/MM/yyyy" >
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </p:calendar>
-                            
-                            <br></br><br></br>
+                             
+                           <br></br><br></br>
                             <legend id="iUsu4" style="font-size: 11px;" ><b>Contato de Emergência no Brasil</b></legend>
                             <p:outputLabel value="Nome" for="nome"/>
                             <p:outputLabel value="Telefone" for="telefone" class="espaco6p" />
                             <br></br>
-                            <p:inputText id="nome" value="#" style="width:60%" maxlength="45" class="espacocampos2"/>
-                            <p:inputText id="telefone" value="#" style="width:22%" class="espacocobranca3"/>
-                            <br></br><br></br><br></br>
-                            
-                            <p:outputLabel value="Email" for="email"/>
-                            <p:outputLabel value="Relação" for="relacao"  class="espaco6p"/>
-                            <br></br>
-                            <p:inputText id="email" value="#" style="width:60%" maxlength="45" class="espacocampos2"/>
-                            <p:inputText id="relacao" value="#" style="width:22%" class="espacocobranca3"/>
+                            <p:inputText id="nome" value="#{seguroViagemMB.seguroviagem.nomeContatoEmergencia}" style="width:60%" maxlength="45" class="espacocampos2"/>
+                            <p:inputText id="telefone" value="#{seguroViagemMB.seguroviagem.foneContatoEmergencia}" style="width:20%" class="espacocobranca3"/>
                             <br></br><br></br><br></br>
                            
+                           
                             <p class="botaoseguro"><br></br>
-                                <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Confirmar" action="#"></p:commandButton>
+                                <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Confirmar" action="#{seguroViagemMB.salvarSeguro()}"></p:commandButton>
                                 <p:commandButton class="espacocampos" onclick="" icon="ui-icon-close" value="Cancelar" action="#"></p:commandButton>
                             </p>
                           </h:form>     

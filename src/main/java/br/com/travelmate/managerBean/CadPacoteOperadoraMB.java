@@ -5,6 +5,7 @@
  */
 package br.com.travelmate.managerBean;
 
+import br.com.travelmate.bean.FinalizarPacoteOperadora;
 import br.com.travelmate.facade.ClienteFacade;
 import br.com.travelmate.facade.FornecedorCidadeFacade;
 import br.com.travelmate.facade.PacoteTrechoFacade;
@@ -50,6 +51,7 @@ public class CadPacoteOperadoraMB  implements Serializable{
      private Cambio cambio;
      private boolean btniniciar=false;
      private boolean btnfinalizar=true;
+     private FinalizarPacoteOperadora finalizarPacoteOperadora;
     
     
     @PostConstruct
@@ -133,6 +135,14 @@ public class CadPacoteOperadoraMB  implements Serializable{
         this.btnfinalizar = btnfinalizar;
     }
 
+    public FinalizarPacoteOperadora getFinalizarPacoteOperadora() {
+        return finalizarPacoteOperadora;
+    }
+
+    public void setFinalizarPacoteOperadora(FinalizarPacoteOperadora finalizarPacoteOperadora) {
+        this.finalizarPacoteOperadora = finalizarPacoteOperadora;
+    }
+    
    
     
     public String iniciarPacote() {
@@ -187,6 +197,7 @@ public class CadPacoteOperadoraMB  implements Serializable{
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
         session.removeAttribute("tipoOepracaoPacote");
         session.removeAttribute("pacoteTrecho");
+        finalizarPacoteOperadora = new FinalizarPacoteOperadora(listaTrecho, cambio);
         return null;
     }
     
@@ -294,18 +305,12 @@ public class CadPacoteOperadoraMB  implements Serializable{
         return "";
     }
     
-     public String novoSeguro(Pacotetrecho pacotetrecho){
-        if (pacotetrecho!=null){
+     public String novoSeguro(Pacotes pacotes){
             FacesContext fc = FacesContext.getCurrentInstance();  
             HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
-            session.setAttribute("pacoteTrecho", pacotetrecho);
-            //return "pacoteseguro";
+            session.setAttribute("pacote", pacotes);
             RequestContext.getCurrentInstance().openDialog("pacoteseguro");
-        }else {
-            FacesMessage mensagem = new FacesMessage("Atenção! ", "Trecho Não Localizado.");
-            FacesContext.getCurrentInstance().addMessage(null, mensagem);
-        }
-        return "";
+            return "";
     }
      public String novoPassagem(Pacotetrecho pacotetrecho){
         if (pacotetrecho!=null){
@@ -323,11 +328,17 @@ public class CadPacoteOperadoraMB  implements Serializable{
     }
     
     public String imagemAereo(Pacotetrecho pacotetrecho) {
-//        if(pacoteaereo!=null){
-//            return "../../resources/img/aereoverde.png";
-//        }else{
-            return "../../resources/img/aereovermelho.png";
-    //    }
+        boolean verdade = true;
+        if (pacotetrecho.getPacotepassagemList()==null){
+            verdade = false;
+        }else if (pacotetrecho.getPacotepassagemList().size()==0){
+            verdade=false;
+        }
+        if(verdade){
+            return "../../resources/img/aereoverde.png";
+        }else{
+             return "../../resources/img/aereovermelho.png";
+        }
     }
     
     public String imagemCarro(Pacotetrecho pacotetrecho) {
@@ -441,5 +452,31 @@ public class CadPacoteOperadoraMB  implements Serializable{
             btniniciar=true;
             btnfinalizar=false;
         }
+    }
+    
+   public void calcularValorGross(){
+        float valorNet = pacotes.getValornet();
+        double comissao = pacotes.getComissao();
+        float valorGross = 0.0f;
+        if ((valorNet>0) && (comissao>0)){
+            comissao = comissao /100;
+            comissao = comissao + 1;
+            valorGross = (float) (valorNet * comissao);
+        }
+        pacotes.setValorgross(valorGross);
+        pacotes.setValormoedanacional(pacotes.getValorgross() * cambio.getValor());
+    }
+    
+    public void calcularComissao(){
+        float valorNet = pacotes.getValornet();
+        double comissao = pacotes.getComissao();
+        float valorGross = pacotes.getValorgross();
+        if ((valorNet>0) && (valorGross>0)){
+            comissao = valorGross / valorNet;
+            comissao = comissao - 1;
+            comissao = comissao * 100;
+        }
+        pacotes.setComissao(comissao);
+        pacotes.setValormoedanacional(pacotes.getValorgross() * cambio.getValor());
     }
 }

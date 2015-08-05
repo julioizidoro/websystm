@@ -27,6 +27,7 @@
     <class>br.com.travelmate.model.Pacotetrecho</class>
     <class>br.com.travelmate.model.Pacotetrem</class>
     <class>br.com.travelmate.model.Pais</class>
+    <class>br.com.travelmate.model.Paisproduto</class>
     <class>br.com.travelmate.model.Parametrosprodutos</class>
     <class>br.com.travelmate.model.Parcelamentopagamento</class>
     <class>br.com.travelmate.model.Passagemaerea</class>
@@ -36,11 +37,12 @@
     <class>br.com.travelmate.model.Produtosorcamento</class>
     <class>br.com.travelmate.model.Publicidade</class>
     <class>br.com.travelmate.model.Recebimento</class>
+    <class>br.com.travelmate.model.Seguroviagem</class>
     <class>br.com.travelmate.model.Unidadenegocio</class>
     <class>br.com.travelmate.model.Usuario</class>
+    <class>br.com.travelmate.model.Valoresseguro</class>
     <class>br.com.travelmate.model.Vendas</class>
     <class>br.com.travelmate.model.Vendascomissao</class>
-    <class>br.com.travelmate.model.Paisproduto</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
     <validation-mode>NONE</validation-mode>

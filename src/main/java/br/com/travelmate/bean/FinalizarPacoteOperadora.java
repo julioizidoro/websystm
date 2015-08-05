@@ -33,6 +33,7 @@ public class FinalizarPacoteOperadora {
         this.cambioPacote = cambio;
         valorGross=0.0f;
         valorNet=0.0f;
+        iniciarCalculo();
     }
     
     private void iniciarCalculo(){

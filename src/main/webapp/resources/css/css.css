@@ -906,7 +906,7 @@ text-align: left;
         #c7d95f 0%,
         #EEE5DE 10%,
         #c7d95f 30%,
-        #fff);margin-left: 0px;margin-top:3%;border: #fff;text-align: center;
+        #fff);margin-left: 0px;margin-top:1%;border: #fff;text-align: center;
     -webkit-border-bottom-right-radius: 5px;
     -webkit-border-bottom-left-radius: 5px;
     -moz-border-radius-bottomright: 5px;
@@ -1030,6 +1030,12 @@ text-align: left;
 }
 .espacocobranca31{
     margin-left:24%;
+}
+.espacocobranca32{
+    margin-left:32%;
+}
+.espacocobranca33{
+    margin-left:12%;
 }
 .espacologin{
     margin-left:40%;

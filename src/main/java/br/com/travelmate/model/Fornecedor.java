@@ -6,6 +6,7 @@
 package br.com.travelmate.model;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -19,6 +20,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -29,6 +31,7 @@ import javax.validation.constraints.Size;
 @NamedQueries({
     @NamedQuery(name = "Fornecedor.findAll", query = "SELECT f FROM Fornecedor f")})
 public class Fornecedor implements Serializable {
+   
     @Size(max = 50)
     @Column(name = "pais")
     private String pais;
@@ -271,5 +274,7 @@ public class Fornecedor implements Serializable {
     public void setComissaoFranquia(Double comissaoFranquia) {
         this.comissaoFranquia = comissaoFranquia;
     }
+
+   
     
 }

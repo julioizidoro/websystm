@@ -58,6 +58,7 @@ public class PacotePassagemMB implements Serializable{
             idProduto = pacotetrecho.getPacotes().getVendas().getProdutos().getIdprodutos();
             listaPais = paisProdutoFacade.listar(idProduto);
         }
+        
         PacotesPassagemFacade pacotesPassagemFacade = new PacotesPassagemFacade();
         pacotepassagem = pacotesPassagemFacade.consultar(pacotetrecho.getIdpacotetrecho());
         if (pacotepassagem == null) {
@@ -68,7 +69,6 @@ public class PacotePassagemMB implements Serializable{
             cidade = new Cidade();
             passageirosBean = new PassageirosBean();
         } else {
-            passageirosBean = new PassageirosBean();
             listaPassageirosBean = new ArrayList<PassageirosBean>();
             cambio = pacotepassagem.getCambio();
             fornecedorcidade = pacotepassagem.getFornecedorcidade();
@@ -76,6 +76,7 @@ public class PacotePassagemMB implements Serializable{
             cidade = fornecedorcidade.getCidade();
             listarFornecedorCidade(idProduto);
             iniciarListaPassageiros();
+            passageirosBean = new PassageirosBean();
         }
     }
 
@@ -357,6 +358,96 @@ public class PacotePassagemMB implements Serializable{
                     passageirosBean.setPassaporte(pacotepassagem.getPassaporte10());
                 }
                 listaPassageirosBean.add(passageirosBean);
+            }
+        }
+    }
+    
+    public String salvarPassagem(){
+        PacotesPassagemFacade pacoteCruzeiroFacade = new PacotesPassagemFacade();
+        if (listaPassageirosBean.size()>0){
+            salvarPassageiro();
+        }
+        pacotepassagem.setFornecedorcidade(fornecedorcidade);
+        pacotepassagem.setCambio(cambio);
+        pacotepassagem = pacoteCruzeiroFacade.salvar(pacotepassagem);
+        fornecedorcidade = new Fornecedorcidade();
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage("Salvo com Sucesso", ""));
+        HttpSession session = (HttpSession) context.getExternalContext().getSession(false);  
+        session.setAttribute("pacote", pacotepassagem.getPacotetrecho().getPacotes());
+        if (pacotepassagem.getPacotetrecho().getPacotes().getOperacao().equalsIgnoreCase("Operadora")){
+            RequestContext.getCurrentInstance().closeDialog("cadpacotesoperadora");
+            return "";
+        }else{
+            RequestContext.getCurrentInstance().closeDialog("cadPacote");
+            return "";
+        }   
+    }
+    
+    public String cancelar(){
+        Pacotetrecho pacotetrecho = pacotepassagem.getPacotetrecho();
+        pacotepassagem = new Pacotepassagem();
+        pacotepassagem.setPacotetrecho(pacotetrecho);
+        fornecedorcidade = new Fornecedorcidade();
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage("Cancelado", ""));
+        HttpSession session = (HttpSession) context.getExternalContext().getSession(false);  
+        session.setAttribute("pacoteTrecho", pacotetrecho);
+        return "cadpacotesoperadora";
+    }
+    
+    public void salvarPassageiro(){
+        for(int i=0;i<listaPassageirosBean.size();i++){
+            if (i==0){
+                pacotepassagem.setPax01(listaPassageirosBean.get(i).getNome());
+                pacotepassagem.setDataNascimentopax01(listaPassageirosBean.get(i).getDataNascimento());
+                pacotepassagem.setPassaporte01(listaPassageirosBean.get(i).getPassaporte());
+                pacotepassagem.setTipopax1(listaPassageirosBean.get(i).getTipo());
+            }else if (i==1){
+                pacotepassagem.setPax02(listaPassageirosBean.get(i).getNome());
+                pacotepassagem.setDataNascimentopax02(listaPassageirosBean.get(i).getDataNascimento());
+                pacotepassagem.setPassaporte02(listaPassageirosBean.get(i).getPassaporte());
+                pacotepassagem.setTipopax2(listaPassageirosBean.get(i).getTipo());
+            }else if (i==2){
+                pacotepassagem.setPax03(listaPassageirosBean.get(i).getNome());
+                pacotepassagem.setDataNascimentopax03(listaPassageirosBean.get(i).getDataNascimento());
+                pacotepassagem.setPassaporte03(listaPassageirosBean.get(i).getPassaporte());
+                pacotepassagem.setTipopax3(listaPassageirosBean.get(i).getTipo());
+            }else if(i==3){
+                pacotepassagem.setPax04(listaPassageirosBean.get(i).getNome());
+                pacotepassagem.setDataNascimentopax04(listaPassageirosBean.get(i).getDataNascimento());
+                pacotepassagem.setPassaporte04(listaPassageirosBean.get(i).getPassaporte());
+                pacotepassagem.setTipopax4(listaPassageirosBean.get(i).getTipo());
+            }else if(i==4){
+                pacotepassagem.setPax05(listaPassageirosBean.get(i).getNome());
+                pacotepassagem.setDataNascimentopax05(listaPassageirosBean.get(i).getDataNascimento());
+                pacotepassagem.setPassaporte05(listaPassageirosBean.get(i).getPassaporte());
+                pacotepassagem.setTipopax5(listaPassageirosBean.get(i).getTipo());
+            }else if(i==5){
+                pacotepassagem.setPax06(listaPassageirosBean.get(i).getNome());
+                pacotepassagem.setDataNascimentopax06(listaPassageirosBean.get(i).getDataNascimento());
+                pacotepassagem.setPassaporte06(listaPassageirosBean.get(i).getPassaporte());
+                pacotepassagem.setTipopax6(listaPassageirosBean.get(i).getTipo());
+            }else if(i==6){
+                pacotepassagem.setPax07(listaPassageirosBean.get(i).getNome());
+                pacotepassagem.setDataNascimentopax07(listaPassageirosBean.get(i).getDataNascimento());
+                pacotepassagem.setPassaporte07(listaPassageirosBean.get(i).getPassaporte());
+                pacotepassagem.setTipopax7(listaPassageirosBean.get(i).getTipo());
+            }else if(i==7){
+                pacotepassagem.setPax08(listaPassageirosBean.get(i).getNome());
+                pacotepassagem.setDataNascimentopax08(listaPassageirosBean.get(i).getDataNascimento());
+                pacotepassagem.setPassaporte08(listaPassageirosBean.get(i).getPassaporte());
+                pacotepassagem.setTipopax8(listaPassageirosBean.get(i).getTipo());
+            }else if(i==8){
+                pacotepassagem.setPax09(listaPassageirosBean.get(i).getNome());
+                pacotepassagem.setDataNascimentopax09(listaPassageirosBean.get(i).getDataNascimento());
+                pacotepassagem.setPassaporte09(listaPassageirosBean.get(i).getPassaporte());
+                pacotepassagem.setTipopax9(listaPassageirosBean.get(i).getTipo());
+            }else if(i==9){
+                pacotepassagem.setPax10(listaPassageirosBean.get(i).getNome());
+                pacotepassagem.setDataNascimentopax10(listaPassageirosBean.get(i).getDataNascimento());
+                pacotepassagem.setPassaporte10(listaPassageirosBean.get(i).getPassaporte());
+                pacotepassagem.setTipopax10(listaPassageirosBean.get(i).getTipo());
             }
         }
     }
