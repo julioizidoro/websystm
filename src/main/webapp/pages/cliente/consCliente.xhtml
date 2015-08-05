@@ -12,10 +12,10 @@
                     <p:growl id="growl" showDetail="true" sticky="true"/>
                      <br></br> 
                     <p:outputLabel value="Pesquisar Nome Cliente" for="cliente" class="espaco0" style="font-size: 11px"/> <br></br>
-                    <p:inputText id="cliente" size="50" maxlength="100" class="camposs" value="#"  />
+                    <p:inputText id="cliente" size="50" maxlength="100" class="camposs" value="#{consultaClienteMB.nome}"  />
                     <br></br> <br></br>
                     <legend id="iUsu2" ><b>Consulta de Clientes</b></legend>
-                    <p:dataTable id="clientetabela" var="cliente"  value="#" class="tabela" 
+                    <p:dataTable id="clientetabela" var="cliente"  value="#{consultaClienteMB.listaCliente}" class="tabela" 
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
                                  paginator="true" rows="10" style="margin-bottom:20px" >
                         <f:facet name="{Exporters}">
@@ -25,18 +25,18 @@
                             </h:commandLink>
                         </f:facet>
                         <p:column headerText="Nome" style="background:#ffffff;text-decoration-color:#1F8871;color:#1F8871;text-align:center;" sortBy="#">
-                            <h:outputText value="#" />
+                            <h:commandLink value="#{cliente.nome}" action="#{consultaClienteMB.selecionarCliente(cliente)}" />
                         </p:column>
                         <p:column headerText="Data Nascimento" style="width:150px;background:#ffffff;color:#1F8871;text-align:center;" >
-                            <h:outputText value="">
+                            <h:outputText value="#{cliente.dataNascimento}">
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </h:outputText>
                         </p:column>
                         <p:column headerText="Fone Residencial"  style="width:150px;background:#ffffff;color:#1F8871;text-align:center;" styleClass="alinharCenter" >
-                            <h:outputText value="#"/>
+                            <h:outputText value="#{cliente.foneResidencial}"/>
                         </p:column>
                         <p:column headerText="Fone Celular"  style="width:160px;background:#ffffff;color:#1F8871;text-align:center;" styleClass="alinharCenter" >
-                            <h:outputText value="#"/>
+                            <h:outputText value="#{cliente.foneCelular}"/>
                         </p:column>
                     </p:dataTable>
                     <br></br>

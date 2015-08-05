@@ -31,7 +31,7 @@ public class PacotesPassagemDao {
     public Pacotepassagem consultar(int idPacote) throws SQLException{
         manager = ConectionFactory.getConnection();
           manager.getTransaction().begin();
-        Query q = manager.createQuery("select p from Pacotepassagem p where p.pacotes=" + idPacote);
+        Query q = manager.createQuery("select p from Pacotepassagem p where p.pacotetrecho.idpacotetrecho=" + idPacote);
          manager.getTransaction().commit();
         if (q.getResultList().size() > 0) {
             return  (Pacotepassagem) q.getResultList().get(0);

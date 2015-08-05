@@ -50,4 +50,14 @@ public class ClienteFacade {
         }
     }
     
+    public List<Cliente> consultarNome(String nome) {
+        clienteDao = new ClienteDao();
+        try {
+            return clienteDao.consultarNome(nome);
+        } catch (SQLException ex) {
+            Logger.getLogger(ClienteFacade.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    
 }

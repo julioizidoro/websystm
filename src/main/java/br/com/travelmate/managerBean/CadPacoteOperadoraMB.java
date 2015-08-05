@@ -48,6 +48,8 @@ public class CadPacoteOperadoraMB  implements Serializable{
      @Inject
      private UsuarioLogadoMB usuarioLogadoMB;
      private Cambio cambio;
+     private boolean btniniciar=false;
+     private boolean btnfinalizar=true;
     
     
     @PostConstruct
@@ -114,6 +116,24 @@ public class CadPacoteOperadoraMB  implements Serializable{
     public void setCambio(Cambio cambio) {
         this.cambio = cambio;
     }
+
+    public boolean isBtniniciar() {
+        return btniniciar;
+    }
+
+    public void setBtniniciar(boolean btniniciar) {
+        this.btniniciar = btniniciar;
+    }
+
+    public boolean isBtnfinalizar() {
+        return btnfinalizar;
+    }
+
+    public void setBtnfinalizar(boolean btnfinalizar) {
+        this.btnfinalizar = btnfinalizar;
+    }
+
+   
     
     public String iniciarPacote() {
         if (pacotes.getVendas() == null) {
@@ -411,5 +431,15 @@ public class CadPacoteOperadoraMB  implements Serializable{
     public String imagemSeguro(Pacotetrecho pacotetrecho) {
         
             return "../../resources/img/segurovermelho.png";
+    }
+    
+    public void verificarBotoes(){
+        if (btniniciar){
+            btniniciar=false;
+            btnfinalizar=true;
+        }else {
+            btniniciar=true;
+            btnfinalizar=false;
+        }
     }
 }

@@ -60,20 +60,11 @@ public class AutorizacaoDebitoMB implements Serializable{
         this.usuarioLogadoMB = usuarioLogadoMB;
     }
     
-    public String imprimirAutorizacao() throws IOException{
-        if (cambio!=null){
+    public void gerarRelatorioAutorizacao() throws JRException, IOException{
+        if (cambio != null) {
             autorizacaoDebitoBean.setMoeda(cambio.getMoedas().getSigla());
             autorizacaoDebitoBean.setValorcambio(Formatacao.formatarFloatString(cambio.getValor()));
         }
-       try {
-           gerarRelatorioAutorizacao();
-       } catch (JRException ex) {
-           Logger.getLogger(AutorizacaoDebitoMB.class.getName()).log(Level.SEVERE, null, ex);
-       }
-        return "";
-    }
-    
-    public void gerarRelatorioAutorizacao() throws JRException, IOException{
         String caminhoRelatorio = "/reports/turismo/autorizacaoCartao.jasper";  
         Map parameters = new HashMap();
         String nomeArquivo = "AutorizacaoCartao.pdf";

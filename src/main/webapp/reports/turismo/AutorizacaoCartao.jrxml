@@ -53,6 +53,9 @@
 	<field name="valortotal" class="java.lang.String">
 		<fieldDescription><![CDATA[valortotal]]></fieldDescription>
 	</field>
+	<field name="moeda" class="java.lang.String">
+		<fieldDescription><![CDATA[moeda]]></fieldDescription>
+	</field>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -81,7 +84,7 @@
 	<pageHeader>
 		<band height="650" splitType="Stretch">
 			<rectangle>
-				<reportElement x="0" y="167" width="555" height="196" uuid="ad78aebd-0b8e-4f3a-910b-e1a79ad1da33"/>
+				<reportElement x="0" y="171" width="555" height="196" uuid="ad78aebd-0b8e-4f3a-910b-e1a79ad1da33"/>
 			</rectangle>
 			<rectangle>
 				<reportElement x="0" y="6" width="555" height="142" uuid="65eaac24-7402-43d3-8860-a9c04018f704"/>
@@ -91,15 +94,15 @@
 				<text><![CDATA[Bandeira:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="67" y="18" width="169" height="15" uuid="1cc8dc23-8863-49db-b99d-23fa8b388ae6"/>
+				<reportElement x="67" y="18" width="79" height="15" uuid="1cc8dc23-8863-49db-b99d-23fa8b388ae6"/>
 				<textFieldExpression><![CDATA[$F{bandeira}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="289" y="18" width="106" height="13" uuid="6ec4850e-2ea9-4a46-bfe5-8d84c31634fd"/>
+				<reportElement x="315" y="18" width="106" height="13" uuid="6ec4850e-2ea9-4a46-bfe5-8d84c31634fd"/>
 				<text><![CDATA[Cartão de Crédito nº:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="395" y="18" width="147" height="13" uuid="8ad13327-0090-4cf1-ad8b-262dc93a4509"/>
+				<reportElement x="428" y="18" width="114" height="13" uuid="8ad13327-0090-4cf1-ad8b-262dc93a4509"/>
 				<textFieldExpression><![CDATA[$F{numerocartao}]]></textFieldExpression>
 			</textField>
 			<staticText>
@@ -151,11 +154,11 @@
 				<textFieldExpression><![CDATA[$F{dataviagem}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="73" y="100" width="106" height="15" uuid="db89a1f3-8d5d-45f3-ac9f-c002ae90989a"/>
+				<reportElement x="73" y="100" width="87" height="15" uuid="db89a1f3-8d5d-45f3-ac9f-c002ae90989a"/>
 				<textFieldExpression><![CDATA[$F{numparcelas}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="309" y="100" width="90" height="15" uuid="bb71556d-2c39-41a9-99c4-90c37575adc7"/>
+				<reportElement x="266" y="100" width="90" height="15" uuid="bb71556d-2c39-41a9-99c4-90c37575adc7"/>
 				<textElement textAlignment="Left"/>
 				<textFieldExpression><![CDATA[$F{valorparcelas}]]></textFieldExpression>
 			</textField>
@@ -164,11 +167,11 @@
 				<text><![CDATA[Nº Parcelas:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="193" y="100" width="116" height="15" uuid="62e9c21b-6b89-4782-9319-67dbb630097c"/>
-				<text><![CDATA[Valor de cada Parcela: ]]></text>
+				<reportElement x="179" y="100" width="84" height="15" uuid="62e9c21b-6b89-4782-9319-67dbb630097c"/>
+				<text><![CDATA[Valor da Parcela: ]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="463" y="100" width="79" height="15" uuid="690a42b9-cfb9-4992-b654-ce9430254f6b"/>
+				<reportElement x="478" y="100" width="64" height="15" uuid="690a42b9-cfb9-4992-b654-ce9430254f6b"/>
 				<textFieldExpression><![CDATA[$F{valorcambio}]]></textFieldExpression>
 			</textField>
 			<staticText>
@@ -180,7 +183,7 @@
 				<textFieldExpression><![CDATA[$F{valorparcelado}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="416" y="100" width="47" height="15" uuid="144aea46-6caa-4112-9f05-238c2eebc723"/>
+				<reportElement x="372" y="100" width="47" height="15" uuid="144aea46-6caa-4112-9f05-238c2eebc723"/>
 				<text><![CDATA[Câmbio:]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
@@ -193,7 +196,9 @@
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="154" width="554" height="13" uuid="b8adba3a-9515-441e-aabe-053f7197781b"/>
-				<textElement textAlignment="Center"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[ATENÇÃO]]></text>
 			</staticText>
 			<textField isBlankWhenNull="true">
@@ -220,7 +225,7 @@
                -Identidade (Frente e Verso).
 ]]></text>
 			</staticText>
-			<textField pattern="EEEEE dd MMMMM yyyy">
+			<textField pattern="dd MMMMM yyyy">
 				<reportElement x="263" y="459" width="215" height="13" uuid="cf8a2bf1-2245-498a-bc9d-23c10770b879"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
@@ -244,6 +249,10 @@
 				<reportElement x="315" y="559" width="227" height="14" uuid="a38ecafc-4379-4c94-a130-1cb9d6d0ee9a"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$P{unidade}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="419" y="100" width="59" height="15" uuid="487958ed-5777-4d5c-8c5d-e9499c7802d1"/>
+				<textFieldExpression><![CDATA[$F{moeda}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>

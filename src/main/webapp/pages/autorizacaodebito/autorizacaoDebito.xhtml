@@ -41,7 +41,7 @@
                             <p:inputMask id="cpf" value="#{autorizacaoDebitoMB.autorizacaoDebitoBean.cpf}" style="width:16%" mask="999.999.999-99" class="espacocampos"/>
                             <p:inputText id="telefone" value="#{autorizacaoDebitoMB.autorizacaoDebitoBean.fone}" style="width:14%"  class="espacocampos"/>
                             <p:inputText id="numeroreservas" value="#{autorizacaoDebitoMB.autorizacaoDebitoBean.numreserva}" style="width:10%" class="espacocampos"/>
-                            <p:calendar id="dataviagem" value="#{autorizacaoDebitoMB.autorizacaoDebitoBean.dataviagem}" style="width:15%"  class="espacocampos"  locale="pt"  pattern="dd/MM/yyyy" >
+                            <p:calendar id="dataviagem" value="#{autorizacaoDebitoMB.autorizacaoDebitoBean.dataviagem}" size="12" style="width:15%"  class="espacocampos"  locale="pt"  pattern="dd/MM/yyyy" >
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </p:calendar>
                             <br></br><br></br><br></br><br></br>
@@ -71,7 +71,7 @@
                             <br></br><br></br>
                            
                             <p class="botaoseguro"><br></br>
-                                <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Imprimir" action="#{autorizacaoDebitoMB.imprimirAutorizacao()}"></p:commandButton>
+                                <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Imprimir" action="#{autorizacaoDebitoMB.gerarRelatorioAutorizacao()}"></p:commandButton>
                                 <p:commandButton class="espacocampos" onclick="" icon="ui-icon-close" value="Fechar" action="#"></p:commandButton>
                             </p>
                         </p:tab>
