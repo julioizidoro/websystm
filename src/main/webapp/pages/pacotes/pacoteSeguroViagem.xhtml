@@ -5,71 +5,90 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-   <h:head>
+    <h:head>
         <link href="../../resources/css/css.css" rel="stylesheet" type="text/css" />
-         <link href="../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
-         <script>  
-                PrimeFaces.locales['pt'] = {  
-                    closeText: 'Fechar',  
-                    prevText: 'Anterior',  
-                    nextText: 'Próximo',  
-                    currentText: 'Começo',  
-                    monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],  
-                    monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],  
-                    dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],  
-                    dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],  
-                    dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],  
-                    weekHeader: 'Semana',  
-                    firstDay: 0,  
-                    isRTL: false,  
-                    showMonthAfterYear: false,  
-                    yearSuffix: '',  
-                    timeOnlyTitle: 'Só Horas',  
-                    timeText: 'Tempo',  
-                    hourText: 'Hora',  
-                    minuteText: 'Minuto',  
-                    secondText: 'Segundo',  
-                    ampm: false,  
-                    month: 'Mês',  
-                    week: 'Semana',  
-                    day: 'Dia',  
-                    allDayText: 'Todo o Dia'  
-                };  
-            </script>  
+        <link href="../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
+        <script>
+            PrimeFaces.locales['pt'] = {
+                closeText: 'Fechar',
+                prevText: 'Anterior',
+                nextText: 'Próximo',
+                currentText: 'Começo',
+                monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+                dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+                dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
+                weekHeader: 'Semana',
+                firstDay: 0,
+                isRTL: false,
+                showMonthAfterYear: false,
+                yearSuffix: '',
+                timeOnlyTitle: 'Só Horas',
+                timeText: 'Tempo',
+                hourText: 'Hora',
+                minuteText: 'Minuto',
+                secondText: 'Segundo',
+                ampm: false,
+                month: 'Mês',
+                week: 'Semana',
+                day: 'Dia',
+                allDayText: 'Todo o Dia'
+            };
+        </script>  
     </h:head>
     <h:body>
         <h:form id="cadastropacoteseguro" style="text-align:left;font-size: 10px;">
             <title>Seguro Viagem</title>
-                            <p:outputLabel value="Seguradora" for="seguradora" />
-                            <p:outputLabel value="Plano" for="plano" class="espacocobranca16"/>
-                            <p:outputLabel value="Período" for="periodo" class="espacocobranca22"/>
+            
+                    <br></br><br></br>
+                    <p:outputLabel value="Seguradora" for="seguradora" class="espacocobranca24"/>
+                    <p:outputLabel value="Plano" for="plano" class="espacocobranca16"/>
+                    <p:outputLabel value="Cobrança" for="cobranca" class="espacocobranca22"/>
 
-                            <br></br>
-                            <p:selectOneMenu class="espacocampos2" style="width:26%;" id="seguradora"  value="#" >
-                                <f:selectItem itemLabel="Seguradora" itemValue="0"/> 
-                             </p:selectOneMenu>
-                            <p:inputText id="plano" value="#{seguroViagemMB.seguroviagem.plano}" style="width:25%" maxlength="50" class="espacocampos"/>
-                            <p:calendar id="periodo" value="#{seguroViagemMB.seguroviagem.dataInicio}" size="12"  class="espacocampos" locale="pt"  pattern="dd/MM/yyyy" >
-                                <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
-                            </p:calendar>
-                            <p:calendar id="periodo2" value="#{seguroViagemMB.seguroviagem.dataTermino}" size="12" class="espacocampos" locale="pt"  pattern="dd/MM/yyyy" >
-                                <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
-                            </p:calendar>
-                             
-                           <br></br><br></br>
-                            <legend id="iUsu4" style="font-size: 11px;" ><b>Contato de Emergência no Brasil</b></legend>
-                            <p:outputLabel value="Nome" for="nome"/>
-                            <p:outputLabel value="Telefone" for="telefone" class="espaco6p" />
-                            <br></br>
-                            <p:inputText id="nome" value="#{seguroViagemMB.seguroviagem.nomeContatoEmergencia}" style="width:60%" maxlength="45" class="espacocampos2"/>
-                            <p:inputText id="telefone" value="#{seguroViagemMB.seguroviagem.foneContatoEmergencia}" style="width:20%" class="espacocobranca3"/>
-                            <br></br><br></br><br></br>
-                           
-                           
-                            <p class="botaoseguro"><br></br>
-                                <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Confirmar" action="#{seguroViagemMB.salvarSeguro()}"></p:commandButton>
-                                <p:commandButton class="espacocampos" onclick="" icon="ui-icon-close" value="Cancelar" action="#"></p:commandButton>
-                            </p>
-                          </h:form>     
+                    <br></br>
+                    <p:selectOneMenu class="espacocobranca24" style="width:26%;height:32px" id="seguradora"  value="#" >
+                        <f:selectItem itemLabel="Seguradora" itemValue="0"/> 
+                    </p:selectOneMenu>
+                    <p:selectOneMenu id="plano" class="espacocampos" style="width:25%;height:32px" value="#{seguroViagemMB.seguroviagem.plano}" >
+                        <f:selectItem itemLabel="Seguradora" itemValue="0"/> 
+                    </p:selectOneMenu>
+                    <p:inputText id="cobranca" value="#" style="width:25%" maxlength="45" class="espacocampos"/>
+
+
+                    <br></br><br></br>
+                    <p:outputLabel value="Data inicial" for="datainicio" class="espacocobranca24"/>
+                    <p:outputLabel value="No. Semanas" for="semanas" class="espacocobranca23"/>
+                    <p:outputLabel value="Data Final" for="datatermino" class="espacocobranca5"/>
+                    <p:outputLabel value="Valor do Seguro" for="valorseguro" class="espacocobranca23"/>
+                    <br></br>
+                    <p:calendar id="datainicio" value="#{seguroViagemMB.seguroviagem.dataInicio}" size="12"  class="espacocobranca24" locale="pt"  pattern="dd/MM/yyyy" >
+                        <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                    </p:calendar>
+                    <p:inputText id="semanas" value="#{seguroViagemMB.seguroviagem.numeroSemanas}" style="width:15%" maxlength="45" class="espacocampos"/>
+                    <p:calendar id="datatermino" value="#{seguroViagemMB.seguroviagem.dataTermino}" size="12" class="espacocampos" locale="pt"  pattern="dd/MM/yyyy" >
+                        <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                    </p:calendar>
+                    <p:inputText id="valorseguro" value="#{seguroViagemMB.seguroviagem.valorSeguro}" style="width:25%" maxlength="45" class="espacocamposright">
+
+                    </p:inputText>
+
+                    <br></br><br></br>
+                    <legend id="iUsu4" style="font-size: 11px;" class="espacocobranca24"><b>Contato de Emergência no Brasil</b></legend>
+                    <p:outputLabel value="Nome" for="nome" class="espacocobranca24"/>
+                    <p:outputLabel value="Telefone" for="telefone" class="espaco1p" />
+                    <br></br>
+                    <p:inputText id="nome" value="#{seguroViagemMB.seguroviagem.nomeContatoEmergencia}" style="width:50%" maxlength="45" class="espacocobranca24"/>
+                    <p:inputText id="telefone" value="#{seguroViagemMB.seguroviagem.foneContatoEmergencia}" style="width:20%" class="espacocobranca3"/>
+                    <br></br><br></br>
+
+
+                    <p class="botaoseguro"><br></br>
+                        <p:commandButton class="imagemm" icon="ui-icon-check" value="Confirmar" action="#{seguroViagemMB.salvarSeguro()}"></p:commandButton>
+                        <p:commandButton class="espacocampos"  icon="ui-icon-close" value="Cancelar" action="#"></p:commandButton>
+                        <p:commandButton class="espacocampos" icon="ui-icon-trash" value="Excluir" action="#"></p:commandButton>
+                        <br></br><br></br>
+                    </p><br></br>
+        </h:form>     
     </h:body>
 </html>
