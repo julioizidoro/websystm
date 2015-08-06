@@ -154,8 +154,9 @@
                     <h:commandLink action="#"  title="Editar Câmbio">  
                         <img id="editarcambio" class="" src="../../resources/img/cambio_1.png"/>
                     </h:commandLink>
-                    <p:inputText id="valornet" value="#{pacotePassagemMB.pacotepassagem.valornet}" style="width:18%;" class="espacocobranca16r">
+                    <p:inputText id="valornet" value="#{pacotePassagemMB.pacotepassagem.valornet}" style="width:18%;" class="espacocobranca31r">
                         <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                        <p:ajax event="blur" />
                     </p:inputText>
                     
                      <br></br><br></br><br></br>
@@ -166,9 +167,13 @@
                     <br></br>
                     <p:inputText id="comissao" value="#{pacotePassagemMB.pacotepassagem.comissao}" style="width:12%;" class="fontebrancaa">
                         <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                        <p:ajax event="blur" update="valorgross" listener="#{pacotePassagemMB.calcularValorGross()}" />
+                        <p:ajax event="blur" update="moedanacional"/>
                     </p:inputText>
                     <p:inputText id="valorgross" value="#{pacotePassagemMB.pacotepassagem.valorgross}" style="width:13%;" maxlength="15" class="espacocobranca23r">
                         <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                        <p:ajax event="blur" update="comissao" listener="#{pacoteCarroMB.calcularComissao()}"/>
+                        <p:ajax event="blur" update="moedanacional"/>
                     </p:inputText>
                     <p:inputText id="moedanacional" value="#{pacotePassagemMB.pacotepassagem.valormoedanacional}" style="width:22%;" maxlength="11" class="espacocobranca23r">
                         <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />

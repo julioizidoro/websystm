@@ -463,4 +463,30 @@ public class PacotePassagemMB implements Serializable{
             return "";
         }else return "cadPacote";
     }
+    
+    public void calcularValorGross(){
+        float valorNet = pacotepassagem.getValornet();
+        float comissao = pacotepassagem.getComissao();
+        float valorGross = 0.0f;
+        if ((valorNet>0) && (comissao>0)){
+            comissao = comissao /100;
+            comissao = comissao + 1;
+            valorGross = valorNet * comissao;
+        }
+        pacotepassagem.setValorgross(valorGross);
+        pacotepassagem.setValormoedanacional(pacotepassagem.getValorgross() * cambio.getValor());
+    }
+    
+    public void calcularComissao(){
+        float valorNet = pacotepassagem.getValornet();
+        float comissao = pacotepassagem.getComissao();
+        float valorGross = pacotepassagem.getValorgross();
+        if ((valorNet>0) && (valorGross>0)){
+            comissao = valorGross / valorNet;
+            comissao = comissao - 1;
+            comissao = comissao * 100;
+        }
+        pacotepassagem.setComissao(comissao);
+        pacotepassagem.setValormoedanacional(pacotepassagem.getValorgross() * cambio.getValor());
+    }
 }
