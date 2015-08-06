@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+     <h:head>
+        <link href="../../resources/css/css.css" rel="stylesheet" type="text/css" />
+         <link href="../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
+         <script>  
+                PrimeFaces.locales['pt'] = {  
+                    closeText: 'Fechar',  
+                    prevText: 'Anterior',  
+                    nextText: 'Próximo',  
+                    currentText: 'Começo',  
+                    monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],  
+                    monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],  
+                    dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],  
+                    dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],  
+                    dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],  
+                    weekHeader: 'Semana',  
+                    firstDay: 0,  
+                    isRTL: false,  
+                    showMonthAfterYear: false,  
+                    yearSuffix: '',  
+                    timeOnlyTitle: 'Só Horas',  
+                    timeText: 'Tempo',  
+                    hourText: 'Hora',  
+                    minuteText: 'Minuto',  
+                    secondText: 'Segundo',  
+                    ampm: false,  
+                    month: 'Mês',  
+                    week: 'Semana',  
+                    day: 'Dia',  
+                    allDayText: 'Todo o Dia'  
+                };  
+            </script>  
+    </h:head>
+    <h:body>
+        <h:form id="importarpacoteoperadora" style="text-align:left;font-size: 10px;">
+            <title>Importar Pacote</title>
+                            <p:dataTable id="tabelaimportarpacote" var="importar"  value="#" class="tabela1" 
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+                                         paginator="true" rows="8" style="margin-bottom:20px" rowIndexVar="linha">
+                                <f:facet name="{Exporters}">
+                                    <h:commandLink>
+                                        <img src="../../resources/img/excel.png" width="20" class="imagens"/>
+                                        <p:dataExporter type="xls" target="importar" fileName="listapacoteoperadora" />
+                                    </h:commandLink>
+                                </f:facet>
+                                <p:column headerText="No. Pacote"  style="width:80px;background:#ffffff;color:#1F8871;text-align:center;" styleClass="alinharCenter" >
+                                    <h:outputText value="#"/>
+                                </p:column>
+                                <p:column headerText="Descrição"  style="width:180px;background:#ffffff;color:#1F8871;text-align:left;" styleClass="alinharCenter" >
+                                    <h:outputText value="#"/>
+                                </p:column>
+                                <p:column headerText="Data Início" style="width:80px;background:#ffffff;color:#1F8871;text-align: left;" styleClass="alinharCenter">
+                                    <h:outputText value="">
+                                        <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                                    </h:outputText>                           
+                                </p:column>
+                                <p:column headerText="Data Final" style="width:80px;background:#ffffff;color:#1F8871;text-align: left;" styleClass="alinharCenter">
+                                    <h:outputText value="">
+                                        <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                                    </h:outputText>                           
+                                </p:column>
+                                <p:column headerText="Valor" style="width:80px;background:#ffffff;color:#1F8871;text-align:right;" styleClass="alinharCenter">
+                                    <h:outputText value="">
+                                        <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                                    </h:outputText>                           
+                                </p:column>
+                                <p:column style="width:50px;background:#ffffff;color:#1F8871;text-align: center">
+                                    <p:commandButton  icon="ui-icon-trash" title="Excluir" action="#" update="tabelaimportarpacote" ></p:commandButton>
+                                </p:column>
+                            </p:dataTable>
+                            <p class="botaocadpacote"><br></br>
+                                <p:commandButton class="imagemm" icon="ui-icon-check" value="Finalizar" action="#"></p:commandButton>
+                           <br></br><br></br>
+                            </p>
+                        </h:form>     
+    </h:body>
+</html>
