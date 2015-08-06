@@ -110,12 +110,14 @@ public class Formatacao {
       return numeroSemanas;
   }
 
-  public static Date calcularDataFinal(Date dataInicial, int numeroSemanas){
+  public static Date calcularDataFinal(Date dataInicial, int numeroSemanas, String tipo){
        SimpleDateFormat sd = new SimpleDateFormat("dd/MM/yyyy");
        Calendar c = new GregorianCalendar();
        c.setTime(dataInicial);
-       numeroSemanas = numeroSemanas * 7;
-       numeroSemanas = numeroSemanas - 1;
+       if (tipo.equalsIgnoreCase("semana")) {
+          numeroSemanas = numeroSemanas * 7;
+          numeroSemanas = numeroSemanas - 1;
+      }
        if (numeroSemanas>0){
             c.add(Calendar.DAY_OF_MONTH, numeroSemanas);
        }

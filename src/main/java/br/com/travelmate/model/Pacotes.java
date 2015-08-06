@@ -64,6 +64,8 @@ public class Pacotes implements Serializable {
     private Double comissao;
     @Column(name = "valormoedanacional")
     private Float valormoedanacional;
+    @Column(name = "comissaoloja")
+    private Float comissaoloja;
     @Size(max = 3)
     @Column(name = "cartaovtm")
     private String cartaovtm;
@@ -176,6 +178,14 @@ public class Pacotes implements Serializable {
 
     public void setValormoedanacional(Float valormoedanacional) {
         this.valormoedanacional = valormoedanacional;
+    }
+
+    public Float getComissaoloja() {
+        return comissaoloja;
+    }
+
+    public void setComissaoloja(Float comissaoloja) {
+        this.comissaoloja = comissaoloja;
     }
 
     public String getCartaovtm() {

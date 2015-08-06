@@ -31,6 +31,8 @@ import javax.persistence.Table;
     @NamedQuery(name = "Fornecedorcidade.findAll", query = "SELECT f FROM Fornecedorcidade f")})
 public class Fornecedorcidade implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedorcidade")
+    private List<Valoresseguro> valoresseguroList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedorcidade")
     private List<Pacotepasseio> pacotepasseioList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedorcidade")
     private List<Pacotecarro> pacotecarroList;
@@ -199,6 +201,14 @@ public class Fornecedorcidade implements Serializable {
 
     public void setPacotepassagemList(List<Pacotepassagem> pacotepassagemList) {
         this.pacotepassagemList = pacotepassagemList;
+    }
+
+    public List<Valoresseguro> getValoresseguroList() {
+        return valoresseguroList;
+    }
+
+    public void setValoresseguroList(List<Valoresseguro> valoresseguroList) {
+        this.valoresseguroList = valoresseguroList;
     }
 
 }

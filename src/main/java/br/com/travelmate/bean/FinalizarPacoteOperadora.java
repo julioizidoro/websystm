@@ -27,12 +27,14 @@ public class FinalizarPacoteOperadora {
     private Cambio cambioPacote;
     private float valorGross;
     private float valorNet;
+    private float comissaoloja;
 
     public FinalizarPacoteOperadora(List<Pacotetrecho> listaTrecho, Cambio cambio) {
         this.listaTrecho = listaTrecho;
         this.cambioPacote = cambio;
         valorGross=0.0f;
         valorNet=0.0f;
+        comissaoloja=0.0f;
         iniciarCalculo();
     }
     
@@ -48,20 +50,64 @@ public class FinalizarPacoteOperadora {
             calcularValoresTrem(listaTrecho.get(i).getPacotetremList());
         }
     }
+
+    public List<Pacotetrecho> getListaTrecho() {
+        return listaTrecho;
+    }
+
+    public void setListaTrecho(List<Pacotetrecho> listaTrecho) {
+        this.listaTrecho = listaTrecho;
+    }
+
+    public Cambio getCambioPacote() {
+        return cambioPacote;
+    }
+
+    public void setCambioPacote(Cambio cambioPacote) {
+        this.cambioPacote = cambioPacote;
+    }
+
+    public float getValorGross() {
+        return valorGross;
+    }
+
+    public void setValorGross(float valorGross) {
+        this.valorGross = valorGross;
+    }
+
+    public float getValorNet() {
+        return valorNet;
+    }
+
+    public void setValorNet(float valorNet) {
+        this.valorNet = valorNet;
+    }
+
+    public float getComissaoloja() {
+        return comissaoloja;
+    }
+
+    public void setComissaoloja(float comissaoloja) {
+        this.comissaoloja = comissaoloja;
+    }
     
     private void calcularValoresCarro(List<Pacotecarro> listaCarros){
         if (listaCarros!=null){
             float valorgross=0.0f;
             float valornet=0.0f;
+            float comissaoloja = 0.0f;
             for(int i=0;i<listaCarros.size();i++){
                 if (listaCarros.get(i).getCambio().getMoedas().getSigla().equalsIgnoreCase(cambioPacote.getMoedas().getSigla())){
                     valorgross = valorgross + listaCarros.get(i).getValorgross();
                     valornet  = valornet + listaCarros.get(i).getValornet();
+                    comissaoloja = comissaoloja + listaCarros.get(i).getComissaoloja();
                 }else {
                     valorgross = converterCambio(listaCarros.get(i).getValorgross(), listaCarros.get(i).getCambio().getValor());
                     valornet = converterCambio(listaCarros.get(i).getValornet(), listaCarros.get(i).getCambio().getValor());
+                    comissaoloja = comissaoloja + listaCarros.get(i).getComissaoloja();
                 }
             }
+            this.comissaoloja = this.comissaoloja + comissaoloja;
             valorGross= valorgross + valorGross;
             valorNet = valorNet + valornet;
         }
@@ -71,15 +117,19 @@ public class FinalizarPacoteOperadora {
         if (lista!=null){
             float valorgross=0.0f;
             float valornet=0.0f;
+            float comissaoloja=0.0f;
             for(int i=0;i<lista.size();i++){
-//                if (lista.get(i).getCambio().getMoedas().getSigla().equalsIgnoreCase(cambioPacote.getMoedas().getSigla())){
-//                    valorgross = valorgross + lista.get(i).getValorgross();
-//                    valornet  = valornet + lista.get(i).getValornet();
-//                }else {
-//                    valorgross = converterCambio(lista.get(i).getValorgross(), lista.get(i).getCambio().getValor());
-//                    valornet = converterCambio(lista.get(i).getValornet(), lista.get(i).getCambio().getValor());
-//                }
+                if (lista.get(i).getCambio().getMoedas().getSigla().equalsIgnoreCase(cambioPacote.getMoedas().getSigla())){
+                    valorgross = valorgross + lista.get(i).getValorgross();
+                    valornet  = valornet + lista.get(i).getValornet();
+                    comissaoloja = comissaoloja + lista.get(i).getComissaoloja();
+                }else {
+                    valorgross = converterCambio(lista.get(i).getValorgross(), lista.get(i).getCambio().getValor());
+                    valornet = converterCambio(lista.get(i).getValornet(), lista.get(i).getCambio().getValor());
+                    comissaoloja = comissaoloja + lista.get(i).getComissaoloja();
+                }
             }
+            this.comissaoloja = this.comissaoloja + comissaoloja;
             valorGross= valorgross + valorGross;
             valorNet = valorNet + valornet;
         }
@@ -89,15 +139,19 @@ public class FinalizarPacoteOperadora {
         if (lista!=null){
             float valorgross=0.0f;
             float valornet=0.0f;
+            float comissaoloja=0.0f;
             for(int i=0;i<lista.size();i++){
                 if (lista.get(i).getCambio().getMoedas().getSigla().equalsIgnoreCase(cambioPacote.getMoedas().getSigla())){
                     valorgross = valorgross + lista.get(i).getValorgross();
                     valornet  = valornet + lista.get(i).getValornet();
+                    comissaoloja = comissaoloja + lista.get(i).getComissaoloja();
                 }else {
                     valorgross = converterCambio(lista.get(i).getValorgross(), lista.get(i).getCambio().getValor());
                     valornet = converterCambio(lista.get(i).getValornet(), lista.get(i).getCambio().getValor());
+                    comissaoloja = comissaoloja + lista.get(i).getComissaoloja();
                 }
             }
+            this.comissaoloja = this.comissaoloja + comissaoloja;
             valorGross= valorgross + valorGross;
             valorNet = valorNet + valornet;
         }
@@ -107,15 +161,19 @@ public class FinalizarPacoteOperadora {
         if (lista!=null){
             float valorgross=0.0f;
             float valornet=0.0f;
+            float comissaoloja=0.0f;
             for(int i=0;i<lista.size();i++){
                 if (lista.get(i).getCambio().getMoedas().getSigla().equalsIgnoreCase(cambioPacote.getMoedas().getSigla())){
                     valorgross = valorgross + lista.get(i).getValorgross();
                     valornet  = valornet + lista.get(i).getValornet();
+                    comissaoloja = comissaoloja + lista.get(i).getComissaoloja();
                 }else {
                     valorgross = converterCambio(lista.get(i).getValorgross(), lista.get(i).getCambio().getValor());
                     valornet = converterCambio(lista.get(i).getValornet(), lista.get(i).getCambio().getValor());
+                    comissaoloja = comissaoloja + lista.get(i).getComissaoloja();
                 }
             }
+            this.comissaoloja = this.comissaoloja + comissaoloja;
             valorGross= valorgross + valorGross;
             valorNet = valorNet + valornet;
         }
@@ -125,15 +183,19 @@ public class FinalizarPacoteOperadora {
         if (lista!=null){
             float valorgross=0.0f;
             float valornet=0.0f;
+            float comissaoloja=0.0f;
             for(int i=0;i<lista.size();i++){
                 if (lista.get(i).getCambio().getMoedas().getSigla().equalsIgnoreCase(cambioPacote.getMoedas().getSigla())){
                     valorgross = valorgross + lista.get(i).getValorgross();
                     valornet  = valornet + lista.get(i).getValornet();
+                    comissaoloja = comissaoloja + lista.get(i).getComissaoloja();
                 }else {
                     valorgross = converterCambio(lista.get(i).getValorgross(), lista.get(i).getCambio().getValor());
                     valornet = converterCambio(lista.get(i).getValornet(), lista.get(i).getCambio().getValor());
+                    comissaoloja = comissaoloja + lista.get(i).getComissaoloja();
                 }
             }
+            this.comissaoloja = this.comissaoloja + comissaoloja;
             valorGross= valorgross + valorGross;
             valorNet = valorNet + valornet;
         }
@@ -143,15 +205,20 @@ public class FinalizarPacoteOperadora {
         if (lista!=null){
             float valorgross=0.0f;
             float valornet=0.0f;
+            float comissaoloja=0.0f;
             for(int i=0;i<lista.size();i++){
                 if (lista.get(i).getCambio().getMoedas().getSigla().equalsIgnoreCase(cambioPacote.getMoedas().getSigla())){
                     valorgross = valorgross + lista.get(i).getValorgross();
                     valornet  = valornet + lista.get(i).getValornet();
+                    comissaoloja = comissaoloja + lista.get(i).getComissaoloja();
                 }else {
                     valorgross = converterCambio(lista.get(i).getValorgross(), lista.get(i).getCambio().getValor());
                     valornet = converterCambio(lista.get(i).getValornet(), lista.get(i).getCambio().getValor());
+                    comissaoloja = comissaoloja + lista.get(i).getComissaoloja();
+                    
                 }
             }
+            this.comissaoloja = this.comissaoloja + comissaoloja;
             valorGross= valorgross + valorGross;
             valorNet = valorNet + valornet;
         }
@@ -161,15 +228,19 @@ public class FinalizarPacoteOperadora {
         if (lista!=null){
             float valorgross=0.0f;
             float valornet=0.0f;
+            float comissaoloja=0.0f;
             for(int i=0;i<lista.size();i++){
                 if (lista.get(i).getCambio().getMoedas().getSigla().equalsIgnoreCase(cambioPacote.getMoedas().getSigla())){
                     valorgross = valorgross + lista.get(i).getValorgross();
                     valornet  = valornet + lista.get(i).getValornet();
+                    comissaoloja = comissaoloja + lista.get(i).getComissaoloja();
                 }else {
                     valorgross = converterCambio(lista.get(i).getValorgross(), lista.get(i).getCambio().getValor());
                     valornet = converterCambio(lista.get(i).getValornet(), lista.get(i).getCambio().getValor());
+                    comissaoloja = comissaoloja + lista.get(i).getComissaoloja();
                 }
             }
+            this.comissaoloja = this.comissaoloja + comissaoloja;
             valorGross= valorgross + valorGross;
             valorNet = valorNet + valornet;
         }
@@ -179,15 +250,19 @@ public class FinalizarPacoteOperadora {
         if (lista!=null){
             float valorgross=0.0f;
             float valornet=0.0f;
+            float comissaoloja=0.0f;
             for(int i=0;i<lista.size();i++){
                 if (lista.get(i).getCambio().getMoedas().getSigla().equalsIgnoreCase(cambioPacote.getMoedas().getSigla())){
                     valorgross = valorgross + lista.get(i).getValorgross();
                     valornet  = valornet + lista.get(i).getValornet();
+                    comissaoloja = comissaoloja + lista.get(i).getComissaoloja();
                 }else {
                     valorgross = converterCambio(lista.get(i).getValorgross(), lista.get(i).getCambio().getValor());
                     valornet = converterCambio(lista.get(i).getValornet(), lista.get(i).getCambio().getValor());
+                    comissaoloja = comissaoloja + lista.get(i).getComissaoloja();
                 }
             }
+            this.comissaoloja = this.comissaoloja + comissaoloja;
             valorGross= valorgross + valorGross;
             valorNet = valorNet + valornet;
         }

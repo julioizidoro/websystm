@@ -7,6 +7,7 @@ package br.com.travelmate.model;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -30,6 +31,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Produtosorcamento.findAll", query = "SELECT p FROM Produtosorcamento p")})
 public class Produtosorcamento implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "produtosorcamento")
+    private List<Valoresseguro> valoresseguroList;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -86,5 +89,13 @@ public class Produtosorcamento implements Serializable {
     @Override
     public String toString() {
         return "br.com.travelmate.model.Produtosorcamento[ idprodutosOrcamento=" + idprodutosOrcamento + " ]";
+    }
+
+    public List<Valoresseguro> getValoresseguroList() {
+        return valoresseguroList;
+    }
+
+    public void setValoresseguroList(List<Valoresseguro> valoresseguroList) {
+        this.valoresseguroList = valoresseguroList;
     }
 }

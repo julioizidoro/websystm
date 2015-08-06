@@ -54,30 +54,27 @@
                             <p:outputLabel value="Valor Moeda Nacional" for="moedanacional" class="espacocobranca24"/>
                             <p:outputLabel value="Comissão Loja" for="comissaoloja" class="imgadd"/>
                             <br></br>
-                            <p:inputText id="valornet" value="#{cadPacoteOperadoraMB.pacotes.valornet}" style="width:12%" class="fontebrancaa">
+                            <p:inputText id="valornet" value="#{cadPacoteOperadoraMB.pacotes.valornet}" style="width:12%" class="fontebrancaa" readonly="true">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 <p:ajax event="blur" />
                             </p:inputText>
                             
-                            <p:inputText id="valorgross" value="#{cadPacoteOperadoraMB.pacotes.valorgross}" style="width:13%" maxlength="15" class="espacocobranca24r">
-                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
-                                <p:ajax event="blur" update="comissao" listener="#{cadPacoteOperadoraMB.calcularComissao()}"/>
-                                <p:ajax event="blur" update="moedanacional"/>
-                            </p:inputText>
-                            <p:inputText id="comissao" value="#{cadPacoteOperadoraMB.pacotes.comissao}" style="width:12%" class="imgadr">
-                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
-                                <p:ajax event="blur" update="valorgross" listener="#{cadPacoteOperadoraMB.calcularValorGross()}" />
-                                <p:ajax event="blur" update="moedanacional"/>
-                            </p:inputText>
-                            <p:inputText id="moedanacional" value="#{cadPacoteOperadoraMB.pacotes.valormoedanacional}" style="width:15%" maxlength="15" class="imgadr" readonly="true">
+                            <p:inputText id="valorgross" value="#{cadPacoteOperadoraMB.pacotes.valorgross}" style="width:13%" maxlength="15" class="espacocobranca24r" readonly="true">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
-                            <p:inputText id="comissaoloja" value="#{cadPacoteOperadoraMB.pacotes.comissao}" style="width:13%" maxlength="15" class="imgadr" readonly="true">
+                            <p:inputText id="comissao" value="#{cadPacoteOperadoraMB.pacotes.comissao}" style="width:12%" class="imgadr" readonly="true">
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                            </p:inputText>
+                            <p:inputText id="moedanacional" value="#{cadPacoteOperadoraMB.pacotes.valormoedanacional}" style="width:15%" maxlength="15" class="imgadr" readonly="true" readonly="true">
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                            </p:inputText>
+                            <p:inputText id="comissaoloja" value="#{cadPacoteOperadoraMB.pacotes.comissaoloja}" style="width:13%" maxlength="15" class="imgadr" readonly="true" readonly="true">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
                             <p:commandButton id="btnfinalizar" class="imgadd" onclick="" icon="ui-icon-check" value="Finalizar" action="#{cadPacoteOperadoraMB.finalizar()}"  disabled="#{cadPacoteOperadoraMB.btnfinalizar}" ajax="false" >
                                 <p:ajax event="click" update="bntiniciar" listener="#{cadPacoteOperadoraMB.verificarBotoes()}" />
                                 <p:ajax event="click" update="btnfinalizar" />
+                                <p:ajax event="click" update="valornet, valorgross, comissao, moedanacional, comissaoloja"/>
                             </p:commandButton>
                             
                             <br></br><br></br>
@@ -94,7 +91,7 @@
                                 <f:selectItem itemLabel="Moedas" itemValue="0"/>
                                 <f:selectItems value="#{usuarioLogadoMB.listaCambio}" var="cambio" itemLabel="#{cambio.moedas.sigla}" itemValue="#{cambio.moedas.sigla}"/>
                             </p:selectOneMenu>
-                            <p:commandButton id="btnseguro" class="espacocampos6" onclick="" icon="ui-icon-plus" value="Adicionar Seguro" action="#{cadPacoteOperadoraMB.novoSeguro(trecho)}"/>
+                            <p:commandButton id="btnseguro" class="espacocampos6" onclick="" icon="ui-icon-plus" value="Adicionar Seguro" action="#{cadPacoteOperadoraMB.novoSeguro()}"/>
                             <br></br><br></br>
                             <legend id="iUsu4" ><b>Trecho</b></legend>
                             <p:inputText id="trecho" value="#{cadPacoteOperadoraMB.pacotetrecho.descritivo}" style="width:75%" maxlength="200" class="espacocampos2"/>

@@ -40,20 +40,18 @@ import org.primefaces.context.RequestContext;
  */
 @Named
 @ViewScoped
-public class CadPacoteOperadoraMB  implements Serializable{
-    
-     private Pacotes pacotes;
-     private List<Unidadenegocio> listaUnidadeNegocio;
-     private List<Pacotetrecho> listaTrecho;
-     private Pacotetrecho pacotetrecho;
-     @Inject
-     private UsuarioLogadoMB usuarioLogadoMB;
-     private Cambio cambio;
-     private boolean btniniciar=false;
-     private boolean btnfinalizar=true;
-     private FinalizarPacoteOperadora finalizarPacoteOperadora;
-    
-    
+public class CadPacoteOperadoraMB implements Serializable {
+
+    private Pacotes pacotes;
+    private List<Unidadenegocio> listaUnidadeNegocio;
+    private List<Pacotetrecho> listaTrecho;
+    private Pacotetrecho pacotetrecho;
+    @Inject
+    private UsuarioLogadoMB usuarioLogadoMB;
+    private Cambio cambio;
+    private boolean btniniciar = false;
+    private boolean btnfinalizar = true;
+
     @PostConstruct
     public void init() {
         FacesContext fc = FacesContext.getCurrentInstance();
@@ -61,7 +59,7 @@ public class CadPacoteOperadoraMB  implements Serializable{
         pacotes = (Pacotes) session.getAttribute("pacote");
         session.removeAttribute("pacote");
         if (this.pacotes == null) {
-            pacotetrecho = new Pacotetrecho();
+            pacotes = new Pacotes();
             listaTrecho = new ArrayList<Pacotetrecho>();
         } else {
             cambio = pacotes.getCambio();
@@ -135,16 +133,6 @@ public class CadPacoteOperadoraMB  implements Serializable{
         this.btnfinalizar = btnfinalizar;
     }
 
-    public FinalizarPacoteOperadora getFinalizarPacoteOperadora() {
-        return finalizarPacoteOperadora;
-    }
-
-    public void setFinalizarPacoteOperadora(FinalizarPacoteOperadora finalizarPacoteOperadora) {
-        this.finalizarPacoteOperadora = finalizarPacoteOperadora;
-    }
-    
-   
-    
     public String iniciarPacote() {
         if (pacotes.getVendas() == null) {
             FornecedorCidadeFacade fornecedorCidadeFacade = new FornecedorCidadeFacade();
@@ -180,9 +168,8 @@ public class CadPacoteOperadoraMB  implements Serializable{
         pacotes = pacotesFacade.salvar(pacotes);
         return "";
     }
-    
-    
-    public String adicionarTrecho(){
+
+    public String adicionarTrecho() {
         pacotetrecho.setPacotes(pacotes);
         PacoteTrechoFacade pacoteTrechoFacade = new PacoteTrechoFacade();
         pacoteTrechoFacade.salvar(pacotetrecho);
@@ -191,292 +178,274 @@ public class CadPacoteOperadoraMB  implements Serializable{
         pacotetrecho = new Pacotetrecho();
         return "";
     }
-    
-    public String finalizar(){
-        FacesContext fc = FacesContext.getCurrentInstance();  
+
+    public String finalizar() {
+        FacesContext fc = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
         session.removeAttribute("tipoOepracaoPacote");
         session.removeAttribute("pacoteTrecho");
-        finalizarPacoteOperadora = new FinalizarPacoteOperadora(listaTrecho, cambio);
+        FinalizarPacoteOperadora finalizarPacoteOperadora = new FinalizarPacoteOperadora(listaTrecho, cambio);
+        pacotes.setValorgross(finalizarPacoteOperadora.getValorGross());
+        pacotes.setValornet(finalizarPacoteOperadora.getValorNet());
+        pacotes.setValormoedanacional(pacotes.getValorgross() * pacotes.getCambio().getValor());
+        pacotes.setComissaoloja(finalizarPacoteOperadora.getComissaoloja());
+        Double valor = pacotes.getValorgross().doubleValue() - pacotes.getValornet().doubleValue();
+        pacotes.setComissao(valor);
+        PacotesFacade pacotesFacade = new PacotesFacade();
+        pacotes = pacotesFacade.salvar(pacotes);
         return null;
     }
-    
-    
-    
-    public String novoCarro(Pacotetrecho pacotetrecho){
-        if (pacotetrecho!=null){
-            FacesContext fc = FacesContext.getCurrentInstance();  
+
+    public String novoCarro(Pacotetrecho pacotetrecho) {
+        if (pacotetrecho != null) {
+            FacesContext fc = FacesContext.getCurrentInstance();
             HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
             session.setAttribute("pacoteTrecho", pacotetrecho);
             //return "pacotecarro";
             RequestContext.getCurrentInstance().openDialog("pacotecarroteste");
-        }else {
+        } else {
             FacesMessage mensagem = new FacesMessage("Atenção! ", "Trecho Não Localizado.");
             FacesContext.getCurrentInstance().addMessage(null, mensagem);
         }
         return "";
     }
-    
-    public String novoCruzeiro(Pacotetrecho pacotetrecho){
-        if (pacotetrecho!=null){
-            FacesContext fc = FacesContext.getCurrentInstance();  
+
+    public String novoCruzeiro(Pacotetrecho pacotetrecho) {
+        if (pacotetrecho != null) {
+            FacesContext fc = FacesContext.getCurrentInstance();
             HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
             session.setAttribute("pacoteTrecho", pacotetrecho);
-           // return "pacotecruzeiro";
-             RequestContext.getCurrentInstance().openDialog("pacotecruzeiro");
-        }else {
+            // return "pacotecruzeiro";
+            RequestContext.getCurrentInstance().openDialog("pacotecruzeiro");
+        } else {
             FacesMessage mensagem = new FacesMessage("Atenção! ", "Trecho Não Localizado.");
             FacesContext.getCurrentInstance().addMessage(null, mensagem);
         }
         return "";
     }
-    
-    public String novoHotel(Pacotetrecho pacotetrecho){
-        if (pacotetrecho!=null){
-            FacesContext fc = FacesContext.getCurrentInstance();  
+
+    public String novoHotel(Pacotetrecho pacotetrecho) {
+        if (pacotetrecho != null) {
+            FacesContext fc = FacesContext.getCurrentInstance();
             HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
             session.setAttribute("pacoteTrecho", pacotetrecho);
             RequestContext.getCurrentInstance().openDialog("pacotehotel");
             return "";
-        }else {
+        } else {
             FacesMessage mensagem = new FacesMessage("Atenção! ", "Trecho Não Localizado.");
             FacesContext.getCurrentInstance().addMessage(null, mensagem);
         }
         return "";
     }
-    
-    public String novoTrem(Pacotetrecho pacotetrecho){
-        if (pacotetrecho!=null){
-            FacesContext fc = FacesContext.getCurrentInstance();  
+
+    public String novoTrem(Pacotetrecho pacotetrecho) {
+        if (pacotetrecho != null) {
+            FacesContext fc = FacesContext.getCurrentInstance();
             HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
             session.setAttribute("pacoteTrecho", pacotetrecho);
             //return "pacotetrem";
             RequestContext.getCurrentInstance().openDialog("pacotetrem");
             return "";
-        }else {
+        } else {
             FacesMessage mensagem = new FacesMessage("Atenção! ", "Trecho Não Localizado.");
             FacesContext.getCurrentInstance().addMessage(null, mensagem);
         }
         return "";
     }
-    
-    public String novoTransfer(Pacotetrecho pacotetrecho){
-        if (pacotetrecho!=null){
-            FacesContext fc = FacesContext.getCurrentInstance();  
+
+    public String novoTransfer(Pacotetrecho pacotetrecho) {
+        if (pacotetrecho != null) {
+            FacesContext fc = FacesContext.getCurrentInstance();
             HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
             session.setAttribute("pacoteTrecho", pacotetrecho);
-           // return "pacotetransfer";
-             RequestContext.getCurrentInstance().openDialog("pacotetransfer");
+            // return "pacotetransfer";
+            RequestContext.getCurrentInstance().openDialog("pacotetransfer");
             return "";
-        }else {
+        } else {
             FacesMessage mensagem = new FacesMessage("Atenção! ", "Trecho Não Localizado.");
             FacesContext.getCurrentInstance().addMessage(null, mensagem);
         }
         return "";
     }
-    
-    public String novoIngresso(Pacotetrecho pacotetrecho){
-        if (pacotetrecho!=null){
-            FacesContext fc = FacesContext.getCurrentInstance();  
+
+    public String novoIngresso(Pacotetrecho pacotetrecho) {
+        if (pacotetrecho != null) {
+            FacesContext fc = FacesContext.getCurrentInstance();
             HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
             session.setAttribute("pacoteTrecho", pacotetrecho);
-           // return "pacoteingresso";
+            // return "pacoteingresso";
             RequestContext.getCurrentInstance().openDialog("pacoteingresso");
             return "";
-        }else {
+        } else {
             FacesMessage mensagem = new FacesMessage("Atenção! ", "Trecho Não Localizado.");
             FacesContext.getCurrentInstance().addMessage(null, mensagem);
         }
         return "";
     }
-    
-    public String novoPasseio(Pacotetrecho pacotetrecho){
-        if (pacotetrecho!=null){
-            FacesContext fc = FacesContext.getCurrentInstance();  
+
+    public String novoPasseio(Pacotetrecho pacotetrecho) {
+        if (pacotetrecho != null) {
+            FacesContext fc = FacesContext.getCurrentInstance();
             HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
             session.setAttribute("pacoteTrecho", pacotetrecho);
-           // return "pacotepasseio";
+            // return "pacotepasseio";
             RequestContext.getCurrentInstance().openDialog("pacotepasseio");
             return "";
-        }else {
+        } else {
             FacesMessage mensagem = new FacesMessage("Atenção! ", "Trecho Não Localizado.");
             FacesContext.getCurrentInstance().addMessage(null, mensagem);
         }
         return "";
     }
-    
-     public String novoSeguro(Pacotes pacotes){
-            FacesContext fc = FacesContext.getCurrentInstance();  
-            HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
-            session.setAttribute("pacote", pacotes);
-            RequestContext.getCurrentInstance().openDialog("pacoteseguro");
-            return "";
+
+    public String novoSeguro() {
+        FacesContext fc = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+        session.setAttribute("pacote", pacotes);
+        RequestContext.getCurrentInstance().openDialog("pacoteseguro");
+        return "";
     }
-     public String novoPassagem(Pacotetrecho pacotetrecho){
-        if (pacotetrecho!=null){
-            FacesContext fc = FacesContext.getCurrentInstance();  
+
+    public String novoPassagem(Pacotetrecho pacotetrecho) {
+        if (pacotetrecho != null) {
+            FacesContext fc = FacesContext.getCurrentInstance();
             HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
             session.setAttribute("pacoteTrecho", pacotetrecho);
             //return "pacoteaereo";
-             RequestContext.getCurrentInstance().openDialog("pacoteaereo");
-              return "";
-        }else {
+            RequestContext.getCurrentInstance().openDialog("pacoteaereo");
+            return "";
+        } else {
             FacesMessage mensagem = new FacesMessage("Atenção! ", "Trecho Não Localizado.");
             FacesContext.getCurrentInstance().addMessage(null, mensagem);
         }
         return "";
     }
-    
+
     public String imagemAereo(Pacotetrecho pacotetrecho) {
         boolean verdade = true;
-        if (pacotetrecho.getPacotepassagemList()==null){
+        if (pacotetrecho.getPacotepassagemList() == null) {
             verdade = false;
-        }else if (pacotetrecho.getPacotepassagemList().size()==0){
-            verdade=false;
+        } else if (pacotetrecho.getPacotepassagemList().size() == 0) {
+            verdade = false;
         }
-        if(verdade){
+        if (verdade) {
             return "../../resources/img/aereoverde.png";
-        }else{
-             return "../../resources/img/aereovermelho.png";
+        } else {
+            return "../../resources/img/aereovermelho.png";
         }
     }
-    
+
     public String imagemCarro(Pacotetrecho pacotetrecho) {
-         boolean verdade = true;
-        if (pacotetrecho.getPacotecarroList()==null){
+        boolean verdade = true;
+        if (pacotetrecho.getPacotecarroList() == null) {
             verdade = false;
-        }else if (pacotetrecho.getPacotecarroList().size()==0){
-            verdade=false;
+        } else if (pacotetrecho.getPacotecarroList().size() == 0) {
+            verdade = false;
         }
-        if(verdade){
+        if (verdade) {
             return "../../resources/img/carroverde.png";
-        }else{
-             return "../../resources/img/carrovermelho.png";
+        } else {
+            return "../../resources/img/carrovermelho.png";
         }
     }
-    
+
     public String imagemCruzeiro(Pacotetrecho pacotetrecho) {
         boolean verdade = true;
-        if (pacotetrecho.getPacotecruzeiroList()==null){
+        if (pacotetrecho.getPacotecruzeiroList() == null) {
             verdade = false;
-        }else if (pacotetrecho.getPacotecruzeiroList().size()==0){
-            verdade=false;
+        } else if (pacotetrecho.getPacotecruzeiroList().size() == 0) {
+            verdade = false;
         }
-        if(verdade){
+        if (verdade) {
             return "../../resources/img/cruzeiroverde.png";
-        }else{
+        } else {
             return "../../resources/img/cruzeirovermelho.png";
         }
     }
-    
+
     public String imagemHotel(Pacotetrecho pacotetrecho) {
-         boolean verdade = true;
-        if (pacotetrecho.getPacotehotelList()==null){
+        boolean verdade = true;
+        if (pacotetrecho.getPacotehotelList() == null) {
             verdade = false;
-        }else if (pacotetrecho.getPacotehotelList().size()==0){
-            verdade=false;
+        } else if (pacotetrecho.getPacotehotelList().size() == 0) {
+            verdade = false;
         }
-        if(verdade){
+        if (verdade) {
             return "../../resources/img/hotelverde.png";
         } else {
             return "../../resources/img/hotelvermelho.png";
         }
 
     }
-    
+
     public String imagemIngresso(Pacotetrecho pacotetrecho) {
-         boolean verdade = true;
-        if (pacotetrecho.getPacoteingressoList()==null){
+        boolean verdade = true;
+        if (pacotetrecho.getPacoteingressoList() == null) {
             verdade = false;
-        }else if (pacotetrecho.getPacoteingressoList().size()==0){
-            verdade=false;
+        } else if (pacotetrecho.getPacoteingressoList().size() == 0) {
+            verdade = false;
         }
-        if(verdade){
+        if (verdade) {
             return "../../resources/img/ingressoverde.png";
-        }else{
+        } else {
             return "../../resources/img/ingressovermelho.png";
         }
     }
-    
+
     public String imagemPasseio(Pacotetrecho pacotetrecho) {
         boolean verdade = true;
-        if (pacotetrecho.getPacotepasseioList()==null){
+        if (pacotetrecho.getPacotepasseioList() == null) {
             verdade = false;
-        }else if (pacotetrecho.getPacotepasseioList().size()==0){
-            verdade=false;
+        } else if (pacotetrecho.getPacotepasseioList().size() == 0) {
+            verdade = false;
         }
-        if(verdade){
+        if (verdade) {
             return "../../resources/img/passeioverdeb.png";
-        }else{
-             return "../../resources/img/passeiovermelhob.png";
-         }
+        } else {
+            return "../../resources/img/passeiovermelhob.png";
+        }
     }
-    
+
     public String imagemTransfer(Pacotetrecho pacotetrecho) {
         boolean verdade = true;
-        if (pacotetrecho.getPacotetransferList()==null){
+        if (pacotetrecho.getPacotetransferList() == null) {
             verdade = false;
-        }else if (pacotetrecho.getPacotetransferList().size()==0){
-            verdade=false;
+        } else if (pacotetrecho.getPacotetransferList().size() == 0) {
+            verdade = false;
         }
-        if(verdade){
+        if (verdade) {
             return "../../resources/img/tranferverde.png";
-        }else{
-             return "../../resources/img/transfervermelho.png";
+        } else {
+            return "../../resources/img/transfervermelho.png";
         }
     }
-    
+
     public String imagemTrem(Pacotetrecho pacotetrecho) {
         boolean verdade = true;
-        if (pacotetrecho.getPacotetremList()==null){
+        if (pacotetrecho.getPacotetremList() == null) {
             verdade = false;
-        }else if (pacotetrecho.getPacotetremList().size()==0){
-            verdade=false;
+        } else if (pacotetrecho.getPacotetremList().size() == 0) {
+            verdade = false;
         }
-        if(verdade){
+        if (verdade) {
             return "../../resources/img/tremverde.png";
-        }else{
-              return "../../resources/img/tremvermelho.png";
-         }
+        } else {
+            return "../../resources/img/tremvermelho.png";
+        }
     }
+
     public String imagemSeguro(Pacotetrecho pacotetrecho) {
-        
-            return "../../resources/img/segurovermelho.png";
+
+        return "../../resources/img/segurovermelho.png";
     }
-    
-    public void verificarBotoes(){
-        if (btniniciar){
-            btniniciar=false;
-            btnfinalizar=true;
-        }else {
-            btniniciar=true;
-            btnfinalizar=false;
+
+    public void verificarBotoes() {
+        if (btniniciar) {
+            btniniciar = false;
+            btnfinalizar = true;
+        } else {
+            btniniciar = true;
+            btnfinalizar = false;
         }
-    }
-    
-   public void calcularValorGross(){
-        float valorNet = pacotes.getValornet();
-        double comissao = pacotes.getComissao();
-        float valorGross = 0.0f;
-        if ((valorNet>0) && (comissao>0)){
-            comissao = comissao /100;
-            comissao = comissao + 1;
-            valorGross = (float) (valorNet * comissao);
-        }
-        pacotes.setValorgross(valorGross);
-        pacotes.setValormoedanacional(pacotes.getValorgross() * cambio.getValor());
-    }
-    
-    public void calcularComissao(){
-        float valorNet = pacotes.getValornet();
-        double comissao = pacotes.getComissao();
-        float valorGross = pacotes.getValorgross();
-        if ((valorNet>0) && (valorGross>0)){
-            comissao = valorGross / valorNet;
-            comissao = comissao - 1;
-            comissao = comissao * 100;
-        }
-        pacotes.setComissao(comissao);
-        pacotes.setValormoedanacional(pacotes.getValorgross() * cambio.getValor());
     }
 }

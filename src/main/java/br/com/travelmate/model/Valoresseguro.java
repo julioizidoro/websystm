@@ -21,7 +21,7 @@ import javax.validation.constraints.Size;
 
 /**
  *
- * @author Kamila Rodrigues
+ * @author Wolverine
  */
 @Entity
 @Table(name = "valoresseguro")
@@ -49,12 +49,18 @@ public class Valoresseguro implements Serializable {
     @Size(max = 30)
     @Column(name = "situacao")
     private String situacao;
+    @Size(max = 20)
+    @Column(name = "cobranca")
+    private String cobranca;
     @JoinColumn(name = "fornecedorcidade_idfornecedorcidade", referencedColumnName = "idfornecedorcidade")
     @ManyToOne(optional = false)
     private Fornecedorcidade fornecedorcidade;
     @JoinColumn(name = "produtosOrcamento_idprodutosOrcamento", referencedColumnName = "idprodutosOrcamento")
     @ManyToOne(optional = false)
     private Produtosorcamento produtosorcamento;
+    @JoinColumn(name = "moedas_idmoedas", referencedColumnName = "idmoedas")
+    @ManyToOne(optional = false)
+    private Moedas moedas;
 
     public Valoresseguro() {
     }
@@ -119,6 +125,14 @@ public class Valoresseguro implements Serializable {
         this.situacao = situacao;
     }
 
+    public String getCobranca() {
+        return cobranca;
+    }
+
+    public void setCobranca(String cobranca) {
+        this.cobranca = cobranca;
+    }
+
     public Fornecedorcidade getFornecedorcidade() {
         return fornecedorcidade;
     }
@@ -133,6 +147,14 @@ public class Valoresseguro implements Serializable {
 
     public void setProdutosorcamento(Produtosorcamento produtosorcamento) {
         this.produtosorcamento = produtosorcamento;
+    }
+
+    public Moedas getMoedas() {
+        return moedas;
+    }
+
+    public void setMoedas(Moedas moedas) {
+        this.moedas = moedas;
     }
 
     @Override
