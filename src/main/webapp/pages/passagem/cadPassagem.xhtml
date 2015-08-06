@@ -68,9 +68,9 @@
                             <br></br><br></br>
                             <legend id="iUsu3" ><b>Passageiro</b></legend>
                             <p:outputLabel value="Nome" for="nome" class="espaco0p" style="font-size:10px;"/> 
-                            <p:outputLabel value="Data Nascimento" for="datasnac" class="espacocobranca27" style="font-size:10px;"/>
-                            <p:outputLabel value="RG/Passaporte" for="rgPassaporte" class="espacocobranca15" style="font-size:10px;"/>
-                            <p:outputLabel value="Categoria" for="idpassageirotipo" class="espacocobranca15" style="font-size:10px;"/> 
+                            <p:outputLabel value="Data Nascimento" for="datasnac" class="espacocobranca9" style="font-size:10px;"/>
+                            <p:outputLabel value="RG/Passaporte" for="rgPassaporte" class="espacocobranca5" style="font-size:10px;"/>
+                            <p:outputLabel value="Categoria" for="idpassageirotipo" class="espacocobranca5" style="font-size:10px;"/> 
                             <br></br>
                             <p:inputText id="nome" style="width:30%;" class="camposs" value="#{passagemMB.passageirosBean.nome}"  />
                             <p:inputMask mask="99/99/9999" id="datasnac" style="width:14%;" class="espacocobranca28" value="#{passagemMB.passageirosBean.dataNascimento}">
@@ -119,34 +119,38 @@
                             <legend id="iUsu3" style="font-size:11px;"><b>Valores</b></legend>
 
                             <p:outputLabel value="Câmbio" for="moeda" class=""/>
-                            <p:outputLabel value="Valor do Câmbio" for="idvalorcambio" class="espacocobranca5"/>
-                            <p:outputLabel value="Valor Net" for="valornet" class="espacocobranca5"/>
+                            <p:outputLabel value="Valor do Câmbio" for="idvalorcambio" class="espacocobranca14"/>
+                            <p:outputLabel value="Valor Net" for="valornet" class="espacocobranca20"/>
                             <p:outputLabel value="Comissão" for="comissao" class="espacocobranca20"/>
-                            <p:outputLabel value="Valor Gross" for="valorgross" class="espacocampos6"/>
+                            <p:outputLabel value="Valor Gross" for="valorgross" class="espacocobranca28"/>
                             <p:outputLabel value="Valor Moeda Nacional" for="moedanacional" class="espacocampos6"/>
+                            <p:outputLabel value="Comissão Loja" for="comissaoloja" class="imgadd"/>
                             <br></br>
-                            <p:selectOneMenu class="espacocampos2" style="width:12%;" id="moeda"  value="#{trechosMB.cambio}" converter="CambioConverter">
+                            <p:selectOneMenu class="espacocampos2" style="width:10%;" id="moeda"  value="#{trechosMB.cambio}" converter="CambioConverter">
                                 <f:selectItem itemLabel="Moedas" itemValue="0"/> 
                                 <f:selectItems value="#{usuarioLogadoMB.listaCambio}" var="cambio" itemLabel="#{cambio.moedas.sigla}" itemValue="#{cambio}"/>
                                 <f:attribute name="listaCambio" value="#{usuarioLogadoMB.listaCambio}"/>
                                 <p:ajax event="change" update="idvalorcambio" />
                             </p:selectOneMenu>
-                            <p:inputText id="idvalorcambio" value="#{trechosMB.cambio.valor}" style="width:14%;" class="espacocobranca29r">
+                            <p:inputText id="idvalorcambio" value="#{trechosMB.cambio.valor}" style="width:12%;" class="espacocobranca29r">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>  
                             <h:commandLink action="#"  title="Editar Câmbio">  
                                 <img id="editarcambio" class="" src="../../resources/img/cambio_1.png"/>
                             </h:commandLink>
-                            <p:inputText id="valornet" value="#{passagemMB.passagem.valornet}" style="width:10%;" class="espacocobranca20rig">
+                            <p:inputText id="valornet" value="#{passagemMB.passagem.valornet}" style="width:10%;" class="espacocobranca29r">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
-                            <p:inputText id="comissao" value="" style="width:12%;" class="espacocobranca29r">
+                            <p:inputText id="comissao" value="" style="width:10%;" class="espacocobranca29r">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
                             <p:inputText id="valorgross" value="#{passagemMB.passagem.valorgorss}" style="width:13%;" maxlength="15" class="espacocobranca29r">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
-                            <p:inputText id="moedanacional" value="" style="width:22%;" maxlength="11" class="espacocampos6right">
+                            <p:inputText id="moedanacional" value="#{passagemMB.passagem.valormoedanacional}" style="width:16%;" maxlength="11" class="espacocampos6right">
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                            </p:inputText>
+                            <p:inputText id="comissaoloja" value="#{passagemMB.passagem.comissaoloja}" style="width:14%;" maxlength="11" class="espacocampos6right">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
                             <br></br><br></br><br></br>
@@ -155,7 +159,7 @@
                             <p:outputLabel value="Taxa Embarque" for="embarque" class="espacocobranca19" style="font-size: 11px"/>
                             <p:outputLabel value="Tarifa Unitária  CHD" for="chd" class="espacocobranca19" style="font-size: 11px"/>
                             <br></br>
-                            <p:inputText id="cambio" style="width:10%;"  class="campossr" value="#{passagemMB.passagem.valorCambio}"  />
+                            <p:inputText id="cambio" style="width:10%;height:32px"  class="campossr" value="#{passagemMB.passagem.valorCambio}"  />
                             <p:inputText onfocus="this.value = 'US$';" id="unitaria1" style="width:12%;" class="espacocobranca20rig" value="#{passagemMB.passagem.tuadtme}"/>
                             <p:inputText onfocus="this.value = 'R$';" id="unitaria2" style="width:10%;" class="imgadr" value="#{passagemMB.passagem.tuadtml}"/>
                             <p:inputText id="embarque" style="width:11%;" class="espacocobranca20rig" value="#{passagemMB.passagem.teme}"  />
@@ -309,14 +313,14 @@
 
                         <p:tab titleStyle="color:#fff;background: #ccc;font-size:10px;" title="Obs">
                             <h:panelGrid columns="1" cellpadding="3"  >
-                                <p:inputTextarea id="obs" cols="100" rows="10" class="fontebranca" value="#{ContasReceberMB.totalconta}"  />
+                                <p:inputTextarea id="obs" cols="130" rows="10" class="fontebranca" value="#{ContasReceberMB.totalconta}"  />
                             </h:panelGrid>
                         </p:tab>
 
                         <p:tab titleStyle="background:#ccc;font-size:10px;" title="Obs TM">
                             <h:panelGrid columns="1" cellpadding="3">
                                 <p:outputLabel value="Observações que serão enviadas ao Departamento Responsável e ao Departamento Financeiro da TravelMate" for="obstm" class="fontepretas" style="font-size: 11px;"/> 
-                                <p:inputTextarea id="obstm" cols="100" rows="10"  class="fontebranca" value="#{ContasReceberMB.totalconta}"  />
+                                <p:inputTextarea id="obstm" cols="130" rows="10"  class="fontebranca" value="#{ContasReceberMB.totalconta}"  />
 
                             </h:panelGrid>
                         </p:tab>
