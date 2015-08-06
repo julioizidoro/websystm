@@ -6,7 +6,6 @@
 package br.com.travelmate.managerBean;
 
 import br.com.travelmate.facade.PacoteTransferFacade;
-import br.com.travelmate.facade.PaisFacade;
 import br.com.travelmate.facade.PaisProdutoFacade;
 import br.com.travelmate.model.Cambio;
 import br.com.travelmate.model.Cidade;
@@ -24,6 +23,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
+import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -158,7 +158,8 @@ public class PacoteTransferMB implements Serializable{
         HttpSession session = (HttpSession) context.getExternalContext().getSession(false);  
         session.setAttribute("pacote", pacotetransfer.getPacotetrecho().getPacotes());
         if (pacotetransfer.getPacotetrecho().getPacotes().getOperacao().equalsIgnoreCase("Operadora")){
-            return "cadpacotesoperadora";
+            RequestContext.getCurrentInstance().closeDialog("cadpacotesoperadora");
+            return "";
         }else return "cadPacote";
     }
     
@@ -188,6 +189,29 @@ public class PacoteTransferMB implements Serializable{
         pacotetransfer.setValormoedanacional(pacotetransfer.getValorgross() * cambio.getValor());
     }
     
+    public String cancelar(){
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) context.getExternalContext().getSession(false);  
+        session.setAttribute("pacote", pacotetransfer.getPacotetrecho().getPacotes());
+        if (pacotetransfer.getPacotetrecho().getPacotes().getOperacao().equalsIgnoreCase("Operadora")){
+            RequestContext.getCurrentInstance().closeDialog("cadpacotesoperadora");
+            return "";
+        }else return "cadPacote";
+    }
+    
+    public String excluir(){
+        PacoteTransferFacade pacoteTransferFacade = new PacoteTransferFacade();
+        pacoteTransferFacade.excluir(pacotetransfer.getIdpacotetransfer());
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage("Excluído com Sucesso", ""));
+        HttpSession session = (HttpSession) context.getExternalContext().getSession(false);  
+        session.setAttribute("pacote", pacotetransfer.getPacotetrecho().getPacotes());
+        if (pacotetransfer.getPacotetrecho().getPacotes().getOperacao().equalsIgnoreCase("Operadora")){
+            //return "cadpacotesoperadora";
+            RequestContext.getCurrentInstance().closeDialog("cadpacotesoperadora");
+            return "";
+        }else return "cadPacote";
+    }
     
     
 }

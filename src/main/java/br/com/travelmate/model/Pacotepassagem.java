@@ -264,6 +264,8 @@ public class Pacotepassagem implements Serializable {
     private Float valormoedanacional;
     @Column(name = "comissao")
     private Float comissao;
+    @Column(name = "comissaoloja")
+    private Float comissaoloja;
     @JoinColumn(name = "cambio_idcambio", referencedColumnName = "idcambio")
     @ManyToOne(optional = false)
     private Cambio cambio;
@@ -347,14 +349,6 @@ public class Pacotepassagem implements Serializable {
 
     public String getPax01() {
         return pax01;
-    }
-
-    public Float getComissao() {
-        return comissao;
-    }
-
-    public void setComissao(Float comissao) {
-        this.comissao = comissao;
     }
 
     public void setPax01(String pax01) {
@@ -951,6 +945,22 @@ public class Pacotepassagem implements Serializable {
 
     public void setValormoedanacional(Float valormoedanacional) {
         this.valormoedanacional = valormoedanacional;
+    }
+
+    public Float getComissao() {
+        return comissao;
+    }
+
+    public void setComissao(Float comissao) {
+        this.comissao = comissao;
+    }
+
+    public Float getComissaoloja() {
+        return comissaoloja;
+    }
+
+    public void setComissaoloja(Float comissaoloja) {
+        this.comissaoloja = comissaoloja;
     }
 
     public Cambio getCambio() {

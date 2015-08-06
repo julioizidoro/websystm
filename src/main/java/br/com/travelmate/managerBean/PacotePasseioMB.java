@@ -27,6 +27,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
+import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -208,7 +209,8 @@ public class PacotePasseioMB implements Serializable{
         HttpSession session = (HttpSession) context.getExternalContext().getSession(false);  
         session.setAttribute("pacote", pacotepasseio.getPacotetrecho().getPacotes());
         if (pacotepasseio.getPacotetrecho().getPacotes().getOperacao().equalsIgnoreCase("Operadora")){
-            return "cadpacotesoperadora";
+            RequestContext.getCurrentInstance().closeDialog("cadpacotesoperadora");
+            return "";
         }else return "cadPacote";
     }
     

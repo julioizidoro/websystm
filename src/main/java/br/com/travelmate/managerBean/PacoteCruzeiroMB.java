@@ -196,4 +196,28 @@ public class PacoteCruzeiroMB implements Serializable{
         pacotecruzeiro.setComissao(comissao);
         pacotecruzeiro.setValormoedanacional(pacotecruzeiro.getValorgross() * cambio.getValor());
     }
+    
+    public String cancelar(){
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) context.getExternalContext().getSession(false);  
+        session.setAttribute("pacote", pacotecruzeiro.getPacotetrecho().getPacotes());
+        if (pacotecruzeiro.getPacotetrecho().getPacotes().getOperacao().equalsIgnoreCase("Operadora")){
+            RequestContext.getCurrentInstance().closeDialog("cadpacotesoperadora");
+            return "";
+        }else return "cadPacote";
+    }
+    
+    public String excluir(){
+        PacoteCruzeiroFacade pacoteCruzeiroFacade = new PacoteCruzeiroFacade();
+        pacoteCruzeiroFacade.excluir(pacotecruzeiro.getIdpacotecruzeiro());
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage("Excluído com Sucesso", ""));
+        HttpSession session = (HttpSession) context.getExternalContext().getSession(false);  
+        session.setAttribute("pacote", pacotecruzeiro.getPacotetrecho().getPacotes());
+        if (pacotecruzeiro.getPacotetrecho().getPacotes().getOperacao().equalsIgnoreCase("Operadora")){
+            //return "cadpacotesoperadora";
+            RequestContext.getCurrentInstance().closeDialog("cadpacotesoperadora");
+            return "";
+        }else return "cadPacote";
+    }
 }

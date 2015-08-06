@@ -78,6 +78,8 @@ public class Pacotehotel implements Serializable {
     private Float valorgross;
     @Column(name = "comissao")
     private Float comissao;
+    @Column(name = "comissaoloja")
+    private Float comissaoloja;
     @JoinColumn(name = "cambio_idcambio", referencedColumnName = "idcambio")
     @ManyToOne(optional = false)
     private Cambio cambio;
@@ -213,6 +215,14 @@ public class Pacotehotel implements Serializable {
 
     public void setComissao(Float comissao) {
         this.comissao = comissao;
+    }
+
+    public Float getComissaoloja() {
+        return comissaoloja;
+    }
+
+    public void setComissaoloja(Float comissaoloja) {
+        this.comissaoloja = comissaoloja;
     }
 
     public Cambio getCambio() {

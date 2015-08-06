@@ -363,13 +363,13 @@ public class PacotePassagemMB implements Serializable{
     }
     
     public String salvarPassagem(){
-        PacotesPassagemFacade pacoteCruzeiroFacade = new PacotesPassagemFacade();
+        PacotesPassagemFacade pacotePassagemFacade = new PacotesPassagemFacade();
         if (listaPassageirosBean.size()>0){
             salvarPassageiro();
         }
         pacotepassagem.setFornecedorcidade(fornecedorcidade);
         pacotepassagem.setCambio(cambio);
-        pacotepassagem = pacoteCruzeiroFacade.salvar(pacotepassagem);
+        pacotepassagem = pacotePassagemFacade.salvar(pacotepassagem);
         fornecedorcidade = new Fornecedorcidade();
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage("Salvo com Sucesso", ""));
@@ -382,18 +382,6 @@ public class PacotePassagemMB implements Serializable{
             RequestContext.getCurrentInstance().closeDialog("cadPacote");
             return "";
         }   
-    }
-    
-    public String cancelar(){
-        Pacotetrecho pacotetrecho = pacotepassagem.getPacotetrecho();
-        pacotepassagem = new Pacotepassagem();
-        pacotepassagem.setPacotetrecho(pacotetrecho);
-        fornecedorcidade = new Fornecedorcidade();
-        FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage("Cancelado", ""));
-        HttpSession session = (HttpSession) context.getExternalContext().getSession(false);  
-        session.setAttribute("pacoteTrecho", pacotetrecho);
-        return "cadpacotesoperadora";
     }
     
     public void salvarPassageiro(){
@@ -450,5 +438,29 @@ public class PacotePassagemMB implements Serializable{
                 pacotepassagem.setTipopax10(listaPassageirosBean.get(i).getTipo());
             }
         }
+    }
+    
+    public String cancelar(){
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) context.getExternalContext().getSession(false);  
+        session.setAttribute("pacote", pacotepassagem.getPacotetrecho().getPacotes());
+        if (pacotepassagem.getPacotetrecho().getPacotes().getOperacao().equalsIgnoreCase("Operadora")){
+            RequestContext.getCurrentInstance().closeDialog("cadpacotesoperadora");
+            return "";
+        }else return "cadPacote";
+    }
+    
+    public String excluir(){
+        PacotesPassagemFacade pacotePassagemFacade = new PacotesPassagemFacade();
+        pacotePassagemFacade.excluir(pacotepassagem.getIdpacotepassagem());
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage("Excluído com Sucesso", ""));
+        HttpSession session = (HttpSession) context.getExternalContext().getSession(false);  
+        session.setAttribute("pacote", pacotepassagem.getPacotetrecho().getPacotes());
+        if (pacotepassagem.getPacotetrecho().getPacotes().getOperacao().equalsIgnoreCase("Operadora")){
+            //return "cadpacotesoperadora";
+            RequestContext.getCurrentInstance().closeDialog("cadpacotesoperadora");
+            return "";
+        }else return "cadPacote";
     }
 }

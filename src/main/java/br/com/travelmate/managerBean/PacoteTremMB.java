@@ -24,6 +24,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
+import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -156,7 +157,8 @@ public class PacoteTremMB implements Serializable{
         HttpSession session = (HttpSession) context.getExternalContext().getSession(false);  
         session.setAttribute("pacote", pacotetrem.getPacotetrecho().getPacotes());
         if (pacotetrem.getPacotetrecho().getPacotes().getOperacao().equalsIgnoreCase("Operadora")){
-            return "cadpacotesoperadora";
+            RequestContext.getCurrentInstance().closeDialog("cadpacotesoperadora");
+            return "";
         }else return "cadPacote";
     }
     
@@ -187,6 +189,28 @@ public class PacoteTremMB implements Serializable{
     }
     
     
+    public String cancelar(){
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) context.getExternalContext().getSession(false);  
+        session.setAttribute("pacote", pacotetrem.getPacotetrecho().getPacotes());
+        if (pacotetrem.getPacotetrecho().getPacotes().getOperacao().equalsIgnoreCase("Operadora")){
+            RequestContext.getCurrentInstance().closeDialog("cadpacotesoperadora");
+            return "";
+        }else return "cadPacote";
+    }
     
+    public String excluir(){
+        PacoteTremFacade pacoteTremFacade = new PacoteTremFacade();
+        pacoteTremFacade.excluir(pacotetrem.getIdpacotetrem());
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage("Excluído com Sucesso", ""));
+        HttpSession session = (HttpSession) context.getExternalContext().getSession(false);  
+        session.setAttribute("pacote", pacotetrem.getPacotetrecho().getPacotes());
+        if (pacotetrem.getPacotetrecho().getPacotes().getOperacao().equalsIgnoreCase("Operadora")){
+            //return "cadpacotesoperadora";
+            RequestContext.getCurrentInstance().closeDialog("cadpacotesoperadora");
+            return "";
+        }else return "cadPacote";
+    }
     
 }

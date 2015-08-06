@@ -260,6 +260,10 @@ public class Passagemaerea implements Serializable {
     private Float valornet;
     @Column(name = "valorgorss")
     private Float valorgorss;
+    @Column(name = "valormoedanacional")
+    private Float valormoedanacional;
+    @Column(name = "comissaoloja")
+    private Float comissaoloja;
     @JoinColumn(name = "fornecedor_idfornecedor", referencedColumnName = "idfornecedor")
     @ManyToOne(optional = false)
     private Fornecedor fornecedor;
@@ -928,6 +932,22 @@ public class Passagemaerea implements Serializable {
 
     public void setValorgorss(Float valorgorss) {
         this.valorgorss = valorgorss;
+    }
+
+    public Float getValormoedanacional() {
+        return valormoedanacional;
+    }
+
+    public void setValormoedanacional(Float valormoedanacional) {
+        this.valormoedanacional = valormoedanacional;
+    }
+
+    public Float getComissaoloja() {
+        return comissaoloja;
+    }
+
+    public void setComissaoloja(Float comissaoloja) {
+        this.comissaoloja = comissaoloja;
     }
 
     public Fornecedor getFornecedor() {

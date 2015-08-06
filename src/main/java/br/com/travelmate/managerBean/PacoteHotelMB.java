@@ -5,8 +5,8 @@
  */
 package br.com.travelmate.managerBean;
 
+
 import br.com.travelmate.facade.PacotesHotelFacade;
-import br.com.travelmate.facade.PaisFacade;
 import br.com.travelmate.facade.PaisProdutoFacade;
 import br.com.travelmate.model.Cambio;
 import br.com.travelmate.model.Cidade;
@@ -190,5 +190,29 @@ public class PacoteHotelMB implements Serializable{
         }
         pacotehotel.setComissao(comissao);
         pacotehotel.setValormoedanacional(pacotehotel.getValorgross() * cambio.getValor());
+    }
+    
+    public String cancelar(){
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) context.getExternalContext().getSession(false);  
+        session.setAttribute("pacote", pacotehotel.getPacotetrecho().getPacotes());
+        if (pacotehotel.getPacotetrecho().getPacotes().getOperacao().equalsIgnoreCase("Operadora")){
+            RequestContext.getCurrentInstance().closeDialog("cadpacotesoperadora");
+            return "";
+        }else return "cadPacote";
+    }
+    
+    public String excluir(){
+        PacotesHotelFacade pacoteHotelFacade = new PacotesHotelFacade();
+        pacoteHotelFacade.excluir(pacotehotel.getIdpacoteHotel());
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage("Excluído com Sucesso", ""));
+        HttpSession session = (HttpSession) context.getExternalContext().getSession(false);  
+        session.setAttribute("pacote", pacotehotel.getPacotetrecho().getPacotes());
+        if (pacotehotel.getPacotetrecho().getPacotes().getOperacao().equalsIgnoreCase("Operadora")){
+            //return "cadpacotesoperadora";
+            RequestContext.getCurrentInstance().closeDialog("cadpacotesoperadora");
+            return "";
+        }else return "cadPacote";
     }
 }
