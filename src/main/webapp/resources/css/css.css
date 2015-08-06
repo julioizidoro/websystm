@@ -941,6 +941,10 @@ text-align: left;
 .espacocobranca11{
     margin-left:10%;
 }
+.espacocobranca11rig{
+    margin-left:10%;
+    text-align: right;
+}
 .espacocobranca11r{
     margin-left:7%;
     text-align: right;
@@ -965,7 +969,15 @@ text-align: left;
 .espacocobranca16{
     margin-left:21%;
 }
+.espacocobranca16r{
+    margin-left:21%;
+    text-align: right;
+}
 .espacocobranca17{
+    margin-left:27%;
+    text-align: right;
+}
+.espacocobranca17r{
     margin-left:27%;
 }
 .espacocobranca18{
@@ -993,6 +1005,10 @@ text-align: left;
 }
 .espacocobranca23{
     margin-left:11%;
+}
+.espacocobranca23r{
+    margin-left:11%;
+    text-align: right;
 }
 .espacocobranca24{
     margin-left:8%;

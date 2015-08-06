@@ -10,7 +10,7 @@
             <h:form id="cadastropacoteoperadora">
                 <div id="centro">
                     <br></br><br></br>
-                    <p:accordionPanel class="painelPacote" >
+                    <p:tabView class="painelPacote" style="background: #fff">
                         <p:tab titleStyle="color:#000;font-size:10px;background:#c7d95f;" title="Cadastro">
                             <p:outputLabel value="Descrição" for="descricao"/>
                             <p:outputLabel value="Cliente" for="cliente" class="espacopreto"/>
@@ -213,7 +213,7 @@
                             </p:dataTable>
                         </p:tab>
 
-                    </p:accordionPanel><br></br>
+                    </p:tabView><br></br>
                     <p class="botaocadpacote"><br></br>
                         <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Confirmar" action="#"></p:commandButton>
                         <p:commandButton class="espacocampos" onclick="" icon="ui-icon-close" value="Cancelar" action="#"></p:commandButton>

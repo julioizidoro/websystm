@@ -101,48 +101,52 @@
 
                             <br></br><br></br><br></br>
                             
-                           <p:outputLabel value="Câmbio" for="moeda" class=""/>
-                            <p:outputLabel value="Valor do Câmbio" for="idvalorcambio" class="espacocobranca5"/>
-                            <p:outputLabel value="Valor Net" for="valornet" class="espacocobranca29"/>
-                            <p:outputLabel value="Comissão" for="comissao" class="espacocampos6"/>
-                            <p:outputLabel value="Valor Gross" for="valorgross" class="espacocampos6"/>
-                            <p:outputLabel value="Valor Moeda Nacional" for="moedanacional" class="espacocobranca5"/>
-                            
+                          <p:outputLabel value="Câmbio" for="moeda" class="" style="font-size:10px;"/>
+                            <p:outputLabel value="Valor do Câmbio" for="idvalorcambio" class="espacocobranca22" style="font-size:10px;"/>
+                            <p:outputLabel value="Valor Net" for="valornet" class="espacocobranca13" style="font-size:10px;"/>
                             <br></br>
-                            <p:selectOneMenu class="espacocampos5" style="width:10%" id="moeda"  value="#{pacoteHotelMB.cambio}" converter="CambioConverter">
+                            <p:selectOneMenu class="espacocampos5" style="width:10%;font-size:10px;" id="moeda"  value="#{pacoteHotelMB.cambio}" converter="CambioConverter">
                                 <f:selectItem itemLabel="Câmbio" itemValue="0"/> 
                                 <f:selectItems value="#{usuarioLogadoMB.listaCambio}" var="cambio" itemLabel="#{cambio.moedas.sigla}" itemValue="#{cambio}"/>
                                 <f:attribute name="listaCambio" value="#{usuarioLogadoMB.listaCambio}"/>
                                 <p:ajax event="change"  update="idvalorcambio"/>
                             </p:selectOneMenu>
-                            <p:inputText id="idvalorcambio" value="#{pacoteHotelMB.cambio.valor}" style="width:11%" class="espacocamposright" readonly="true">
+                            <p:inputText id="idvalorcambio" value="#{pacoteHotelMB.cambio.valor}" style="width:20%;font-size:10px;" class="espacocobranca16r" readonly="true">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>  
                             <h:commandLink action="#"  title="Editar Câmbio">  
                                 <img id="editarcambio" class="" src="../../resources/img/cambio_1.png"/>
                             </h:commandLink>
-                            <p:inputText id="valornet" value="#{pacoteHotelMB.pacotehotel.valornet}" style="width:9%" class="imgadr">
+                            <p:inputText id="valornet" value="#{pacoteHotelMB.pacotehotel.valornet}" style="width:17%;font-size:10px;" class="espacocobranca17">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 <p:ajax event="blur" />
                             </p:inputText>
-                            <p:inputText id="comissao" value="#{pacoteHotelMB.pacotehotel.comissao}" style="width:9%" class="espacocamposright">
+                            <br></br><br></br>
+                            <p:outputLabel value="Comissão" for="comissao" class="" style="font-size:10px;"/>
+                            <p:outputLabel value="Valor Gross" for="valorgross" class="espacocobranca2" style="font-size:10px;"/>
+                            <p:outputLabel value="Valor Moeda Nacional" for="moedanacional" class="espacocobranca3" style="font-size:10px;"/>
+                            <p:outputLabel value="Comissão Loja" for="comissaoloja" class="espacocobranca12" style="font-size:10px;"/>
+                            <br></br>
+                            <p:inputText id="comissao" value="#{pacoteHotelMB.pacotehotel.comissao}" style="width:10%;font-size:10px;" class="fontebrancaa">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 <p:ajax event="blur" update="valorgross" listener="#{pacoteHotelMB.calcularValorGross()}" />
                                 <p:ajax event="blur" update="moedanacional"/>
                             </p:inputText>
-                            <p:inputText id="valorgross" value="#{pacoteHotelMB.pacotehotel.valorgross}" style="width:14%" maxlength="15" class="espacocamposright">
+                            <p:inputText id="valorgross" value="#{pacoteHotelMB.pacotehotel.valorgross}" style="width:13%;font-size:10px;" maxlength="15" class="espacocobranca23r">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 <p:ajax event="blur" update="comissao" listener="#{pacoteHotelMB.calcularComissao()}"/>
                                 <p:ajax event="blur" update="moedanacional"/>
                             </p:inputText>
-                            <p:inputText id="moedanacional" value="#{pacoteHotelMB.pacotehotel.valormoedanacional}" style="width:19%" maxlength="15" class="espacocamposright" readonly="true">
+                            <p:inputText id="moedanacional" value="#{pacoteHotelMB.pacotehotel.valormoedanacional}" style="width:20%;font-size:10px;" maxlength="11" class="espacocobranca23r">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
-                            
+                            <p:inputText id="comissaoloja" value="#{pacoteHotelMB.pacotehotel.comissaoloja}" style="width:18%;font-size:10px;" maxlength="11" class="espacocobranca3r">
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                            </p:inputText>
                             <p class="botaocadpacote"><br></br>
                                 <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Confirmar" action="#{pacoteHotelMB.salvarHotel()}"></p:commandButton>
                                 <p:commandButton class="espacocampos" onclick="" icon="ui-icon-close" value="Cancelar" action="#{pacoteHotelMB.cancelar()}"></p:commandButton>
-                                <p:commandButton class="espacocampos" onclick="" icon="ui-icon-close" value="Cancelar" action="#{pacoteHotelMB.excluir()}"></p:commandButton>
+                                <p:commandButton class="espacocampos" onclick="" icon="ui-icon-trash" value="Excluir" action="#{pacoteHotelMB.excluir()}"></p:commandButton>
                             </p>
                        </h:form>     
     </h:body>
