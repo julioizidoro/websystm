@@ -121,10 +121,10 @@
                             <p:outputLabel value="Câmbio" for="moeda" class=""/>
                             <p:outputLabel value="Valor do Câmbio" for="idvalorcambio" class="espacocobranca14"/>
                             <p:outputLabel value="Valor Net" for="valornet" class="espacocobranca20"/>
-                            <p:outputLabel value="Comissão" for="comissao" class="espacocobranca20"/>
-                            <p:outputLabel value="Valor Gross" for="valorgross" class="espacocobranca28"/>
-                            <p:outputLabel value="Valor Moeda Nacional" for="moedanacional" class="espacocampos6"/>
-                            <p:outputLabel value="Comissão Loja" for="comissaoloja" class="imgadd"/>
+                            <p:outputLabel value="Comissão" for="comissao" class="espacocobranca15"/>
+                            <p:outputLabel value="Valor Gross" for="valorgross" class="espacocampos6"/>
+                            <p:outputLabel value="Valor R$" for="moedanacional" class="espacocampos6"/>
+                            <p:outputLabel value="Comissão Loja" for="comissaoloja" class="espacocobranca5"/>
                             <br></br>
                             <p:selectOneMenu class="espacocampos2" style="width:10%;" id="moeda"  value="#{trechosMB.cambio}" converter="CambioConverter">
                                 <f:selectItem itemLabel="Moedas" itemValue="0"/> 
@@ -138,19 +138,19 @@
                             <h:commandLink action="#"  title="Editar Câmbio">  
                                 <img id="editarcambio" class="" src="../../resources/img/cambio_1.png"/>
                             </h:commandLink>
-                            <p:inputText id="valornet" value="#{passagemMB.passagem.valornet}" style="width:10%;" class="espacocobranca29r">
+                            <p:inputText id="valornet" value="#{passagemMB.passagem.valornet}" style="width:12%;" class="espacocobranca29r">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
-                            <p:inputText id="comissao" value="" style="width:10%;" class="espacocobranca29r">
+                            <p:inputText id="comissao" value="" style="width:12%;" class="espacocobranca29r">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
                             <p:inputText id="valorgross" value="#{passagemMB.passagem.valorgorss}" style="width:13%;" maxlength="15" class="espacocobranca29r">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
-                            <p:inputText id="moedanacional" value="#{passagemMB.passagem.valormoedanacional}" style="width:16%;" maxlength="11" class="espacocampos6right">
+                            <p:inputText id="moedanacional" value="#{passagemMB.passagem.valormoedanacional}" style="width:13%;" maxlength="11" class="espacocampos6right">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
-                            <p:inputText id="comissaoloja" value="#{passagemMB.passagem.comissaoloja}" style="width:14%;" maxlength="11" class="espacocampos6right">
+                            <p:inputText id="comissaoloja" value="#{passagemMB.passagem.comissaoloja}" style="width:13%;" maxlength="11" class="espacocampos6right">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
                             <br></br><br></br><br></br>

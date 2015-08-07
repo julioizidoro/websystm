@@ -5,40 +5,40 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <h:head>
+     <h:head>
         <link href="../../resources/css/css.css" rel="stylesheet" type="text/css" />
-        <link href="../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
-        <script>
-            PrimeFaces.locales['pt'] = {
-                closeText: 'Fechar',
-                prevText: 'Anterior',
-                nextText: 'Próximo',
-                currentText: 'Começo',
-                monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-                monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-                dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
-                dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
-                dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
-                weekHeader: 'Semana',
-                firstDay: 0,
-                isRTL: false,
-                showMonthAfterYear: false,
-                yearSuffix: '',
-                timeOnlyTitle: 'Só Horas',
-                timeText: 'Tempo',
-                hourText: 'Hora',
-                minuteText: 'Minuto',
-                secondText: 'Segundo',
-                ampm: false,
-                month: 'Mês',
-                week: 'Semana',
-                day: 'Dia',
-                allDayText: 'Todo o Dia'
-            };
-        </script>  
+         <link href="../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
+         <script>  
+                PrimeFaces.locales['pt'] = {  
+                    closeText: 'Fechar',  
+                    prevText: 'Anterior',  
+                    nextText: 'Próximo',  
+                    currentText: 'Começo',  
+                    monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],  
+                    monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],  
+                    dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],  
+                    dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],  
+                    dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],  
+                    weekHeader: 'Semana',  
+                    firstDay: 0,  
+                    isRTL: false,  
+                    showMonthAfterYear: false,  
+                    yearSuffix: '',  
+                    timeOnlyTitle: 'Só Horas',  
+                    timeText: 'Tempo',  
+                    hourText: 'Hora',  
+                    minuteText: 'Minuto',  
+                    secondText: 'Segundo',  
+                    ampm: false,  
+                    month: 'Mês',  
+                    week: 'Semana',  
+                    day: 'Dia',  
+                    allDayText: 'Todo o Dia'  
+                };  
+            </script>  
     </h:head>
     <h:body>
-        <h:form id="cadastropacotepassagem" style="text-align:left;font-size:10px;">
+        <h:form id="cadastropacotepassagem" style="text-align:left;font-size: 10px;">
             <title>Passagem</title>
             <p:tabView>
                 <p:tab titleStyle="color:#000;background:#ccc;font-size:10px;" title="Passagem" class="tab">
@@ -138,49 +138,50 @@
                 <p:tab titleStyle="color:#fff;background: #ccc;font-size:10px;" title="Valores">
                     <legend id="iUsu3" style="font-size:11px;"><b>Valores</b></legend>
 
-                    <p:outputLabel value="Câmbio" for="moeda" class=""/>
-                    <p:outputLabel value="Valor do Câmbio" for="idvalorcambio" class="espacocobranca22"/>
-                    <p:outputLabel value="Valor Net" for="valornet" class="espacocobranca9"/>
-                    <br></br>
-                     <p:selectOneMenu class="espacocampos2" style="width:12%;" id="moeda"  value="#{pacotePassagemMB.cambio}" converter="CambioConverter">
-                        <f:selectItem itemLabel="Moedas" itemValue="0"  noSelectionOption="true" /> 
-                        <f:selectItems value="#{usuarioLogadoMB.listaCambio}" var="cambio" itemLabel="#{cambio.moedas.sigla}" itemValue="#{cambio}"/>
-                        <f:attribute name="listaCambio" value="#{usuarioLogadoMB.listaCambio}"/>
-                        <p:ajax event="change" update="idvalorcambio" />
-                    </p:selectOneMenu>
-                    <p:inputText id="idvalorcambio" value="#{pacotePassagemMB.cambio.valor}" style="width:19%;" class="espacocobranca16r">
-                        <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
-                    </p:inputText>  
-                    <h:commandLink action="#"  title="Editar Câmbio">  
-                        <img id="editarcambio" class="" src="../../resources/img/cambio_1.png"/>
-                    </h:commandLink>
-                    <p:inputText id="valornet" value="#{pacotePassagemMB.pacotepassagem.valornet}" style="width:18%;" class="espacocobranca31r">
-                        <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
-                        <p:ajax event="blur" />
-                    </p:inputText>
-                    
-                     <br></br><br></br><br></br>
-                    <p:outputLabel value="Comissão" for="comissao" class=""/>
-                    <p:outputLabel value="Valor Gross" for="valorgross" class="espacocobranca2"/>
-                    <p:outputLabel value="Valor Moeda Nacional" for="moedanacional" class="espacocobranca2"/>
-                    <p:outputLabel value="Comissão Loja" for="comissaoloja" class="espacocobranca2"/>
-                    <br></br>
-                    <p:inputText id="comissao" value="#{pacotePassagemMB.pacotepassagem.comissao}" style="width:12%;" class="fontebrancaa">
-                        <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
-                        <p:ajax event="blur" update="valorgross" listener="#{pacotePassagemMB.calcularValorGross()}" />
-                        <p:ajax event="blur" update="moedanacional"/>
-                    </p:inputText>
-                    <p:inputText id="valorgross" value="#{pacotePassagemMB.pacotepassagem.valorgross}" style="width:13%;" maxlength="15" class="espacocobranca23r">
-                        <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
-                        <p:ajax event="blur" update="comissao" listener="#{pacoteCarroMB.calcularComissao()}"/>
-                        <p:ajax event="blur" update="moedanacional"/>
-                    </p:inputText>
-                    <p:inputText id="moedanacional" value="#{pacotePassagemMB.pacotepassagem.valormoedanacional}" style="width:22%;" maxlength="11" class="espacocobranca23r">
-                        <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
-                    </p:inputText>
-                    <p:inputText id="comissaoloja" value="#{pacotePassagemMB.pacotepassagem.comissaoloja}" style="width:19%;" maxlength="11" class="espacocobranca23r">
-                        <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
-                    </p:inputText>
+                    <p:outputLabel value="Câmbio" for="moeda" class="" style=""/>
+                            <p:outputLabel value="Valor do Câmbio" for="idvalorcambio" class="espacocobranca24" style=""/>
+                            <br></br>
+                            <p:selectOneMenu class="espacocampos5" style="width:10%;font-size:10px;" id="moeda"  value="#{pacotePassagemMB.cambio}" converter="CambioConverter">
+                                <f:selectItem itemLabel="Câmbio" itemValue="0"/> 
+                                <f:selectItems value="#{usuarioLogadoMB.listaCambio}" var="cambio" itemLabel="#{cambio.moedas.sigla}" itemValue="#{cambio}"/>
+                                <f:attribute name="listaCambio" value="#{usuarioLogadoMB.listaCambio}"/>
+                                <p:ajax event="change"  update="idvalorcambio"/>
+                            </p:selectOneMenu>
+                            <p:inputText id="idvalorcambio" value="#{pacotePassagemMB.cambio.valor}" style="width:20%;font-size:10px;" class="espacocampos" readonly="true">
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                            </p:inputText>  
+                            <h:commandLink action="#"  title="Editar Câmbio">  
+                                <img id="editarcambio" class="" src="../../resources/img/cambio_1.png"/>
+                            </h:commandLink>
+                            <br></br><br></br>
+                            
+                            <p:outputLabel value="Valor Net" for="valornet" class="" style=""/>
+                            <p:outputLabel value="Comissão" for="comissao" class="espacocobranca23" style=""/>
+                            <p:outputLabel value="Valor Gross" for="valorgross" class="espacocobranca23" style=""/>
+                            <p:outputLabel value="Valor R$" for="moedanacional" class="espacocobranca11" style=""/>
+                            <p:outputLabel value="Comissão Loja" for="comissaoloja" class="espacocobranca2" style=""/>
+                            <br></br>
+                            
+                            <p:inputText id="valornet" value="#{pacotePassagemMB.pacotepassagem.valornet}" style="width:15%;font-size:10px;" class="fontebrancaa">
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                                <p:ajax event="blur" />
+                            </p:inputText>
+                            <p:inputText id="comissao" value="#{pacotePassagemMB.pacotepassagem.comissao}" style="width:15%;font-size:10px;" class="espacocobranca20rig">
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                                <p:ajax event="blur" update="valorgross" listener="#{pacotePassagemMB.calcularValorGross()}" />
+                                <p:ajax event="blur" update="moedanacional"/>
+                            </p:inputText>
+                            <p:inputText id="valorgross" value="#{pacotePassagemMB.pacotepassagem.valorgross}" style="width:16%;font-size:10px;" maxlength="15" class="espacocobranca20rig">
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                                <p:ajax event="blur" update="comissao" listener="#{pacotePassagemMB.calcularComissao()}"/>
+                                <p:ajax event="blur" update="moedanacional"/>
+                            </p:inputText>
+                            <p:inputText id="moedanacional" value="#{pacotePassagemMB.pacotepassagem.valormoedanacional}" style="width:16%;font-size:10px;" maxlength="11" class="espacocobranca20rig">
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                            </p:inputText>
+                            <p:inputText id="comissaoloja" value="#{pacotePassagemMB.pacotepassagem.comissaoloja}" style="width:17%;font-size:10px;" maxlength="11" class="espacocobranca20rig">
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                            </p:inputText>
                     <br></br><br></br><br></br>
 
                     <p:outputLabel value="Câmbio" for="cambio" class="espaco0p" style="font-size: 11px"/> 
@@ -250,6 +251,6 @@
                 <p:commandButton class="espacocampos" onclick="" icon="ui-icon-trash" value="Excluir" action="#{pacotePassagemMB.excluir()}"></p:commandButton>
                 <br></br><br></br>
             </p>
-        </h:form>   
+      </h:form>     
     </h:body>
 </html>

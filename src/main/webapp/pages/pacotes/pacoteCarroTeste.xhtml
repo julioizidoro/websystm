@@ -59,7 +59,7 @@
                                 <f:attribute name="listaCidade" value="#{pacoteCarroMB.pais.cidadeList}"/>
                                 <p:ajax event="change" listener="#{pacoteCarroMB.listarFornecedorCidade(0)}" update="fornecedor" />
                             </p:selectOneMenu>
-                            <p:selectOneMenu id="fornecedor" value="#{pacoteCarroMB.fornecedorcidade}" style="width:28%;font-size: 10px" class="espacocampos" 
+                            <p:selectOneMenu id="fornecedor" value="#{pacoteCarroMB.fornecedorcidade}" style="width:30%;font-size: 10px" class="espacocampos" 
                                              converter="FornecedorCidadeConverter" filter="true" filterMatchMode="startsWith">
                                 <f:selectItem itemLabel="Fornecedor" itemValue="0" noSelectionOption="true"/> 
                                 <f:selectItems id="idfornecedor" value="#{pacoteCarroMB.listaFornecedorCidade}" var="fornecedor" itemLabel="#{fornecedor.fornecedor.nome}" itemValue="#{fornecedor}"/>
@@ -71,12 +71,12 @@
                             <p:outputLabel value="Data Retirada" for="dataretirada" class="espacocobranca22" style="font-size:10px;"/>
                             <p:outputLabel value="Hora Retirada" for="horaretirada" class="espacocobranca24" style="font-size:10px;"/>
                             <br></br>
-                            <p:inputText id="localizador" value="#{pacoteCarroMB.pacotecarro.localizador}" style="width:25%;" maxlength="45" class="espacocampos2"/>
-                            <p:inputText id="locaretirada" value="#{pacoteCarroMB.pacotecarro.locaretirada}" style="width:31%;" maxlength="100" class="espacocampos"/>
-                            <p:calendar id="dataretirada" value="#{pacoteCarroMB.pacotecarro.dataretirada}" size="11"  class="espacocampos" locale="pt"  pattern="dd/MM/yyyy" >
+                            <p:inputText id="localizador" value="#{pacoteCarroMB.pacotecarro.localizador}" style="width:26%;" maxlength="45" class="espacocampos2"/>
+                            <p:inputText id="locaretirada" value="#{pacoteCarroMB.pacotecarro.locaretirada}" style="width:32%;" maxlength="100" class="espacocampos"/>
+                            <p:calendar id="dataretirada" value="#{pacoteCarroMB.pacotecarro.dataretirada}" size="12"  class="espacocampos" locale="pt"  pattern="dd/MM/yyyy" >
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </p:calendar>
-                            <p:inputMask id="horaretirada" value="#{pacoteCarroMB.pacotecarro.horaritirada}" style="width:11%;" mask="99:99" class="espacocampos"/>
+                            <p:inputMask id="horaretirada" value="#{pacoteCarroMB.pacotecarro.horaritirada}" style="width:12%;" mask="99:99" class="espacocampos"/>
                             <br></br><br></br>
                             
                             <p:outputLabel value="Data Devolução" for="datadevolucao" style="font-size:10px;"/>
@@ -86,11 +86,11 @@
                             <p:outputLabel value="Qntd Criança" for="qntdClianca" class="espacocobranca14" style="font-size:10px;"/>
                             <p:outputLabel value="Qntd Infantil" for="qntdInfantil" class="espacocobranca15" style="font-size:10px;"/>
                             <br></br>
-                            <p:calendar id="datadevolucao" value="#{pacoteCarroMB.pacotecarro.datadevolucao}" size="10"  class="espacocampos2" locale="pt"  pattern="dd/MM/yyyy" >
+                            <p:calendar id="datadevolucao" value="#{pacoteCarroMB.pacotecarro.datadevolucao}" size="12"  class="espacocampos2" locale="pt"  pattern="dd/MM/yyyy" >
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </p:calendar>
                             <p:inputMask id="horadevolucao" value="#{pacoteCarroMB.pacotecarro.horadevolucao}" style="width:13%;" mask="99:99" class="espacocampos"/>
-                            <p:inputText id="categoria" value="#{pacoteCarroMB.pacotecarro.categoria}" style="width:11%;" maxlength="15" class="espacocampos"/>
+                            <p:inputText id="categoria" value="#{pacoteCarroMB.pacotecarro.categoria}" style="width:13%;" maxlength="15" class="espacocampos"/>
                             <p:inputText id="qntdAdulto" value="#{pacoteCarroMB.pacotecarro.adt}" style="width:11%;" class="espacocampos">
                                 <f:convertNumber  type="number"/>
                             </p:inputText>
@@ -100,15 +100,9 @@
                             <p:inputText id="qntdInfantil" value="#{pacoteCarroMB.pacotecarro.inf}" style="width:11%;" class="espacocampos">
                                   <f:convertNumber  type="number"/>
                             </p:inputText>
-                            
                              <br></br><br></br>
-                            <p:outputLabel value="Descritivo" for="descritivo" style="font-size:10px;"/>
-                            <br></br>
-                            <p:inputText id="descritivo" value="#{pacoteCarroMB.pacotecarro.descritivo}" style="width:95%;" maxlength="45" class="espacocampos2"/>
-                            <br></br><br></br>
                             <p:outputLabel value="Câmbio" for="moeda" class="" style="font-size:10px;"/>
-                            <p:outputLabel value="Valor do Câmbio" for="idvalorcambio" class="espacocobranca22" style="font-size:10px;"/>
-                            <p:outputLabel value="Valor Net" for="valornet" class="espacocobranca9" style="font-size:10px;"/>
+                            <p:outputLabel value="Valor do Câmbio" for="idvalorcambio" class="espacocobranca24" style="font-size:10px;"/>
                             <br></br>
                             <p:selectOneMenu class="espacocampos5" style="width:10%;font-size:10px;" id="moeda"  value="#{pacoteCarroMB.cambio}" converter="CambioConverter">
                                 <f:selectItem itemLabel="Câmbio" itemValue="0"/> 
@@ -116,38 +110,48 @@
                                 <f:attribute name="listaCambio" value="#{usuarioLogadoMB.listaCambio}"/>
                                 <p:ajax event="change"  update="idvalorcambio"/>
                             </p:selectOneMenu>
-                            <p:inputText id="idvalorcambio" value="#{pacoteCarroMB.cambio.valor}" style="width:19%;font-size:10px;" class="espacocobranca16r" readonly="true">
+                            <p:inputText id="idvalorcambio" value="#{pacoteCarroMB.cambio.valor}" style="width:20%;font-size:10px;" class="espacocampos" readonly="true">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>  
                             <h:commandLink action="#"  title="Editar Câmbio">  
                                 <img id="editarcambio" class="" src="../../resources/img/cambio_1.png"/>
                             </h:commandLink>
-                            <p:inputText id="valornet" value="#{pacoteCarroMB.pacotecarro.valornet}" style="width:17%;font-size:10px;" class="espacocobranca16r">
+                            <br></br><br></br>
+                            
+                            <p:outputLabel value="Valor Net" for="valornet" class="" style="font-size:10px;"/>
+                            <p:outputLabel value="Comissão" for="comissao" class="espacocobranca2" style="font-size:10px;"/>
+                            <p:outputLabel value="Valor Gross" for="valorgross" class="espacocobranca33" style="font-size:10px;"/>
+                            <p:outputLabel value="Valor R$" for="moedanacional" class="espacocobranca33" style="font-size:10px;"/>
+                            <p:outputLabel value="Comissão Loja" for="comissaoloja" class="espacocobranca30" style="font-size:10px;"/>
+                            <br></br>
+                            
+                            <p:inputText id="valornet" value="#{pacoteCarroMB.pacotecarro.valornet}" style="width:15%;font-size:10px;" class="fontebrancaa">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 <p:ajax event="blur" />
                             </p:inputText>
-                            <br></br><br></br>
-                            <p:outputLabel value="Comissão" for="comissao" class="" style="font-size:10px;"/>
-                            <p:outputLabel value="Valor Gross" for="valorgross" class="espacocobranca2" style="font-size:10px;"/>
-                            <p:outputLabel value="Valor Moeda Nacional" for="moedanacional" class="espacocobranca2" style="font-size:10px;"/>
-                            <p:outputLabel value="Comissão Loja" for="comissaoloja" class="espacocobranca2" style="font-size:10px;"/>
-                            <br></br>
-                            <p:inputText id="comissao" value="#{pacoteCarroMB.pacotecarro.comissao}" style="width:10%;font-size:10px;" class="fontebrancaa">
+                            <p:inputText id="comissao" value="#{pacoteCarroMB.pacotecarro.comissao}" style="width:15%;font-size:10px;" class="espacocobranca20rig">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 <p:ajax event="blur" update="valorgross" listener="#{pacoteCarroMB.calcularValorGross()}" />
                                 <p:ajax event="blur" update="moedanacional"/>
                             </p:inputText>
-                            <p:inputText id="valorgross" value="#{pacoteCarroMB.pacotecarro.valorgross}" style="width:11%;font-size:10px;" maxlength="15" class="espacocobranca23r">
+                            <p:inputText id="valorgross" value="#{pacoteCarroMB.pacotecarro.valorgross}" style="width:16%;font-size:10px;" maxlength="15" class="espacocobranca20rig">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 <p:ajax event="blur" update="comissao" listener="#{pacoteCarroMB.calcularComissao()}"/>
                                 <p:ajax event="blur" update="moedanacional"/>
                             </p:inputText>
-                            <p:inputText id="moedanacional" value="#{pacoteCarroMB.pacotecarro.valormoedanacional}" style="width:19%;font-size:10px;" maxlength="11" class="espacocobranca23r">
+                            <p:inputText id="moedanacional" value="#{pacoteCarroMB.pacotecarro.valormoedanacional}" style="width:16%;font-size:10px;" maxlength="11" class="espacocobranca20rig">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
-                            <p:inputText id="comissaoloja" value="#{pacoteCarroMB.pacotecarro.comissaoloja}" style="width:18%;font-size:10px;" maxlength="11" class="espacocobranca23r">
+                            <p:inputText id="comissaoloja" value="#{pacoteCarroMB.pacotecarro.comissaoloja}" style="width:15%;font-size:10px;" maxlength="11" class="espacocobranca20rig">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
+
+
+                            <br></br><br></br>
+                            <p:outputLabel value="Descritivo" for="descritivo" style="font-size:10px;"/>
+                            <br></br>
+                            <p:inputText id="descritivo" value="#{pacoteCarroMB.pacotecarro.descritivo}" style="width:97%;" maxlength="45" class="espacocampos2"/>
+                            <br></br><br></br>
                             <p class="botaocadpacote"><br></br>
                                 <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Confirmar" action="#{pacoteCarroMB.salvarCarro()}" style="font-size:10px;"></p:commandButton>
                                 <p:commandButton class="espacocampos" onclick="" icon="ui-icon-close" value="Cancelar" action="#"></p:commandButton>

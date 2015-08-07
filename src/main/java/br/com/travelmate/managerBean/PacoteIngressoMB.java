@@ -6,7 +6,6 @@
 package br.com.travelmate.managerBean;
 
 import br.com.travelmate.facade.PacoteIngressoFacade;
-import br.com.travelmate.facade.PaisFacade;
 import br.com.travelmate.facade.PaisProdutoFacade;
 import br.com.travelmate.model.Cambio;
 import br.com.travelmate.model.Cidade;
