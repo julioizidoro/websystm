@@ -56,16 +56,16 @@
                             <h:commandLink action="#"  title="Editar Câmbio">  
                                 <img id="editarcambio" class="" src="../../resources/img/cambio_1.png"/>
                             </h:commandLink>
-                            <p:commandButton id="bntiniciar" class="espacocobranca20" onclick="" icon="ui-icon-triangle-1-e" value="Iniciar" action="#{cadPacoteOperadoraMB.iniciarPacote()}" disabled="#{cadPacoteOperadoraMB.btniniciar}" ajax="false" >
+                            <p:commandButton id="bntiniciar" class="espacocobranca20botao" style="color:#000;background:#c7d95f;font-size:12px;" icon="ui-icon-triangle-1-e" value="Iniciar" action="#{cadPacoteOperadoraMB.iniciarPacote()}" disabled="#{cadPacoteOperadoraMB.btniniciar}" ajax="false" >
                                 <p:ajax event="click" update="bntiniciar" listener="#{cadPacoteOperadoraMB.verificarBotoes()}" />
                                 <p:ajax event="click" update="btnfinalizar" />
                             </p:commandButton>
-                            <p:commandButton id="btnfinalizar" class="espacocobranca29" onclick="" icon="ui-icon-check" value="Finalizar" action="#{cadPacoteOperadoraMB.finalizar()}"  disabled="#{cadPacoteOperadoraMB.btnfinalizar}" ajax="false" >
+                            <p:commandButton id="btnfinalizar" class="espacocobranca3botao" style="color:#000;background:#c7d95f;font-size:12px;" icon="ui-icon-check" value="Finalizar" action="#{cadPacoteOperadoraMB.finalizar()}"  disabled="#{cadPacoteOperadoraMB.btnfinalizar}" ajax="false" >
                                 <p:ajax event="click" update="bntiniciar" listener="#{cadPacoteOperadoraMB.verificarBotoes()}" />
                                 <p:ajax event="click" update="btnfinalizar" />
                                 <p:ajax event="click" update="valornet, valorgross, comissao, moedanacional, comissaoloja"/>
                             </p:commandButton>
-                             <p:commandButton id="btnseguro" class="espacocobranca29" onclick="" icon="ui-icon-plus" value="Adicionar Seguro" action="#{cadPacoteOperadoraMB.novoSeguro()}"/>
+                             <p:commandButton id="btnseguro" class="espacocobranca3botao" style="color:#000;background:#c7d95f;font-size:12px;"  icon="ui-icon-plus" value="Adicionar Seguro" action="#{cadPacoteOperadoraMB.novoSeguro()}"/>
                             <br></br><br></br>
                             <p:outputLabel value="Valor Net" for="valornet" class=""/>
                             <p:outputLabel value="Valor Gross" for="valorgross" class="espacocobranca30"/>
