@@ -5,12 +5,10 @@
  */
 package br.com.travelmate.managerBean;
 
+import br.com.travelmate.util.GerarDacNossoNumero;
 import java.io.Serializable;
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
-import org.primefaces.context.RequestContext;
 
 /**
  *

@@ -48,6 +48,15 @@ public class Contasreceber implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "valorparcela")
     private Float valorparcela;
+    @Column(name = "juros")
+    private Float juros;
+    @Column(name = "desagio")
+    private Float desagio;
+    @Column(name = "datapagamento")
+    @Temporal(TemporalType.DATE)
+    private Date datapagamento;
+    @Column(name = "valorpago")
+    private Float valorpago;
     @Size(max = 50)
     @Column(name = "tipodocumento")
     private String tipodocumento;
@@ -59,12 +68,12 @@ public class Contasreceber implements Serializable {
     @JoinColumn(name = "planoconta_idplanoconta", referencedColumnName = "idplanoconta")
     @ManyToOne(optional = false)
     private Planoconta planoconta;
-    @JoinColumn(name = "vendas_idvendas", referencedColumnName = "idvendas")
-    @ManyToOne(optional = false)
-    private Vendas vendas;
     @JoinColumn(name = "recebimento_idrecebimento", referencedColumnName = "idrecebimento")
     @ManyToOne(optional = false)
     private Recebimento recebimento;
+    @JoinColumn(name = "vendas_idvendas", referencedColumnName = "idvendas")
+    @ManyToOne(optional = false)
+    private Vendas vendas;
     @Transient
     private boolean selecionado;
 
@@ -115,6 +124,38 @@ public class Contasreceber implements Serializable {
         this.valorparcela = valorparcela;
     }
 
+    public Float getJuros() {
+        return juros;
+    }
+
+    public void setJuros(Float juros) {
+        this.juros = juros;
+    }
+
+    public Float getDesagio() {
+        return desagio;
+    }
+
+    public void setDesagio(Float desagio) {
+        this.desagio = desagio;
+    }
+
+    public Date getDatapagamento() {
+        return datapagamento;
+    }
+
+    public void setDatapagamento(Date datapagamento) {
+        this.datapagamento = datapagamento;
+    }
+
+    public Float getValorpago() {
+        return valorpago;
+    }
+
+    public void setValorpago(Float valorpago) {
+        this.valorpago = valorpago;
+    }
+
     public String getTipodocumento() {
         return tipodocumento;
     }
@@ -147,20 +188,20 @@ public class Contasreceber implements Serializable {
         this.planoconta = planoconta;
     }
 
-    public Vendas getVendas() {
-        return vendas;
-    }
-
-    public void setVendas(Vendas vendas) {
-        this.vendas = vendas;
-    }
-
     public Recebimento getRecebimento() {
         return recebimento;
     }
 
     public void setRecebimento(Recebimento recebimento) {
         this.recebimento = recebimento;
+    }
+
+    public Vendas getVendas() {
+        return vendas;
+    }
+
+    public void setVendas(Vendas vendas) {
+        this.vendas = vendas;
     }
 
     public boolean isSelecionado() {

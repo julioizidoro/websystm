@@ -39,14 +39,6 @@ public class PacotesDao {
         manager.getTransaction().commit();
     }
     
-//    public List<Viewvendaspacotes> listarVendas(String sql) throws SQLException{
-////        manager = ConectionFactory.getConnection();
-////         manager.getTransaction().begin();
-////        Query q = manager.createQuery(sql);
-////        manager.getTransaction().commit();
-////        return q.getResultList();
-////    }
-//    
     public Pacotes consultar(int idVenda) throws SQLException{
         manager = ConectionFactory.getConnection();
         manager.getTransaction().begin();

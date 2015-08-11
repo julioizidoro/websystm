@@ -37,6 +37,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Vendas.findAll", query = "SELECT v FROM Vendas v")})
 public class Vendas implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendas")
+    private List<Contasreceber> contasreceberList;
    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendas")
     private List<Pacotes> pacotesList;
@@ -278,6 +280,14 @@ public class Vendas implements Serializable {
 
     public void setPassagemaereaList(List<Passagemaerea> passagemaereaList) {
         this.passagemaereaList = passagemaereaList;
+    }
+
+    public List<Contasreceber> getContasreceberList() {
+        return contasreceberList;
+    }
+
+    public void setContasreceberList(List<Contasreceber> contasreceberList) {
+        this.contasreceberList = contasreceberList;
     }
 
     

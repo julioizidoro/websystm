@@ -7,7 +7,9 @@ package br.com.travelmate.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,6 +19,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -30,6 +33,8 @@ import javax.persistence.TemporalType;
 @NamedQueries({
     @NamedQuery(name = "Recebimento.findAll", query = "SELECT r FROM Recebimento r")})
 public class Recebimento implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recebimento")
+    private List<Contasreceber> contasreceberList;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -138,6 +143,14 @@ public class Recebimento implements Serializable {
     @Override
     public String toString() {
         return "br.com.travelmate.model.Recebimento[ idrecebimento=" + idrecebimento + " ]";
+    }
+
+    public List<Contasreceber> getContasreceberList() {
+        return contasreceberList;
+    }
+
+    public void setContasreceberList(List<Contasreceber> contasreceberList) {
+        this.contasreceberList = contasreceberList;
     }
     
 }

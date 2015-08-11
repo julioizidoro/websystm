@@ -26,7 +26,7 @@
                                 <p:calendar id="dataFinal" class="espacocampospesquisa2" locale="pt"  pattern="dd/MM/yyyy"  mask="true" size="11" maxlength="15">
                                     <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                                 </p:calendar>
-                                 <p:commandButton value="Pesquisar" class="espacodialog2"  icon=" ui-icon-search " update="telapacotes:conspacote"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#"/>
+                                <p:commandButton value="Pesquisar" class="espacodialog2"  icon=" ui-icon-search " update="telapacotes:conspacote"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#"/>
                             </h:panelGrid><br></br>
                             <br></br>
                         </p:tab>
@@ -35,7 +35,7 @@
                     <img src="../../resources/img/add.png" class="imgadd"/>
                     <p:commandLink value="Novo Pacote"  class="add" action="#{passagemMB.pacotenovos()}"/>
                     <legend id="iUsu2" ><b>Consulta de Pacotes </b></legend>
-                    <p:dataTable id="conspacote" var="conspacote"  value="#" class="tabela" 
+                    <p:dataTable id="conspacote" var="conspacote"  value="#{pacoteAgenciaMB.listaPacotes}" class="tabela" 
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
                                  paginator="true" rows="10" style="margin-bottom:20px" >
                         <f:facet name="{Exporters}">
@@ -45,33 +45,29 @@
                             </h:commandLink>
                         </f:facet>
                         <p:column  style="background:#ffffff;color:#1F8871;text-align:center;width:48px;">
-                             <p:commandButton  id="editar" icon="ui-icon-pencil" title="Editar" action="#" />
+                            <p:commandButton  id="editar" icon="ui-icon-pencil" title="Editar" action="#{pacoteAgenciaMB.editarPacote(conspacote)}" />
                         </p:column>
                         <p:column headerText="Descrição"  style="width:210px;background:#ffffff;color:#1F8871;text-align:center;" styleClass="alinharCenter" sortBy="#{contasrecebe.vendas.cliente}">
-                            <h:outputText value="#"/>
+                            <h:outputText value="#{conspacote.descricao}"/>
                         </p:column>
                         <p:column headerText="Cliente"  style="width:200px;background:#ffffff;color:#1F8871;text-align:center;" styleClass="alinharCenter" >
-                            <h:outputText value="#"/>
+                            <h:outputText value="#{conspacote.cliente.nome}"/>
                         </p:column>
                         <p:column headerText="Data Início" style="width:80px;background:#ffffff;color:#1F8871;text-align:center;" >
-                            <h:outputText value="">
+                            <h:outputText value="#{conspacote.datainicio}">
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </h:outputText>  
                         </p:column>
                         <p:column headerText="Data Termino" style="width:80px;background:#ffffff;color:#1F8871;text-align: center;" styleClass="alinharCenter">
-                            <h:outputText value="">
+                            <h:outputText value="#{conspacote.datetermino}">
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </h:outputText>                           
-                        </p:column>
-                        <p:column style="width:35px;background:#ffffff;color:#1F8871;text-align: center">
-                            <p:selectBooleanCheckbox value="#"/>
                         </p:column>
                     </p:dataTable>
                     <br></br>
                     <br></br>
                 </div>
             </h:form>     
-            
         </ui:define>
     </ui:composition>
 </html>

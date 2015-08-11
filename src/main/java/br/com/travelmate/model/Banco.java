@@ -29,14 +29,6 @@ import javax.validation.constraints.Size;
 @NamedQueries({
     @NamedQuery(name = "Banco.findAll", query = "SELECT b FROM Banco b")})
 public class Banco implements Serializable {
-    @Size(max = 1)
-    @Column(name = "digioagencia")
-    private String digioagencia;
-    @Size(max = 1)
-    @Column(name = "digitoconta")
-    private String digitoconta;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "banco")
-    private List<Contasreceber> contasreceberList;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -67,6 +59,16 @@ public class Banco implements Serializable {
     @Size(max = 100)
     @Column(name = "emailgerente")
     private String emailgerente;
+    @Size(max = 1)
+    @Column(name = "digioagencia")
+    private String digioagencia;
+    @Size(max = 1)
+    @Column(name = "digitoconta")
+    private String digitoconta;
+    @Column(name = "nossonumero")
+    private Integer nossonumero;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "banco")
+    private List<Contasreceber> contasreceberList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "banco")
     private List<Unidadenegocio> unidadenegocioList;
 
@@ -149,6 +151,38 @@ public class Banco implements Serializable {
         this.emailgerente = emailgerente;
     }
 
+    public String getDigioagencia() {
+        return digioagencia;
+    }
+
+    public void setDigioagencia(String digioagencia) {
+        this.digioagencia = digioagencia;
+    }
+
+    public String getDigitoconta() {
+        return digitoconta;
+    }
+
+    public void setDigitoconta(String digitoconta) {
+        this.digitoconta = digitoconta;
+    }
+
+    public Integer getNossonumero() {
+        return nossonumero;
+    }
+
+    public void setNossonumero(Integer nossonumero) {
+        this.nossonumero = nossonumero;
+    }
+
+    public List<Contasreceber> getContasreceberList() {
+        return contasreceberList;
+    }
+
+    public void setContasreceberList(List<Contasreceber> contasreceberList) {
+        this.contasreceberList = contasreceberList;
+    }
+
     public List<Unidadenegocio> getUnidadenegocioList() {
         return unidadenegocioList;
     }
@@ -179,31 +213,7 @@ public class Banco implements Serializable {
 
     @Override
     public String toString() {
-        return getNome();
-    }
-
-    public List<Contasreceber> getContasreceberList() {
-        return contasreceberList;
-    }
-
-    public void setContasreceberList(List<Contasreceber> contasreceberList) {
-        this.contasreceberList = contasreceberList;
-    }
-
-    public String getDigioagencia() {
-        return digioagencia;
-    }
-
-    public void setDigioagencia(String digioagencia) {
-        this.digioagencia = digioagencia;
-    }
-
-    public String getDigitoconta() {
-        return digitoconta;
-    }
-
-    public void setDigitoconta(String digitoconta) {
-        this.digitoconta = digitoconta;
+        return "br.com.travelmate.model.Banco[ idbanco=" + idbanco + " ]";
     }
     
 }
