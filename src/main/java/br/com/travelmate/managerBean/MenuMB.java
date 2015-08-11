@@ -5,7 +5,7 @@
  */
 package br.com.travelmate.managerBean;
 
-import br.com.travelmate.util.GerarDacNossoNumero;
+import br.com.travelmate.bean.DadosBoletoBean;
 import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
@@ -28,7 +28,14 @@ public class MenuMB implements Serializable{
         return "consultacontaspagar";
     }
     
+    public String contasRecebers(){
+        DadosBoletoBean dadosBoletoBean = new DadosBoletoBean();
+        dadosBoletoBean.emitir();
+        return "";
+    }
     public String contasReceber(){
+//        DadosBoletoBean dadosBoletoBean = new DadosBoletoBean();
+//        dadosBoletoBean.emitir();
         return "consultacontasreceber";
     }
     public String passagem(){

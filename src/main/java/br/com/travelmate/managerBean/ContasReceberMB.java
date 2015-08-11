@@ -5,6 +5,7 @@
  */
 package br.com.travelmate.managerBean;
 
+import br.com.travelmate.bean.DadosBoletoBean;
 import br.com.travelmate.facade.ContasReceberFacade;
 import br.com.travelmate.model.Contasreceber;
 import br.com.travelmate.model.Vendas;
@@ -19,6 +20,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
+import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -164,5 +166,11 @@ public class ContasReceberMB implements Serializable{
     }
     public String cobranca(){
         return "cobranca";
+    }
+    
+    public String gerarBoleto(){
+        DadosBoletoBean dadosBoletoBean = new DadosBoletoBean();
+        dadosBoletoBean.emitir();
+        return "";
     }
 }

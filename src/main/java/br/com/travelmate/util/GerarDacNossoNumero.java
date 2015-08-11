@@ -100,4 +100,14 @@ public class GerarDacNossoNumero {
         int dac = 10 - resto;
         this.dac = String.valueOf(dac);
     }
+
+    public String getDac() {
+        return dac;
+    }
+
+    public void setDac(String dac) {
+        this.dac = dac;
+    }
+    
+    
 }
