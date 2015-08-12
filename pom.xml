@@ -78,12 +78,10 @@
             <artifactId>xmlbeans</artifactId>
             <version>2.6.0</version>
         </dependency>
-        
         <dependency>
             <groupId>org.jrimum</groupId>
             <artifactId>jrimum-bopepo</artifactId>
             <version>0.2.3-SNAPSHOT</version>
-            <type>jar</type>
         </dependency>
         <dependency>
             <groupId>javax</groupId>

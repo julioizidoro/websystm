@@ -72,7 +72,7 @@
                                 <p:submenu style="margin-top:-7px;" >
                                     <p:menuitem style="float:right;" value="Editar" action="#{contasReceberMB.editar()}" />
                                     <p:menuitem style="float:right;" value="Receber" action="#{contasReceberMB.recebimento()}" />
-                                    <p:menuitem style="float:right;" value="Receber Lote" value="#{contasReceberMB.lerRetorno}" ajax="false" />
+                                    <p:menuitem style="float:right;" value="Receber Lote" action="#{contasReceberMB.lerRetorno}" ajax="false" />
                                     <p:menuitem style="float:right;" value="Gerar Boleto"  action="#{contasReceberMB.gerarBoleto()}" ajax="false"/>
                                     <p:menuitem style="float:right;" value="Cobrança" action="#{contasReceberMB.iniciarCobranca(contasrecebe)}" />
                                     <p:menuitem style="float:right;" value="Totais" action="#{contasReceberMB.calcularTotais()}" update=":totais:dialog_totais" oncomplete="PF('totais').show()" />

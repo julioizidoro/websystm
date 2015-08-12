@@ -214,7 +214,7 @@ public class ContasReceberMB implements Serializable{
         dadosBoletoBean.getEnderecoSacado().setUF(UnidadeFederativa.valueOfSigla(conta.getVendas().getCliente().getEstado()));
         dadosBoletoBean.criarBoleto();
         ContasReceberFacade contasReceberFacade = new ContasReceberFacade();
-        conta.setNossonumero(dadosBoletoBean.getDigitoNossoNumeros());
+        conta.setNossonumero(dadosBoletoBean.getNossoNumeros());
         conta.setDataEmissao(new Date());
         conta.setBoletogerado(true);
         contasReceberFacade.salvar(conta);
