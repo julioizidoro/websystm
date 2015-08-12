@@ -21,6 +21,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 import org.jrimum.bopepo.Boleto;
+import org.jrimum.domkee.comum.pessoa.endereco.Endereco;
+import org.jrimum.domkee.comum.pessoa.endereco.UnidadeFederativa;
 
 /**
  *
@@ -200,6 +202,14 @@ public class ContasReceberMB implements Serializable{
         dadosBoletoBean.setNumeroDocumentos(Formatacao.gerarNumeroDocumentoBoleto(conta.getNumerodocumento(), String.valueOf(conta.getNumeroparcelas())));
         dadosBoletoBean.setValor(Formatacao.converterFloatBigDecimal(conta.getValorparcela()));
         dadosBoletoBean.setNossoNumeros(dadosBoletoBean.getNumeroDocumentos());
+        dadosBoletoBean.setEnderecoSacado(new Endereco());
+        dadosBoletoBean.getEnderecoSacado().setBairro(conta.getVendas().getCliente().getBairro());
+        dadosBoletoBean.getEnderecoSacado().setCep(conta.getVendas().getCliente().getCep());
+        dadosBoletoBean.getEnderecoSacado().setComplemento(conta.getVendas().getCliente().getComplemento());
+        dadosBoletoBean.getEnderecoSacado().setLocalidade(conta.getVendas().getCliente().getCidade());
+        dadosBoletoBean.getEnderecoSacado().setLogradouro(conta.getVendas().getCliente().getTipologradouro() + " " + conta.getVendas().getCliente().getLogradouro());
+        dadosBoletoBean.getEnderecoSacado().setNumero(conta.getVendas().getCliente().getNumero());
+        dadosBoletoBean.getEnderecoSacado().setUF(UnidadeFederativa.valueOfSigla(conta.getVendas().getCliente().getEstado()));
         dadosBoletoBean.criarBoleto();
         return dadosBoletoBean.getBoleto();
     }

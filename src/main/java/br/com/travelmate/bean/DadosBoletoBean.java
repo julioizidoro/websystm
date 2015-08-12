@@ -7,6 +7,8 @@ import java.io.File;
 import java.io.OutputStream;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.AbstractCollection;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import javax.faces.context.FacesContext;
@@ -14,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.jrimum.bopepo.BancosSuportados;
 import org.jrimum.bopepo.Boleto;
 import org.jrimum.bopepo.view.BoletoViewer;
+import org.jrimum.domkee.comum.pessoa.endereco.Endereco;
 import org.jrimum.domkee.financeiro.banco.febraban.Agencia;
 import org.jrimum.domkee.financeiro.banco.febraban.Carteira;
 import org.jrimum.domkee.financeiro.banco.febraban.Cedente;
@@ -41,6 +44,7 @@ public class DadosBoletoBean implements Serializable{
     private String numeroDocumentos;
     private String digitoNossoNumeros;
     private Boleto boleto;   
+    private Endereco enderecoSacado;
     
     public String getNossoNumeros() {
         return nossoNumeros;
@@ -64,6 +68,14 @@ public class DadosBoletoBean implements Serializable{
 
     public void setDigitoNossoNumeros(String digitoNossoNumeros) {
         this.digitoNossoNumeros = digitoNossoNumeros;
+    }
+
+    public Endereco getEnderecoSacado() {
+        return enderecoSacado;
+    }
+
+    public void setEnderecoSacado(Endereco enderecoSacado) {
+        this.enderecoSacado = enderecoSacado;
     }
 
     
@@ -193,11 +205,17 @@ public class DadosBoletoBean implements Serializable{
         this.digitoNossoNumeros = dac.getDac();
         ContaBancaria contaBancaria = criarContaBancaria();
         Sacado sacado = new Sacado(nomeSacado);
+        sacado.addEndereco(enderecoSacado);
         Cedente cedente = new Cedente(nomeCedente, cnpjCedente);
 
         Titulo titulo = criarTitulo(contaBancaria, sacado, cedente);
-
         boleto = new Boleto(titulo);
+        boleto.setInstrucaoAoSacado("Instruções de responsabilidade do BENEFIÁRIO. Qualquer dúvida sobre este boleto, contate o BENEFICIÁRIO.");
+        String nossoNumeroExibicao = carteiras + "/" + nossoNumeros + "-" + digitoNossoNumeros;
+        boleto.addTextosExtras("txtFcNossoNumero", nossoNumeroExibicao);
+        boleto.addTextosExtras("txtRsNossoNumero", nossoNumeroExibicao);
+        boleto.setInstrucao3("ATÉ O VENCIMENTO PAGUE PREFERENCIALMENTE NO ITAÚ");
+        boleto.setInstrucao4("APÓS O VENCIMENTO PAGUE SOMENTE NO ITAÚ");
     }
     
     
@@ -206,7 +224,6 @@ public class DadosBoletoBean implements Serializable{
         contaBancaria.setAgencia(new Agencia(Integer.valueOf(agencias), digitoAgencias));
         contaBancaria.setNumeroDaConta(new NumeroDaConta(Integer.valueOf(numeroContas), digitoContas));
         contaBancaria.setCarteira(new Carteira(Integer.valueOf(carteiras)));
-        
         return contaBancaria;
     }
     
@@ -216,8 +233,7 @@ public class DadosBoletoBean implements Serializable{
 //        String codigo = this.geradorDigitoVerificador.completarComZeros(String.valueOf(codigoVenda));
        titulo.setNumeroDoDocumento(numeroDocumentos);
        titulo.setNossoNumero(nossoNumeros);
-       titulo.setDigitoDoNossoNumero(digitoNossoNumeros);
-
+        titulo.setDigitoDoNossoNumero(digitoNossoNumeros);
         titulo.setValor(valor);
         titulo.setDataDoDocumento(dataDocumento);
         titulo.setDataDoVencimento(dataVencimento);
