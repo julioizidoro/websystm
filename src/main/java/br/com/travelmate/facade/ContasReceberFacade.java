@@ -60,4 +60,14 @@ public class ContasReceberFacade {
             return null;
         }
     }
+    
+    public Contasreceber consultar(String sql){
+        contasReceberDao = new ContasReceberDao();
+        try {
+            return contasReceberDao.consultar(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(ContasReceberFacade.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
 }

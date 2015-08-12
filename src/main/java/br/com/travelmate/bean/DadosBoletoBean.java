@@ -7,8 +7,6 @@ import java.io.File;
 import java.io.OutputStream;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.AbstractCollection;
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import javax.faces.context.FacesContext;
@@ -246,11 +244,14 @@ public class DadosBoletoBean implements Serializable{
         HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
 
         response.setContentType("application/pdf");
-        response.setHeader("Content-Disposition", "attachment; filename=boleto" + codigoVenda + ".pdf");
+        response.setContentLength(pdf.length);
+        response.setHeader("Content-Disposition", "attachment; filename=boletoItau.pdf");
+         OutputStream output = null;
 
         try {
-            OutputStream output = response.getOutputStream();
-            output.write(pdf);
+            output = response.getOutputStream();
+            output.write(pdf, 0, pdf.length);
+            output.flush();
             response.flushBuffer();
         } catch (Exception e) {
             throw new RuntimeException("Erro gerando boleto", e);
@@ -266,7 +267,7 @@ public class DadosBoletoBean implements Serializable{
     }
     
     public void gerarPDFS(List<Boleto> listaBoletos){
-        File arquivo = new File("C:\\Julio\\boletos.pdf");
-        BoletoViewer.groupInOnePDF(listaBoletos, arquivo);
+        byte[] pdf = BoletoViewer.groupInOnePDF(listaBoletos);
+        enviarBoleto(pdf);
     }
 }

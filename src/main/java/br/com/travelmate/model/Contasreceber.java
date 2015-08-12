@@ -62,6 +62,17 @@ public class Contasreceber implements Serializable {
     private String tipodocumento;
     @Column(name = "boletogerado")
     private Boolean boletogerado;
+    @Size(max = 8)
+    @Column(name = "nossonumero")
+    private String nossonumero;
+    @Column(name = "dataEmissao")
+    @Temporal(TemporalType.DATE)
+    private Date dataEmissao;
+    @Column(name = "dataRetorno")
+    @Temporal(TemporalType.DATE)
+    private Date dataRetorno;
+    @Column(name = "boletoenviado")
+    private Boolean boletoenviado;
     @JoinColumn(name = "banco_idbanco", referencedColumnName = "idbanco")
     @ManyToOne(optional = false)
     private Banco banco;
@@ -170,6 +181,38 @@ public class Contasreceber implements Serializable {
 
     public void setBoletogerado(Boolean boletogerado) {
         this.boletogerado = boletogerado;
+    }
+
+    public String getNossonumero() {
+        return nossonumero;
+    }
+
+    public void setNossonumero(String nossonumero) {
+        this.nossonumero = nossonumero;
+    }
+
+    public Date getDataEmissao() {
+        return dataEmissao;
+    }
+
+    public void setDataEmissao(Date dataEmissao) {
+        this.dataEmissao = dataEmissao;
+    }
+
+    public Date getDataRetorno() {
+        return dataRetorno;
+    }
+
+    public void setDataRetorno(Date dataRetorno) {
+        this.dataRetorno = dataRetorno;
+    }
+
+    public Boolean getBoletoenviado() {
+        return boletoenviado;
+    }
+
+    public void setBoletoenviado(Boolean boletoenviado) {
+        this.boletoenviado = boletoenviado;
     }
 
     public Banco getBanco() {

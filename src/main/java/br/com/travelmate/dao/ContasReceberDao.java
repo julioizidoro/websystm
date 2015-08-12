@@ -54,4 +54,16 @@ public class ContasReceberDao {
         manager.getTransaction().commit();
         return q.getResultList();
     }
+    
+    public Contasreceber consultar(String sql)throws SQLException{
+        manager = ConectionFactory.getConnection();
+         manager.getTransaction().begin();
+        Query q = manager.createQuery(sql);
+        manager.getTransaction().commit();
+        Contasreceber conta = null;
+        if (q.getResultList().size()>0){
+            conta = (Contasreceber) q.getResultList().get(0);
+        }
+        return conta;
+    }
 }

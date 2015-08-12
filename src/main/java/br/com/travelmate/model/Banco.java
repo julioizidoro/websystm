@@ -65,8 +65,14 @@ public class Banco implements Serializable {
     @Size(max = 1)
     @Column(name = "digitoconta")
     private String digitoconta;
+    @Size(max = 3)
     @Column(name = "carteira")
     private String carteira;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "valorjuros")
+    private Float valorjuros;
+    @Column(name = "valormulta")
+    private Float valormulta;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "banco")
     private List<Contasreceber> contasreceberList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "banco")
@@ -175,6 +181,21 @@ public class Banco implements Serializable {
         this.carteira = carteira;
     }
 
+    public Float getValorjuros() {
+        return valorjuros;
+    }
+
+    public void setValorjuros(Float valorjuros) {
+        this.valorjuros = valorjuros;
+    }
+
+    public Float getValormulta() {
+        return valormulta;
+    }
+
+    public void setValormulta(Float valormulta) {
+        this.valormulta = valormulta;
+    }
 
     public List<Contasreceber> getContasreceberList() {
         return contasreceberList;
@@ -214,7 +235,7 @@ public class Banco implements Serializable {
 
     @Override
     public String toString() {
-        return getNome();
+        return "br.com.travelmate.model.Banco[ idbanco=" + idbanco + " ]";
     }
     
 }

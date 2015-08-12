@@ -6,10 +6,12 @@
 package br.com.travelmate.managerBean;
 
 import br.com.travelmate.bean.DadosBoletoBean;
+import br.com.travelmate.bean.LerRetornoItauBean;
 import br.com.travelmate.facade.ContasReceberFacade;
 import br.com.travelmate.model.Contasreceber;
 import br.com.travelmate.model.Vendas;
 import br.com.travelmate.util.Formatacao;
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -211,6 +213,17 @@ public class ContasReceberMB implements Serializable{
         dadosBoletoBean.getEnderecoSacado().setNumero(conta.getVendas().getCliente().getNumero());
         dadosBoletoBean.getEnderecoSacado().setUF(UnidadeFederativa.valueOfSigla(conta.getVendas().getCliente().getEstado()));
         dadosBoletoBean.criarBoleto();
+        ContasReceberFacade contasReceberFacade = new ContasReceberFacade();
+        conta.setNossonumero(dadosBoletoBean.getDigitoNossoNumeros());
+        conta.setDataEmissao(new Date());
+        conta.setBoletogerado(true);
+        contasReceberFacade.salvar(conta);
         return dadosBoletoBean.getBoleto();
+    }
+    
+    public String lerRetorno(){
+        File retorno = new File("C:\\Julio\\CN10085A.RET");
+        LerRetornoItauBean lerRetornoItauBean = new LerRetornoItauBean(retorno);
+        return null;
     }
 }
