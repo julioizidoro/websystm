@@ -65,8 +65,8 @@ public class Banco implements Serializable {
     @Size(max = 1)
     @Column(name = "digitoconta")
     private String digitoconta;
-    @Column(name = "nossonumero")
-    private Integer nossonumero;
+    @Column(name = "carteira")
+    private String carteira;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "banco")
     private List<Contasreceber> contasreceberList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "banco")
@@ -167,13 +167,14 @@ public class Banco implements Serializable {
         this.digitoconta = digitoconta;
     }
 
-    public Integer getNossonumero() {
-        return nossonumero;
+    public String getCarteira() {
+        return carteira;
     }
 
-    public void setNossonumero(Integer nossonumero) {
-        this.nossonumero = nossonumero;
+    public void setCarteira(String carteira) {
+        this.carteira = carteira;
     }
+
 
     public List<Contasreceber> getContasreceberList() {
         return contasreceberList;

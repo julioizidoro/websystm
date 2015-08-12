@@ -8,6 +8,7 @@ package br.com.travelmate.managerBean;
 import br.com.travelmate.model.Pacotes;
 import br.com.travelmate.util.GerarListas;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -28,9 +29,10 @@ public class PacoteAgenciaMB implements Serializable{
     private List<Pacotes> listaPacotes;
 
     public PacoteAgenciaMB() {
-        String sql = "Select p from Pacotes p where p.operacao='Agencia' and p.unidadenegocio.idunidadeNegocio=" + usuarioLogadoMB.getUsuario().getUnidadenegocio().getIdunidadeNegocio() + "   order by p.vendas.dataVenda";
-        listaPacotes = GerarListas.listarPacotes(sql);
+        listaPacotes = new ArrayList<Pacotes>();
     }
+    
+    
 
     public UsuarioLogadoMB getUsuarioLogadoMB() {
         return usuarioLogadoMB;
@@ -41,11 +43,20 @@ public class PacoteAgenciaMB implements Serializable{
     }
 
     public List<Pacotes> getListaPacotes() {
+        if (listaPacotes==null){
+            gerarListaPacotes();
+        }
         return listaPacotes;
     }
 
     public void setListaPacotes(List<Pacotes> listaPacotes) {
         this.listaPacotes = listaPacotes;
+    }
+    
+    public void gerarListaPacotes(){
+        String sql = "Select p from Pacotes p where p.operacao='Agencia' and p.unidadenegocio.idunidadeNegocio=" + usuarioLogadoMB.getUsuario().getUnidadenegocio().getIdunidadeNegocio() + "   order by p.vendas.dataVenda";
+        listaPacotes = GerarListas.listarPacotes(sql);
+
     }
     
      public String novoPacotes(){

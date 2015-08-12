@@ -2,15 +2,14 @@ package br.com.travelmate.bean;
 
 
 
-import br.com.travelmate.util.Formatacao;
 import br.com.travelmate.util.GerarDacNossoNumero;
 import java.io.File;
 import java.io.OutputStream;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 import javax.faces.context.FacesContext;
-import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
 import org.jrimum.bopepo.BancosSuportados;
 import org.jrimum.bopepo.Boleto;
@@ -41,27 +40,7 @@ public class DadosBoletoBean implements Serializable{
     private String nossoNumeros;
     private String numeroDocumentos;
     private String digitoNossoNumeros;
-
-    public DadosBoletoBean() {
-        this.nomeCedente = "travel";
-        this.cnpjCedente = "84.054.220/0001-98";
-        this.nomeSacado = "Kamila Pereira Rodrigues";
-        this.digitoAgencias = "8";
-        this.agencias = "1575";
-        this.numeroContas = "15987";
-        this.digitoContas = "0";
-        this.carteiras = "109";
-        this.valor = BigDecimal.valueOf(200);
-        this.dataDocumento = Formatacao.ConvercaoStringData("11/08/2015");
-        this.dataVencimento = Formatacao.ConvercaoStringData("20/08/2015");
-        this.codigoVenda = 1;
-        this.numeroDocumentos ="00000075";
-        this.nossoNumeros = "12345678";
-        GerarDacNossoNumero dac = new GerarDacNossoNumero(nossoNumeros,carteiras, agencias, numeroContas);
-        this.digitoNossoNumeros = dac.getDac();
-    }
-
-   
+    private Boleto boleto;   
     
     public String getNossoNumeros() {
         return nossoNumeros;
@@ -187,38 +166,38 @@ public class DadosBoletoBean implements Serializable{
         this.codigoVenda = codigoVenda;
     }
 
-  
-    
-//    @Inject
-//    public DadosBoletoBeans(GeradorDigitoVerificador geradorDigitoVerificador) {
-//        this.geradorDigitoVerificador = geradorDigitoVerificador;
-//    }
+    public Boleto getBoleto() {
+        return boleto;
+    }
+
+    public void setBoleto(Boleto boleto) {
+        this.boleto = boleto;
+    }
   
     
     public byte[] gerarBoleto() {
-        Boleto boleto = criarBoleto();
-
+        criarBoleto();
         BoletoViewer boletoViewer = new BoletoViewer(boleto);
         return boletoViewer.getPdfAsByteArray();
     }
     
     
     public File gerarBoletoEmArquivo(String arquivo) {
-        Boleto boleto = criarBoleto();
-
+        criarBoleto();
         BoletoViewer boletoViewer = new BoletoViewer(boleto);
         return boletoViewer.getPdfAsFile(arquivo);
     }
     
-    private Boleto criarBoleto() {
+    public void criarBoleto() {
+        GerarDacNossoNumero dac = new GerarDacNossoNumero(nossoNumeros,carteiras, agencias, numeroContas);
+        this.digitoNossoNumeros = dac.getDac();
         ContaBancaria contaBancaria = criarContaBancaria();
         Sacado sacado = new Sacado(nomeSacado);
         Cedente cedente = new Cedente(nomeCedente, cnpjCedente);
 
         Titulo titulo = criarTitulo(contaBancaria, sacado, cedente);
 
-        Boleto boleto = new Boleto(titulo);
-        return boleto;
+        boleto = new Boleto(titulo);
     }
     
     
@@ -268,5 +247,10 @@ public class DadosBoletoBean implements Serializable{
     public void emitir() {
         byte[] pdf = gerarBoleto();
         enviarBoleto(pdf);
+    }
+    
+    public void gerarPDFS(List<Boleto> listaBoletos){
+        File arquivo = new File("C:\\Julio\\boletos.pdf");
+        BoletoViewer.groupInOnePDF(listaBoletos, arquivo);
     }
 }

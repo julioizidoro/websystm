@@ -8,6 +8,7 @@ package br.com.travelmate.util;
 import br.com.travelmate.facade.CambioFacade;
 import br.com.travelmate.model.Cambio;
 import java.io.File;
+import java.math.BigDecimal;
 import java.sql.Time;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
@@ -673,5 +674,26 @@ public class Formatacao {
             Logger.getLogger(Formatacao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return dataFormatada;
+    }
+  
+    public static String gerarNumeroDocumentoBoleto(String numeroVenda, String numeroParcela){
+        if (numeroParcela.length()==1){
+            numeroParcela = "0" + numeroParcela;
+        }
+        String numero = numeroVenda + numeroParcela;
+        for(int i=0;i<8;i++){
+            if (numero.length()<8){
+                numero= "0" + numero;
+            }else {
+                i=100;
+            }
+        }
+        return numero;
+    }
+    
+    public static BigDecimal converterFloatBigDecimal(Float valor){
+        Double dobuleValor = valor.doubleValue();
+        BigDecimal bigDecimalValor = new BigDecimal(dobuleValor);
+        return bigDecimalValor;
     }
 }

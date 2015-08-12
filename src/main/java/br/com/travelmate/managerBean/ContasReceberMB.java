@@ -20,7 +20,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
-import org.primefaces.context.RequestContext;
+import org.jrimum.bopepo.Boleto;
 
 /**
  *
@@ -169,8 +169,38 @@ public class ContasReceberMB implements Serializable{
     }
     
     public String gerarBoleto(){
-        DadosBoletoBean dadosBoletoBean = new DadosBoletoBean();
-        dadosBoletoBean.emitir();
+        List<Boleto> listaBoletos = new ArrayList<Boleto>();
+        if (listaContas!=null){
+            for(int i=0;i<listaContas.size();i++){
+                if (listaContas.get(i).isSelecionado()){
+                    listaBoletos.add(gerarBoleto(listaContas.get(i)));
+                }
+            }
+        }
+        if (listaBoletos.size()>0){
+            DadosBoletoBean dadosBoletoBean = new DadosBoletoBean();
+            dadosBoletoBean.gerarPDFS(listaBoletos);
+        }
         return "";
+    }
+    
+    public Boleto gerarBoleto(Contasreceber conta){
+        DadosBoletoBean dadosBoletoBean = new DadosBoletoBean();
+        dadosBoletoBean.setAgencias(conta.getVendas().getUnidadenegocio().getBanco().getAgencia());
+        dadosBoletoBean.setCarteiras(conta.getVendas().getUnidadenegocio().getBanco().getCarteira());
+        dadosBoletoBean.setCnpjCedente(conta.getVendas().getUnidadenegocio().getCnpj());
+        dadosBoletoBean.setCodigoVenda(conta.getVendas().getIdvendas());
+        dadosBoletoBean.setDataDocumento(new Date());
+        dadosBoletoBean.setDigitoAgencias(conta.getVendas().getUnidadenegocio().getBanco().getDigioagencia());
+        dadosBoletoBean.setDigitoContas(conta.getVendas().getUnidadenegocio().getBanco().getDigitoconta());
+        dadosBoletoBean.setDataVencimento(conta.getDatavencimento());
+        dadosBoletoBean.setNomeCedente(conta.getVendas().getUnidadenegocio().getRazaoSocial());
+        dadosBoletoBean.setNomeSacado(conta.getVendas().getCliente().getNome());
+        dadosBoletoBean.setNumeroContas(conta.getVendas().getUnidadenegocio().getBanco().getConta());
+        dadosBoletoBean.setNumeroDocumentos(Formatacao.gerarNumeroDocumentoBoleto(conta.getNumerodocumento(), String.valueOf(conta.getNumeroparcelas())));
+        dadosBoletoBean.setValor(Formatacao.converterFloatBigDecimal(conta.getValorparcela()));
+        dadosBoletoBean.setNossoNumeros(dadosBoletoBean.getNumeroDocumentos());
+        dadosBoletoBean.criarBoleto();
+        return dadosBoletoBean.getBoleto();
     }
 }
