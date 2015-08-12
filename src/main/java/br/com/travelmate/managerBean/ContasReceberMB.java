@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -25,6 +26,9 @@ import javax.servlet.http.HttpSession;
 import org.jrimum.bopepo.Boleto;
 import org.jrimum.domkee.comum.pessoa.endereco.Endereco;
 import org.jrimum.domkee.comum.pessoa.endereco.UnidadeFederativa;
+import org.primefaces.context.RequestContext;
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.UploadedFile;
 
 /**
  *
@@ -43,12 +47,24 @@ public class ContasReceberMB implements Serializable{
     private Float contasVencer;
     private Float contasVencendo;
     private Vendas vendas;
+    private UploadedFile arquivo;
+    private String nomeArquivo;
     
     @PostConstruct
     public void init(){
         String sql = "Select c from Contasreceber c where c.recebimento.idrecebimento=1 order by c.datavencimento, c.vendas.cliente.nome";
         carregarContasReceber(sql);
         conta = new Contasreceber();
+    }
+
+     
+
+    public UploadedFile getArquivo() {
+        return arquivo;
+    }
+
+    public void setArquivo(UploadedFile arquivo) {
+        this.arquivo = arquivo;
     }
 
     public UsuarioLogadoMB getUsuarioLogadoMB() {
@@ -105,6 +121,14 @@ public class ContasReceberMB implements Serializable{
 
     public void setVendas(Vendas vendas) {
         this.vendas = vendas;
+    }
+
+    public String getNomeArquivo() {
+        return nomeArquivo;
+    }
+
+    public void setNomeArquivo(String nomeArquivo) {
+        this.nomeArquivo = nomeArquivo;
     }
     
     
@@ -224,6 +248,15 @@ public class ContasReceberMB implements Serializable{
     public String lerRetorno(){
         File retorno = new File("C:\\Julio\\CN10085A.RET");
         LerRetornoItauBean lerRetornoItauBean = new LerRetornoItauBean(retorno);
+        lerRetornoItauBean.upload01(null);
         return null;
     }
+    
+    public String uploadBoleto(){
+        RequestContext.getCurrentInstance().openDialog("uploadboleto");
+        return "";
+    }
+    
+   
+     
 }
