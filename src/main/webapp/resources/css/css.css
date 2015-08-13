@@ -998,6 +998,24 @@ text-align: left;
     height: 23px;
     border: #1F8871;
 }
+.espacocobranca21botao{
+    margin-left:0%;
+    width: 19%;
+}
+.espacocobranca21botao:hover{
+    height: 20px;
+    width: 17.7%;
+    border: #1F8871;
+}
+.espacocobranca22botao{
+    margin-left:1.9%;
+    width: 19%;
+}
+.espacocobranca22botao:hover{
+    height: 20px;
+    width: 17.7%;
+    border: #1F8871;
+}
 .espacocobranca3botao{
     margin-left:3%;
     height:27px;

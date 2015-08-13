@@ -138,7 +138,7 @@ public class GerarArquivoRemassaItau {
         remessa.write(Formatacao.ConvercaoDataDDMMAA(new Date()));
         remessa.write("00");
         remessa.write("00");
-        remessa.write(valorJuros(conta.getValorparcela(), conta.getVendas().getUnidadenegocio().getBanco().getValorjuros()));
+        remessa.write(Formatacao.retirarPontos(valorJuros(conta.getValorparcela(), conta.getVendas().getUnidadenegocio().getBanco().getValorjuros())+conta.getVendas().getUnidadenegocio().getBanco().getValorjuros()));
         remessa.write(Formatacao.ConvercaoDataDDMMAA(new Date()));
         remessa.write(zeros.substring(0, 13));
         remessa.write(zeros.substring(0, 13));
@@ -175,7 +175,7 @@ public class GerarArquivoRemassaItau {
         remessa.write(conta.getVendas().getCliente().getEstado().toUpperCase());
         remessa.write(branco.substring(0,30));
         remessa.write("    ");
-        remessa.write(Formatacao.SubtarirDatas(conta.getDatavencimento(), -1, "ddMMyyyy"));
+        remessa.write(Formatacao.SubtarirDatas(conta.getDatavencimento(), -1, "ddMMyy"));
         remessa.write("00");
         remessa.write(" ");
         String ns;
@@ -192,7 +192,7 @@ public class GerarArquivoRemassaItau {
         remessa.write("2");
         remessa.write("1");
         remessa.write(Formatacao.SubtarirDatas(conta.getDatavencimento(), -1, "ddMMyyyy"));
-        remessa.write(valorJuros(conta.getValorparcela(), conta.getVendas().getUnidadenegocio().getBanco().getValormulta()));
+        remessa.write(Formatacao.retirarPontos(valorJuros(conta.getValorparcela(), conta.getVendas().getUnidadenegocio().getBanco().getValormulta())+ conta.getVendas().getUnidadenegocio().getBanco().getValormulta()));
         remessa.write(branco + branco + branco + branco + branco + branco + branco + branco + branco + branco.substring(0,11));
         String ns;
         if (numeroSequencial<10){
@@ -218,7 +218,7 @@ public class GerarArquivoRemassaItau {
     
     private String valorJuros(Float valorConta, float juros){
         Float valorJuros = valorConta * (juros/100);
-        String valor = Formatacao.formatarFloatString(valorJuros);
+        String valor = Formatacao.retirarPontos(Formatacao.formatarFloatString(valorJuros));
         if (valor.length()<13){
             valor = zeros.substring(0, 13 - valor.length());
         }

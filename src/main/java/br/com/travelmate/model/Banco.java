@@ -235,7 +235,7 @@ public class Banco implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.travelmate.model.Banco[ idbanco=" + idbanco + " ]";
+        return getNome();
     }
     
 }

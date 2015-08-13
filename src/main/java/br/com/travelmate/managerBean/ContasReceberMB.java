@@ -251,4 +251,11 @@ public class ContasReceberMB implements Serializable{
         GerarArquivoRemassaItau  arquivoRemessa  = new GerarArquivoRemassaItau(null, usuarioLogadoMB);
     }
      
+    public String retornarBoletoGerado(Contasreceber conta){
+        String retorno = "Não";
+        if(conta.getBoletoenviado()==true){
+            retorno = "Sim";
+        }
+        return retorno;
+    }
 }
