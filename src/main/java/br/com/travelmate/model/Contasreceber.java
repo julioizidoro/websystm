@@ -79,9 +79,6 @@ public class Contasreceber implements Serializable {
     @JoinColumn(name = "planoconta_idplanoconta", referencedColumnName = "idplanoconta")
     @ManyToOne(optional = false)
     private Planoconta planoconta;
-    @JoinColumn(name = "recebimento_idrecebimento", referencedColumnName = "idrecebimento")
-    @ManyToOne(optional = false)
-    private Recebimento recebimento;
     @JoinColumn(name = "vendas_idvendas", referencedColumnName = "idvendas")
     @ManyToOne(optional = false)
     private Vendas vendas;
@@ -229,14 +226,6 @@ public class Contasreceber implements Serializable {
 
     public void setPlanoconta(Planoconta planoconta) {
         this.planoconta = planoconta;
-    }
-
-    public Recebimento getRecebimento() {
-        return recebimento;
-    }
-
-    public void setRecebimento(Recebimento recebimento) {
-        this.recebimento = recebimento;
     }
 
     public Vendas getVendas() {

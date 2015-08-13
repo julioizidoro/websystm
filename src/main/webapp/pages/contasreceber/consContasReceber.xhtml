@@ -74,6 +74,7 @@
                                     <p:menuitem style="float:right;" value="Receber" action="#{contasReceberMB.recebimento()}" />
                                     <p:menuitem style="float:right;" value="Gerar Boleto"  action="#{contasReceberMB.gerarBoleto()}" ajax="false"/>
                                     <p:menuitem style="float:right;" value="Carregar Boleto"  update=":dialogUpload:dialog_uploadboleto"  oncomplete="PF('uploadboleto').show()"> </p:menuitem>     
+                                    <p:menuitem style="float:right;" value="Arquivo Remessa"  action="#{contasReceberMB.gerarArquivoRemessa()}"> </p:menuitem>     
                                     <p:menuitem style="float:right;" value="Cobrança" action="#{contasReceberMB.iniciarCobranca(contasrecebe)}" />
                                     <p:menuitem style="float:right;" value="Totais" action="#{contasReceberMB.calcularTotais()}" update=":totais:dialog_totais" oncomplete="PF('totais').show()" />
                                 </p:submenu>

@@ -37,6 +37,18 @@ public class Formatacao {
         String dataFormatada = df.format(data);
         return dataFormatada;
     }
+    
+    public static String ConvercaoDataDDMMAA(Date data) {
+        DateFormat df = new SimpleDateFormat("ddMMyy");
+        String dataFormatada = df.format(data);
+        return dataFormatada;
+    }
+    
+    public static String ConvercaoDataDDMMAAAA(Date data) {
+        DateFormat df = new SimpleDateFormat("ddMMyyyy");
+        String dataFormatada = df.format(data);
+        return dataFormatada;
+     }
 
     public static String ConvercaoDataPadrao(Date data) {
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
@@ -695,5 +707,19 @@ public class Formatacao {
         Double dobuleValor = valor.doubleValue();
         BigDecimal bigDecimalValor = new BigDecimal(dobuleValor);
         return bigDecimalValor;
+    }
+    
+    public static String retirarPontos(String dado){
+        String formatado = "";
+        char c = ' ';
+        if (dado != null) {
+            for (int i = 0; i < dado.length(); i++) {
+                c = dado.charAt(i);
+                if ((c != '.') && (c != ',') && (c != '-') && (c != '/') && (c != '(') && (c != ')')) {
+                    formatado += c;
+                }
+            }
+        }
+        return formatado;
     }
 }

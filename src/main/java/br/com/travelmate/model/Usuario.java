@@ -34,8 +34,6 @@ public class Usuario implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     private List<Pacotes> pacotesList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
-    private List<Recebimento> recebimentoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     private List<Historicocobranca> historicocobrancaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     private List<Pincambio> pincambioList;
@@ -235,15 +233,7 @@ public class Usuario implements Serializable {
     public void setPincambioList(List<Pincambio> pincambioList) {
         this.pincambioList = pincambioList;
     }
-
-    public List<Recebimento> getRecebimentoList() {
-        return recebimentoList;
-    }
-
-    public void setRecebimentoList(List<Recebimento> recebimentoList) {
-        this.recebimentoList = recebimentoList;
-    }
-
+    
     public List<Historicocobranca> getHistoricocobrancaList() {
         return historicocobrancaList;
     }

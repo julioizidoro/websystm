@@ -6,6 +6,7 @@
 package br.com.travelmate.managerBean;
 
 import br.com.travelmate.bean.DadosBoletoBean;
+import br.com.travelmate.bean.GerarArquivoRemassaItau;
 import br.com.travelmate.bean.LerRetornoItauBean;
 import br.com.travelmate.facade.ContasReceberFacade;
 import br.com.travelmate.model.Contasreceber;
@@ -28,7 +29,6 @@ import org.jrimum.domkee.comum.pessoa.endereco.Endereco;
 import org.jrimum.domkee.comum.pessoa.endereco.UnidadeFederativa;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.FileUploadEvent;
-import org.primefaces.model.UploadedFile;
 
 /**
  *
@@ -50,7 +50,7 @@ public class ContasReceberMB implements Serializable{
     
     @PostConstruct
     public void init(){
-        String sql = "Select c from Contasreceber c where c.recebimento.idrecebimento=1 order by c.datavencimento, c.vendas.cliente.nome";
+        String sql = "Select c from Contasreceber c where c.valorpago=0 order by c.datavencimento, c.vendas.cliente.nome";
         carregarContasReceber(sql);
         conta = new Contasreceber();
     }
@@ -245,6 +245,10 @@ public class ContasReceberMB implements Serializable{
     
     public void fecharUpload(){
         RequestContext.getCurrentInstance().closeDialog(null);
+    }
+    
+    public void gerarArquivoRemessa(){
+        GerarArquivoRemassaItau  arquivoRemessa  = new GerarArquivoRemassaItau(null, usuarioLogadoMB);
     }
      
 }
