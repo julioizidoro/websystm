@@ -26,8 +26,8 @@ public class GerarArquivoRemassaItau {
     private List<Contasreceber> listaCotnas;
     private FileWriter remessa;
     private UsuarioLogadoMB usuarioLogadoMB;
-    private int numeroSequencial;
-    private String branco = "                                             ";
+    private int numeroSequencial=0;
+    private String branco = "                                        ";
     private String zeros = "000000000000000000000";
 
     public GerarArquivoRemassaItau(List<Contasreceber> listaCotnas, UsuarioLogadoMB usuarioLogadoMB) {
@@ -45,7 +45,7 @@ public class GerarArquivoRemassaItau {
         if (this.listaCotnas!=null){
             String nomeArquivo = usuarioLogadoMB.getUsuario().getLocalsalvar() + "\\" + gerarNomeArquivo();
             try {
-                FileWriter remessa = new FileWriter(new File(nomeArquivo));
+                remessa = new FileWriter(new File(nomeArquivo));
                 try {
                     lerConta();
                 } catch (Exception ex) {
@@ -80,14 +80,14 @@ public class GerarArquivoRemassaItau {
         remessa.write("1");
         remessa.write("REMESSA");
         remessa.write("01");
-        remessa.write("COBRANCA");
+        remessa.write("COBRANCA       ");
         remessa.write(conta.getVendas().getUnidadenegocio().getBanco().getAgencia());
         remessa.write("00");
         remessa.write(conta.getVendas().getUnidadenegocio().getBanco().getConta());
         remessa.write(conta.getVendas().getUnidadenegocio().getBanco().getDigitoconta());
         remessa.write(branco.substring(0, 8));
         String nomeEmpresa = conta.getVendas().getUnidadenegocio().getRazaoSocial();
-        nomeEmpresa.toUpperCase();
+        nomeEmpresa = nomeEmpresa.toUpperCase();
         if (nomeEmpresa.length()<30){
             nomeEmpresa = nomeEmpresa + branco.substring(0, 30 - nomeEmpresa.length());
         }else nomeEmpresa = nomeEmpresa.substring(0,30);
@@ -110,6 +110,7 @@ public class GerarArquivoRemassaItau {
         remessa.write("1");
         remessa.write("02");
         remessa.write(Formatacao.retirarPontos(conta.getVendas().getUnidadenegocio().getCnpj()));
+        remessa.write(conta.getVendas().getUnidadenegocio().getBanco().getAgencia());
         remessa.write("00");
         remessa.write(conta.getVendas().getUnidadenegocio().getBanco().getConta());
         remessa.write(conta.getVendas().getUnidadenegocio().getBanco().getDigitoconta());
@@ -127,7 +128,7 @@ public class GerarArquivoRemassaItau {
         String valor = Formatacao.formatarFloatString(conta.getValorparcela());
         valor = Formatacao.retirarPontos(valor);
         if (valor.length()<13){
-            valor = zeros.substring(0, 13 - valor.length());
+            valor = zeros.substring(0, 13 - valor.length()) + valor;
         }
         remessa.write(valor);
         remessa.write("341");
@@ -145,7 +146,7 @@ public class GerarArquivoRemassaItau {
         remessa.write("01");
         remessa.write(Formatacao.retirarPontos(conta.getVendas().getCliente().getCpf())+ "   ");
         String nomeCliente = conta.getVendas().getCliente().getNome();
-        nomeCliente.toUpperCase();
+        nomeCliente = nomeCliente.toUpperCase();
         if (nomeCliente.length()<30){
             nomeCliente = nomeCliente + branco.substring(0, 30 -nomeCliente.length());
         }else nomeCliente.substring(0, 30);
@@ -153,21 +154,20 @@ public class GerarArquivoRemassaItau {
         remessa.write(branco.substring(0, 10));
         String logradouro = conta.getVendas().getCliente().getTipologradouro() + " " + conta.getVendas().getCliente().getLogradouro() +
                 conta.getVendas().getCliente().getNumero();
-        logradouro = logradouro.substring(0, 40);
-        logradouro.toUpperCase();
+        logradouro = logradouro.toUpperCase();
         if (logradouro.length()<40){
             logradouro = logradouro + branco.substring(0, 40 - logradouro.length());
         }else logradouro = logradouro.substring(0, 40);
         remessa.write(logradouro);
         String bairro = conta.getVendas().getCliente().getBairro();
-        bairro.toUpperCase();
+        bairro = bairro.toUpperCase();
         if (bairro.length()<12){
             bairro = bairro + branco.substring(0, 12 - bairro.length());
         }else bairro = bairro.substring(0,12);
         remessa.write(bairro);
         remessa.write(Formatacao.retirarPontos(conta.getVendas().getCliente().getCep()));
         String cidade = conta.getVendas().getCliente().getCidade();
-        cidade.toUpperCase();
+        cidade = cidade.toUpperCase();
         if (cidade.length()<15){
             cidade = cidade + branco.substring(0, 15 - cidade.length());
         }else cidade = cidade.substring(0, 15);
@@ -204,6 +204,7 @@ public class GerarArquivoRemassaItau {
     }
     
     private void gerarTrailer() throws IOException{
+        numeroSequencial = numeroSequencial + 1;
         remessa.write("9");
         remessa.write(branco + branco + branco + branco + branco + branco + branco + branco + branco + branco.substring(0,33));
         String ns;
