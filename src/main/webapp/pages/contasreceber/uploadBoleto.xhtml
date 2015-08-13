@@ -14,9 +14,11 @@
         <h:form id="carregaboleto" style="text-align:left;font-size: 10px;">
             <title>Carregar Boleto</title>
 
-            <p:fileUpload id="upload" fileUploadListener="#{contasReceberMB.upload01}" mode="advanced" update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" 
-                                              auto="true"  allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />                               
-                                <p:growl id="messages" showDetail="true" />
+            <p:fileUpload id="upload" fileUploadListener="#{contasReceberMB.uploadRetorno}" mode="advanced" update="@all"   
+                          auto="true"  allowTypes="/(\.|\/)(ret|RET)$/" uploadLabel="Abrir" cancelLabel="Cancelar" label="Selecionar">
+                <p:ajax listener="#{contasReceberMB.fecharUpload()}" />
+            </p:fileUpload>                               
+            <p:growl id="messages" showDetail="true" />
             <br></br><br></br><br></br>
         </h:form>
     

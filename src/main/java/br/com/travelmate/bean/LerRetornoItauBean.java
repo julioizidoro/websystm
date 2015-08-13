@@ -25,27 +25,6 @@ import org.primefaces.model.UploadedFile;
  */
 public class LerRetornoItauBean {
     
-   private UploadedFile arquivo;
-    private String nomeArquivo;
-
-    public UploadedFile getArquivo() {
-        return arquivo;
-    }
-
-    public void setArquivo(UploadedFile arquivo) {
-        this.arquivo = arquivo;
-    }
-
-    public String getNomeArquivo() {
-        return nomeArquivo;
-    }
-
-    public void setNomeArquivo(String nomeArquivo) {
-        this.nomeArquivo = nomeArquivo;
-    }
-    
-    
-    
     public LerRetornoItauBean(File retorno) {
         try {
             lerArquivo(retorno);
@@ -111,11 +90,6 @@ public class LerRetornoItauBean {
         return Formatacao.formatarStringfloat(valorPago);
     }
     
-    public void upload01(FileUploadEvent event) {
-        FacesMessage msg = new FacesMessage("Sucesso! ", event.getFile().getFileName() + " upload.");
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-        setArquivo(event.getFile());
-        setNomeArquivo(event.getFile().getFileName());
-    }
+   
     
 }

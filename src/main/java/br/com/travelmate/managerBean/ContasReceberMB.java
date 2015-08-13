@@ -47,24 +47,12 @@ public class ContasReceberMB implements Serializable{
     private Float contasVencer;
     private Float contasVencendo;
     private Vendas vendas;
-    private UploadedFile arquivo;
-    private String nomeArquivo;
     
     @PostConstruct
     public void init(){
         String sql = "Select c from Contasreceber c where c.recebimento.idrecebimento=1 order by c.datavencimento, c.vendas.cliente.nome";
         carregarContasReceber(sql);
         conta = new Contasreceber();
-    }
-
-     
-
-    public UploadedFile getArquivo() {
-        return arquivo;
-    }
-
-    public void setArquivo(UploadedFile arquivo) {
-        this.arquivo = arquivo;
     }
 
     public UsuarioLogadoMB getUsuarioLogadoMB() {
@@ -122,15 +110,6 @@ public class ContasReceberMB implements Serializable{
     public void setVendas(Vendas vendas) {
         this.vendas = vendas;
     }
-
-    public String getNomeArquivo() {
-        return nomeArquivo;
-    }
-
-    public void setNomeArquivo(String nomeArquivo) {
-        this.nomeArquivo = nomeArquivo;
-    }
-    
     
     public void carregarContasReceber(String sql){
         ContasReceberFacade contasReceberFacade = new ContasReceberFacade();
@@ -245,18 +224,27 @@ public class ContasReceberMB implements Serializable{
         return dadosBoletoBean.getBoleto();
     }
     
-    public String lerRetorno(){
-        File retorno = new File("C:\\Julio\\CN10085A.RET");
+    public String lerRetorno(File retorno){
         LerRetornoItauBean lerRetornoItauBean = new LerRetornoItauBean(retorno);
-        lerRetornoItauBean.upload01(null);
         return null;
     }
+    
+    
     
     public String uploadBoleto(){
         RequestContext.getCurrentInstance().openDialog("uploadboleto");
         return "";
     }
     
-   
+    public void uploadRetorno(FileUploadEvent event) {
+        FacesMessage msg = new FacesMessage("Sucesso! ", event.getFile().getFileName() + " upload.");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+        File retorno = (File) event.getFile();
+        lerRetorno(retorno);
+    }
+    
+    public void fecharUpload(){
+        RequestContext.getCurrentInstance().closeDialog(null);
+    }
      
 }
