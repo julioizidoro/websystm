@@ -73,7 +73,7 @@
                                     <p:menuitem style="float:right;" value="Editar" action="#{contasReceberMB.editar()}" />
                                     <p:menuitem style="float:right;" value="Receber" action="#{contasReceberMB.recebimento()}" />
                                     <p:menuitem style="float:right;" value="Gerar Boleto"  action="#{contasReceberMB.gerarBoleto()}" ajax="false"/>
-                                    <p:menuitem style="float:right;" value="Carregar Boleto"  action="#{contasReceberMB.uploadBoleto()}" ajax="false"> </p:menuitem>     
+                                    <p:menuitem style="float:right;" value="Carregar Boleto"  update=":dialogUpload:dialog_uploadboleto"  oncomplete="PF('uploadboleto').show()"> </p:menuitem>     
                                     <p:menuitem style="float:right;" value="Cobrança" action="#{contasReceberMB.iniciarCobranca(contasrecebe)}" />
                                     <p:menuitem style="float:right;" value="Totais" action="#{contasReceberMB.calcularTotais()}" update=":totais:dialog_totais" oncomplete="PF('totais').show()" />
                                 </p:submenu>
@@ -135,6 +135,13 @@
                      </h:panelGrid>   
                      <br></br><br></br>
                      <br></br>
+                </p:dialog>
+            </h:form>
+             <h:form id="dialogUpload">
+                <p:dialog id="dialog_uploadboleto" header="Carregar Boleto" widgetVar="uploadboleto"   style="background:#d0e9c6" >
+                    <p:fileUpload id="upload" fileUploadListener="#{contasReceberMB.uploadRetorno}" mode="advanced" update="@all"   
+                                  auto="true"  allowTypes="/(\.|\/)(ret|RET)$/" uploadLabel="Abrir" cancelLabel="Cancelar" label="Selecionar" oncomplete="uploadboleto.hide()"> </p:fileUpload>                               
+                    <p:growl id="messages" showDetail="true" />
                 </p:dialog>
             </h:form>
         </ui:define>
