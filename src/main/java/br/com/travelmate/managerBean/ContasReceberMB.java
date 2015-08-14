@@ -267,7 +267,7 @@ public class ContasReceberMB implements Serializable{
     }
     
      public void uploadRetorno(FileUploadEvent event) {
-        FacesMessage msg = new FacesMessage("Sucesso! ", event.getFile().getFileName() + " upload.");
+        FacesMessage msg = new FacesMessage("Sucesso! ", event.getFile().getFileName() + " carregado");
         FacesContext.getCurrentInstance().addMessage(null, msg);
         UploadedFile uFile = event.getFile();
         lerRetorno(uFile);

@@ -39,7 +39,7 @@ public class LerRetornoItauBean {
     }
     
     private void registarDados(String linha) {
-        if (linha == null) {
+        if (linha != null) {
             String registro = linha.substring(0, 1);
             if (registro.equalsIgnoreCase("1")) {
                 String nossoNumero = linha.substring(63, 71);
