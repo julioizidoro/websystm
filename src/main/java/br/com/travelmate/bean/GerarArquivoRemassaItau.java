@@ -38,7 +38,7 @@ public class GerarArquivoRemassaItau {
     
     private void iniciarRemessa(){
         if (this.listaCotnas==null){
-            String sql = "Select c from Contasreceber c where c.boletogerado=1 and c.boletoenviado=0";
+            String sql = "Select c from Contasreceber c where c.boletogerado='SIM' and c.boletoenviado=0";
             ContasReceberFacade contasReceberFacade = new ContasReceberFacade();
             this.listaCotnas = contasReceberFacade.listar(sql);
         }

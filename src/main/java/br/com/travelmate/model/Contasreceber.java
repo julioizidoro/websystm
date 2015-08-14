@@ -60,8 +60,9 @@ public class Contasreceber implements Serializable {
     @Size(max = 50)
     @Column(name = "tipodocumento")
     private String tipodocumento;
+    @Size(max = 3)
     @Column(name = "boletogerado")
-    private Boolean boletogerado;
+    private String boletogerado;
     @Size(max = 8)
     @Column(name = "nossonumero")
     private String nossonumero;
@@ -73,6 +74,10 @@ public class Contasreceber implements Serializable {
     private Date dataRetorno;
     @Column(name = "boletoenviado")
     private Boolean boletoenviado;
+    @Column(name = "dataalterada")
+    private Boolean dataalterada;
+    @Column(name = "boletocancelado")
+    private Boolean boletocancelado;
     @JoinColumn(name = "banco_idbanco", referencedColumnName = "idbanco")
     @ManyToOne(optional = false)
     private Banco banco;
@@ -172,13 +177,14 @@ public class Contasreceber implements Serializable {
         this.tipodocumento = tipodocumento;
     }
 
-    public Boolean getBoletogerado() {
+    public String getBoletogerado() {
         return boletogerado;
     }
 
-    public void setBoletogerado(Boolean boletogerado) {
+    public void setBoletogerado(String boletogerado) {
         this.boletogerado = boletogerado;
     }
+
 
     public String getNossonumero() {
         return nossonumero;
@@ -210,6 +216,22 @@ public class Contasreceber implements Serializable {
 
     public void setBoletoenviado(Boolean boletoenviado) {
         this.boletoenviado = boletoenviado;
+    }
+
+    public Boolean getDataalterada() {
+        return dataalterada;
+    }
+
+    public void setDataalterada(Boolean dataalterada) {
+        this.dataalterada = dataalterada;
+    }
+
+    public Boolean getBoletocancelado() {
+        return boletocancelado;
+    }
+
+    public void setBoletocancelado(Boolean boletocancelado) {
+        this.boletocancelado = boletocancelado;
     }
 
     public Banco getBanco() {

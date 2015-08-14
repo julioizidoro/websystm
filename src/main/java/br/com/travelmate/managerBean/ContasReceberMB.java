@@ -219,7 +219,7 @@ public class ContasReceberMB implements Serializable{
         ContasReceberFacade contasReceberFacade = new ContasReceberFacade();
         conta.setNossonumero(dadosBoletoBean.getNossoNumeros());
         conta.setDataEmissao(new Date());
-        conta.setBoletogerado(true);
+        conta.setBoletogerado("SIM");
         contasReceberFacade.salvar(conta);
         return dadosBoletoBean.getBoleto();
     }
