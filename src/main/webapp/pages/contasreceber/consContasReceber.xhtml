@@ -59,9 +59,8 @@
                     <br></br>
                     <legend id="iUsu2" ><b>Consulta de Contas a Receber </b></legend>
                     <p:commandButton id="bntreceber" class="espacocobranca22botao" style="color:#000;background:#c7d95f;font-size:12px;" value="Receber" action="#{contasReceberMB.recebimento()}" />
-                    <p:commandButton id="bntgerarboleto" class="espacocobranca21botao" style="color:#000;background:#c7d95f;font-size:12px;" value="Gerar Boleto"  action="#{contasReceberMB.gerarBoleto()}" ajax="false"/>
+                    <p:commandButton id="bntgerarboleto" class="espacocobranca21botao" style="color:#000;background:#c7d95f;font-size:12px;" value="Boletos"  action="#{contasReceberMB.dialogBoletos()}" ajax="false"/>
                     <p:commandButton id="bntcarregarboleto" class="espacocobranca21botao" style="color:#000;background:#c7d95f;font-size:12px;" value="Carregar Boleto"  update=":dialogUpload:dialog_uploadboleto"  oncomplete="PF('uploadboleto').show()"/>
-                    <p:commandButton id="bntarquivoremessa" class="espacocobranca21botao" style="color:#000;background:#c7d95f;font-size:12px;" value="Arquivo Remessa"  action="#{contasReceberMB.gerarArquivoRemessa()}"/>
                     <p:commandButton id="bnttotais" class="espacocobranca21botao" style="color:#000;background:#c7d95f;font-size:12px;" value="Totais" action="#{contasReceberMB.calcularTotais()}" update=":totais:dialog_totais" oncomplete="PF('totais').show()" /> 
                     <p:dataTable id="contasRecebe" var="contasrecebe"  value="#{contasReceberMB.listaContas}" class="tabela" 
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
@@ -73,26 +72,17 @@
                             </h:commandLink>
                         </f:facet>
                         <p:column  style="background:#ffffff;color:#1F8871;text-align:center;width:48px;z-index: 3!important;overflow: visible!important;">
-                            <p:commandLink action="#{contasReceberMB.editar()}" title="Editar" >
-                                <img  src="../../resources/img/editaricon.png" />
-                            </p:commandLink>
-                        </p:column>
-                        <p:column  style="background:#ffffff;color:#1F8871;text-align:center;width:48px;z-index: 3!important;overflow: visible!important;">
                            <p:commandLink action="#{contasReceberMB.iniciarCobranca(contasrecebe)}"  title="Cobrança" >
                                 <img  src="../../resources/img/cobrancaicons.png" />
                             </p:commandLink>
                         </p:column>
-                        <p:column headerText="Nº Venda" style="background:#ffffff;text-decoration-color:#1F8871;color:#1F8871;text-align:center;width:70px;" sortBy="#{contasrecebe.vendas.idvendas}">
-                            <p:commandLink actionListener="#{contasReceberMB.visualizar(contasrecebe)}" value="#{contasrecebe.vendas.idvendas}"  >
-                             </p:commandLink>
+                        <p:column headerText="Nº Documento" style="background:#ffffff;color:#1F8871;" sortBy="#{contasrecebe.numerodocumento}">
+                            <p:commandLink value="#{contasrecebe.numerodocumento}" action="#{contasReceberMB.editar()}" />
                         </p:column>
-                        <p:column headerText="Nº Documento" style="background:#ffffff;color:#1F8871;text-align:center;" >
-                            <h:outputText value="#{contasrecebe.numerodocumento}"/>
-                        </p:column>
-                        <p:column headerText="Cliente"  style="width:150px;background:#ffffff;color:#1F8871;text-align:center;" styleClass="alinharCenter" sortBy="#{contasrecebe.vendas.cliente}">
+                        <p:column headerText="Cliente"  style="width:150px;background:#ffffff;color:#1F8871;" styleClass="alinharCenter" >
                             <h:outputText value="#{contasrecebe.vendas.cliente}"/>
                         </p:column>
-                        <p:column headerText="Nº Parcela"  style="width:65px;background:#ffffff;color:#1F8871;text-align:center;" styleClass="alinharCenter" >
+                        <p:column headerText="Nº Parcela"  style="width:65px;background:#ffffff;color:#1F8871;" styleClass="alinharCenter" >
                             <h:outputText value="#{contasrecebe.numeroparcelas}"/>
                         </p:column>
                         <p:column headerText="Valor" style="width:80px;background:#ffffff;color:#1F8871;text-align:right;" >
@@ -100,15 +90,21 @@
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </h:outputText>  
                         </p:column>
-                        <p:column headerText="Banco" style="width:100px;background:#ffffff;color:#1F8871;text-align: center;" styleClass="alinharCenter">
+                        <p:column headerText="Banco" style="width:100px;background:#ffffff;color:#1F8871;" styleClass="alinharCenter">
                             <h:outputText value="#{contasrecebe.banco}"/>                                   
                         </p:column>
-                        <p:column headerText="Unidade" style="width:160px;background:#ffffff;color:#1F8871;text-align: center;" styleClass="alinharCenter"  sortBy="#{contasrecebe.vendas.unidadenegocio}">
+                        <p:column headerText="Unidade" style="width:160px;background:#ffffff;color:#1F8871;" styleClass="alinharCenter"  sortBy="#{contasrecebe.vendas.unidadenegocio}">
                             <h:outputText value="#{contasrecebe.vendas.unidadenegocio}"/>                                   
                         </p:column>
-                        <p:column headerText="Boleto Gerado" style="width:70px;background:#ffffff;color:#1F8871;text-align: center;" styleClass="alinharCenter">
-                            <h:outputText value="#{contasReceberMB.retornarBoletoGerado(contasrecebe)}" />                                 
+                        <p:column headerText="Tipo de Documento" style="width:75px;background:#ffffff;color:#1F8871;text-align: center;" styleClass="alinharCenter">
+                            <p:graphicImage value="#{contasReceberMB.retornarTipoDocumento(contasrecebe)}" />                                 
                         </p:column>
+                        <p:column headerText="Boleto Gerado" style="width:70px;background:#ffffff;color:#1F8871;text-align: center;" styleClass="alinharCenter">
+                            <h:commandLink action="#">
+                                <img src="#{contasReceberMB.retornarBoletoGerado(contasrecebe)}" />
+                            </h:commandLink>
+                        </p:column>
+                        
                         <p:column style="width:35px;background:#ffffff;color:#1F8871;text-align: center">
                             <p:selectBooleanCheckbox value="#{contasrecebe.selecionado}"/>
                         </p:column>
