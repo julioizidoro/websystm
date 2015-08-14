@@ -49,6 +49,7 @@ public class ContasReceberMB implements Serializable{
     private Float contasVencer;
     private Float contasVencendo;
     private Vendas vendas;
+    private Date dataAnterior;
     
     @PostConstruct
     public void init(){
@@ -309,5 +310,42 @@ public class ContasReceberMB implements Serializable{
             FacesMessage msg = new FacesMessage("Erro! ", "Boleto não foi enviado.");
             FacesContext.getCurrentInstance().addMessage(null, msg);
         }
+    }
+    
+    public void confirmaAlterarDataVencimento(){
+        if (conta.getBoletoenviado()) {
+            conta.setDataalterada(Boolean.TRUE);
+            conta.setBoletoenviado(Boolean.FALSE);
+            ContasReceberFacade contasReceberFacade = new ContasReceberFacade();
+            contasReceberFacade.salvar(conta);
+        }
+        String sql = "Select c from Cobranca c where c.vendas.idvendas=" + conta.getVendas().getIdvendas();
+        CobrancaFacade cobrancaFacade = new CobrancaFacade();
+        Cobranca cobranca = cobrancaFacade.consultar(sql);
+        if (cobranca == null) {
+            cobranca = new Cobranca();
+            cobranca.setVendas(conta.getVendas());
+            cobranca = cobrancaFacade.salvar(cobranca);
+        }
+        Historicocobranca historicocobranca = new Historicocobranca();
+        historicocobranca.setAssunto("Data de vencimento alterada de " + Formatacao.ConvercaoDataPadrao(dataAnterior) + " por " + usuarioLogadoMB.getUsuario().getNome());
+        historicocobranca.setCobranca(cobranca);
+        historicocobranca.setContato("Sistema");
+        historicocobranca.setData(new Date());
+        historicocobranca.setUsuario(usuarioLogadoMB.getUsuario());
+        HistoricoCobrancaFacade historicocobrancaFacade = new HistoricoCobrancaFacade();
+        historicocobrancaFacade.salvar(historicocobranca);
+        FacesMessage msg = new FacesMessage("Sucesso! ", "Data de Vencimento Alterada.");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+        sql = "Select c from Contasreceber c where c.valorpago=0 order by c.datavencimento, c.vendas.cliente.nome";
+        carregarContasReceber(sql);
+    }
+    
+    public String openDialogAlterarData(Contasreceber contasreceber){
+        conta = contasreceber;
+        if (conta!=null){
+            dataAnterior =conta.getDatavencimento();
+        }
+        return null;
     }
 }

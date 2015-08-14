@@ -26,7 +26,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
-import static org.apache.poi.hssf.usermodel.HeaderFooter.file;
 import org.primefaces.model.UploadedFile;
 
 /**
@@ -730,11 +729,9 @@ public class Formatacao {
     }
     
     public static BufferedReader converterUploadedFileToFile(UploadedFile uploadedFile) throws Exception {
-        byte[] uf = uploadedFile.getContentType().getBytes();
-         InputStream is = null;
-         BufferedReader bfReader = null;
-         is = new ByteArrayInputStream(uf);
-         bfReader = new BufferedReader(new InputStreamReader(is));
+        InputStream is = uploadedFile.getInputstream();
+        BufferedReader bfReader = null;
+        bfReader = new BufferedReader(new InputStreamReader(is));
         return bfReader;
     }
 }

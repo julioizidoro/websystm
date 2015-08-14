@@ -32,24 +32,26 @@ public class LerRetornoItauBean {
     private  void lerArquivo(BufferedReader retorno) throws Exception{
         String linha ="";
         while (linha != null) {
-            linha = retorno.readLine(); //le a primeira linha
-            linha = retorno.readLine(); // lea segunda linha
+            linha = retorno.readLine();
             registarDados(linha);
-            linha = retorno.readLine(); // lea seugnda linha;
         }
         
     }
     
-    private void registarDados(String linha){
-        String nossoNumero = linha.substring(63, 71);
-        nossoNumero = nossoNumero.trim();
-        String dataPagamento = linha.substring(110, 116);
-        dataPagamento.trim();
-        String juros = linha.substring(266, 288);
-        juros.trim();
-        String valorPago = linha.substring(253,266);
-        valorPago.trim();
-        System.out.println("teste");
+    private void registarDados(String linha) {
+        if (linha == null) {
+            String registro = linha.substring(0, 1);
+            if (registro.equalsIgnoreCase("1")) {
+                String nossoNumero = linha.substring(63, 71);
+                nossoNumero = nossoNumero.trim();
+                String dataPagamento = linha.substring(110, 116);
+                dataPagamento.trim();
+                String juros = linha.substring(266, 288);
+                juros.trim();
+                String valorPago = linha.substring(253, 266);
+                valorPago.trim();
+            }
+        }
     }
     
     public void registarRecebimento(String nossoNumero, String dataPagamento, String valorPago, String juros){
