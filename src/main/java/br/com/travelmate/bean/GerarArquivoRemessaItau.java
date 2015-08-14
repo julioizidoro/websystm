@@ -73,6 +73,7 @@ public class GerarArquivoRemessaItau {
             }
         }
         remessa.close();
+        confirmarContas();
     }
     
     private void atualizarBoleto(Contasreceber conta) throws IOException, Exception{
@@ -105,6 +106,16 @@ public class GerarArquivoRemessaItau {
         remessa.write(arquivoRemessaNormal.gerarMulta(conta, numeroSequencial));
         numeroSequencial++;
         remessa.write(arquivoRemessaNormal.gerarTrailer(numeroSequencial));
+    }
+    
+    private void confirmarContas(){
+        ContasReceberFacade contasReceberFacade = new ContasReceberFacade();
+        for(int i=0;i<listaContas.size();i++){
+            Contasreceber conta = listaContas.get(i);
+            conta.setBoletoenviado(true);
+            conta.setDataalterada(false);
+            contasReceberFacade.salvar(conta);
+        }
     }
     
     

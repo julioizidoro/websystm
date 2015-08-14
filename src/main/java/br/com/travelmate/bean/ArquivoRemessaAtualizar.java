@@ -5,17 +5,10 @@
  */
 package br.com.travelmate.bean;
 
-import br.com.travelmate.facade.ContasReceberFacade;
-import br.com.travelmate.managerBean.UsuarioLogadoMB;
 import br.com.travelmate.model.Contasreceber;
 import br.com.travelmate.util.Formatacao;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Date;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -61,8 +54,8 @@ public class ArquivoRemessaAtualizar {
     public String gerarDetalhe(Contasreceber conta, int numeroSequencial) throws IOException, Exception{
         String linha="";
         linha = linha  + ("1");
-        linha = linha  + ("02");
-        linha = linha  + (Formatacao.retirarPontos(conta.getVendas().getUnidadenegocio().getCnpj()));
+        linha = linha  + ("00");
+        linha = linha  + ("00000000000000");
         linha = linha  + (conta.getVendas().getUnidadenegocio().getBanco().getAgencia());
         linha = linha  + ("00");
         linha = linha  + (conta.getVendas().getUnidadenegocio().getBanco().getConta());
@@ -75,60 +68,34 @@ public class ArquivoRemessaAtualizar {
         linha = linha  + ("109");
         linha = linha  + ("000000000000000000000");
         linha = linha  + ("I");
-        linha = linha  + ("01");
-        linha = linha  + (conta.getNossonumero() + "  ");
+        linha = linha  + ("06");
+        linha = linha  + ("          ");
         linha = linha  + (Formatacao.ConvercaoDataDDMMAA(conta.getDatavencimento()));
-        String valor = Formatacao.formatarFloatString(conta.getValorparcela());
-        valor = Formatacao.retirarPontos(valor);
-        if (valor.length()<13){
-            valor = zeros.substring(0, 13 - valor.length()) + valor;
-        }
-        linha = linha  + (valor);
-        linha = linha  + ("341");
+        linha = linha  + ("0000000000000");
+        linha = linha  + ("000");
         linha = linha  + ("00000");
-        linha = linha  + ("01");
-        linha = linha  + ("N");
-        linha = linha  + (Formatacao.ConvercaoDataDDMMAA(new Date()));
+        linha = linha  + ("00");
+        linha = linha  + (" ");
+        linha = linha  + ("000000");
         linha = linha  + ("00");
         linha = linha  + ("00");
-        linha = linha  + (Formatacao.retirarPontos(valorJuros(conta.getValorparcela(), conta.getVendas().getUnidadenegocio().getBanco().getValorjuros())+conta.getVendas().getUnidadenegocio().getBanco().getValorjuros()));
-        linha = linha  + (Formatacao.ConvercaoDataDDMMAA(new Date()));
+        linha = linha  + ("000000000000");
+        linha = linha  + ("000000");
         linha = linha  + (zeros.substring(0, 13));
         linha = linha  + (zeros.substring(0, 13));
         linha = linha  + (zeros.substring(0, 13));
-        linha = linha  + ("01");
-        linha = linha  + (Formatacao.retirarPontos(conta.getVendas().getCliente().getCpf())+ "   ");
-        String nomeCliente = conta.getVendas().getCliente().getNome();
-        nomeCliente = nomeCliente.toUpperCase();
-        if (nomeCliente.length()<30){
-            nomeCliente = nomeCliente + branco.substring(0, 30 -nomeCliente.length());
-        }else nomeCliente.substring(0, 30);
-        linha = linha  + (nomeCliente);
+        linha = linha  + ("00");
+        linha = linha  + ("              ");
+        linha = linha  + (branco.substring(0, 30));
         linha = linha  + (branco.substring(0, 10));
-        String logradouro = conta.getVendas().getCliente().getTipologradouro() + " " + conta.getVendas().getCliente().getLogradouro() +
-                conta.getVendas().getCliente().getNumero();
-        logradouro = logradouro.toUpperCase();
-        if (logradouro.length()<40){
-            logradouro = logradouro + branco.substring(0, 40 - logradouro.length());
-        }else logradouro = logradouro.substring(0, 40);
-        linha = linha  + (logradouro);
-        String bairro = conta.getVendas().getCliente().getBairro();
-        bairro = bairro.toUpperCase();
-        if (bairro.length()<12){
-            bairro = bairro + branco.substring(0, 12 - bairro.length());
-        }else bairro = bairro.substring(0,12);
-        linha = linha  + (bairro);
-        linha = linha  + (Formatacao.retirarPontos(conta.getVendas().getCliente().getCep()));
-        String cidade = conta.getVendas().getCliente().getCidade();
-        cidade = cidade.toUpperCase();
-        if (cidade.length()<15){
-            cidade = cidade + branco.substring(0, 15 - cidade.length());
-        }else cidade = cidade.substring(0, 15);
-        linha = linha  + (cidade);
-        linha = linha  + (conta.getVendas().getCliente().getEstado().toUpperCase());
+        linha = linha  + (branco.substring(0, 40));
+        linha = linha  + (branco.substring(0, 12));
+        linha = linha  + (branco.substring(0, 8));
+        linha = linha  + (branco.substring(0, 15));
+        linha = linha  + (branco.substring(0, 2));
         linha = linha  + (branco.substring(0,30));
         linha = linha  + ("    ");
-        linha = linha  + (Formatacao.SubtarirDatas(conta.getDatavencimento(), -1, "ddMMyy"));
+        linha = linha  + ("000000");
         linha = linha  + ("00");
         linha = linha  + (" ");
         String ns;
@@ -142,20 +109,7 @@ public class ArquivoRemessaAtualizar {
     }
     
     public String gerarMulta(Contasreceber conta, int numeroSequencial) throws IOException, Exception{
-        String linha="";
-        linha = linha  + ("2");
-        linha = linha  + ("1");
-        linha = linha  + (Formatacao.SubtarirDatas(conta.getDatavencimento(), -1, "ddMMyyyy"));
-        linha = linha  + (Formatacao.retirarPontos(valorJuros(conta.getValorparcela(), conta.getVendas().getUnidadenegocio().getBanco().getValormulta())+ conta.getVendas().getUnidadenegocio().getBanco().getValormulta()));
-        linha = linha  + (branco + branco + branco + branco + branco + branco + branco + branco + branco + branco.substring(0,11));
-        String ns;
-        if (numeroSequencial<10){
-            ns = "00000" + String.valueOf(numeroSequencial);
-        }else if (numeroSequencial<100){
-            ns = "0000" + String.valueOf(numeroSequencial);
-        }else ns = "000" + String.valueOf(numeroSequencial);
-        linha = linha  + (ns + "\r\n");
-        return linha;
+        return null;
     }
     
     public String gerarTrailer(int numeroSequencial) throws IOException{
@@ -170,14 +124,5 @@ public class ArquivoRemessaAtualizar {
         }else ns = "000" + String.valueOf(numeroSequencial);
         linha = linha  + (ns + "\r\n");
         return linha;
-    }
-    
-    private String valorJuros(Float valorConta, float juros){
-        Float valorJuros = valorConta * (juros/100);
-        String valor = Formatacao.retirarPontos(Formatacao.formatarFloatString(valorJuros));
-        if (valor.length()<13){
-            valor = zeros.substring(0, 13 - valor.length());
-        }
-        return valor;
     }
 }
