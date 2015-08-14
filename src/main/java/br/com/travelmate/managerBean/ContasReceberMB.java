@@ -5,30 +5,21 @@
  */
 package br.com.travelmate.managerBean;
 
-import br.com.travelmate.bean.DadosBoletoBean;
-import br.com.travelmate.bean.GerarArquivoRemessaItau;
-import br.com.travelmate.bean.LerRetornoItauBean;
 import br.com.travelmate.facade.ContasReceberFacade;
 import br.com.travelmate.model.Contasreceber;
 import br.com.travelmate.model.Vendas;
 import br.com.travelmate.util.Formatacao;
-import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
-import org.jrimum.bopepo.Boleto;
-import org.jrimum.domkee.comum.pessoa.endereco.Endereco;
-import org.jrimum.domkee.comum.pessoa.endereco.UnidadeFederativa;
 import org.primefaces.context.RequestContext;
-import org.primefaces.event.FileUploadEvent;
 
 /**
  *
@@ -177,78 +168,36 @@ public class ContasReceberMB implements Serializable{
         return "cobranca";
     }
     
-    public String gerarBoleto(){
-        List<Boleto> listaBoletos = new ArrayList<Boleto>();
-        if (listaContas!=null){
-            for(int i=0;i<listaContas.size();i++){
-                if (listaContas.get(i).isSelecionado()){
-                    listaBoletos.add(gerarBoleto(listaContas.get(i)));
+    
+    
+    public String dialogBoletos() {
+        List<Contasreceber> lista = new ArrayList<>();
+        for (int i = 0; i < listaContas.size(); i++) {
+            if ((listaContas.get(i).isSelecionado()) && (listaContas.get(i).getTipodocumento().equalsIgnoreCase("Boleto"))) {
+                if ((listaContas.get(i).getDataalterada()) && (!listaContas.get(i).getBoletoenviado())) {
+                    lista.add(listaContas.get(i));
+                } else {
+                    if ((listaContas.get(i).getBoletocancelado()) && (!listaContas.get(i).getBoletoenviado())) {
+                        lista.add(listaContas.get(i));
+                    } else if (!listaContas.get(i).getBoletoenviado()) {
+                        lista.add(listaContas.get(i));
+                    }
                 }
             }
         }
-        if (listaBoletos.size()>0){
-            DadosBoletoBean dadosBoletoBean = new DadosBoletoBean();
-            dadosBoletoBean.gerarPDFS(listaBoletos);
+        if (lista.size() == 0) {
+            lista = null;
         }
-        return "";
-    }
-    
-    public Boleto gerarBoleto(Contasreceber conta){
-        DadosBoletoBean dadosBoletoBean = new DadosBoletoBean();
-        dadosBoletoBean.setAgencias(conta.getVendas().getUnidadenegocio().getBanco().getAgencia());
-        dadosBoletoBean.setCarteiras(conta.getVendas().getUnidadenegocio().getBanco().getCarteira());
-        dadosBoletoBean.setCnpjCedente(conta.getVendas().getUnidadenegocio().getCnpj());
-        dadosBoletoBean.setCodigoVenda(conta.getVendas().getIdvendas());
-        dadosBoletoBean.setDataDocumento(new Date());
-        dadosBoletoBean.setDigitoAgencias(conta.getVendas().getUnidadenegocio().getBanco().getDigioagencia());
-        dadosBoletoBean.setDigitoContas(conta.getVendas().getUnidadenegocio().getBanco().getDigitoconta());
-        dadosBoletoBean.setDataVencimento(conta.getDatavencimento());
-        dadosBoletoBean.setNomeCedente(conta.getVendas().getUnidadenegocio().getRazaoSocial());
-        dadosBoletoBean.setNomeSacado(conta.getVendas().getCliente().getNome());
-        dadosBoletoBean.setNumeroContas(conta.getVendas().getUnidadenegocio().getBanco().getConta());
-        dadosBoletoBean.setNumeroDocumentos(Formatacao.gerarNumeroDocumentoBoleto(conta.getNumerodocumento(), String.valueOf(conta.getNumeroparcelas())));
-        dadosBoletoBean.setValor(Formatacao.converterFloatBigDecimal(conta.getValorparcela()));
-        dadosBoletoBean.setNossoNumeros(dadosBoletoBean.getNumeroDocumentos());
-        dadosBoletoBean.setEnderecoSacado(new Endereco());
-        dadosBoletoBean.getEnderecoSacado().setBairro(conta.getVendas().getCliente().getBairro());
-        dadosBoletoBean.getEnderecoSacado().setCep(conta.getVendas().getCliente().getCep());
-        dadosBoletoBean.getEnderecoSacado().setComplemento(conta.getVendas().getCliente().getComplemento());
-        dadosBoletoBean.getEnderecoSacado().setLocalidade(conta.getVendas().getCliente().getCidade());
-        dadosBoletoBean.getEnderecoSacado().setLogradouro(conta.getVendas().getCliente().getTipologradouro() + " " + conta.getVendas().getCliente().getLogradouro());
-        dadosBoletoBean.getEnderecoSacado().setNumero(conta.getVendas().getCliente().getNumero());
-        dadosBoletoBean.getEnderecoSacado().setUF(UnidadeFederativa.valueOfSigla(conta.getVendas().getCliente().getEstado()));
-        dadosBoletoBean.criarBoleto();
-        ContasReceberFacade contasReceberFacade = new ContasReceberFacade();
-        conta.setNossonumero(dadosBoletoBean.getNossoNumeros());
-        conta.setDataEmissao(new Date());
-        conta.setBoletogerado("SIM");
-        contasReceberFacade.salvar(conta);
-        return dadosBoletoBean.getBoleto();
-    }
-    
-    public String lerRetorno(File retorno){
-        LerRetornoItauBean lerRetornoItauBean = new LerRetornoItauBean(retorno);
-        return null;
-    }
-    
-    
-    
-    public String dialogBoletos(){
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) context.getExternalContext().getSession(false);  
+        session.setAttribute("listaContas", lista);
         RequestContext.getCurrentInstance().openDialog("boletos");
         return "";
     }
     
-    public void uploadRetorno(FileUploadEvent event) {
-        FacesMessage msg = new FacesMessage("Sucesso! ", event.getFile().getFileName() + " upload.");
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-        File retorno = (File) event.getFile();
-        lerRetorno(retorno);
-    }
+   
     
-    public void fechardialogBoletos(){
-        RequestContext.getCurrentInstance().closeDialog(null);
-    }
-     
+    
     public String retornarBoletoGerado(Contasreceber conta){
         String retorno;
         if(conta.getBoletogerado().equalsIgnoreCase("SIM")){
@@ -281,27 +230,5 @@ public class ContasReceberMB implements Serializable{
             retorno = "../../resources/img/financiamento.png";
         }
         return retorno;
-    }
-    
-    
-    public void gerarArquivoRemessa(){
-       List<Contasreceber> lista = new ArrayList<>();
-        for(int i=0;i<listaContas.size();i++){
-           if (listaContas.get(i).isSelecionado()){
-               if ((listaContas.get(i).getDataalterada()) && (listaContas.get(i).getBoletoenviado())) {
-                   lista.add(listaContas.get(i));
-               }else {
-                   if ((listaContas.get(i).getBoletocancelado()) && (listaContas.get(i).getBoletoenviado())){
-                       lista.add(listaContas.get(i));
-                   }else if (listaContas.get(i).getBoletoenviado()){
-                       lista.add(listaContas.get(i));
-                   }
-               }
-           }
-       }
-       if (lista.size()==0){
-           lista = null;
-       }
-       GerarArquivoRemessaItau gerarArquivoRemessaItau = new GerarArquivoRemessaItau(lista, usuarioLogadoMB);
     }
 }
