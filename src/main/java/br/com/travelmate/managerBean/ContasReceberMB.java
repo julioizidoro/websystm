@@ -6,8 +6,12 @@
 package br.com.travelmate.managerBean;
 
 import br.com.travelmate.bean.LerRetornoItauBean;
+import br.com.travelmate.facade.CobrancaFacade;
 import br.com.travelmate.facade.ContasReceberFacade;
+import br.com.travelmate.facade.HistoricoCobrancaFacade;
+import br.com.travelmate.model.Cobranca;
 import br.com.travelmate.model.Contasreceber;
+import br.com.travelmate.model.Historicocobranca;
 import br.com.travelmate.model.Vendas;
 import br.com.travelmate.util.Formatacao;
 import java.io.File;
@@ -15,6 +19,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -237,16 +243,71 @@ public class ContasReceberMB implements Serializable{
         return retorno;
     }
     
+    public String titleTipoDocumento(Contasreceber conta){
+        String retorno;
+        if(conta.getTipodocumento().equalsIgnoreCase("Dinheiro")){
+            retorno = "Dinheiro";
+        }else if(conta.getTipodocumento().equalsIgnoreCase("Boleto")){
+            retorno = "Boleto";
+        }else if(conta.getTipodocumento().equalsIgnoreCase("Cartão de Crédito")){
+            retorno = "Cartão de Crédito";
+        }else if(conta.getTipodocumento().equalsIgnoreCase("Cartão de Crédito Autorizado")){
+            retorno = "Cartão de Crédito Autorizado";
+        }else if(conta.getTipodocumento().equalsIgnoreCase("Cartão de Débito")){
+            retorno = "Cartão de Débito";
+        }else if(conta.getTipodocumento().equalsIgnoreCase("Cheque")){
+            retorno = "Cheque";
+        }else if(conta.getTipodocumento().equalsIgnoreCase("Deposito")){
+            retorno = "Deposito";
+        }else{
+            retorno = "Financiamento Banco";
+        }
+        return retorno;
+    }
+    
      public void uploadRetorno(FileUploadEvent event) {
         FacesMessage msg = new FacesMessage("Sucesso! ", event.getFile().getFileName() + " upload.");
         FacesContext.getCurrentInstance().addMessage(null, msg);
         UploadedFile uFile = event.getFile();
-        File retorno = (File) uFile;
-        lerRetorno(retorno);
+        lerRetorno(uFile);
     }
 
-    public String lerRetorno(File retorno) {
-        LerRetornoItauBean lerRetornoItauBean = new LerRetornoItauBean(retorno);
+    public String lerRetorno(UploadedFile retorno) {
+        try {
+            LerRetornoItauBean lerRetornoItauBean = new LerRetornoItauBean(Formatacao.converterUploadedFileToFile(retorno));
+        } catch (Exception ex) {
+            Logger.getLogger(ContasReceberMB.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return null;
+    }
+    
+    public void cancelado(Contasreceber contasreceber){
+        if (contasreceber.getBoletoenviado()) {
+            contasreceber.setBoletoenviado(Boolean.FALSE);
+            contasreceber.setBoletocancelado(Boolean.TRUE);
+            ContasReceberFacade contasReceberFacade = new ContasReceberFacade();
+            contasReceberFacade.salvar(contasreceber);
+            String sql = "Select c from Cobranca c where c.vendas.idvendas=" + contasreceber.getVendas().getIdvendas();
+            CobrancaFacade cobrancaFacade = new CobrancaFacade();
+            Cobranca cobranca = cobrancaFacade.consultar(sql);
+            if (cobranca == null) {
+                cobranca = new Cobranca();
+                cobranca.setVendas(contasreceber.getVendas());
+                cobranca = cobrancaFacade.salvar(cobranca);
+            }
+            Historicocobranca historicocobranca = new Historicocobranca();
+            historicocobranca.setAssunto("Boleto Cancelado por " + usuarioLogadoMB.getUsuario().getNome());
+            historicocobranca.setCobranca(cobranca);
+            historicocobranca.setContato("Sistema");
+            historicocobranca.setData(new Date());
+            historicocobranca.setUsuario(usuarioLogadoMB.getUsuario());
+            HistoricoCobrancaFacade historicocobrancaFacade = new HistoricoCobrancaFacade();
+            historicocobrancaFacade.salvar(historicocobranca);
+            FacesMessage msg = new FacesMessage("Sucesso! ", "Boleto cancelado.");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+        }else{
+            FacesMessage msg = new FacesMessage("Erro! ", "Boleto não foi enviado.");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+        }
     }
 }

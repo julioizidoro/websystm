@@ -97,10 +97,10 @@
                             <h:outputText value="#{contasrecebe.vendas.unidadenegocio}"/>                                   
                         </p:column>
                         <p:column headerText="Tipo de Documento" style="width:75px;background:#ffffff;color:#1F8871;text-align: center;" styleClass="alinharCenter">
-                            <p:graphicImage value="#{contasReceberMB.retornarTipoDocumento(contasrecebe)}" />                                 
+                            <p:graphicImage value="#{contasReceberMB.retornarTipoDocumento(contasrecebe)}" title="#{contasReceberMB.titleTipoDocumento(contasrecebe)}"/>                                 
                         </p:column>
                         <p:column headerText="Boleto Gerado" style="width:70px;background:#ffffff;color:#1F8871;text-align: center;" styleClass="alinharCenter">
-                            <h:commandLink action="#">
+                            <h:commandLink action="#{contasReceberMB.cancelado(contasrecebe)}" title="Cancelar">
                                 <img src="#{contasReceberMB.retornarBoletoGerado(contasrecebe)}" />
                             </h:commandLink>
                         </p:column>
