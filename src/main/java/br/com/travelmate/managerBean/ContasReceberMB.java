@@ -246,6 +246,15 @@ public class ContasReceberMB implements Serializable{
     public void fechardialogBoletos(){
         RequestContext.getCurrentInstance().closeDialog(null);
     }
+     
+    public String retornarBoletoGerado(Contasreceber conta){
+        String teste ="";
+        String retorno = "Não";
+        if(conta.getBoletoenviado()==true){
+            retorno = "Sim";
+        }
+        return retorno;
+    }
     
     public void gerarArquivoRemessa(){
        List<Contasreceber> lista = new ArrayList<>();
@@ -266,13 +275,5 @@ public class ContasReceberMB implements Serializable{
            lista = null;
        }
        GerarArquivoRemessaItau gerarArquivoRemessaItau = new GerarArquivoRemessaItau(lista, usuarioLogadoMB);
-    }
-     
-    public String retornarBoletoGerado(Contasreceber conta){
-        String retorno = "Não";
-        if(conta.getBoletoenviado()==true){
-            retorno = "Sim";
-        }
-        return retorno;
     }
 }
