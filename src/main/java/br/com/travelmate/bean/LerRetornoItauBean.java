@@ -21,7 +21,7 @@ import java.util.logging.Logger;
  */
 public class LerRetornoItauBean {
     
-    public LerRetornoItauBean(File retorno) {
+    public LerRetornoItauBean(BufferedReader retorno) {
         try {
             lerArquivo(retorno);
         } catch (Exception ex) {
@@ -29,16 +29,13 @@ public class LerRetornoItauBean {
         }
     }
     
-    private  void lerArquivo(File retorno) throws Exception{
-        FileReader fileReaderRetorno = new FileReader(retorno);
-        BufferedReader leitor = new BufferedReader(fileReaderRetorno);
+    private  void lerArquivo(BufferedReader retorno) throws Exception{
         String linha ="";
-        
         while (linha != null) {
-            linha = leitor.readLine(); //le a primeira linha
-            linha = leitor.readLine(); // lea segunda linha
+            linha = retorno.readLine(); //le a primeira linha
+            linha = retorno.readLine(); // lea segunda linha
             registarDados(linha);
-            linha = leitor.readLine(); // lea seugnda linha;
+            linha = retorno.readLine(); // lea seugnda linha;
         }
         
     }
