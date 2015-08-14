@@ -312,13 +312,13 @@ public class ContasReceberMB implements Serializable{
         }
     }
     
-    public void confirmaAlterarDataVencimento(){
+    public String confirmaAlterarDataVencimento(){
         if (conta.getBoletoenviado()) {
             conta.setDataalterada(Boolean.TRUE);
             conta.setBoletoenviado(Boolean.FALSE);
-            ContasReceberFacade contasReceberFacade = new ContasReceberFacade();
-            contasReceberFacade.salvar(conta);
         }
+        ContasReceberFacade contasReceberFacade = new ContasReceberFacade();
+        contasReceberFacade.salvar(conta);
         String sql = "Select c from Cobranca c where c.vendas.idvendas=" + conta.getVendas().getIdvendas();
         CobrancaFacade cobrancaFacade = new CobrancaFacade();
         Cobranca cobranca = cobrancaFacade.consultar(sql);
@@ -339,6 +339,7 @@ public class ContasReceberMB implements Serializable{
         FacesContext.getCurrentInstance().addMessage(null, msg);
         sql = "Select c from Contasreceber c where c.valorpago=0 order by c.datavencimento, c.vendas.cliente.nome";
         carregarContasReceber(sql);
+        return "consContasReceber";
     }
     
     public String openDialogAlterarData(Contasreceber contasreceber){

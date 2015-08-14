@@ -12,26 +12,26 @@
                     <br></br><br></br>
                     <p:accordionPanel class="painelcobranca" >
                         <p:tab titleStyle="color:#000;font-size:10px;background:#c7d95f;" title="Cobrança">
-                            <p:outputLabel value="Nº Venda:" class="espacocinza"/>
-                            <p:outputLabel value="Data Venda:" class="espacodialogcinza"/>
-                            <p:outputLabel value="Unidade:" class="espacodialogcinza"/>
+                            <p:outputLabel value="Nº Venda:" class=""/>
+                            <p:outputLabel value="Data Venda:" class="espacocobranca16"/>
+                            <p:outputLabel value="Unidade:" class="espacocobranca31"/>
                             <br></br>
-                            <p:inputText value="#{cobrancaMB.venda.idvendas}" size="13" class="espacocobranca"/>
-                            <p:inputText value="#{cobrancaMB.venda.dataVenda}" class="espacocobranca3">
+                            <p:inputText value="#{cobrancaMB.venda.idvendas}" style="width:14%" class="espacocobranca" readonly="true"/>
+                            <p:inputText value="#{cobrancaMB.venda.dataVenda}" class="espacocobranca3" readonly="true">
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </p:inputText>
-                            <p:inputText value="#{cobrancaMB.venda.unidadenegocio}" size="47" class="espacocobranca2"/>
+                            <p:inputText value="#{cobrancaMB.venda.unidadenegocio}" style="width:34%" class="espacocobranca2" readonly="true"/>
                             <br></br><br></br>
 
-                            <p:outputLabel value="Nome:" class="espacocinza"/>
-                            <p:outputLabel value="Consultor:" class="espacodialogcinza2"/>
-                            <p:outputLabel value="Fone Contato:" class="espacodialogcinza2"/>
+                            <p:outputLabel value="Nome:" class=""/>
+                            <p:outputLabel value="Consultor:" class="espacocobranca9"/>
+                            <p:outputLabel value="Fone Contato:" class="espacocobranca16"/>
                             <br></br>
 
-                            <p:inputText  value="#{cobrancaMB.venda.cliente.nome}" size="35" class="espacocobranca"/>
-                            <p:inputText value="#{cobrancaMB.venda.usuario.nome}" size="40"  class="espacocobranca4"/>
-                            <p:inputMask  mask="(99)9999-9999" value="#{cobrancaMB.cobranca.fone}" size="18" class="espacocobranca4"/>
-                            <p:commandButton value="Salvar" icon="ui-icon-check" action="#" class="espacocobranca4" title="Gravar Telefone"/>
+                            <p:inputText  value="#{cobrancaMB.venda.cliente.nome}" style="width: 33%" class="espacocobranca" readonly="true"/>
+                            <p:inputText value="#{cobrancaMB.venda.usuario.nome}" style="width: 26%"  class="espacocobranca4" readonly="true"/>
+                            <p:inputMask  mask="(99)9999-9999" value="#{cobrancaMB.cobranca.fone}" style="width:18%" class="espacocobranca4"/>
+                            <p:commandButton value="Salvar" icon="ui-icon-check" action="#" class="espacocobranca3botao" title="Gravar Telefone" style="color:#000;background:#c7d95f;font-size:11px;"/>
                             <br></br>
                             <br></br><br></br>
                             <p:dataTable id="cobranca" var="cobranca"  value="#{cobrancaMB.listaHistorico}" class="tabela3" 

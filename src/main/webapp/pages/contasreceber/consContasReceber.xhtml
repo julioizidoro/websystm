@@ -71,7 +71,7 @@
                                 <p:dataExporter type="xls" target="contaPagar" fileName="contas" />
                             </h:commandLink>
                         </f:facet>
-                        <p:column  style="background:#ffffff;color:#1F8871;text-align:center;width:48px;z-index: 3!important;overflow: visible!important;">
+                        <p:column  style="background:#ffffff;color:#1F8871;text-align:center;width:37px;z-index: 3!important;overflow: visible!important;">
                             <p:commandLink action="#{contasReceberMB.iniciarCobranca(contasrecebe)}"  title="Cobrança" >
                                 <img  src="../../resources/img/cobrancaicons.png" />
                             </p:commandLink>
@@ -82,7 +82,7 @@
                         <p:column headerText="Cliente"  style="width:150px;background:#ffffff;color:#1F8871;" styleClass="alinharCenter" >
                             <h:outputText value="#{contasrecebe.vendas.cliente}"/>
                         </p:column>
-                        <p:column headerText="Nº Parcela"  style="width:65px;background:#ffffff;color:#1F8871;" styleClass="alinharCenter" >
+                        <p:column headerText="Nº Parcela"  style="width:58px;background:#ffffff;color:#1F8871;" styleClass="alinharCenter" >
                             <h:outputText value="#{contasrecebe.numeroparcelas}"/>
                         </p:column>
                         <p:column headerText="Valor" style="width:80px;background:#ffffff;color:#1F8871;text-align:right;" >
@@ -90,16 +90,25 @@
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </h:outputText>  
                         </p:column>
-                        <p:column headerText="Banco" style="width:100px;background:#ffffff;color:#1F8871;" styleClass="alinharCenter">
+                        <p:column headerText="Banco" style="width:70px;background:#ffffff;color:#1F8871;" styleClass="alinharCenter">
                             <h:outputText value="#{contasrecebe.banco}"/>                                   
                         </p:column>
                         <p:column headerText="Unidade" style="width:160px;background:#ffffff;color:#1F8871;" styleClass="alinharCenter"  sortBy="#{contasrecebe.vendas.unidadenegocio}">
                             <h:outputText value="#{contasrecebe.vendas.unidadenegocio}"/>                                   
                         </p:column>
+                        <p:column headerText="Data de Vencimento" style="width:95px;background:#ffffff;color:#1F8871;" styleClass="alinharCenter">
+                            <h:outputText value="#{contasrecebe.datavencimento}">
+                                <f:convertDateTime   pattern="dd/MM/yyyy"  timeZone="America/Sao_Paulo"/>
+                            </h:outputText>
+                            <p:commandLink actionListener="#{contasReceberMB.openDialogAlterarData(contasrecebe)}" update=":editarData:dialog_editarDataVencimento"  oncomplete="PF('editarData').show()" title="Editar data">
+                                <img src="../../resources/img/editardata.png" />
+                                <p:ajax update="contasRecebe"/>
+                            </p:commandLink>
+                        </p:column>
                         <p:column headerText="Tipo de Documento" style="width:75px;background:#ffffff;color:#1F8871;text-align: center;" styleClass="alinharCenter">
                             <p:graphicImage value="#{contasReceberMB.retornarTipoDocumento(contasrecebe)}" title="#{contasReceberMB.titleTipoDocumento(contasrecebe)}"/>                                 
                         </p:column>
-                        <p:column headerText="Boleto Gerado" style="width:70px;background:#ffffff;color:#1F8871;text-align: center;" styleClass="alinharCenter">
+                        <p:column headerText="Boleto Gerado" style="width:63px;background:#ffffff;color:#1F8871;text-align: center;" styleClass="alinharCenter">
                             <h:commandLink action="#{contasReceberMB.cancelado(contasrecebe)}" title="Cancelar">
                                 <img src="#{contasReceberMB.retornarBoletoGerado(contasrecebe)}" />
                             </h:commandLink>
@@ -141,6 +150,18 @@
                     <p:fileUpload id="upload" fileUploadListener="#{contasReceberMB.uploadRetorno}" mode="advanced" update="@all"   
                                   auto="true"  allowTypes="/(\.|\/)(ret|RET)$/" uploadLabel="Abrir" cancelLabel="Cancelar" label="Selecionar" oncomplete="uploadboleto.hide()"> </p:fileUpload>                               
                     <p:growl id="messages" showDetail="true" />
+                </p:dialog>
+            </h:form>
+            <h:form id="editarData">
+                <p:dialog id="dialog_editarDataVencimento" header="Editar Data" widgetVar="editarData" width="20%" style="background:#d0e9c6;text-align: left" >
+                     <p:outputLabel value="Data de Vencimento" for="dataVencimento" class="fontebranca" style="font-size: 11px"/> 
+                     <br></br>
+                     <p:calendar id="dataVencimento" class="fontebranca" value="#{contasReceberMB.conta.datavencimento}"  pattern="dd/MM/yyyy" mask="true"  maxlength="15" locale="pt"  >
+                         <f:convertDateTime    timeZone="America/Sao_Paulo"/>
+                         <p:ajax event="change" />
+                         <p:ajax event="dateSelect" />
+                     </p:calendar>
+                     <p:commandButton value="Salvar" icon="ui-icon-check" action="#{contasReceberMB.confirmaAlterarDataVencimento()}" class="espacocobranca23botao" style="color:#000;background:#c7d95f;font-size:11px;" update="@all"/>
                 </p:dialog>
             </h:form>
         </ui:define>

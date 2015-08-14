@@ -1016,6 +1016,15 @@ text-align: left;
     width: 17.7%;
     border: #1F8871;
 }
+.espacocobranca23botao{
+    margin-left:3%;
+    width: 26%;
+}
+.espacocobranca23botao:hover{
+    height: 20px;
+    width: 25%;
+    border: #1F8871;
+}
 .espacocobranca3botao{
     margin-left:3%;
     height:27px;
