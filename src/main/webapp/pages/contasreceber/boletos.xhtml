@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <link href="../../resources/css/css.css" rel="stylesheet" type="text/css" />
+         <link href="../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
+         
+    </h:head>
+    <h:body>
+        <h:form id="carregaboleto" style="text-align:left;font-size: 10px;">
+            <title>Boletos</title>
+
+               <br></br>
+                    <p:commandButton id="bntgerarboleto" class="espacocobranca22botao" style="color:#000;background:#c7d95f;font-size:12px;" value="Gerar Boleto"  action="#{contasReceberMB.gerarBoleto()}" ajax="false"/>
+                    <p:commandButton id="bntsegundavia" class="espacocobranca21botao" style="color:#000;background:#c7d95f;font-size:12px;" value="Gerar 2º via"  />
+                    <p:commandButton id="bntarquivoremessa" class="espacocobranca21botao" style="color:#000;background:#c7d95f;font-size:12px;" value="Enviar"  action="#{contasReceberMB.gerarArquivoRemessa()}"/>
+                    <p:commandButton id="bntarfechar" class="espacocobranca21botao" style="color:#000;background:#c7d95f;font-size:12px;" value="Fechar"  action="#{contasReceberMB.fechardialogBoletos()}"/>
+                    <p:dataTable id="contasRecebe" var="contasrecebe"  value="#{contasReceberMB.listaContas}" class="" 
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+                                 paginator="true" rows="10" style="margin-bottom:20px" >
+                        <f:facet name="{Exporters}">
+                            <h:commandLink>
+                                <img src="../../resources/img/excel.png" width="20" class="imagens"/>
+                                <p:dataExporter type="xls" target="contaPagar" fileName="contas" />
+                            </h:commandLink>
+                        </f:facet>
+                        
+                        <p:column headerText="Nº Documento" style="width:117px;background:#ffffff;color:#1F8871;text-align:center;" sortBy="#{contasrecebe.numerodocumento}">
+                            <h:outputText value="#{contasrecebe.numerodocumento}"/>
+                        </p:column>
+                        <p:column headerText="Cliente"  style="background:#ffffff;color:#1F8871;" styleClass="alinharCenter" >
+                            <h:outputText value="#{contasrecebe.vendas.cliente}"/>
+                        </p:column>
+                        <p:column headerText="Nº Parcela"  style="width:100px;background:#ffffff;color:#1F8871;text-align:center;" styleClass="alinharCenter" >
+                            <h:outputText value="#{contasrecebe.numeroparcelas}"/>
+                        </p:column>
+                        <p:column headerText="Valor" style="width:80px;background:#ffffff;color:#1F8871;text-align:right;" >
+                            <h:outputText value="#{contasrecebe.valorparcela}">
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                            </h:outputText>  
+                        </p:column>
+                        <p:column style="width:35px;background:#ffffff;color:#1F8871;text-align: center">
+                            <p:selectBooleanCheckbox value="#{contasrecebe.selecionado}"/>
+                        </p:column>
+                    </p:dataTable><br></br>
+            </h:form>     
+    
+    </h:body>
+</html>

@@ -119,6 +119,8 @@ public class ContasReceberMB implements Serializable{
         }
     }
     
+    
+    
     public String iniciarCobranca(Contasreceber conta){
         this.conta = conta;
         FacesContext context = FacesContext.getCurrentInstance();
@@ -232,7 +234,7 @@ public class ContasReceberMB implements Serializable{
     
     
     public String dialogBoletos(){
-        RequestContext.getCurrentInstance().openDialog("boleto");
+        RequestContext.getCurrentInstance().openDialog("boletos");
         return "";
     }
     
@@ -248,13 +250,39 @@ public class ContasReceberMB implements Serializable{
     }
      
     public String retornarBoletoGerado(Contasreceber conta){
-        String teste ="";
-        String retorno = "Não";
-        if(conta.getBoletoenviado()==true){
-            retorno = "Sim";
+        String retorno;
+        if(conta.getBoletogerado().equalsIgnoreCase("SIM")){
+            retorno = "../../resources/img/bolaVerde.png";
+        }else if(conta.getBoletogerado().equalsIgnoreCase("NAO")){
+            retorno = "../../resources/img/bolaVermelha.png";
+        }else {
+            retorno = "../../resources/img/bolaAmarela.png";
         }
         return retorno;
     }
+    
+    public String retornarTipoDocumento(Contasreceber conta){
+        String retorno;
+        if(conta.getTipodocumento().equalsIgnoreCase("Dinheiro")){
+            retorno = "../../resources/img/dinheiros.png";
+        }else if(conta.getTipodocumento().equalsIgnoreCase("Boleto")){
+            retorno = "../../resources/img/boleto.png";
+        }else if(conta.getTipodocumento().equalsIgnoreCase("Cartão de Crédito")){
+            retorno = "../../resources/img/credito.png";
+        }else if(conta.getTipodocumento().equalsIgnoreCase("Cartão de Crédito Autorizado")){
+            retorno = "../../resources/img/creditoautorizado.png";
+        }else if(conta.getTipodocumento().equalsIgnoreCase("Cartão de Débito")){
+            retorno = "../../resources/img/debito.png";
+        }else if(conta.getTipodocumento().equalsIgnoreCase("Cheque")){
+            retorno = "../../resources/img/holerite.png";
+        }else if(conta.getTipodocumento().equalsIgnoreCase("Deposito")){
+            retorno = "../../resources/img/deposito.png";
+        }else{
+            retorno = "../../resources/img/financiamento.png";
+        }
+        return retorno;
+    }
+    
     
     public void gerarArquivoRemessa(){
        List<Contasreceber> lista = new ArrayList<>();
