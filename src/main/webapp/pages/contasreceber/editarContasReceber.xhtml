@@ -10,41 +10,41 @@
             <h:form>
                 <div id="centro">
                     <br></br><br></br>
-                   <p:accordionPanel class="paineleditar2" >
+                    <p:accordionPanel class="paineleditar2" >
                         <p:tab titleStyle="color:#000;font-size:10px;background:#c7d95f;" title="Editar">
-                        <p:outputLabel value="Nº Documento" />
-                        <p:outputLabel value="Nº Parcelas" class="espacodialog2"/>
-                        <p:outputLabel value="Valor Parcela" class="espacodialog2"/>
-                         <p:outputLabel value="Data Vencimento" class="espacodialog4"/>
-                        <br></br>
-                        <p:inputText value="#{contasReceberMB.conta.numerodocumento}" size="12" class="espacocampos2"/>
-                        <p:inputText value="#{contasReceberMB.conta.numeroparcelas}" size="9" class="espacocampos"/>
-                        <p:inputText value="#{contasReceberMB.conta.valorparcela}" size="15" class="espacocamposright"/>
-                        <p:calendar value="#{contasReceberMB.conta.datavencimento}" size="15" class="espacocampos" locale="pt"  pattern="dd/MM/yyyy" />
-                        <br></br><br></br><br></br>
-                       
-                        <p:outputLabel value="Tipo de Documento" />
-                        <p:outputLabel value="Banco" class="espacodialog"/>
-                        <br></br>
-                        
-                        <p:selectOneMenu id="tipoDocumento" class="espacocampos2" style="width:140px" value="#{contasReceberMB.conta.tipodocumento}">
-                            <f:selectItem itemLabel="Selecione" itemValue="" noSelectionOption="true"/> 
-                            <f:selectItem itemLabel="Boleto" itemValue="Boleto" />  
-                            <f:selectItem itemLabel="Guia de Imposto" itemValue="Guia de Imposto" /> 
-                            <f:selectItem itemLabel="Holerite" itemValue="Holerite" />  
-                            <f:selectItem itemLabel="Nota Fiscal" itemValue="Nota Fiscal" />
-                            <f:selectItem itemLabel="Recibo" itemValue="Recibo" />  
-                            <f:selectItem itemLabel="Outros" itemValue="Outros" /> 
-                        </p:selectOneMenu>
-                        <p:selectOneMenu id="banco" value="#" style="width:150px;font-size: 10px" class="espacocampos">
-                            <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true"/> 
-                        </p:selectOneMenu>
-                        <br></br>
-                        <p class="botaoeditareceber"><br></br>
-                            <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Confirmar" action="#"></p:commandButton>
-                            <p:commandButton class="espacocampos" onclick="" icon="ui-icon-close" value="Cancelar" action="#{contasReceberMB.voltar()}"></p:commandButton>
-                        </p>
-                    </p:tab>
+                            <p:outputLabel value="Nº Documento" />
+                            <p:outputLabel value="Nº Parcelas" class="espacodialog2"/>
+                            <p:outputLabel value="Valor Parcela" class="espacodialog2"/>
+                            <p:outputLabel value="Data Vencimento" class="espacodialog4"/>
+                            <br></br>
+                            <p:inputText value="#{contasReceberMB.conta.numerodocumento}" size="12" class="espacocampos2"/>
+                            <p:inputText value="#{contasReceberMB.conta.numeroparcelas}" size="9" class="espacocampos"/>
+                            <p:inputText value="#{contasReceberMB.conta.valorparcela}" size="15" class="espacocamposright"/>
+                            <p:calendar value="#{contasReceberMB.conta.datavencimento}" size="15" class="espacocampos" locale="pt"  pattern="dd/MM/yyyy" />
+                            <br></br><br></br><br></br>
+
+                            <p:outputLabel value="Tipo de Documento" />
+                            <p:outputLabel value="Banco" class="espacodialog"/>
+                            <br></br>
+
+                            <p:selectOneMenu id="tipoDocumento" class="espacocampos2" style="width:140px" value="#{contasReceberMB.conta.tipodocumento}">
+                                <f:selectItem itemLabel="Selecione" itemValue="" noSelectionOption="true"/> 
+                                <f:selectItem itemLabel="Boleto" itemValue="Boleto" />  
+                                <f:selectItem itemLabel="Guia de Imposto" itemValue="Guia de Imposto" /> 
+                                <f:selectItem itemLabel="Holerite" itemValue="Holerite" />  
+                                <f:selectItem itemLabel="Nota Fiscal" itemValue="Nota Fiscal" />
+                                <f:selectItem itemLabel="Recibo" itemValue="Recibo" />  
+                                <f:selectItem itemLabel="Outros" itemValue="Outros" /> 
+                            </p:selectOneMenu>
+                            <p:selectOneMenu id="banco" value="#" style="width:150px;font-size: 10px" class="espacocampos">
+                                <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true"/> 
+                            </p:selectOneMenu>
+                            <br></br>
+                            <p class="botaoeditareceber"><br></br>
+                                <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Confirmar" action="#"></p:commandButton>
+                                <p:commandButton class="espacocampos" onclick="" icon="ui-icon-close" value="Cancelar" action="#{contasReceberMB.voltar()}"></p:commandButton>
+                            </p>
+                        </p:tab>
                     </p:accordionPanel>
                     <br></br><br></br><br></br>
                 </div>

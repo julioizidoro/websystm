@@ -72,7 +72,7 @@
                             </h:commandLink>
                         </f:facet>
                         <p:column  style="background:#ffffff;color:#1F8871;text-align:center;width:48px;z-index: 3!important;overflow: visible!important;">
-                           <p:commandLink action="#{contasReceberMB.iniciarCobranca(contasrecebe)}"  title="Cobrança" >
+                            <p:commandLink action="#{contasReceberMB.iniciarCobranca(contasrecebe)}"  title="Cobrança" >
                                 <img  src="../../resources/img/cobrancaicons.png" />
                             </p:commandLink>
                         </p:column>
@@ -104,7 +104,7 @@
                                 <img src="#{contasReceberMB.retornarBoletoGerado(contasrecebe)}" />
                             </h:commandLink>
                         </p:column>
-                        
+
                         <p:column style="width:35px;background:#ffffff;color:#1F8871;text-align: center">
                             <p:selectBooleanCheckbox value="#{contasrecebe.selecionado}"/>
                         </p:column>
@@ -115,28 +115,28 @@
             </h:form>     
             <h:form id="totais">
                 <p:dialog id="dialog_totais" header="Totais" widgetVar="totais"  width="34%" class="dialog2" style="background:#d0e9c6" >
-                   <h:panelGrid columns="2" cellpadding="3">
+                    <h:panelGrid columns="2" cellpadding="3">
                         <p:outputLabel value="Total Contas Vencidas" for="contasVenc" class="fontebranca" style="font-size: 11px"/> 
                         <p:outputLabel value="Total Contas Vencendo" for="contasVencendo" class="leftcampo" style="font-size: 11px"/>
                         <p:inputText id="contasVenc" size="15" maxlength="100" class="fontebrancaa" value="#{contasReceberMB.contasVencidas}"  readonly="true">
-                             <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                            <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                         </p:inputText>
                         <p:inputText id="contasVencendo" size="15" maxlength="100" class="leftcampoo" value="#{contasReceberMB.contasVencendo}"  readonly="true">
-                             <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                            <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                         </p:inputText>
-                       
+
                     </h:panelGrid>
                     <h:panelGrid columns="1" cellpadding="1">
                         <p:outputLabel value="Total Contas a Vencer" for="contasVencer" style="font-size: 11px"/>
                         <p:inputText id="contasVencer" size="15" maxlength="100" class="fontebrancaa" value="#{contasReceberMB.contasVencer}"  readonly="true">
-                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                            <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                         </p:inputText>
-                     </h:panelGrid>   
-                     <br></br><br></br>
-                     <br></br>
+                    </h:panelGrid>   
+                    <br></br><br></br>
+                    <br></br>
                 </p:dialog>
             </h:form>
-             <h:form id="dialogUpload">
+            <h:form id="dialogUpload">
                 <p:dialog id="dialog_uploadboleto" header="Carregar Boleto" widgetVar="uploadboleto"   style="background:#d0e9c6" >
                     <p:fileUpload id="upload" fileUploadListener="#{contasReceberMB.uploadRetorno}" mode="advanced" update="@all"   
                                   auto="true"  allowTypes="/(\.|\/)(ret|RET)$/" uploadLabel="Abrir" cancelLabel="Cancelar" label="Selecionar" oncomplete="uploadboleto.hide()"> </p:fileUpload>                               

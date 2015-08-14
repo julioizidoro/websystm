@@ -10,35 +10,35 @@
             <h:form>
                 <div id="centro">
                     <br></br><br></br>
-                   <p:accordionPanel class="paineleditar" >
+                    <p:accordionPanel class="paineleditar" >
                         <p:tab titleStyle="color:#000;font-size:10px;background:#c7d95f;" title="Editar">
-                        <p:outputLabel value="Nome" />
-                        <p:outputLabel value="Nº venda" class="espacocampos4"/>
-                        
-                        <br></br>
-                        <p:inputText value="#{cobrancaMB.cobranca.vendas.cliente.nome}" size="60" class="espacocampos2"/>
-                        <p:inputText value="#{cobrancaMB.cobranca.vendas.idvendas}" size="12" class="espacocampos"/>
-                        
-                        <br></br><br></br>
-                        <p:outputLabel value="Consultor" />
-                        <p:outputLabel value="Unidade" class="left22"/>
-                       
-                        <br></br>
-                        <p:inputText value="#{cobrancaMB.cobranca.vendas.usuario.nome}" size="40" class="espacocampos2"/>
-                        <p:inputText value="#{cobrancaMB.cobranca.vendas.unidadenegocio.nomeFantasia}" size="32"  class="espacocampos"/>
-                        
-                        
-                        <br></br><br></br>
-                        <p:outputLabel value="Data Venda" class=""/>
-                        <p:outputLabel value="Fone Contato" class="espacodialog4"/>
-                        <br></br>
-                        <p:calendar value="#{cobrancaMB.cobranca.vendas.dataVenda}" size="13" class="" locale="pt"  pattern="dd/MM/yyyy" />
-                        <p:inputMask value="#{cobrancaMB.cobranca.fone}" size="15" mask="(99)9999-9999" class="espacocampos"/>
-                        <br></br><br></br>
+                            <p:outputLabel value="Nome" />
+                            <p:outputLabel value="Nº venda" class="espacocampos4"/>
+
+                            <br></br>
+                            <p:inputText value="#{cobrancaMB.cobranca.vendas.cliente.nome}" size="60" class="espacocampos2"/>
+                            <p:inputText value="#{cobrancaMB.cobranca.vendas.idvendas}" size="12" class="espacocampos"/>
+
+                            <br></br><br></br>
+                            <p:outputLabel value="Consultor" />
+                            <p:outputLabel value="Unidade" class="left22"/>
+
+                            <br></br>
+                            <p:inputText value="#{cobrancaMB.cobranca.vendas.usuario.nome}" size="40" class="espacocampos2"/>
+                            <p:inputText value="#{cobrancaMB.cobranca.vendas.unidadenegocio.nomeFantasia}" size="32"  class="espacocampos"/>
+
+
+                            <br></br><br></br>
+                            <p:outputLabel value="Data Venda" class=""/>
+                            <p:outputLabel value="Fone Contato" class="espacodialog4"/>
+                            <br></br>
+                            <p:calendar value="#{cobrancaMB.cobranca.vendas.dataVenda}" size="13" class="" locale="pt"  pattern="dd/MM/yyyy" />
+                            <p:inputMask value="#{cobrancaMB.cobranca.fone}" size="15" mask="(99)9999-9999" class="espacocampos"/>
+                            <br></br><br></br>
                             <p:commandButton class="cursomenu" value="Editar"></p:commandButton>
                             <p:commandButton class="botaodialog2" value="Voltar" action="#{cobrancaMB.voltar()}"></p:commandButton>
-                       
-                    </p:tab>
+
+                        </p:tab>
                     </p:accordionPanel>
                     <br></br><br></br><br></br>
                 </div>
