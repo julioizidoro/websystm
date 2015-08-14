@@ -6,7 +6,7 @@
 package br.com.travelmate.managerBean;
 
 import br.com.travelmate.bean.DadosBoletoBean;
-import br.com.travelmate.bean.ArquivoRemessaNormal;
+import br.com.travelmate.bean.GerarArquivoRemessaItau;
 import br.com.travelmate.bean.LerRetornoItauBean;
 import br.com.travelmate.facade.ContasReceberFacade;
 import br.com.travelmate.model.Contasreceber;
@@ -248,7 +248,24 @@ public class ContasReceberMB implements Serializable{
     }
     
     public void gerarArquivoRemessa(){
-        ArquivoRemessaNormal  arquivoRemessa  = new ArquivoRemessaNormal(null, usuarioLogadoMB);
+       List<Contasreceber> lista = new ArrayList<>();
+        for(int i=0;i<listaContas.size();i++){
+           if (listaContas.get(i).isSelecionado()){
+               if ((listaContas.get(i).getDataalterada()) && (listaContas.get(i).getBoletoenviado())) {
+                   lista.add(listaContas.get(i));
+               }else {
+                   if ((listaContas.get(i).getBoletocancelado()) && (listaContas.get(i).getBoletoenviado())){
+                       lista.add(listaContas.get(i));
+                   }else if (listaContas.get(i).getBoletoenviado()){
+                       lista.add(listaContas.get(i));
+                   }
+               }
+           }
+       }
+       if (lista.size()==0){
+           lista = null;
+       }
+       GerarArquivoRemessaItau gerarArquivoRemessaItau = new GerarArquivoRemessaItau(lista, usuarioLogadoMB);
     }
      
     public String retornarBoletoGerado(Contasreceber conta){

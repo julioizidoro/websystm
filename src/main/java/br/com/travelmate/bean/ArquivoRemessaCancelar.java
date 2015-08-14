@@ -21,7 +21,7 @@ import java.util.logging.Logger;
  *
  * @author Wolverine
  */
-public class GerarArquivoRemassaItau {
+public class ArquivoRemessaCancelar {
     
     private List<Contasreceber> listaCotnas;
     private FileWriter remessa;
@@ -30,7 +30,7 @@ public class GerarArquivoRemassaItau {
     private String branco = "                                        ";
     private String zeros = "000000000000000000000";
 
-    public GerarArquivoRemassaItau(List<Contasreceber> listaCotnas, UsuarioLogadoMB usuarioLogadoMB) {
+    public ArquivoRemessaCancelar(List<Contasreceber> listaCotnas, UsuarioLogadoMB usuarioLogadoMB) {
         this.listaCotnas = listaCotnas;
         this.usuarioLogadoMB = usuarioLogadoMB;
         iniciarRemessa();
@@ -49,10 +49,10 @@ public class GerarArquivoRemassaItau {
                 try {
                     lerConta();
                 } catch (Exception ex) {
-                    Logger.getLogger(GerarArquivoRemassaItau.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ArquivoRemessaCancelar.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } catch (IOException ex) {
-                Logger.getLogger(GerarArquivoRemassaItau.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ArquivoRemessaCancelar.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
