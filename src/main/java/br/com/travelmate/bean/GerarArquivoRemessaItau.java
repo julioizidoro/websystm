@@ -23,34 +23,34 @@ import java.util.logging.Logger;
  */
 public class GerarArquivoRemessaItau {
     
-    private List<Contasreceber> listaCotnas;
+    private List<Contasreceber> listaContas;
     private FileWriter remessa;
     private UsuarioLogadoMB usuarioLogadoMB;
     private int numeroSequencial=0;
 
     public GerarArquivoRemessaItau(List<Contasreceber> lista, UsuarioLogadoMB usuarioLogadoMB) {
-        this.listaCotnas = lista;
+        this.listaContas = lista;
         this.usuarioLogadoMB = usuarioLogadoMB;
         iniciarRemessa();
     }
     
     private void iniciarRemessa(){
-        if (this.listaCotnas==null){
+        if (this.listaContas==null){
             String sql = "Select c from Contasreceber c where c.boletogerado='SIM' and c.boletoenviado=0";
             ContasReceberFacade contasReceberFacade = new ContasReceberFacade();
-            this.listaCotnas = contasReceberFacade.listar(sql);
+            this.listaContas = contasReceberFacade.listar(sql);
         }
-        if (this.listaCotnas!=null){
+        if (this.listaContas!=null){
             String nomeArquivo = usuarioLogadoMB.getUsuario().getLocalsalvar() + "\\" + gerarNomeArquivo();
             try {
                 remessa = new FileWriter(new File(nomeArquivo));
                 try {
                     lerConta();
                 } catch (Exception ex) {
-                    Logger.getLogger(ArquivoRemessaNormal.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ArquivoRemessaEnviar.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } catch (IOException ex) {
-                Logger.getLogger(ArquivoRemessaNormal.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ArquivoRemessaEnviar.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -63,10 +63,48 @@ public class GerarArquivoRemessaItau {
     }
     
     private void lerConta() throws IOException, Exception{
-        for(int i=0;i<listaCotnas.size();i++){
-            
+        for(int i=0;i<listaContas.size();i++){
+            if (listaContas.get(i).getDataalterada()){
+                atualizarBoleto(listaContas.get(i));
+            }else if (listaContas.get(i).getBoletocancelado()){
+                 cancelarBoleto(listaContas.get(i));
+            }else {
+                enviarBoleto(listaContas.get(i));
+            }
         }
         remessa.close();
+    }
+    
+    private void atualizarBoleto(Contasreceber conta) throws IOException, Exception{
+        numeroSequencial++;
+        ArquivoRemessaAtualizar arquivoRemessaAtualizar = new ArquivoRemessaAtualizar();
+        remessa.write(arquivoRemessaAtualizar.gerarHeader(conta, numeroSequencial));
+        numeroSequencial++;
+        remessa.write(arquivoRemessaAtualizar.gerarDetalhe(conta, numeroSequencial));
+        numeroSequencial++;
+        remessa.write(arquivoRemessaAtualizar.gerarTrailer(numeroSequencial));
+    }
+    
+    private void cancelarBoleto(Contasreceber conta) throws IOException, Exception {
+        numeroSequencial++;
+        ArquivoRemessaCancelar arquivoRemessaCancelar = new ArquivoRemessaCancelar();
+        remessa.write(arquivoRemessaCancelar.gerarHeader(conta, numeroSequencial));
+        numeroSequencial++;
+        remessa.write(arquivoRemessaCancelar.gerarDetalhe(conta, numeroSequencial));
+        numeroSequencial++;
+        remessa.write(arquivoRemessaCancelar.gerarTrailer(numeroSequencial));
+    }
+    
+    private void enviarBoleto(Contasreceber conta) throws IOException, Exception{
+        numeroSequencial++;
+        ArquivoRemessaEnviar arquivoRemessaNormal = new ArquivoRemessaEnviar();
+        remessa.write(arquivoRemessaNormal.gerarHeader(conta, numeroSequencial));
+        numeroSequencial++;
+        remessa.write(arquivoRemessaNormal.gerarDetalhe(conta, numeroSequencial));
+        numeroSequencial++;
+        remessa.write(arquivoRemessaNormal.gerarMulta(conta, numeroSequencial));
+        numeroSequencial++;
+        remessa.write(arquivoRemessaNormal.gerarTrailer(numeroSequencial));
     }
     
     

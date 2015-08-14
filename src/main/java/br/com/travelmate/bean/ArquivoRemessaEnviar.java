@@ -15,7 +15,7 @@ import java.util.Date;
  *
  * @author Wolverine
  */
-public class ArquivoRemessaNormal implements ArquivoRemessaItau{
+public class ArquivoRemessaEnviar implements ArquivoRemessaItau{
     
     
     private String branco = "                                        ";
