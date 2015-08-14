@@ -231,8 +231,8 @@ public class ContasReceberMB implements Serializable{
     
     
     
-    public String uploadBoleto(){
-        RequestContext.getCurrentInstance().openDialog("uploadboleto");
+    public String dialogBoletos(){
+        RequestContext.getCurrentInstance().openDialog("boleto");
         return "";
     }
     
@@ -243,7 +243,7 @@ public class ContasReceberMB implements Serializable{
         lerRetorno(retorno);
     }
     
-    public void fecharUpload(){
+    public void fechardialogBoletos(){
         RequestContext.getCurrentInstance().closeDialog(null);
     }
     
