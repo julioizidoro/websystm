@@ -10,6 +10,7 @@ import br.com.travelmate.model.Cobranca;
 import br.com.travelmate.model.Historicocobranca;
 import java.sql.SQLException;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 /**
  *
@@ -33,6 +34,17 @@ public class CobrancaDao {
         historicocobranca = manager.merge(historicocobranca);
         manager.getTransaction().commit();
         return historicocobranca;
+    }
+    
+    public Cobranca consultar(String sql)throws SQLException{
+        manager = ConectionFactory.getConnection();
+         manager.getTransaction().begin();
+        Query q = manager.createQuery(sql);
+          manager.getTransaction().commit();
+        if (q.getResultList().size()>0){
+            return (Cobranca) q.getSingleResult();
+        } 
+        return null;
     }
     
     

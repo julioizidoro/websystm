@@ -40,6 +40,16 @@ public class CobrancaFacade {
         }
     }
     
+    public Cobranca consultar(String sql){
+        cobrancaDao = new CobrancaDao();
+        try {
+            return cobrancaDao.consultar(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(CobrancaFacade.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    
     
     
 }
