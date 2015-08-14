@@ -60,7 +60,7 @@
                     <legend id="iUsu2" ><b>Consulta de Contas a Receber </b></legend>
                     <p:commandButton id="bntreceber" class="espacocobranca22botao" style="color:#000;background:#c7d95f;font-size:12px;" value="Receber" action="#{contasReceberMB.recebimento()}" />
                     <p:commandButton id="bntgerarboleto" class="espacocobranca21botao" style="color:#000;background:#c7d95f;font-size:12px;" value="Boletos"  action="#{contasReceberMB.dialogBoletos()}" ajax="false"/>
-                    <p:commandButton id="bntcarregarboleto" class="espacocobranca21botao" style="color:#000;background:#c7d95f;font-size:12px;" value="Carregar Boleto"  update=":dialogUpload:dialog_uploadboleto"  oncomplete="PF('uploadboleto').show()"/>
+                    <p:commandButton id="bntcarregarboleto" class="espacocobranca21botao" style="color:#000;background:#c7d95f;font-size:12px;" value="Retorno"  update=":dialogUpload:dialog_uploadboleto"  oncomplete="PF('uploadboleto').show()"/>
                     <p:commandButton id="bnttotais" class="espacocobranca21botao" style="color:#000;background:#c7d95f;font-size:12px;" value="Totais" action="#{contasReceberMB.calcularTotais()}" update=":totais:dialog_totais" oncomplete="PF('totais').show()" /> 
                     <p:dataTable id="contasRecebe" var="contasrecebe"  value="#{contasReceberMB.listaContas}" class="tabela" 
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"

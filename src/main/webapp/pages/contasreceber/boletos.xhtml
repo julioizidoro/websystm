@@ -14,20 +14,14 @@
             <title>Boletos</title>
 
             <br></br>
-            <p:commandButton id="bntgerarboleto" class="espacocobranca22botao" style="color:#000;background:#c7d95f;font-size:12px;" value="Gerar Boleto"  action="#{contasReceberMB.gerarBoleto()}" ajax="false"/>
-            <p:commandButton id="bntsegundavia" class="espacocobranca21botao" style="color:#000;background:#c7d95f;font-size:12px;" value="Gerar 2º via"  />
-            <p:commandButton id="bntarquivoremessa" class="espacocobranca21botao" style="color:#000;background:#c7d95f;font-size:12px;" value="Enviar"  action="#{contasReceberMB.gerarArquivoRemessa()}"/>
-            <p:commandButton id="bntfechar" class="espacocobranca21botao" style="color:#000;background:#c7d95f;font-size:12px;" value="Fechar"  action="#{contasReceberMB.fechardialogBoletos()}"/>
+            <p:commandButton id="bntgerarboleto" class="espacocobranca22botao" style="color:#000;background:#c7d95f;font-size:12px;" value="Gerar Boleto"  action="#{boletoMB.gerarBoleto()}" ajax="false"/>
+            <p:commandButton id="bntsegundavia" class="espacocobranca21botao" style="color:#000;background:#c7d95f;font-size:12px;" value="Gerar 2º via"  action="#{boletoMB.gerarBoletoSegundaVia()}" />
+            <p:commandButton id="bntarquivoremessa" class="espacocobranca21botao" style="color:#000;background:#c7d95f;font-size:12px;" value="Enviar"  action="#{boletoMB.enviarBoleto()}"/>
+            <p:commandButton id="bntfechar" class="espacocobranca21botao" style="color:#000;background:#c7d95f;font-size:12px;" value="Fechar"  action="#{boletoMB.fechardialogBoletos()}"/>
             <p:dataTable id="listaBoleto" var="listaboleto"  value="#{boletoMB.listarSelecionados}"
-                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
                          paginator="true" rows="10" style="margin-bottom:20px" >
-                <f:facet name="{Exporters}">
-                    <h:commandLink>
-                        <img src="../../resources/img/excel.png" width="20" class="imagens"/>
-                        <p:dataExporter type="xls" target="listaboleto" fileName="boletos" />
-                    </h:commandLink>
-                </f:facet>
-
+               
                 <p:column headerText="Nº Documento" style="width:117px;background:#ffffff;color:#1F8871;text-align:center;" sortBy="#{contasrecebe.numerodocumento}">
                     <h:outputText value="#{contasrecebe.numerodocumento}"/>
                 </p:column>

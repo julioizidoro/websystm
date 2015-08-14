@@ -5,21 +5,26 @@
  */
 package br.com.travelmate.managerBean;
 
+import br.com.travelmate.bean.LerRetornoItauBean;
 import br.com.travelmate.facade.ContasReceberFacade;
 import br.com.travelmate.model.Contasreceber;
 import br.com.travelmate.model.Vendas;
 import br.com.travelmate.util.Formatacao;
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 import org.primefaces.context.RequestContext;
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.UploadedFile;
 
 /**
  *
@@ -230,5 +235,18 @@ public class ContasReceberMB implements Serializable{
             retorno = "../../resources/img/financiamento.png";
         }
         return retorno;
+    }
+    
+     public void uploadRetorno(FileUploadEvent event) {
+        FacesMessage msg = new FacesMessage("Sucesso! ", event.getFile().getFileName() + " upload.");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+        UploadedFile uFile = event.getFile();
+        File retorno = (File) uFile;
+        lerRetorno(retorno);
+    }
+
+    public String lerRetorno(File retorno) {
+        LerRetornoItauBean lerRetornoItauBean = new LerRetornoItauBean(retorno);
+        return null;
     }
 }
