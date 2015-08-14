@@ -6,7 +6,7 @@
 package br.com.travelmate.managerBean;
 
 import br.com.travelmate.bean.DadosBoletoBean;
-import br.com.travelmate.bean.GerarArquivoRemassaItau;
+import br.com.travelmate.bean.ArquivoRemessaNormal;
 import br.com.travelmate.bean.LerRetornoItauBean;
 import br.com.travelmate.facade.ContasReceberFacade;
 import br.com.travelmate.model.Contasreceber;
@@ -248,7 +248,7 @@ public class ContasReceberMB implements Serializable{
     }
     
     public void gerarArquivoRemessa(){
-        GerarArquivoRemassaItau  arquivoRemessa  = new GerarArquivoRemassaItau(null, usuarioLogadoMB);
+        ArquivoRemessaNormal  arquivoRemessa  = new ArquivoRemessaNormal(null, usuarioLogadoMB);
     }
      
     public String retornarBoletoGerado(Contasreceber conta){
