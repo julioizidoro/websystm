@@ -19,6 +19,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
+import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -120,10 +121,16 @@ public class CobrancaMB implements Serializable{
         this.historico = historico;
     }
     public String voltar(){
-        return "cobranca";
+        RequestContext.getCurrentInstance().closeDialog(null);
+        return "";
     }
-    public String editar(){
-        return "editarcobranca";
+    public String editar(){ 
+        RequestContext.getCurrentInstance().openDialog("editarcobranca");
+        return ""; 
+    }
+    
+    public String cancelar(){
+        return "consContasReceber";
     }
 }
 

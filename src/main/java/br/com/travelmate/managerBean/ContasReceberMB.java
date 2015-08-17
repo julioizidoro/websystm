@@ -12,6 +12,7 @@ import br.com.travelmate.facade.HistoricoCobrancaFacade;
 import br.com.travelmate.model.Cobranca;
 import br.com.travelmate.model.Contasreceber;
 import br.com.travelmate.model.Historicocobranca;
+import br.com.travelmate.model.Pacotes;
 import br.com.travelmate.model.Vendas;
 import br.com.travelmate.util.Formatacao;
 import java.io.File;
@@ -30,6 +31,7 @@ import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.FileUploadEvent;
+import org.primefaces.event.RowEditEvent;
 import org.primefaces.model.UploadedFile;
 
 /**
@@ -57,6 +59,10 @@ public class ContasReceberMB implements Serializable{
     
     @PostConstruct
     public void init(){
+       FacesContext fc = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+        conta = (Contasreceber) session.getAttribute("contarecebe");
+        session.removeAttribute("contarecebe");
         String sql = "Select c from Contasreceber c where c.valorpago=0 order by c.datavencimento, c.vendas.cliente.nome";
         carregarContasReceber(sql);
         conta = new Contasreceber();
@@ -173,11 +179,16 @@ public class ContasReceberMB implements Serializable{
         return null;
     }
     public String voltar(){
-        return "consContasReceber";
+        RequestContext.getCurrentInstance().closeDialog(null);
+        return "";
     }
     
-    public String editar(){
-        return "editarContasReceber";
+    public String editar(Contasreceber contarb){
+        FacesContext fc = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+        session.setAttribute("contarecebe", contarb);
+        RequestContext.getCurrentInstance().openDialog("editarContasReceber");
+        return "";
     }
     public String cobranca(){
         return "cobranca";
@@ -352,4 +363,5 @@ public class ContasReceberMB implements Serializable{
         }
         return null;
     }
+     
 }

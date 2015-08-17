@@ -4,45 +4,70 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <ui:composition template="/pages/templates/default.xhtml">
-        <ui:define name="corpo">
-            <h:form>
-                <div id="centro">
-                    <br></br><br></br>
-                    <p:accordionPanel class="paineleditar" >
-                        <p:tab titleStyle="color:#000;font-size:10px;background:#c7d95f;" title="Editar">
-                            <p:outputLabel value="Nome" />
-                            <p:outputLabel value="Nº venda" class="espacocampos4"/>
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <link href="../../resources/css/css.css" rel="stylesheet" type="text/css" />
+        <link href="../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
+        <script>
+            PrimeFaces.locales['pt'] = {
+                closeText: 'Fechar',
+                prevText: 'Anterior',
+                nextText: 'Próximo',
+                currentText: 'Começo',
+                monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+                dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+                dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
+                weekHeader: 'Semana',
+                firstDay: 0,
+                isRTL: false,
+                showMonthAfterYear: false,
+                yearSuffix: '',
+                timeOnlyTitle: 'Só Horas',
+                timeText: 'Tempo',
+                hourText: 'Hora',
+                minuteText: 'Minuto',
+                secondText: 'Segundo',
+                ampm: false,
+                month: 'Mês',
+                week: 'Semana',
+                day: 'Dia',
+                allDayText: 'Todo o Dia'
+            };
+        </script>  
+    </h:head>
+    <h:body>
+        <h:form id="editarContasReceber" style="text-align:left;font-size: 10px;"><br></br>
+            <title>Alterar Historico de Cobrança</title>
+                            <p:outputLabel value="Nome" class="espacocobranca5"/>
+                            <p:outputLabel value="Nº venda" class="espacocobranca36"/>
 
                             <br></br>
-                            <p:inputText value="#{cobrancaMB.cobranca.vendas.cliente.nome}" size="60" class="espacocampos2"/>
-                            <p:inputText value="#{cobrancaMB.cobranca.vendas.idvendas}" size="12" class="espacocampos"/>
-
+                            <p:inputText value="#{cobrancaMB.cobranca.vendas.cliente.nome}" style="width:62%" class="espacocobranca5"/>
+                            <p:inputText value="#{cobrancaMB.cobranca.vendas.idvendas}" style="width:14%" class="espacocampos"/>
+                            
                             <br></br><br></br>
-                            <p:outputLabel value="Consultor" />
-                            <p:outputLabel value="Unidade" class="left22"/>
+                            <p:outputLabel value="Data Venda" class="espacocobranca5"/>
+                            <p:outputLabel value="Fone Contato" class="espacocobranca2"/>
+                            <br></br>
+                            <p:inputMask value="#{cobrancaMB.cobranca.vendas.dataVenda}" style="width:17%" class="espacocobranca5" mask="99/99/9999" />
+                            <p:inputMask value="#{cobrancaMB.cobranca.fone}" style="width:17%" mask="(99)9999-9999" class="espacocampos"/>
+                            <br></br><br></br> 
+                            
+                            <p:outputLabel value="Consultor" class="espacocobranca5"/>
+                            <p:outputLabel value="Unidade" class="espacologin"/>
 
                             <br></br>
-                            <p:inputText value="#{cobrancaMB.cobranca.vendas.usuario.nome}" size="40" class="espacocampos2"/>
-                            <p:inputText value="#{cobrancaMB.cobranca.vendas.unidadenegocio.nomeFantasia}" size="32"  class="espacocampos"/>
-
+                            <p:inputText value="#{cobrancaMB.cobranca.vendas.usuario.nome}" style="width:44%" class="espacocobranca5"/>
+                            <p:inputText value="#{cobrancaMB.cobranca.vendas.unidadenegocio.nomeFantasia}" style="width:31%"  class="espacocampos"/>
 
                             <br></br><br></br>
-                            <p:outputLabel value="Data Venda" class=""/>
-                            <p:outputLabel value="Fone Contato" class="espacodialog4"/>
-                            <br></br>
-                            <p:calendar value="#{cobrancaMB.cobranca.vendas.dataVenda}" size="13" class="" locale="pt"  pattern="dd/MM/yyyy" />
-                            <p:inputMask value="#{cobrancaMB.cobranca.fone}" size="15" mask="(99)9999-9999" class="espacocampos"/>
-                            <br></br><br></br>
-                            <p:commandButton class="cursomenu" value="Editar"></p:commandButton>
-                            <p:commandButton class="botaodialog2" value="Voltar" action="#{cobrancaMB.voltar()}"></p:commandButton>
+                          
+                            <p:commandButton class="espacologin" value="Editar" icon="ui-icon-check"></p:commandButton>
+                            <p:commandButton class="espacocobranca28" value="Voltar" icon="ui-icon-close" action="#{cobrancaMB.voltar()}"></p:commandButton>
 
-                        </p:tab>
-                    </p:accordionPanel>
-                    <br></br><br></br><br></br>
-                </div>
-            </h:form>     
-        </ui:define>
-    </ui:composition>
+           </h:form>     
+    </h:body>
 </html>

@@ -4,51 +4,78 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <ui:composition template="/pages/templates/default.xhtml">
-        <ui:define name="corpo">
-            <h:form>
-                <div id="centro">
-                    <br></br><br></br>
-                    <p:accordionPanel class="paineleditar2" >
-                        <p:tab titleStyle="color:#000;font-size:10px;background:#c7d95f;" title="Editar">
-                            <p:outputLabel value="Nº Documento" />
-                            <p:outputLabel value="Nº Parcelas" class="espacodialog2"/>
-                            <p:outputLabel value="Valor Parcela" class="espacodialog2"/>
-                            <p:outputLabel value="Data Vencimento" class="espacodialog4"/>
-                            <br></br>
-                            <p:inputText value="#{contasReceberMB.conta.numerodocumento}" size="12" class="espacocampos2"/>
-                            <p:inputText value="#{contasReceberMB.conta.numeroparcelas}" size="9" class="espacocampos"/>
-                            <p:inputText value="#{contasReceberMB.conta.valorparcela}" size="15" class="espacocamposright"/>
-                            <p:calendar value="#{contasReceberMB.conta.datavencimento}" size="15" class="espacocampos" locale="pt"  pattern="dd/MM/yyyy" />
-                            <br></br><br></br><br></br>
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <link href="../../resources/css/css.css" rel="stylesheet" type="text/css" />
+        <link href="../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
+        <script>
+            PrimeFaces.locales['pt'] = {
+                closeText: 'Fechar',
+                prevText: 'Anterior',
+                nextText: 'Próximo',
+                currentText: 'Começo',
+                monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+                dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+                dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
+                weekHeader: 'Semana',
+                firstDay: 0,
+                isRTL: false,
+                showMonthAfterYear: false,
+                yearSuffix: '',
+                timeOnlyTitle: 'Só Horas',
+                timeText: 'Tempo',
+                hourText: 'Hora',
+                minuteText: 'Minuto',
+                secondText: 'Segundo',
+                ampm: false,
+                month: 'Mês',
+                week: 'Semana',
+                day: 'Dia',
+                allDayText: 'Todo o Dia'
+            };
+        </script>  
+    </h:head>
+    <h:body>
+        <h:form id="editarContasReceber" style="text-align:left;font-size: 10px;"><br></br>
+            <title>Alterar Conta a Receber</title>
+                <p:outputLabel value="Nº Documento" class="espacocobranca14"/>
+                <p:outputLabel value="Nº Parcelas" class="espacocobranca11"/>
+                <p:outputLabel value="Valor Parcela" class="espacocobranca11"/>
+                <p:outputLabel value="Data Vencimento" class="espacocobranca11"/>
+                <br></br>
+                <p:inputText value="#{contasReceberMB.conta.numerodocumento}" style="width:17%" class="espacocobranca14"/>
+                <p:inputText value="#{contasReceberMB.conta.numeroparcelas}"  style="width:15%" class="espacocobranca20"/>
+                <p:inputText value="#{contasReceberMB.conta.valorparcela}"  style="width:15%" class="espacocobranca20rig"/>
+                <p:inputMask value="#{contasReceberMB.conta.datavencimento}" mask="99/99/9999" class="espacocampos6"  >
+                   <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                </p:inputMask>
+                <br></br><br></br><br></br>
 
-                            <p:outputLabel value="Tipo de Documento" />
-                            <p:outputLabel value="Banco" class="espacodialog"/>
-                            <br></br>
+                <p:outputLabel value="Tipo de Documento" class="espacocobranca14"/>
+                <p:outputLabel value="Banco" class="espacocobranca11"/>
+                <br></br>
 
-                            <p:selectOneMenu id="tipoDocumento" class="espacocampos2" style="width:140px" value="#{contasReceberMB.conta.tipodocumento}">
-                                <f:selectItem itemLabel="Selecione" itemValue="" noSelectionOption="true"/> 
-                                <f:selectItem itemLabel="Boleto" itemValue="Boleto" />  
-                                <f:selectItem itemLabel="Guia de Imposto" itemValue="Guia de Imposto" /> 
-                                <f:selectItem itemLabel="Holerite" itemValue="Holerite" />  
-                                <f:selectItem itemLabel="Nota Fiscal" itemValue="Nota Fiscal" />
-                                <f:selectItem itemLabel="Recibo" itemValue="Recibo" />  
-                                <f:selectItem itemLabel="Outros" itemValue="Outros" /> 
-                            </p:selectOneMenu>
-                            <p:selectOneMenu id="banco" value="#" style="width:150px;font-size: 10px" class="espacocampos">
-                                <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true"/> 
-                            </p:selectOneMenu>
-                            <br></br>
-                            <p class="botaoeditareceber"><br></br>
-                                <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Confirmar" action="#"></p:commandButton>
-                                <p:commandButton class="espacocampos" onclick="" icon="ui-icon-close" value="Cancelar" action="#{contasReceberMB.voltar()}"></p:commandButton>
-                            </p>
-                        </p:tab>
-                    </p:accordionPanel>
-                    <br></br><br></br><br></br>
-                </div>
-            </h:form>     
-        </ui:define>
-    </ui:composition>
+                <p:selectOneMenu id="tipoDocumento" class="espacocobranca14" style="width:140px" value="#{contasReceberMB.conta.tipodocumento}">
+                    <f:selectItem itemLabel="Selecione" itemValue="" noSelectionOption="true"/> 
+                    <f:selectItem itemLabel="Dinheiro" itemValue="Dinheiro" />  
+                    <f:selectItem itemLabel="Cartão de Crédito" itemValue="Cartão de Crédito" /> 
+                    <f:selectItem itemLabel="Cartão de Crédito Autorizado" itemValue="Cartão de Crédito Autorizado" />  
+                    <f:selectItem itemLabel="Cartão de Débito" itemValue="Cartão de Débito" />
+                    <f:selectItem itemLabel="Cheque" itemValue="Cheque" />  
+                    <f:selectItem itemLabel="Deposito" itemValue="Deposito" /> 
+                    <f:selectItem itemLabel="Financiamento Banco" itemValue="Financiamento Banco" /> 
+                </p:selectOneMenu>
+                <p:selectOneMenu id="banco" value="#" style="width:150px;font-size: 10px" class="espacocobranca20">
+                    <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true"/> 
+                </p:selectOneMenu>
+                <br></br> <br></br><br></br>
+                <p class="botaoeditareceber"><br></br>
+                    <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Confirmar" action="#"></p:commandButton>
+                    <p:commandButton class="espacocampos" onclick="" icon="ui-icon-close" value="Cancelar" action="#{contasReceberMB.voltar()}"></p:commandButton>
+                </p>
+        </h:form>     
+    </h:body>
 </html>
