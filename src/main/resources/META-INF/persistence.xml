@@ -1,51 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
-  <persistence-unit name="systmPU" transaction-type="JTA">
-    <jta-data-source>jdbc/websystmDS</jta-data-source>
-    <class>br.com.travelmate.model.Acesso</class>
-    <class>br.com.travelmate.model.Banco</class>
-    <class>br.com.travelmate.model.Cambio</class>
-    <class>br.com.travelmate.model.Cidade</class>
-    <class>br.com.travelmate.model.Cliente</class>
-    <class>br.com.travelmate.model.Cobranca</class>
-    <class>br.com.travelmate.model.Contasreceber</class>
-    <class>br.com.travelmate.model.Formapagamento</class>
-    <class>br.com.travelmate.model.Fornecedor</class>
-    <class>br.com.travelmate.model.Fornecedorcidade</class>
-    <class>br.com.travelmate.model.Grupoacesso</class>
-    <class>br.com.travelmate.model.Historicocobranca</class>
-    <class>br.com.travelmate.model.Moedas</class>
-    <class>br.com.travelmate.model.Orcamento</class>
-    <class>br.com.travelmate.model.Pacotecarro</class>
-    <class>br.com.travelmate.model.Pacotecruzeiro</class>
-    <class>br.com.travelmate.model.Pacotehotel</class>
-    <class>br.com.travelmate.model.Pacoteingresso</class>
-    <class>br.com.travelmate.model.Pacotepassagem</class>
-    <class>br.com.travelmate.model.Pacotepasseio</class>
-    <class>br.com.travelmate.model.Pacotes</class>
-    <class>br.com.travelmate.model.Pacotetransfer</class>
-    <class>br.com.travelmate.model.Pacotetrecho</class>
-    <class>br.com.travelmate.model.Pacotetrem</class>
-    <class>br.com.travelmate.model.Pais</class>
-    <class>br.com.travelmate.model.Paisproduto</class>
-    <class>br.com.travelmate.model.Parametrosprodutos</class>
-    <class>br.com.travelmate.model.Parcelamentopagamento</class>
-    <class>br.com.travelmate.model.Passagemaerea</class>
-    <class>br.com.travelmate.model.Pincambio</class>
-    <class>br.com.travelmate.model.Planoconta</class>
-    <class>br.com.travelmate.model.Produtos</class>
-    <class>br.com.travelmate.model.Produtosorcamento</class>
-    <class>br.com.travelmate.model.Publicidade</class>
-    <class>br.com.travelmate.model.Recebimento</class>
-    <class>br.com.travelmate.model.Seguroviagem</class>
-    <class>br.com.travelmate.model.Unidadenegocio</class>
-    <class>br.com.travelmate.model.Usuario</class>
-    <class>br.com.travelmate.model.Valoresseguro</class>
-    <class>br.com.travelmate.model.Vendas</class>
-    <class>br.com.travelmate.model.Vendascomissao</class>
-    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+  <persistence-unit name="systmPU" transaction-type="RESOURCE_LOCAL">
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
     <validation-mode>NONE</validation-mode>
-    <properties/>
+    <properties>
+    	<property name="javax.persistence.jdbc.url" value="jdbc:mysql://200.175.61.147:8082/systm"/>
+    	<property name="javax.persistence.jdbc.user" value="root"/>
+    	<property name="javax.persistence.jdbc.password" value="jfhmaster123"/>
+    	<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/></properties>
   </persistence-unit>
 </persistence>

@@ -41,11 +41,15 @@ import org.primefaces.model.UploadedFile;
 @ViewScoped
 public class ContasReceberMB implements Serializable{
     
-    @Inject
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Inject
     private UsuarioLogadoMB usuarioLogadoMB;
     private List<Contasreceber> listaContas;
     private Contasreceber conta;
-    private Float contasVencidas;
+    private Float contasVencidas;	
     private Float contasVencer;
     private Float contasVencendo;
     private Vendas vendas;
@@ -124,8 +128,7 @@ public class ContasReceberMB implements Serializable{
     
     
     
-    public String iniciarCobranca(Contasreceber conta){
-        this.conta = conta;
+    public String iniciarCobranca(){
         FacesContext context = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) context.getExternalContext().getSession(false);  
         session.setAttribute("venda", conta.getVendas());

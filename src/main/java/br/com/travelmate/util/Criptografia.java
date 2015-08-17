@@ -7,6 +7,7 @@ package br.com.travelmate.util;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+
 import sun.misc.BASE64Encoder;
 
 /**
