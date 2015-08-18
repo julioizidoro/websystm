@@ -15,31 +15,26 @@
 
                     <p:accordionPanel class="painel" activeIndex="-1" >
                         <p:tab titleStyle="color:#000;font-size:11px;background:#c7d95f;" title="Pesquisar">
-                            <h:panelGrid columns="7" cellpadding="3">
                                 <p:outputLabel value="Cliente" for="cliente" class="fontebranca"/> 
-                                <p:outputLabel value="Periodo" for="dataIni" class="left2"/> 
-                                <p:outputLabel value="Unidade" for="dataIni" class="left21"/>
-                            </h:panelGrid>
-                            <h:panelGrid columns="8" cellpadding="1">
-
-                                <p:inputText id="cliente" size="44" maxlength="100" class="fontebranca"  value="#"/>
+                                <p:outputLabel value="Periodo" for="dataIni" class="espacocobranca13"/> 
+                                <p:outputLabel value="Unidade" for="dataIni" class="espacocobranca9"/>
+                                 <br></br>
+                                 <p:inputText id="cliente" style="width: 32%" maxlength="100" class="fontebranca"  value="#"/>
                                 <p:commandButton icon="ui-icon-search" class="botaopesquisar"/>
-                                <p:calendar id="dataIni" class="left4"  locale="pt"  pattern="dd/MM/yyyy"  mask="true" size="11" maxlength="15" >
+                                <p:calendar id="dataIni" class="imgadd"  locale="pt"  pattern="dd/MM/yyyy"  mask="true"  maxlength="15" >
                                     <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                                 </p:calendar>
-                                <p:calendar id="dataFinal" class="espacocampospesquisa2"  locale="pt"  pattern="dd/MM/yyyy"  mask="true" size="11" maxlength="15">
+                                <p:calendar id="dataFinal" class="loginButton2"  locale="pt"  pattern="dd/MM/yyyy"  mask="true" maxlength="15">
                                     <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                                 </p:calendar>
-                                <p:selectOneMenu id="unidades" value="#" style="width:220px;font-size: 10px" class="espacocampos">
+                                <p:selectOneMenu id="unidades" value="#" style="width:20%;font-size: 10px" class="espacocobranca28">
                                     <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true"/> 
                                 </p:selectOneMenu>
-                            </h:panelGrid><br></br>
-                            <h:panelGrid columns="8" cellpadding="1">
+                             <br></br> <br></br>
                                 <h:outputText value="Forma de Pagamento"  class="fontebranca"/>  
-                                <h:outputText value="Banco"  class="leftcampo"/>  
-                            </h:panelGrid>
-                            <h:panelGrid columns="8" cellpadding="1">
-                                <p:selectOneMenu id="formapag" value="#" style="width:170px;font-size: 10px" class="fontebranca">
+                                <h:outputText value="Banco"  class="espacocobranca3" style="color:#000"/>  
+                             <br></br>
+                                <p:selectOneMenu id="formapag" value="#" style="width:25%;font-size: 10px" class="fontebranca">
                                     <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true"/> 
                                     <f:selectItem itemLabel="Cartão" itemValue="Cartão" />  
                                     <f:selectItem itemLabel="Débito em Conta" itemValue="debito em conta" /> 
@@ -48,25 +43,25 @@
                                     <f:selectItem itemLabel="Cheque" itemValue="Cheque" />  
                                     <f:selectItem itemLabel="Depósito" itemValue="Depósito" /> 
                                 </p:selectOneMenu>
-                                <p:selectOneMenu id="banco" value="#" style="width:220px;font-size: 10px" class="espacocampos">
+                                <p:selectOneMenu id="banco" value="#" style="width:25%;font-size: 10px" class="espacocampos">
                                     <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true"/> 
                                 </p:selectOneMenu>
                                 <p:commandButton value="Pesquisar" class="cambiovalores2"  icon=" ui-icon-search " update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#"/>
                                 <p:commandButton value="Limpar" icon="ui-icon-arrowrefresh-1-w"  class="botao3" update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#"/>
-                            </h:panelGrid>
+                            
                             <br></br>
                         </p:tab>
                     </p:accordionPanel>
                     <br></br>
-                    <legend id="iUsu2" ><b>Consulta de Contas a Receber </b></legend>
-                    <p:commandButton id="bntreceber" class="espacocobranca22botao" style="color:#000;background:#c7d95f;font-size:12px;" value="Receber" action="#{contasReceberMB.recebimento()}" />
-                    <p:commandButton id="bntgerarboleto" class="espacocobranca21botao" style="color:#000;background:#c7d95f;font-size:12px;" value="Boletos"  action="#{contasReceberMB.dialogBoletos()}" ajax="false"/>
-                    <p:commandButton id="bntcarregarboleto" class="espacocobranca21botao" style="color:#000;background:#c7d95f;font-size:12px;" value="Retorno"  update=":dialogUpload:dialog_uploadboleto"  oncomplete="PF('uploadboleto').show()"/>
-                    <p:commandButton id="bnttotais" class="espacocobranca21botao" style="color:#000;background:#c7d95f;font-size:12px;" value="Totais" action="#{contasReceberMB.calcularTotais()}" update=":totais:dialog_totais" oncomplete="PF('totais').show()" /> 
+                    <legend id="iUsu2" ><b>Consulta de Contas a Receber </b></legend><br></br>
+                    <p:commandButton id="bntreceber" class="espacocobranca22botao" style="font-size:12px;" value="Receber" action="#{contasReceberMB.recebimento()}" />
+                    <p:commandButton id="bntgerarboleto" class="espacocobranca21botao" style="font-size:12px;" value="Boletos"  action="#{contasReceberMB.dialogBoletos()}" ajax="false"/>
+                    <p:commandButton id="bntcarregarboleto" class="espacocobranca21botao" style="font-size:12px;" value="Retorno"  update=":dialogUpload:dialog_uploadboleto"  oncomplete="PF('uploadboleto').show()"/>
+                    <p:commandButton id="bnttotais" class="espacocobranca21botao" style="font-size:12px;" value="Totais" action="#{contasReceberMB.calcularTotais()}" update=":totais:dialog_totais" oncomplete="PF('totais').show()" /> 
                     <p:contextMenu for="tabelacontasRecebe">
                         <p:menuitem value="Alterar"  icon=" ui-icon-pencil"  action="#{contasReceberMB.editar(contarb)}" />
                         <p:menuitem value="Cobrança"  icon=" ui-icon-tag" action="#{contasReceberMB.iniciarCobranca()}"  />
-                    </p:contextMenu>
+                    </p:contextMenu><br></br><br></br>
                     <p:dataTable id="tabelacontasRecebe" var="contasrecebe"  value="#{contasReceberMB.listaContas}" class="tabela" editable="true"
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
                                  paginator="true" rows="10" style="margin-bottom:20px" selection="#{contasReceberMB.conta}" selectionMode="single" rowKey="#{contasrecebe.idcontasreceber}" >
@@ -76,27 +71,27 @@
                                 <p:dataExporter type="xls" target="contaPagar" fileName="contas" />
                             </h:commandLink>
                         </f:facet>
-                        <p:column headerText="Nº Documento" style="color:#1F8871;width:75px;" sortBy="#{contasrecebe.numerodocumento}">
+                        <p:column headerText="Nº Documento" style="width:75px;" sortBy="#{contasrecebe.numerodocumento}">
                             <p:outputLabel value="#{contasrecebe.numerodocumento}" />
                         </p:column>
-                        <p:column headerText="Cliente"  style="color:#1F8871;" styleClass="alinharCenter" >
+                        <p:column headerText="Cliente"   styleClass="alinharCenter" >
                             <h:outputText value="#{contasrecebe.vendas.cliente}"/>
                         </p:column>
-                        <p:column headerText="Nº Parcela"  style="width:58px;color:#1F8871;" styleClass="alinharCenter" >
+                        <p:column headerText="Nº Parcela"  style="width:58px;" styleClass="alinharCenter" >
                             <h:outputText value="#{contasrecebe.numeroparcelas}"/>
                         </p:column>
-                        <p:column headerText="Valor" style="width:80px;color:#1F8871;text-align:right;" >
+                        <p:column headerText="Valor" style="width:80px;text-align:right;" >
                             <h:outputText value="#{contasrecebe.valorparcela}">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </h:outputText>  
                         </p:column>
-                        <p:column headerText="Banco" style="width:70px;color:#1F8871;" styleClass="alinharCenter">
+                        <p:column headerText="Banco" style="width:70px;" styleClass="alinharCenter">
                             <h:outputText value="#{contasrecebe.banco}"/>                                   
                         </p:column>
-                        <p:column headerText="Unidade" style="width:160px;color:#1F8871;" styleClass="alinharCenter"  sortBy="#{contasrecebe.vendas.unidadenegocio}">
+                        <p:column headerText="Unidade" style="width:160px;" styleClass="alinharCenter"  sortBy="#{contasrecebe.vendas.unidadenegocio}">
                             <h:outputText value="#{contasrecebe.vendas.unidadenegocio}"/>                                   
                         </p:column>
-                        <p:column headerText="Data de Vencimento" style="width:95px;color:#1F8871;" styleClass="alinharCenter">
+                        <p:column headerText="Data de Vencimento" style="width:95px;" styleClass="alinharCenter">
                             <h:outputText value="#{contasrecebe.datavencimento}">
                                 <f:convertDateTime   pattern="dd/MM/yyyy"  timeZone="America/Sao_Paulo"/>
                             </h:outputText>
@@ -105,15 +100,15 @@
                                 <p:ajax update="tabelacontasRecebe"/>
                             </p:commandLink>
                         </p:column>
-                        <p:column headerText="Tipo de Documento" style="width:75px;color:#1F8871;text-align: center;" styleClass="alinharCenter">
+                        <p:column headerText="Tipo de Documento" style="width:75px;text-align: center;" styleClass="alinharCenter">
                             <p:graphicImage value="#{contasReceberMB.retornarTipoDocumento(contasrecebe)}" title="#{contasReceberMB.titleTipoDocumento(contasrecebe)}"/>                                 
                         </p:column>
-                        <p:column headerText="Boleto Gerado" style="width:63px;color:#1F8871;text-align: center;" styleClass="alinharCenter">
+                        <p:column headerText="Boleto Gerado" style="width:63px;text-align: center;" styleClass="alinharCenter">
                             <h:commandLink action="#{contasReceberMB.cancelado(contasrecebe)}" title="Cancelar">
                                 <img src="#{contasReceberMB.retornarBoletoGerado(contasrecebe)}" />
                             </h:commandLink>
                         </p:column>
-                        <p:column style="width:32px;color:#1F8871;text-align: center">
+                        <p:column style="width:32px;text-align: center">
                             <p:selectBooleanCheckbox value="#{contasrecebe.selecionado}"/>
                         </p:column>
                     </p:dataTable>

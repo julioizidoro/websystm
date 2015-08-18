@@ -14,30 +14,31 @@
             <title>Boletos</title>
 
             <br></br>
-            <p:commandButton id="bntgerarboleto" class="espacocobranca22botao" style="color:#000;background:#c7d95f;font-size:12px;" value="Gerar Boleto"  action="#{boletoMB.gerarBoleto()}" ajax="false"/>
-            <p:commandButton id="bntsegundavia" class="espacocobranca21botao" style="color:#000;background:#c7d95f;font-size:12px;" value="Gerar 2º via"  action="#{boletoMB.gerarBoletoSegundaVia()}" />
-            <p:commandButton id="bntarquivoremessa" class="espacocobranca21botao" style="color:#000;background:#c7d95f;font-size:12px;" value="Enviar"  action="#{boletoMB.enviarBoleto()}"/>
-            <p:commandButton id="bntfechar" class="espacocobranca21botao" style="color:#000;background:#c7d95f;font-size:12px;" value="Fechar"  action="#{boletoMB.fechardialogBoletos()}"/>
+            <p:commandButton id="bntgerarboleto" class="espacocobranca22botao" style="font-size:12px;" value="Gerar Boleto"  action="#{boletoMB.gerarBoleto()}" ajax="false"/>
+            <p:commandButton id="bntsegundavia" class="espacocobranca21botao" style="font-size:12px;" value="Gerar 2º via"  action="#{boletoMB.gerarBoletoSegundaVia()}" />
+            <p:commandButton id="bntarquivoremessa" class="espacocobranca21botao" style="font-size:12px;" value="Enviar"  action="#{boletoMB.enviarBoleto()}"/>
+            <p:commandButton id="bntfechar" class="espacocobranca21botao" style="font-size:12px;" value="Fechar"  action="#{boletoMB.fechardialogBoletos()}"/>
+             <br></br> <br></br>
             <p:dataTable id="listaBoleto" var="listaboleto"  value="#{boletoMB.listarSelecionados}"
                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
                          paginator="true" rows="10" style="margin-bottom:20px" >
                
-                <p:column headerText="Nº Documento" style="width:117px;background:#ffffff;color:#1F8871;text-align:center;" sortBy="#{contasrecebe.numerodocumento}">
-                    <h:outputText value="#{contasrecebe.numerodocumento}"/>
+                <p:column headerText="Nº Documento" style="width:117px;text-align:center;" sortBy="#{listaboleto.numerodocumento}">
+                    <h:outputText value="#{listaboleto.numerodocumento}"/>
                 </p:column>
-                <p:column headerText="Cliente"  style="background:#ffffff;color:#1F8871;" styleClass="alinharCenter" >
-                    <h:outputText value="#{contasrecebe.vendas.cliente}"/>
+                <p:column headerText="Cliente"  styleClass="alinharCenter" >
+                    <h:outputText value="#{listaboleto.vendas.cliente}"/>
                 </p:column>
-                <p:column headerText="Nº Parcela"  style="width:100px;background:#ffffff;color:#1F8871;text-align:center;" styleClass="alinharCenter" >
-                    <h:outputText value="#{contasrecebe.numeroparcelas}"/>
+                <p:column headerText="Nº Parcela"  style="width:100px;text-align:center;" styleClass="alinharCenter" >
+                    <h:outputText value="#{listaboleto.numeroparcelas}"/>
                 </p:column>
-                <p:column headerText="Valor" style="width:80px;background:#ffffff;color:#1F8871;text-align:right;" >
-                    <h:outputText value="#{contasrecebe.valorparcela}">
+                <p:column headerText="Valor" style="width:80px;text-align:right;" >
+                    <h:outputText value="#{listaboleto.valorparcela}">
                         <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                     </h:outputText>  
                 </p:column>
-                <p:column style="width:35px;background:#ffffff;color:#1F8871;text-align: center">
-                    <p:selectBooleanCheckbox value="#{contasrecebe.selecionado}"/>
+                <p:column style="width:35px;text-align: center">
+                    <p:selectBooleanCheckbox value="#{listaboleto.selecionado}"/>
                 </p:column>
             </p:dataTable><br></br>
         </h:form>     
