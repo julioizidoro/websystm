@@ -26,7 +26,11 @@ import org.jrimum.domkee.financeiro.banco.febraban.Titulo;
 
 public class DadosBoletoBean implements Serializable{
     
-    private String nomeCedente;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String nomeCedente;
     private String cnpjCedente;
     private String nomeSacado;
     private String digitoAgencias;

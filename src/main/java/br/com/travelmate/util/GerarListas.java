@@ -5,6 +5,9 @@
  */
 package br.com.travelmate.util;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.travelmate.facade.FornecedorCidadeFacade;
 import br.com.travelmate.facade.PacoteTrechoFacade;
 import br.com.travelmate.facade.PacotesFacade;
@@ -15,8 +18,6 @@ import br.com.travelmate.model.Pacotes;
 import br.com.travelmate.model.Pacotetrecho;
 import br.com.travelmate.model.Produtos;
 import br.com.travelmate.model.Unidadenegocio;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -31,7 +32,7 @@ public class GerarListas {
     
     public static List<Pacotes> listarPacotes(String sql){
         PacotesFacade pacotesFacade= new PacotesFacade();
-        List listaPacotes = pacotesFacade.consultar(sql);
+        List<Pacotes> listaPacotes = pacotesFacade.consultar(sql);
         if (listaPacotes==null){
            listaPacotes = new ArrayList<Pacotes>();
         }

@@ -5,29 +5,30 @@
  */
 package br.com.travelmate.managerBean;
 
-import br.com.travelmate.facade.PacoteIngressoFacade;
-import br.com.travelmate.facade.PacotePasseioFacade;
-import br.com.travelmate.facade.PaisFacade;
-import br.com.travelmate.facade.PaisProdutoFacade;
-import br.com.travelmate.model.Cambio;
-import br.com.travelmate.model.Cidade;
-import br.com.travelmate.model.Fornecedorcidade;
-import br.com.travelmate.model.Pacotepasseio;
-import br.com.travelmate.model.Pacotepasseio;
-import br.com.travelmate.model.Pacotetrecho;
-import br.com.travelmate.model.Pais;
-import br.com.travelmate.model.Paisproduto;
-import br.com.travelmate.util.GerarListas;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
+
 import org.primefaces.context.RequestContext;
+
+import br.com.travelmate.facade.PacoteIngressoFacade;
+import br.com.travelmate.facade.PacotePasseioFacade;
+import br.com.travelmate.facade.PaisProdutoFacade;
+import br.com.travelmate.model.Cambio;
+import br.com.travelmate.model.Cidade;
+import br.com.travelmate.model.Fornecedorcidade;
+import br.com.travelmate.model.Pacotepasseio;
+import br.com.travelmate.model.Pacotetrecho;
+import br.com.travelmate.model.Pais;
+import br.com.travelmate.model.Paisproduto;
+import br.com.travelmate.util.GerarListas;
 
 /**
  *
@@ -37,7 +38,11 @@ import org.primefaces.context.RequestContext;
 @ViewScoped
 public class PacotePasseioMB implements Serializable{
     
-    @Inject
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Inject
     private UsuarioLogadoMB usuarioLogadoMB;
     private Pacotepasseio pacotepasseio;
     private Cambio cambio;

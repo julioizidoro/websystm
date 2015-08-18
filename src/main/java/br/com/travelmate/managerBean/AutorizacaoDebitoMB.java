@@ -22,7 +22,11 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 @ViewScoped
 public class AutorizacaoDebitoMB implements Serializable{
     
-   @Inject
+   /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+@Inject
    private UsuarioLogadoMB usuarioLogadoMB;
    private AutorizacaoDebitoBean autorizacaoDebitoBean;
    private Cambio cambio;

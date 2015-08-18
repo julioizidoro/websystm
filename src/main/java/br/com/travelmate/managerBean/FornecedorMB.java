@@ -27,7 +27,11 @@ import javax.inject.Named;
 @ViewScoped
 public class FornecedorMB implements Serializable{
     
-    @Inject
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Inject
     private ConsultaFornecedorMB consultaFornecedorMB;
     private List<Pais> listaPais;
     private Pais pais;

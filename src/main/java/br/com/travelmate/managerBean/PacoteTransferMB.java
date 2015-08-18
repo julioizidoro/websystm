@@ -33,7 +33,11 @@ import org.primefaces.context.RequestContext;
 @ViewScoped
 public class PacoteTransferMB implements Serializable{
     
-    @Inject
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Inject
     private UsuarioLogadoMB usuarioLogadoMB;
     private Pacotetransfer pacotetransfer;
     private Cambio cambio;

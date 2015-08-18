@@ -5,10 +5,7 @@
 package br.com.travelmate.util;
 
 
-import br.com.travelmate.facade.CambioFacade;
-import br.com.travelmate.model.Cambio;
 import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -25,8 +22,13 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.swing.JComboBox;
+
 import org.primefaces.model.UploadedFile;
+
+import br.com.travelmate.facade.CambioFacade;
+import br.com.travelmate.model.Cambio;
 
 /**
  *
@@ -34,9 +36,7 @@ import org.primefaces.model.UploadedFile;
  */
 public class Formatacao {
 
-    private String emailSenha;
-    private String emailUsuario;
-
+    
     public static String ConvercaoDataSql(Date data) {
         DateFormat df = new SimpleDateFormat("yyyy/MM/dd");
         String dataFormatada = df.format(data);

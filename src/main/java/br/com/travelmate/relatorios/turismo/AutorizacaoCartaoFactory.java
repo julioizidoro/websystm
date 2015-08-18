@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author Wolverine
  */
-@SuppressWarnings("unchecked")
+
 public class AutorizacaoCartaoFactory {
     
     public static List<AutorizacaoDebitoBean> listaAutorizacaoCartao;

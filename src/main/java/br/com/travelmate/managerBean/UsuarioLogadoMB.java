@@ -33,7 +33,11 @@ import javax.inject.Named;
 @SessionScoped
 public class UsuarioLogadoMB implements Serializable{
     
-    private Usuario usuario;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Usuario usuario;
     private Parametrosprodutos parametrosprodutos;
     private String novaSenha;
     private String confirmaNovaSenha;
@@ -242,7 +246,7 @@ public class UsuarioLogadoMB implements Serializable{
         
         String data = Formatacao.ConvercaoDataSql(new Date());
         CambioFacade cambioFacade = new CambioFacade();
-        listaCambio = listaCambio = cambioFacade.listar(data);
+        listaCambio = cambioFacade.listar(data);
         int contador = 0;
         if (listaCambio == null) {
             while (listaCambio == null){

@@ -7,11 +7,6 @@
 package br.com.travelmate.connection;
 
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -30,9 +25,7 @@ import javax.swing.JOptionPane;
 public class ConectionFactory {
 
     private static EntityManager manager;
-    private static Connection conn;
-
-
+    
     public static EntityManager getConnection() {
         EntityManagerFactory emf = null;
         manager = null;

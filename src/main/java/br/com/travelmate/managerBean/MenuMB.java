@@ -20,7 +20,15 @@ public class MenuMB implements Serializable{
 
     
     
-    public String comissaoVendas(){
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
+	 * 
+	 */
+	
+	public String comissaoVendas(){
         return "consultacomissaovendas";
     }
     

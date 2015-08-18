@@ -1,16 +1,10 @@
 package br.com.travelmate.managerBean;
 
-import br.com.travelmate.bean.DadosBoletoBean;
-import br.com.travelmate.bean.GerarArquivoRemessaItau;
-import br.com.travelmate.bean.LerRetornoItauBean;
-import br.com.travelmate.facade.ContasReceberFacade;
-import br.com.travelmate.model.Contasreceber;
-import br.com.travelmate.util.Formatacao;
-import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -18,11 +12,17 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
+
 import org.jrimum.bopepo.Boleto;
 import org.jrimum.domkee.comum.pessoa.endereco.Endereco;
 import org.jrimum.domkee.comum.pessoa.endereco.UnidadeFederativa;
 import org.primefaces.context.RequestContext;
-import org.primefaces.event.FileUploadEvent;
+
+import br.com.travelmate.bean.DadosBoletoBean;
+import br.com.travelmate.bean.GerarArquivoRemessaItau;
+import br.com.travelmate.facade.ContasReceberFacade;
+import br.com.travelmate.model.Contasreceber;
+import br.com.travelmate.util.Formatacao;
 
 @Named
 @ViewScoped

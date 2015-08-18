@@ -24,7 +24,11 @@ import javax.servlet.http.HttpSession;
 @ViewScoped
 public class PacoteMB implements Serializable{
     
-    private List<Pacotes> listaPacotes;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private List<Pacotes> listaPacotes;
     @Inject
     private UsuarioLogadoMB usuarioLogadoMB;
 

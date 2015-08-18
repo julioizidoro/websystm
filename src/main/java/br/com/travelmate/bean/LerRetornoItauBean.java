@@ -5,15 +5,14 @@
  */
 package br.com.travelmate.bean;
 
-import br.com.travelmate.facade.ContasReceberFacade;
-import br.com.travelmate.model.Contasreceber;
-import br.com.travelmate.util.Formatacao;
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import br.com.travelmate.facade.ContasReceberFacade;
+import br.com.travelmate.model.Contasreceber;
+import br.com.travelmate.util.Formatacao;
 
 /**
  *

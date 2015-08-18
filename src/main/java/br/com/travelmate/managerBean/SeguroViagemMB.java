@@ -1,19 +1,10 @@
 package br.com.travelmate.managerBean;
 
 
-import br.com.travelmate.facade.PaisProdutoFacade;
-import br.com.travelmate.facade.SeguroViagemFacade;
-import br.com.travelmate.model.Cambio;
-import br.com.travelmate.model.Fornecedorcidade;
-import br.com.travelmate.model.Pacotes;
-import br.com.travelmate.model.Paisproduto;
-import br.com.travelmate.model.Seguroviagem;
-import static br.com.travelmate.model.Seguroviagem_.valoresseguro;
-import br.com.travelmate.model.Valoresseguro;
-import br.com.travelmate.util.Formatacao;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -21,14 +12,28 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
-import javax.swing.JOptionPane;
+
 import org.primefaces.context.RequestContext;
+
+import br.com.travelmate.facade.PaisProdutoFacade;
+import br.com.travelmate.facade.SeguroViagemFacade;
+import br.com.travelmate.model.Cambio;
+import br.com.travelmate.model.Fornecedorcidade;
+import br.com.travelmate.model.Pacotes;
+import br.com.travelmate.model.Paisproduto;
+import br.com.travelmate.model.Seguroviagem;
+import br.com.travelmate.model.Valoresseguro;
+import br.com.travelmate.util.Formatacao;
 
 @Named
 @ViewScoped
 public class SeguroViagemMB implements Serializable{
     
-    @Inject
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Inject
     private UsuarioLogadoMB usuarioLogadoMB;
     private Cambio cambio;
     private Seguroviagem seguroviagem;

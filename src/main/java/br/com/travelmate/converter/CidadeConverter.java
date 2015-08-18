@@ -5,13 +5,14 @@
  */
 package br.com.travelmate.converter;
 
-import br.com.travelmate.model.Cambio;
-import br.com.travelmate.model.Cidade;
 import java.util.List;
+
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+
+import br.com.travelmate.model.Cidade;
 
 
 /**

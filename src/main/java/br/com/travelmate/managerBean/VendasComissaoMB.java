@@ -25,7 +25,11 @@ import javax.inject.Named;
 @ViewScoped
 public class VendasComissaoMB implements Serializable{
     
-    private Vendascomissao vendascomissao;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Vendascomissao vendascomissao;
     private List<Vendascomissao> listaVendasComissao;
     private String tituloDialog;
     private Date dataInicial;
