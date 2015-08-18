@@ -32,6 +32,21 @@ public class BoletoMB implements Serializable {
     @Inject
     private UsuarioLogadoMB usuarioLogadoMB;
 
+    public BoletoMB() {
+        FacesContext fc = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+        listarSelecionados = (List<Contasreceber>) session.getAttribute("listaContas");
+        session.removeAttribute("listaContas");
+        if (this.listarSelecionados == null) {
+            String sql = "Select c from Contasreceber c where c.boletogerado='SIM' and c.boletoenviado=0";
+            ContasReceberFacade contasReceberFacade = new ContasReceberFacade();
+            this.listarSelecionados = contasReceberFacade.listar(sql);
+        }
+    }
+    
+    
+    
+
     public List<Contasreceber> getListarSelecionados() {
         return listarSelecionados;
     }
@@ -46,20 +61,6 @@ public class BoletoMB implements Serializable {
 
     public void setUsuarioLogadoMB(UsuarioLogadoMB usuarioLogadoMB) {
         this.usuarioLogadoMB = usuarioLogadoMB;
-    }
-    
-
-    @PostConstruct
-    public void init() {
-        FacesContext fc = FacesContext.getCurrentInstance();
-        HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
-        listarSelecionados = (List<Contasreceber>) session.getAttribute("listaContas");
-        session.removeAttribute("listaContas");
-        if (this.listarSelecionados == null) {
-            String sql = "Select c from Contasreceber c where c.boletogerado='SIM' and c.boletoenviado=0";
-            ContasReceberFacade contasReceberFacade = new ContasReceberFacade();
-            this.listarSelecionados = contasReceberFacade.listar(sql);
-        }
     }
 
     public void fechardialogBoletos() {
