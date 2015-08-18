@@ -41,7 +41,7 @@
         <h:form id="cadastropacoteingresso" style="text-align:left;font-size: 10px;">
             <title>Ingresso</title>
             <p:tabView>
-                <p:tab titleStyle="color:#000;background:#ccc;font-size:10px;" title="Informações" class="tab">
+                <p:tab titleStyle="font-size:10px;" title="Informações" class="tab">
                             <p:outputLabel value="Pais" for="pais1" />
                             <p:outputLabel value="Cidade" for="cidade1" class="espacocobranca10"/>
                             <p:outputLabel value="Fornecedor" for="fornecedor" class="espacocobranca9"/>
@@ -114,7 +114,7 @@
                             <p:outputLabel value="Comissão Loja" for="comissaoloja" class="espacocobranca2" style=""/>
                             <br></br>
                             
-                            <p:inputText id="valornet" value="#{pacoteIngressoMB.pacoteingresso.valornet}" style="width:15%;font-size:10px;" class="fontebrancaa">
+                            <p:inputText id="valornet" value="#{pacoteIngressoMB.pacoteingresso.valornet}" style="width:14%;font-size:10px;" class="fontebrancaa">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 <p:ajax event="blur" />
                             </p:inputText>
@@ -123,21 +123,21 @@
                                 <p:ajax event="blur" update="valorgross" listener="#{pacoteIngressoMB.calcularValorGross()}" />
                                 <p:ajax event="blur" update="moedanacional"/>
                             </p:inputText>
-                            <p:inputText id="valorgross" value="#{pacoteIngressoMB.pacoteingresso.valorgross}" style="width:16%;font-size:10px;" maxlength="15" class="espacocobranca20rig">
+                            <p:inputText id="valorgross" value="#{pacoteIngressoMB.pacoteingresso.valorgross}" style="width:15%;font-size:10px;" maxlength="15" class="espacocobranca20rig">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 <p:ajax event="blur" update="comissao" listener="#{pacoteIngressoMB.calcularComissao()}"/>
                                 <p:ajax event="blur" update="moedanacional"/>
                             </p:inputText>
-                            <p:inputText id="moedanacional" value="#{pacoteIngressoMB.pacoteingresso.valormoedanacional}" style="width:16%;font-size:10px;" maxlength="11" class="espacocobranca20rig">
+                            <p:inputText id="moedanacional" value="#{pacoteIngressoMB.pacoteingresso.valormoedanacional}" style="width:15%;font-size:10px;" maxlength="11" class="espacocobranca20rig">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
-                            <p:inputText id="comissaoloja" value="#{pacoteIngressoMB.pacoteingresso.comissaoloja}" style="width:16%;font-size:10px;" maxlength="11" class="espacocobranca20rig">
+                            <p:inputText id="comissaoloja" value="#{pacoteIngressoMB.pacoteingresso.comissaoloja}" style="width:18%;font-size:10px;" maxlength="11" class="espacocobranca20rig">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
                             <br></br><br></br>
                             <p:outputLabel value="Descritivo" for="descritivo"/>
                             <br></br>
-                            <p:inputText id="descritivo" value="#{pacoteIngressoMB.pacoteingresso.descritivo}" style="width: 98%" maxlength="45" class="espacocampos2"/>
+                            <p:inputText id="descritivo" value="#{pacoteIngressoMB.pacoteingresso.descritivo}" style="width: 97%" maxlength="45" class="espacocampos2"/>
                             
                               
                             <br></br><br></br>
@@ -151,7 +151,7 @@
                            <br></br><br></br>
                             </p>
                 </p:tab>
-                <p:tab titleStyle="color:#000;background:#ccc;font-size:10px;" title="Consulta de Ingressos" class="tab">
+                <p:tab titleStyle="font-size:10px;" title="Consulta de Ingressos" class="tab">
                             <p:dataTable id="pacoteingresso" var="pacoteingresso"  value="#{pacoteIngressoMB.listaPacoteIngresso}" class="tabela1" 
                                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
                                          paginator="true" rows="10" style="margin-bottom:20px" rowIndexVar="linha">

@@ -86,18 +86,18 @@
                             <p:outputLabel value="Qntd Criança" for="qntdClianca" class="espacocobranca14" style="font-size:10px;"/>
                             <p:outputLabel value="Qntd Infantil" for="qntdInfantil" class="espacocobranca15" style="font-size:10px;"/>
                             <br></br>
-                            <p:calendar id="datadevolucao" value="#{pacoteCarroMB.pacotecarro.datadevolucao}" size="12"  class="espacocampos2" locale="pt"  pattern="dd/MM/yyyy" >
+                            <p:calendar id="datadevolucao" value="#{pacoteCarroMB.pacotecarro.datadevolucao}" size="10"  class="espacocampos2" locale="pt"  pattern="dd/MM/yyyy" >
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </p:calendar>
-                            <p:inputMask id="horadevolucao" value="#{pacoteCarroMB.pacotecarro.horadevolucao}" style="width:13%;" mask="99:99" class="espacocampos"/>
-                            <p:inputText id="categoria" value="#{pacoteCarroMB.pacotecarro.categoria}" style="width:13%;" maxlength="15" class="espacocampos"/>
-                            <p:inputText id="qntdAdulto" value="#{pacoteCarroMB.pacotecarro.adt}" style="width:11%;" class="espacocampos">
+                            <p:inputMask id="horadevolucao" value="#{pacoteCarroMB.pacotecarro.horadevolucao}" style="width:12%;" mask="99:99" class="espacocampos"/>
+                            <p:inputText id="categoria" value="#{pacoteCarroMB.pacotecarro.categoria}" style="width:12%;" maxlength="15" class="espacocampos"/>
+                            <p:inputText id="qntdAdulto" value="#{pacoteCarroMB.pacotecarro.adt}" style="width:10%;" class="espacocampos">
                                 <f:convertNumber  type="number"/>
                             </p:inputText>
                             <p:inputText id="qntdClianca" value="#{pacoteCarroMB.pacotecarro.chd}"  style="width:12%;" class="espacocampos">
                                   <f:convertNumber  type="number"/>
                             </p:inputText>
-                            <p:inputText id="qntdInfantil" value="#{pacoteCarroMB.pacotecarro.inf}" style="width:11%;" class="espacocampos">
+                            <p:inputText id="qntdInfantil" value="#{pacoteCarroMB.pacotecarro.inf}" style="width:13%;" class="espacocampos">
                                   <f:convertNumber  type="number"/>
                             </p:inputText>
                              <br></br><br></br>
@@ -129,12 +129,12 @@
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 <p:ajax event="blur" />
                             </p:inputText>
-                            <p:inputText id="comissao" value="#{pacoteCarroMB.pacotecarro.comissao}" style="width:15%;font-size:10px;" class="espacocobranca20rig">
+                            <p:inputText id="comissao" value="#{pacoteCarroMB.pacotecarro.comissao}" style="width:14%;font-size:10px;" class="espacocobranca20rig">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 <p:ajax event="blur" update="valorgross" listener="#{pacoteCarroMB.calcularValorGross()}" />
                                 <p:ajax event="blur" update="moedanacional"/>
                             </p:inputText>
-                            <p:inputText id="valorgross" value="#{pacoteCarroMB.pacotecarro.valorgross}" style="width:16%;font-size:10px;" maxlength="15" class="espacocobranca20rig">
+                            <p:inputText id="valorgross" value="#{pacoteCarroMB.pacotecarro.valorgross}" style="width:15%;font-size:10px;" maxlength="15" class="espacocobranca20rig">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 <p:ajax event="blur" update="comissao" listener="#{pacoteCarroMB.calcularComissao()}"/>
                                 <p:ajax event="blur" update="moedanacional"/>
@@ -142,7 +142,7 @@
                             <p:inputText id="moedanacional" value="#{pacoteCarroMB.pacotecarro.valormoedanacional}" style="width:16%;font-size:10px;" maxlength="11" class="espacocobranca20rig">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
-                            <p:inputText id="comissaoloja" value="#{pacoteCarroMB.pacotecarro.comissaoloja}" style="width:15%;font-size:10px;" maxlength="11" class="espacocobranca20rig">
+                            <p:inputText id="comissaoloja" value="#{pacoteCarroMB.pacotecarro.comissaoloja}" style="width:16%;font-size:10px;" maxlength="11" class="espacocobranca20rig">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
 
@@ -150,7 +150,7 @@
                             <br></br><br></br>
                             <p:outputLabel value="Descritivo" for="descritivo" style="font-size:10px;"/>
                             <br></br>
-                            <p:inputText id="descritivo" value="#{pacoteCarroMB.pacotecarro.descritivo}" style="width:97%;" maxlength="45" class="espacocampos2"/>
+                            <p:inputText id="descritivo" value="#{pacoteCarroMB.pacotecarro.descritivo}" style="width:96%;" maxlength="45" class="espacocampos2"/>
                             <br></br><br></br>
                             <p class="botaocadpacote"><br></br>
                                 <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Confirmar" action="#{pacoteCarroMB.salvarCarro()}" style="font-size:10px;"></p:commandButton>

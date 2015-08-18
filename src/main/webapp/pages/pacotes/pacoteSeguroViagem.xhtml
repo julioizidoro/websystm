@@ -47,14 +47,14 @@
                     <p:outputLabel value="Cobrança" for="cobranca" class="espacocobranca22"/>
 
                     <br></br>
-                    <p:selectOneMenu class="espacocobranca24" style="width:26%;height:32px" id="seguradora"  value="#{seguroViagemMB.fornecedorcidade}" 
+                    <p:selectOneMenu class="espacocobranca24" style="width:26%;" id="seguradora"  value="#{seguroViagemMB.fornecedorcidade}" 
                                      converter="FornecedorCidadeConverter">
                         <f:selectItem itemLabel="Seguradora" itemValue="0" noSelectionOption="true" /> 
                         <f:selectItems id="idcidade" value="#{seguroViagemMB.listaFornecedorCidade}" var="ccidade" itemLabel="#{ccidade.fornecedor.nome}" itemValue="#{ccidade}"/>
                         <f:attribute name="listaFornecedorCidade" value="#{seguroViagemMB.listaFornecedorCidade}"/>
                         <p:ajax event="change" update="plano"/> 
                     </p:selectOneMenu>
-                    <p:selectOneMenu id="plano" class="espacocampos" style="width:25%;height:32px" value="#{seguroViagemMB.valoresseguro}"
+                    <p:selectOneMenu id="plano" class="espacocampos" style="width:25%;" value="#{seguroViagemMB.valoresseguro}"
                                      converter="ValorSeguroConverter" >
                         <f:selectItem itemLabel="Seguradora" itemValue="0" noSelectionOption="true"/> 
                         <f:selectItems id="idvaloresseguro" value="#{seguroViagemMB.fornecedorcidade.valoresseguroList}" var="cvalorseguro" itemLabel="#{cvalorseguro.plano}" itemValue="#{cvalorseguro}"/>
@@ -70,7 +70,7 @@
                     <p:outputLabel value="Data Final" for="datatermino" class="espacocobranca5"/>
                     <p:outputLabel value="Valor do Seguro" for="valorseguro" class="espacocobranca23"/>
                     <br></br>
-                    <p:calendar id="datainicio" value="#{seguroViagemMB.seguroviagem.dataInicio}" size="12"  class="espacocobranca24" locale="pt"  pattern="dd/MM/yyyy" >
+                    <p:calendar id="datainicio" value="#{seguroViagemMB.seguroviagem.dataInicio}" size="13"  class="espacocobranca24" locale="pt"  pattern="dd/MM/yyyy" >
                         <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                         <p:ajax event="change" />
                         <p:ajax event="dateSelect" />

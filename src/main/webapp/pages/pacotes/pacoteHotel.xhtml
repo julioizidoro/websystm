@@ -72,8 +72,8 @@
                             
                             <br></br>
                             <p:inputText id="pais" value="#{pacoteHotelMB.pacotehotel.pais}" style="width:26%" maxlength="50" class="espacocampos2"/>
-                            <p:inputText id="cidade" value="#{pacoteHotelMB.pacotehotel.cidade}" style="width:27%" maxlength="50" class="espacocampos"/>
-                            <p:calendar id="dataCheckin" value="#{pacoteHotelMB.pacotehotel.datacheckin}" size="12"  class="espacocampos" locale="pt"  pattern="dd/MM/yyyy" >
+                            <p:inputText id="cidade" value="#{pacoteHotelMB.pacotehotel.cidade}" style="width:26%" maxlength="50" class="espacocampos"/>
+                            <p:calendar id="dataCheckin" value="#{pacoteHotelMB.pacotehotel.datacheckin}" size="14"  class="espacocampos" locale="pt"  pattern="dd/MM/yyyy" >
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </p:calendar>
                             <p:inputMask id="horaCheckin" value="#{pacoteHotelMB.pacotehotel.horacheckin}" mask="99:99" style="width:15%" class="espacocampos"/>
@@ -86,12 +86,12 @@
                             <p:outputLabel value="Hora Checkout" for="horaCheckout" class="espacocobranca5"/>
                             <br></br>
                             <p:inputText id="tipoquarto" value="#{pacoteHotelMB.pacotehotel.tipoquarto}"  style="width:17%" maxlength="10" class="espacocampos2"/>
-                            <p:inputText id="categoria" value="#{pacoteHotelMB.pacotehotel.categoria}" style="width:13%" maxlength="10" class="espacocampos"/>
-                            <p:inputText id="regime" value="#{pacoteHotelMB.pacotehotel.regime}"  style="width:20%" maxlength="20" class="espacocampos"/>
-                            <p:calendar id="dataCheckout" value="#{pacoteHotelMB.pacotehotel.datacheckout}" size="14"  class="espacocobranca29" locale="pt"  pattern="dd/MM/yyyy" >
+                            <p:inputText id="categoria" value="#{pacoteHotelMB.pacotehotel.categoria}" style="width:12%" maxlength="10" class="espacocampos"/>
+                            <p:inputText id="regime" value="#{pacoteHotelMB.pacotehotel.regime}"  style="width:19%" maxlength="20" class="espacocampos"/>
+                            <p:calendar id="dataCheckout" value="#{pacoteHotelMB.pacotehotel.datacheckout}" size="15"  class="espacocobranca29" locale="pt"  pattern="dd/MM/yyyy" >
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </p:calendar>
-                            <p:inputMask id="horaCheckout" value="#{pacoteHotelMB.pacotehotel.horacheckout}" mask="99:99"  style="width:14%" class="espacocampos"/>
+                            <p:inputMask id="horaCheckout" value="#{pacoteHotelMB.pacotehotel.horacheckout}" mask="99:99"  style="width:16%" class="espacocampos"/>
                             <br></br><br></br><br></br>
                             
                           <p:outputLabel value="Câmbio" for="moeda" class="" style="font-size:10px;"/>
@@ -122,12 +122,12 @@
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 <p:ajax event="blur" />
                             </p:inputText>
-                            <p:inputText id="comissao" value="#{pacoteHotelMB.pacotehotel.comissao}" style="width:15%;font-size:10px;" class="espacocobranca20rig">
+                            <p:inputText id="comissao" value="#{pacoteHotelMB.pacotehotel.comissao}" style="width:14%;font-size:10px;" class="espacocobranca20rig">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 <p:ajax event="blur" update="valorgross" listener="#{pacoteHotelMB.calcularValorGross()}" />
                                 <p:ajax event="blur" update="moedanacional"/>
                             </p:inputText>
-                            <p:inputText id="valorgross" value="#{pacoteHotelMB.pacotehotel.valorgross}" style="width:16%;font-size:10px;" maxlength="15" class="espacocobranca20rig">
+                            <p:inputText id="valorgross" value="#{pacoteHotelMB.pacotehotel.valorgross}" style="width:15%;font-size:10px;" maxlength="15" class="espacocobranca20rig">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 <p:ajax event="blur" update="comissao" listener="#{pacoteHotelMB.calcularComissao()}"/>
                                 <p:ajax event="blur" update="moedanacional"/>
@@ -143,7 +143,7 @@
                             <br></br><br></br>
                             <p:outputLabel value="Descritivo" for="descritivo" style="font-size:10px;"/>
                             <br></br>
-                            <p:inputText id="descritivo" value="#{pacoteHotelMB.pacotehotel.descritivo}" style="width:97%;" maxlength="45" class="espacocampos2"/>
+                            <p:inputText id="descritivo" value="#{pacoteHotelMB.pacotehotel.descritivo}" style="width:96%;" maxlength="45" class="espacocampos2"/>
                             <br></br><br></br>
                             <p class="botaocadpacote"><br></br>
                                 <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Confirmar" action="#{pacoteHotelMB.salvarHotel()}"></p:commandButton>

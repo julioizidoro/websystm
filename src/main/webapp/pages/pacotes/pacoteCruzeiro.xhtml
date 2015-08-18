@@ -44,7 +44,7 @@
                             <p:outputLabel value="Cidade" for="cidade" class="espacocobranca10" style="font-size:10px;"/>
                             <p:outputLabel value="Fornecedor" for="fornecedor" class="espacocobranca16" style="font-size:10px;"/>
                             <br></br>
-                            <p:selectOneMenu id="pais" value="#{pacoteCruzeiroMB.pais}" style="width:27%;font-size: 10px" class="espacocobranca11" 
+                            <p:selectOneMenu id="pais" value="#{pacoteCruzeiroMB.pais}" style="width:26%;font-size: 10px" class="espacocobranca11" 
                                              converter="PaisConverter" filter="true" filterMatchMode="startsWith" >
                                 <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
                                 <f:selectItems id="idpais" value="#{pacoteCruzeiroMB.listaPais}" var="cpais" itemLabel="#{cpais.pais.nome}" itemValue="#{cpais.pais}"/>
@@ -74,7 +74,7 @@
                             <p:calendar id="datasaida" locale="pt"  pattern="dd/MM/yyyy"  value="#{pacoteCruzeiroMB.pacotecruzeiro.datasaida}" style="font-size:10px;" size="9"  class="espacocobranca11">
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </p:calendar>
-                            <p:calendar id="datachegada" locale="pt"  pattern="dd/MM/yyyy"  value="#{pacoteCruzeiroMB.pacotecruzeiro.datechegada}" size="11"  class="espacocampos">
+                            <p:calendar id="datachegada" locale="pt"  pattern="dd/MM/yyyy"  value="#{pacoteCruzeiroMB.pacotecruzeiro.datechegada}" size="10"  class="imgadd">
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </p:calendar>
                             <p:inputText id="intinerario" value="#{pacoteCruzeiroMB.pacotecruzeiro.intinerario}" style="width:30%;" class="espacocampos"/>
@@ -109,7 +109,7 @@
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 <p:ajax event="blur" />
                             </p:inputText>
-                            <p:inputText id="comissao" value="#{pacoteCruzeiroMB.pacotecruzeiro.comissao}" style="width:12%;font-size:10px;" class="espacocobranca20rig">
+                            <p:inputText id="comissao" value="#{pacoteCruzeiroMB.pacotecruzeiro.comissao}" style="width:11%;font-size:10px;" class="espacocobranca20rig">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 <p:ajax event="blur" update="valorgross" listener="#{pacoteCruzeiroMB.calcularValorGross()}" />
                                 <p:ajax event="blur" update="moedanacional"/>
@@ -119,17 +119,17 @@
                                 <p:ajax event="blur" update="comissao" listener="#{pacoteCruzeiroMB.calcularComissao()}"/>
                                 <p:ajax event="blur" update="moedanacional"/>
                             </p:inputText>
-                            <p:inputText id="moedanacional" value="#{pacoteCruzeiroMB.pacotecruzeiro.valormoedanacional}" style="width:12%;font-size:10px;" maxlength="11" class="espacocobranca20rig">
+                            <p:inputText id="moedanacional" value="#{pacoteCruzeiroMB.pacotecruzeiro.valormoedanacional}" style="width:11%;font-size:10px;" maxlength="11" class="espacocobranca20rig">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
-                            <p:inputText id="comissaoloja" value="#{pacoteCruzeiroMB.pacotecruzeiro.comissaoloja}" style="width:13%;font-size:10px;" maxlength="11" class="espacocobranca20rig">
+                            <p:inputText id="comissaoloja" value="#{pacoteCruzeiroMB.pacotecruzeiro.comissaoloja}" style="width:14%;font-size:10px;" maxlength="11" class="espacocobranca20rig">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
                             
                             <br></br><br></br>
                             <p:outputLabel value="Descritivo" for="descritivo" class="espacocobranca11" style="font-size:10px;"/>
                             <br></br>
-                            <p:inputText id="descritivo" value="#{pacoteCruzeiroMB.pacotecruzeiro.descritivo}" style="width:84%;font-size:10px;" maxlength="45" class="espacocobranca11"/>
+                            <p:inputText id="descritivo" value="#{pacoteCruzeiroMB.pacotecruzeiro.descritivo}" style="width:83%;font-size:10px;" maxlength="45" class="espacocobranca11"/>
                             <br></br>
                             <p class="botaocadpacote"><br></br>
                                 <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Confirmar" action="#{pacoteCruzeiroMB.salvarCruzeiro()}"></p:commandButton>

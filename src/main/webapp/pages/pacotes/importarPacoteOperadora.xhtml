@@ -49,28 +49,28 @@
                                         <p:dataExporter type="xls" target="importar" fileName="listapacoteoperadora" />
                                     </h:commandLink>
                                 </f:facet>
-                                <p:column headerText="No. Pacote"  style="width:80px;background:#ffffff;color:#1F8871;text-align:center;" styleClass="alinharCenter" >
+                                <p:column headerText="No. Pacote"  style="width:80px;text-align:center;" styleClass="alinharCenter" >
                                     <h:outputText value="#"/>
                                 </p:column>
-                                <p:column headerText="Descrição"  style="width:180px;background:#ffffff;color:#1F8871;text-align:left;" styleClass="alinharCenter" >
+                                <p:column headerText="Descrição"  style="width:180px;text-align:left;" styleClass="alinharCenter" >
                                     <h:outputText value="#"/>
                                 </p:column>
-                                <p:column headerText="Data Início" style="width:80px;background:#ffffff;color:#1F8871;text-align: left;" styleClass="alinharCenter">
+                                <p:column headerText="Data Início" style="width:80px;text-align: left;" styleClass="alinharCenter">
                                     <h:outputText value="">
                                         <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                                     </h:outputText>                           
                                 </p:column>
-                                <p:column headerText="Data Final" style="width:80px;background:#ffffff;color:#1F8871;text-align: left;" styleClass="alinharCenter">
+                                <p:column headerText="Data Final" style="width:80px;text-align: left;" styleClass="alinharCenter">
                                     <h:outputText value="">
                                         <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                                     </h:outputText>                           
                                 </p:column>
-                                <p:column headerText="Valor" style="width:80px;background:#ffffff;color:#1F8871;text-align:right;" styleClass="alinharCenter">
+                                <p:column headerText="Valor" style="width:80px;text-align:right;" styleClass="alinharCenter">
                                     <h:outputText value="">
                                         <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                     </h:outputText>                           
                                 </p:column>
-                                <p:column style="width:50px;background:#ffffff;color:#1F8871;text-align: center">
+                                <p:column style="width:50px;text-align: center">
                                     <p:commandButton  icon="ui-icon-trash" title="Excluir" action="#" update="tabelaimportarpacote" ></p:commandButton>
                                 </p:column>
                             </p:dataTable>

@@ -72,10 +72,10 @@
                             <p:outputLabel value="Data" for="data" class="imgadd"/>
                             <br></br>
                             <p:inputText id="de" value="#{pacoteTremMB.pacotetrem.de}" style="width:25%;" maxlength="100" class=""/>
-                            <p:inputText id="para" value="#{pacoteTremMB.pacotetrem.para}" style="width:20%;" maxlength="100" class="espacocampos"/>
+                            <p:inputText id="para" value="#{pacoteTremMB.pacotetrem.para}" style="width:19%;" maxlength="100" class="espacocampos"/>
                              <p:inputMask id="horasaida" value="#{pacoteTremMB.pacotetrem.horasaida}" mask="99:99" style="width:11%;" class="espacocampos"/>
                             <p:inputMask id="horachegada" value="#{pacoteTremMB.pacotetrem.horachegada}" mask="99:99" style="width:13%;" class="espacocampos"/>
-                            <p:calendar id="data" size="10" value="#{pacoteTremMB.pacotetrem.data}"  class="espacocobranca29" locale="pt"  pattern="dd/MM/yyyy" >
+                            <p:calendar id="data" size="11" value="#{pacoteTremMB.pacotetrem.data}"  class="espacocobranca29" locale="pt"  pattern="dd/MM/yyyy" >
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </p:calendar>
                             <br></br><br></br><br></br>
@@ -85,10 +85,10 @@
                             <p:outputLabel value="Qntd Infantil" for="qntdInfantil" class="espacocobranca5"/>
                             <p:outputLabel value="Qntd Criança" for="qntdAdolescente" class="espacocobranca5"/>
                             <br></br>
-                            <p:inputText id="classe" value="#{pacoteTremMB.pacotetrem.classe}" style="width:33%;" maxlength="20" class=""/>
+                            <p:inputText id="classe" value="#{pacoteTremMB.pacotetrem.classe}" style="width:32%;" maxlength="20" class=""/>
                             <p:inputText id="qntdadulto" value="#{pacoteTremMB.pacotetrem.adt}" style="width:12%;" class="espacocobranca11"/>
                             <p:inputText id="qntdInfantil" value="#{pacoteTremMB.pacotetrem.inf}" style="width:11%;" class="espacocobranca5"/>
-                            <p:inputText id="qntdAdolescente" value="#{pacoteTremMB.pacotetrem.chd}" style="width:14%;" class="espacocobranca24"/>
+                            <p:inputText id="qntdAdolescente" value="#{pacoteTremMB.pacotetrem.chd}" style="width:16%;" class="espacocobranca24"/>
                             <br></br><br></br><br></br>
                            
                             <p:outputLabel value="Câmbio" for="moeda" class="" style="font-size:10px;"/>
@@ -119,7 +119,7 @@
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 <p:ajax event="blur" />
                             </p:inputText>
-                            <p:inputText id="comissao" value="#{pacoteTremMB.pacotetrem.comissao}" style="width:15%;font-size:10px;" class="espacocobranca20rig">
+                            <p:inputText id="comissao" value="#{pacoteTremMB.pacotetrem.comissao}" style="width:14%;font-size:10px;" class="espacocobranca20rig">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 <p:ajax event="blur" update="valorgross" listener="#{pacoteTremMB.calcularValorGross()}" />
                                 <p:ajax event="blur" update="moedanacional"/>
@@ -129,10 +129,10 @@
                                 <p:ajax event="blur" update="comissao" listener="#{pacoteTremMB.calcularComissao()}"/>
                                 <p:ajax event="blur" update="moedanacional"/>
                             </p:inputText>
-                            <p:inputText id="moedanacional" value="#{pacoteTremMB.pacotetrem.valormoedanacional}" style="width:16%;font-size:10px;" maxlength="11" class="espacocobranca20rig">
+                            <p:inputText id="moedanacional" value="#{pacoteTremMB.pacotetrem.valormoedanacional}" style="width:15%;font-size:10px;" maxlength="11" class="espacocobranca20rig">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
-                            <p:inputText id="comissaoloja" value="#{pacoteTremMB.pacotetrem.comissaoloja}" style="width:15%;font-size:10px;" maxlength="11" class="espacocobranca20rig">
+                            <p:inputText id="comissaoloja" value="#{pacoteTremMB.pacotetrem.comissaoloja}" style="width:18%;font-size:10px;" maxlength="11" class="espacocobranca20rig">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
 
