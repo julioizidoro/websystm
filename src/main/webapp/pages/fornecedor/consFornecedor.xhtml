@@ -46,7 +46,7 @@
                                 <p:dataExporter type="xls" target="fornecedor" fileName="fornecedor" />
                             </h:commandLink>
                         </f:facet>
-                        <p:column headerText="Fornecedor" style="background:#ffffff;text-decoration-color:#1F8871;color:#1F8871;text-align:center;" sortBy="#">
+                        <p:column headerText="Fornecedor" style="text-align:center;" sortBy="#">
                             <p:commandLink value="#{fornecedor.fornecedor.nome}" action="#{fornecedorMB.selecionaFornecedorCidade(fornecedor)}" />
                         </p:column>
                     </p:dataTable>
