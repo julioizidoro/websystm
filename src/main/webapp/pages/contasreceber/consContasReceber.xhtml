@@ -118,23 +118,22 @@
             </h:form>     
             <h:form id="totais">
                 <p:dialog id="dialog_totais" header="Totais" widgetVar="totais"  width="34%" class="dialog2" style="background:#d0e9c6" >
-                    <h:panelGrid columns="2" cellpadding="3">
-                        <p:outputLabel value="Total Contas Vencidas" for="contasVenc" class="fontebranca" style="font-size: 11px"/> 
+                        <p:outputLabel value="Total Contas Vencidas" for="contasVenc" class="espacocobranca20" style="font-size: 11px"/> 
                         <p:outputLabel value="Total Contas Vencendo" for="contasVencendo" class="leftcampo" style="font-size: 11px"/>
-                        <p:inputText id="contasVenc" size="15" maxlength="100" class="fontebrancaa" value="#{contasReceberMB.contasVencidas}"  readonly="true">
+                       <br></br>
+                       <p:inputText id="contasVenc" style="width:26%" maxlength="100" class="espacocobranca20" value="#{contasReceberMB.contasVencidas}"  readonly="true">
                             <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                         </p:inputText>
-                        <p:inputText id="contasVencendo" size="15" maxlength="100" class="leftcampoo" value="#{contasReceberMB.contasVencendo}"  readonly="true">
+                        <p:inputText id="contasVencendo" style="width:27%" maxlength="100" class="leftcampoo" value="#{contasReceberMB.contasVencendo}"  readonly="true">
                             <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                         </p:inputText>
 
-                    </h:panelGrid>
-                    <h:panelGrid columns="1" cellpadding="1">
-                        <p:outputLabel value="Total Contas a Vencer" for="contasVencer" style="font-size: 11px"/>
-                        <p:inputText id="contasVencer" size="15" maxlength="100" class="fontebrancaa" value="#{contasReceberMB.contasVencer}"  readonly="true">
+                    <br></br> <br></br>
+                        <p:outputLabel value="Total Contas a Vencer" for="contasVencer" style="font-size: 11px" class="espacocobranca20"/>
+                         <br></br>
+                        <p:inputText id="contasVencer" style="width:27%" maxlength="100" class="espacocobranca20" value="#{contasReceberMB.contasVencer}"  readonly="true">
                             <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                         </p:inputText>
-                    </h:panelGrid>   
                     <br></br><br></br>
                     <br></br>
                 </p:dialog>
@@ -155,7 +154,7 @@
                         <p:ajax event="change" />
                         <p:ajax event="dateSelect" />
                     </p:calendar>
-                    <p:commandButton value="Salvar" icon="ui-icon-check" action="#{contasReceberMB.confirmaAlterarDataVencimento()}" class="espacocobranca23botao" style="color:#000;background:#c7d95f;font-size:11px;" update="@all"/>
+                    <p:commandButton value="Salvar" icon="ui-icon-check" action="#{contasReceberMB.confirmaAlterarDataVencimento()}" class="espacocobranca23botao" style="font-size:11px;" update="@all"/>
                 </p:dialog>
             </h:form>
         </ui:define>

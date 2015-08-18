@@ -10,31 +10,31 @@
             <h:form>
                 <div id="centro">
                     <br></br><br></br>
-                   <p:accordionPanel class="paineleditar" >
-                        <p:tab titleStyle="color:#000;font-size:10px;background:#c7d95f;" title="Editar">
+                   <p:accordionPanel class="paineleditar2" >
+                        <p:tab titleStyle="font-size:10px;" title="Editar">
                         <p:outputLabel value="Valor Bruto" />
                         <p:outputLabel value="Valor Fornecedor" class="espacodialog"/>
                         <p:outputLabel value="Comissão TM" class="espacodialog2"/>
                         <br></br>
-                        <p:inputText value="#{vendasComissaoMB.vendascomissao.valorbruto}" size="17" class="espacocampos2right"/>
-                        <p:inputText value="#{vendasComissaoMB.vendascomissao.valorfornecedor}" size="15" class="espacocamposright"/>
-                        <p:inputText value="#{vendasComissaoMB.vendascomissao.comissaotm}" size="16" class="espacocamposright"/>
+                        <p:inputText value="#{vendasComissaoMB.vendascomissao.valorbruto}" style="width:23%" class="espacocampos2right"/>
+                        <p:inputText value="#{vendasComissaoMB.vendascomissao.valorfornecedor}" style="width:21%" class="espacocamposright"/>
+                        <p:inputText value="#{vendasComissaoMB.vendascomissao.comissaotm}" style="width:24%" class="espacocamposright"/>
                         <br></br><br></br>
                         <p:outputLabel value="Taxa TM" />
                         <p:outputLabel value="Desconto TM" class="espacodialog3"/>
                         <p:outputLabel value="Comissão Emissor" class="espacodialog4"/>
                         <br></br>
-                        <p:inputText value="#{vendasComissaoMB.vendascomissao.taxatm}" size="18" class="espacocampos2right"/>
-                        <p:inputText value="#{vendasComissaoMB.vendascomissao.descontotm}" size="15"  class="espacocamposright"/>
-                        <p:inputText value="#{vendasComissaoMB.vendascomissao.comissaoemissor}" size="15"  class="espacocamposright"/>
+                        <p:inputText value="#{vendasComissaoMB.vendascomissao.taxatm}" style="width:24%" class="espacocampos2right"/>
+                        <p:inputText value="#{vendasComissaoMB.vendascomissao.descontotm}" style="width:21%"  class="espacocamposright"/>
+                        <p:inputText value="#{vendasComissaoMB.vendascomissao.comissaoemissor}" style="width:23%"  class="espacocamposright"/>
                         <br></br><br></br>
                         <p:outputLabel value="Comissão Gerente" />
                         <p:outputLabel value="Comissão Terceiros" class="espacodialog5"/>
                         <p:outputLabel value="Comissão Franquia" class="espacodialog6"/>
                         <br></br>
-                        <p:inputText value="#{vendasComissaoMB.vendascomissao.comissaogerente}" size="16" class="espacocampos2right"/>
-                        <p:inputText value="#{vendasComissaoMB.vendascomissao.comissaoterceiros}" size="17"  class="espacocamposright" />
-                        <p:inputText value="#{vendasComissaoMB.vendascomissao.comissaofraquia}" size="15"  class="espacocamposright"/>
+                        <p:inputText value="#{vendasComissaoMB.vendascomissao.comissaogerente}" style="width:21%" class="espacocampos2right"/>
+                        <p:inputText value="#{vendasComissaoMB.vendascomissao.comissaoterceiros}" style="width:21%"  class="espacocamposright" />
+                        <p:inputText value="#{vendasComissaoMB.vendascomissao.comissaofraquia}" style="width:26%"  class="espacocamposright"/>
                         <br></br><br></br>
                         <p:outputLabel value="Desagio" />
                         <p:outputLabel value="Incentivo" class="espacodialog9" />
@@ -42,10 +42,10 @@
                         <p:outputLabel value="Paga?" class="espacodialog7"/>
                          
                         <br></br>
-                        <p:inputText value="#{vendasComissaoMB.vendascomissao.desagio}" size="11" class="espacocampos2right"/>
-                        <p:inputText value="#" size="10" class="espacocampos4right"/>
-                        <p:inputText value="#{vendasComissaoMB.vendascomissao.total}" size="11"   class="espacocampos4right"/>
-                        <p:selectOneMenu class="espacocampos3" style="width:75px;" value="#{vendasComissaoMB.vendascomissao.paga}" >
+                        <p:inputText value="#{vendasComissaoMB.vendascomissao.desagio}" style="width:17%" class="espacocampos2right"/>
+                        <p:inputText value="#"  style="width:17%" class="espacocampos4right"/>
+                        <p:inputText value="#{vendasComissaoMB.vendascomissao.total}"  style="width:17%"  class="espacocampos4right"/>
+                        <p:selectOneMenu class="espacocampos3" style="width:12%;" value="#{vendasComissaoMB.vendascomissao.paga}" >
                              <f:selectItem itemLabel="Sim" itemValue="Sim"/> 
                              <f:selectItem itemLabel="Não" itemValue="Não" /> 
                         </p:selectOneMenu>

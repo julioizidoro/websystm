@@ -41,7 +41,7 @@
         <h:form id="cadastropacotepassagem" style="text-align:left;font-size: 10px;">
             <title>Passagem</title>
             <p:tabView>
-                <p:tab titleStyle="color:#000;background:#ccc;font-size:10px;" title="Passagem" class="tab">
+                <p:tab titleStyle="font-size:10px;" title="Passagem" class="tab">
                     <legend id="iUsu3" style="font-size:11px;" ><b>Consolidador</b></legend>
                     <p:outputLabel value="Pais" for="pais" style="font-size:10px;"/>
                     <p:outputLabel value="Cidade" for="cidade" class="espacocobranca10" style="font-size:10px;"/>
@@ -86,7 +86,7 @@
 
                 </p:tab>
 
-                <p:tab id="tabpassageiro" titleStyle="color:#fff;background: #ccc;font-size:10px;" title="Passageiros">
+                <p:tab id="tabpassageiro" titleStyle="font-size:10px;" title="Passageiros">
                     <p:outputLabel value="Nome" for="nome" class="espaco0p" style="font-size:10px;"/> 
                     <p:outputLabel value="Data Nascimento" for="datasnac" class="espacocobranca27" style="font-size:10px;"/>
                     <p:outputLabel value="RG/Passaporte" for="rgPassaporte" class="espacocobranca15" style="font-size:10px;"/>
@@ -97,7 +97,7 @@
                             <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                         </p:inputMask>
                         <p:inputText id="rgPassaporte" style="width:16%;"  class="espacocobranca15" value="#{pacotePassagemMB.passageirosBean.passaporte}"  />
-                         <p:selectOneMenu  id="idpassageirotipo"  value="#{pacotePassagemMB.passageirosBean.tipo}" class="espacocobranca4" style="width:14%;height:32px; ">
+                         <p:selectOneMenu  id="idpassageirotipo"  value="#{pacotePassagemMB.passageirosBean.tipo}" class="espacocobranca4" style="width:14%; ">
                             <f:selectItem itemLabel="Selecione" itemValue="selecione" noSelectionOption="true"  />
                             <f:selectItem itemLabel="ADT" itemValue="ADT"/> 
                             <f:selectItem itemLabel="CHD" itemValue="CHD"/> 
@@ -107,7 +107,7 @@
                             <p:ajax event="click" />
                             <p:ajax event="click" update="idlistapassageiros" />
                             <p:ajax event="click" update="@this" />
-                        </p:commandButton><br></br><br></br>
+                        </p:commandButton><br></br><br></br><br></br>
                     <p:dataTable id="idlistapassageiros" var="passageiro"  value="#{pacotePassagemMB.listaPassageirosBean}" class="tabela1" 
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
                                  paginator="true" rows="4" style="margin-bottom:20px;font-size: 10px;" rowIndexVar="linha" >
@@ -135,7 +135,7 @@
                     </p:dataTable>
 
                 </p:tab>
-                <p:tab titleStyle="color:#fff;background: #ccc;font-size:10px;" title="Valores">
+                <p:tab titleStyle="font-size:10px;" title="Valores">
                     <legend id="iUsu3" style="font-size:11px;"><b>Valores</b></legend>
 
                     <p:outputLabel value="Câmbio" for="moeda" class="" style=""/>

@@ -19,7 +19,7 @@
                                 <p:outputLabel value="Periodo" for="dataIni" class="left20"/> 
                             </h:panelGrid>
                             <h:panelGrid columns="8" cellpadding="1">
-                                <p:inputText id="unidade" size="41" maxlength="100" class="left3"  value="#"/>
+                                <p:inputText id="unidade" size="34" maxlength="100" class="left3"  value="#"/>
                                 <p:calendar id="dataIni" class="left4"  pattern="dd/MM/yyyy" mask="true" size="11" maxlength="15" locale="pt"  >
                                     <f:convertDateTime    timeZone="America/Sao_Paulo"/>
                                 </p:calendar>
@@ -44,21 +44,21 @@
                                 <p:dataExporter type="xls" target="contaPagar" fileName="contas" />
                             </h:commandLink>
                         </f:facet>
-                        <p:column  style="background:#ffffff;color:#1F8871;text-align:center;width:48px;">
+                        <p:column  style="text-align:center;width:48px;">
                              <p:commandButton  id="editar" icon="ui-icon-pencil" title="Editar" action="#{pacoteMB.editarPacote(conspacoteoperadora)}" />
                         </p:column>
-                        <p:column headerText="Descrição"  style="width:210px;background:#ffffff;color:#1F8871;text-align:left;" styleClass="alinharCenter" sortBy="#{contasrecebe.vendas.cliente}">
+                        <p:column headerText="Descrição"  style="width:210px;text-align:left;" styleClass="alinharCenter" sortBy="#{contasrecebe.vendas.cliente}">
                             <h:outputText value="#{conspacoteoperadora.descricao}"/>
                         </p:column>
-                        <p:column headerText="Unidade"  style="width:200px;background:#ffffff;color:#1F8871;text-align:left;" styleClass="alinharCenter" >
+                        <p:column headerText="Unidade"  style="width:200px;text-align:left;" styleClass="alinharCenter" >
                             <h:outputText value="#{conspacoteoperadora.unidadenegocio.nomeFantasia}"/>
                         </p:column>
-                        <p:column headerText="Data Início" style="width:80px;background:#ffffff;color:#1F8871;text-align:left;" >
+                        <p:column headerText="Data Início" style="width:80px;text-align:left;" >
                             <h:outputText value="#{conspacoteoperadora.datainicio}">
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </h:outputText>  
                         </p:column>
-                        <p:column headerText="Data Termino" style="width:80px;background:#ffffff;color:#1F8871;text-align:left;" styleClass="alinharCenter">
+                        <p:column headerText="Data Termino" style="width:80px;text-align:left;" styleClass="alinharCenter">
                             <h:outputText value="#{conspacoteoperadora.datetermino}">
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </h:outputText>                           

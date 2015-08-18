@@ -29,7 +29,7 @@ public class MenuMB implements Serializable{
 	 */
 	
 	public String comissaoVendas(){
-        return "consultacomissaovendas";
+        return "consultacomissaovenda";
     }
     
     public String contasPagar(){

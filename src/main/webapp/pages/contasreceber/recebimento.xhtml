@@ -56,7 +56,7 @@
                             <br></br>
                             <h:panelGrid columns="8" cellpadding="1">
                                 <p:outputLabel value="Forma de Pagamento" class="fontebranca" style="font-size: 10px;color:#000"/>  
-                                <p:outputLabel value="Banco"  class="leftcampo" style="font-size: 10spx;color:#000"/>  
+                                <p:outputLabel value="Banco"  class="leftcampo" style="font-size: 10px;color:#000"/>  
                             </h:panelGrid>
                             <h:panelGrid columns="8" cellpadding="1">
                                 <p:selectOneMenu id="formapag" value="#" style="width:170px;font-size: 10px" class="fontebranca">
@@ -77,7 +77,7 @@
                             <p class="botaoreceber">
                                 <br></br>
                                 <p:commandButton value="Confirmar" icon="ui-icon-check" action="#" class="imagemm"/>
-                                <p:commandButton value="Cancelar" icon="ui-icon-close" action="#{contasReceberMB.voltar()}" class="espacocampos"/>
+                                <p:commandButton value="Cancelar" icon="ui-icon-close" action="#{contasReceberMB.voltarRecimento()}" class="espacocampos"/>
                                 <br></br><br></br>
                             </p>
                         </p:tab>
@@ -85,23 +85,7 @@
                     <br></br><br></br><br></br>
                 </div>
             </h:form>   
-            <h:form id="cobrancaform">
-                <p:dialog id="dialog_novo" header="Novo Historico" widgetVar="historico"  width="34%" class="dialog2" style="background:#d0e9c6" >
-                    <h:panelGrid columns="1" cellpadding="3">
-                        <p:outputLabel value="Contato" for="contato" class="fontebranca" style="font-size: 10px"/> 
-                        <p:inputText id="contato" size="30" maxlength="100" class="fontebranca" value="#{cobrancaMB.historico.contato}"  />
-                        <br></br>
-                        <p:outputLabel value="Data" for="data" class="fontebranca" style="font-size: 11px"/> 
-                        <p:calendar id="data" size="15" maxlength="100" class="fontebranca" value="#{cobrancaMB.historico.data}" locale="pt"  pattern="dd/MM/yyyy"  />
-                        <br></br>
-                        <p:outputLabel value="Assunto" for="assunto" class="fontebranca" style="font-size: 11px"/> 
-                        <p:inputTextarea id="assunto" rows="2" cols="60" maxlength="100" class="fontebranca" value="#{cobrancaMB.historico.data}"  />
-                        <br></br><br></br>
-                    </h:panelGrid>
-                    <p:commandButton value="Confirmar" icon="ui-icon-check" action="#"/>
-                    <p:commandButton value="Cancelar" icon="ui-icon-close" action="#" class="espacocampos"/>
-                </p:dialog>
-            </h:form>
+           
         </ui:define>
     </ui:composition>
 </html>

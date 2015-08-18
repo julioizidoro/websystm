@@ -11,41 +11,37 @@
                 <div id="centro">
                     <br></br><br></br>
                     <p:accordionPanel class="painel" activeIndex="-1" >
-                        <p:tab titleStyle="color:#000;font-size:11px;background:#c7d95f;" title="Pesquisar">
-                            <h:panelGrid columns="5" cellpadding="3">
-                                <p:outputLabel value="Período" for="periodo" class="espacodialog8"/> 
-                                <p:outputLabel value="Produto" for="produto" class="left19"/>
-                                <p:outputLabel value="Paga"  class="left20"/>
-                            </h:panelGrid>
-                            <h:panelGrid columns="6" cellpadding="1">
-                                <p:calendar id="periodo"  class="espacodialog8"  locale="pt"  pattern="dd/MM/yyyy"  mask="true" size="10" maxlength="15" >
+                        <p:tab titleStyle="font-size:11px;" title="Pesquisar">
+                                <p:outputLabel value="Período" for="periodo" class="espacocobranca15"/> 
+                                <p:outputLabel value="Produto" for="produto" class="espacocobranca21"/>
+                                <p:outputLabel value="Paga"  class="espacocobranca26"/>
+                                <br></br>
+                                <p:calendar id="periodo"  class="espacocobranca15"  locale="pt"  pattern="dd/MM/yyyy"  mask="true" maxlength="15" >
                                     <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                                 </p:calendar>
-                                <p:calendar id="periodos" class="iata" locale="pt"  pattern="dd/MM/yyyy"  mask="true" size="10" maxlength="15">
+                                <p:calendar id="periodos" class="espacocobranca29" locale="pt"  pattern="dd/MM/yyyy"  mask="true" maxlength="15">
                                     <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                                 </p:calendar>
-                                <p:selectOneMenu id="produto" value="#" style="width:245px;font-size: 10px" class="espacocampos">
+                                <p:selectOneMenu id="produto" value="#" style="width:25%;font-size: 10px" class="espacocampos">
                                     <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true"/> 
                                 </p:selectOneMenu>
-                                <p:selectOneMenu id="paga" value="#" style="width:110px;font-size: 10px" class="espacocampos">
+                                <p:selectOneMenu id="paga" value="#" style="width:17%;font-size: 10px" class="espacocampos">
                                     <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true" /> 
                                     <f:selectItem itemLabel="Sim" itemValue="Sim" />  
                                     <f:selectItem itemLabel="Não" itemValue="Não" />      
                                 </p:selectOneMenu>
-                            </h:panelGrid>  <br></br>
-                            <h:panelGrid columns="5" cellpadding="3">
-                                <p:outputLabel value="Unidade" for="unidade" class="espacodialog8"/> 
-                                <p:outputLabel value="Consultor" for="consultor" class="left21"/>
-                            </h:panelGrid>
-                            <h:panelGrid columns="6" cellpadding="1">
-                                <p:selectOneMenu id="unidade" value="#" style="width:200px;font-size: 10px" class="espacodialog8">
+                                <br></br><br></br>
+                                <p:outputLabel value="Unidade" for="unidade" class="espacocobranca15"/> 
+                                <p:outputLabel value="Consultor" for="consultor" class="espacocobranca9"/>
+                            <br></br>
+                                <p:selectOneMenu id="unidade" value="#" style="width:30%;font-size: 10px" class="espacocobranca15">
                                     <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true"/> 
                                 </p:selectOneMenu>
-                                <p:selectOneMenu id="consultor" value="#" style="width:230px;font-size: 10px" class="espacodialog2">
+                                <p:selectOneMenu id="consultor" value="#" style="width:30%;font-size: 10px" class="espacodialog2">
                                     <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true"/> 
                                 </p:selectOneMenu>
-                                <p:commandButton value="Pesquisar" class="botaodialog2"  icon=" ui-icon-search " update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" />
-                            </h:panelGrid>  
+                                <p:commandButton value="Pesquisar" class="espacocobranca24"  icon=" ui-icon-search " update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" />
+                          
                         </p:tab>
                     </p:accordionPanel><br></br>
                     <img src="../../resources/img/calculadora.png" class="imgadd"/>
@@ -54,37 +50,33 @@
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
                                  paginator="true" rows="10"    rowIndexVar="rowIx">
 
-                        <p:column  style="background:#ffffff;color:#1F8871;text-align:center;width:48px;z-index: 3!important;overflow: visible!important;">
-                            <p:menubar style="min-width:10px;min-height:10px;height:25px;margin-top:-4px;"> 
-                                <p:submenu style="margin-top:-7px;" >
-                                    <p:menuitem style="float:right;" value="Editar" action="#{vendasComissaoMB.editar()}" />
-                                </p:submenu>
-                            </p:menubar>
+                        <p:column  style="text-align:center;width:48px;z-index: 3!important;overflow: visible!important;">
+                            <p:commandButton style="float:right;" icon="ui-icon-pencil" action="#{vendasComissaoMB.editar()}" />
                         </p:column>
-                        <p:column headerText="Nº Venda" style="background:#ffffff;text-decoration-color:#1F8871;color:#1F8871;text-align:center;width:85px;" sortBy="#{consVendaComissao.vendas.idvendas}">
+                        <p:column headerText="Nº Venda" style="text-align:center;width:85px;" sortBy="#{consVendaComissao.vendas.idvendas}">
                             <p:commandLink actionListener="#{vendasComissaoMB.visualizar(consVendaComissao)}" value="#{consVendaComissao.vendas.idvendas}"  update=":dialog:dialog_visualizacao"  oncomplete="PF('visualizacao').show()" >
                                 <!--<f:setPropertyActionListener target="#{consVendaComissao}" value="#{consVendaComissao.vendas.idvendas}"/> -->
                             </p:commandLink>
                         </p:column>
-                        <p:column headerText="Loja" style="background:#ffffff;color:#1F8871;text-align:center;" sortBy="#{consVendaComissao.vendas.unidadenegocio.nomeFantasia}">
+                        <p:column headerText="Loja" style="text-align:center;" sortBy="#{consVendaComissao.vendas.unidadenegocio.nomeFantasia}">
                             <h:outputText value="#{consVendaComissao.vendas.unidadenegocio.nomeFantasia}" />
                         </p:column>
-                        <p:column headerText="Valor Bruto" style="width:95px;background:#ffffff;color:#1F8871;text-align:right;" sortBy="#{consVendaComissao.valorbruto}">
+                        <p:column headerText="Valor Bruto" style="width:95px;text-align:right;" sortBy="#{consVendaComissao.valorbruto}">
                             <h:outputText value="#{consVendaComissao.valorbruto}">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </h:outputText>
                         </p:column>
-                        <p:column headerText="Valor Fornecedor" style="width:105px;background:#ffffff;color:#1F8871;text-align:right;">
+                        <p:column headerText="Valor Fornecedor" style="width:105px;text-align:right;">
                             <h:outputText value="#{consVendaComissao.valorfornecedor}" >
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </h:outputText>
                         </p:column> 
-                        <p:column headerText="Comissão TM" style="width:90px;background:#ffffff;color:#1F8871;text-align:right;">
+                        <p:column headerText="Comissão TM" style="width:90px;text-align:right;">
                             <h:outputText value="#{consVendaComissao.comissaotm}" >
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </h:outputText>
                         </p:column>
-                        <p:column headerText="Comissão Franquia" style="width:117px;background:#ffffff;color:#1F8871;text-align:right;">
+                        <p:column headerText="Comissão Franquia" style="width:117px;text-align:right;">
                             <h:outputText value="#{consVendaComissao.comissaofraquia}" >
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </h:outputText>

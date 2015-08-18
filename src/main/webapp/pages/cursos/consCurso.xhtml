@@ -11,9 +11,9 @@
                 <div id="centro">
                     <p:growl id="growl" showDetail="true" sticky="true"/>
                      <br></br> 
-                    <p:outputLabel value="Pesquisar Nome Cliente" for="cliente" class="espaco0" style="font-size: 11px"/> <br></br>
-                    <p:inputText id="cliente" size="50" maxlength="100" class="camposs" value="#"  />
-                  <br></br> 
+                    <p:outputLabel value="Pesquisar Nome Cliente" for="cliente" class="imgadd" style="font-size:11px;color: #fff"/> <br></br>
+                    <p:inputText id="cliente" size="50" maxlength="100" class="imgadd" value="#"  />
+                  <br></br> <br></br> 
                     <img src="../../resources/img/add.png" class="imgadd"/>
                     <p:commandLink value="Nova Ficha de Curso"  action="#" class="add"/>
                     
@@ -27,21 +27,21 @@
                                 <p:dataExporter type="xls" target="cliente" fileName="cliente" />
                             </h:commandLink>
                         </f:facet>
-                        <p:column headerText="Situação" style="background:#ffffff;text-decoration-color:#1F8871;color:#1F8871;text-align:center;width:80px;" sortBy="#">
+                        <p:column headerText="Situação" style="text-align:center;width:80px;" sortBy="#">
                             <h:outputText value="#" />
                         </p:column>
-                        <p:column headerText="Cliente" style="background:#ffffff;text-decoration-color:#1F8871;color:#1F8871;text-align:center;" sortBy="#">
+                        <p:column headerText="Cliente" style="text-align:center;" sortBy="#">
                             <h:outputText value="#" />
                         </p:column>
-                        <p:column headerText="Data Inscrição" style="width:100px;background:#ffffff;color:#1F8871;text-align:center;" >
+                        <p:column headerText="Data Inscrição" style="text-align:center;" >
                             <h:outputText value="">
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </h:outputText>
                         </p:column>
-                        <p:column headerText="Unidade"  style="width:240px;background:#ffffff;color:#1F8871;text-align:center;" styleClass="alinharCenter" >
+                        <p:column headerText="Unidade"  style="width:240px;text-align:center;" styleClass="alinharCenter" >
                             <h:outputText value="#"/>
                         </p:column>
-                        <p:column headerText="Agente"  style="width:200px;background:#ffffff;color:#1F8871;text-align:center;" styleClass="alinharCenter" >
+                        <p:column headerText="Agente"  style="width:200px;text-align:center;" styleClass="alinharCenter" >
                             <h:outputText value="#"/>
                         </p:column>
                     </p:dataTable>
