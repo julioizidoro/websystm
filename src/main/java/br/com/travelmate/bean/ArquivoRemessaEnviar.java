@@ -171,7 +171,7 @@ public class ArquivoRemessaEnviar implements ArquivoRemessaItau{
         Float valorJuros = valorConta * (juros/100);
         String valor = Formatacao.retirarPontos(Formatacao.formatarFloatString(valorJuros));
         if (valor.length()<13){
-            valor = zeros.substring(0, 13 - valor.length());
+            valor = zeros.substring(0, 14 - valor.length());
         }
         return valor;
     }

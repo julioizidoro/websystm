@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -149,6 +148,8 @@ public class BoletoMB implements Serializable {
         dadosBoletoBean.setNumeroContas(conta.getVendas().getUnidadenegocio().getBanco().getConta());
         dadosBoletoBean.setNumeroDocumentos(conta.getNossonumero());
         dadosBoletoBean.setValor(Formatacao.converterFloatBigDecimal(conta.getValorparcela()));
+        dadosBoletoBean.setValorJuros(calcularMultaJuros(conta.getValorparcela(), conta.getVendas().getUnidadenegocio().getBanco().getValorjuros()));
+        dadosBoletoBean.setValorMulta(calcularMultaJuros(conta.getValorparcela(), conta.getVendas().getUnidadenegocio().getBanco().getValormulta()));
         dadosBoletoBean.setNossoNumeros(conta.getNossonumero());
         dadosBoletoBean.setEnderecoSacado(new Endereco());
         dadosBoletoBean.getEnderecoSacado().setBairro(conta.getVendas().getCliente().getBairro());
@@ -165,7 +166,7 @@ public class BoletoMB implements Serializable {
     public String enviarBoleto(){
        List<Contasreceber> lista = new ArrayList<Contasreceber>();
        for(int i=0;i<listarSelecionados.size();i++){
-           if(lista.get(i).isSelecionado()){
+           if(listarSelecionados.get(i).isSelecionado()){
                lista.add(listarSelecionados.get(i));
            }
        }
@@ -174,10 +175,18 @@ public class BoletoMB implements Serializable {
        }
        if(lista.size()>0){
              GerarArquivoRemessaItau arquivoRemessaItau = new GerarArquivoRemessaItau(lista, usuarioLogadoMB);
+             FacesMessage msg = new FacesMessage("Sucesso! ", "Arquivo Remessa Gerado");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
        }else{
             FacesMessage msg = new FacesMessage("Erro! ", "Nenhuma Conta Selecionada");
-              FacesContext.getCurrentInstance().addMessage(null, msg);
+            FacesContext.getCurrentInstance().addMessage(null, msg);
        }
        return "";
+    }
+    
+    public String calcularMultaJuros(float valor, float percentual){
+        Float calculo = valor * (percentual/100);
+        String scalculo = Formatacao.formatarFloatString(calculo);
+        return scalculo;
     }
 }

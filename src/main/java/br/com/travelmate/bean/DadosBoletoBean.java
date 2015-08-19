@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import javax.faces.context.FacesContext;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 import org.jrimum.bopepo.BancosSuportados;
 import org.jrimum.bopepo.Boleto;
@@ -29,8 +30,8 @@ public class DadosBoletoBean implements Serializable{
     /**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-	private String nomeCedente;
+    private static final long serialVersionUID = 1L;
+    private String nomeCedente;
     private String cnpjCedente;
     private String nomeSacado;
     private String digitoAgencias;
@@ -47,6 +48,8 @@ public class DadosBoletoBean implements Serializable{
     private String digitoNossoNumeros;
     private Boleto boleto;   
     private Endereco enderecoSacado;
+    private String valorJuros;
+    private String valorMulta;
     
     public String getNossoNumeros() {
         return nossoNumeros;
@@ -187,6 +190,22 @@ public class DadosBoletoBean implements Serializable{
     public void setBoleto(Boleto boleto) {
         this.boleto = boleto;
     }
+
+    public String getValorJuros() {
+        return valorJuros;
+    }
+
+    public void setValorJuros(String valorJuros) {
+        this.valorJuros = valorJuros;
+    }
+
+    public String getValorMulta() {
+        return valorMulta;
+    }
+
+    public void setValorMulta(String valorMulta) {
+        this.valorMulta = valorMulta;
+    }
   
     
     public byte[] gerarBoleto() {
@@ -212,12 +231,19 @@ public class DadosBoletoBean implements Serializable{
 
         Titulo titulo = criarTitulo(contaBancaria, sacado, cedente);
         boleto = new Boleto(titulo);
+        boleto.setLocalPagamento("PAGAVEL EM QUALQUER BANCO ATE O VENCIMENTO");
         boleto.setInstrucaoAoSacado("Instruções de responsabilidade do BENEFIÁRIO. Qualquer dúvida sobre este boleto, contate o BENEFICIÁRIO.");
+        String codigoCedente  = agencias + "/" + numeroContas;
         String nossoNumeroExibicao = carteiras + "/" + nossoNumeros + "-" + digitoNossoNumeros;
+        boleto.addTextosExtras("txtFcAgenciaCodigoCedente", codigoCedente);
+        boleto.addTextosExtras("txtRsAgenciaCodigoCedente", codigoCedente);
         boleto.addTextosExtras("txtFcNossoNumero", nossoNumeroExibicao);
         boleto.addTextosExtras("txtRsNossoNumero", nossoNumeroExibicao);
+        boleto.setInstrucao1("APOS O VENCIMENTO COBRAR JUROS DE..........R$ " + valorJuros + " AO DIA");
+        boleto.setInstrucao2("APOS O VENCIMENTO COBRAR MULTA DE..........R$ " + valorMulta);
         boleto.setInstrucao3("ATÉ O VENCIMENTO PAGUE PREFERENCIALMENTE NO ITAÚ");
         boleto.setInstrucao4("APÓS O VENCIMENTO PAGUE SOMENTE NO ITAÚ");
+        
     }
     
     
@@ -271,7 +297,11 @@ public class DadosBoletoBean implements Serializable{
     }
     
     public void gerarPDFS(List<Boleto> listaBoletos){
-        byte[] pdf = BoletoViewer.groupInOnePDF(listaBoletos);
+        FacesContext facesContext = FacesContext.getCurrentInstance();  
+        ServletContext servletContext = (ServletContext)facesContext.getExternalContext().getContext();
+        String caminho = "/reports/itau/boletotemplatetravelmate.pdf";
+        caminho = servletContext.getRealPath(caminho); 
+        byte[] pdf = BoletoViewer.groupInOnePdfWithTemplate(listaBoletos, caminho);
         enviarBoleto(pdf);
     }
 }
