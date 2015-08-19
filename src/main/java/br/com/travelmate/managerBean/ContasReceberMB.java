@@ -184,7 +184,6 @@ public class ContasReceberMB implements Serializable{
     }
     
     public String voltarRecimento(){
-        RequestContext.getCurrentInstance().closeDialog(null);
         return "consContasReceber";
     }
     

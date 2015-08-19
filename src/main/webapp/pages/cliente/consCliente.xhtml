@@ -24,18 +24,18 @@
                                 <p:dataExporter type="xls" target="cliente" fileName="cliente" />
                             </h:commandLink>
                         </f:facet>
-                        <p:column headerText="Nome" style="background:#ffffff;text-decoration-color:#1F8871;color:#1F8871;text-align:center;" sortBy="#">
+                        <p:column headerText="Nome" style="text-align:center;" sortBy="#">
                             <h:commandLink value="#{cliente.nome}" action="#{consultaClienteMB.selecionarCliente(cliente)}" />
                         </p:column>
-                        <p:column headerText="Data Nascimento" style="width:150px;background:#ffffff;color:#1F8871;text-align:center;" >
+                        <p:column headerText="Data Nascimento" style="width:150px;text-align:center;" >
                             <h:outputText value="#{cliente.dataNascimento}">
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </h:outputText>
                         </p:column>
-                        <p:column headerText="Fone Residencial"  style="width:150px;background:#ffffff;color:#1F8871;text-align:center;" styleClass="alinharCenter" >
+                        <p:column headerText="Fone Residencial"  style="width:150px;text-align:center;" styleClass="alinharCenter" >
                             <h:outputText value="#{cliente.foneResidencial}"/>
                         </p:column>
-                        <p:column headerText="Fone Celular"  style="width:160px;background:#ffffff;color:#1F8871;text-align:center;" styleClass="alinharCenter" >
+                        <p:column headerText="Fone Celular"  style="width:160px;text-align:center;" styleClass="alinharCenter" >
                             <h:outputText value="#{cliente.foneCelular}"/>
                         </p:column>
                     </p:dataTable>

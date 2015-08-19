@@ -47,10 +47,18 @@
                                 <p:outputLabel value="Valor de Juros" for="totaljuros" class="espacodialog4" style="font-size: 11px"/>
                                 <p:outputLabel value="Valor de Desconto" for="totaldesconto" class="espacodialog4" style="font-size: 11px"/>
                                 <p:outputLabel value="Valor Recebido" for="totalrecebido" class="espacodialog4" style="font-size: 11px"/>
-                                <p:inputText id="totalconta" size="15" maxlength="100" class="fontebrancaa" value="#{ContasReceberMB.totalconta}"  />
-                                <p:inputText id="totaljuros" size="15" maxlength="100" class="espacodialog4right" value="#{ContasReceberMB.totaljuros}"  />
-                                <p:inputText id="totaldesconto" size="17" maxlength="100" class="espacodialog4right" value="#{ContasReceberMB.totaldesconto}"  />   
-                                <p:inputText id="totalrecebido" size="15" maxlength="100" class="espacodialog4right" value="#{ContasReceberMB.totalrecebido}"  />
+                                <p:inputText id="totalconta" size="15" maxlength="100" class="fontebrancaa" value=""  >
+                                     <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                                </p:inputText>
+                                <p:inputText id="totaljuros" size="15" maxlength="100" class="espacodialog4right" value=""  >
+                                     <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                                 </p:inputText>
+                                <p:inputText id="totaldesconto" size="17" maxlength="100" class="espacodialog4right" value=""  >   
+                                     <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                                 </p:inputText>
+                                <p:inputText id="totalrecebido" size="15" maxlength="100" class="espacodialog4right" value=""  >
+                                     <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                                </p:inputText>
 
                             </h:panelGrid>
                             <br></br>

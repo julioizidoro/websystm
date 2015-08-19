@@ -71,7 +71,7 @@
                             <br></br>
                             <p:inputText id="de" value="#{pacoteTransferMB.pacotetransfer.de}" style="width:32%" maxlength="100" class="espacocampos"/>
                             <p:inputText id="para" value="#{pacoteTransferMB.pacotetransfer.para}" style="width:36%" maxlength="100" class="espacocampos"/>
-                            <p:calendar id="data" size="12" value="#{pacoteTransferMB.pacotetransfer.data}"  class="espacocampos" locale="pt"  pattern="dd/MM/yyyy" >
+                            <p:calendar id="data" size="14" value="#{pacoteTransferMB.pacotetransfer.data}"  class="espacocampos" locale="pt"  pattern="dd/MM/yyyy" >
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </p:calendar>
                             <br></br><br></br><br></br>
@@ -104,12 +104,12 @@
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 <p:ajax event="blur" />
                             </p:inputText>
-                            <p:inputText id="comissao" value="#{pacoteTransferMB.pacotetransfer.comissao}" style="width:15%;font-size:10px;" class="espacocobranca20rig">
+                            <p:inputText id="comissao" value="#{pacoteTransferMB.pacotetransfer.comissao}" style="width:14%;font-size:10px;" class="espacocobranca20rig">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 <p:ajax event="blur" update="valorgross" listener="#{pacoteTransferMB.calcularValorGross()}" />
                                 <p:ajax event="blur" update="moedanacional"/>
                             </p:inputText>
-                            <p:inputText id="valorgross" value="#{pacoteTransferMB.pacotetransfer.valorgross}" style="width:15%;font-size:10px;" maxlength="15" class="espacocobranca20rig">
+                            <p:inputText id="valorgross" value="#{pacoteTransferMB.pacotetransfer.valorgross}" style="width:14%;font-size:10px;" maxlength="15" class="espacocobranca20rig">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 <p:ajax event="blur" update="comissao" listener="#{pacoteTransferMB.calcularComissao()}"/>
                                 <p:ajax event="blur" update="moedanacional"/>
@@ -117,7 +117,7 @@
                             <p:inputText id="moedanacional" value="#{pacoteTransferMB.pacotetransfer.valormoedanacional}" style="width:15%;font-size:10px;" maxlength="11" class="espacocobranca20rig">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
-                            <p:inputText id="comissaoloja" value="#{pacoteTransferMB.pacotetransfer.comissaoloja}" style="width:14%;font-size:10px;" maxlength="11" class="espacocobranca20rig">
+                            <p:inputText id="comissaoloja" value="#{pacoteTransferMB.pacotetransfer.comissaoloja}" style="width:15%;font-size:10px;" maxlength="11" class="espacocobranca20rig">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
                             
