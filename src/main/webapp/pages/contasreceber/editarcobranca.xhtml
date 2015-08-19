@@ -40,33 +40,35 @@
     </h:head>
     <h:body>
         <h:form id="editarContasReceber" style="text-align:left;font-size: 10px;"><br></br>
-            <title>Alterar Historico de Cobrança</title>
+            <title>Alterar Cobrança</title>
                             <p:outputLabel value="Nome" class="espacocobranca5"/>
                             <p:outputLabel value="Nº venda" class="espacocobranca36"/>
 
                             <br></br>
-                            <p:inputText value="#{cobrancaMB.cobranca.vendas.cliente.nome}" style="width:62%" class="espacocobranca5"/>
-                            <p:inputText value="#{cobrancaMB.cobranca.vendas.idvendas}" style="width:14%" class="espacocampos"/>
+                            <p:inputText value="#{historicoCobrancaMB.historico.cobranca.vendas.cliente.nome}" style="width:62%" class="espacocobranca5"/>
+                            <p:inputText value="#{historicoCobrancaMB.historico.cobranca.vendas.idvendas}" style="width:14%" class="espacocampos"/>
                             
                             <br></br><br></br>
                             <p:outputLabel value="Data Venda" class="espacocobranca5"/>
                             <p:outputLabel value="Fone Contato" class="espacocobranca2"/>
                             <br></br>
-                            <p:inputMask value="#{cobrancaMB.cobranca.vendas.dataVenda}" style="width:17%" class="espacocobranca5" mask="99/99/9999" />
-                            <p:inputMask value="#{cobrancaMB.cobranca.fone}" style="width:17%" mask="(99)9999-9999" class="espacocampos"/>
+                            <p:inputMask value="#{historicoCobrancaMB.historico.cobranca.vendas.dataVenda}" style="width:17%" class="espacocobranca5" mask="99/99/9999" >
+                                <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                            </p:inputMask>
+                            <p:inputMask value="#{historicoCobrancaMB.historico.cobranca.fone}" style="width:17%" mask="(99)9999-9999" class="espacocampos"/>
                             <br></br><br></br> 
                             
                             <p:outputLabel value="Consultor" class="espacocobranca5"/>
                             <p:outputLabel value="Unidade" class="espacologin"/>
 
                             <br></br>
-                            <p:inputText value="#{cobrancaMB.cobranca.vendas.usuario.nome}" style="width:44%" class="espacocobranca5"/>
-                            <p:inputText value="#{cobrancaMB.cobranca.vendas.unidadenegocio.nomeFantasia}" style="width:32%"  class="espacocampos"/>
+                            <p:inputText value="#{historicoCobrancaMB.historico.cobranca.vendas.usuario.nome}" style="width:44%" class="espacocobranca5"/>
+                            <p:inputText value="#{historicoCobrancaMB.historico.cobranca.vendas.unidadenegocio.nomeFantasia}" style="width:32%"  class="espacocampos"/>
 
                             <br></br><br></br>
                           
-                            <p:commandButton class="espacologin" value="Editar" icon="ui-icon-check"></p:commandButton>
-                            <p:commandButton class="espacocobranca28" value="Voltar" icon="ui-icon-close" action="#{cobrancaMB.voltar()}"></p:commandButton>
+                            <p:commandButton class="espacologin" value="Editar" icon="ui-icon-check" action="#{cobrancaMB.editarCobranca()}"></p:commandButton>
+                            <p:commandButton class="espacocobranca28" value="Voltar" icon="ui-icon-close" action="#{historicoCobrancaMB.voltar()}"></p:commandButton>
 
            </h:form>     
     </h:body>

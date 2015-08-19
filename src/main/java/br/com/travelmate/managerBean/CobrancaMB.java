@@ -6,14 +6,19 @@
 package br.com.travelmate.managerBean;
 
 import br.com.travelmate.facade.CobrancaFacade;
+import br.com.travelmate.facade.ContasReceberFacade;
+import br.com.travelmate.facade.HistoricoCobrancaFacade;
 import br.com.travelmate.model.Cobranca;
+import br.com.travelmate.model.Contasreceber;
 import br.com.travelmate.model.Historicocobranca;
 import br.com.travelmate.model.Vendas;
+import br.com.travelmate.util.Formatacao;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -99,11 +104,37 @@ public class CobrancaMB implements Serializable{
         this.historico = historico;
     }
     
-    public void novoHistorico(){
-        historico = new Historicocobranca();
+    
+    
+    public String salvarFoneCobranca(){
+         CobrancaFacade cobrancaFacade = new CobrancaFacade();
+         cobranca.setVendas(venda);
+         cobranca = cobrancaFacade.salvar(cobranca);
+         FacesMessage mensagem = new FacesMessage("Salvo com Sucesso! ", "Fone de Contato salvo.");
+         FacesContext.getCurrentInstance().addMessage(null, mensagem);
+         return "consContasReceber";
     }
     
-    public void salvarHitorico(){
+     
+    public void verHistorico(Historicocobranca historico){
+        this.historico = historico;
+    }
+    
+    public String voltar(){
+        RequestContext.getCurrentInstance().closeDialog(null);
+        return "";
+    }
+    
+    public String cancelar(){
+        return "consContasReceber";
+    }
+    
+    public void novoHistorico(){
+        historico = new Historicocobranca();
+        historico.setData(new Date());
+    }
+    
+    public String salvarHitorico(){
         CobrancaFacade cobrancaFacade = new CobrancaFacade();
         if (cobranca.getIdcobranca()==null){
             cobranca.setVendas(venda);
@@ -115,23 +146,24 @@ public class CobrancaMB implements Serializable{
         historico.setUsuario(usuarioLogadoMB.getUsuario());
         historico = cobrancaFacade.salvar(historico);
         cobranca.getHistoricocobrancaList().add(historico);
-    }
-    
-    public void verHistorico(Historicocobranca historico){
-        this.historico = historico;
-    }
-    public String voltar(){
-        RequestContext.getCurrentInstance().closeDialog(null);
-        return "";
-    }
-    public String editar(){ 
-        RequestContext.getCurrentInstance().openDialog("editarcobranca");
-        return ""; 
-    }
-    
-    public String cancelar(){
+        FacesMessage mensagem = new FacesMessage("Salvo com Sucesso! ", "Historico de Cobrança Salvo.");
+        FacesContext.getCurrentInstance().addMessage(null, mensagem);
         return "consContasReceber";
     }
+    
+    
+    
+    public String editarHistorico() { 
+        if (historico!=null){
+            FacesContext fc = FacesContext.getCurrentInstance();
+            HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+            session.setAttribute("historico", historico);
+            session.setAttribute("cobranca", cobranca);
+        }
+        return "";
+    }
+    
+
 }
 
 
