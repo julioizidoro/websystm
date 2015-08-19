@@ -57,6 +57,7 @@
                                 </p:column>
                             </p:dataTable>
                             <p:commandButton value="Voltar" icon="ui-icon-arrowreturnthick-1-w" action="#{cobrancaMB.cancelar()}" class="espacocobranca28"/>
+                            <p:commandButton value="Novo Historico"  icon="ui-icon-plus"  action="#{cobrancaMB.novoHistorico()}" update=":cobrancaform:dialog_novo" oncomplete="PF('historico').show()" class="espacocobranca28" />
                          </p:tab>
                     </p:accordionPanel>
                     <br></br><br></br><br></br>
@@ -67,8 +68,8 @@
                     <p:outputLabel value="Contato" for="contato" class="espacocobranca28" style="font-size: 11px"/> 
                     <p:outputLabel value="Data" for="data" class="espacocobranca37" style="font-size: 11px"/> 
                     <br></br>
-                    <p:inputText id="contato" size="35" maxlength="100" class="espacocobranca28" value="#{cobrancaMB.historico.contato}"  />
-                    <p:calendar id="data" size="15"  maxlength="100" class="espacocampos6" value="#{cobrancaMB.historico.data}" locale="pt"  pattern="dd/MM/yyyy" >
+                    <p:inputText id="contato" size="34" maxlength="100" class="espacocobranca28" value="#{cobrancaMB.historico.contato}"  />
+                    <p:calendar id="data" size="16"  maxlength="100" class="espacocampos6" value="#{cobrancaMB.historico.data}" locale="pt"  pattern="dd/MM/yyyy" >
                         <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                     </p:calendar>
                     <br></br><br></br>
@@ -84,8 +85,8 @@
                     <p:outputLabel value="Contato" for="contato" class="espacocobranca28" style="font-size: 11px"/> 
                     <p:outputLabel value="Data" for="data" class="espacocobranca37" style="font-size: 11px"/> 
                     <br></br>
-                    <p:inputText id="contato" size="35" maxlength="100" class="espacocobranca28" value="#{cobrancaMB.historico.contato}"  />
-                    <p:calendar id="data" size="15"  maxlength="100" class="espacocampos6" value="#{cobrancaMB.historico.data}" locale="pt"  pattern="dd/MM/yyyy" >
+                    <p:inputText id="contato" size="34" maxlength="100" class="espacocobranca28" value="#{cobrancaMB.historico.contato}"  />
+                    <p:calendar id="data" size="16"  maxlength="100" class="espacocampos6" value="#{cobrancaMB.historico.data}" locale="pt"  pattern="dd/MM/yyyy" >
                         <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                     </p:calendar>
                     <br></br><br></br>
