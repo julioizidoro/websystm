@@ -59,7 +59,7 @@
                     <p:commandButton id="bntcarregarboleto" class="espacocobranca21botao" style="font-size:12px;" value="Retorno"  update=":dialogUpload:dialog_uploadboleto"  oncomplete="PF('uploadboleto').show()"/>
                     <p:commandButton id="bnttotais" class="espacocobranca21botao" style="font-size:12px;" value="Totais" action="#{contasReceberMB.calcularTotais()}" update=":totais:dialog_totais" oncomplete="PF('totais').show()" /> 
                     <p:contextMenu for="tabelacontasRecebe">
-                        <p:menuitem value="Alterar"  icon=" ui-icon-pencil"  action="#{contasReceberMB.editar(contarb)}" />
+                        <p:menuitem value="Alterar"  icon=" ui-icon-pencil"  action="#{contasReceberMB.editar()}" />
                         <p:menuitem value="Cobrança"  icon=" ui-icon-tag" action="#{contasReceberMB.iniciarCobranca()}"  />
                     </p:contextMenu><br></br><br></br>
                     <p:dataTable id="tabelacontasRecebe" var="contasrecebe"  value="#{contasReceberMB.listaContas}" class="tabela" editable="true"

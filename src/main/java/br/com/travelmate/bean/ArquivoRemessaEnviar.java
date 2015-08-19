@@ -63,7 +63,7 @@ public class ArquivoRemessaEnviar implements ArquivoRemessaItau{
         linha = linha  + (conta.getVendas().getUnidadenegocio().getBanco().getConta());
         linha = linha  + (conta.getVendas().getUnidadenegocio().getBanco().getDigitoconta());
         linha = linha  + (branco.substring(0, 4));
-        linha = linha  + ("00");
+        linha = linha  + ("0000");
         linha = linha  + (branco.substring(0, 25));
         linha = linha  + (conta.getNossonumero());
         linha = linha  + ("0000000000000");
@@ -86,7 +86,7 @@ public class ArquivoRemessaEnviar implements ArquivoRemessaItau{
         linha = linha  + (Formatacao.ConvercaoDataDDMMAA(new Date()));
         linha = linha  + ("00");
         linha = linha  + ("00");
-        linha = linha  + (Formatacao.retirarPontos(valorJuros(conta.getValorparcela(), conta.getVendas().getUnidadenegocio().getBanco().getValorjuros())+conta.getVendas().getUnidadenegocio().getBanco().getValorjuros()));
+        linha = linha  + (valorJuros(conta.getValorparcela(), conta.getVendas().getUnidadenegocio().getBanco().getValorjuros()));
         linha = linha  + (Formatacao.ConvercaoDataDDMMAA(new Date()));
         linha = linha  + (zeros.substring(0, 13));
         linha = linha  + (zeros.substring(0, 13));
@@ -141,7 +141,7 @@ public class ArquivoRemessaEnviar implements ArquivoRemessaItau{
         linha = linha  + ("2");
         linha = linha  + ("1");
         linha = linha  + (Formatacao.SubtarirDatas(conta.getDatavencimento(), -1, "ddMMyyyy"));
-        linha = linha  + (Formatacao.retirarPontos(valorJuros(conta.getValorparcela(), conta.getVendas().getUnidadenegocio().getBanco().getValormulta())+ conta.getVendas().getUnidadenegocio().getBanco().getValormulta()));
+        linha = linha  + (valorJuros(conta.getValorparcela(), conta.getVendas().getUnidadenegocio().getBanco().getValormulta()));
         linha = linha  + (branco + branco + branco + branco + branco + branco + branco + branco + branco + branco.substring(0,11));
         String ns;
         if (numeroSequencial<10){
@@ -171,7 +171,7 @@ public class ArquivoRemessaEnviar implements ArquivoRemessaItau{
         Float valorJuros = valorConta * (juros/100);
         String valor = Formatacao.retirarPontos(Formatacao.formatarFloatString(valorJuros));
         if (valor.length()<13){
-            valor = zeros.substring(0, 14 - valor.length());
+            valor = zeros.substring(0, 13 - valor.length()) + valor;
         }
         return valor;
     }

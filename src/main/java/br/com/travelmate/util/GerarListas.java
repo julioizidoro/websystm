@@ -5,6 +5,7 @@
  */
 package br.com.travelmate.util;
 
+import br.com.travelmate.facade.BancoFacade;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +14,7 @@ import br.com.travelmate.facade.PacoteTrechoFacade;
 import br.com.travelmate.facade.PacotesFacade;
 import br.com.travelmate.facade.ProdutoFacade;
 import br.com.travelmate.facade.UnidadeNegocioFacade;
+import br.com.travelmate.model.Banco;
 import br.com.travelmate.model.Fornecedorcidade;
 import br.com.travelmate.model.Pacotes;
 import br.com.travelmate.model.Pacotetrecho;
@@ -64,6 +66,15 @@ public class GerarListas {
         List<Produtos> lista = produtoFacade.listarProdutos(nome);
         if (lista==null){
             lista = new ArrayList<Produtos>();
+        }
+        return lista;
+    }
+    
+    public static List<Banco> listarBancos(){
+        BancoFacade bancoFacade = new BancoFacade();
+        List<Banco> lista = bancoFacade.listar();
+        if (lista==null){
+            lista = new ArrayList<Banco>();
         }
         return lista;
     }

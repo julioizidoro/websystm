@@ -187,11 +187,13 @@ public class ContasReceberMB implements Serializable{
         return "consContasReceber";
     }
     
-    public String editar(Contasreceber contarb){
-        FacesContext fc = FacesContext.getCurrentInstance();
-        HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
-        session.setAttribute("contarecebe", contarb);
-        RequestContext.getCurrentInstance().openDialog("editarContasReceber");
+    public String editar(){
+        if (this.conta!=null){
+            FacesContext fc = FacesContext.getCurrentInstance();
+            HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+            session.setAttribute("contareceber", conta);       
+            RequestContext.getCurrentInstance().openDialog("editarContasReceber");
+        }
         return "";
     }
     public String cobranca(){
