@@ -15,7 +15,7 @@
                     <p:inputText id="cliente" size="50" maxlength="100" class="imgadd" value="#"  />
                   <br></br> <br></br> 
                     <img src="../../resources/img/add.png" class="imgadd"/>
-                    <p:commandLink value="Nova Ficha de Curso"  action="#" class="add"/>
+                    <p:commandLink value="Nova Ficha de Curso"  action="#{cursoMB.cadastrarFicha()}" class="add"/>
                     
                     <legend id="iUsu2" ><b>Consulta Ficha de Cursos</b></legend>
                     <p:dataTable id="cursos" var="cursos"  value="#" class="tabela" 

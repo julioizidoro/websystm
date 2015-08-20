@@ -196,7 +196,6 @@ text-align: left;
 .espacocampos3{
     font-size:10px;
     margin-left:27px;
-    height:25px;
 }
 .espacocamposright{
     text-align: right;
@@ -1103,6 +1102,13 @@ text-align: left;
 .espacocobranca37{
     margin-left:46%;
 }
+.espacocobranca38{
+    margin-left:5.5%;
+}
+.espacocobranca40{
+    margin-left:0.5%;
+}
+
 .espacologin{
     margin-left:40%;
      font-size: 10px;
@@ -1120,6 +1126,9 @@ text-align: left;
     margin-left:1%;
     font-size: 10px;
 }
+.loginButtonn{
+    margin-left:1%;
+}
 .espacocampos6right{
     margin-left:2%;
     font-size: 10px;
@@ -1129,4 +1138,8 @@ text-align: left;
     margin-left:6%;
     font-size: 10px;
     
+}
+.simnao{
+    margin-top: 3%;
+    margin-left: 2%;
 }

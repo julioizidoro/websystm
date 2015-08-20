@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/pages/templates/default.xhtml">
+        <ui:define name="corpo">
+            <h:form id="orcamentocurso">
+                <div id="centro">
+                    <p:growl id="growl" showDetail="true" sticky="true"/> <br></br> <br></br> 
+                    <p:outputLabel value="Pais:" for="pais" class="espacocobranca38" style="color:#fff"/>
+                    <p:selectOneMenu id="pais" value="#" style="width:18%;" class="espacocobranca29" 
+                                      filter="true" filterMatchMode="startsWith" panelStyle="width:180px" >
+                        <f:selectItem itemLabel="País" itemValue="0" noSelectionOption="true"/> 
+                        <f:selectItems id="idpais" value="#" var="cpais" itemLabel="#" itemValue="#"/>
+                        <f:attribute name="listaPais" value="#"/>
+                        <p:ajax event="change" update="cidade"/> 
+                    </p:selectOneMenu>
+                    <p:outputLabel value="Cidade:" for="cidade" class="espacocobranca28" style="color:#fff"/>
+                    <p:selectOneMenu id="cidade" value="#" style="width:21%;" class="espacocobranca29" 
+                                      filter="true" filterMatchMode="startsWith">
+                        <f:selectItem itemLabel="Cidade" itemValue="0" noSelectionOption="true"/> 
+                        <f:selectItems id="idcidade2" value="#" var="ccidade" itemLabel="#" itemValue="#"/>
+                        <f:attribute name="listaCidade" value=""/>
+                        <p:ajax event="change"  update="fornecedor" />
+                    </p:selectOneMenu>
+                    <p:outputLabel value="Escola:" for="fornecedor" class="espacocobranca28" style="color:#fff"/>
+                    <p:selectOneMenu id="fornecedor" value="#" style="width:23%;" class="espacocobranca29"
+                                      filter="true" filterMatchMode="startsWith">
+                        <f:selectItem itemLabel="Fornecedor" itemValue="0" noSelectionOption="true"/> 
+                        <f:selectItems id="idfornecedor" value="#" var="fornecedor" itemLabel="#" itemValue="#"/>
+                        <f:attribute name="listaFornecedorCidade" value="#"/>
+                    </p:selectOneMenu>
+                    <br></br> <br></br> 
+                    <img src="../../resources/img/add.png" class="espacocobranca29"/>
+                    <p:commandLink value="Adicionar Produto"  action="#{cursoMB.cadProdutoObrigatorio()}" class="add"/>
+                    <br></br> <br></br>
+                    
+                    <p:dataTable id="tabelaprodutos" var="produtos"  value="#{coObrigatorioMB.listacoObrigatorio}" class="tabela" 
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                 paginator="true" rows="10" style="margin-bottom:20px" >
+                        
+                        <p:column headerText="Descrição" style="width:120px;" >
+                            <h:outputText value="#{produtos.produtosorcamento.descricao}" />
+                        </p:column>
+                        <p:column headerText="Tipo"  style="width:80px;">
+                            <h:outputText value="#{produtos.tipodata}" />
+                        </p:column>
+                        <p:column headerText="Data Início"  style="width:70px;" >
+                            <h:outputText value="#{produtos.datainicial}">
+                                <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                            </h:outputText>
+                        </p:column>
+                        <p:column headerText="Data Final"  style="width:70px;" >
+                            <h:outputText value="#{produtos.datafinal}">
+                                <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                            </h:outputText>
+                        </p:column>
+                        <p:column headerText="Valor Original" style="width:80px;text-align:right;" >
+                            <h:outputText value="#{produtos.valororiginal}">
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                            </h:outputText>  
+                        </p:column>
+                        <p:column headerText="Valor Promocional" style="width:80px;text-align:right;" >
+                            <h:outputText value="#{produtos.valorpromocional}">
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                            </h:outputText>  
+                        </p:column>
+                    </p:dataTable>
+                    <br></br>
+                    <br></br>
+                </div>
+            </h:form>     
+        </ui:define>
+    </ui:composition>
+</html>

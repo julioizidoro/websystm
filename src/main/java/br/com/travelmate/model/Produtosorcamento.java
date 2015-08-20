@@ -32,6 +32,8 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Produtosorcamento.findAll", query = "SELECT p FROM Produtosorcamento p")})
 public class Produtosorcamento implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "produtosorcamento")
+    private List<Coobrigatorio> coobrigatorioList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "produtosorcamento")
     private List<Valoresseguro> valoresseguroList;
     private static final long serialVersionUID = 1L;
     @Id
@@ -97,5 +99,13 @@ public class Produtosorcamento implements Serializable {
 
     public void setValoresseguroList(List<Valoresseguro> valoresseguroList) {
         this.valoresseguroList = valoresseguroList;
+    }
+
+    public List<Coobrigatorio> getCoobrigatorioList() {
+        return coobrigatorioList;
+    }
+
+    public void setCoobrigatorioList(List<Coobrigatorio> coobrigatorioList) {
+        this.coobrigatorioList = coobrigatorioList;
     }
 }

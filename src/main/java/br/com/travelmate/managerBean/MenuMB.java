@@ -67,4 +67,8 @@ public class MenuMB implements Serializable{
     public String autorizacao(){
         return "autorizacaodebito";
     }
+    
+    public String orcamentoCurso(){
+        return "orcamentocurso";
+    }
 }
