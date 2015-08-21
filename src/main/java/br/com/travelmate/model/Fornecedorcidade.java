@@ -31,27 +31,7 @@ import javax.persistence.Table;
     @NamedQuery(name = "Fornecedorcidade.findAll", query = "SELECT f FROM Fornecedorcidade f")})
 public class Fornecedorcidade implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedorcidade")
-    private List<Coobrigatorio> coobrigatorioList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedorcidade")
-    private List<Fornecedorinformacao> fornecedorinformacaoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedorcidade")
-    private List<Valoresseguro> valoresseguroList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedorcidade")
-    private List<Pacotepasseio> pacotepasseioList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedorcidade")
-    private List<Pacotecarro> pacotecarroList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedorcidade")
-    private List<Pacotetransfer> pacotetransferList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedorcidade")
-    private List<Pacotetrem> pacotetremList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedorcidade")
-    private List<Pacotehotel> pacotehotelList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedorcidade")
-    private List<Pacotecruzeiro> pacotecruzeiroList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedorcidade")
-    private List<Pacoteingresso> pacoteingressoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedorcidade")
-    private List<Pacotepassagem> pacotepassagemList;
+    private List<Coprodutos> coprodutosList;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -59,7 +39,7 @@ public class Fornecedorcidade implements Serializable {
     @Column(name = "idfornecedorcidade")
     private Integer idfornecedorcidade;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedorcidade")
-    private List<Vendas> vendasList;
+    private List<Fornecedorcidadeidioma> fornecedorcidadeidiomaList;
     @JoinColumn(name = "cidade_idcidade", referencedColumnName = "idcidade")
     @ManyToOne(optional = false)
     private Cidade cidade;
@@ -69,6 +49,8 @@ public class Fornecedorcidade implements Serializable {
     @JoinColumn(name = "produtos_idprodutos", referencedColumnName = "idprodutos")
     @ManyToOne(optional = false)
     private Produtos produtos;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedorcidade")
+    private List<Fornecedorferias> fornecedorferiasList;
 
     public Fornecedorcidade() {
     }
@@ -85,13 +67,12 @@ public class Fornecedorcidade implements Serializable {
         this.idfornecedorcidade = idfornecedorcidade;
     }
 
-   
-    public List<Vendas> getVendasList() {
-        return vendasList;
+    public List<Fornecedorcidadeidioma> getFornecedorcidadeidiomaList() {
+        return fornecedorcidadeidiomaList;
     }
 
-    public void setVendasList(List<Vendas> vendasList) {
-        this.vendasList = vendasList;
+    public void setFornecedorcidadeidiomaList(List<Fornecedorcidadeidioma> fornecedorcidadeidiomaList) {
+        this.fornecedorcidadeidiomaList = fornecedorcidadeidiomaList;
     }
 
     public Cidade getCidade() {
@@ -116,6 +97,14 @@ public class Fornecedorcidade implements Serializable {
 
     public void setProdutos(Produtos produtos) {
         this.produtos = produtos;
+    }
+
+    public List<Fornecedorferias> getFornecedorferiasList() {
+        return fornecedorferiasList;
+    }
+
+    public void setFornecedorferiasList(List<Fornecedorferias> fornecedorferiasList) {
+        this.fornecedorferiasList = fornecedorferiasList;
     }
 
     @Override
@@ -143,92 +132,12 @@ public class Fornecedorcidade implements Serializable {
         return "br.com.travelmate.model.Fornecedorcidade[ idfornecedorcidade=" + idfornecedorcidade + " ]";
     }
 
-    public List<Pacotepasseio> getPacotepasseioList() {
-        return pacotepasseioList;
+    public List<Coprodutos> getCoprodutosList() {
+        return coprodutosList;
     }
 
-    public void setPacotepasseioList(List<Pacotepasseio> pacotepasseioList) {
-        this.pacotepasseioList = pacotepasseioList;
+    public void setCoprodutosList(List<Coprodutos> coprodutosList) {
+        this.coprodutosList = coprodutosList;
     }
-
-    public List<Pacotecarro> getPacotecarroList() {
-        return pacotecarroList;
-    }
-
-    public void setPacotecarroList(List<Pacotecarro> pacotecarroList) {
-        this.pacotecarroList = pacotecarroList;
-    }
-
-    public List<Pacotetransfer> getPacotetransferList() {
-        return pacotetransferList;
-    }
-
-    public void setPacotetransferList(List<Pacotetransfer> pacotetransferList) {
-        this.pacotetransferList = pacotetransferList;
-    }
-
-    public List<Pacotetrem> getPacotetremList() {
-        return pacotetremList;
-    }
-
-    public void setPacotetremList(List<Pacotetrem> pacotetremList) {
-        this.pacotetremList = pacotetremList;
-    }
-
-    public List<Pacotehotel> getPacotehotelList() {
-        return pacotehotelList;
-    }
-
-    public void setPacotehotelList(List<Pacotehotel> pacotehotelList) {
-        this.pacotehotelList = pacotehotelList;
-    }
-
-    public List<Pacotecruzeiro> getPacotecruzeiroList() {
-        return pacotecruzeiroList;
-    }
-
-    public void setPacotecruzeiroList(List<Pacotecruzeiro> pacotecruzeiroList) {
-        this.pacotecruzeiroList = pacotecruzeiroList;
-    }
-
-    public List<Pacoteingresso> getPacoteingressoList() {
-        return pacoteingressoList;
-    }
-
-    public void setPacoteingressoList(List<Pacoteingresso> pacoteingressoList) {
-        this.pacoteingressoList = pacoteingressoList;
-    }
-
-    public List<Pacotepassagem> getPacotepassagemList() {
-        return pacotepassagemList;
-    }
-
-    public void setPacotepassagemList(List<Pacotepassagem> pacotepassagemList) {
-        this.pacotepassagemList = pacotepassagemList;
-    }
-
-    public List<Valoresseguro> getValoresseguroList() {
-        return valoresseguroList;
-    }
-
-    public void setValoresseguroList(List<Valoresseguro> valoresseguroList) {
-        this.valoresseguroList = valoresseguroList;
-    }
-
-    public List<Coobrigatorio> getCoobrigatorioList() {
-        return coobrigatorioList;
-    }
-
-    public void setCoobrigatorioList(List<Coobrigatorio> coobrigatorioList) {
-        this.coobrigatorioList = coobrigatorioList;
-    }
-
-    public List<Fornecedorinformacao> getFornecedorinformacaoList() {
-        return fornecedorinformacaoList;
-    }
-
-    public void setFornecedorinformacaoList(List<Fornecedorinformacao> fornecedorinformacaoList) {
-        this.fornecedorinformacaoList = fornecedorinformacaoList;
-    }
-
+    
 }

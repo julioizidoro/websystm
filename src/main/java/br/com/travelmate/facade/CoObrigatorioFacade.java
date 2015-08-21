@@ -3,7 +3,7 @@ package br.com.travelmate.facade;
 import br.com.travelmate.dao.ClienteDao;
 import br.com.travelmate.dao.CoObrigatorioDao;
 import br.com.travelmate.model.Cliente;
-import br.com.travelmate.model.Coobrigatorio;
+import br.com.travelmate.model.Coprodutos;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -14,7 +14,7 @@ public class CoObrigatorioFacade {
     
     private CoObrigatorioDao coObrigatorioDao;
     
-    public Coobrigatorio salvar(Coobrigatorio coobrigatorio){
+    public Coprodutos salvar(Coprodutos coobrigatorio){
         coObrigatorioDao = new CoObrigatorioDao();
         try {
             return coObrigatorioDao.salvar(coobrigatorio);
@@ -24,7 +24,7 @@ public class CoObrigatorioFacade {
         }
     }
     
-   public List<Coobrigatorio> listar(String sql){
+   public List<Coprodutos> listar(String sql){
         coObrigatorioDao = new CoObrigatorioDao();
         try {
             return coObrigatorioDao.listar(sql);

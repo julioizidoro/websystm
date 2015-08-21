@@ -24,19 +24,22 @@ import javax.validation.constraints.Size;
 
 /**
  *
- * @author Kamila Rodrigues
+ * @author Wolverine
  */
 @Entity
-@Table(name = "coobrigatorio")
+@Table(name = "coprodutos")
 @NamedQueries({
-    @NamedQuery(name = "Coobrigatorio.findAll", query = "SELECT c FROM Coobrigatorio c")})
-public class Coobrigatorio implements Serializable {
+    @NamedQuery(name = "Coprodutos.findAll", query = "SELECT c FROM Coprodutos c")})
+public class Coprodutos implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "idcoobrigatorio")
-    private Integer idcoobrigatorio;
+    @Column(name = "idcoprodutos")
+    private Integer idcoprodutos;
+    @Size(max = 2)
+    @Column(name = "tipo")
+    private String tipo;
     @Size(max = 1)
     @Column(name = "tipodata")
     private String tipodata;
@@ -46,31 +49,46 @@ public class Coobrigatorio implements Serializable {
     @Column(name = "datafinal")
     @Temporal(TemporalType.DATE)
     private Date datafinal;
+    @Column(name = "numerosemanainicial")
+    private Integer numerosemanainicial;
+    @Column(name = "numerosemanafinal")
+    private Integer numerosemanafinal;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "valororiginal")
     private Float valororiginal;
     @Column(name = "valorpromocional")
     private Float valorpromocional;
-    @JoinColumn(name = "produtosOrcamento_idprodutosOrcamento", referencedColumnName = "idprodutosOrcamento")
-    @ManyToOne(optional = false)
-    private Produtosorcamento produtosorcamento;
+    @Size(max = 10)
+    @Column(name = "licoes")
+    private String licoes;
     @JoinColumn(name = "fornecedorcidade_idfornecedorcidade", referencedColumnName = "idfornecedorcidade")
     @ManyToOne(optional = false)
     private Fornecedorcidade fornecedorcidade;
+    @JoinColumn(name = "produtosOrcamento_idprodutosOrcamento", referencedColumnName = "idprodutosOrcamento")
+    @ManyToOne(optional = false)
+    private Produtosorcamento produtosorcamento;
 
-    public Coobrigatorio() {
+    public Coprodutos() {
     }
 
-    public Coobrigatorio(Integer idcoobrigatorio) {
-        this.idcoobrigatorio = idcoobrigatorio;
+    public Coprodutos(Integer idcoprodutos) {
+        this.idcoprodutos = idcoprodutos;
     }
 
-    public Integer getIdcoobrigatorio() {
-        return idcoobrigatorio;
+    public Integer getIdcoprodutos() {
+        return idcoprodutos;
     }
 
-    public void setIdcoobrigatorio(Integer idcoobrigatorio) {
-        this.idcoobrigatorio = idcoobrigatorio;
+    public void setIdcoprodutos(Integer idcoprodutos) {
+        this.idcoprodutos = idcoprodutos;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public String getTipodata() {
@@ -97,6 +115,22 @@ public class Coobrigatorio implements Serializable {
         this.datafinal = datafinal;
     }
 
+    public Integer getNumerosemanainicial() {
+        return numerosemanainicial;
+    }
+
+    public void setNumerosemanainicial(Integer numerosemanainicial) {
+        this.numerosemanainicial = numerosemanainicial;
+    }
+
+    public Integer getNumerosemanafinal() {
+        return numerosemanafinal;
+    }
+
+    public void setNumerosemanafinal(Integer numerosemanafinal) {
+        this.numerosemanafinal = numerosemanafinal;
+    }
+
     public Float getValororiginal() {
         return valororiginal;
     }
@@ -113,12 +147,12 @@ public class Coobrigatorio implements Serializable {
         this.valorpromocional = valorpromocional;
     }
 
-    public Produtosorcamento getProdutosorcamento() {
-        return produtosorcamento;
+    public String getLicoes() {
+        return licoes;
     }
 
-    public void setProdutosorcamento(Produtosorcamento produtosorcamento) {
-        this.produtosorcamento = produtosorcamento;
+    public void setLicoes(String licoes) {
+        this.licoes = licoes;
     }
 
     public Fornecedorcidade getFornecedorcidade() {
@@ -129,21 +163,29 @@ public class Coobrigatorio implements Serializable {
         this.fornecedorcidade = fornecedorcidade;
     }
 
+    public Produtosorcamento getProdutosorcamento() {
+        return produtosorcamento;
+    }
+
+    public void setProdutosorcamento(Produtosorcamento produtosorcamento) {
+        this.produtosorcamento = produtosorcamento;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idcoobrigatorio != null ? idcoobrigatorio.hashCode() : 0);
+        hash += (idcoprodutos != null ? idcoprodutos.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Coobrigatorio)) {
+        if (!(object instanceof Coprodutos)) {
             return false;
         }
-        Coobrigatorio other = (Coobrigatorio) object;
-        if ((this.idcoobrigatorio == null && other.idcoobrigatorio != null) || (this.idcoobrigatorio != null && !this.idcoobrigatorio.equals(other.idcoobrigatorio))) {
+        Coprodutos other = (Coprodutos) object;
+        if ((this.idcoprodutos == null && other.idcoprodutos != null) || (this.idcoprodutos != null && !this.idcoprodutos.equals(other.idcoprodutos))) {
             return false;
         }
         return true;
@@ -151,7 +193,7 @@ public class Coobrigatorio implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.travelmate.model.Coobrigatorio[ idcoobrigatorio=" + idcoobrigatorio + " ]";
+        return "br.com.travelmate.model.Coprodutos[ idcoprodutos=" + idcoprodutos + " ]";
     }
     
 }

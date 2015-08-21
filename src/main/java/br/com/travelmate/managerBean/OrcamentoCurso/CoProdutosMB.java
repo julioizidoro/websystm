@@ -1,7 +1,8 @@
-package br.com.travelmate.managerBean;
+package br.com.travelmate.managerBean.OrcamentoCurso;
 
 import br.com.travelmate.facade.CoObrigatorioFacade;
-import br.com.travelmate.model.Coobrigatorio;
+import br.com.travelmate.managerBean.UsuarioLogadoMB;
+import br.com.travelmate.model.Coprodutos;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,12 +13,12 @@ import javax.inject.Named;
 
 @Named
 @ViewScoped
-public class CoObrigatorioMB implements Serializable{
+public class CoProdutosMB implements Serializable{
     
     @Inject 
     private UsuarioLogadoMB usuarioLogadoMB;
-    private Coobrigatorio coobrigatorio;
-    private List<Coobrigatorio> listacoObrigatorio;
+    private Coprodutos coobrigatorio;
+    private List<Coprodutos> listacoObrigatorio;
 
     @PostConstruct
     public void init(){
@@ -33,27 +34,27 @@ public class CoObrigatorioMB implements Serializable{
         this.usuarioLogadoMB = usuarioLogadoMB;
     }
 
-    public Coobrigatorio getCoobrigatorio() {
+    public Coprodutos getCoobrigatorio() {
         return coobrigatorio;
     }
 
-    public void setCoobrigatorio(Coobrigatorio coobrigatorio) {
+    public void setCoobrigatorio(Coprodutos coobrigatorio) {
         this.coobrigatorio = coobrigatorio;
     }
 
-    public List<Coobrigatorio> getListacoObrigatorio() {
+    public List<Coprodutos> getListacoObrigatorio() {
         return listacoObrigatorio;
     }
 
-    public void setListacoObrigatorio(List<Coobrigatorio> listacoObrigatorio) {
+    public void setListacoObrigatorio(List<Coprodutos> listacoObrigatorio) {
         this.listacoObrigatorio = listacoObrigatorio;
     }
     
-    public List<Coobrigatorio> gerarListaCoObrigatorio(String sql){
+    public List<Coprodutos> gerarListaCoObrigatorio(String sql){
         CoObrigatorioFacade coObrigatorioFacade = new CoObrigatorioFacade();
-        List<Coobrigatorio> listaObrigatorio = coObrigatorioFacade.listar(sql);
+        List<Coprodutos> listaObrigatorio = coObrigatorioFacade.listar(sql);
         if (listaObrigatorio==null){
-           listaObrigatorio = new ArrayList<Coobrigatorio>();
+           listaObrigatorio = new ArrayList<Coprodutos>();
         }
         return listaObrigatorio;
     }

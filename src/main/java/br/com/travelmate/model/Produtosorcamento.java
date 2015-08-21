@@ -6,10 +6,7 @@
 package br.com.travelmate.model;
 
 import java.io.Serializable;
-import java.util.List;
-
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,10 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
-
 
 /**
  *
@@ -31,10 +26,6 @@ import javax.validation.constraints.Size;
 @NamedQueries({
     @NamedQuery(name = "Produtosorcamento.findAll", query = "SELECT p FROM Produtosorcamento p")})
 public class Produtosorcamento implements Serializable {
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "produtosorcamento")
-    private List<Coobrigatorio> coobrigatorioList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "produtosorcamento")
-    private List<Valoresseguro> valoresseguroList;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,6 +35,12 @@ public class Produtosorcamento implements Serializable {
     @Size(max = 50)
     @Column(name = "descricao")
     private String descricao;
+    @Size(max = 1)
+    @Column(name = "tipo")
+    private String tipo;
+    @Size(max = 50)
+    @Column(name = "descricaooutralingua")
+    private String descricaooutralingua;
 
     public Produtosorcamento() {
     }
@@ -66,6 +63,22 @@ public class Produtosorcamento implements Serializable {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getDescricaooutralingua() {
+        return descricaooutralingua;
+    }
+
+    public void setDescricaooutralingua(String descricaooutralingua) {
+        this.descricaooutralingua = descricaooutralingua;
     }
 
     @Override
@@ -92,20 +105,5 @@ public class Produtosorcamento implements Serializable {
     public String toString() {
         return "br.com.travelmate.model.Produtosorcamento[ idprodutosOrcamento=" + idprodutosOrcamento + " ]";
     }
-
-    public List<Valoresseguro> getValoresseguroList() {
-        return valoresseguroList;
-    }
-
-    public void setValoresseguroList(List<Valoresseguro> valoresseguroList) {
-        this.valoresseguroList = valoresseguroList;
-    }
-
-    public List<Coobrigatorio> getCoobrigatorioList() {
-        return coobrigatorioList;
-    }
-
-    public void setCoobrigatorioList(List<Coobrigatorio> coobrigatorioList) {
-        this.coobrigatorioList = coobrigatorioList;
-    }
+    
 }
