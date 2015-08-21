@@ -1,0 +1,36 @@
+package br.com.travelmate.facade;
+
+
+import br.com.travelmate.dao.FornecedorCidadeIdiomaDao;
+import br.com.travelmate.model.Fornecedorcidadeidioma;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
+public class FornecedorCidadeIdiomaFacade {
+    
+    private FornecedorCidadeIdiomaDao fornecedorCidadeIdiomaDao;
+    
+    public Fornecedorcidadeidioma salvar(Fornecedorcidadeidioma fornecedorcidadeidioma){
+        fornecedorCidadeIdiomaDao = new FornecedorCidadeIdiomaDao();
+        try {
+            return fornecedorCidadeIdiomaDao.salvar(fornecedorcidadeidioma);
+        } catch (SQLException ex) {
+            Logger.getLogger(FornecedorCidadeIdiomaFacade.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    
+   public List<Fornecedorcidadeidioma> listar(String sql){
+        fornecedorCidadeIdiomaDao = new FornecedorCidadeIdiomaDao();
+        try {
+            return fornecedorCidadeIdiomaDao.listar(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(FornecedorCidadeIdiomaFacade.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    
+}
