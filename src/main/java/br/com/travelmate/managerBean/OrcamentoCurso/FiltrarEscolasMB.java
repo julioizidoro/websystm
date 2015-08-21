@@ -7,29 +7,34 @@ package br.com.travelmate.managerBean.OrcamentoCurso;
 
 import br.com.travelmate.facade.CambioFacade;
 import br.com.travelmate.facade.CoProdutosFacade;
+import br.com.travelmate.facade.FornecedorCidadeIdiomaFacade;
 import br.com.travelmate.facade.FornecedorFeriasFacade;
 import br.com.travelmate.facade.PaisProdutoFacade;
+import br.com.travelmate.facade.ValorCoProdutosFacade;
 import br.com.travelmate.managerBean.UsuarioLogadoMB;
 import br.com.travelmate.model.Cambio;
 import br.com.travelmate.model.Cidade;
 import br.com.travelmate.model.Coprodutos;
-import br.com.travelmate.model.Fornecedorcidade;
 import br.com.travelmate.model.Fornecedorcidadeidioma;
 import br.com.travelmate.model.Fornecedorferias;
 import br.com.travelmate.model.Idioma;
 import br.com.travelmate.model.Pais;
 import br.com.travelmate.model.Paisproduto;
 import br.com.travelmate.model.Produtosorcamento;
+import br.com.travelmate.model.Valorcoprodutos;
 import br.com.travelmate.util.Formatacao;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -144,12 +149,23 @@ public class FiltrarEscolasMB implements Serializable{
         this.listaProdutosOrcamento = listaProdutosOrcamento;
     }
     
-    public void LocalizarFornecedorCidade(){
+    public String LocalizarFornecedorCidade(){
         String sql = "Select f from Fornecedorcidadeidioma f where f.idioma.ididioma=" + idioma.getIdidioma() + " and f.fornecedorcidade.idfornecedorcidade=" +
                 cidade.getIdcidade() + " and f.fornecedorcidade.produtos.idprodutos=" + usuarioLogadoMB.getParametrosprodutos().getCursos() +
                         " order by f.fornecedorcidade.peso desc";
-        List<Fornecedorcidadeidioma> listaFornecedorCidadeIdioma;
-                
+        FornecedorCidadeIdiomaFacade fornecedorCidadeIdiomaFacade = new FornecedorCidadeIdiomaFacade();
+        List<Fornecedorcidadeidioma> listaFornecedorCidadeIdioma = fornecedorCidadeIdiomaFacade.listar(sql);
+        if (listaFornecedorCidadeIdioma!=null){
+            if (listaFornecedorCidadeIdioma.size()>0){
+                listarCoProdutos(listaFornecedorCidadeIdioma);
+                FacesContext fc = FacesContext.getCurrentInstance();
+                HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+                session.setAttribute("listaFornecedorProdutosBean", listaFornecedorProdutosBean);
+                return "resultadoFiltroOrcamento";
+            }else {
+                return null;
+            }
+        }else return null;
     }
     
     public void listarCoProdutos(List<Fornecedorcidadeidioma> listaFornecedorCidadeIdioma){
@@ -158,9 +174,9 @@ public class FiltrarEscolasMB implements Serializable{
             fpb.setFornecedorCidade(listaFornecedorCidadeIdioma.get(i).getFornecedorcidade());
             fpb.setNumeroSemanas(numeroSemanas);
             fpb.setDataInicio(dataInicioCurso);
-            fpb.setDataTermino(calcularDataTermino(fpb.getFornecedorCidade()));
-            fpb.setListaObrigaroerios(listaProdutosObrigatorios(fpb));
-            fpb.setListaOpcionais(listaProdutosOpcionais(fpb));
+            fpb.setDataTermino(calcularDataTermino());
+            fpb.setListaObrigaroerios(gerarListaValorCoProdutos(fpb, "Obrigatorio"));
+            fpb.setListaOpcionais(gerarListaValorCoProdutos(fpb, "Opcional"));
             fpb.setValorDesconto(0.0f);
             fpb.setValorMoedaEstrangeira(valorMoedaEstrangeira(fpb));
             fpb.setValorMoedaNacional(calcularValorMoedaNacioanl(fpb));
@@ -203,18 +219,47 @@ public class FiltrarEscolasMB implements Serializable{
         return total;
     }
     
-    public List<Coprodutos> listaProdutosObrigatorios(FornecedorProdutosBean fornecedorProdutosBean){
+    public List<Valorcoprodutos> gerarListaValorCoProdutos(FornecedorProdutosBean fornecedorProdutosBean, String tipo){
+        List<Valorcoprodutos> listaRetorno = new ArrayList<Valorcoprodutos>();
         List<Coprodutos> listaCoProdutos;
         CoProdutosFacade coProdutosFacade = new CoProdutosFacade();
-        String sql = "";
-        return null;
+        String sql = "Select c from Coprodutos c where c.fornecedorcidade.idfornecedorcidade=" + fornecedorProdutosBean.getFornecedorCidade().getIdfornecedorcidade() + 
+                " and c.tipo=" + tipo;
+        listaCoProdutos = coProdutosFacade.listar(sql);
+        if (listaCoProdutos!=null){
+            ValorCoProdutosFacade valorCoProdutosFacade = new ValorCoProdutosFacade();
+            for(int i=0;i<listaCoProdutos.size();i++){
+                Valorcoprodutos valorcoprodutos = null;
+                sql = "Select v from  Valorcoprodutos v where v.datainicial>='" +
+                        Formatacao.ConvercaoDataSql(new Date()) +"' and v.datafinal<='" +
+                        Formatacao.ConvercaoDataSql(new Date()) + "' and v.numerosemanainicial>=" +
+                        numeroSemanas + " and and v.numerosemanainicial<=" + numeroSemanas + " and v.tipodata='DI' and coprodutos";
+                
+                List<Valorcoprodutos> listaValorcoprodutoses = valorCoProdutosFacade.listar(sql);
+                if (listaValorcoprodutoses!=null){
+                    for(int n=0;n<listaValorcoprodutoses.size();n++){
+                        if (valorcoprodutos==null){
+                            valorcoprodutos = new Valorcoprodutos();
+                            valorcoprodutos = listaValorcoprodutoses.get(n);
+                        }else {
+                            valorcoprodutos = compararValores(listaValorcoprodutoses.get(n), valorcoprodutos);
+                        }
+                        
+                    }
+                }
+                listaRetorno.add(valorcoprodutos);
+            }
+        }
+        return listaRetorno;
     }
     
-    public List<Coprodutos> listaProdutosOpcionais(FornecedorProdutosBean fornecedorProdutosBean){
-        return null;
+    public Valorcoprodutos compararValores(Valorcoprodutos valorNovo, Valorcoprodutos valorAtual){
+        if (valorNovo.getPromocional()){
+            return valorNovo;
+        }else return valorAtual;
     }
     
-    private Date calcularDataTermino(Fornecedorcidade fornecedorCidade) {
+    private Date calcularDataTermino() {
         Date data = Formatacao.calcularDataFinal(dataInicioCurso, numeroSemanas, null);
         int diaSemana = Formatacao.diaSemana(data);
         try {

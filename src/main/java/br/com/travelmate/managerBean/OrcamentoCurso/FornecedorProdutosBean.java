@@ -7,6 +7,7 @@ package br.com.travelmate.managerBean.OrcamentoCurso;
 
 import br.com.travelmate.model.Coprodutos;
 import br.com.travelmate.model.Fornecedorcidade;
+import br.com.travelmate.model.Valorcoprodutos;
 import java.util.Date;
 import java.util.List;
 
@@ -17,8 +18,8 @@ import java.util.List;
 public class FornecedorProdutosBean {
     
         private Fornecedorcidade fornecedorCidade;
-        private List<Coprodutos> listaObrigaroerios;
-        private List<Coprodutos> listaOpcionais;
+        private List<Valorcoprodutos> listaObrigaroerios;
+        private List<Valorcoprodutos> listaOpcionais;
         private Date dataInicio;
         private Date dataTermino;
         private int numeroSemanas;
@@ -34,21 +35,23 @@ public class FornecedorProdutosBean {
         this.fornecedorCidade = fornecedorCidade;
     }
 
-    public List<Coprodutos> getListaObrigaroerios() {
+    public List<Valorcoprodutos> getListaObrigaroerios() {
         return listaObrigaroerios;
     }
 
-    public void setListaObrigaroerios(List<Coprodutos> listaObrigaroerios) {
+    public void setListaObrigaroerios(List<Valorcoprodutos> listaObrigaroerios) {
         this.listaObrigaroerios = listaObrigaroerios;
     }
 
-    public List<Coprodutos> getListaOpcionais() {
+    public List<Valorcoprodutos> getListaOpcionais() {
         return listaOpcionais;
     }
 
-    public void setListaOpcionais(List<Coprodutos> listaOpcionais) {
+    public void setListaOpcionais(List<Valorcoprodutos> listaOpcionais) {
         this.listaOpcionais = listaOpcionais;
     }
+
+    
 
     public Date getDataInicio() {
         return dataInicio;
