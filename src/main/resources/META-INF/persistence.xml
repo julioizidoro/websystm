@@ -48,6 +48,7 @@
     <class>br.com.travelmate.model.Valoresseguro</class>
     <class>br.com.travelmate.model.Vendas</class>
     <class>br.com.travelmate.model.Vendascomissao</class>
+    <class>br.com.travelmate.model.Valorcoprodutos</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
     <validation-mode>NONE</validation-mode>

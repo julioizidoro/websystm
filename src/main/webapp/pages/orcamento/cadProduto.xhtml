@@ -46,7 +46,7 @@
                 <f:selectItems id="idproduto" value="#" var="produtoselecionado" itemLabel="#" itemValue="#"/>
             </p:selectOneMenu>
             <p:selectOneRadio id="tipoProduto" value="#{coProdutosMB.coobrigatorio.produtosorcamento.tipo}" layout="custom">
-                <f:selectItem itemLabel="Obrigatório" itemValue="Obrigatório" />
+                <f:selectItem itemLabel="Obrigatório" itemValue="Obrigatorio" />
                 <f:selectItem itemLabel="Opcional" itemValue="Opcional" />
             </p:selectOneRadio>
             <p:radioButton id="tipoProduto1" for="tipoProduto" itemIndex="1" class="espacocobranca29"/>
@@ -56,9 +56,9 @@
             <h:outputLabel for="tipoProduto2" value="Opcional" class="espacocobranca29"/>
             <br></br><br></br>
             <p:selectOneRadio id="tipodata" value="#{coProdutosMB.coobrigatorio.tipodata}" layout="custom">
-                <f:selectItem itemLabel="Data Inscrição" itemValue="Data Inscrição" />
-                <f:selectItem itemLabel="Data Início" itemValue="Data Início" />
-                <f:selectItem itemLabel="Data Suplemento" itemValue="Data Suplemento" />
+                <f:selectItem itemLabel="Data Inscrição" itemValue="DM" />
+                <f:selectItem itemLabel="Data Início" itemValue="DI" />
+                <f:selectItem itemLabel="Data Suplemento" itemValue="DS" />
             </p:selectOneRadio>
             <p:radioButton id="opt1" for="tipodata" itemIndex="1" />
             <h:outputLabel for="opt1" value="Data Inscrição" class="espacocobranca29"/>

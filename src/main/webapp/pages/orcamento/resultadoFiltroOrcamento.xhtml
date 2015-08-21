@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/pages/templates/default.xhtml">
+        <ui:define name="corpo">
+            <h:form id="filtrarOrcamentoCurso">
+                <div id="centro">
+                    <br></br><br></br>
+                    <p:dataScroller value="#" var="car" chunkSize="10" style="background:#fff">
+                        <f:facet name="header">
+                            Resultados
+                        </f:facet>
+
+                        <f:facet name="loader">
+                            <p:commandButton type="button" value="Mais" icon="ui-icon-circle-triangle-s"/>
+                        </f:facet>
+
+                        <h:panelGrid columns="3" style="width:100%;background:#fff" >
+                            <p:outputPanel style="width:25%">
+                                <h:panelGrid columns="1" >
+                                    <img  src="../../resources/img/ec.png" /> 
+                                </h:panelGrid>
+                            </p:outputPanel>
+                            <p:outputPanel style="width:50%;margin-left: -30%">
+                                <h:panelGrid columns="1" >
+                                    <h:outputText value="Curso General English" style="font-weight:bold;font-size: 19px;"/>
+                                    <p:commandLink value="EC" title="Descrição" style="font-weight:bold;font-size: 13px;"/>
+                                    <br></br>
+                                    <h:outputText value="4 Aulas/Semana" style="font-size: 13px;"/>
+                                </h:panelGrid>
+                            </p:outputPanel>
+                            <p:outputPanel style="text-align: right;width:100%">
+                                <h:panelGrid columns="1" cellpadding="5" style="text-align: right;width:100%">
+                                    <p:commandLink id="valorOriginal" value="US$ 776,00" style="color:#4DA20B;font-size: 9px;text-align: right;"/>
+                                    <p:overlayPanel id="painelDescricao" for="valorOriginal" hideEffect="fade" style="width:30%;background:#CCCCCC" >
+                                        <h:outputText value="Valor Original:" style="font-weight:bold"/>
+                                        <h:outputText value="US$" style="font-weight:bold" class="espacocobranca29"/>
+                                        <h:outputText value="776,00" style="font-weight:bold"/>
+                                        <h:outputText value="R$ " style="font-size:9px;" class="espacocobranca29"/>
+                                        <h:outputText value="2.801,36" style="font-size:9px;"/>
+                                        <br></br><br></br>
+                                        <h:outputText value="R$ Promocional:" style="font-weight:bold"/>
+                                        <h:outputText value="US$" style="font-weight:bold" class="espacocobranca29"/>
+                                        <h:outputText value="740,00" style="font-weight:bold"/>
+                                        <h:outputText value="R$ " style="font-size:9px;" class="espacocobranca29"/>
+                                        <h:outputText value="2.671,40" style="font-size:9px;"/>
+                                    </p:overlayPanel>
+                                    <p:commandLink id="valorPromocional" value="US$ 740,00" style="font-weight:bold;font-size:14px;text-align: right;"/>
+                                    <p:overlayPanel id="painelDescricao2" for="valorPromocional" hideEffect="fade" style="width:30%;background:#CCCCCC" >
+                                        <h:outputText value="Valor Original:" style="font-weight:bold"/>
+                                        <h:outputText value="US$" style="font-weight:bold" class="espacocobranca29"/>
+                                        <h:outputText value="740,00" style="font-weight:bold"/>
+                                        <h:outputText value="R$ " style="font-size:9px;" class="espacocobranca29"/>
+                                        <h:outputText value="2.671,40" style="font-size:9px;"/>
+                                        <br></br><br></br>
+                                        <h:outputText value="Valor Promocional:" style="font-weight:bold"/>
+                                        <h:outputText value="US$" style="font-weight:bold" class="espacocobranca29"/>
+                                        <h:outputText value="776,00" style="font-weight:bold"/>
+                                        <h:outputText value="R$ " style="font-size:9px;" class="espacocobranca29"/>
+                                        <h:outputText value="2.801,36" style="font-size:9px;"/>
+                                    </p:overlayPanel>
+                                    <br></br>
+                                    <p:commandButton value="Ver Orçamento" icon="ui-icon-triangle-1-e" action="#{cursoMB.orcamentoResultado()}"/>
+                                </h:panelGrid>
+                            </p:outputPanel>
+                        </h:panelGrid>
+                    </p:dataScroller>
+                    <br></br><br></br><br></br>
+                </div>
+                
+            </h:form>     
+        </ui:define>
+    </ui:composition>
+</html>

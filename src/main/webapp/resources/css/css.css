@@ -44,11 +44,11 @@ h1 {
 
 .menuTravel{
     font-size:10px;
-    margin-top:-30px;
     height:67px;
     width: 900px;
     color:#4F4F4F;
     background:#fff;
+    margin-top: -5%;
 }
 .menuTravel2{
     font-size:11px;
@@ -257,6 +257,17 @@ text-align: left;
 #centro legend#iUsu4 {
     width: 100%;
 }
+
+#centro legend#iUsu5 b{
+    font-size: 14px;
+    font-family: tahoma;
+    text-align: center;
+    color:#52A412;
+}
+#centro legend#iUsu5 {
+    width: 100%;
+}
+
 .leftcampo{
     font-size: 10px;
     margin-left:100px;
@@ -439,7 +450,7 @@ text-align: left;
 }
 .iconcambio{
     position: absolute;
-    margin-top:40px;
+    margin-top:35px;
     margin-left: 0px;
     z-index: 3!important;
         overflow: visible!important; 
@@ -891,6 +902,13 @@ text-align: left;
     margin-left:10%;
     text-align: left;
 }
+
+.painelFiltrar{
+    width:90%;
+    margin-left:4%;
+    text-align: left;
+}
+
 .botaocadpacote{
     width:100%;background:-moz-linear-gradient(
         top,
@@ -1113,6 +1131,10 @@ text-align: left;
     margin-left:3.7%;
 }
 
+.espacocobranca41{
+    margin-left:9.3%;
+}
+
 .espacologin{
     margin-left:40%;
      font-size: 10px;
@@ -1146,4 +1168,30 @@ text-align: left;
 .simnao{
     margin-top: 3%;
     margin-left: 2%;
+}
+
+.botaoFiltrar {
+  margin-left: 83%;
+  padding: 4px 9px 4px 9px;
+}
+
+.submenu{
+    font-family: tahoma;
+    float:left;
+    font-size: 14px;
+    background: #3A5795;
+    width: 20%;
+}
+.submenu2{
+    color:#fff;
+    font-family: tahoma;
+    float:left;
+    font-size: 14px;
+}
+.submenu2 li a{
+    color:#fff;
+    text-decoration:none; 
+    padding:5px 10px; 
+    display:block;
+    font-size: 12px;
 }

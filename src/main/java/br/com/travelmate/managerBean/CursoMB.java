@@ -25,6 +25,12 @@ public class CursoMB implements Serializable{
         return "cadFichaCurso";
     }
     
+    public String orcamentoResultado(){
+        return "orcamentoCurso";
+    }
     
+    public String pesquisar(){
+        return "resultadoFiltroOrcamento";
+    }
     
 }

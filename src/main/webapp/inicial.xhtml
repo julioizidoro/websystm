@@ -57,14 +57,6 @@
                                         <ul class="submenu-1"> 
                                             <li class="comissao"><h:commandLink action="#{menuMB.comissaoVendas()}" value="Comissão"></h:commandLink></li>
                                             <li class="comissao"> <h:commandLink action="#{menuMB.contasReceber()}" value="Contas a Receber"></h:commandLink></li>
-
-                                            <h:commandLink action="#"  >  
-                                                <button class="acaocambio">
-                                                    <img id="iconcambio" class="imagemm" src="resources/img/dinheiro.png"/>
-                                                    <a>Câmbio</a>
-                                                </button>  
-                                            </h:commandLink>  
-
                                         </ul>
                                     </li>
                                     <li><a>Emissão</a>
@@ -88,14 +80,15 @@
                                     </li>
                                     <li><a>Orçamento</a>
                                         <ul class="submenu-1"> 
-                                            <li class="comissao"><h:commandLink action="#{menuMB.orcamentoCurso()}" value="Curso"></h:commandLink></li>
+                                            <li class="comissao"><h:commandLink action="#{menuMB.produtoCurso()}" value="Produtos Curso"></h:commandLink></li>
+                                            <li class="comissao"><h:commandLink action="#{menuMB.orcamentoCurso()}" value="Orçamento de Curso"></h:commandLink></li>
                                         </ul>
                                     </li>
                                 </ul>
                             </div>
                         </div>		
                     </navBar>
-
+                    
                     <h:panelGrid columns="7" cellpadding="1" class="menuTravel">
                         <img src="resources/img/cursos.jpg" alt="portrait" class="imagemlogo"/>
                         <img src="resources/img/high-school.jpg" class="imagemlogos"/>
