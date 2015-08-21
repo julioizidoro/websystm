@@ -11,6 +11,7 @@ import br.com.travelmate.model.Idioma;
 import br.com.travelmate.model.Pais;
 import br.com.travelmate.model.Paisproduto;
 import br.com.travelmate.model.Produtosorcamento;
+import java.io.Serializable;
 import java.util.List;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
@@ -21,7 +22,7 @@ import javax.inject.Named;
  */
 @Named
 @ViewScoped
-public class FiltrarEscolasMB {
+public class FiltrarEscolasMB implements Serializable{
     
     private Fornecedorcidade fornecedorcidade;
     private List<Paisproduto> listaPais;

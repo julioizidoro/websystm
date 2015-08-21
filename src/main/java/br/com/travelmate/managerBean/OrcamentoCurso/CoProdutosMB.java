@@ -10,6 +10,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import org.primefaces.context.RequestContext;
 
 @Named
 @ViewScoped
@@ -22,7 +23,7 @@ public class CoProdutosMB implements Serializable{
 
     @PostConstruct
     public void init(){
-        String sql = "Select c from Coobrigatorio c order by c.tipodata";
+        String sql = "Select c from Coprodutos c order by c.tipodata";
         gerarListaCoObrigatorio(sql);
     }
 
@@ -57,6 +58,11 @@ public class CoProdutosMB implements Serializable{
            listaObrigatorio = new ArrayList<Coprodutos>();
         }
         return listaObrigatorio;
+    }
+    
+    public String cadProduto(){
+         RequestContext.getCurrentInstance().openDialog("cadProduto");
+        return "";
     }
     
 }

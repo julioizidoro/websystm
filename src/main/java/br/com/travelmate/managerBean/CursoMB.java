@@ -26,8 +26,5 @@ public class CursoMB implements Serializable{
     }
     
     
-    public String cadProdutoObrigatorio(){
-         RequestContext.getCurrentInstance().openDialog("cadProdutoObrigatorio");
-        return "";
-    }
+    
 }
