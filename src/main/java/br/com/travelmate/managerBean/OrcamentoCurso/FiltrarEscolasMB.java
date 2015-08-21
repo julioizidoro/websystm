@@ -206,7 +206,7 @@ public class FiltrarEscolasMB implements Serializable{
     public List<Coprodutos> listaProdutosObrigatorios(FornecedorProdutosBean fornecedorProdutosBean){
         List<Coprodutos> listaCoProdutos;
         CoProdutosFacade coProdutosFacade = new CoProdutosFacade();
-        String sql = ""
+        String sql = "";
         return null;
     }
     
