@@ -8,24 +8,28 @@
     <ui:composition template="/pages/templates/default.xhtml">
         <ui:define name="corpo">
             <h:form id="orcamentoCurso">
-                <div id="centro">
-                    <br></br><br></br>
-                    <p:dataScroller value="#" var="car" chunkSize="10" style="background:#fff" id="tabelaOrcamento">
-                        <f:facet name="header">
-                             <h:outputText value="Obrigatórios" style="color:#4DA20B"/>
-                        </f:facet>
+                <div id="centro"> <br></br><br></br>
+                    <img  src="../../resources/img/ec.png" /> 
+                    <h:panelGrid columns="1" style="width: 100%;margin-left:12%;margin-top: -8%">
+                        <h:outputText value="Curso General English" style="font-weight:bold;font-size: 20px;color: #fff" class="espacocobranca29"/>
+                        <p:commandLink value="EC" title="Descrição" style="font-weight:bold;font-size: 13px;color: #fff" class="espacocobranca29"/>
+                        <p:commandLink value="Estados Unidos - Nova York" title="Mapa" style="font-weight:bold;font-size: 13px;color: #fff" class="espacocobranca29"  oncomplete="PF('mapaEscola').show()"/>
+                     </h:panelGrid>
+                    <br></br><br></br><br></br><br></br>
+                    <h:outputText value="Curso" style="font-weight:bold;font-size: 17px;color: #fff" class="espacocobranca29"/>
+                    <p:dataScroller value="#" var="obrigatorio" chunkSize="10" style="background:#fff" id="tabelaprodutoObrigatorio">
                         <p:outputPanel style="text-align: right;width:100%">
                             <h:panelGrid columns="3" style="width:100%;background:#fff" >
                                 <p:outputPanel style="width:50%;" >
                                     <h:panelGrid columns="1" >
-                                        <h:outputText value="Curso General English" style="font-weight:bold;font-size: 19px;"/>
+                                        <h:outputText value="Curso General English" style="font-weight:bold;font-size: 15px;"/>
                                     </h:panelGrid>
                                 </p:outputPanel>
                             </h:panelGrid>
                         </p:outputPanel>
-                        <p:outputPanel style="text-align: right;width:100%;background:#fff" >
+                        <p:outputPanel style="text-align: right;width:100%;background:#fff;margin-top: -3%" >
                                 <h:panelGrid columns="1" cellpadding="5" style="text-align: right;width:100%">
-                                    <p:commandLink id="valorOriginal" value="US$ 776,00" style="color:#4DA20B;font-size: 9px;text-align: right;"/>
+                                    <p:commandLink id="valorOriginal" value="US$ 776,00" style="color:#4DA20B;font-size: 9px;text-align: right;text-decoration:line-through;"/>
                                     <p:overlayPanel id="painelDescricao" for="valorOriginal" hideEffect="fade" style="width:30%;background:#CCCCCC" >
                                         <h:outputText value="Valor Original:" style="font-weight:bold"/>
                                         <h:outputText value="US$" style="font-weight:bold" class="espacocobranca29"/>
@@ -57,10 +61,141 @@
                                  </h:panelGrid>
                             </p:outputPanel>
                     </p:dataScroller>
+                    <br></br> <br></br>
+                    <h:outputText value="Opcional" style="font-weight:bold;font-size: 17px;color: #fff" class="espacocobranca29"/>
+                    <p:dataScroller value="#" var="opcional" chunkSize="10" style="background:#fff" id="tabelaprodutoOpcional">
+                        
+                        <p:outputPanel style="text-align: right;width:100%">
+                            <h:panelGrid columns="3" style="width:100%;background:#fff" >
+                                <p:outputPanel  >
+                                    <h:panelGrid columns="2" >
+                                        <p:selectBooleanCheckbox value="#"/>
+                                        <h:outputText value="Curso General English"   style="font-weight:bold;font-size: 15px;"/>
+                                    </h:panelGrid>
+                                </p:outputPanel>
+                            </h:panelGrid>
+                        </p:outputPanel>
+                        <p:outputPanel style="text-align: right;width:100%;background:#fff;margin-top: -3%" >
+                                <h:panelGrid columns="1" cellpadding="5" style="text-align: right;width:100%">
+                                    <p:commandLink id="valorOriginal" value="US$ 776,00" style="color:#4DA20B;font-size: 9px;text-align: right;text-decoration:line-through;"/>
+                                    <p:overlayPanel id="painelDescricao" for="valorOriginal" hideEffect="fade" style="width:30%;background:#CCCCCC" >
+                                        <h:outputText value="Valor Original:" style="font-weight:bold"/>
+                                        <h:outputText value="US$" style="font-weight:bold" class="espacocobranca29"/>
+                                        <h:outputText value="776,00" style="font-weight:bold"/>
+                                        <h:outputText value="R$ " style="font-size:9px;" class="espacocobranca29"/>
+                                        <h:outputText value="2.801,36" style="font-size:9px;"/>
+                                        <br></br><br></br>
+                                        <h:outputText value="R$ Promocional:" style="font-weight:bold"/>
+                                        <h:outputText value="US$" style="font-weight:bold" class="espacocobranca29"/>
+                                        <h:outputText value="740,00" style="font-weight:bold"/>
+                                        <h:outputText value="R$ " style="font-size:9px;" class="espacocobranca29"/>
+                                        <h:outputText value="2.671,40" style="font-size:9px;"/>
+                                    </p:overlayPanel>
+                                    <p:commandLink id="valorPromocional" value="US$ 740,00" style="font-weight:bold;font-size:14px;text-align: right;"/>
+                                    <p:overlayPanel id="painelDescricao2" for="valorPromocional" hideEffect="fade" style="width:30%;background:#CCCCCC" >
+                                        <h:outputText value="Valor Original:" style="font-weight:bold"/>
+                                        <h:outputText value="US$" style="font-weight:bold" class="espacocobranca29"/>
+                                        <h:outputText value="740,00" style="font-weight:bold"/>
+                                        <h:outputText value="R$ " style="font-size:9px;" class="espacocobranca29"/>
+                                        <h:outputText value="2.671,40" style="font-size:9px;"/>
+                                        <br></br><br></br>
+                                        <h:outputText value="Valor Promocional:" style="font-weight:bold"/>
+                                        <h:outputText value="US$" style="font-weight:bold" class="espacocobranca29"/>
+                                        <h:outputText value="776,00" style="font-weight:bold"/>
+                                        <h:outputText value="R$ " style="font-size:9px;" class="espacocobranca29"/>
+                                        <h:outputText value="2.801,36" style="font-size:9px;"/>
+                                    </p:overlayPanel>
+                                    <br></br>
+                                 </h:panelGrid>
+                            </p:outputPanel>
+                    </p:dataScroller>
+                    <br></br> <br></br>
+                    <h:outputText value="Seguro Viagem" style="font-weight:bold;font-size: 17px;color: #fff" class="espacocobranca29"/>
+                     <p:accordionPanel class="painelPacote" style="width: 100%;margin-left:0%" activeIndex="-1">
+                          <p:tab  title="Adicionar">
+                              <p:selectBooleanCheckbox value="#"/>
+                              <p:outputLabel value="Seguradora:" for="seguradora" class="espacocobranca11"/>
+                               <p:selectOneMenu class="espacocobranca29" style="width:18%;" id="seguradora"  value="#" 
+                                            >
+                                <f:selectItem itemLabel="Seguradora" itemValue="0" noSelectionOption="true" /> 
+                                <f:selectItems id="idcidade" value="#" var="ccidade" itemLabel="#" itemValue="#"/>
+                                <f:attribute name="listaFornecedorCidade" value="#"/>
+                                <p:ajax event="change" update="plano"/> 
+                            </p:selectOneMenu>
+                            <p:outputLabel value="Plano:" for="plano" class="espacocobranca28"/>
+                            <p:selectOneMenu id="plano" class="espacocobranca29" style="width:18%;" value="#"
+                                             >
+                                <f:selectItem itemLabel="Seguradora" itemValue="0" noSelectionOption="true"/> 
+                                <f:selectItems id="idvaloresseguro" value="#" var="cvalorseguro" itemLabel="#" itemValue="#"/>
+                                <f:attribute name="listaValorSeguro" value="#"/>
+                                <p:ajax event="change" update="cobranca" />
+                            </p:selectOneMenu>
+                            <p:outputLabel value="Cobrança:" for="cobranca" class="espacocobranca28"/>
+                            <p:inputText id="cobranca" value="#" style="width:19%" maxlength="45" class="espacocobranca29" readonly="true"/>
+
+                            <br></br><br></br>
+                            <p:outputLabel value="Data inicial:" for="datainicio" class="espacocobranca33"/>
+                            <p:calendar id="datainicio" size="15"  class="espacocobranca29" locale="pt"  pattern="dd/MM/yyyy" >
+                                <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                                <p:ajax event="change" />
+                                <p:ajax event="dateSelect" />
+                            </p:calendar>
+                            <p:outputLabel value="No. Semanas:" for="semanas" class="imgadd"/>
+                             <p:inputText id="semanas" style="width:7%" maxlength="45" class="loginButton2">
+                                <f:convertNumber  type="number"/>
+                                <p:ajax event="blur" update="datatermino"  /> 
+                                <p:ajax event="blur" update="valorseguro" /> 
+                            </p:inputText>
+                            <p:outputLabel value="Data Final:" for="datatermino" class="imgadd"/>
+                            <p:calendar id="datatermino"  size="15" class="loginButton2" locale="pt"  pattern="dd/MM/yyyy" >
+                                <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                            </p:calendar>
+                            <p:outputLabel value="Valor do Seguro:" for="valorseguro" class="imgadd"/>
+                            <p:inputText id="valorseguro"  style="width:11%" maxlength="45" class="loginButton2" readonly="true">
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                            </p:inputText>
+                          </p:tab>
+                     </p:accordionPanel>
+                    <br></br> <br></br>
+                    <h:outputText value="Acomodação" style="font-weight:bold;font-size: 17px;color: #fff" class="espacocobranca29"/>
+                    <p:dataScroller value="#" var="acomodacao" chunkSize="10" style="background:#fff" id="tabelaAcomodacao">
+                        
+                        <p:accordionPanel class="painelPacote" style="width: 100%;margin-left: 0%" activeIndex="-1" >
+                             <p:tab  title="Adicionar">
+                             </p:tab>
+                         </p:accordionPanel>
+
+                    </p:dataScroller>
+                    <br></br> <br></br>
+                    <p:dataScroller value="#" var="totais" chunkSize="10" style="background:#fff" id="tabelatotal">
+                        <h:panelGrid columns="2" cellpadding="5" style="text-align: right;width:50%;margin-left: 50%"> 
+                            <p:outputPanel style="text-align: right;width:100%" >
+                                <h:outputText value="Desconto" style="font-weight:bold;font-size: 18px;color:#4DA20B" />
+                                <br></br>
+                                <h:outputText value="US$ " style="font-weight:bold;font-size: 14px;color:#4DA20B" />
+                                <h:outputText value="238,00" style="font-weight:bold;font-size: 15px;color:#4DA20B" />
+                                <br></br>
+                                <h:outputText value="R$ " style="font-weight:bold;font-size: 13px;color:#4DA20B" />
+                                <h:outputText value="859,18" style="font-weight:bold;font-size: 13px;color:#4DA20B" />
+                            </p:outputPanel>
+                            <p:outputPanel style="text-align: right;width:100%" >
+                                <h:outputText value="Total" style="font-weight:bold;font-size: 18px;color:#4DA20B" />
+                                <br></br>
+                                <h:outputText value="US$ " style="font-weight:bold;font-size: 14px;" />
+                                <h:outputText value="862,00" style="font-weight:bold;font-size: 15px;" />
+                                <br></br>
+                                <h:outputText value="R$ " style="font-weight:bold;font-size: 13px;" />
+                                <h:outputText value="3.111,82" style="font-weight:bold;font-size: 13px;" />
+                            </p:outputPanel>
+                        </h:panelGrid>
+                    </p:dataScroller>
                     <br></br><br></br><br></br>
                 </div>
-                
-            </h:form>     
+                <p:dialog id="dialog_mapa" header="Localização" widgetVar="mapaEscola" width="625" height="400">
+                    <p:gmap center="40.754778, -73.986508" zoom="13" type="HYBRID" style="width:100%;height:400px" widgetVar="map"/>
+                </p:dialog>
+            </h:form> 
+            
         </ui:define>
     </ui:composition>
 </html>

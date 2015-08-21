@@ -3,6 +3,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
     <script>
         $('.collapse').on('shown.bs.collapse', function (e) {
             $('.collapse').not(this).removeClass('in');
@@ -43,13 +44,6 @@
                             <ul class="submenu-1"> 
                                 <li class="comissao"><h:commandLink action="#{menuMB.comissaoVendas()}" value="Comissão"></h:commandLink></li>
                                 <li class="comissao"> <h:commandLink action="#{menuMB.contasReceber()}" value="Contas a Receber"></h:commandLink></li>
-                                
-                                <h:commandLink action="#"  >  
-                                    <button class="acaocambio">
-                                        <img id="iconcambio" class="imagemm" src="../../resources/img/dinheiro.png"/>
-                                        <a>Câmbio</a>
-                                    </button>  
-                                </h:commandLink>  
                                 
                             </ul>
                         </li>
