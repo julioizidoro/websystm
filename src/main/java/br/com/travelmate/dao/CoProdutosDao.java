@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 
-public class CoObrigatorioDao {
+public class CoProdutosDao {
     private EntityManager manager;
     
     public Coprodutos salvar(Coprodutos coObrigatorio) throws SQLException{

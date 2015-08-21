@@ -386,11 +386,16 @@ public class Formatacao {
 
 
 
+    public static Date SomarDiasDatas(Date data, int dias) throws Exception{
+       Calendar c = new GregorianCalendar();
+       c.setTime(data);
+       c.add(Calendar.DAY_OF_MONTH, dias);
+       return c.getTime();
+  }
+  
 
 
-
-
-    public static String SubtarirDatas(Date data, int dias, String formato) throws Exception{
+    public static String SubtarirDatas(Date data, int dias, String formato){
        SimpleDateFormat sd = new SimpleDateFormat(formato);
        Calendar c = new GregorianCalendar();
        c.setTime(data);

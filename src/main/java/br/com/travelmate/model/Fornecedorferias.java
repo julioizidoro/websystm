@@ -42,8 +42,8 @@ public class Fornecedorferias implements Serializable {
     @Column(name = "datafinal")
     @Temporal(TemporalType.DATE)
     private Date datafinal;
-    @Column(name = "numerosemanas")
-    private Integer numerosemanas;
+    @Column(name = "numerodias")
+    private Integer numerodias;
     @JoinColumn(name = "fornecedorcidade_idfornecedorcidade", referencedColumnName = "idfornecedorcidade")
     @ManyToOne(optional = false)
     private Fornecedorcidade fornecedorcidade;
@@ -79,13 +79,15 @@ public class Fornecedorferias implements Serializable {
         this.datafinal = datafinal;
     }
 
-    public Integer getNumerosemanas() {
-        return numerosemanas;
+    public Integer getNumerodias() {
+        return numerodias;
     }
 
-    public void setNumerosemanas(Integer numerosemanas) {
-        this.numerosemanas = numerosemanas;
+    public void setNumerodias(Integer numerodias) {
+        this.numerodias = numerodias;
     }
+
+    
 
     public Fornecedorcidade getFornecedorcidade() {
         return fornecedorcidade;

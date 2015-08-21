@@ -20,6 +20,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -38,8 +39,11 @@ public class Fornecedorcidade implements Serializable {
     @Basic(optional = false)
     @Column(name = "idfornecedorcidade")
     private Integer idfornecedorcidade;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedorcidade")
-    private List<Fornecedorcidadeidioma> fornecedorcidadeidiomaList;
+    @Size(max = 50)
+    @Column(name = "classificacao")
+    private String classificacao;
+    @Column(name = "peso")
+    private Integer peso;
     @JoinColumn(name = "cidade_idcidade", referencedColumnName = "idcidade")
     @ManyToOne(optional = false)
     private Cidade cidade;
@@ -49,8 +53,6 @@ public class Fornecedorcidade implements Serializable {
     @JoinColumn(name = "produtos_idprodutos", referencedColumnName = "idprodutos")
     @ManyToOne(optional = false)
     private Produtos produtos;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedorcidade")
-    private List<Fornecedorferias> fornecedorferiasList;
 
     public Fornecedorcidade() {
     }
@@ -67,12 +69,20 @@ public class Fornecedorcidade implements Serializable {
         this.idfornecedorcidade = idfornecedorcidade;
     }
 
-    public List<Fornecedorcidadeidioma> getFornecedorcidadeidiomaList() {
-        return fornecedorcidadeidiomaList;
+    public String getClassificacao() {
+        return classificacao;
     }
 
-    public void setFornecedorcidadeidiomaList(List<Fornecedorcidadeidioma> fornecedorcidadeidiomaList) {
-        this.fornecedorcidadeidiomaList = fornecedorcidadeidiomaList;
+    public void setClassificacao(String classificacao) {
+        this.classificacao = classificacao;
+    }
+
+    public Integer getPeso() {
+        return peso;
+    }
+
+    public void setPeso(Integer peso) {
+        this.peso = peso;
     }
 
     public Cidade getCidade() {
@@ -97,14 +107,6 @@ public class Fornecedorcidade implements Serializable {
 
     public void setProdutos(Produtos produtos) {
         this.produtos = produtos;
-    }
-
-    public List<Fornecedorferias> getFornecedorferiasList() {
-        return fornecedorferiasList;
-    }
-
-    public void setFornecedorferiasList(List<Fornecedorferias> fornecedorferiasList) {
-        this.fornecedorferiasList = fornecedorferiasList;
     }
 
     @Override

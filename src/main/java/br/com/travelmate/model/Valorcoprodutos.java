@@ -7,9 +7,7 @@ package br.com.travelmate.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,7 +17,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -30,21 +27,16 @@ import javax.validation.constraints.Size;
  * @author Wolverine
  */
 @Entity
-@Table(name = "coprodutos")
+@Table(name = "valorcoprodutos")
 @NamedQueries({
-    @NamedQuery(name = "Coprodutos.findAll", query = "SELECT c FROM Coprodutos c")})
-public class Coprodutos implements Serializable {
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "coprodutos")
-    private List<Valorcoprodutos> valorcoprodutosList;
+    @NamedQuery(name = "Valorcoprodutos.findAll", query = "SELECT v FROM Valorcoprodutos v")})
+public class Valorcoprodutos implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "idcoprodutos")
-    private Integer idcoprodutos;
-    @Size(max = 2)
-    @Column(name = "tipo")
-    private String tipo;
+    @Column(name = "idvalorcoprodutos")
+    private Integer idvalorcoprodutos;
     @Size(max = 1)
     @Column(name = "tipodata")
     private String tipodata;
@@ -63,39 +55,25 @@ public class Coprodutos implements Serializable {
     private Float valororiginal;
     @Column(name = "valorpromocional")
     private Float valorpromocional;
-    @Size(max = 10)
-    @Column(name = "licoes")
-    private String licoes;
     @Column(name = "promocional")
-    private String promocional;
-    @JoinColumn(name = "fornecedorcidade_idfornecedorcidade", referencedColumnName = "idfornecedorcidade")
+    private Boolean promocional;
+    @JoinColumn(name = "coprodutos_idcoprodutos", referencedColumnName = "idcoprodutos")
     @ManyToOne(optional = false)
-    private Fornecedorcidade fornecedorcidade;
-    @JoinColumn(name = "produtosOrcamento_idprodutosOrcamento", referencedColumnName = "idprodutosOrcamento")
-    @ManyToOne(optional = false)
-    private Produtosorcamento produtosorcamento;
+    private Coprodutos coprodutos;
 
-    public Coprodutos() {
+    public Valorcoprodutos() {
     }
 
-    public Coprodutos(Integer idcoprodutos) {
-        this.idcoprodutos = idcoprodutos;
+    public Valorcoprodutos(Integer idvalorcoprodutos) {
+        this.idvalorcoprodutos = idvalorcoprodutos;
     }
 
-    public Integer getIdcoprodutos() {
-        return idcoprodutos;
+    public Integer getIdvalorcoprodutos() {
+        return idvalorcoprodutos;
     }
 
-    public void setIdcoprodutos(Integer idcoprodutos) {
-        this.idcoprodutos = idcoprodutos;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setIdvalorcoprodutos(Integer idvalorcoprodutos) {
+        this.idvalorcoprodutos = idvalorcoprodutos;
     }
 
     public String getTipodata() {
@@ -154,53 +132,37 @@ public class Coprodutos implements Serializable {
         this.valorpromocional = valorpromocional;
     }
 
-    public String getLicoes() {
-        return licoes;
-    }
-
-    public void setLicoes(String licoes) {
-        this.licoes = licoes;
-    }
-
-    public Fornecedorcidade getFornecedorcidade() {
-        return fornecedorcidade;
-    }
-
-    public void setFornecedorcidade(Fornecedorcidade fornecedorcidade) {
-        this.fornecedorcidade = fornecedorcidade;
-    }
-
-    public Produtosorcamento getProdutosorcamento() {
-        return produtosorcamento;
-    }
-
-    public void setProdutosorcamento(Produtosorcamento produtosorcamento) {
-        this.produtosorcamento = produtosorcamento;
-    }
-
-    public String getPromocional() {
+    public Boolean getPromocional() {
         return promocional;
     }
 
-    public void setPromocional(String promocional) {
+    public void setPromocional(Boolean promocional) {
         this.promocional = promocional;
+    }
+
+    public Coprodutos getCoprodutos() {
+        return coprodutos;
+    }
+
+    public void setCoprodutos(Coprodutos coprodutos) {
+        this.coprodutos = coprodutos;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idcoprodutos != null ? idcoprodutos.hashCode() : 0);
+        hash += (idvalorcoprodutos != null ? idvalorcoprodutos.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Coprodutos)) {
+        if (!(object instanceof Valorcoprodutos)) {
             return false;
         }
-        Coprodutos other = (Coprodutos) object;
-        if ((this.idcoprodutos == null && other.idcoprodutos != null) || (this.idcoprodutos != null && !this.idcoprodutos.equals(other.idcoprodutos))) {
+        Valorcoprodutos other = (Valorcoprodutos) object;
+        if ((this.idvalorcoprodutos == null && other.idvalorcoprodutos != null) || (this.idvalorcoprodutos != null && !this.idvalorcoprodutos.equals(other.idvalorcoprodutos))) {
             return false;
         }
         return true;
@@ -208,15 +170,7 @@ public class Coprodutos implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.travelmate.model.Coprodutos[ idcoprodutos=" + idcoprodutos + " ]";
-    }
-
-    public List<Valorcoprodutos> getValorcoprodutosList() {
-        return valorcoprodutosList;
-    }
-
-    public void setValorcoprodutosList(List<Valorcoprodutos> valorcoprodutosList) {
-        this.valorcoprodutosList = valorcoprodutosList;
+        return "br.com.travelmate.model.Valorcoprodutos[ idvalorcoprodutos=" + idvalorcoprodutos + " ]";
     }
     
 }

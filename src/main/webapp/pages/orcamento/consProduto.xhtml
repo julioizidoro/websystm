@@ -11,27 +11,28 @@
                 <div id="centro">
                     <p:growl id="growl" showDetail="true" sticky="true"/> <br></br> <br></br> 
                     <p:outputLabel value="Pais:" for="pais" class="espacocobranca38" style="color:#fff"/>
-                    <p:selectOneMenu id="pais" value="#" style="width:18%;" class="espacocobranca29" 
+                    <p:selectOneMenu id="pais" value="#{coProdutosMB.pais}" style="width:18%;" class="espacocobranca29" 
                                       filter="true" filterMatchMode="startsWith" panelStyle="width:180px" >
                         <f:selectItem itemLabel="País" itemValue="0" noSelectionOption="true"/> 
-                        <f:selectItems id="idpais" value="#" var="cpais" itemLabel="#" itemValue="#"/>
-                        <f:attribute name="listaPais" value="#"/>
+                        <f:selectItems id="idpais" value="#{coProdutosMB.listaPais}" var="cpais" itemLabel="#{cpais.pais.nome}" itemValue="#{cpais.pais}"/>
+                        <f:attribute name="listaPais" value="#{coProdutosMB.listaPais}"/>
                         <p:ajax event="change" update="cidade"/> 
                     </p:selectOneMenu>
                     <p:outputLabel value="Cidade:" for="cidade" class="espacocobranca28" style="color:#fff"/>
-                    <p:selectOneMenu id="cidade" value="#" style="width:21%;" class="espacocobranca29" 
+                    <p:selectOneMenu id="cidade" value="#{coProdutosMB.cidade}" style="width:21%;" class="espacocobranca29" 
                                       filter="true" filterMatchMode="startsWith">
                         <f:selectItem itemLabel="Cidade" itemValue="0" noSelectionOption="true"/> 
-                        <f:selectItems id="idcidade2" value="#" var="ccidade" itemLabel="#" itemValue="#"/>
-                        <f:attribute name="listaCidade" value=""/>
-                        <p:ajax event="change"  update="fornecedor" />
+                        <f:selectItems id="idcidade2" value="#{coProdutosMB.pais.cidadeList}" var="ccidade" itemLabel="#{ccidade.nome}" itemValue="#{ccidade}"/>
+                        <f:attribute name="listaCidade" value="#{coProdutosMB.pais.cidadeList}"/>
+                        <p:ajax event="change"  update="fornecedor" listener="#{coProdutosMB.listarFornecedorCidade(0)}" />
                     </p:selectOneMenu>
                     <p:outputLabel value="Escola:" for="fornecedor" class="espacocobranca28" style="color:#fff"/>
-                    <p:selectOneMenu id="fornecedor" value="#" style="width:23%;" class="espacocobranca29"
+                    <p:selectOneMenu id="fornecedor" value="#{coProdutosMB.fornecedorcidade}" style="width:23%;" class="espacocobranca29"
                                       filter="true" filterMatchMode="startsWith">
                         <f:selectItem itemLabel="Fornecedor" itemValue="0" noSelectionOption="true"/> 
-                        <f:selectItems id="idfornecedor" value="#" var="fornecedor" itemLabel="#" itemValue="#"/>
-                        <f:attribute name="listaFornecedorCidade" value="#"/>
+                        <f:selectItems id="idfornecedor" value="#{coProdutosMB.listaFornecedorCidade}" var="fornecedor" itemLabel="#{fornecedor.fornecedor.nome}" itemValue="#{fornecedor}"/>
+                        <f:attribute name="listaFornecedorCidade" value="#{coProdutosMB.listaFornecedorCidade}"/>
+                        <p:ajax event="change"  update="tabelaprodutos" listener="#{coProdutosMB.listarProdutos()}"/>
                     </p:selectOneMenu>
                     <br></br> <br></br> 
                     <img src="../../resources/img/add.png" class="espacocobranca29"/>
