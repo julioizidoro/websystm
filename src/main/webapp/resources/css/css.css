@@ -1155,6 +1155,10 @@ text-align: left;
 .loginButtonn{
     margin-left:1%;
 }
+.loginButtonr{
+    margin-left:1%;
+    text-align: right;
+}
 .espacocampos6right{
     margin-left:2%;
     font-size: 10px;

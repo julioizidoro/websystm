@@ -5,6 +5,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:view contentType="text/html"></f:view>
     <ui:composition template="/pages/templates/default.xhtml">
         <ui:define name="corpo">
             <h:form id="orcamentoCurso">
@@ -12,7 +13,7 @@
                     <img  src="../../resources/img/ec.png" /> 
                     <h:panelGrid columns="1" style="width: 100%;margin-left:12%;margin-top: -8%">
                         <h:outputText value="Curso General English" style="font-weight:bold;font-size: 20px;color: #fff" class="espacocobranca29"/>
-                        <p:commandLink value="EC" title="Descrição" style="font-weight:bold;font-size: 13px;color: #fff" class="espacocobranca29"/>
+                        <p:commandLink value="EC" title="Descrição" style="font-weight:bold;font-size: 13px;color: #fff" class="espacocobranca29" oncomplete="PF('descricaoEscola').show()"/>
                         <p:commandLink value="Estados Unidos - Nova York" title="Mapa" style="font-weight:bold;font-size: 13px;color: #fff" class="espacocobranca29"  oncomplete="PF('mapaEscola').show()"/>
                      </h:panelGrid>
                     <br></br><br></br><br></br><br></br>
@@ -151,7 +152,7 @@
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </p:calendar>
                             <p:outputLabel value="Valor do Seguro:" for="valorseguro" class="imgadd"/>
-                            <p:inputText id="valorseguro"  style="width:11%" maxlength="45" class="loginButton2" readonly="true">
+                            <p:inputText id="valorseguro"  style="width:11%" maxlength="45" class="loginButtonr" readonly="true">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
                           </p:tab>
@@ -191,11 +192,17 @@
                     </p:dataScroller>
                     <br></br><br></br><br></br>
                 </div>
-                <p:dialog id="dialog_mapa" header="Localização" widgetVar="mapaEscola" width="625" height="400">
-                    <p:gmap center="40.754778, -73.986508" zoom="13" type="HYBRID" style="width:100%;height:400px" widgetVar="map"/>
+                
+                <p:dialog id="dialog_descricaoescola" header="Descrição" widgetVar="descricaoEscola" style="text-align: left;" width="400">
+                    <h:outputText value="Ec" style="font-weight:bold;font-size: 20px;color:#4DA20B;" />
+                    <br></br>
+                    <h:outputText value="Descrição" style="font-weight:bold;font-size: 12px;" />
                 </p:dialog>
+               <p:dialog id="dialog_mapa" header="Localização" widgetVar="mapaEscola" width="625" height="400">
+                    <p:gmap center="40.754778, -73.986508" zoom="13" type="HYBRID" style="width:600px;height:390px" model="#{mapaMB.marcacao}" mapTypeControl="false" widgetVar="mapa" />
+               </p:dialog>
             </h:form> 
-            
+           
         </ui:define>
     </ui:composition>
 </html>
