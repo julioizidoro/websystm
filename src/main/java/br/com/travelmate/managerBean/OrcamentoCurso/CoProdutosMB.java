@@ -2,7 +2,6 @@ package br.com.travelmate.managerBean.OrcamentoCurso;
 
 import br.com.travelmate.facade.CoProdutosFacade;
 import br.com.travelmate.facade.PaisProdutoFacade;
-import br.com.travelmate.facade.ValorCoProdutosFacade;
 import br.com.travelmate.managerBean.UsuarioLogadoMB;
 import br.com.travelmate.model.Cidade;
 import br.com.travelmate.model.Coprodutos;
@@ -17,9 +16,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 import org.primefaces.context.RequestContext;
 
 @Named
@@ -29,8 +30,9 @@ public class CoProdutosMB implements Serializable{
     
     @Inject
     private UsuarioLogadoMB usuarioLogadoMB;
-    private List<Valorcoprodutos> listaCoProdutos;
-    private Coprodutos coProdutos;
+    private Coprodutos coprodutos;
+    private Valorcoprodutos valorcoproduto;
+    private List<Coprodutos> listaCoProdutos;
      private Fornecedorcidade fornecedorcidade;
     private List<Paisproduto> listaPais;
     private Cidade cidade;
@@ -57,22 +59,36 @@ public class CoProdutosMB implements Serializable{
         this.usuarioLogadoMB = usuarioLogadoMB;
     }
 
-   
-    public List<Valorcoprodutos> getListaCoProdutos() {
+    public Coprodutos getCoprodutos() {
+        return coprodutos;
+    }
+
+    public void setCoprodutos(Coprodutos coprodutos) {
+        this.coprodutos = coprodutos;
+    }
+
+    public Valorcoprodutos getValorcoproduto() {
+        return valorcoproduto;
+    }
+
+    public void setValorcoproduto(Valorcoprodutos valorcoproduto) {
+        this.valorcoproduto = valorcoproduto;
+    }
+    
+    
+    
+
+    
+
+    public List<Coprodutos> getListaCoProdutos() {
         return listaCoProdutos;
     }
 
-    public void setListaCoProdutos(List<Valorcoprodutos> listaCoProdutos) {
+    public void setListaCoProdutos(List<Coprodutos> listaCoProdutos) {
         this.listaCoProdutos = listaCoProdutos;
     }
 
-    public Coprodutos getCoProdutos() {
-        return coProdutos;
-    }
-
-    public void setCoProdutos(Coprodutos coProdutos) {
-        this.coProdutos = coProdutos;
-    }
+    
 
     public Fornecedorcidade getFornecedorcidade() {
         return fornecedorcidade;
@@ -125,16 +141,14 @@ public class CoProdutosMB implements Serializable{
         }
     }
     
-    public void listarProdutos(){
+    public void listarCoProdutos(){
         if (fornecedorcidade!=null){
-            String dataSql = Formatacao.ConvercaoDataSql(new Date());
-            String sql = "Select v from Valorcoprodutos v where v.coprodutos.fornecedorcidade.idfornecedorcidade=" + 
-                    fornecedorcidade.getIdfornecedorcidade() + " and v.datainicial>='" + dataSql +
-                    "' and v.datafinal<='" + dataSql + "' order by v.coprodutos.produtosorcamento.descricao"; 
-            ValorCoProdutosFacade valorCoProdutosFacade = new ValorCoProdutosFacade();
-            listaCoProdutos = valorCoProdutosFacade.listar(sql);
+            String sql = "Select c from Coprodutos c where c.fornecedorcidade.idfornecedorcidade=" + 
+                    fornecedorcidade.getIdfornecedorcidade() + " order by c.produtosorcamento.descricao"; 
+            CoProdutosFacade coProdutosFacade = new CoProdutosFacade();
+            listaCoProdutos = coProdutosFacade.listar(sql);
             if (listaCoProdutos==null){
-                listaCoProdutos = new ArrayList<Valorcoprodutos>();
+                listaCoProdutos = new ArrayList<Coprodutos>();
             }
         }
     }
@@ -150,6 +164,13 @@ public class CoProdutosMB implements Serializable{
     
     public String cadProduto(){
          RequestContext.getCurrentInstance().openDialog("cadProduto");
+        return "";
+    }
+    
+    public String cadValoresProdutos(){
+        FacesContext fc = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+        session.setAttribute("CoProdutos", coprodutos);
         return "";
     }
     

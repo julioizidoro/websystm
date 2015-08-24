@@ -32,7 +32,7 @@
                         <f:selectItem itemLabel="Fornecedor" itemValue="0" noSelectionOption="true"/> 
                         <f:selectItems id="idfornecedor" value="#{coProdutosMB.listaFornecedorCidade}" var="fornecedor" itemLabel="#{fornecedor.fornecedor.nome}" itemValue="#{fornecedor}"/>
                         <f:attribute name="listaFornecedorCidade" value="#{coProdutosMB.listaFornecedorCidade}"/>
-                        <p:ajax event="change"  update="tabelaprodutos" listener="#{coProdutosMB.listarProdutos()}"/>
+                        <p:ajax event="change"  update="tabelaprodutos" listener="#{coProdutosMB.listarCoProdutos()}"/>
                     </p:selectOneMenu>
                     <br></br> <br></br> 
                     <img src="../../resources/img/add.png" class="espacocobranca29"/>
@@ -44,30 +44,10 @@
                                  paginator="true" rows="10" style="margin-bottom:20px" >
                         
                         <p:column headerText="Descrição" style="width:120px;" >
-                            <h:outputText value="#{produtos.coprodutos.produtosorcamento.descricao}" />
+                            <h:outputText value="#{produtos.produtosorcamento.descricao}" />
                         </p:column>
                         <p:column headerText="Tipo"  style="width:80px;">
-                            <h:outputText value="#{produtos.coprodutos.tipodata}" />
-                        </p:column>
-                        <p:column headerText="Data Início"  style="width:70px;" >
-                            <h:outputText value="#{produtos.datainicial}">
-                                <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
-                            </h:outputText>
-                        </p:column>
-                        <p:column headerText="Data Final"  style="width:70px;" >
-                            <h:outputText value="#{produtos.datafinal}">
-                                <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
-                            </h:outputText>
-                        </p:column>
-                        <p:column headerText="Valor Original" style="width:80px;text-align:right;" >
-                            <h:outputText value="#{produtos.valororiginal}">
-                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
-                            </h:outputText>  
-                        </p:column>
-                        <p:column headerText="Valor Promocional" style="width:80px;text-align:right;" >
-                            <h:outputText value="#{produtos.valorpromocional}">
-                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
-                            </h:outputText>  
+                            <h:outputText value="#{produtos.tipo}" />
                         </p:column>
                     </p:dataTable>
                     <br></br>

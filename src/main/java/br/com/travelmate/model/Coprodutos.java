@@ -37,7 +37,7 @@ public class Coprodutos implements Serializable {
     @Basic(optional = false)
     @Column(name = "idcoprodutos")
     private Integer idcoprodutos;
-    @Size(max = 2)
+    @Size(max = 20)
     @Column(name = "tipo")
     private String tipo;
     @Size(max = 10)
