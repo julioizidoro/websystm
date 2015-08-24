@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <link href="../../resources/css/css.css" rel="stylesheet" type="text/css" />
+        <link href="../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
+        <script>
+            PrimeFaces.locales['pt'] = {
+                closeText: 'Fechar',
+                prevText: 'Anterior',
+                nextText: 'Próximo',
+                currentText: 'Começo',
+                monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+                dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+                dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
+                weekHeader: 'Semana',
+                firstDay: 0,
+                isRTL: false,
+                showMonthAfterYear: false,
+                yearSuffix: '',
+                timeOnlyTitle: 'Só Horas',
+                timeText: 'Tempo',
+                hourText: 'Hora',
+                minuteText: 'Minuto',
+                secondText: 'Segundo',
+                ampm: false,
+                month: 'Mês',
+                week: 'Semana',
+                day: 'Dia',
+                allDayText: 'Todo o Dia'
+            };
+        </script>  
+    </h:head>
+    <h:body>
+        <h:form id="cadastroproduto" style="text-align:left;font-size: 10px;">
+            <title>Cadastro Produtos</title><br></br>
+            <p:outputLabel value="Produto:" for="produto"/>
+            <p:selectOneMenu id="produto" value="#{coProdutosMB.coobrigatorio.produtosorcamento}" style="width:50%;" class="espacocobranca29" >
+                <f:selectItem itemLabel="Produto" itemValue="0" noSelectionOption="true"/> 
+                <f:selectItems id="idproduto" value="#" var="produtoselecionado" itemLabel="#" itemValue="#"/>
+            </p:selectOneMenu>
+            <p:selectOneRadio id="tipoProduto" value="#{coProdutosMB.coobrigatorio.produtosorcamento.tipo}" layout="custom">
+                <f:selectItem itemLabel="Obrigatório" itemValue="Obrigatorio" />
+                <f:selectItem itemLabel="Opcional" itemValue="Opcional" />
+            </p:selectOneRadio>
+            <p:radioButton id="tipoProduto1" for="tipoProduto" itemIndex="1" class="espacocobranca29"/>
+            <h:outputLabel for="tipoProduto1" value="Obrigatório" class="espacocobranca29"/>
+
+            <p:radioButton id="tipoProduto2" for="tipoProduto" itemIndex="2" class="espacocobranca11"/>
+            <h:outputLabel for="tipoProduto2" value="Opcional" class="espacocobranca29"/>
+            <br></br><br></br>
+           
+            <p:outputLabel value="Licões:" for="licoes" class="espacocobranca29"/>
+            <p:inputText value="#{coProdutosMB.coobrigatorio.licoes}" id="licoes" style="width:87%;" class="espacocobranca29"  title="Aulas por semana"/>
+            
+            <br></br><br></br><br></br>
+            <p class="botaocadpacote"><br></br>
+                <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Confirmar" action="#"></p:commandButton>
+                <p:commandButton class="espacocampos" onclick="" icon="ui-icon-close" value="Cancelar" action="#"></p:commandButton>
+            <br></br><br></br></p>
+        </h:form>     
+    </h:body>
+</html>

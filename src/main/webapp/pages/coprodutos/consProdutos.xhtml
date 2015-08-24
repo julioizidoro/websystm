@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/pages/templates/default.xhtml">
+        <ui:define name="corpo">
+            <h:form id="orcamentocurso">
+                <div id="centro">
+                    <p:growl id="growl" showDetail="true" sticky="true"/> <br></br> <br></br> 
+                    <p:outputLabel value="Pais:" for="pais" class="espacocobranca38" style="color:#fff"/>
+                    <p:selectOneMenu id="pais" value="#{coProdutosMB.pais}" style="width:18%;" class="espacocobranca29" 
+                                      filter="true" filterMatchMode="startsWith" panelStyle="width:180px" >
+                        <f:selectItem itemLabel="País" itemValue="0" noSelectionOption="true"/> 
+                        <f:selectItems id="idpais" value="#{coProdutosMB.listaPais}" var="cpais" itemLabel="#{cpais.pais.nome}" itemValue="#{cpais.pais}"/>
+                        <f:attribute name="listaPais" value="#{coProdutosMB.listaPais}"/>
+                        <p:ajax event="change" update="cidade"/> 
+                    </p:selectOneMenu>
+                    <p:outputLabel value="Cidade:" for="cidade" class="espacocobranca28" style="color:#fff"/>
+                    <p:selectOneMenu id="cidade" value="#{coProdutosMB.cidade}" style="width:21%;" class="espacocobranca29" 
+                                      filter="true" filterMatchMode="startsWith">
+                        <f:selectItem itemLabel="Cidade" itemValue="0" noSelectionOption="true"/> 
+                        <f:selectItems id="idcidade2" value="#{coProdutosMB.pais.cidadeList}" var="ccidade" itemLabel="#{ccidade.nome}" itemValue="#{ccidade}"/>
+                        <f:attribute name="listaCidade" value="#{coProdutosMB.pais.cidadeList}"/>
+                        <p:ajax event="change"  update="fornecedor" listener="#{coProdutosMB.listarFornecedorCidade(0)}" />
+                    </p:selectOneMenu>
+                    <p:outputLabel value="Escola:" for="fornecedor" class="espacocobranca28" style="color:#fff"/>
+                    <p:selectOneMenu id="fornecedor" value="#{coProdutosMB.fornecedorcidade}" style="width:23%;" class="espacocobranca29"
+                                      filter="true" filterMatchMode="startsWith">
+                        <f:selectItem itemLabel="Fornecedor" itemValue="0" noSelectionOption="true"/> 
+                        <f:selectItems id="idfornecedor" value="#{coProdutosMB.listaFornecedorCidade}" var="fornecedor" itemLabel="#{fornecedor.fornecedor.nome}" itemValue="#{fornecedor}"/>
+                        <f:attribute name="listaFornecedorCidade" value="#{coProdutosMB.listaFornecedorCidade}"/>
+                        <p:ajax event="change"  update="tabelaprodutos" listener="#{coProdutosMB.listarProdutos()}"/>
+                    </p:selectOneMenu>
+                    <br></br> <br></br> 
+                    <img src="../../resources/img/add.png" class="espacocobranca29"/>
+                    <p:commandLink value="Adicionar Produto"  action="#{coProdutosMB.cadProduto()}" class="add"/>
+                    <br></br> <br></br>
+                    
+                    <p:dataTable id="tabelaprodutos" var="produtos"  value="#{coProdutosMB.listaCoProdutos}" class="tabela" 
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                                 paginator="true" rows="10" style="margin-bottom:20px" >
+                        
+                        <p:column headerText="Descrição"  >
+                            <h:outputText value="#{produtos.produtosorcamento.descricao}" />
+                        </p:column>
+                        <p:column headerText="Tipo" style="width:180px;" >
+                            <h:outputText value="#{produtos.tipo}" />
+                        </p:column>
+                         <p:column headerText="Lições" style="width:200px;" >
+                             <h:outputText value="#{produtos.licoes}" />
+                        </p:column>
+                        <p:column style="width:90px;text-align: center;" >
+                            <p:commandButton value="Valores" action="#{coProdutosMB.consValorProduto()}"/>
+                        </p:column>
+                    </p:dataTable>
+                    <br></br>
+                    <br></br>
+                </div>
+            </h:form>     
+        </ui:define>
+    </ui:composition>
+</html>

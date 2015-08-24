@@ -163,7 +163,7 @@ public class CoProdutosMB implements Serializable{
     }
     
     public String cadProduto(){
-         RequestContext.getCurrentInstance().openDialog("cadProduto");
+         RequestContext.getCurrentInstance().openDialog("cadProdutos");
         return "";
     }
     
@@ -174,6 +174,13 @@ public class CoProdutosMB implements Serializable{
         return "";
     }
     
+    public String consValorProduto(){
+        return "consValorProdutos";
+    }
     
+     public String cadValorProduto(){
+         RequestContext.getCurrentInstance().openDialog("cadValorProdutos");
+        return "";
+    }
     
 }
