@@ -2,12 +2,14 @@ package br.com.travelmate.managerBean.OrcamentoCurso;
 
 import br.com.travelmate.facade.CoProdutosFacade;
 import br.com.travelmate.facade.PaisProdutoFacade;
+import br.com.travelmate.facade.ValorCoProdutosFacade;
 import br.com.travelmate.managerBean.UsuarioLogadoMB;
 import br.com.travelmate.model.Cidade;
 import br.com.travelmate.model.Coprodutos;
 import br.com.travelmate.model.Fornecedorcidade;
 import br.com.travelmate.model.Pais;
 import br.com.travelmate.model.Paisproduto;
+import br.com.travelmate.model.Valorcoprodutos;
 import br.com.travelmate.util.Formatacao;
 import br.com.travelmate.util.GerarListas;
 import java.io.Serializable;
@@ -27,8 +29,8 @@ public class CoProdutosMB implements Serializable{
     
     @Inject
     private UsuarioLogadoMB usuarioLogadoMB;
-    private Coprodutos coobrigatorio;
-    private List<Coprodutos> listaCoProdutos;
+    private List<Valorcoprodutos> listaCoProdutos;
+    private Coprodutos coProdutos;
      private Fornecedorcidade fornecedorcidade;
     private List<Paisproduto> listaPais;
     private Cidade cidade;
@@ -54,27 +56,23 @@ public class CoProdutosMB implements Serializable{
     public void setUsuarioLogadoMB(UsuarioLogadoMB usuarioLogadoMB) {
         this.usuarioLogadoMB = usuarioLogadoMB;
     }
-    
-    
-    
 
-    public Coprodutos getCoobrigatorio() {
-        return coobrigatorio;
-    }
-
-    public void setCoobrigatorio(Coprodutos coobrigatorio) {
-        this.coobrigatorio = coobrigatorio;
-    }
-
-    public List<Coprodutos> getListaCoProdutos() {
+   
+    public List<Valorcoprodutos> getListaCoProdutos() {
         return listaCoProdutos;
     }
 
-    public void setListaCoProdutos(List<Coprodutos> listaCoProdutos) {
+    public void setListaCoProdutos(List<Valorcoprodutos> listaCoProdutos) {
         this.listaCoProdutos = listaCoProdutos;
     }
 
-    
+    public Coprodutos getCoProdutos() {
+        return coProdutos;
+    }
+
+    public void setCoProdutos(Coprodutos coProdutos) {
+        this.coProdutos = coProdutos;
+    }
 
     public Fornecedorcidade getFornecedorcidade() {
         return fornecedorcidade;
@@ -130,13 +128,13 @@ public class CoProdutosMB implements Serializable{
     public void listarProdutos(){
         if (fornecedorcidade!=null){
             String dataSql = Formatacao.ConvercaoDataSql(new Date());
-            String sql = "Select c from Coprodutos c where c.fornecedorcidade.idfornecedorcidade=" + 
-                    fornecedorcidade.getIdfornecedorcidade() + " and c.datainicial>='" + dataSql +
-                    "' and c.datafinal<='" + dataSql + "' order by c.produtosorcamento.descricao"; 
-            CoProdutosFacade coProdutosFacade = new CoProdutosFacade();
-            listaCoProdutos = coProdutosFacade.listar(sql);
+            String sql = "Select v from Valorcoprodutos v where v.coprodutos.fornecedorcidade.idfornecedorcidade=" + 
+                    fornecedorcidade.getIdfornecedorcidade() + " and v.datainicial>='" + dataSql +
+                    "' and v.datafinal<='" + dataSql + "' order by v.coprodutos.produtosorcamento.descricao"; 
+            ValorCoProdutosFacade valorCoProdutosFacade = new ValorCoProdutosFacade();
+            listaCoProdutos = valorCoProdutosFacade.listar(sql);
             if (listaCoProdutos==null){
-                listaCoProdutos = new ArrayList<Coprodutos>();
+                listaCoProdutos = new ArrayList<Valorcoprodutos>();
             }
         }
     }
