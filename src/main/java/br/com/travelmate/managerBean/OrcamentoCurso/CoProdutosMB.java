@@ -171,12 +171,12 @@ public class CoProdutosMB implements Serializable{
         FacesContext fc = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
         session.setAttribute("CoProdutos", coprodutos);
-        RequestContext.getCurrentInstance().openDialog("cadValorProdutos");
+        RequestContext.getCurrentInstance().openDialog("cadValorCoProdutos");
         return "";
     }
     
     public String consValorProduto(){
-        return "consValorProdutos";
+        return "consValorCoProdutos";
     }
     
 }
