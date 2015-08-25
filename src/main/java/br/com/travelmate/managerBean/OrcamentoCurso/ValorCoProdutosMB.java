@@ -12,6 +12,7 @@ import br.com.travelmate.model.Fornecedorcidade;
 import br.com.travelmate.model.Pacotetrecho;
 import br.com.travelmate.model.Pais;
 import br.com.travelmate.model.Valorcoprodutos;
+import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -24,7 +25,7 @@ import javax.servlet.http.HttpSession;
  */
 @Named
 @ViewScoped
-public class ValorCoProdutosMB {
+public class ValorCoProdutosMB implements Serializable{
     
     private Coprodutos coprodutos;
     private Valorcoprodutos valorCoProdutos; 
