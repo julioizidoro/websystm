@@ -18,7 +18,7 @@
                      </h:panelGrid>
                     <br></br><br></br><br></br><br></br>
                     <h:outputText value="Curso" style="font-weight:bold;font-size: 17px;color: #fff" class="espacocobranca29"/>
-                    <p:dataScroller value="#" var="obrigatorio" chunkSize="10" style="background:#fff" id="tabelaprodutoObrigatorio">
+                    <p:dataScroller id="tabelaprodutoObrigatorio" value="#" var="obrigatorio" chunkSize="10" style="background:#fff" >
                         <p:outputPanel style="text-align: right;width:100%">
                             <h:panelGrid columns="3" style="width:100%;background:#fff" >
                                 <p:outputPanel style="width:50%;" >
@@ -64,8 +64,7 @@
                     </p:dataScroller>
                     <br></br> <br></br>
                     <h:outputText value="Opcional" style="font-weight:bold;font-size: 17px;color: #fff" class="espacocobranca29"/>
-                    <p:dataScroller value="#" var="opcional" chunkSize="10" style="background:#fff" id="tabelaprodutoOpcional">
-                        
+                    <p:dataScroller id="tabelaprodutoOpcional" value="#" var="opcional" chunkSize="10" style="background:#fff" >
                         <p:outputPanel style="text-align: right;width:100%">
                             <h:panelGrid columns="3" style="width:100%;background:#fff" >
                                 <p:outputPanel  >
@@ -112,7 +111,7 @@
                     </p:dataScroller>
                     <br></br> <br></br>
                     <h:outputText value="Seguro Viagem" style="font-weight:bold;font-size: 17px;color: #fff" class="espacocobranca29"/>
-                     <p:accordionPanel class="painelPacote" style="width: 100%;margin-left:0%" activeIndex="-1">
+                     <p:accordionPanel id="tabelaSeguro" class="painelPacote" style="width: 100%;margin-left:0%" activeIndex="-1">
                           <p:tab  title="Adicionar">
                               <p:selectBooleanCheckbox value="#"/>
                               <p:outputLabel value="Seguradora:" for="seguradora" class="espacocobranca11"/>
@@ -152,23 +151,21 @@
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </p:calendar>
                             <p:outputLabel value="Valor do Seguro:" for="valorseguro" class="imgadd"/>
-                            <p:inputText id="valorseguro"  style="width:11%" maxlength="45" class="loginButtonr" readonly="true">
+                            <p:inputText id="valorseguro"  style="width:11%" maxlength="45" readonly="true" class="loginButtonr" >
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
                           </p:tab>
                      </p:accordionPanel>
                     <br></br> <br></br>
                     <h:outputText value="Acomodação" style="font-weight:bold;font-size: 17px;color: #fff" class="espacocobranca29"/>
-                    <p:dataScroller value="#" var="acomodacao" chunkSize="10" style="background:#fff" id="tabelaAcomodacao">
-                        
+                    <p:dataScroller id="tabelaAcomodacao" value="#" var="acomodacao" chunkSize="10" style="background:#fff" >
                         <p:accordionPanel class="painelPacote" style="width: 100%;margin-left: 0%" activeIndex="-1" >
                              <p:tab  title="Adicionar">
                              </p:tab>
                          </p:accordionPanel>
-
                     </p:dataScroller>
                     <br></br> <br></br>
-                    <p:dataScroller value="#" var="totais" chunkSize="10" style="background:#fff" id="tabelatotal">
+                    <p:dataScroller id="tabelatotal" value="#" var="totais" chunkSize="10" style="background:#fff" >
                         <h:panelGrid columns="2" cellpadding="5" style="text-align: right;width:50%;margin-left: 50%"> 
                             <p:outputPanel style="text-align: right;width:100%" >
                                 <h:outputText value="Desconto" style="font-weight:bold;font-size: 18px;color:#4DA20B" />

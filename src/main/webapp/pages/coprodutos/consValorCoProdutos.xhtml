@@ -11,10 +11,10 @@
                 <div id="centro">
                     <p:growl id="growl" showDetail="true" sticky="true"/> <br></br> <br></br> 
                      <img src="../../resources/img/add.png" class="espacocobranca29"/>
-                    <p:commandLink value="Adicionar Valor"  action="#{coProdutosMB.cadValorProduto()}" class="add"/>
+                     <p:commandLink value="Adicionar Valor"  action="#{coProdutosMB.cadValoresProdutos()}" class="add"/>
                     <br></br> <br></br>
                     
-                    <p:dataTable id="tabelavalorprodutos" var="valorproduto"  value="#{coProdutosMB.coobrigatorio.valorcoprodutosList}" class="tabela" 
+                    <p:dataTable id="tabelavalorprodutos" var="valorproduto"  value="#{coProdutosMB.coprodutos.valorcoprodutosList}" class="tabela" 
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
                                  paginator="true" rows="10" style="margin-bottom:20px" >
                         

@@ -41,11 +41,11 @@
         <h:form id="cadastroproduto" style="text-align:left;font-size: 10px;">
             <title>Cadastro Produtos</title><br></br>
             <p:outputLabel value="Produto:" for="produto"/>
-            <p:selectOneMenu id="produto" value="#{coProdutosMB.coobrigatorio.produtosorcamento}" style="width:50%;" class="espacocobranca29" >
+            <p:selectOneMenu id="produto" value="#{coProdutosMB.coprodutos.produtosorcamento}" style="width:50%;" class="espacocobranca29" >
                 <f:selectItem itemLabel="Produto" itemValue="0" noSelectionOption="true"/> 
                 <f:selectItems id="idproduto" value="#" var="produtoselecionado" itemLabel="#" itemValue="#"/>
             </p:selectOneMenu>
-            <p:selectOneRadio id="tipoProduto" value="#{coProdutosMB.coobrigatorio.produtosorcamento.tipo}" layout="custom">
+            <p:selectOneRadio id="tipoProduto" value="#{coProdutosMB.coprodutos.produtosorcamento.tipo}" layout="custom">
                 <f:selectItem itemLabel="Obrigatório" itemValue="Obrigatorio" />
                 <f:selectItem itemLabel="Opcional" itemValue="Opcional" />
             </p:selectOneRadio>
@@ -57,7 +57,7 @@
             <br></br><br></br>
            
             <p:outputLabel value="Licões:" for="licoes" class="espacocobranca29"/>
-            <p:inputText value="#{coProdutosMB.coobrigatorio.licoes}" id="licoes" style="width:87%;" class="espacocobranca29"  title="Aulas por semana"/>
+            <p:inputText value="#{coProdutosMB.coprodutos.licoes}" id="licoes" style="width:87%;" class="espacocobranca29"  title="Aulas por semana"/>
             
             <br></br><br></br><br></br>
             <p class="botaocadpacote"><br></br>
