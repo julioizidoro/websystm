@@ -110,44 +110,44 @@
                             </p:outputPanel>
                     </p:dataScroller>
                     <br></br> <br></br>
-                    <h:outputText value="Seguro Viagem" style="font-weight:bold;font-size: 17px;color: #fff" class="espacocobranca29"/>
-                     <p:accordionPanel id="tabelaSeguro" class="painelPacote" style="width: 100%;margin-left:0%" activeIndex="-1">
-                          <p:tab  title="Adicionar">
-                              <p:selectBooleanCheckbox value="#"/>
+                    <p:selectBooleanCheckbox value="#{orcamentoCursoMB.seguroSelecionado}" class="espacocobranca29">
+                        <p:ajax update="tabelaAdicionarSeguro"/>
+                    </p:selectBooleanCheckbox>
+                    <h:outputText  value="Seguro Viagem" style="font-weight:bold;font-size: 17px;color: #fff" class="espacocobranca29"/>
+                    <p:accordionPanel id="tabelaAdicionarSeguro"  class="painelPacote" style="width: 100%;margin-left:0%" activeIndex="-1">
+                        <p:tab  title="Adicionar">
                               <p:outputLabel value="Seguradora:" for="seguradora" class="espacocobranca11"/>
-                               <p:selectOneMenu class="espacocobranca29" style="width:18%;" id="seguradora"  value="#" 
-                                            >
+                              <p:selectOneMenu class="espacocobranca29" style="width:18%;" id="seguradora"  value="#" >
                                 <f:selectItem itemLabel="Seguradora" itemValue="0" noSelectionOption="true" /> 
                                 <f:selectItems id="idcidade" value="#" var="ccidade" itemLabel="#" itemValue="#"/>
                                 <f:attribute name="listaFornecedorCidade" value="#"/>
                                 <p:ajax event="change" update="plano"/> 
                             </p:selectOneMenu>
                             <p:outputLabel value="Plano:" for="plano" class="espacocobranca28"/>
-                            <p:selectOneMenu id="plano" class="espacocobranca29" style="width:18%;" value="#"
-                                             >
+                            <p:selectOneMenu id="plano" class="espacocobranca29" style="width:18%;" value="#" >
                                 <f:selectItem itemLabel="Seguradora" itemValue="0" noSelectionOption="true"/> 
                                 <f:selectItems id="idvaloresseguro" value="#" var="cvalorseguro" itemLabel="#" itemValue="#"/>
                                 <f:attribute name="listaValorSeguro" value="#"/>
                                 <p:ajax event="change" update="cobranca" />
                             </p:selectOneMenu>
                             <p:outputLabel value="Cobrança:" for="cobranca" class="espacocobranca28"/>
-                            <p:inputText id="cobranca" value="#" style="width:19%" maxlength="45" class="espacocobranca29" readonly="true"/>
+                            <p:inputText id="cobranca" value="#" style="width:19%" maxlength="45" class="espacocobranca29" readonly="#{orcamentoCursoMB.abilitarSeguro()}"/>
 
                             <br></br><br></br>
-                            <p:outputLabel value="Data inicial:" for="datainicio" class="espacocobranca33"/>
-                            <p:calendar id="datainicio" size="15"  class="espacocobranca29" locale="pt"  pattern="dd/MM/yyyy" >
+                            <p:outputLabel value="Data inicial:" for="datainicio" class="espacocobranca11"/>
+                            <p:calendar id="datainicio" size="15"  class="espacocobranca29" locale="pt"  pattern="dd/MM/yyyy" readonly="#{orcamentoCursoMB.abilitarSeguro()}">
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                                 <p:ajax event="change" />
                                 <p:ajax event="dateSelect" />
                             </p:calendar>
                             <p:outputLabel value="No. Semanas:" for="semanas" class="imgadd"/>
-                             <p:inputText id="semanas" style="width:7%" maxlength="45" class="loginButton2">
+                            <p:inputText id="semanas" style="width:7%" maxlength="45" class="loginButton2"  readonly="#{orcamentoCursoMB.abilitarSeguro()}">
                                 <f:convertNumber  type="number"/>
                                 <p:ajax event="blur" update="datatermino"  /> 
                                 <p:ajax event="blur" update="valorseguro" /> 
                             </p:inputText>
                             <p:outputLabel value="Data Final:" for="datatermino" class="imgadd"/>
-                            <p:calendar id="datatermino"  size="15" class="loginButton2" locale="pt"  pattern="dd/MM/yyyy" >
+                            <p:calendar id="datatermino"  size="15" class="loginButton2" locale="pt"  pattern="dd/MM/yyyy" readonly="#{orcamentoCursoMB.abilitarSeguro()}">
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </p:calendar>
                             <p:outputLabel value="Valor do Seguro:" for="valorseguro" class="imgadd"/>
@@ -157,11 +157,55 @@
                           </p:tab>
                      </p:accordionPanel>
                     <br></br> <br></br>
+                    <p:selectBooleanCheckbox value="#{orcamentoCursoMB.acomodacaoSelecionado}" class="espacocobranca29">
+                        <p:ajax update="tabelaAcomodacao"/>
+                    </p:selectBooleanCheckbox>
                     <h:outputText value="Acomodação" style="font-weight:bold;font-size: 17px;color: #fff" class="espacocobranca29"/>
                     <p:dataScroller id="tabelaAcomodacao" value="#" var="acomodacao" chunkSize="10" style="background:#fff" >
-                        <p:accordionPanel class="painelPacote" style="width: 100%;margin-left: 0%" activeIndex="-1" >
-                             <p:tab  title="Adicionar">
-                             </p:tab>
+                        <p:accordionPanel id="tabelaAdicionarAcomodacao" class="painelPacote" style="width: 100%;margin-left: 0%;font-size: 10px;" activeIndex="-1" >
+                            <p:tab  title="Adicionar">
+                                 <p:outputLabel value="Tipo Acomodação:" for="tipoacomodacao" class="espacocobranca42"/> 
+                                 <p:selectOneMenu  id="tipoacomodacao"  value="#" class="espacocobranca29" style="width:18%;" >
+                                    <f:selectItem itemLabel="Sem acomodação" itemValue="Sem acomodação" noSelectionOption="true"  />
+                                    <f:selectItem itemLabel="Casa de família" itemValue="Casa de família"/> 
+                                    <f:selectItem itemLabel="Alojamento" itemValue="Alojamento"/> 
+                                    <f:selectItem itemLabel="Outro" itemValue="Outro"/> 
+                                    <f:selectItem itemLabel="Studio" itemValue="Studio"/> 
+                                </p:selectOneMenu>
+                                <p:outputLabel value="Quarto:" for="quarto" class="imgadd" />
+                                <p:selectOneMenu  id="quarto"  value="#" class="espacocobranca29" style="width:19%;" >
+                                    <f:selectItem itemLabel="Sem quarto" itemValue="Sem quarto" noSelectionOption="true"  />
+                                    <f:selectItem itemLabel="Quarto individual" itemValue="Quarto individual"/> 
+                                    <f:selectItem itemLabel="Quarto duplo" itemValue="Quarto duplo"/> 
+                                    <f:selectItem itemLabel="Quarto triplo" itemValue="Quarto triplo"/> 
+                                    <f:selectItem itemLabel="Compartilhado" itemValue="Compartilhado"/> 
+                                </p:selectOneMenu>
+                                <p:outputLabel value="Refeição:" for="refeicao" class="espacocobranca29" /> 
+                                <p:selectOneMenu  id="refeicao"  value="#" class="espacocobranca29"  style="width:19%;" >
+                                    <f:selectItem itemLabel="Sem Refeição" itemValue="Sem Refeição" noSelectionOption="true"  />
+                                    <f:selectItem itemLabel="Café da Manhã" itemValue="Café da Manhã"/> 
+                                    <f:selectItem itemLabel="Meia Pensão (2 Refeições)" itemValue="Meia Pensão (2 Refeições)"/> 
+                                    <f:selectItem itemLabel="Pensão Completa (3 Refeições)" itemValue="Pensão Completa (3 Refeições)"/> 
+                                </p:selectOneMenu>
+                                <br></br><br></br><br></br>
+
+
+                                <p:outputLabel value="Data Chegada:" for="datachegada"  class="espacocobranca5"/>
+                                <p:calendar id="datachegada"  size="13" locale="pt" class="espacocobranca29" pattern="dd/MM/yyyy"  mask="true"  maxlength="15" readonly="#{orcamentoCursoMB.abilitarAcomodacao()}" >
+                                    <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                                </p:calendar>
+                                <p:outputLabel value="Nº Semanas:" for="numsemanas" class="espacocobranca28" />
+                                <p:inputText id="numsemanas" style="width:6%;" maxlength="100"  value="#" class="espacocobranca29" readonly="#{orcamentoCursoMB.abilitarAcomodacao()}" />
+                                <p:outputLabel value="Data Partida:" for="datapartida" class="espacocobranca28" />
+                                <p:calendar id="datapartida" size="13" class="espacocobranca29"  locale="pt"  pattern="dd/MM/yyyy"  mask="true"  maxlength="15" readonly="#{orcamentoCursoMB.abilitarAcomodacao()}">
+                                    <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                                </p:calendar>
+                                <p:outputLabel value="Valor:" for="valoracomodacao" class="espacocobranca20"/>
+                                <p:inputText id="valoracomodacao"  style="width:11%" maxlength="45" readonly="true" class="loginButtonr" >
+                                    <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                                </p:inputText>
+                                <br></br><br></br><br></br>
+                            </p:tab>
                          </p:accordionPanel>
                     </p:dataScroller>
                     <br></br> <br></br>
