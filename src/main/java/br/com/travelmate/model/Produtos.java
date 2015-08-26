@@ -30,7 +30,7 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Produtos.findAll", query = "SELECT p FROM Produtos p")})
 public class Produtos implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "produtos")
-    private List<Paisproduto> paisprodutoList;
+    private List<Fornecedorcidade> fornecedorcidadeList;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -45,12 +45,6 @@ public class Produtos implements Serializable {
     private Double comissaogerente;
     @Column(name = "idgerente")
     private Integer idgerente;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "produtos")
-    private List<Vendascomissao> vendascomissaoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "produtos")
-    private List<Vendas> vendasList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "produtos")
-    private List<Fornecedorcidade> fornecedorcidadeList;
 
     public Produtos() {
     }
@@ -91,30 +85,6 @@ public class Produtos implements Serializable {
         this.idgerente = idgerente;
     }
 
-    public List<Vendascomissao> getVendascomissaoList() {
-        return vendascomissaoList;
-    }
-
-    public void setVendascomissaoList(List<Vendascomissao> vendascomissaoList) {
-        this.vendascomissaoList = vendascomissaoList;
-    }
-
-    public List<Vendas> getVendasList() {
-        return vendasList;
-    }
-
-    public void setVendasList(List<Vendas> vendasList) {
-        this.vendasList = vendasList;
-    }
-
-    public List<Fornecedorcidade> getFornecedorcidadeList() {
-        return fornecedorcidadeList;
-    }
-
-    public void setFornecedorcidadeList(List<Fornecedorcidade> fornecedorcidadeList) {
-        this.fornecedorcidadeList = fornecedorcidadeList;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -137,15 +107,15 @@ public class Produtos implements Serializable {
 
     @Override
     public String toString() {
-        return getDescricao();
+        return "br.com.travelmate.model.Produtos[ idprodutos=" + idprodutos + " ]";
     }
 
-    public List<Paisproduto> getPaisprodutoList() {
-        return paisprodutoList;
+    public List<Fornecedorcidade> getFornecedorcidadeList() {
+        return fornecedorcidadeList;
     }
 
-    public void setPaisprodutoList(List<Paisproduto> paisprodutoList) {
-        this.paisprodutoList = paisprodutoList;
+    public void setFornecedorcidadeList(List<Fornecedorcidade> fornecedorcidadeList) {
+        this.fornecedorcidadeList = fornecedorcidadeList;
     }
     
 }

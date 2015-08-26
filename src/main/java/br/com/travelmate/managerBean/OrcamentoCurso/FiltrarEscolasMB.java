@@ -7,6 +7,7 @@ package br.com.travelmate.managerBean.OrcamentoCurso;
 
 import br.com.travelmate.facade.CambioFacade;
 import br.com.travelmate.facade.CoProdutosFacade;
+import br.com.travelmate.facade.FiltroOrcamentoProdutoFacade;
 import br.com.travelmate.facade.FornecedorCidadeIdiomaFacade;
 import br.com.travelmate.facade.FornecedorFeriasFacade;
 import br.com.travelmate.facade.PaisProdutoFacade;
@@ -15,6 +16,7 @@ import br.com.travelmate.managerBean.UsuarioLogadoMB;
 import br.com.travelmate.model.Cambio;
 import br.com.travelmate.model.Cidade;
 import br.com.travelmate.model.Coprodutos;
+import br.com.travelmate.model.Filtroorcamentoproduto;
 import br.com.travelmate.model.Fornecedorcidadeidioma;
 import br.com.travelmate.model.Fornecedorferias;
 import br.com.travelmate.model.Idioma;
@@ -51,10 +53,13 @@ public class FiltrarEscolasMB implements Serializable{
     private Pais pais;
     private List<Idioma> listaIdiomas;
     private Idioma idioma;
-    private List<Produtosorcamento> listaProdutosOrcamento;
+    private List<Filtroorcamentoproduto> listaProdutosOrcamento;
     private Date dataInicioCurso;
     private int numeroSemanas;
     private List<FornecedorProdutosBean> listaFornecedorProdutosBean;
+    private Date dataNascimento;
+    private String sexo;
+    private String nivelIdioma;
     
     @PostConstruct
     public void init(){
@@ -63,6 +68,7 @@ public class FiltrarEscolasMB implements Serializable{
         PaisProdutoFacade paisProdutoFacade = new PaisProdutoFacade();
         idProduto = usuarioLogadoMB.getParametrosprodutos().getCursos();
         listaPais = paisProdutoFacade.listar(idProduto);
+        gerarListaCursos();
         pais = new Pais();
         cidade = new Cidade();   
     }
@@ -141,13 +147,39 @@ public class FiltrarEscolasMB implements Serializable{
         this.numeroSemanas = numeroSemanas;
     }
 
-    public List<Produtosorcamento> getListaProdutosOrcamento() {
+    public List<Filtroorcamentoproduto> getListaProdutosOrcamento() {
         return listaProdutosOrcamento;
     }
 
-    public void setListaProdutosOrcamento(List<Produtosorcamento> listaProdutosOrcamento) {
+    public void setListaProdutosOrcamento(List<Filtroorcamentoproduto> listaProdutosOrcamento) {
         this.listaProdutosOrcamento = listaProdutosOrcamento;
     }
+
+    public Date getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(Date dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    public String getNivelIdioma() {
+        return nivelIdioma;
+    }
+
+    public void setNivelIdioma(String nivelIdioma) {
+        this.nivelIdioma = nivelIdioma;
+    }
+
+    
     
     public String LocalizarFornecedorCidade(){
         String sql = "Select f from Fornecedorcidadeidioma f where f.idioma.ididioma=" + idioma.getIdidioma() + " and f.fornecedorcidade.idfornecedorcidade=" +
@@ -283,6 +315,14 @@ public class FiltrarEscolasMB implements Serializable{
             }
         }
         return data;
+    }
+    
+    public void gerarListaCursos(){
+        FiltroOrcamentoProdutoFacade filtroOrcamentoProdutoFacade = new FiltroOrcamentoProdutoFacade();
+        listaProdutosOrcamento = filtroOrcamentoProdutoFacade.pesquisar(usuarioLogadoMB.getParametrosprodutos().getCursos());
+        if (listaProdutosOrcamento==null){
+            listaProdutosOrcamento = new ArrayList<Filtroorcamentoproduto>();
+        }
     }
     
     

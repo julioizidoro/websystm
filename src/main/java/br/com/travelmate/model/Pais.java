@@ -19,6 +19,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
@@ -32,6 +33,7 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Pais.findAll", query = "SELECT p FROM Pais p")})
 public class Pais implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pais")
+    @OrderBy(value="nome") 
     private List<Cidade> cidadeList;
     private static final long serialVersionUID = 1L;
     @Id
