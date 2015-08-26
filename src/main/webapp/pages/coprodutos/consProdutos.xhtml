@@ -13,7 +13,7 @@
                     <p:outputLabel value="Pais:" for="pais" class="espacocobranca38" style="color:#fff"/>
                     <p:selectOneMenu id="pais" value="#{coProdutosMB.pais}" style="width:18%;" class="espacocobranca29" 
                                       converter="PaisConverter" filter="true" filterMatchMode="startsWith" panelStyle="width:180px" >
-                        <f:selectItem itemLabel="País" itemValue="#{coProdutosMB.pais}" noSelectionOption="true"/> 
+                        <f:selectItem itemLabel="País" itemValue="0" noSelectionOption="true"/> 
                         <f:selectItems id="idpais" value="#{coProdutosMB.listaPais}" var="cpais" itemLabel="#{cpais.pais.nome}" itemValue="#{cpais.pais}"/>
                         <f:attribute name="listaPais" value="#{coProdutosMB.listaPais}"/>
                         <p:ajax event="change" update="cidade"/> 

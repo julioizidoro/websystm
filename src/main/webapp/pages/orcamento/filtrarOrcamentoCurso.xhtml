@@ -34,7 +34,7 @@
                             <p:outputLabel value="Pais:" for="pais" class="espacocobranca11"/>
                             <p:selectOneMenu id="pais" value="#{filtrarEscolasMB.pais}" style="width:18%;" class="espacocobranca29" 
                                              converter="PaisConverter" filter="true" filterMatchMode="startsWith" panelStyle="width:180px" >
-                                <f:selectItem itemLabel="País" itemValue="#{filtrarEscolasMB.pais}" noSelectionOption="true"/> 
+                                <f:selectItem itemLabel="País" itemValue="0" noSelectionOption="true"/> 
                                 <f:selectItems id="idpais" value="#{filtrarEscolasMB.listaPais}" var="cursopais" itemLabel="#{cursopais.pais.nome}" itemValue="#{cursopais.pais}"/>
                                 <f:attribute name="listaPais" value="#{filtrarEscolasMB.listaPais}"/>
                                 <p:ajax event="change" update="cidade"/> 
