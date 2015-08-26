@@ -5,7 +5,6 @@
  */
 package br.com.travelmate.managerBean.OrcamentoCurso;
 
-import br.com.travelmate.model.Coprodutos;
 import br.com.travelmate.model.Fornecedorcidade;
 import br.com.travelmate.model.Valorcoprodutos;
 import java.util.Date;

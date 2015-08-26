@@ -10,6 +10,7 @@ import br.com.travelmate.facade.CoProdutosFacade;
 import br.com.travelmate.facade.FiltroOrcamentoProdutoFacade;
 import br.com.travelmate.facade.FornecedorCidadeIdiomaFacade;
 import br.com.travelmate.facade.FornecedorFeriasFacade;
+import br.com.travelmate.facade.IdiomaFacade;
 import br.com.travelmate.facade.PaisProdutoFacade;
 import br.com.travelmate.facade.ValorCoProdutosFacade;
 import br.com.travelmate.managerBean.UsuarioLogadoMB;
@@ -70,6 +71,7 @@ public class FiltrarEscolasMB implements Serializable{
         idProduto = usuarioLogadoMB.getParametrosprodutos().getCursos();
         listaPais = paisProdutoFacade.listar(idProduto);
         gerarListaCursos();
+        gerarListaIdioma();
         pais = new Pais();
         cidade = new Cidade();   
     }
@@ -188,7 +190,14 @@ public class FiltrarEscolasMB implements Serializable{
         this.cursoSelecionado = cursoSelecionado;
     }
 
-    
+    public void gerarListaIdioma(){
+        IdiomaFacade idiomaFacade = new IdiomaFacade();
+        String sql = "Select i from Idioma  i  order by i.descricao";
+        listaIdiomas = idiomaFacade.listar(sql);
+        if (listaIdiomas==null){
+            listaIdiomas = new ArrayList<Idioma>();
+        }
+    }
     
     public String LocalizarFornecedorCidade(){
         String sql = "Select f from Fornecedorcidadeidioma f where f.idioma.ididioma=" + idioma.getIdidioma() + " and f.fornecedorcidade.idfornecedorcidade=" +
