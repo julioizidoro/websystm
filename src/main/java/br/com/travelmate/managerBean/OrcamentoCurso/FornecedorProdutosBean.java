@@ -6,7 +6,6 @@
 package br.com.travelmate.managerBean.OrcamentoCurso;
 
 import br.com.travelmate.model.Fornecedorcidade;
-import br.com.travelmate.model.Fornecedorlogo;
 import br.com.travelmate.model.Ocurso;
 import br.com.travelmate.model.Valorcoprodutos;
 import java.util.List;
@@ -24,7 +23,7 @@ public class FornecedorProdutosBean {
         private Float valorMoedaEstrangeira;
         private Float valorMoedaNacional;
         private Float valorDesconto;
-        private Fornecedorlogo fornecedorlogo;
+        
 
     public Fornecedorcidade getFornecedorCidade() {
         return fornecedorCidade;
@@ -81,14 +80,5 @@ public class FornecedorProdutosBean {
     public void setoCurso(Ocurso oCurso) {
         this.oCurso = oCurso;
     }
-
-    public Fornecedorlogo getFornecedorlogo() {
-        return fornecedorlogo;
-    }
-
-    public void setFornecedorlogo(Fornecedorlogo fornecedorlogo) {
-        this.fornecedorlogo = fornecedorlogo;
-    }
-    
     
 }
