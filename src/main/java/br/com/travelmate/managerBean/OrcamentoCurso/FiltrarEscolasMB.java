@@ -75,6 +75,14 @@ public class FiltrarEscolasMB implements Serializable{
         return usuarioLogadoMB;
     }
 
+    public Ocurso getoCurso() {
+        return oCurso;
+    }
+
+    public void setoCurso(Ocurso oCurso) {
+        this.oCurso = oCurso;
+    }
+    
     public void setUsuarioLogadoMB(UsuarioLogadoMB usuarioLogadoMB) {
         this.usuarioLogadoMB = usuarioLogadoMB;
     }
@@ -86,9 +94,8 @@ public class FiltrarEscolasMB implements Serializable{
     public void setListaFornecedorProdutosBean(List<FornecedorProdutosBean> listaFornecedorProdutosBean) {
         this.listaFornecedorProdutosBean = listaFornecedorProdutosBean;
     }
-
     
-
+    
     public List<Paisproduto> getListaPais() {
         return listaPais;
     }
@@ -129,7 +136,7 @@ public class FiltrarEscolasMB implements Serializable{
     public void setListaProdutosOrcamento(List<Filtroorcamentoproduto> listaProdutosOrcamento) {
         this.listaProdutosOrcamento = listaProdutosOrcamento;
     }
-
+    
 
     public void gerarListaIdioma(){
         IdiomaFacade idiomaFacade = new IdiomaFacade();
@@ -140,7 +147,7 @@ public class FiltrarEscolasMB implements Serializable{
         }
     }
     
-    public String LocalizarFornecedorCidade(){
+    public String localizarFornecedorCidade(){
         String sql = "Select f from Fornecedorcidadeidioma f where f.idioma.ididioma=" + oCurso.getIdioma().getIdidioma() + " and f.fornecedorcidade.idfornecedorcidade=" +
                 cidade.getIdcidade() + " and f.fornecedorcidade.produtos.idprodutos=" + usuarioLogadoMB.getParametrosprodutos().getCursos() +
                         " order by f.fornecedorcidade.peso desc";

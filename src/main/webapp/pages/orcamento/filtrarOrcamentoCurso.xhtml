@@ -14,11 +14,14 @@
                         <p:tab titleStyle="font-size:10px;" title="">
                             <legend id="iUsu5" ><b>Orçamento de Curso</b></legend>
                             <p:outputLabel value="Data de Nascimento:" for="datanasci" />
-                            <p:inputMask value="#" mask="99/99/9999"  id="datanasci" class="espacocobranca29" style="width:13%;"/>
+                            <p:inputMask value="#{filtrarEscolasMB.getoCurso.datanascimento}" mask="99/99/9999"  id="datanasci" class="espacocobranca29" style="width:13%;">
+                                <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                            </p:inputMask>
                             <p:outputLabel value="Idioma:" for="idioma" class="espacocobranca20"/>
-                            <p:selectOneMenu class="espacocobranca29" id="idioma"  value="#{filtrarEscolasMB.idioma}"  style="width:24%;">
+                            <p:selectOneMenu class="espacocobranca29" id="idioma"  value="#{filtrarEscolasMB.idioma}"  style="width:24%;"
+                                             converter="IdiomaConverter">
                                 <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"  />
-                                <f:selectItems id="ididioma" value="#{filtrarEscolasMB.listaIdiomas}" var="idiomac" itemLabel="#{idiomac.descricao}" itemValue="#{idiomac}"/>
+                                <f:selectItems id="ididioma" value="#{filtrarEscolasMB.listaIdiomas}" var="idiomacurso" itemLabel="#{idiomacurso.descricao}" itemValue="#{idiomacurso}"/>
                             </p:selectOneMenu>
                             <p:outputLabel value="Sexo:" for="sexo" class="espacocobranca20"/>
                             <p:selectOneMenu class="espacocobranca29" id="sexo"  value="#{filtrarEscolasMB.sexo}"  style="width:22%;">
@@ -69,7 +72,7 @@
                             <p:outputLabel value="Nº Semanas:" for="nsemanas" class="espacocobranca14" />
                             <p:inputText id="nsemanas" style="width:10.5%;" maxlength="100"  value="#{filtrarEscolasMB.numeroSemanas}"  class="espacocobranca29"/>
                             <br></br><br></br><br></br>
-                            <p:commandButton class="botaoFiltrar" value="Pesquisar" icon="ui-icon-search" action="#{filtrarEscolasMB.localizarFornecedorCidade()}"/>
+                            <p:commandButton class="botaoFiltrar" value="Pesquisar" icon="ui-icon-search" action="#{filtrarEscolasMB.localizarFornecedorCidade}"/>
                         </p:tab>
                     </p:accordionPanel>
                     <br></br><br></br><br></br>
