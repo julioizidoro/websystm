@@ -29,6 +29,8 @@ import javax.validation.constraints.Size;
 @NamedQueries({
     @NamedQuery(name = "Idioma.findAll", query = "SELECT i FROM Idioma i")})
 public class Idioma implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idioma")
+    private List<Ocurso> ocursoList;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -95,6 +97,14 @@ public class Idioma implements Serializable {
     @Override
     public String toString() {
         return "br.com.travelmate.model.Idioma[ ididioma=" + ididioma + " ]";
+    }
+
+    public List<Ocurso> getOcursoList() {
+        return ocursoList;
+    }
+
+    public void setOcursoList(List<Ocurso> ocursoList) {
+        this.ocursoList = ocursoList;
     }
     
 }

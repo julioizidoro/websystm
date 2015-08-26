@@ -6,8 +6,8 @@
 package br.com.travelmate.managerBean.OrcamentoCurso;
 
 import br.com.travelmate.model.Fornecedorcidade;
+import br.com.travelmate.model.Ocurso;
 import br.com.travelmate.model.Valorcoprodutos;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,9 +19,7 @@ public class FornecedorProdutosBean {
         private Fornecedorcidade fornecedorCidade;
         private List<Valorcoprodutos> listaObrigaroerios;
         private List<Valorcoprodutos> listaOpcionais;
-        private Date dataInicio;
-        private Date dataTermino;
-        private int numeroSemanas;
+        private Ocurso oCurso;
         private Float valorMoedaEstrangeira;
         private Float valorMoedaNacional;
         private Float valorDesconto;
@@ -49,35 +47,7 @@ public class FornecedorProdutosBean {
     public void setListaOpcionais(List<Valorcoprodutos> listaOpcionais) {
         this.listaOpcionais = listaOpcionais;
     }
-
     
-
-    public Date getDataInicio() {
-        return dataInicio;
-    }
-
-    public void setDataInicio(Date dataInicio) {
-        this.dataInicio = dataInicio;
-    }
-
-    
-
-    public Date getDataTermino() {
-        return dataTermino;
-    }
-
-    public void setDataTermino(Date dataTermino) {
-        this.dataTermino = dataTermino;
-    }
-
-    public int getNumeroSemanas() {
-        return numeroSemanas;
-    }
-
-    public void setNumeroSemanas(int numeroSemanas) {
-        this.numeroSemanas = numeroSemanas;
-    }
-
     public Float getValorMoedaEstrangeira() {
         return valorMoedaEstrangeira;
     }
@@ -101,7 +71,13 @@ public class FornecedorProdutosBean {
     public void setValorDesconto(Float valorDesconto) {
         this.valorDesconto = valorDesconto;
     }
-        
-        
+
+    public Ocurso getoCurso() {
+        return oCurso;
+    }
+
+    public void setoCurso(Ocurso oCurso) {
+        this.oCurso = oCurso;
+    }
     
 }
