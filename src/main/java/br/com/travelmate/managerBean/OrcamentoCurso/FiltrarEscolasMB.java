@@ -59,12 +59,10 @@ public class FiltrarEscolasMB implements Serializable{
     private List<Filtroorcamentoproduto> listaProdutosOrcamento;
     private Ocurso ocurso;
     private List<FornecedorProdutosBean> listaFornecedorProdutosBean;
-    
-    
-    @PostConstruct
-    public void init(){
+
+    public FiltrarEscolasMB() {
         int idProduto = 0;
-        getUsuarioLogadoMB();
+        //getUsuarioLogadoMB();
         PaisProdutoFacade paisProdutoFacade = new PaisProdutoFacade();
         idProduto = usuarioLogadoMB.getParametrosprodutos().getCursos();
         listaPais = paisProdutoFacade.listar(idProduto);
@@ -73,7 +71,7 @@ public class FiltrarEscolasMB implements Serializable{
         pais = new Pais();
         cidade = new Cidade();   
     }
-
+    
     public UsuarioLogadoMB getUsuarioLogadoMB() {
         return usuarioLogadoMB;
     }
