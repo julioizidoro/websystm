@@ -10,9 +10,11 @@ import br.com.travelmate.facade.CoProdutosFacade;
 import br.com.travelmate.facade.FiltroOrcamentoProdutoFacade;
 import br.com.travelmate.facade.FornecedorCidadeIdiomaFacade;
 import br.com.travelmate.facade.FornecedorFeriasFacade;
+import br.com.travelmate.facade.FornecedorLogoFacade;
 import br.com.travelmate.facade.IdiomaFacade;
 import br.com.travelmate.facade.PaisProdutoFacade;
 import br.com.travelmate.facade.ValorCoProdutosFacade;
+import br.com.travelmate.managerBean.OrcamentoCurso.FornecedorProdutosBean;
 import br.com.travelmate.managerBean.UsuarioLogadoMB;
 import br.com.travelmate.model.Cambio;
 import br.com.travelmate.model.Cidade;
@@ -20,6 +22,7 @@ import br.com.travelmate.model.Coprodutos;
 import br.com.travelmate.model.Filtroorcamentoproduto;
 import br.com.travelmate.model.Fornecedorcidadeidioma;
 import br.com.travelmate.model.Fornecedorferias;
+import br.com.travelmate.model.Fornecedorlogo;
 import br.com.travelmate.model.Idioma;
 import br.com.travelmate.model.Ocurso;
 import br.com.travelmate.model.Pais;
@@ -165,6 +168,7 @@ public class FiltrarEscolasMB implements Serializable{
     }
     
     public void listarCoProdutos(List<Fornecedorcidadeidioma> listaFornecedorCidadeIdioma){
+        FornecedorLogoFacade fornecedorLogoFacade = new FornecedorLogoFacade();
         for(int i=0;i<listaFornecedorCidadeIdioma.size();i++){
             FornecedorProdutosBean fpb = new FornecedorProdutosBean();
             fpb.setFornecedorCidade(listaFornecedorCidadeIdioma.get(i).getFornecedorcidade());
@@ -178,7 +182,9 @@ public class FiltrarEscolasMB implements Serializable{
             nocurso.setNumerosemanas(ocurso.getNumerosemanas());
             nocurso.setProdutosorcamento(ocurso.getProdutosorcamento());
             nocurso.setSexo(ocurso.getSexo());
-            fpb.setocurso(nocurso);
+            fpb.setoCurso(nocurso);
+            Fornecedorlogo fornecedorlogo = fornecedorLogoFacade.consultar(listaFornecedorCidadeIdioma.get(i).getFornecedorcidade().getFornecedor().getIdfornecedor());
+            fpb.setFornecedorlogo(fornecedorlogo);
             fpb.setListaObrigaroerios(gerarListaValorCoProdutos(fpb, "Obrigatorio"));
             fpb.setListaOpcionais(gerarListaValorCoProdutos(fpb, "Opcional"));
             fpb.setValorDesconto(0.0f);
