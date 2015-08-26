@@ -69,7 +69,7 @@ public class CambioDao {
     public Cambio consultarCambioMoeda(String data, int idMoeda) throws SQLException{
         manager = ConectionFactory.getConnection();
         manager.getTransaction().begin();
-        Query q = manager.createQuery("select c from Cambio c where c.moedas=" + idMoeda + " and c.data='" + data + "'");
+        Query q = manager.createQuery("select c from Cambio c where c.moedas.idmoedas=" + idMoeda + " and c.data='" + data + "'");
         manager.getTransaction().commit();
         if (q.getResultList().size()>0){
             return (Cambio) q.getResultList().get(0);

@@ -5,6 +5,7 @@
  */
 package br.com.travelmate.managerBean.OrcamentoCurso;
 
+import br.com.travelmate.model.Fornecedor;
 import java.io.Serializable;
 import java.util.List;
 import javax.faces.context.FacesContext;
@@ -27,4 +28,20 @@ public class ListaEscolasMB implements Serializable{
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
         listaFornecedorProdutosBean = (List<FornecedorProdutosBean>) session.getAttribute("listaFornecedorProdutosBean");
     }
+
+    public List<FornecedorProdutosBean> getListaFornecedorProdutosBean() {
+        return listaFornecedorProdutosBean;
+    }
+
+    public void setListaFornecedorProdutosBean(List<FornecedorProdutosBean> listaFornecedorProdutosBean) {
+        this.listaFornecedorProdutosBean = listaFornecedorProdutosBean;
+    }
+    
+    
+    public String srcLogo(){
+        Fornecedor fornecedor = new Fornecedor();
+        String logo = "http://www.travelmate.com.br/logoescola/" + fornecedor.getLogo() + ".png";
+        return logo;
+    }
+    
 }

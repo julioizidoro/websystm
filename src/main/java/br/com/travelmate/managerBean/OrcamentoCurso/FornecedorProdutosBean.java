@@ -19,10 +19,13 @@ public class FornecedorProdutosBean {
         private Fornecedorcidade fornecedorCidade;
         private List<Valorcoprodutos> listaObrigaroerios;
         private List<Valorcoprodutos> listaOpcionais;
-        private Ocurso oCurso;
+        private Ocurso ocurso;
         private Float valorMoedaEstrangeira;
+        private String svalorMoedaEstrangeira;
         private Float valorMoedaNacional;
+        private String svalorMoedaNacional;
         private Float valorDesconto;
+        private String svalorDesconto;
         
 
     public Fornecedorcidade getFornecedorCidade() {
@@ -73,12 +76,40 @@ public class FornecedorProdutosBean {
         this.valorDesconto = valorDesconto;
     }
 
-    public Ocurso getoCurso() {
-        return oCurso;
+    public Ocurso getOcurso() {
+        return ocurso;
     }
 
-    public void setoCurso(Ocurso oCurso) {
-        this.oCurso = oCurso;
+    public void setOcurso(Ocurso ocurso) {
+        this.ocurso = ocurso;
     }
+
+    public String getSvalorMoedaEstrangeira() {
+        return svalorMoedaEstrangeira;
+    }
+
+    public void setSvalorMoedaEstrangeira(String svalorMoedaEstrangeira) {
+        this.svalorMoedaEstrangeira = svalorMoedaEstrangeira;
+    }
+
+    public String getSvalorMoedaNacional() {
+        return svalorMoedaNacional;
+    }
+
+    public void setSvalorMoedaNacional(String svalorMoedaNacional) {
+        this.svalorMoedaNacional = svalorMoedaNacional;
+    }
+
+    public String getSvalorDesconto() {
+        return svalorDesconto;
+    }
+
+    public void setSvalorDesconto(String svalorDesconto) {
+        this.svalorDesconto = svalorDesconto;
+    }
+
+    
+    
+    
     
 }
