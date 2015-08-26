@@ -77,6 +77,8 @@ public class Fornecedor implements Serializable {
     private Double comissaoMatriz;
     @Column(name = "comissaoFranquia")
     private Double comissaoFranquia;
+    @Column(name = "logo")
+    private String logo;
 
     public Fornecedor() {
     }
@@ -211,6 +213,14 @@ public class Fornecedor implements Serializable {
 
     public void setComissaoFranquia(Double comissaoFranquia) {
         this.comissaoFranquia = comissaoFranquia;
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
     }
 
     @Override
