@@ -54,6 +54,7 @@ public class FiltrarEscolasMB implements Serializable{
     private List<Idioma> listaIdiomas;
     private Idioma idioma;
     private List<Filtroorcamentoproduto> listaProdutosOrcamento;
+    private Produtosorcamento cursoSelecionado;
     private Date dataInicioCurso;
     private int numeroSemanas;
     private List<FornecedorProdutosBean> listaFornecedorProdutosBean;
@@ -177,6 +178,14 @@ public class FiltrarEscolasMB implements Serializable{
 
     public void setNivelIdioma(String nivelIdioma) {
         this.nivelIdioma = nivelIdioma;
+    }
+
+    public Produtosorcamento getCursoSelecionado() {
+        return cursoSelecionado;
+    }
+
+    public void setCursoSelecionado(Produtosorcamento cursoSelecionado) {
+        this.cursoSelecionado = cursoSelecionado;
     }
 
     
