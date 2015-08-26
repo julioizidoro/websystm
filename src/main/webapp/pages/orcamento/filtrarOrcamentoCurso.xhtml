@@ -7,24 +7,24 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:composition template="/pages/templates/default.xhtml">
         <ui:define name="corpo">
-            <h:form id="filtrarOrcamentoCurso">
+            <h:form id="filtrarOrcamentocurso">
                 <div id="centro">
                     <br></br><br></br>
                     <p:accordionPanel class="painelFiltrar" >
                         <p:tab titleStyle="font-size:10px;" title="">
                             <legend id="iUsu5" ><b>Orçamento de Curso</b></legend>
                             <p:outputLabel value="Data de Nascimento:" for="datanasci" />
-                            <p:inputMask value="#{filtrarEscolasMB.oCurso.datanascimento}" mask="99/99/9999"  id="datanasci" class="espacocobranca29" style="width:13%;">
+                            <p:inputMask value="#{filtrarEscolasMB.ocurso.datanascimento}" mask="99/99/9999"  id="datanasci" class="espacocobranca29" style="width:13%;">
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </p:inputMask>
                             <p:outputLabel value="Idioma:" for="idioma" class="espacocobranca20"/>
-                            <p:selectOneMenu class="espacocobranca29" id="idioma"  value="#{filtrarEscolasMB.oCurso.idioma}"  style="width:24%;"
+                            <p:selectOneMenu class="espacocobranca29" id="idioma"  value="#{filtrarEscolasMB.ocurso.idioma}"  style="width:24%;"
                                              converter="IdiomaConverter">
                                 <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"  />
                                 <f:selectItems id="ididioma" value="#{filtrarEscolasMB.listaIdiomas}" var="idiomacurso" itemLabel="#{idiomacurso.descricao}" itemValue="#{idiomacurso}"/>
                             </p:selectOneMenu>
                             <p:outputLabel value="Sexo:" for="sexo" class="espacocobranca20"/>
-                            <p:selectOneMenu class="espacocobranca29" id="sexo"  value="#{filtrarEscolasMB.oCurso.sexo}"  style="width:22%;">
+                            <p:selectOneMenu class="espacocobranca29" id="sexo"  value="#{filtrarEscolasMB.ocurso.sexo}"  style="width:22%;">
                                 <f:selectItem itemLabel="Selecione" itemValue="selecione" noSelectionOption="true"  />
                                 <f:selectItem itemLabel="Feminino" itemValue="Feminino"/> 
                                 <f:selectItem itemLabel="Masculino" itemValue="Masculino"/> 
@@ -47,7 +47,7 @@
                                 <f:attribute name="listaCidade" value="#{filtrarEscolasMB.pais.cidadeList}"/>
                             </p:selectOneMenu>
                             <p:outputLabel value="Tipo:" for="tipodecurso" class="espacocobranca28"/>
-                            <p:selectOneMenu class="espacocobranca29" id="tipodecurso"  value="#{filtrarEscolasMB.oCurso.cursoSelecionado}"  style="width:22%;"
+                            <p:selectOneMenu class="espacocobranca29" id="tipodecurso"  value="#{filtrarEscolasMB.ocurso.cursoSelecionado}"  style="width:22%;"
                                              converter="ProdutoOrcamentoConverter">
                                 <f:selectItem itemLabel="Selecione Curso" itemValue="0" noSelectionOption="true"  />
                                 <f:selectItems id="idtipocurso" value="#{filtrarEscolasMB.listaProdutosOrcamento}" var="tipocurso" itemLabel="#{tipocurso.produtosorcamento.descricao}" itemValue="#{tipocurso.produtosorcamento}"/>
@@ -56,7 +56,7 @@
                             <br></br><br></br><br></br>
 
                             <p:outputLabel value="Nível:" for="nivel" class="espacocobranca41"/> 
-                            <p:selectOneMenu class="espacocobranca29" id="nivel"  value="#{filtrarEscolasMB.oCurso.nivelIdioma}"  style="width:20%;">
+                            <p:selectOneMenu class="espacocobranca29" id="nivel"  value="#{filtrarEscolasMB.ocurso.nivelIdioma}"  style="width:20%;">
                                 <f:selectItem itemLabel="Selecione" itemValue="selecione" noSelectionOption="true"  />
                                 <f:selectItem itemLabel="Básico" itemValue="Básico"/> 
                                 <f:selectItem itemLabel="Pré-Intermediário" itemValue="Pré-Intermediário"/> 
@@ -66,13 +66,13 @@
                                 <f:selectItem itemLabel="Fluente" itemValue="Fluente"/> 
                             </p:selectOneMenu>
                             <p:outputLabel value="Data de Início:" for="datainicio"  class="espacocobranca15"/>
-                            <p:calendar id="datainicio" value="#{filtrarEscolasMB.oCurso.dataInicioCurso}"  locale="pt"  pattern="dd/MM/yyyy"  mask="true"  maxlength="15" class="espacocobranca29" >
+                            <p:calendar id="datainicio" value="#{filtrarEscolasMB.ocurso.dataIniciocurso}"  locale="pt"  pattern="dd/MM/yyyy"  mask="true"  maxlength="15" class="espacocobranca29" >
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </p:calendar>
                             <p:outputLabel value="Nº Semanas:" for="nsemanas" class="espacocobranca14" />
-                            <p:inputText id="nsemanas" style="width:10.5%;" maxlength="100"  value="#{filtrarEscolasMB.oCurso.numeroSemanas}"  class="espacocobranca29"/>
+                            <p:inputText id="nsemanas" style="width:10.5%;" maxlength="100"  value="#{filtrarEscolasMB.ocurso.numeroSemanas}"  class="espacocobranca29"/>
                             <br></br><br></br><br></br>
-                            <p:commandButton class="botaoFiltrar" value="Pesquisar" icon="ui-icon-search" action="#{filtrarEscolasMB.localizarFornecedorCidade}"/>
+                            <p:commandButton class="botaoFiltrar" value="Pesquisar" icon="ui-icon-search" action="#{filtrarEscolasMB.localizarFornecedorCidade()}"/>
                         </p:tab>
                     </p:accordionPanel>
                     <br></br><br></br><br></br>

@@ -8,6 +8,7 @@ package br.com.travelmate.managerBean.OrcamentoCurso;
 import br.com.travelmate.model.Fornecedorcidade;
 import br.com.travelmate.model.Ocurso;
 import br.com.travelmate.model.Valorcoprodutos;
+import java.sql.Blob;
 import java.util.List;
 
 /**
@@ -79,5 +80,4 @@ public class FornecedorProdutosBean {
     public void setoCurso(Ocurso oCurso) {
         this.oCurso = oCurso;
     }
-    
 }

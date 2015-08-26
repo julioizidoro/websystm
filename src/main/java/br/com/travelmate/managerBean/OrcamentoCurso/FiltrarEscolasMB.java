@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.travelmate.managerBean.OrcamentoCurso;
+package br.com.travelmate.managerBean.Orcamentocurso;
 
 import br.com.travelmate.facade.CambioFacade;
 import br.com.travelmate.facade.CoProdutosFacade;
@@ -24,7 +24,6 @@ import br.com.travelmate.model.Idioma;
 import br.com.travelmate.model.Ocurso;
 import br.com.travelmate.model.Pais;
 import br.com.travelmate.model.Paisproduto;
-import br.com.travelmate.model.Produtosorcamento;
 import br.com.travelmate.model.Valorcoprodutos;
 import br.com.travelmate.util.Formatacao;
 import java.io.Serializable;
@@ -55,8 +54,9 @@ public class FiltrarEscolasMB implements Serializable{
     private Pais pais;
     private List<Idioma> listaIdiomas;
     private List<Filtroorcamentoproduto> listaProdutosOrcamento;
+    private Ocurso ocurso;
     private List<FornecedorProdutosBean> listaFornecedorProdutosBean;
-    private Ocurso oCurso;
+    
     
     @PostConstruct
     public void init(){
@@ -73,14 +73,6 @@ public class FiltrarEscolasMB implements Serializable{
 
     public UsuarioLogadoMB getUsuarioLogadoMB() {
         return usuarioLogadoMB;
-    }
-
-    public Ocurso getoCurso() {
-        return oCurso;
-    }
-
-    public void setoCurso(Ocurso oCurso) {
-        this.oCurso = oCurso;
     }
     
     public void setUsuarioLogadoMB(UsuarioLogadoMB usuarioLogadoMB) {
@@ -136,6 +128,12 @@ public class FiltrarEscolasMB implements Serializable{
     public void setListaProdutosOrcamento(List<Filtroorcamentoproduto> listaProdutosOrcamento) {
         this.listaProdutosOrcamento = listaProdutosOrcamento;
     }
+
+    public Ocurso getOcurso() {
+        return ocurso;
+    }
+
+    
     
 
     public void gerarListaIdioma(){
@@ -148,7 +146,7 @@ public class FiltrarEscolasMB implements Serializable{
     }
     
     public String localizarFornecedorCidade(){
-        String sql = "Select f from Fornecedorcidadeidioma f where f.idioma.ididioma=" + oCurso.getIdioma().getIdidioma() + " and f.fornecedorcidade.idfornecedorcidade=" +
+        String sql = "Select f from Fornecedorcidadeidioma f where f.idioma.ididioma=" + ocurso.getIdioma().getIdidioma() + " and f.fornecedorcidade.idfornecedorcidade=" +
                 cidade.getIdcidade() + " and f.fornecedorcidade.produtos.idprodutos=" + usuarioLogadoMB.getParametrosprodutos().getCursos() +
                         " order by f.fornecedorcidade.peso desc";
         FornecedorCidadeIdiomaFacade fornecedorCidadeIdiomaFacade = new FornecedorCidadeIdiomaFacade();
@@ -170,17 +168,17 @@ public class FiltrarEscolasMB implements Serializable{
         for(int i=0;i<listaFornecedorCidadeIdioma.size();i++){
             FornecedorProdutosBean fpb = new FornecedorProdutosBean();
             fpb.setFornecedorCidade(listaFornecedorCidadeIdioma.get(i).getFornecedorcidade());
-            Ocurso noCurso = new Ocurso();
-            noCurso.setDatainicio(oCurso.getDatainicio());
-            noCurso.setDatanascimento(oCurso.getDatanascimento());
-            noCurso.setDatatermino(calcularDataTermino());
-            noCurso.setFornecedorcidade(listaFornecedorCidadeIdioma.get(i).getFornecedorcidade());
-            noCurso.setIdioma(oCurso.getIdioma());
-            noCurso.setNivelidioma(oCurso.getNivelidioma());
-            noCurso.setNumerosemanas(oCurso.getNumerosemanas());
-            noCurso.setProdutosorcamento(oCurso.getProdutosorcamento());
-            noCurso.setSexo(oCurso.getSexo());
-            fpb.setoCurso(noCurso);
+            Ocurso nocurso = new Ocurso();
+            nocurso.setDatainicio(ocurso.getDatainicio());
+            nocurso.setDatanascimento(ocurso.getDatanascimento());
+            nocurso.setDatatermino(calcularDataTermino());
+            nocurso.setFornecedorcidade(listaFornecedorCidadeIdioma.get(i).getFornecedorcidade());
+            nocurso.setIdioma(ocurso.getIdioma());
+            nocurso.setNivelidioma(ocurso.getNivelidioma());
+            nocurso.setNumerosemanas(ocurso.getNumerosemanas());
+            nocurso.setProdutosorcamento(ocurso.getProdutosorcamento());
+            nocurso.setSexo(ocurso.getSexo());
+            fpb.setocurso(nocurso);
             fpb.setListaObrigaroerios(gerarListaValorCoProdutos(fpb, "Obrigatorio"));
             fpb.setListaOpcionais(gerarListaValorCoProdutos(fpb, "Opcional"));
             fpb.setValorDesconto(0.0f);
@@ -239,7 +237,7 @@ public class FiltrarEscolasMB implements Serializable{
                 sql = "Select v from  Valorcoprodutos v where v.datainicial>='" +
                         Formatacao.ConvercaoDataSql(new Date()) +"' and v.datafinal<='" +
                         Formatacao.ConvercaoDataSql(new Date()) + "' and v.numerosemanainicial>=" +
-                        oCurso.getNumerosemanas() + " and and v.numerosemanainicial<=" + oCurso.getNumerosemanas() + " and v.tipodata='DI' and coprodutos";
+                        ocurso.getNumerosemanas() + " and and v.numerosemanainicial<=" + ocurso.getNumerosemanas() + " and v.tipodata='DI' and coprodutos";
                 
                 List<Valorcoprodutos> listaValorcoprodutoses = valorCoProdutosFacade.listar(sql);
                 if (listaValorcoprodutoses!=null){
@@ -266,7 +264,7 @@ public class FiltrarEscolasMB implements Serializable{
     }
     
     private Date calcularDataTermino() {
-        Date data = Formatacao.calcularDataFinal(oCurso.getDatainicio(), oCurso.getNumerosemanas(), null);
+        Date data = Formatacao.calcularDataFinal(ocurso.getDatainicio(), ocurso.getNumerosemanas(), null);
         int diaSemana = Formatacao.diaSemana(data);
         try {
             if (diaSemana == 1) {
@@ -277,7 +275,7 @@ public class FiltrarEscolasMB implements Serializable{
         } catch (Exception ex) {
             Logger.getLogger(FiltrarEscolasMB.class.getName()).log(Level.SEVERE, null, ex);
         }
-        String sql = "Select f from f.datafinal>='" + Formatacao.ConvercaoDataSql(oCurso.getDatainicio()) + "' and f.datafinal<='" + 
+        String sql = "Select f from f.datafinal>='" + Formatacao.ConvercaoDataSql(ocurso.getDatainicio()) + "' and f.datafinal<='" + 
                 Formatacao.ConvercaoDataSql(data) + "'";
         FornecedorFeriasFacade fornecedorFeriasFacade = new FornecedorFeriasFacade();
         List<Fornecedorferias> listaFornecedorferias = fornecedorFeriasFacade.listar(sql);
