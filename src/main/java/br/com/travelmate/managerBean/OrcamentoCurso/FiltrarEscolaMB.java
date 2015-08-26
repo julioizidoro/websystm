@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package br.com.travelmate.managerBean.Orcamentocurso;
+package br.com.travelmate.managerBean.OrcamentoCurso;
 
 import br.com.travelmate.facade.CambioFacade;
 import br.com.travelmate.facade.CoProdutosFacade;
@@ -14,7 +9,6 @@ import br.com.travelmate.facade.FornecedorLogoFacade;
 import br.com.travelmate.facade.IdiomaFacade;
 import br.com.travelmate.facade.PaisProdutoFacade;
 import br.com.travelmate.facade.ValorCoProdutosFacade;
-import br.com.travelmate.managerBean.OrcamentoCurso.FornecedorProdutosBean;
 import br.com.travelmate.managerBean.UsuarioLogadoMB;
 import br.com.travelmate.model.Cambio;
 import br.com.travelmate.model.Cidade;
@@ -42,27 +36,26 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author Wolverine
- */
 @Named
 @ViewScoped
-public class FiltrarEscolasMB implements Serializable{
+public class FiltrarEscolaMB implements Serializable{
     
-    @Inject
+   @Inject
     private UsuarioLogadoMB usuarioLogadoMB;
     private List<Paisproduto> listaPais;
     private Cidade cidade;
     private Pais pais;
+    private Idioma idioma;
     private List<Idioma> listaIdiomas;
     private List<Filtroorcamentoproduto> listaProdutosOrcamento;
     private Ocurso ocurso;
     private List<FornecedorProdutosBean> listaFornecedorProdutosBean;
-
-    public FiltrarEscolasMB() {
+    
+    
+    @PostConstruct
+    public void init(){
         int idProduto = 0;
-        //getUsuarioLogadoMB();
+        getUsuarioLogadoMB();
         PaisProdutoFacade paisProdutoFacade = new PaisProdutoFacade();
         idProduto = usuarioLogadoMB.getParametrosprodutos().getCursos();
         listaPais = paisProdutoFacade.listar(idProduto);
@@ -70,8 +63,10 @@ public class FiltrarEscolasMB implements Serializable{
         gerarListaIdioma();
         pais = new Pais();
         cidade = new Cidade();   
+        ocurso = new Ocurso();
+        idioma = new Idioma();
     }
-    
+
     public UsuarioLogadoMB getUsuarioLogadoMB() {
         return usuarioLogadoMB;
     }
@@ -86,6 +81,14 @@ public class FiltrarEscolasMB implements Serializable{
 
     public void setListaFornecedorProdutosBean(List<FornecedorProdutosBean> listaFornecedorProdutosBean) {
         this.listaFornecedorProdutosBean = listaFornecedorProdutosBean;
+    }
+
+    public Idioma getIdioma() {
+        return idioma;
+    }
+
+    public void setIdioma(Idioma idioma) {
+        this.idioma = idioma;
     }
     
     
@@ -147,7 +150,7 @@ public class FiltrarEscolasMB implements Serializable{
     }
     
     public String localizarFornecedorCidade(){
-        String sql = "Select f from Fornecedorcidadeidioma f where f.idioma.ididioma=" + ocurso.getIdioma().getIdidioma() + " and f.fornecedorcidade.idfornecedorcidade=" +
+        String sql = "Select f from Fornecedorcidadeidioma f where f.idioma.ididioma=" + idioma.getIdidioma() + " and f.fornecedorcidade.cidade.idcidade=" +
                 cidade.getIdcidade() + " and f.fornecedorcidade.produtos.idprodutos=" + usuarioLogadoMB.getParametrosprodutos().getCursos() +
                         " order by f.fornecedorcidade.peso desc";
         FornecedorCidadeIdiomaFacade fornecedorCidadeIdiomaFacade = new FornecedorCidadeIdiomaFacade();
@@ -202,7 +205,7 @@ public class FiltrarEscolasMB implements Serializable{
             try {
                 data = Formatacao.SomarDiasDatas(data, -1);
             } catch (Exception ex) {
-                Logger.getLogger(FiltrarEscolasMB.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(br.com.travelmate.managerBean.OrcamentoCurso.FiltrarEscolaMB.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         float valorMoeda = 0.0f;
@@ -277,7 +280,7 @@ public class FiltrarEscolasMB implements Serializable{
                 data = Formatacao.SomarDiasDatas(data, 1);
             }
         } catch (Exception ex) {
-            Logger.getLogger(FiltrarEscolasMB.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(br.com.travelmate.managerBean.OrcamentoCurso.FiltrarEscolaMB.class.getName()).log(Level.SEVERE, null, ex);
         }
         String sql = "Select f from f.datafinal>='" + Formatacao.ConvercaoDataSql(ocurso.getDatainicio()) + "' and f.datafinal<='" + 
                 Formatacao.ConvercaoDataSql(data) + "'";
@@ -287,7 +290,7 @@ public class FiltrarEscolasMB implements Serializable{
             try {
                 data = Formatacao.SomarDiasDatas(data, listaFornecedorferias.get(0).getNumerodias());
             } catch (Exception ex) {
-                Logger.getLogger(FiltrarEscolasMB.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(br.com.travelmate.managerBean.OrcamentoCurso.FiltrarEscolaMB.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return data;
@@ -300,9 +303,5 @@ public class FiltrarEscolasMB implements Serializable{
             listaProdutosOrcamento = new ArrayList<Filtroorcamentoproduto>();
         }
     }
-    
-    
-    
-    
     
 }

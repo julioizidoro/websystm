@@ -26,6 +26,7 @@ public class OrcamentoCursoMB implements Serializable{
 
     public void setFornecedorProdutosBean(FornecedorProdutosBean fornecedorProdutosBean) {
         this.fornecedorProdutosBean = fornecedorProdutosBean;
+        
     }
 
     public boolean isSeguroSelecionado() {
