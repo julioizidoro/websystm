@@ -51,10 +51,10 @@ public class FiltroOrcamentoProdutoDao {
         return null;
     }
     
-    public List<Filtroorcamentoproduto> pesquisar(int idProduto) throws SQLException{
+    public List<Filtroorcamentoproduto> pesquisar(String sql) throws SQLException{
         manager = ConectionFactory.getConnection();
          manager.getTransaction().begin();
-        Query q = manager.createQuery("select f from Filtroorcamentoproduto f where f.produtos.idprodutos=" + idProduto + " order by f.produtosorcamento.descricao");
+        Query q = manager.createQuery(sql);
            manager.getTransaction().commit();
         if (q.getResultList().size()>0){
             return q.getResultList();

@@ -209,6 +209,7 @@ public class FiltrarEscolaMB implements Serializable{
         }
         float valorMoeda = 0.0f;
         if (cambio!=null){
+            fornecedorProdutosBean.setCambio(cambio);
              valorMoeda = fornecedorProdutosBean.getValorMoedaEstrangeira() * cambio.getValor();
         }
         return valorMoeda;
@@ -313,7 +314,9 @@ public class FiltrarEscolaMB implements Serializable{
     
     public void gerarListaCursos(){
         FiltroOrcamentoProdutoFacade filtroOrcamentoProdutoFacade = new FiltroOrcamentoProdutoFacade();
-        listaProdutosOrcamento = filtroOrcamentoProdutoFacade.pesquisar(usuarioLogadoMB.getParametrosprodutos().getCursos());
+        String sql = "select f from Filtroorcamentoproduto f where f.produtos.idprodutos=" + 
+                usuarioLogadoMB.getParametrosprodutos().getCursos() + " and f.produtoorcamento='C' order by f.produtosorcamento.descricao";
+        listaProdutosOrcamento = filtroOrcamentoProdutoFacade.pesquisar(sql);
         if (listaProdutosOrcamento==null){
             listaProdutosOrcamento = new ArrayList<Filtroorcamentoproduto>();
         }

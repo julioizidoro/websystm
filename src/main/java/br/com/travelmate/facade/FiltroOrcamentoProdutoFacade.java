@@ -49,10 +49,10 @@ public class FiltroOrcamentoProdutoFacade {
         
     }
     
-    public List<Filtroorcamentoproduto> pesquisar(int idProduto) {
+    public List<Filtroorcamentoproduto> pesquisar(String sql) {
         filtroOrcamentoProdutoDao = new FiltroOrcamentoProdutoDao();
         try {
-            return filtroOrcamentoProdutoDao.pesquisar(idProduto);
+            return filtroOrcamentoProdutoDao.pesquisar(sql);
         } catch (SQLException ex) {
             Logger.getLogger(FiltroOrcamentoProdutoFacade.class.getName()).log(Level.SEVERE, null, ex);
             return null;

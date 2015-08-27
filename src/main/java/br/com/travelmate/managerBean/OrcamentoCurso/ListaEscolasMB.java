@@ -38,9 +38,11 @@ public class ListaEscolasMB implements Serializable{
     }
     
     
-    public String srcLogo(){
-        Fornecedor fornecedor = new Fornecedor();
-        String logo = "http://www.travelmate.com.br/logoescola/" + fornecedor.getLogo() + ".png";
+    public String srcLogo(Fornecedor fornecedor){
+        String logo ="";
+        if (fornecedor!=null){
+            logo = "http://www.travelmate.com.br/logoescola/" + fornecedor.getLogo();
+        }
         return logo;
     }
     

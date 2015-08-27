@@ -87,7 +87,9 @@ public class CadCoProdutosMB implements Serializable{
     
     public void gerarListaProdutosOrcamento(){
         FiltroOrcamentoProdutoFacade filtroOrcamentoProdutoFacade = new FiltroOrcamentoProdutoFacade();
-        listaFiltroorcamentoproduto = filtroOrcamentoProdutoFacade.pesquisar(usuarioLogadoMB.getParametrosprodutos().getCursos());
+        String sql = "select f from Filtroorcamentoproduto f where f.produtos.idprodutos=" + 
+                usuarioLogadoMB.getParametrosprodutos().getCursos() + " order by f.produtosorcamento.descricao";
+        listaFiltroorcamentoproduto = filtroOrcamentoProdutoFacade.pesquisar(sql);
         if (listaFiltroorcamentoproduto==null){
             listaFiltroorcamentoproduto = new ArrayList<Filtroorcamentoproduto>();
         }
