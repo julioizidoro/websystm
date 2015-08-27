@@ -9,14 +9,14 @@
     <ui:composition template="/pages/templates/default.xhtml">
         <ui:define name="corpo">
             <h:form id="orcamentoCurso">
-                <div id="centro"> <br></br><br></br>
+                <div id="centro"> <br></br>
                     <img  src="#{orcamentoCursoMB.srcLogo(orcamentoCursoMB.fornecedorProdutosBean.fornecedorCidade.fornecedor)}" /> 
                     <h:panelGrid columns="1" style="width: 100%;margin-left:12%;margin-top: -8%">
                         <h:outputText value="#{orcamentoCursoMB.fornecedorProdutosBean.fornecedorCidade.produtos.descricao}" style="font-weight:bold;font-size: 20px;color: #fff" class="espacocobranca29"/>
                         <p:commandLink value="#{orcamentoCursoMB.fornecedorProdutosBean.fornecedorCidade.fornecedor.nome}" title="Descrição" style="font-weight:bold;font-size: 19px;color: #fff" class="espacocobranca29" oncomplete="PF('descricaoEscola').show()"/>
                         <p:commandLink value="#{orcamentoCursoMB.fornecedorProdutosBean.fornecedorCidade.cidade.nome}" title="Mapa" style="font-weight:bold;font-size: 13px;color: #fff" class="espacocobranca29"  oncomplete="PF('mapaEscola').show()"/>
                      </h:panelGrid>
-                    <br></br><br></br><br></br><br></br>
+                    <br></br><br></br><br></br>
                     <h:outputText value="Curso" style="font-weight:bold;font-size: 17px;color: #fff" class="espacocobranca29"/>
                     <p:dataScroller id="tabelaprodutoObrigatorio" value="#{orcamentoCursoMB.fornecedorProdutosBean.listaObrigaroerios}" var="obrigatorio" chunkSize="10" style="background:#fff" >
                         <p:outputPanel style="text-align: right;width:100%">
@@ -151,22 +151,25 @@
                     <h:outputText  value="Seguro Viagem" style="font-weight:bold;font-size: 17px;color: #fff" class="espacocobranca29"/>
                     <p:accordionPanel id="tabelaAdicionarSeguro"  class="painelPacote" style="width: 100%;margin-left:0%" activeIndex="-1">
                         <p:tab  title="Adicionar">
-                              <p:outputLabel value="Seguradora:" for="seguradora" class="espacocobranca11"/>
-                              <p:selectOneMenu class="espacocobranca29" style="width:18%;" id="seguradora"  value="#{orcamentoCursoMB.fornecedorcidade}" disabled="#{orcamentoCursoMB.habilitarSeguro()}">
+                            
+                            <p:outputLabel value="Seguradora:" for="seguradora" class="espacocobranca11"/>
+                            <p:selectOneMenu class="espacocobranca29" style="width:18%;" id="seguradora"  value="#{orcamentoCursoMB.fornecedorcidade}" 
+                                             disabled="#{orcamentoCursoMB.habilitarSeguro()}" converter="FornecedorCidadeConverter">
                                 <f:selectItem itemLabel="Seguradora" itemValue="0" noSelectionOption="true" /> 
-                                <f:selectItems id="idcidade" value="#{orcamentoCursoMB.listaFornecedorCidade}" var="ccidade" itemLabel="#{ccidade.fornecedor.nome}" itemValue="#{ccidade}"/>
+                                <f:selectItems id="idseguradora" value="#{orcamentoCursoMB.listaFornecedorCidade}" var="cursoseguradora" itemLabel="#{cursoseguradora.fornecedor.nome}" itemValue="#{cursoseguradora.fornecedor}"/>
                                 <f:attribute name="listaFornecedorCidade" value="#{orcamentoCursoMB.listaFornecedorCidade}"/>
                                 <p:ajax event="change" update="plano"/> 
                             </p:selectOneMenu>
                             <p:outputLabel value="Plano:" for="plano" class="espacocobranca28"/>
-                            <p:selectOneMenu id="plano" class="espacocobranca29" style="width:18%;" value="#{orcamentoCursoMB.seguroviagem.valoresseguro}" disabled="#{orcamentoCursoMB.habilitarSeguro()}">
+                            <p:selectOneMenu id="plano" class="espacocampos" style="width:25%;" value="#{seguroViagemMB.valoresseguro}"
+                                            disabled="#{orcamentoCursoMB.habilitarSeguro()}" converter="ValorSeguroConverter" >
                                 <f:selectItem itemLabel="Seguradora" itemValue="0" noSelectionOption="true"/> 
                                 <f:selectItems id="idvaloresseguro" value="#{orcamentoCursoMB.fornecedorcidade.valoresseguroList}" var="cvalorseguro" itemLabel="#{cvalorseguro.plano}" itemValue="#{cvalorseguro}"/>
                                 <f:attribute name="listaValorSeguro" value="#{orcamentoCursoMB.fornecedorcidade.valoresseguroList}"/>
                                 <p:ajax event="change" update="cobranca" />
                             </p:selectOneMenu>
                             <p:outputLabel value="Cobrança:" for="cobranca" class="espacocobranca28"/>
-                            <p:inputText id="cobranca" value="#{orcamentoCursoMB.seguroviagem.valoresseguro.cobranca}" style="width:19%" maxlength="45" class="espacocobranca29" readonly="#{orcamentoCursoMB.habilitarSeguro()}"/>
+                            <p:inputText id="cobranca" value="#{orcamentoCursoMB.valoresseguro.cobranca}" style="width:19%" maxlength="45" class="espacocobranca29" readonly="true"/>
 
                             <br></br><br></br>
                             <p:outputLabel value="Data inicial:" for="datainicio" class="espacocobranca11"/>
@@ -187,7 +190,7 @@
                                 <p:ajax event="blur" update="valorseguro" listener="#{orcamentoCursoMB.calcularValorSeguroViagem()}" />
                             </p:calendar>
                             <p:outputLabel value="Valor do Seguro:" for="valorseguro" class="imgadd"/>
-                            <p:inputText id="valorseguro" value="#{orcamentoCursoMB.seguroviagem.valorSeguro}" style="width:11%" maxlength="45" readonly="true" class="loginButtonr" readonly="true">
+                            <p:inputText id="valorseguro" value="#{orcamentoCursoMB.seguroviagem.valorSeguro}" style="width:11%" maxlength="45" readonly="true" class="loginButtonr" >
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
                           </p:tab>
@@ -201,7 +204,7 @@
                         <p:accordionPanel id="tabelaAdicionarAcomodacao" class="painelPacote" style="width: 100%;margin-left: 0%;font-size: 10px;" activeIndex="-1" >
                             <p:tab  title="Adicionar">
                                  <p:outputLabel value="Tipo Acomodação:" for="tipoacomodacao" class="espacocobranca42"/> 
-                                 <p:selectOneMenu  id="tipoacomodacao"  value="#" class="espacocobranca29" style="width:18%;"  disabled="#{orcamentoCursoMB.abilitarAcomodacao()}">
+                                 <p:selectOneMenu  id="tipoacomodacao"  value="#" class="espacocobranca29" style="width:18%;"  disabled="#{orcamentoCursoMB.habilitarAcomodacao()}">
                                     <f:selectItem itemLabel="Sem acomodação" itemValue="Sem acomodação" noSelectionOption="true"  />
                                     <f:selectItem itemLabel="Casa de família" itemValue="Casa de família"/> 
                                     <f:selectItem itemLabel="Alojamento" itemValue="Alojamento"/> 
@@ -209,7 +212,7 @@
                                     <f:selectItem itemLabel="Studio" itemValue="Studio"/> 
                                 </p:selectOneMenu>
                                 <p:outputLabel value="Quarto:" for="quarto" class="imgadd" />
-                                <p:selectOneMenu  id="quarto"  value="#" class="espacocobranca29" style="width:19%;" disabled="#{orcamentoCursoMB.abilitarAcomodacao()}">
+                                <p:selectOneMenu  id="quarto"  value="#" class="espacocobranca29" style="width:19%;" disabled="#{orcamentoCursoMB.habilitarAcomodacao()}">
                                     <f:selectItem itemLabel="Sem quarto" itemValue="Sem quarto" noSelectionOption="true"  />
                                     <f:selectItem itemLabel="Quarto individual" itemValue="Quarto individual"/> 
                                     <f:selectItem itemLabel="Quarto duplo" itemValue="Quarto duplo"/> 
@@ -217,7 +220,7 @@
                                     <f:selectItem itemLabel="Compartilhado" itemValue="Compartilhado"/> 
                                 </p:selectOneMenu>
                                 <p:outputLabel value="Refeição:" for="refeicao" class="espacocobranca29" /> 
-                                <p:selectOneMenu  id="refeicao"  value="#" class="espacocobranca29"  style="width:19%;" disabled="#{orcamentoCursoMB.abilitarAcomodacao()}" >
+                                <p:selectOneMenu  id="refeicao"  value="#" class="espacocobranca29"  style="width:19%;" disabled="#{orcamentoCursoMB.habilitarAcomodacao()}" >
                                     <f:selectItem itemLabel="Sem Refeição" itemValue="Sem Refeição" noSelectionOption="true"  />
                                     <f:selectItem itemLabel="Café da Manhã" itemValue="Café da Manhã"/> 
                                     <f:selectItem itemLabel="Meia Pensão (2 Refeições)" itemValue="Meia Pensão (2 Refeições)"/> 
@@ -227,13 +230,13 @@
 
 
                                 <p:outputLabel value="Data Chegada:" for="datachegada"  class="espacocobranca5"/>
-                                <p:calendar id="datachegada"  size="13" locale="pt" class="espacocobranca29" pattern="dd/MM/yyyy"  mask="true"  maxlength="15" disabled="#{orcamentoCursoMB.abilitarAcomodacao()}" >
+                                <p:calendar id="datachegada"  size="13" locale="pt" class="espacocobranca29" pattern="dd/MM/yyyy"  mask="true"  maxlength="15" disabled="#{orcamentoCursoMB.habilitarAcomodacao()}" >
                                     <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                                 </p:calendar>
                                 <p:outputLabel value="Nº Semanas:" for="numsemanas" class="espacocobranca28" />
-                                <p:inputText id="numsemanas" style="width:6%;" maxlength="100"  value="#" class="espacocobranca29" readonly="#{orcamentoCursoMB.abilitarAcomodacao()}" />
+                                <p:inputText id="numsemanas" style="width:6%;" maxlength="100"  value="#" class="espacocobranca29" readonly="#{orcamentoCursoMB.habilitarAcomodacao()}" />
                                 <p:outputLabel value="Data Partida:" for="datapartida" class="espacocobranca28" />
-                                <p:calendar id="datapartida" size="13" class="espacocobranca29"  locale="pt"  pattern="dd/MM/yyyy"  mask="true"  maxlength="15" disabled="#{orcamentoCursoMB.abilitarAcomodacao()}">
+                                <p:calendar id="datapartida" size="13" class="espacocobranca29"  locale="pt"  pattern="dd/MM/yyyy"  mask="true"  maxlength="15" disabled="#{orcamentoCursoMB.habilitarAcomodacao()}">
                                     <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                                 </p:calendar>
                                 <p:outputLabel value="Valor:" for="valoracomodacao" class="espacocobranca20"/>

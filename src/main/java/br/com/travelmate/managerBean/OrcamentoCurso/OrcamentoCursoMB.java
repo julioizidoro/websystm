@@ -1,13 +1,21 @@
 package br.com.travelmate.managerBean.OrcamentoCurso;
 
+import br.com.travelmate.facade.PaisProdutoFacade;
+import br.com.travelmate.managerBean.UsuarioLogadoMB;
+import br.com.travelmate.model.Cambio;
+import br.com.travelmate.model.Cidade;
 import br.com.travelmate.model.Fornecedor;
 import br.com.travelmate.model.Fornecedorcidade;
+import br.com.travelmate.model.Paisproduto;
 import br.com.travelmate.model.Seguroviagem;
+import br.com.travelmate.model.Valoresseguro;
 import br.com.travelmate.util.Formatacao;
 import java.io.Serializable;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 
@@ -15,6 +23,8 @@ import javax.servlet.http.HttpSession;
 @ViewScoped
 public class OrcamentoCursoMB implements Serializable{
     
+    @Inject
+    private UsuarioLogadoMB usuarioLogadoMB;
     private FornecedorProdutosBean fornecedorProdutosBean;
     private boolean seguroSelecionado;
     private boolean acomodacaoSelecionado;
@@ -25,17 +35,54 @@ public class OrcamentoCursoMB implements Serializable{
     private float valorTotalRS;
     private float valorDesconto;
     private float valorDescontoRS;
+    private Valoresseguro valoresseguro;
 
     public OrcamentoCursoMB() {
         FacesContext fc = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
-        fornecedorProdutosBean = (FornecedorProdutosBean) session.getAttribute("FornecedorProdutosBean");
-        session.removeAttribute("FornecedorProdutosBean");
+        fornecedorProdutosBean = (FornecedorProdutosBean) session.getAttribute("fornecedorProdutosBean");
+        session.removeAttribute("fornecedorProdutosBean");
         if (fornecedorProdutosBean!=null){
             calcularTotais();
         }
+        if (seguroviagem == null) {
+            seguroviagem = new Seguroviagem();
+            fornecedorcidade = new Fornecedorcidade();
+            valoresseguro = new Valoresseguro();
+        }else{
+            fornecedorcidade = seguroviagem.getValoresseguro().getFornecedorcidade();
+            valoresseguro = seguroviagem.getValoresseguro();
+        }
+    }
+    
+    @PostConstruct
+    public void init(){
+        int idProduto = 0;
+        getUsuarioLogadoMB();
+        PaisProdutoFacade paisProdutoFacade = new PaisProdutoFacade();
+        idProduto = usuarioLogadoMB.getParametrosprodutos().getSeguroPrivado();
+        List<Paisproduto> listaPais = paisProdutoFacade.listar(idProduto);
+        listaFornecedorCidade =  listaPais.get(0).getProdutos().getFornecedorcidadeList();
+    }
+    
+
+    public UsuarioLogadoMB getUsuarioLogadoMB() {
+        return usuarioLogadoMB;
     }
 
+    public void setUsuarioLogadoMB(UsuarioLogadoMB usuarioLogadoMB) {
+        this.usuarioLogadoMB = usuarioLogadoMB;
+    }
+
+    public Valoresseguro getValoresseguro() {
+        return valoresseguro;
+    }
+
+    public void setValoresseguro(Valoresseguro valoresseguro) {
+        this.valoresseguro = valoresseguro;
+    }
+
+    
     public FornecedorProdutosBean getFornecedorProdutosBean() {
         return fornecedorProdutosBean;
     }
@@ -126,7 +173,7 @@ public class OrcamentoCursoMB implements Serializable{
         return "true";
     }
     
-    public String abilitarAcomodacao(){
+    public String habilitarAcomodacao(){
         if(acomodacaoSelecionado){
             return "false";
         }
@@ -194,4 +241,6 @@ public class OrcamentoCursoMB implements Serializable{
              }
          }
      }
+     
+    
 }

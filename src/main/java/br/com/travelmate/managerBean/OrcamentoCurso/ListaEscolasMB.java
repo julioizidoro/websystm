@@ -6,6 +6,7 @@
 package br.com.travelmate.managerBean.OrcamentoCurso;
 
 import br.com.travelmate.model.Fornecedor;
+import br.com.travelmate.model.Parametrosprodutos;
 import java.io.Serializable;
 import java.util.List;
 import javax.faces.application.FacesMessage;
@@ -22,6 +23,7 @@ import javax.servlet.http.HttpSession;
 @ViewScoped
 public class ListaEscolasMB implements Serializable{
     
+    private Parametrosprodutos parametrosprodutos;
     private List<FornecedorProdutosBean> listaFornecedorProdutosBean;
 
     public ListaEscolasMB() {
@@ -30,6 +32,15 @@ public class ListaEscolasMB implements Serializable{
         listaFornecedorProdutosBean = (List<FornecedorProdutosBean>) session.getAttribute("listaFornecedorProdutosBean");
     }
 
+    public Parametrosprodutos getParametrosprodutos() {
+        return parametrosprodutos;
+    }
+
+    public void setParametrosprodutos(Parametrosprodutos parametrosprodutos) {
+        this.parametrosprodutos = parametrosprodutos;
+    }
+
+    
     public List<FornecedorProdutosBean> getListaFornecedorProdutosBean() {
         return listaFornecedorProdutosBean;
     }
@@ -51,7 +62,7 @@ public class ListaEscolasMB implements Serializable{
         if(fornecedorProdutosBean!=null){
             FacesContext fc = FacesContext.getCurrentInstance();
             HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
-            session.setAttribute("listaFornecedorProdutosBean", fornecedorProdutosBean);
+            session.setAttribute("fornecedorProdutosBean", fornecedorProdutosBean);
             return "orcamentoCurso";
         }else {
             FacesMessage mensagem = new FacesMessage("Erro! ", "Fornecedor não encontrado.");
