@@ -5,6 +5,7 @@
  */
 package br.com.travelmate.managerBean.OrcamentoCurso;
 
+import br.com.travelmate.model.Cambio;
 import br.com.travelmate.model.Fornecedorcidade;
 import br.com.travelmate.model.Ocurso;
 import br.com.travelmate.model.Valorcoprodutos;
@@ -26,6 +27,7 @@ public class FornecedorProdutosBean {
         private String svalorMoedaNacional;
         private Float valorDesconto;
         private String svalorDesconto;
+        private Cambio cambio;
         
 
     public Fornecedorcidade getFornecedorCidade() {
@@ -106,6 +108,14 @@ public class FornecedorProdutosBean {
 
     public void setSvalorDesconto(String svalorDesconto) {
         this.svalorDesconto = svalorDesconto;
+    }
+
+    public Cambio getCambio() {
+        return cambio;
+    }
+
+    public void setCambio(Cambio cambio) {
+        this.cambio = cambio;
     }
 
     
