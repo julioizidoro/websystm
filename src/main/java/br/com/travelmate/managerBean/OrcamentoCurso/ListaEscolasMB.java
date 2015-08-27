@@ -8,6 +8,7 @@ package br.com.travelmate.managerBean.OrcamentoCurso;
 import br.com.travelmate.model.Fornecedor;
 import java.io.Serializable;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
@@ -44,6 +45,20 @@ public class ListaEscolasMB implements Serializable{
             logo = "http://www.travelmate.com.br/logoescola/" + fornecedor.getLogo();
         }
         return logo;
+    }
+    
+     public String orcamentoResultado(FornecedorProdutosBean fornecedorProdutosBean){
+        if(fornecedorProdutosBean!=null){
+            FacesContext fc = FacesContext.getCurrentInstance();
+            HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+            session.setAttribute("listaFornecedorProdutosBean", fornecedorProdutosBean);
+            return "orcamentoCurso";
+        }else {
+            FacesMessage mensagem = new FacesMessage("Erro! ", "Fornecedor não encontrado.");
+            FacesContext.getCurrentInstance().addMessage(null, mensagem);
+        }
+        return "";
+        
     }
     
 }

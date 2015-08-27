@@ -21,7 +21,7 @@ import javax.validation.constraints.Size;
 
 /**
  *
- * @author Wolverine
+ * @author Kamila Rodrigues
  */
 @Entity
 @Table(name = "valoresseguro")
@@ -55,12 +55,12 @@ public class Valoresseguro implements Serializable {
     @JoinColumn(name = "fornecedorcidade_idfornecedorcidade", referencedColumnName = "idfornecedorcidade")
     @ManyToOne(optional = false)
     private Fornecedorcidade fornecedorcidade;
-    @JoinColumn(name = "produtosOrcamento_idprodutosOrcamento", referencedColumnName = "idprodutosOrcamento")
-    @ManyToOne(optional = false)
-    private Produtosorcamento produtosorcamento;
     @JoinColumn(name = "moedas_idmoedas", referencedColumnName = "idmoedas")
     @ManyToOne(optional = false)
     private Moedas moedas;
+    @JoinColumn(name = "produtosOrcamento_idprodutosOrcamento", referencedColumnName = "idprodutosOrcamento")
+    @ManyToOne(optional = false)
+    private Produtosorcamento produtosorcamento;
 
     public Valoresseguro() {
     }
@@ -141,20 +141,20 @@ public class Valoresseguro implements Serializable {
         this.fornecedorcidade = fornecedorcidade;
     }
 
-    public Produtosorcamento getProdutosorcamento() {
-        return produtosorcamento;
-    }
-
-    public void setProdutosorcamento(Produtosorcamento produtosorcamento) {
-        this.produtosorcamento = produtosorcamento;
-    }
-
     public Moedas getMoedas() {
         return moedas;
     }
 
     public void setMoedas(Moedas moedas) {
         this.moedas = moedas;
+    }
+
+    public Produtosorcamento getProdutosorcamento() {
+        return produtosorcamento;
+    }
+
+    public void setProdutosorcamento(Produtosorcamento produtosorcamento) {
+        this.produtosorcamento = produtosorcamento;
     }
 
     @Override

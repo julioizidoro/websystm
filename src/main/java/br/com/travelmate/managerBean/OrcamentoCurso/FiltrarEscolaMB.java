@@ -283,6 +283,7 @@ public class FiltrarEscolaMB implements Serializable{
                     }
                     po.setValorPromocionalRS(po.getValorPromocional() * fornecedorProdutosBean.getCambio().getValor());
                     po.setValorOrigianl(po.getValorOrigianl()* fornecedorProdutosBean.getCambio().getValor());
+                    po.setSelecionado(true);
                     listaRetorno.add(po);
                 }
             }
@@ -328,7 +329,7 @@ public class FiltrarEscolaMB implements Serializable{
     public void gerarListaCursos(){
         FiltroOrcamentoProdutoFacade filtroOrcamentoProdutoFacade = new FiltroOrcamentoProdutoFacade();
         String sql = "select f from Filtroorcamentoproduto f where f.produtos.idprodutos=" + 
-                usuarioLogadoMB.getParametrosprodutos().getCursos() + " and f.produtoorcamento='C' order by f.produtosorcamento.descricao";
+                usuarioLogadoMB.getParametrosprodutos().getCursos() + " and f.produtosorcamento.tipo='C' order by f.produtosorcamento.descricao";
         listaProdutosOrcamento = filtroOrcamentoProdutoFacade.pesquisar(sql);
         if (listaProdutosOrcamento==null){
             listaProdutosOrcamento = new ArrayList<Filtroorcamentoproduto>();

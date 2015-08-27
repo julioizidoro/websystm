@@ -18,6 +18,7 @@ public class ProdutosOrcamentoBean {
     private Float valorOriginalRS;
     private Float valorPromocional;
     private Float valorPromocionalRS;
+    private boolean selecionado;
 
     public Valorcoprodutos getValorcoprodutos() {
         return valorcoprodutos;
@@ -59,6 +60,14 @@ public class ProdutosOrcamentoBean {
 
     public void setValorPromocional(Float valorPromocional) {
         this.valorPromocional = valorPromocional;
+    }
+
+    public boolean isSelecionado() {
+        return selecionado;
+    }
+
+    public void setSelecionado(boolean selecionado) {
+        this.selecionado = selecionado;
     }
     
     
