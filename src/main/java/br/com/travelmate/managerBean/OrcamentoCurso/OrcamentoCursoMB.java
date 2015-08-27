@@ -21,11 +21,19 @@ public class OrcamentoCursoMB implements Serializable{
     private Seguroviagem seguroviagem;
     private Fornecedorcidade fornecedorcidade;
     private List<Fornecedorcidade> listaFornecedorCidade;
+    private float valorTotal;
+    private float valorTotalRS;
+    private float valorDesconto;
+    private float valorDescontoRS;
 
     public OrcamentoCursoMB() {
         FacesContext fc = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
         fornecedorProdutosBean = (FornecedorProdutosBean) session.getAttribute("FornecedorProdutosBean");
+        session.removeAttribute("FornecedorProdutosBean");
+        if (fornecedorProdutosBean!=null){
+            calcularTotais();
+        }
     }
 
     public FornecedorProdutosBean getFornecedorProdutosBean() {
@@ -76,10 +84,42 @@ public class OrcamentoCursoMB implements Serializable{
     public void setListaFornecedorCidade(List<Fornecedorcidade> listaFornecedorCidade) {
         this.listaFornecedorCidade = listaFornecedorCidade;
     }
+
+    public float getValorTotal() {
+        return valorTotal;
+    }
+
+    public void setValorTotal(float valorTotal) {
+        this.valorTotal = valorTotal;
+    }
+
+    public float getValorTotalRS() {
+        return valorTotalRS;
+    }
+
+    public void setValorTotalRS(float valorTotalRS) {
+        this.valorTotalRS = valorTotalRS;
+    }
+
+    public float getValorDesconto() {
+        return valorDesconto;
+    }
+
+    public void setValorDesconto(float valorDesconto) {
+        this.valorDesconto = valorDesconto;
+    }
+
+    public float getValorDescontoRS() {
+        return valorDescontoRS;
+    }
+
+    public void setValorDescontoRS(float valorDescontoRS) {
+        this.valorDescontoRS = valorDescontoRS;
+    }
     
     
     
-    public String abilitarSeguro(){
+    public String habilitarSeguro(){
         if(seguroSelecionado){
             return "false";
         }
@@ -107,5 +147,51 @@ public class OrcamentoCursoMB implements Serializable{
              svalor = sigla + " " + Formatacao.formatarFloatString(valor);
          }
          return svalor; 
+     }
+     
+     public void selecionarSeguro(){
+         if (seguroSelecionado){
+             seguroviagem = new Seguroviagem();
+         }else {
+             seguroviagem = null;
+             calcularTotais();
+         }
+     }
+     
+     public void calcularTotais(){
+         float total =0.0f;
+         float totalRS=0.0f;
+         if (seguroviagem!=null){
+             if (seguroviagem.getValorSeguro()!=null){
+                 totalRS = totalRS + seguroviagem.getValorSeguro();
+                 total = total + (seguroviagem.getValorSeguro() / fornecedorProdutosBean.getCambio().getValor());
+             }
+         }
+         for(int i=0;i<fornecedorProdutosBean.getListaObrigaroerios().size();i++){
+             total = total + fornecedorProdutosBean.getListaObrigaroerios().get(i).getValorPromocional();
+             totalRS = totalRS + fornecedorProdutosBean.getListaObrigaroerios().get(i).getValorPromocionalRS();
+         }
+         for(int i=0;i<fornecedorProdutosBean.getListaOpcionais().size();i++){
+             if (fornecedorProdutosBean.getListaOpcionais().get(i).isSelecionado()){
+                total = total + fornecedorProdutosBean.getListaOpcionais().get(i).getValorPromocional();
+                totalRS = totalRS + fornecedorProdutosBean.getListaOpcionais().get(i).getValorPromocionalRS();
+             }
+         }
+         valorTotal = total;
+         valorTotalRS = totalRS;
+         valorDesconto =0.0f;
+         valorDescontoRS = 0.0f;
+     }
+     
+     public void calcularValorSeguroViagem(){
+         if (seguroviagem!=null){
+             if (seguroviagem.getNumeroSemanas()!=null){
+                 if (seguroviagem.getNumeroSemanas()>0){
+                     if (seguroviagem.getValoresseguro()!=null){
+                         seguroviagem.setValorSeguro(seguroviagem.getNumeroSemanas() * seguroviagem.getValoresseguro().getValorgross());
+                     }
+                 }
+             }
+         }
      }
 }

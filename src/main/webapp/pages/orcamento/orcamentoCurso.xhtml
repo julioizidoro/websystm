@@ -84,7 +84,7 @@
                                 <p:outputPanel  >
                                     <h:panelGrid columns="2" >
                                         <p:selectBooleanCheckbox value="#{opcional.selecionado}">
-                                            <p:ajax />
+                                            <p:ajax listener="#{orcamentoCursoMB.calcularTotais()}" update="tabelatotal"/>
                                         </p:selectBooleanCheckbox>
                                         <h:outputText value="#{opcional.valorcoprodutos.coprodutos.produtosorcamento.descricao}"   style="font-weight:bold;font-size: 15px;"/>
                                     </h:panelGrid>
@@ -146,47 +146,48 @@
                     </p:dataScroller>
                     <br></br> <br></br>
                     <p:selectBooleanCheckbox value="#{orcamentoCursoMB.seguroSelecionado}" class="espacocobranca29">
-                        <p:ajax update="tabelaAdicionarSeguro"/>
+                        <p:ajax update="tabelaAdicionarSeguro, tabelatotal" listener="#{orcamentoCursoMB.selecionarSeguro()}"/>
                     </p:selectBooleanCheckbox>
                     <h:outputText  value="Seguro Viagem" style="font-weight:bold;font-size: 17px;color: #fff" class="espacocobranca29"/>
                     <p:accordionPanel id="tabelaAdicionarSeguro"  class="painelPacote" style="width: 100%;margin-left:0%" activeIndex="-1">
                         <p:tab  title="Adicionar">
                               <p:outputLabel value="Seguradora:" for="seguradora" class="espacocobranca11"/>
-                              <p:selectOneMenu class="espacocobranca29" style="width:18%;" id="seguradora"  value="#{orcamentoCursoMB.fornecedorcidade}" disabled="#{orcamentoCursoMB.abilitarSeguro()}">
+                              <p:selectOneMenu class="espacocobranca29" style="width:18%;" id="seguradora"  value="#{orcamentoCursoMB.fornecedorcidade}" disabled="#{orcamentoCursoMB.habilitarSeguro()}">
                                 <f:selectItem itemLabel="Seguradora" itemValue="0" noSelectionOption="true" /> 
                                 <f:selectItems id="idcidade" value="#{orcamentoCursoMB.listaFornecedorCidade}" var="ccidade" itemLabel="#{ccidade.fornecedor.nome}" itemValue="#{ccidade}"/>
                                 <f:attribute name="listaFornecedorCidade" value="#{orcamentoCursoMB.listaFornecedorCidade}"/>
                                 <p:ajax event="change" update="plano"/> 
                             </p:selectOneMenu>
                             <p:outputLabel value="Plano:" for="plano" class="espacocobranca28"/>
-                            <p:selectOneMenu id="plano" class="espacocobranca29" style="width:18%;" value="#{orcamentoCursoMB.seguroviagem.valoresseguro}" disabled="#{orcamentoCursoMB.abilitarSeguro()}">
+                            <p:selectOneMenu id="plano" class="espacocobranca29" style="width:18%;" value="#{orcamentoCursoMB.seguroviagem.valoresseguro}" disabled="#{orcamentoCursoMB.habilitarSeguro()}">
                                 <f:selectItem itemLabel="Seguradora" itemValue="0" noSelectionOption="true"/> 
                                 <f:selectItems id="idvaloresseguro" value="#{orcamentoCursoMB.fornecedorcidade.valoresseguroList}" var="cvalorseguro" itemLabel="#{cvalorseguro.plano}" itemValue="#{cvalorseguro}"/>
                                 <f:attribute name="listaValorSeguro" value="#{orcamentoCursoMB.fornecedorcidade.valoresseguroList}"/>
                                 <p:ajax event="change" update="cobranca" />
                             </p:selectOneMenu>
                             <p:outputLabel value="Cobrança:" for="cobranca" class="espacocobranca28"/>
-                            <p:inputText id="cobranca" value="#{orcamentoCursoMB.seguroviagem.valoresseguro.cobranca}" style="width:19%" maxlength="45" class="espacocobranca29" readonly="#{orcamentoCursoMB.abilitarSeguro()}"/>
+                            <p:inputText id="cobranca" value="#{orcamentoCursoMB.seguroviagem.valoresseguro.cobranca}" style="width:19%" maxlength="45" class="espacocobranca29" readonly="#{orcamentoCursoMB.habilitarSeguro()}"/>
 
                             <br></br><br></br>
                             <p:outputLabel value="Data inicial:" for="datainicio" class="espacocobranca11"/>
-                            <p:calendar id="datainicio" size="15" value="#{orcamentoCursoMB.seguroviagem.dataInicio}"  class="espacocobranca29" locale="pt"  pattern="dd/MM/yyyy" disabled="#{orcamentoCursoMB.abilitarSeguro()}">
+                            <p:calendar id="datainicio" size="15" value="#{orcamentoCursoMB.seguroviagem.dataInicio}"  class="espacocobranca29" locale="pt"  pattern="dd/MM/yyyy" disabled="#{orcamentoCursoMB.habilitarSeguro()}">
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                                 <p:ajax event="change" />
                                 <p:ajax event="dateSelect" />
                             </p:calendar>
                             <p:outputLabel value="No. Semanas:" for="semanas" class="imgadd"/>
-                            <p:inputText id="semanas" value="#{orcamentoCursoMB.seguroviagem.numeroSemanas}" style="width:7%" maxlength="45" class="loginButton2"  readonly="#{orcamentoCursoMB.abilitarSeguro()}">
+                            <p:inputText id="semanas" value="#{orcamentoCursoMB.seguroviagem.numeroSemanas}" style="width:7%" maxlength="45" class="loginButton2"  readonly="#{orcamentoCursoMB.habilitarSeguro()}">
                                 <f:convertNumber  type="number"/>
                                 <p:ajax event="blur" update="datatermino"  /> 
                                 <p:ajax event="blur" update="valorseguro" /> 
                             </p:inputText>
                             <p:outputLabel value="Data Final:" for="datatermino" class="imgadd" />
-                            <p:calendar id="datatermino" value="#{orcamentoCursoMB.seguroviagem.dataTermino}" size="15" class="loginButton2" locale="pt"  pattern="dd/MM/yyyy" disabled="#{orcamentoCursoMB.abilitarSeguro()}">
+                            <p:calendar id="datatermino" value="#{orcamentoCursoMB.seguroviagem.dataTermino}" size="15" class="loginButton2" locale="pt"  pattern="dd/MM/yyyy" disabled="#{orcamentoCursoMB.habilitarSeguro()}">
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                                <p:ajax event="blur" update="valorseguro" listener="#{orcamentoCursoMB.calcularValorSeguroViagem()}" />
                             </p:calendar>
                             <p:outputLabel value="Valor do Seguro:" for="valorseguro" class="imgadd"/>
-                            <p:inputText id="valorseguro" value="#{orcamentoCursoMB.seguroviagem.valorSeguro}" style="width:11%" maxlength="45" readonly="true" class="loginButtonr" >
+                            <p:inputText id="valorseguro" value="#{orcamentoCursoMB.seguroviagem.valorSeguro}" style="width:11%" maxlength="45" readonly="true" class="loginButtonr" readonly="true">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
                           </p:tab>
@@ -249,20 +250,20 @@
                             <p:outputPanel style="text-align: right;width:100%" >
                                 <h:outputText value="Desconto" style="font-weight:bold;font-size: 18px;color:#4DA20B" />
                                 <br></br>
-                                <h:outputText value="US$ " style="font-weight:bold;font-size: 14px;color:#4DA20B" />
-                                <h:outputText value="238,00" style="font-weight:bold;font-size: 15px;color:#4DA20B" />
+                                <h:outputText value="#{orcamentoCursoMB.fornecedorProdutosBean.cambio.moedas.sigla}" style="font-weight:bold;font-size: 14px;color:#4DA20B" />
+                                <h:outputText value="#{orcamentoCursoMB.valorDesconto}" style="font-weight:bold;font-size: 15px;color:#4DA20B" />
                                 <br></br>
                                 <h:outputText value="R$ " style="font-weight:bold;font-size: 13px;color:#4DA20B" />
-                                <h:outputText value="859,18" style="font-weight:bold;font-size: 13px;color:#4DA20B" />
+                                <h:outputText value="#{orcamentoCursoMB.valorDescontoRS}" style="font-weight:bold;font-size: 13px;color:#4DA20B" />
                             </p:outputPanel>
                             <p:outputPanel style="text-align: right;width:100%" >
                                 <h:outputText value="Total" style="font-weight:bold;font-size: 18px;color:#4DA20B" />
                                 <br></br>
-                                <h:outputText value="US$ " style="font-weight:bold;font-size: 14px;" />
-                                <h:outputText value="862,00" style="font-weight:bold;font-size: 15px;" />
+                                <h:outputText value="#{orcamentoCursoMB.fornecedorProdutosBean.cambio.moedas.sigla}" style="font-weight:bold;font-size: 14px;" />
+                                <h:outputText value="#{orcamentoCursoMB.valorTotal}" style="font-weight:bold;font-size: 15px;" />
                                 <br></br>
                                 <h:outputText value="R$ " style="font-weight:bold;font-size: 13px;" />
-                                <h:outputText value="3.111,82" style="font-weight:bold;font-size: 13px;" />
+                                <h:outputText value="#{orcamentoCursoMB.valorTotalRS}" style="font-weight:bold;font-size: 13px;" />
                             </p:outputPanel>
                         </h:panelGrid>
                     </p:dataScroller>
