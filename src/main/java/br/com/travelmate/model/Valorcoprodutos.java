@@ -20,6 +20,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 
 /**
@@ -60,6 +61,8 @@ public class Valorcoprodutos implements Serializable {
     @JoinColumn(name = "coprodutos_idcoprodutos", referencedColumnName = "idcoprodutos")
     @ManyToOne(optional = false)
     private Coprodutos coprodutos;
+    @Transient
+    private Float valorMoedaMacional;
 
     public Valorcoprodutos() {
     }
@@ -146,6 +149,14 @@ public class Valorcoprodutos implements Serializable {
 
     public void setCoprodutos(Coprodutos coprodutos) {
         this.coprodutos = coprodutos;
+    }
+
+    public Float getValorMoedaMacional() {
+        return valorMoedaMacional;
+    }
+
+    public void setValorMoedaMacional(Float valorMoedaMacional) {
+        this.valorMoedaMacional = valorMoedaMacional;
     }
 
     @Override

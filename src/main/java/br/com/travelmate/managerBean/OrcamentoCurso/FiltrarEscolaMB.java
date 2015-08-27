@@ -187,6 +187,7 @@ public class FiltrarEscolaMB implements Serializable{
             fpb.setValorDesconto(0.0f);
             fpb.setValorMoedaEstrangeira(valorMoedaEstrangeira(fpb));
             fpb.setValorMoedaNacional(calcularValorMoedaNacioanl(fpb));
+           
             fpb.setSvalorDesconto(Formatacao.formatarFloatString(fpb.getValorDesconto()));
             fpb.setSvalorMoedaEstrangeira(Formatacao.formatarFloatString(fpb.getValorMoedaEstrangeira()));
             fpb.setSvalorMoedaNacional(Formatacao.formatarFloatString(fpb.getValorMoedaNacional()));
@@ -195,7 +196,7 @@ public class FiltrarEscolaMB implements Serializable{
         
     }
     
-    public Float calcularValorMoedaNacioanl(FornecedorProdutosBean fornecedorProdutosBean){
+    public Cambio consultarCambio(FornecedorProdutosBean fornecedorProdutosBean){
         CambioFacade cambioFacade = new CambioFacade();
         Cambio cambio=null;
         Date data = new Date();
@@ -207,10 +208,16 @@ public class FiltrarEscolaMB implements Serializable{
                 Logger.getLogger(br.com.travelmate.managerBean.OrcamentoCurso.FiltrarEscolaMB.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        float valorMoeda = 0.0f;
         if (cambio!=null){
-            fornecedorProdutosBean.setCambio(cambio);
-             valorMoeda = fornecedorProdutosBean.getValorMoedaEstrangeira() * cambio.getValor();
+            return cambio;
+        }
+        return null;
+    }
+    
+    public Float calcularValorMoedaNacioanl(FornecedorProdutosBean fornecedorProdutosBean){
+        float valorMoeda = 0.0f;
+        if (fornecedorProdutosBean.getCambio()!=null){
+             valorMoeda = fornecedorProdutosBean.getValorMoedaEstrangeira() * fornecedorProdutosBean.getCambio().getValor();
         }
         return valorMoeda;
     }
@@ -220,29 +227,22 @@ public class FiltrarEscolaMB implements Serializable{
         if (fornecedorProdutosBean.getListaObrigaroerios() != null) {
             for (int i = 0; i < fornecedorProdutosBean.getListaObrigaroerios().size(); i++) {
                 if (fornecedorProdutosBean.getListaObrigaroerios() != null) {
-                    if (fornecedorProdutosBean.getListaObrigaroerios().get(i).getValorpromocional() > 0) {
-                        total = total + fornecedorProdutosBean.getListaObrigaroerios().get(i).getValorpromocional();
-                    } else {
-                        total = total + fornecedorProdutosBean.getListaObrigaroerios().get(i).getValororiginal();
-                    }
+                    total = total + fornecedorProdutosBean.getListaObrigaroerios().get(i).getValorPromocional();
                 }
             }
         }
+
         if (fornecedorProdutosBean.getListaOpcionais() != null) {
             for (int i = 0; i < fornecedorProdutosBean.getListaOpcionais().size(); i++) {
-                if (fornecedorProdutosBean.getListaOpcionais().get(i).getValorpromocional() > 0) {
-                    total = total + fornecedorProdutosBean.getListaOpcionais().get(i).getValorpromocional();
-                } else {
-                    total = total + fornecedorProdutosBean.getListaOpcionais().get(i).getValororiginal();
-                }
+                total = total + fornecedorProdutosBean.getListaOpcionais().get(i).getValorPromocional();
             }
             return total;
         }
         return total;
     }
     
-    public List<Valorcoprodutos> gerarListaValorCoProdutos(FornecedorProdutosBean fornecedorProdutosBean, String tipo){
-        List<Valorcoprodutos> listaRetorno = new ArrayList<Valorcoprodutos>();
+    public List<ProdutosOrcamentoBean> gerarListaValorCoProdutos(FornecedorProdutosBean fornecedorProdutosBean, String tipo){
+        List<ProdutosOrcamentoBean> listaRetorno = new ArrayList<ProdutosOrcamentoBean>();
         List<Coprodutos> listaCoProdutos;
         CoProdutosFacade coProdutosFacade = new CoProdutosFacade();
         String sql = "Select c from Coprodutos c where c.fornecedorcidade.idfornecedorcidade=" + fornecedorProdutosBean.getFornecedorCidade().getIdfornecedorcidade() + 
@@ -270,7 +270,20 @@ public class FiltrarEscolaMB implements Serializable{
                     }
                 }
                 if (valorcoprodutos!=null){
-                    listaRetorno.add(valorcoprodutos);
+                    ProdutosOrcamentoBean po = new ProdutosOrcamentoBean();
+                    po.setValorcoprodutos(valorcoprodutos);
+                    if (valorcoprodutos.getValorpromocional()>0){
+                        po.setValorOrigianl(valorcoprodutos.getValororiginal());
+                        po.setValorPromocional(valorcoprodutos.getValorpromocional());
+                    }else {
+                        float valor = (float) (valorcoprodutos.getValororiginal() * 1.1);
+                        po.setValorOrigianl(valor);
+                        po.setValorPromocional(valorcoprodutos.getValororiginal());
+                        
+                    }
+                    po.setValorPromocionalRS(po.getValorPromocional() * fornecedorProdutosBean.getCambio().getValor());
+                    po.setValorOrigianl(po.getValorOrigianl()* fornecedorProdutosBean.getCambio().getValor());
+                    listaRetorno.add(po);
                 }
             }
         }
