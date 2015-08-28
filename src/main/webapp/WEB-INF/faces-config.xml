@@ -74,7 +74,7 @@
 		<from-view-id>*</from-view-id>
 		<navigation-case>
 			<from-outcome>consultafornecedor</from-outcome>
-			<to-view-id>/pages/fornecedor/consFornecedor.xhtml</to-view-id>
+			<to-view-id>/pages/fornecedor/consFornecedorPais.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
@@ -202,8 +202,16 @@
         <navigation-rule>
 		<from-view-id>*</from-view-id>
 		<navigation-case>
-			<from-outcome>consultacomissaovenda</from-outcome>
-			<to-view-id>/pages/comissao/consultacomissaovendas.xhtml</to-view-id>
+			<from-outcome>importarpacote</from-outcome>
+			<to-view-id>/pages/pacoteoperadora/importarPacoteOperadora.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+        <navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>consultaprodutos</from-outcome>
+			<to-view-id>/pages/produtos/consProdutos.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>

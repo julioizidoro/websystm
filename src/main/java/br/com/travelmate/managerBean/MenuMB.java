@@ -61,6 +61,11 @@ public class MenuMB implements Serializable{
     public String fornecedor(){
         return "consultafornecedor";
     }
+    
+    public String produtos(){
+        return "consultaprodutos";
+    }
+    
     public String curso(){
         return "consultafichacurso";
     }

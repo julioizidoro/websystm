@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/pages/templates/default.xhtml">
+        <ui:define name="corpo">
+            <h:form id="telaconsultaprodutos">
+                <div id="centro">
+                    <p:growl id="growl" showDetail="true" sticky="true"/>
+                    <br></br><br></br>
+                    <p:outputLabel value="Pesquisar" for="produtodescricao" class="imgadd" style="font-size:11px;color: #fff"/> <br></br>
+                    <p:inputText id="produtodescricao" size="50" maxlength="100" class="imgadd" value="#"  />
+                    <br></br> <br></br> 
+                    
+                    <img src="../../resources/img/add.png" class="imgadd"/>
+                    <p:commandLink value="Novo Produto"  action="#{produtosMB.cadastrarProdutos()}" class="add"/>
+                    <p:commandLink value="usuario"  action="#{produtosMB.consultarUsuarios()}" class="add"/>
+                    <p:commandLink value="itens"  action="#{produtosMB.adicionarItens()}" class="add"/>
+                    <legend id="iUsu2" ><b>Consulta de Produtos </b></legend>
+                    
+                    <p:contextMenu for="tabelaprodutos">
+                        <p:menuitem value="Alterar"  icon=" ui-icon-pencil"  action="#" />
+                        <p:menuitem value="Usuário"  icon=" ui-icon-tag" action="#"  />
+                        <p:menuitem value="Itens"  icon=" ui-icon-tag" action="#"  />
+                    </p:contextMenu>
+                    <p:dataTable id="tabelaprodutos" var="produtos"  value="#{produtosMB.listaProdutos}" class="tabela4" editable="true"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+                                 paginator="true" rows="10" style="margin-bottom:20px"   selection="#{produtosMB.produtos}" selectionMode="single" rowKey="#{produtos.idprodutos}" >
+                        <f:facet name="{Exporters}">
+                            <h:commandLink>
+                                <img src="../../resources/img/excel.png" width="20" class="imagens"/>
+                                <p:dataExporter type="xls" target="produtos" fileName="produtos" />
+                            </h:commandLink>
+                        </f:facet>
+                        <p:column headerText="Código" style="width:95px;" >
+                            <p:outputLabel value="#{produtos.idprodutos}" />
+                        </p:column>
+                        <p:column headerText="Descrição"  >
+                            <h:outputText value="#{produtos.descricao}"/>
+                        </p:column>
+                    </p:dataTable>
+                    <br></br>
+                    <br></br>
+                </div>
+            </h:form>    
+        </ui:define>
+    </ui:composition>
+</html>

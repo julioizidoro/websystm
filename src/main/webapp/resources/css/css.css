@@ -126,7 +126,7 @@ text-align: left;
 }
 .tabela5{
     width:80%;
-    margin-left:10%;
+    margin-left:11.5%;
     font-size:10px;
     color:#1F8871;
 }
@@ -975,6 +975,9 @@ text-align: left;
 .espacocobranca15{
     margin-left:7%;
 }
+.espacocobranca155{
+    margin-left:7.5%;
+}
 .espacocobranca16{
     margin-left:21%;
 }
@@ -1032,6 +1035,15 @@ text-align: left;
 .espacocobranca23botao:hover{
     height: 20px;
     width: 25%;
+    border: #1F8871;
+}
+.espacocobranca24botao{
+    margin-left:2%;
+    width: 23%;
+}
+.espacocobranca24botao:hover{
+    height: 20px;
+    width: 21%;
     border: #1F8871;
 }
 .espacocobranca3botao{
