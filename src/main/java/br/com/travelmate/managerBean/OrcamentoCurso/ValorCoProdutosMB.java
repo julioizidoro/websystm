@@ -5,12 +5,7 @@
  */
 package br.com.travelmate.managerBean.OrcamentoCurso;
 
-import br.com.travelmate.facade.PaisProdutoFacade;
-import br.com.travelmate.model.Cidade;
 import br.com.travelmate.model.Coprodutos;
-import br.com.travelmate.model.Fornecedorcidade;
-import br.com.travelmate.model.Pacotetrecho;
-import br.com.travelmate.model.Pais;
 import br.com.travelmate.model.Valorcoprodutos;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;

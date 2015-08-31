@@ -84,7 +84,7 @@
                                 <p:outputPanel  >
                                     <h:panelGrid columns="2" >
                                         <p:selectBooleanCheckbox value="#{opcional.selecionado}">
-                                            <p:ajax listener="#{orcamentoCursoMB.calcularTotais()}" update="tabelatotal"/>
+                                            <p:ajax listener="#{orcamentoCursoMB.calcularTotais()}" update="orcamentoCurso:tabelatotal"/>
                                         </p:selectBooleanCheckbox>
                                         <h:outputText value="#{opcional.valorcoprodutos.coprodutos.produtosorcamento.descricao}"   style="font-weight:bold;font-size: 15px;"/>
                                     </h:panelGrid>
@@ -146,7 +146,8 @@
                     </p:dataScroller>
                     <br></br> <br></br>
                     <p:selectBooleanCheckbox value="#{orcamentoCursoMB.seguroSelecionado}" class="espacocobranca29">
-                        <p:ajax update="tabelaAdicionarSeguro, tabelatotal" listener="#{orcamentoCursoMB.selecionarSeguro()}"/>
+                        <p:ajax update="tabelaAdicionarSeguro" listener="#{orcamentoCursoMB.selecionarSeguro()}"/>
+                        <p:ajax update="orcamentoCurso:tabelatotal" />
                     </p:selectBooleanCheckbox>
                     <h:outputText  value="Seguro Viagem" style="font-weight:bold;font-size: 17px;color: #fff" class="espacocobranca29"/>
                     <p:accordionPanel id="tabelaAdicionarSeguro"  class="painelPacote" style="width: 100%;margin-left:0%" activeIndex="-1">
@@ -161,7 +162,7 @@
                                 <p:ajax event="change" update="plano"/> 
                             </p:selectOneMenu>
                             <p:outputLabel value="Plano:" for="plano" class="espacocobranca28"/>
-                            <p:selectOneMenu id="plano" class="espacocampos" style="width:25%;" value="#{seguroViagemMB.valoresseguro}"
+                            <p:selectOneMenu id="plano" class="espacocampos" style="width:25%;" value="#{orcamentoCursoMB.seguroviagem.plano}"
                                             disabled="#{orcamentoCursoMB.habilitarSeguro()}" converter="ValorSeguroConverter" >
                                 <f:selectItem itemLabel="Seguradora" itemValue="0" noSelectionOption="true"/> 
                                 <f:selectItems id="idvaloresseguro" value="#{orcamentoCursoMB.fornecedorcidade.valoresseguroList}" var="cvalorseguro" itemLabel="#{cvalorseguro.plano}" itemValue="#{cvalorseguro}"/>

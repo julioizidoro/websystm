@@ -181,6 +181,7 @@ public class FiltrarEscolaMB implements Serializable{
             nocurso.setNumerosemanas(ocurso.getNumerosemanas());
             nocurso.setProdutosorcamento(ocurso.getProdutosorcamento());
             nocurso.setSexo(ocurso.getSexo());
+            fpb.setCambio(consultarCambio(fpb));
             fpb.setOcurso(nocurso);
             fpb.setListaObrigaroerios(gerarListaValorCoProdutos(fpb, "Obrigatorio"));
             fpb.setListaOpcionais(gerarListaValorCoProdutos(fpb, "Opcional"));
@@ -253,9 +254,9 @@ public class FiltrarEscolaMB implements Serializable{
             for(int i=0;i<listaCoProdutos.size();i++){
                 Valorcoprodutos valorcoprodutos = null;
                 sql = "Select v from  Valorcoprodutos v where v.datainicial<='" +
-                        Formatacao.ConvercaoDataSql(new Date()) +"' and v.datafinal<='" +
-                        Formatacao.ConvercaoDataSql(new Date()) + "' and v.numerosemanainicial>=" +
-                        ocurso.getNumerosemanas() + " and v.numerosemanainicial<=" + ocurso.getNumerosemanas() + " and v.tipodata='DI' and v.coprodutos.idcoprodutos=" + listaCoProdutos.get(i).getIdcoprodutos();
+                        Formatacao.ConvercaoDataSql(new Date()) +"' and v.datafinal>='" +
+                        Formatacao.ConvercaoDataSql(new Date()) + "' and v.numerosemanainicial<=" +
+                        ocurso.getNumerosemanas() + " and v.numerosemanafinal>=" + ocurso.getNumerosemanas() + " and v.tipodata='DI' and v.coprodutos.idcoprodutos=" + listaCoProdutos.get(i).getIdcoprodutos();
                 
                 List<Valorcoprodutos> listaValorcoprodutoses = valorCoProdutosFacade.listar(sql);
                 if (listaValorcoprodutoses!=null){
@@ -285,6 +286,7 @@ public class FiltrarEscolaMB implements Serializable{
                     po.setValorOrigianl(po.getValorOrigianl()* fornecedorProdutosBean.getCambio().getValor());
                     po.setSelecionado(true);
                     listaRetorno.add(po);
+                    valorcoprodutos = new Valorcoprodutos();
                 }
             }
         }

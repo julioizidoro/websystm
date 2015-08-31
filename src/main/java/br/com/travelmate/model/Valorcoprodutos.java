@@ -38,7 +38,7 @@ public class Valorcoprodutos implements Serializable {
     @Basic(optional = false)
     @Column(name = "idvalorcoprodutos")
     private Integer idvalorcoprodutos;
-    @Size(max = 1)
+    @Size(max = 2)
     @Column(name = "tipodata")
     private String tipodata;
     @Column(name = "datainicial")

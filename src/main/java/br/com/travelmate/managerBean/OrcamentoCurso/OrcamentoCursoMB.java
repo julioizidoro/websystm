@@ -2,8 +2,6 @@ package br.com.travelmate.managerBean.OrcamentoCurso;
 
 import br.com.travelmate.facade.PaisProdutoFacade;
 import br.com.travelmate.managerBean.UsuarioLogadoMB;
-import br.com.travelmate.model.Cambio;
-import br.com.travelmate.model.Cidade;
 import br.com.travelmate.model.Fornecedor;
 import br.com.travelmate.model.Fornecedorcidade;
 import br.com.travelmate.model.Paisproduto;
