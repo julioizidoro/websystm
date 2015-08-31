@@ -154,15 +154,15 @@
                         <p:tab  title="Adicionar">
                             
                             <p:outputLabel value="Seguradora:" for="seguradora" class="espacocobranca11"/>
-                            <p:selectOneMenu class="espacocobranca29" style="width:18%;" id="seguradora"  value="#{orcamentoCursoMB.fornecedorcidade}" 
+                            <p:selectOneMenu class="espacocobranca29" style="width:15%;" id="seguradora"  value="#{orcamentoCursoMB.fornecedorcidade}" 
                                              disabled="#{orcamentoCursoMB.habilitarSeguro()}" converter="FornecedorCidadeConverter">
                                 <f:selectItem itemLabel="Seguradora" itemValue="0" noSelectionOption="true" /> 
                                 <f:selectItems id="idseguradora" value="#{orcamentoCursoMB.listaFornecedorCidade}" var="cursoseguradora" itemLabel="#{cursoseguradora.fornecedor.nome}" itemValue="#{cursoseguradora.fornecedor}"/>
                                 <f:attribute name="listaFornecedorCidade" value="#{orcamentoCursoMB.listaFornecedorCidade}"/>
-                                <p:ajax event="change" update="plano"/> 
+                                <p:ajax event="change" update="planoseguro"/> 
                             </p:selectOneMenu>
-                            <p:outputLabel value="Plano:" for="plano" class="espacocobranca28"/>
-                            <p:selectOneMenu id="plano" class="espacocampos" style="width:25%;" value="#{orcamentoCursoMB.seguroviagem.plano}"
+                            <p:outputLabel value="Plano:" for="planoseguro" class="espacocobranca28"/>
+                            <p:selectOneMenu id="planoseguro" class="espacocampos" style="width:19%;" value="#{orcamentoCursoMB.seguroviagem.plano}"
                                             disabled="#{orcamentoCursoMB.habilitarSeguro()}" converter="ValorSeguroConverter" >
                                 <f:selectItem itemLabel="Seguradora" itemValue="0" noSelectionOption="true"/> 
                                 <f:selectItems id="idvaloresseguro" value="#{orcamentoCursoMB.fornecedorcidade.valoresseguroList}" var="cvalorseguro" itemLabel="#{cvalorseguro.plano}" itemValue="#{cvalorseguro}"/>
@@ -255,19 +255,27 @@
                                 <h:outputText value="Desconto" style="font-weight:bold;font-size: 18px;color:#4DA20B" />
                                 <br></br>
                                 <h:outputText value="#{orcamentoCursoMB.fornecedorProdutosBean.cambio.moedas.sigla}" style="font-weight:bold;font-size: 14px;color:#4DA20B" />
-                                <h:outputText value="#{orcamentoCursoMB.valorDesconto}" style="font-weight:bold;font-size: 15px;color:#4DA20B" />
+                                <h:outputText value="#{orcamentoCursoMB.valorDesconto}" style="font-weight:bold;font-size: 15px;color:#4DA20B" >
+                                    <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                                </h:outputText>
                                 <br></br>
                                 <h:outputText value="R$ " style="font-weight:bold;font-size: 13px;color:#4DA20B" />
-                                <h:outputText value="#{orcamentoCursoMB.valorDescontoRS}" style="font-weight:bold;font-size: 13px;color:#4DA20B" />
+                                <h:outputText value="#{orcamentoCursoMB.valorDescontoRS}" style="font-weight:bold;font-size: 13px;color:#4DA20B" >
+                                    <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                                </h:outputText>
                             </p:outputPanel>
                             <p:outputPanel style="text-align: right;width:100%" >
                                 <h:outputText value="Total" style="font-weight:bold;font-size: 18px;color:#4DA20B" />
                                 <br></br>
                                 <h:outputText value="#{orcamentoCursoMB.fornecedorProdutosBean.cambio.moedas.sigla}" style="font-weight:bold;font-size: 14px;" />
-                                <h:outputText value="#{orcamentoCursoMB.valorTotal}" style="font-weight:bold;font-size: 15px;" />
+                                <h:outputText value="#{orcamentoCursoMB.valorTotal}" style="font-weight:bold;font-size: 15px;" >
+                                    <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                                </h:outputText>
                                 <br></br>
                                 <h:outputText value="R$ " style="font-weight:bold;font-size: 13px;" />
-                                <h:outputText value="#{orcamentoCursoMB.valorTotalRS}" style="font-weight:bold;font-size: 13px;" />
+                                <h:outputText value="#{orcamentoCursoMB.valorTotalRS}" style="font-weight:bold;font-size: 13px;" >
+                                    <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                                </h:outputText>
                             </p:outputPanel>
                         </h:panelGrid>
                     </p:dataScroller>

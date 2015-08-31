@@ -7,6 +7,7 @@ package br.com.travelmate.managerBean.OrcamentoCurso;
 
 import br.com.travelmate.model.Fornecedor;
 import br.com.travelmate.model.Parametrosprodutos;
+import br.com.travelmate.util.Formatacao;
 import java.io.Serializable;
 import java.util.List;
 import javax.faces.application.FacesMessage;

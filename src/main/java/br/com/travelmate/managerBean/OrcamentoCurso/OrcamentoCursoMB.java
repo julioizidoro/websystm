@@ -1,6 +1,7 @@
 package br.com.travelmate.managerBean.OrcamentoCurso;
 
 import br.com.travelmate.facade.PaisProdutoFacade;
+import br.com.travelmate.facade.SeguroViagemFacade;
 import br.com.travelmate.managerBean.UsuarioLogadoMB;
 import br.com.travelmate.model.Fornecedor;
 import br.com.travelmate.model.Fornecedorcidade;
@@ -43,14 +44,6 @@ public class OrcamentoCursoMB implements Serializable{
         if (fornecedorProdutosBean!=null){
             calcularTotais();
         }
-        if (seguroviagem == null) {
-            seguroviagem = new Seguroviagem();
-            fornecedorcidade = new Fornecedorcidade();
-            valoresseguro = new Valoresseguro();
-        }else{
-            fornecedorcidade = seguroviagem.getValoresseguro().getFornecedorcidade();
-            valoresseguro = seguroviagem.getValoresseguro();
-        }
     }
     
     
@@ -62,6 +55,14 @@ public class OrcamentoCursoMB implements Serializable{
         idProduto = usuarioLogadoMB.getParametrosprodutos().getSeguroPrivado();
         List<Paisproduto> listaPais = paisProdutoFacade.listar(idProduto);
         listaFornecedorCidade =  listaPais.get(0).getProdutos().getFornecedorcidadeList();
+        if (seguroviagem == null) {
+            seguroviagem = new Seguroviagem();
+            fornecedorcidade = new Fornecedorcidade();
+            valoresseguro = new Valoresseguro();
+        }else{
+            fornecedorcidade = seguroviagem.getValoresseguro().getFornecedorcidade();
+            valoresseguro = seguroviagem.getValoresseguro();
+        }
     }
     
 

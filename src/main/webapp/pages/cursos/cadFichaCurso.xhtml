@@ -211,7 +211,7 @@
                             <br></br><br></br>
                         </p:tab>
 
-                        <p:tab title="Cartão VTM/Transfer/Passagem/Visto" titleStyle="font-size: 11px">
+                        <p:tab title="VTM/Transfer/Passagem/Visto" titleStyle="font-size: 11px">
                             <legend id="iUsu3" ><b>Cartão VTM</b></legend>
                             <p:outputLabel value="Cartão VTM:" for="cartaovtm" />
                             <p:selectOneMenu  id="cartaovtm"  value="#" style="width:12%" class="espacocobranca29">
@@ -322,8 +322,43 @@
                             <p:inputText id="telefone" value="#" style="width:14.5%" class="espacocobranca29"/>
                             <br></br><br></br>
                         </p:tab>
-                        
-                        <p:tab  title="Forma de Pagamento" titleStyle="font-size: 11px">
+                        <p:tab  title="Produtos" titleStyle="font-size: 11px">
+                            <br></br><br></br>
+                            <p:outputLabel value="Moeda:" for="moeda" class="loginButtonn"/>
+                            <p:selectOneMenu id="moeda" value="#" class="espacocobranca29" style="width:13%;">
+                                <f:selectItem itemLabel="Câmbio" itemValue="0" noSelectionOption="true"/> 
+                                <f:selectItems id="idmoedas" value="#" var="cambio" itemLabel="#" itemValue="#"/>
+                                <p:ajax event="change" />
+                            </p:selectOneMenu>
+                            <p:outputLabel value="Valor do Câmbio:" for="idvalorcambio"  class="espacocobranca28" />
+                            <p:inputText id="idvalorcambio" value="" style="width:11%" class="espacocobranca29r">
+                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                            </p:inputText> 
+                            <h:commandLink action="#"  title="Editar Câmbio">  
+                                <img id="editarcambio" class="" src="../../resources/img/cambio_1.png"/>
+                            </h:commandLink>
+                            <p:outputLabel value="Valor Total:" for="valortotal"  class="espacocobranca18" />
+                            <p:inputText id="valortotal" value="" style="width:13%" class="espacocobranca29r">
+                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                            </p:inputText> 
+                            <br></br> <br></br>
+                            <p:outputLabel value="Produto:" for="produto"  style="font-size: 11px;"/>
+                            <p:selectOneMenu id="produto" value="#" style="width:34%;font-size: 10px" class="espacocobranca29"
+                                              filter="true" filterMatchMode="startsWith">
+                                <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/>
+                                <f:selectItems id="idproduto" value="#" var="cproduto" itemLabel="#" itemValue="#"/>
+                                
+                            </p:selectOneMenu>
+                            <p:outputLabel value="Valor(Moeda Estrangeira):" for="valor"  class="" />
+                            <p:inputText id="valor" value="" style="width:13%" class="espacocobranca29r">
+                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                            </p:inputText> 
+                            <p:outputLabel value="Valor R$:" for="valoreal"  class="" />
+                            <p:inputText id="valoreal" value="" style="width:13%" class="espacocobranca29r">
+                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                            </p:inputText> 
+                        </p:tab>
+                        <p:tab  title="Forma de Pagto" titleStyle="font-size: 11px">
                             <legend id="iUsu3" style="font-size:11px;"><b>Pagamentos</b></legend>
                             <p:outputLabel value="Forma de Pagamento:" for="formPag" /> 
                             <p:selectOneMenu id="formPag" value="#" style="width:13%;" class="espacocobranca29" >
