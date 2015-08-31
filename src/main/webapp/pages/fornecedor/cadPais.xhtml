@@ -39,16 +39,15 @@
     <h:body>
         <h:form id="cadastropais" style="text-align:left;font-size: 10px;"><br></br>
             <title>Cadastro País</title>
-                <p:outputLabel value="Nome:" class="espacocobranca14"/>
-                <p:inputText value="#{fornecedorMB.pais.nome}" style="width:55%" class="espacocobranca29"/>
+                <p:outputLabel value="Nome:" class="espacocobranca11"/>
+                <p:inputText value="#{fornecedorMB.pais.nome}" style="width:58%" class="espacocobranca29"/>
                 <br></br> <br></br>
-                <p:outputLabel value="Sigla:" class="espacocobranca155"/>
-                <p:inputText value="#{fornecedorMB.pais.sigla}" style="width:55%" class="espacocobranca29"/>
+                <p:outputLabel value="Sigla:" class="espacocobranca233"/>
+                <p:inputText value="#{fornecedorMB.pais.sigla}" style="width:13%" class="espacocobranca29"/>
                 <p:outputLabel value="Moeda:" class="espacocobranca14"/>
                 <p:selectOneMenu id="gerente" class="espacocobranca29" style="width:30%" value="#{fornecedorMB.pais.moedas}">
                     <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"  />
                     <f:selectItems id="idgerente" value="#" var="moedas" itemLabel="" itemValue=""/>
-                    <f:attribute name="listaMoedas" />
                     <p:ajax event="change"/> 
                 </p:selectOneMenu>
                 <br></br> <br></br>

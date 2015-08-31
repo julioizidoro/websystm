@@ -39,60 +39,59 @@
     <h:body>
         <h:form id="cadastrofornecedorcomissao" style="text-align:left;font-size: 10px;"><br></br>
             <title>Cadastro Comissão</title>
-            <p:outputLabel value="País:" for="pais" class="espacocobranca28" />
-            <p:selectOneMenu id="pais" value="#{fornecedorMB.pais}" style="width:25%;font-size: 10px" class="espacocobranca29" 
+            <p:outputLabel value="País:" for="pais" class="espacocobranca333" />
+            <p:selectOneMenu id="pais" value="#{fornecedorMB.pais}" style="width:30%;font-size: 10px" class="espacocobranca29" 
                              converter="PaisConverter" filter="true" filterMatchMode="startsWith" >
                 <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
-                <f:selectItems id="idpais" value="#{fornecedorMB.listaPais}" var="cpais" itemLabel="#{cpais.nome}" itemValue="#{cpais}"/>
+                <f:selectItems id="idpais" value="#{fornecedorMB.listaPais}" var="cpais" itemLabel="#{cpais.pais.nome}" itemValue="#{cpais.pais}"/>
                 <f:attribute name="listaPais" value="#{fornecedorMB.listaPais}"/>
-                <p:ajax event="change" update=":cadastrofornecedorcomissao:cidade"/> 
+                <p:ajax event="change" update="cidade"/> 
             </p:selectOneMenu>
-            <p:outputLabel value="Cidade:" for="cidade" class="" />
-            <p:selectOneMenu id="cidade" value="#{fornecedorMB.cidade}" style="width:20%;font-size: 10px" class="espacocobranca29" 
+            <p:outputLabel value="Cidade:" for="cidade" class="espacocobranca14" />
+            <p:selectOneMenu id="cidade" value="#{fornecedorMB.cidade}" style="width:29.3%;font-size: 10px" class="espacocobranca29" 
                              converter="CidadeConverter" filter="true" filterMatchMode="startsWith">
                 <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
                 <f:selectItems id="idcidade" value="#{fornecedorMB.pais.cidadeList}" var="ccidade" itemLabel="#{ccidade.nome}" itemValue="#{ccidade}"/>
                 <f:attribute name="listaCidade" value="#{fornecedorMB.pais.cidadeList}"/>
-                <p:ajax event="change" update=":cadastrofornecedorcomissao:fornecador"/> 
+                <p:ajax event="change" update="fornecedor"/> 
             </p:selectOneMenu>
             <br></br> <br></br>
-            <p:outputLabel value="Fornecedor:" for="fornecedor" class="" />
-            <p:selectOneMenu id="fornecedor" value="#{fornecedorMB.fornecedor}" style="width:20%;font-size: 10px" class="espacocobranca29" 
+            <p:outputLabel value="Fornecedor:" for="fornecedor" class="espacocobranca42" />
+            <p:selectOneMenu id="fornecedor" value="#{fornecedorMB.fornecedor}" style="width:30%;font-size: 10px" class="espacocobranca29" 
                               filter="true" filterMatchMode="startsWith">
                 <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
-                <f:selectItems id="idfornecedor" value="#{fornecedorMB.listaFornecedor}" var="fornecadorselecionado" itemLabel="#{fornecadorselecionado.descricao}" itemValue="#{fornecadorselecionado}"/>
+                <f:selectItems id="idfornecedor" value="#{fornecedorMB.listaFornecedor}" var="fornecadorselecionado" itemLabel="#{fornecadorselecionado.nome}" itemValue="#{fornecadorselecionado}"/>
                 <f:attribute name="listaFornecedor" value="#{fornecedorMB.listaFornecedor}"/>
             </p:selectOneMenu>
             <p:outputLabel value="Produto:" for="produto" class="espacocobranca28" />
-            <p:selectOneMenu id="produto" value="#{fornecedorMB.produto}" style="width:20%;font-size: 10px" class="espacocobranca29" 
+            <p:selectOneMenu id="produto" value="#{fornecedorMB.produto}" style="width:30%;font-size: 10px" class="espacocobranca29" 
                              converter="ProdutoConverter" filter="true" filterMatchMode="startsWith">
                 <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
                 <f:selectItems id="idproduto" value="#{fornecedorMB.listaProdutos}" var="cproduto" itemLabel="#{cproduto.descricao}" itemValue="#{cproduto}"/>
                 <f:attribute name="listaProdutos" value="#{fornecedorMB.listaProdutos}"/>
             </p:selectOneMenu>
             <br></br> <br></br>
-            <p:outputLabel value="% Comissão Matriz:" for="produto" class="espacocobranca28" />
-            <p:inputText value="#{fornecedorMB.fornecedor.comissaoMatriz}" style="width:55%" class="espacocobranca29"/>
+            <p:outputLabel value="% Comissão Matriz:" for="produto" class="" />
+            <p:inputText value="#{fornecedorMB.fornecedor.comissaoMatriz}" style="width:15%" class="espacocobranca29"/>
             <p:outputLabel value="% Comissão Loja:" for="produto" class="espacocobranca28" />
-            <p:inputText value="#{fornecedorMB.fornecedor.comissaoFranquia}" style="width:55%" class="espacocobranca29"/>
+            <p:inputText value="#{fornecedorMB.fornecedor.comissaoFranquia}" style="width:15%" class="espacocobranca29"/>
             <br></br> <br></br>
-            <p:commandButton class="imagemm" icon="ui-icon-check" value="Confirmar" action="#"></p:commandButton>
-            <p:commandButton class="espacocampos" icon="ui-icon-close" value="Cancelar" action="#{fornecedorMB.cancelarCadastro()}">
-            <br></br> <br></br>
-            <p:dataTable id="tabelacomissao" var="comissao"  value="#" class="tabela4" 
+            <p:commandButton class="espacocobranca21" icon="ui-icon-plus" value="Adicionar" action="#"></p:commandButton>
+            <p:commandButton class="espacocampos" icon="ui-icon-close" value="Cancelar" action="#{fornecedorMB.cancelarCadastro()}"/>
+            <br></br> <br></br><br></br> 
+            <p:dataTable id="tabelacomissao" var="comissao"  value="#" class="tabela5" 
                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
                          paginator="true" rows="10" style="margin-bottom:20px" >
                 <p:column headerText="Produto"  >
                     <p:outputLabel value="#" />
                 </p:column>
-                <p:column headerText="Comissão Loja" style="text-align:center;width:75px;" >
+                <p:column headerText="Comissão Loja" style="text-align:right;width:100px;" >
                     <p:outputLabel value="#" />
                 </p:column>
-                <p:column headerText="Comissão Matriz" style="text-align:center;width:75px;" >
+                <p:column headerText="Comissão Matriz" style="text-align:right;width:100px;" >
                     <p:outputLabel value="#" />
                 </p:column>
             </p:dataTable>
-            <br></br> <br></br> 
             <p class="botaoeditareceber"><br></br>
                 <p:commandButton class="imagemm" icon="ui-icon-check" value="Confirmar" action="#"></p:commandButton>
                 <p:commandButton class="espacocampos" icon="ui-icon-close" value="Cancelar" action="#{fornecedorMB.cancelarCadastro()}"></p:commandButton>

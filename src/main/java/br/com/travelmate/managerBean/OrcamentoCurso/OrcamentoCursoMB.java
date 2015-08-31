@@ -55,9 +55,10 @@ public class OrcamentoCursoMB implements Serializable{
         }
     }
     
+    
     @PostConstruct
     public void init(){
-        int idProduto = 0;
+        int idProduto=0;
         getUsuarioLogadoMB();
         PaisProdutoFacade paisProdutoFacade = new PaisProdutoFacade();
         idProduto = usuarioLogadoMB.getParametrosprodutos().getSeguroPrivado();
@@ -165,7 +166,6 @@ public class OrcamentoCursoMB implements Serializable{
     }
     
     
-    
     public String habilitarSeguro(){
         if(seguroSelecionado){
             return "false";
@@ -241,6 +241,4 @@ public class OrcamentoCursoMB implements Serializable{
              }
          }
      }
-     
-    
 }

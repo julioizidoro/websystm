@@ -12,11 +12,11 @@
                     <p:growl id="growl" showDetail="true" sticky="true"/>
                     <br></br> 
                     <legend id="iUsu2" ><b>Consulta de País</b></legend>
-                    <p:outputLabel value="País:" for="pais" class="espaco13" style="font-size: 11px"/>
+                    <p:outputLabel value="País:" for="pais" class="espacocobranca23" style="font-size: 11px;color: #fff"/>
                     <p:selectOneMenu id="pais" value="#{fornecedorMB.pais}" style="width:25%;font-size: 10px" class="espacocampos" 
                                      converter="PaisConverter" filter="true" filterMatchMode="startsWith" >
                         <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
-                        <f:selectItems id="idpais" value="#{fornecedorMB.listaPais}" var="cpais" itemLabel="#{cpais.nome}" itemValue="#{cpais}"/>
+                        <f:selectItems id="idpais" value="#{fornecedorMB.listaPais}" var="cpais" itemLabel="#{cpais.pais.nome}" itemValue="#{cpais.pais}"/>
                         <f:attribute name="listaPais" value="#{fornecedorMB.listaPais}"/>
                         <p:ajax event="change" update=":consultapais:tabelacidade"/> 
                     </p:selectOneMenu>
@@ -24,13 +24,13 @@
                     <legend id="iUsu2" ><b>Consulta de Cidade</b></legend>
                     <p:commandButton id="bntnovopais" class="espacocobranca22botao" icon="ui-icon-plus" style="font-size:12px;" value="Novo Pais" action="#{fornecedorMB.cadPais()}"/>
                     <p:commandButton id="bntnovocidade" class="espacocobranca21botao" icon="ui-icon-plus" style="font-size:12px;" value="Nova Cidade" action="#{fornecedorMB.cadCidade()}"/>
-                    <p:commandButton id="bntvoltar" class="espacocobranca21botao" style="font-size:12px;" value="Voltar" action="#{produtosMB.voltar()}"/>
+                    <p:commandButton id="bntvoltar" class="espacocobranca21botao" style="font-size:12px;" value="Voltar" action="#{fornecedorMB.voltar()}"/>
                     <p:dataTable id="tabelacidade" var="cidade"  value="#{fornecedorMB.pais.cidadeList}" class="tabela5" 
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
                                  paginator="true" rows="10" style="margin-bottom:20px" >
                         
-                        <p:column headerText="Fornecedor" style="text-align:center;" sortBy="#">
-                            <p:outputLabel value="#{fornecedor.nome}" />
+                        <p:column headerText="Fornecedor"  >
+                            <p:outputLabel value="#{cidade.nome}" />
                         </p:column>
                     </p:dataTable>
                     <br></br>

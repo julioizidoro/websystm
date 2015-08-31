@@ -6,10 +6,12 @@
 package br.com.travelmate.managerBean;
 
 import br.com.travelmate.facade.PaisFacade;
+import br.com.travelmate.facade.PaisProdutoFacade;
 import br.com.travelmate.model.Cidade;
 import br.com.travelmate.model.Fornecedor;
 import br.com.travelmate.model.Fornecedorcidade;
 import br.com.travelmate.model.Pais;
+import br.com.travelmate.model.Paisproduto;
 import br.com.travelmate.model.Produtos;
 import br.com.travelmate.util.GerarListas;
 import java.io.Serializable;
@@ -30,13 +32,13 @@ import org.primefaces.context.RequestContext;
 @ViewScoped
 public class FornecedorMB implements Serializable{
     
-    /**
-	 * 
-	 */
+    
 	private static final long serialVersionUID = 1L;
-	@Inject
+    @Inject
+    private UsuarioLogadoMB usuarioLogadoMB;
+    @Inject
     private ConsultaFornecedorMB consultaFornecedorMB;
-    private List<Pais> listaPais;
+    private List<Paisproduto> listaPais;
     private Pais pais;
     private Fornecedorcidade fornecedorCidade;
     private Produtos produto;
@@ -48,21 +50,34 @@ public class FornecedorMB implements Serializable{
     
     @PostConstruct
     public void init() {
-        PaisFacade paisFacade = new PaisFacade();
-        listaPais = paisFacade.listar("");
+        int idProduto = 0;
+        getUsuarioLogadoMB();
+        PaisProdutoFacade paisProdutoFacade = new PaisProdutoFacade();
+        idProduto = usuarioLogadoMB.getParametrosprodutos().getCursos();
+        listaPais = paisProdutoFacade.listar(idProduto);
         listaProdutos = GerarListas.listarProdutos("");
         if(listaFornecedor==null){
             listaFornecedor = new ArrayList<Fornecedor>();
         }
     }
 
-    public List<Pais> getListaPais() {
+    public UsuarioLogadoMB getUsuarioLogadoMB() {
+        return usuarioLogadoMB;
+    }
+
+    public void setUsuarioLogadoMB(UsuarioLogadoMB usuarioLogadoMB) {
+        this.usuarioLogadoMB = usuarioLogadoMB;
+    }
+
+    public List<Paisproduto> getListaPais() {
         return listaPais;
     }
 
-    public void setListaPais(List<Pais> listaPais) {
+    public void setListaPais(List<Paisproduto> listaPais) {
         this.listaPais = listaPais;
     }
+
+    
 
     public Fornecedorcidade getFornecedorCidade() {
         return fornecedorCidade;
@@ -169,12 +184,11 @@ public class FornecedorMB implements Serializable{
     }
     
     public String cadFornecedorCidade(){
-        RequestContext.getCurrentInstance().closeDialog("cadFornecedorCidade");
-        return "";
+        return "cadFornecedorCidade";
     }
     
     public String cadFornecedorComissao(){
-        RequestContext.getCurrentInstance().closeDialog("cadFornecedorComissao");
+        RequestContext.getCurrentInstance().openDialog("cadFornecedorComissao");
         return "";
     }
     
