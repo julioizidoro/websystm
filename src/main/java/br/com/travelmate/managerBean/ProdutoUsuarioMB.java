@@ -24,6 +24,7 @@ public class ProdutoUsuarioMB implements Serializable{
     
     private List<Usuario> listaUsuarioEmail;
     
+    
     @PostConstruct
     public void init(){
          String sqlUsuario = "Select u from Usuario u order by u.nome";
@@ -38,8 +39,4 @@ public class ProdutoUsuarioMB implements Serializable{
         this.listaUsuarioEmail = listaUsuarioEmail;
     }
 
-    
-    
-    
-    
 }
