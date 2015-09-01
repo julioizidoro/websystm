@@ -7,9 +7,9 @@ package br.com.travelmate.managerBean.OrcamentoCurso;
 
 import br.com.travelmate.model.Fornecedor;
 import br.com.travelmate.model.Parametrosprodutos;
-import br.com.travelmate.util.Formatacao;
 import java.io.Serializable;
 import java.util.List;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -21,7 +21,7 @@ import javax.servlet.http.HttpSession;
  * @author Wolverine
  */
 @Named
-@ViewScoped
+@SessionScoped
 public class ListaEscolasMB implements Serializable{
     
     private Parametrosprodutos parametrosprodutos;
