@@ -23,8 +23,8 @@
                     
                     <p:contextMenu for="tabelaprodutos">
                         <p:menuitem value="Alterar"  icon=" ui-icon-pencil"  action="#" />
-                        <p:menuitem value="Usuário"  icon=" ui-icon-tag" action="#"  />
-                        <p:menuitem value="Itens"  icon=" ui-icon-tag" action="#"  />
+                        <p:menuitem value="Usuário"  icon=" ui-icon-tag" action="#{produtosMB.consultarUsuarios()}"/>
+                        <p:menuitem value="Itens"  icon=" ui-icon-tag" action="#{produtosMB.adicionarItens()}"  />
                     </p:contextMenu>
                     <p:dataTable id="tabelaprodutos" var="produtos"  value="#{produtosMB.listaProdutos}" class="tabela4" editable="true"
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"

@@ -86,6 +86,16 @@ public class UsuarioFacade {
         }
     }
     
+    public List<Usuario> consultar(String sql) {
+        usuarioDao = new UsuarioDao();
+        try {
+            return usuarioDao.consultar(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioFacade.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    
     public Pincambio consultar(String pin, int idUsuario)  {
         usuarioDao = new UsuarioDao();
         try {

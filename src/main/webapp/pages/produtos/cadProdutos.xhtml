@@ -39,21 +39,26 @@
     <h:body>
         <h:form id="cadastroprodutos" style="text-align:left;font-size: 10px;"><br></br>
             <title>Produtos</title>
+            <p:growl id="growl" showDetail="true" sticky="true"/>
                 <p:outputLabel value="Descrição:" class="espacocobranca14"/>
-                <p:inputText value="#{produtosMB.produtos.descricao}" style="width:55%" class="espacocobranca29"/>
+                <p:inputText value="#{produtosMB.produtos.descricao}" style="width:62%" class="espacocobranca29"/>
                 <br></br> <br></br>
-                <p:outputLabel value="Gerente:" class="espacocobranca155"/>
-                <p:selectOneMenu id="gerente" class="espacocobranca29" style="width:30%" value="#{produtosMB.produtos.idgerente}">
-                    <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"  />
-                    <f:selectItems id="idgerente" value="#" var="produtogerente" itemLabel="" itemValue=""/>
+                <p:outputLabel value="Gerente:" for="gerente" class="espacocobranca155"/>
+                <p:selectOneMenu id="gerente" class="espacocobranca29" style="width:30%" value="#{produtosMB.usuario}"
+                                 converter="UsuarioConverter">
+                    <f:selectItem itemLabel="Selecione" itemValue="0"/>
+                    <f:selectItems id="idgerente" value="#{produtosMB.listaUsuario}" var="produtogerente" itemLabel="#{produtogerente.nome}" itemValue="#{produtogerente}"/>
+                    <f:attribute name="listaUsuario" value="#{produtosMB.listaUsuario}"/>
                     <p:ajax event="change"/> 
                 </p:selectOneMenu>
                 <p:outputLabel value="% Comissão Gerente:" class="espacocobranca14"/>
-                <p:inputText value="#{produtosMB.produtos.comissaogerente}" style="width:10%" class="espacocobranca29"/>
+                <p:inputText value="#{produtosMB.produtos.comissaogerente}" style="width:10%" class="espacocobranca29">
+                    <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                </p:inputText>
                 <br></br> <br></br>
                 <p class="botaoeditareceber"><br></br>
-                    <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Confirmar" action="#"></p:commandButton>
-                    <p:commandButton class="espacocampos" onclick="" icon="ui-icon-close" value="Cancelar" action="#{produtosMB.cancelarCadastro()}"></p:commandButton>
+                    <p:commandButton class="imagemm"  icon="ui-icon-check" value="Confirmar" action="#{produtosMB.salvarProduto()}" update="growl"></p:commandButton>
+                    <p:commandButton class="espacocampos" icon="ui-icon-close" value="Cancelar" action="#{produtosMB.cancelarCadastro()}"></p:commandButton>
                 </p>
         </h:form>     
     </h:body>

@@ -44,7 +44,7 @@ public class CidadeConverter  implements Converter{
         }else {
             if (value instanceof Cidade){
                 Cidade cidade = (Cidade) value;
-            return cidade.getNome();
+                 return cidade.getNome();
             }else return "";
         }
     }

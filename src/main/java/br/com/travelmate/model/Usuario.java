@@ -20,6 +20,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 
 /**
@@ -81,6 +82,8 @@ public class Usuario implements Serializable {
     @JoinColumn(name = "unidadeNegocio_idunidadeNegocio", referencedColumnName = "idunidadeNegocio")
     @ManyToOne(optional = false)
     private Unidadenegocio unidadenegocio;
+    @Transient
+    private boolean selecionado;
 
     public Usuario() {
     }
@@ -200,6 +203,15 @@ public class Usuario implements Serializable {
     public void setUnidadenegocio(Unidadenegocio unidadenegocio) {
         this.unidadenegocio = unidadenegocio;
     }
+
+    public boolean isSelecionado() {
+        return selecionado;
+    }
+
+    public void setSelecionado(boolean selecionado) {
+        this.selecionado = selecionado;
+    }
+    
 
     @Override
     public int hashCode() {

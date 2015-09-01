@@ -22,6 +22,7 @@ import javax.servlet.http.HttpSession;
 @ViewScoped
 public class OrcamentoCursoMB implements Serializable{
     
+    
     @Inject
     private UsuarioLogadoMB usuarioLogadoMB;
     private FornecedorProdutosBean fornecedorProdutosBean;
@@ -45,6 +46,7 @@ public class OrcamentoCursoMB implements Serializable{
             calcularTotais();
         }
     }
+    
     
     
     @PostConstruct
@@ -89,7 +91,6 @@ public class OrcamentoCursoMB implements Serializable{
 
     public void setFornecedorProdutosBean(FornecedorProdutosBean fornecedorProdutosBean) {
         this.fornecedorProdutosBean = fornecedorProdutosBean;
-        
     }
 
     public boolean isSeguroSelecionado() {

@@ -104,4 +104,16 @@ public class UsuarioDao {
         return null;
     }
     
+    public List<Usuario> consultar(String sql) throws SQLException{
+        manager = ConectionFactory.getConnection();
+        manager.getTransaction().begin();
+        Query q = manager.createQuery(sql);
+        manager.getTransaction().commit();
+        if (q.getResultList().size() > 0) {
+            return  (List<Usuario>) q.getResultList();
+        } else {
+            return null;
+        }
+    }
+    
 }

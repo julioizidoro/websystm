@@ -14,12 +14,14 @@ import br.com.travelmate.facade.PacoteTrechoFacade;
 import br.com.travelmate.facade.PacotesFacade;
 import br.com.travelmate.facade.ProdutoFacade;
 import br.com.travelmate.facade.UnidadeNegocioFacade;
+import br.com.travelmate.facade.UsuarioFacade;
 import br.com.travelmate.model.Banco;
 import br.com.travelmate.model.Fornecedorcidade;
 import br.com.travelmate.model.Pacotes;
 import br.com.travelmate.model.Pacotetrecho;
 import br.com.travelmate.model.Produtos;
 import br.com.travelmate.model.Unidadenegocio;
+import br.com.travelmate.model.Usuario;
 
 /**
  *
@@ -39,6 +41,15 @@ public class GerarListas {
            listaPacotes = new ArrayList<Pacotes>();
         }
         return listaPacotes;
+    }
+    
+    public static List<Usuario> listarUsuarios(String sql){
+        UsuarioFacade usuarioFacade= new UsuarioFacade();
+        List<Usuario> listaUsuario = usuarioFacade.consultar(sql);
+        if (listaUsuario==null){
+           listaUsuario = new ArrayList<Usuario>();
+        }
+        return listaUsuario;
     }
     
     public static List<Pacotetrecho> listarPacoteTrecho(String sql){

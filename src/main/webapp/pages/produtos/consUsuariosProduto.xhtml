@@ -15,7 +15,7 @@
                      <p:outputLabel value="#"  style="color: #fff" class="espacocobranca29"/>
                     
                     <br></br><br></br>
-                     <p:commandButton id="bntnovo" class="espacocobranca24botao" style="font-size:12px;" value="Novo Usuário" action="#{produtosMB.cadastrarUsuarios()}"/>
+                    <p:commandButton id="bntnovo" class="espacocobranca24botao" style="font-size:12px;" value="Adicionar Usuário" update=":formAdicionar:dialog_adicionarUsuario" oncomplete="PF('adicionar').show()"/>
                     <p:commandButton id="bntfechar" class="espacocobranca24botao" style="font-size:12px;" value="Fechar" action="#{produtosMB.voltar()}" />
                     <p:dataTable id="tabelausuarios" var="usuarios"  value="#" class="tabela" 
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
@@ -38,7 +38,26 @@
                     <br></br>
                     <br></br>
                 </div>
-            </h:form>    
+            </h:form> 
+            <h:form id="formAdicionar">
+                <p:dialog id="dialog_adicionarUsuario" header="Adicionar Usuário" widgetVar="adicionar" width="45%" style="background:#d0e9c6;text-align: left;font-size: 10px;" >
+                    <p:dataTable id="tabelaadicionarusuario" var="adicionarusuario"  class="tabela5" editable="true" value="#{produtoUsuarioMB.listaUsuarioEmail}"
+                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                             paginator="true" rows="10" style="margin-bottom:20px"  >
+                    <p:column headerText="Cargo" style="width:180px;" >
+                        <p:outputLabel value="#{adicionarusuario.cargo}" />
+                    </p:column>
+                    <p:column headerText="Nome"  >
+                        <h:outputText value="#{adicionarusuario.nome}"/>
+                    </p:column>
+                    <p:column style="width:32px;text-align: center">
+                        <p:selectBooleanCheckbox value="#{adicionarusuario.selecionado}"/>
+                    </p:column>
+                </p:dataTable>
+                    <p:commandButton class="espacocobranca34" onclick="" icon="ui-icon-check" value="Adicionar" action="#"></p:commandButton>
+                    <p:commandButton class="espacocampos" icon="ui-icon-close" value="Cancelar" oncomplete="adicionar.hide()"></p:commandButton>
+                </p:dialog>
+            </h:form>
         </ui:define>
     </ui:composition>
 </html>
