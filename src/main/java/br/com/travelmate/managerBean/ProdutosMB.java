@@ -37,6 +37,7 @@ public class ProdutosMB implements Serializable{
             listaProdutos = new ArrayList<Produtos>();
         }
     }
+    
 
     public Produtos getProdutos() {
         return produtos;
@@ -118,4 +119,6 @@ public class ProdutosMB implements Serializable{
          RequestContext.getCurrentInstance().closeDialog(null);
          return "";
     }
+    
+    
 }
