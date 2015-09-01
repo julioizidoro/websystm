@@ -152,25 +152,25 @@
                     <h:outputText  value="Seguro Viagem" style="font-weight:bold;font-size: 17px;color: #fff" class="espacocobranca29"/>
                     <p:accordionPanel id="tabelaAdicionarSeguro"  class="painelPacote" style="width: 100%;margin-left:0%" activeIndex="-1">
                         <p:tab  title="Adicionar">
-                            
                             <p:outputLabel value="Seguradora:" for="seguradora" class="espacocobranca11"/>
                             <p:selectOneMenu class="espacocobranca29" style="width:15%;" id="seguradora"  value="#{orcamentoCursoMB.fornecedorcidade}" 
-                                             disabled="#{orcamentoCursoMB.habilitarSeguro()}" converter="FornecedorCidadeConverter">
+                                             converter="FornecedorCidadeConverter" disabled="#{orcamentoCursoMB.habilitarSeguro()}">
                                 <f:selectItem itemLabel="Seguradora" itemValue="0" noSelectionOption="true" /> 
-                                <f:selectItems id="idseguradora" value="#{orcamentoCursoMB.listaFornecedorCidade}" var="cursoseguradora" itemLabel="#{cursoseguradora.fornecedor.nome}" itemValue="#{cursoseguradora.fornecedor}"/>
+                                <f:selectItems id="idseguradora" value="#{orcamentoCursoMB.listaFornecedorCidade}" var="cursoseguradora" itemLabel="#{cursoseguradora.fornecedor.nome}" itemValue="#{cursoseguradora}"/>
                                 <f:attribute name="listaFornecedorCidade" value="#{orcamentoCursoMB.listaFornecedorCidade}"/>
                                 <p:ajax event="change" update="planoseguro"/> 
                             </p:selectOneMenu>
                             <p:outputLabel value="Plano:" for="planoseguro" class="espacocobranca28"/>
-                            <p:selectOneMenu id="planoseguro" class="espacocampos" style="width:19%;" value="#{orcamentoCursoMB.seguroviagem.plano}"
-                                            disabled="#{orcamentoCursoMB.habilitarSeguro()}" converter="ValorSeguroConverter" >
-                                <f:selectItem itemLabel="Seguradora" itemValue="0" noSelectionOption="true"/> 
+                            <p:selectOneMenu id="planoseguro" class="espacocampos" style="width:19%;" value="#{orcamentoCursoMB.valorSeguro}" 
+                                             converter="ValorSeguroConverter" disabled="#{orcamentoCursoMB.habilitarSeguro()}">
+                                <f:selectItem itemLabel="Plano" itemValue="0" noSelectionOption="true"/> 
                                 <f:selectItems id="idvaloresseguro" value="#{orcamentoCursoMB.fornecedorcidade.valoresseguroList}" var="cvalorseguro" itemLabel="#{cvalorseguro.plano}" itemValue="#{cvalorseguro}"/>
                                 <f:attribute name="listaValorSeguro" value="#{orcamentoCursoMB.fornecedorcidade.valoresseguroList}"/>
                                 <p:ajax event="change" update="cobranca" />
                             </p:selectOneMenu>
                             <p:outputLabel value="Cobrança:" for="cobranca" class="espacocobranca28"/>
-                            <p:inputText id="cobranca" value="#{orcamentoCursoMB.valoresseguro.cobranca}" style="width:19%" maxlength="45" class="espacocobranca29" readonly="true"/>
+                            <p:inputText id="cobranca" value="#{orcamentoCursoMB.valorSeguro.cobranca}" style="width:19%" maxlength="45" class="espacocobranca29" readonly="true" 
+                                         disabled="#{orcamentoCursoMB.habilitarSeguro()}"/>
 
                             <br></br><br></br>
                             <p:outputLabel value="Data inicial:" for="datainicio" class="espacocobranca11"/>
@@ -180,18 +180,18 @@
                                 <p:ajax event="dateSelect" />
                             </p:calendar>
                             <p:outputLabel value="No. Semanas:" for="semanas" class="imgadd"/>
-                            <p:inputText id="semanas" value="#{orcamentoCursoMB.seguroviagem.numeroSemanas}" style="width:7%" maxlength="45" class="loginButton2"  readonly="#{orcamentoCursoMB.habilitarSeguro()}">
+                            <p:inputText id="semanas" value="#{orcamentoCursoMB.seguroviagem.numeroSemanas}" style="width:7%" maxlength="45" class="loginButton2"  disabled="#{orcamentoCursoMB.habilitarSeguro()}">
                                 <f:convertNumber  type="number"/>
-                                <p:ajax event="blur" update="datatermino"  /> 
-                                <p:ajax event="blur" update="valorseguro" /> 
+                                <p:ajax event="blur" update="datatermino, valorseguro" listener="#{orcamentoCursoMB.calcularDataTermino()}" /> 
                             </p:inputText>
                             <p:outputLabel value="Data Final:" for="datatermino" class="imgadd" />
                             <p:calendar id="datatermino" value="#{orcamentoCursoMB.seguroviagem.dataTermino}" size="15" class="loginButton2" locale="pt"  pattern="dd/MM/yyyy" disabled="#{orcamentoCursoMB.habilitarSeguro()}">
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                                 <p:ajax event="blur" update="valorseguro" listener="#{orcamentoCursoMB.calcularValorSeguroViagem()}" />
+                                 <p:ajax update="orcamentoCurso:tabelatotal" />
                             </p:calendar>
                             <p:outputLabel value="Valor do Seguro:" for="valorseguro" class="imgadd"/>
-                            <p:inputText id="valorseguro" value="#{orcamentoCursoMB.seguroviagem.valorSeguro}" style="width:11%" maxlength="45" readonly="true" class="loginButtonr" >
+                            <p:inputText id="valorseguro" value="#{orcamentoCursoMB.seguroviagem.valorSeguro}" style="width:11%" maxlength="45" readonly="true" class="loginButtonr" disabled="#{orcamentoCursoMB.habilitarSeguro()}">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
                           </p:tab>

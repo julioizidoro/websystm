@@ -1,32 +1,33 @@
 package br.com.travelmate.managerBean.OrcamentoCurso;
 
 import br.com.travelmate.facade.PaisProdutoFacade;
-import br.com.travelmate.facade.SeguroViagemFacade;
 import br.com.travelmate.managerBean.UsuarioLogadoMB;
+import br.com.travelmate.model.Cambio;
 import br.com.travelmate.model.Fornecedor;
 import br.com.travelmate.model.Fornecedorcidade;
 import br.com.travelmate.model.Paisproduto;
 import br.com.travelmate.model.Seguroviagem;
+import static br.com.travelmate.model.Seguroviagem_.valoresseguro;
 import br.com.travelmate.model.Valoresseguro;
 import br.com.travelmate.util.Formatacao;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 
 @Named
-@ViewScoped
+@SessionScoped
 public class OrcamentoCursoMB implements Serializable{
     
     @Inject
     private UsuarioLogadoMB usuarioLogadoMB;
     private FornecedorProdutosBean fornecedorProdutosBean;
-    private boolean seguroSelecionado;
-    private boolean acomodacaoSelecionado;
+    private boolean seguroSelecionado = false;
+    private boolean acomodacaoSelecionado = false;
     private Seguroviagem seguroviagem;
     private Fornecedorcidade fornecedorcidade;
     private List<Fornecedorcidade> listaFornecedorCidade;
@@ -34,7 +35,8 @@ public class OrcamentoCursoMB implements Serializable{
     private float valorTotalRS;
     private float valorDesconto;
     private float valorDescontoRS;
-    private Valoresseguro valoresseguro;
+    private Valoresseguro valorSeguro;
+    
 
     public OrcamentoCursoMB() {
         FacesContext fc = FacesContext.getCurrentInstance();
@@ -58,10 +60,9 @@ public class OrcamentoCursoMB implements Serializable{
         if (seguroviagem == null) {
             seguroviagem = new Seguroviagem();
             fornecedorcidade = new Fornecedorcidade();
-            valoresseguro = new Valoresseguro();
+            valorSeguro = new Valoresseguro();
         }else{
             fornecedorcidade = seguroviagem.getValoresseguro().getFornecedorcidade();
-            valoresseguro = seguroviagem.getValoresseguro();
         }
     }
     
@@ -74,15 +75,6 @@ public class OrcamentoCursoMB implements Serializable{
         this.usuarioLogadoMB = usuarioLogadoMB;
     }
 
-    public Valoresseguro getValoresseguro() {
-        return valoresseguro;
-    }
-
-    public void setValoresseguro(Valoresseguro valoresseguro) {
-        this.valoresseguro = valoresseguro;
-    }
-
-    
     public FornecedorProdutosBean getFornecedorProdutosBean() {
         return fornecedorProdutosBean;
     }
@@ -163,6 +155,14 @@ public class OrcamentoCursoMB implements Serializable{
     public void setValorDescontoRS(float valorDescontoRS) {
         this.valorDescontoRS = valorDescontoRS;
     }
+
+    public Valoresseguro getValorSeguro() {
+        return valorSeguro;
+    }
+
+    public void setValorSeguro(Valoresseguro valorSeguro) {
+        this.valorSeguro = valorSeguro;
+    }
     
     
     public String habilitarSeguro(){
@@ -240,4 +240,44 @@ public class OrcamentoCursoMB implements Serializable{
              }
          }
      }
+     
+     public void calcularDataTermino(){
+         seguroviagem.setValoresseguro(valorSeguro);
+        if (seguroviagem.getValoresseguro().getCobranca().equalsIgnoreCase("semana")){
+            if ((seguroviagem.getDataInicio()!=null) && (seguroviagem.getNumeroSemanas()>0)){
+                seguroviagem.setDataTermino(Formatacao.calcularDataFinal(seguroviagem.getDataInicio(), seguroviagem.getNumeroSemanas(), "semana"));
+                seguroviagem.setValorSeguro(seguroviagem.getValoresseguro().getValorgross() * seguroviagem.getNumeroSemanas());
+            }
+        } else if (seguroviagem.getValoresseguro().getCobranca().equalsIgnoreCase("diaria")) {
+            if ((seguroviagem.getDataInicio() != null) && (seguroviagem.getNumeroSemanas() > 0)) {
+                seguroviagem.setDataTermino(Formatacao.calcularDataFinal(seguroviagem.getDataInicio(), seguroviagem.getNumeroSemanas(), "diaria"));
+                Cambio cambio = new Cambio();
+                for (int i = 0; i < usuarioLogadoMB.getListaCambio().size(); i++) {
+                    if (usuarioLogadoMB.getListaCambio().get(i).getMoedas().getSigla().equalsIgnoreCase(seguroviagem.getValoresseguro().getMoedas().getSigla())) {
+                        cambio = usuarioLogadoMB.getListaCambio().get(i);
+                        i = 10000;
+                    }
+                }
+                if (cambio != null) {
+                    float valornacional = seguroviagem.getValoresseguro().getValorgross() * cambio.getValor();
+                    seguroviagem.setValorSeguro(valornacional * seguroviagem.getNumeroSemanas());
+                }
+            }
+        } else if (seguroviagem.getValoresseguro().getCobranca().equalsIgnoreCase("fechada")) {
+            Cambio cambio = new Cambio();
+            for (int i = 0; i < usuarioLogadoMB.getListaCambio().size(); i++) {
+                if (usuarioLogadoMB.getListaCambio().get(i).getMoedas().getSigla().equalsIgnoreCase(seguroviagem.getValoresseguro().getMoedas().getSigla())) {
+                    cambio = usuarioLogadoMB.getListaCambio().get(i);
+                    i = 10000;
+                }
+            }
+            if (cambio != null) {
+                float valornacional = seguroviagem.getValoresseguro().getValorgross() * cambio.getValor();
+                seguroviagem.setValorSeguro(valornacional);
+                calcularTotais();
+            }
+        }
+    }
+     
+    
 }
