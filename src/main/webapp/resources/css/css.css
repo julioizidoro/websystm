@@ -1011,7 +1011,6 @@ text-align: left;
     border: #1F8871;
 }
 .espacocobranca21botao{
-    margin-left:0%;
     width: 19%;
 }
 .espacocobranca21botao:hover{
@@ -1135,6 +1134,9 @@ text-align: left;
 .espacocobranca36{
     margin-left:62%;
 }
+.espacocobranca36negativo{
+    margin-left:-62%;
+}
 .espacocobranca37{
     margin-left:46%;
 }
@@ -1158,6 +1160,9 @@ text-align: left;
 .espacocobranca43{
     margin-left:2.7%;
 }
+.espacocobranca43{
+    margin-left:70%;
+}
 .espacologin{
     margin-left:40%;
      font-size: 10px;
@@ -1177,6 +1182,9 @@ text-align: left;
 }
 .loginButtonn{
     margin-left:1%;
+}
+.loginButtonm{
+    margin-left:1.5%;
 }
 .loginButtonr{
     margin-left:1%;

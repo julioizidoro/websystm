@@ -13,10 +13,11 @@
                     <img  src="#{orcamentoCursoMB.srcLogo(orcamentoCursoMB.fornecedorProdutosBean.fornecedorCidade.fornecedor)}" /> 
                     <h:panelGrid columns="1" style="width: 100%;margin-left:12%;margin-top: -8%">
                         <h:outputText value="#{orcamentoCursoMB.fornecedorProdutosBean.fornecedorCidade.produtos.descricao}" style="font-weight:bold;font-size: 20px;color: #fff" class="espacocobranca29"/>
-                        <p:commandLink value="#{orcamentoCursoMB.fornecedorProdutosBean.fornecedorCidade.fornecedor.nome}" title="Descrição" style="font-weight:bold;font-size: 19px;color: #fff" class="espacocobranca29" oncomplete="PF('descricaoEscola').show()"/>
+                        <p:commandLink value="#{orcamentoCursoMB.fornecedorProdutosBean.fornecedorCidade.fornecedor.nome}" title="DescriÃ§Ã£o" style="font-weight:bold;font-size: 19px;color: #fff" class="espacocobranca29" oncomplete="PF('descricaoEscola').show()"/>
                         <p:commandLink value="#{orcamentoCursoMB.fornecedorProdutosBean.fornecedorCidade.cidade.nome}" title="Mapa" style="font-weight:bold;font-size: 13px;color: #fff" class="espacocobranca29"  oncomplete="PF('mapaEscola').show()"/>
-                     </h:panelGrid>
-                    <br></br><br></br><br></br>
+                    </h:panelGrid>
+                    <p:commandButton id="bntvoltar" class="espacocobranca3botao" style="font-size:12px;margin-left:91%" value="Voltar"  action="#{orcamentoCursoMB.voltar()}" icon="ui-icon-arrowreturnthick-1-w" />
+                     <br></br>
                     <h:outputText value="Curso" style="font-weight:bold;font-size: 17px;color: #fff" class="espacocobranca29"/>
                     <p:dataScroller id="tabelaprodutoObrigatorio" value="#{orcamentoCursoMB.fornecedorProdutosBean.listaObrigaroerios}" var="obrigatorio" chunkSize="10" style="background:#fff" >
                         <p:outputPanel style="text-align: right;width:100%">
@@ -188,7 +189,7 @@
                             <p:calendar id="datatermino" value="#{orcamentoCursoMB.seguroviagem.dataTermino}" size="15" class="loginButton2" locale="pt"  pattern="dd/MM/yyyy" disabled="#{orcamentoCursoMB.habilitarSeguro()}">
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                                 <p:ajax event="blur" update="valorseguro" listener="#{orcamentoCursoMB.calcularValorSeguroViagem()}" />
-                                 <p:ajax update="orcamentoCurso:tabelatotal" />
+                                <p:ajax event="blur" listener="#{orcamentoCursoMB.calcularTotais()}" update="orcamentoCurso:tabelatotal"/>
                             </p:calendar>
                             <p:outputLabel value="Valor do Seguro:" for="valorseguro" class="imgadd"/>
                             <p:inputText id="valorseguro" value="#{orcamentoCursoMB.seguroviagem.valorSeguro}" style="width:11%" maxlength="45" readonly="true" class="loginButtonr" disabled="#{orcamentoCursoMB.habilitarSeguro()}">
@@ -222,7 +223,7 @@
                                 </p:selectOneMenu>
                                 <p:outputLabel value="Refeição:" for="refeicao" class="espacocobranca29" /> 
                                 <p:selectOneMenu  id="refeicao"  value="#" class="espacocobranca29"  style="width:19%;" disabled="#{orcamentoCursoMB.habilitarAcomodacao()}" >
-                                    <f:selectItem itemLabel="Sem Refeição" itemValue="Sem Refeição" noSelectionOption="true"  />
+                                    <f:selectItem itemLabel="Sem Refeição:" itemValue="Sem Refeição:" noSelectionOption="true"  />
                                     <f:selectItem itemLabel="Café da Manhã" itemValue="Café da Manhã"/> 
                                     <f:selectItem itemLabel="Meia Pensão (2 Refeições)" itemValue="Meia Pensão (2 Refeições)"/> 
                                     <f:selectItem itemLabel="Pensão Completa (3 Refeições)" itemValue="Pensão Completa (3 Refeições)"/> 
@@ -234,7 +235,7 @@
                                 <p:calendar id="datachegada"  size="13" locale="pt" class="espacocobranca29" pattern="dd/MM/yyyy"  mask="true"  maxlength="15" disabled="#{orcamentoCursoMB.habilitarAcomodacao()}" >
                                     <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                                 </p:calendar>
-                                <p:outputLabel value="Nº Semanas:" for="numsemanas" class="espacocobranca28" />
+                                <p:outputLabel value="No. Semanas:" for="numsemanas" class="espacocobranca28" />
                                 <p:inputText id="numsemanas" style="width:6%;" maxlength="100"  value="#" class="espacocobranca29" readonly="#{orcamentoCursoMB.habilitarAcomodacao()}" />
                                 <p:outputLabel value="Data Partida:" for="datapartida" class="espacocobranca28" />
                                 <p:calendar id="datapartida" size="13" class="espacocobranca29"  locale="pt"  pattern="dd/MM/yyyy"  mask="true"  maxlength="15" disabled="#{orcamentoCursoMB.habilitarAcomodacao()}">
@@ -255,7 +256,7 @@
                                 <h:outputText value="Desconto" style="font-weight:bold;font-size: 18px;color:#4DA20B" />
                                 <br></br>
                                 <h:outputText value="#{orcamentoCursoMB.fornecedorProdutosBean.cambio.moedas.sigla}" style="font-weight:bold;font-size: 14px;color:#4DA20B" />
-                                <h:outputText value="#{orcamentoCursoMB.valorDesconto}" style="font-weight:bold;font-size: 15px;color:#4DA20B" >
+                                <h:outputText value="#{orcamentoCursoMB.valorDesconto}" class="espacocobranca29" style="font-weight:bold;font-size: 15px;color:#4DA20B" >
                                     <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 </h:outputText>
                                 <br></br>
@@ -268,7 +269,7 @@
                                 <h:outputText value="Total" style="font-weight:bold;font-size: 18px;color:#4DA20B" />
                                 <br></br>
                                 <h:outputText value="#{orcamentoCursoMB.fornecedorProdutosBean.cambio.moedas.sigla}" style="font-weight:bold;font-size: 14px;" />
-                                <h:outputText value="#{orcamentoCursoMB.valorTotal}" style="font-weight:bold;font-size: 15px;" >
+                                <h:outputText value="#{orcamentoCursoMB.valorTotal}" style="font-weight:bold;font-size: 15px;" class="espacocobranca29">
                                     <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 </h:outputText>
                                 <br></br>
@@ -282,7 +283,7 @@
                     <br></br><br></br><br></br>
                 </div>
                 
-                <p:dialog id="dialog_descricaoescola" header="Descrição" widgetVar="descricaoEscola" style="text-align: left;" width="400">
+                <p:dialog id="dialog_descricaoescola" header="DescriÃ§Ã£o" widgetVar="descricaoEscola" style="text-align: left;" width="400">
                     <h:outputText value="Ec" style="font-weight:bold;font-size: 20px;color:#4DA20B;" />
                     <br></br>
                     <h:outputText value="Descrição" style="font-weight:bold;font-size: 12px;" />

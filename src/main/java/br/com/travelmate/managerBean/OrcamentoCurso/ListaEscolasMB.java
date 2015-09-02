@@ -72,5 +72,9 @@ public class ListaEscolasMB implements Serializable{
         return "";
         
     }
+     
+     public String voltar(){
+         return "filtrarOrcamentoCurso";
+     }
     
 }

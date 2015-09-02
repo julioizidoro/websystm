@@ -10,6 +10,7 @@
             <h:form id="filtrarOrcamentoCurso">
                 <div id="centro">
                     <br></br><br></br>
+                    <p:commandButton id="bntvoltar" class="espacocobranca3botao" style="font-size:12px;" value="Voltar"  action="#{listaEscolasMB.voltar()}" icon="ui-icon-arrowreturnthick-1-w" />
                     <p:dataScroller value="#{listaEscolasMB.listaFornecedorProdutosBean}" var="listaEscolas" chunkSize="10" style="background:#fff">
                         <f:facet name="header">
                             Resultados
@@ -30,45 +31,35 @@
                                     <h:outputText value="#{listaEscolas.ocurso.produtosorcamento.descricao}" style="font-weight:bold;font-size: 19px;"/>
                                     <p:commandLink value="#{listaEscolas.fornecedorCidade.fornecedor.nome}" title="Descrição" style="font-weight:bold;font-size:22px;" oncomplete="PF('descricaoEscola').show()"/>
                                     <br></br>
-                                    <h:outputText value="4 Aulas/Semana" style="font-size: 13px;"/>
+                                    <h:outputText value="4 Aulas/Semana" style="font-size:13px;"/>
                                 </h:panelGrid>
                             </p:outputPanel>
                             <p:outputPanel style="text-align: right;width:100%">
                                 <h:panelGrid columns="1" cellpadding="5" style="text-align: right;width:100%">
-                                    <p:commandLink id="valorOriginal" value="#{listaEscolas.svalorMoedaEstrangeira}" style="color:#4DA20B;font-size: 9px;text-align: right;">
+                                    <p:commandLink id="valorOriginal" value="#{listaEscolas.svalorMoedaEstrangeira}" style="font-weight:bold;font-size:14px;text-align: right;" >
                                      </p:commandLink>
                                     <p:overlayPanel id="painelDescricao" for="valorOriginal" hideEffect="fade" style="width:30%;background:#CCCCCC" >
                                         <h:outputText value="Valor Original:" style="font-weight:bold"/>
-                                        <h:outputText value="US$" style="font-weight:bold" class="espacocobranca29"/>
+                                        <h:outputText value="#{listaEscolas.cambio.moedas.sigla}" style="font-weight:bold" class="espacocobranca29"/>
                                         <h:outputText value="#{listaEscolas.valorMoedaEstrangeira}" style="font-weight:bold">
                                             <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                         </h:outputText>
+                                        <br></br><br></br>
                                         <h:outputText value="R$ " style="font-size:9px;" class="espacocobranca29"/>
                                         <h:outputText value="#{listaEscolas.valorMoedaNacional}" style="font-size:9px;">
-                                            <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
-                                        </h:outputText>
-                                        <br></br><br></br>
-                                        <h:outputText value="R$ Promocional:" style="font-weight:bold"/>
-                                        <h:outputText value="US$" style="font-weight:bold" class="espacocobranca29"/>
-                                        <h:outputText value="#{listaEscolas.valorDesconto}" style="font-weight:bold">
                                             <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                         </h:outputText>
                                     </p:overlayPanel>
-                                    <p:commandLink id="valorPromocional" value="#{listaEscolas.svalorDesconto}" style="font-weight:bold;font-size:14px;text-align: right;"/>
-                                    <p:overlayPanel id="painelDescricao2" for="valorPromocional" hideEffect="fade" style="width:30%;background:#CCCCCC" >
+                                    <p:commandLink id="valorReal" value="#{listaEscolas.svalorMoedaNacional}" style="color:#4DA20B;font-size: 9px;text-align: right;"/>
+                                    <p:overlayPanel id="painelDescricao2" for="valorReal" hideEffect="fade" style="width:30%;background:#CCCCCC" >
                                          <h:outputText value="Valor Original:" style="font-weight:bold"/>
-                                        <h:outputText value="US$" style="font-weight:bold" class="espacocobranca29"/>
+                                        <h:outputText value="#{listaEscolas.cambio.moedas.sigla}" style="font-weight:bold" class="espacocobranca29"/>
                                         <h:outputText value="#{listaEscolas.valorMoedaEstrangeira}" style="font-weight:bold">
                                             <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                         </h:outputText>
+                                        <br></br><br></br>
                                         <h:outputText value="R$ " style="font-size:9px;" class="espacocobranca29"/>
                                         <h:outputText value="#{listaEscolas.valorMoedaNacional}" style="font-size:9px;">
-                                            <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
-                                        </h:outputText>
-                                        <br></br><br></br>
-                                        <h:outputText value="R$ Promocional:" style="font-weight:bold"/>
-                                        <h:outputText value="US$" style="font-weight:bold" class="espacocobranca29"/>
-                                        <h:outputText value="#{listaEscolas.valorDesconto}" style="font-weight:bold">
                                             <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                         </h:outputText>
                                     </p:overlayPanel>
