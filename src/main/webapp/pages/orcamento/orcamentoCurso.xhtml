@@ -13,7 +13,7 @@
                     <img  src="#{orcamentoCursoMB.srcLogo(orcamentoCursoMB.fornecedorProdutosBean.fornecedorCidade.fornecedor)}" /> 
                     <h:panelGrid columns="1" style="width: 100%;margin-left:12%;margin-top: -8%">
                         <h:outputText value="#{orcamentoCursoMB.fornecedorProdutosBean.fornecedorCidade.produtos.descricao}" style="font-weight:bold;font-size: 20px;color: #fff" class="espacocobranca29"/>
-                        <p:commandLink value="#{orcamentoCursoMB.fornecedorProdutosBean.fornecedorCidade.fornecedor.nome}" title="DescriÃ§Ã£o" style="font-weight:bold;font-size: 19px;color: #fff" class="espacocobranca29" oncomplete="PF('descricaoEscola').show()"/>
+                        <p:commandLink value="#{orcamentoCursoMB.fornecedorProdutosBean.fornecedorCidade.fornecedor.nome}" title="Descrição" style="font-weight:bold;font-size: 19px;color: #fff" class="espacocobranca29" oncomplete="PF('descricaoEscola').show()"/>
                         <p:commandLink value="#{orcamentoCursoMB.fornecedorProdutosBean.fornecedorCidade.cidade.nome}" title="Mapa" style="font-weight:bold;font-size: 13px;color: #fff" class="espacocobranca29"  oncomplete="PF('mapaEscola').show()"/>
                     </h:panelGrid>
                     <p:commandButton id="bntvoltar" class="espacocobranca3botao" style="font-size:12px;margin-left:91%" value="Voltar"  action="#{orcamentoCursoMB.voltar()}" icon="ui-icon-arrowreturnthick-1-w" />

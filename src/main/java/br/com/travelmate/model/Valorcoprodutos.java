@@ -58,11 +58,12 @@ public class Valorcoprodutos implements Serializable {
     private Float valorpromocional;
     @Column(name = "promocional")
     private Boolean promocional;
+     @Column(name = "cobranca")
+    private String cobranca;
     @JoinColumn(name = "coprodutos_idcoprodutos", referencedColumnName = "idcoprodutos")
     @ManyToOne(optional = false)
     private Coprodutos coprodutos;
-    @Transient
-    private Float valorMoedaMacional;
+    
 
     public Valorcoprodutos() {
     }
@@ -143,6 +144,14 @@ public class Valorcoprodutos implements Serializable {
         this.promocional = promocional;
     }
 
+    public String getCobranca() {
+        return cobranca;
+    }
+
+    public void setCobranca(String cobranca) {
+        this.cobranca = cobranca;
+    }
+
     public Coprodutos getCoprodutos() {
         return coprodutos;
     }
@@ -151,13 +160,6 @@ public class Valorcoprodutos implements Serializable {
         this.coprodutos = coprodutos;
     }
 
-    public Float getValorMoedaMacional() {
-        return valorMoedaMacional;
-    }
-
-    public void setValorMoedaMacional(Float valorMoedaMacional) {
-        this.valorMoedaMacional = valorMoedaMacional;
-    }
 
     @Override
     public int hashCode() {

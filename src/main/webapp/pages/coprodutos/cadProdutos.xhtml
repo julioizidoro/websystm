@@ -41,7 +41,7 @@
         <h:form id="cadastroproduto" style="text-align:left;font-size: 10px;">
             <title>Cadastro Produtos</title><br></br>
             <p:outputLabel value="Produto:" for="produto"/>
-            <p:selectOneMenu id="produto" value="#{cadCoProdutosMB.coprodutos.produtosorcamento}" style="width:50%;" class="espacocobranca29" 
+            <p:selectOneMenu id="produto" value="#{cadCoProdutosMB.prdutoOrcamento}" style="width:50%;" class="espacocobranca29" 
                              converter="ProdutoOrcamentoConverter" filter="true" filterMatchMode="startsWith" >
                 <f:selectItem itemLabel="Produto" itemValue="0" noSelectionOption="true"/> 
                 <f:selectItems id="idproduto" value="#{cadCoProdutosMB.listaFiltroorcamentoproduto}" var="produtoselecionado" itemLabel="#{produtoselecionado.produtosorcamento.descricao}" itemValue="#{produtoselecionado.produtosorcamento}"/>

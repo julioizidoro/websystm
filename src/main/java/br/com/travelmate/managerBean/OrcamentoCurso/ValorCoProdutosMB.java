@@ -5,14 +5,18 @@
  */
 package br.com.travelmate.managerBean.OrcamentoCurso;
 
+import br.com.travelmate.facade.ValorCoProdutosFacade;
 import br.com.travelmate.model.Coprodutos;
 import br.com.travelmate.model.Valorcoprodutos;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
+import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -23,14 +27,19 @@ import javax.servlet.http.HttpSession;
 public class ValorCoProdutosMB implements Serializable{
     
     private Coprodutos coprodutos;
-    private Valorcoprodutos valorCoProdutos; 
+    private List<Valorcoprodutos> listaValores;
     
     @PostConstruct
     public void init(){
         FacesContext fc = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
-        coprodutos = (Coprodutos) session.getAttribute("coProdutos");
-        session.removeAttribute("CoProdutos");
+        coprodutos = (Coprodutos) session.getAttribute("coprodutos");
+        session.removeAttribute("coprodutos");
+        if (coprodutos!=null){
+            gerarListaValores();
+        }else{
+            listaValores = new ArrayList<Valorcoprodutos>();
+        }
     }
 
     public Coprodutos getCoprodutos() {
@@ -40,13 +49,30 @@ public class ValorCoProdutosMB implements Serializable{
     public void setCoprodutos(Coprodutos coprodutos) {
         this.coprodutos = coprodutos;
     }
-
-    public Valorcoprodutos getValorCoProdutos() {
-        return valorCoProdutos;
+    
+    public List<Valorcoprodutos> getListaValores() {
+        return listaValores;
     }
 
-    public void setValorCoProdutos(Valorcoprodutos valorCoProdutos) {
-        this.valorCoProdutos = valorCoProdutos;
+    public void setListaValores(List<Valorcoprodutos> listaValores) {
+        this.listaValores = listaValores;
+    }
+    
+    public void gerarListaValores(){
+        String sql = "Select v from Valorcoprodutos v where v.coprodutos.idcoprodutos=" + coprodutos.getIdcoprodutos();
+        ValorCoProdutosFacade valorCoProdutosFacade = new ValorCoProdutosFacade();
+        listaValores = valorCoProdutosFacade.listar(sql);
+        if (listaValores==null){
+            listaValores = new ArrayList<Valorcoprodutos>();
+        }
+    }
+    
+    public String cadValoresProdutos(){
+        FacesContext fc = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+        session.setAttribute("coprodutos", coprodutos);
+        RequestContext.getCurrentInstance().openDialog("cadValorCoProdutos");
+        return "";
     }
     
     

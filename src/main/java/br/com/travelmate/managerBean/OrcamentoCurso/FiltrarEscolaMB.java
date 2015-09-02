@@ -252,45 +252,67 @@ public class FiltrarEscolaMB implements Serializable{
         if (listaCoProdutos!=null){
             ValorCoProdutosFacade valorCoProdutosFacade = new ValorCoProdutosFacade();
             for(int i=0;i<listaCoProdutos.size();i++){
-                Valorcoprodutos valorcoprodutos = null;
-                sql = "Select v from  Valorcoprodutos v where v.datainicial<='" +
-                        Formatacao.ConvercaoDataSql(new Date()) +"' and v.datafinal>='" +
-                        Formatacao.ConvercaoDataSql(new Date()) + "' and v.numerosemanainicial<=" +
-                        ocurso.getNumerosemanas() + " and v.numerosemanafinal>=" + ocurso.getNumerosemanas() + " and v.tipodata='DI' and v.coprodutos.idcoprodutos=" + listaCoProdutos.get(i).getIdcoprodutos();
-                
-                List<Valorcoprodutos> listaValorcoprodutoses = valorCoProdutosFacade.listar(sql);
-                if (listaValorcoprodutoses!=null){
-                    for(int n=0;n<listaValorcoprodutoses.size();n++){
-                        if (valorcoprodutos==null){
-                            valorcoprodutos = new Valorcoprodutos();
-                            valorcoprodutos = listaValorcoprodutoses.get(n);
-                        }else {
-                            valorcoprodutos = compararValores(listaValorcoprodutoses.get(n), valorcoprodutos);
-                        }
-                        
-                    }
-                }
-                if (valorcoprodutos!=null){
-                    ProdutosOrcamentoBean po = new ProdutosOrcamentoBean();
-                    po.setValorcoprodutos(valorcoprodutos);
-                    if (valorcoprodutos.getValorpromocional()>0){
-                        po.setValorOrigianl(valorcoprodutos.getValororiginal());
-                        po.setValorPromocional(valorcoprodutos.getValorpromocional());
-                    }else {
-                        float valor = (float) (valorcoprodutos.getValororiginal() * 1.1);
-                        po.setValorOrigianl(valor);
-                        po.setValorPromocional(valorcoprodutos.getValororiginal());
-                        
-                    }
-                    po.setValorPromocionalRS(po.getValorPromocional() * fornecedorProdutosBean.getCambio().getValor());
-                    po.setValorOrigianl(po.getValorOrigianl()* fornecedorProdutosBean.getCambio().getValor());
-                    po.setSelecionado(true);
+                ProdutosOrcamentoBean po = consultarValores("DI", listaCoProdutos.get(i).getIdcoprodutos(), fornecedorProdutosBean);
+                if (po!=null){
                     listaRetorno.add(po);
-                    valorcoprodutos = new Valorcoprodutos();
+                }
+                po = consultarValores("DM", listaCoProdutos.get(i).getIdcoprodutos(), fornecedorProdutosBean);
+                if (po!=null){
+                    listaRetorno.add(po);
+                }
+                po = consultarValores("DS", listaCoProdutos.get(i).getIdcoprodutos(), fornecedorProdutosBean);
+                if (po!=null){
+                    listaRetorno.add(po);
                 }
             }
         }
         return listaRetorno;
+    }
+    
+    public ProdutosOrcamentoBean consultarValores(String tipoData, int idCoProdutos, FornecedorProdutosBean fornecedorProdutosBean) {
+        ValorCoProdutosFacade valorCoProdutosFacade = new ValorCoProdutosFacade();
+        Valorcoprodutos valorcoprodutos = null;
+        String sql = "Select v from  Valorcoprodutos v where v.datainicial<='"
+                + Formatacao.ConvercaoDataSql(new Date()) + "' and v.datafinal>='"
+                + Formatacao.ConvercaoDataSql(new Date()) + "' and v.numerosemanainicial<="
+                + ocurso.getNumerosemanas() + " and v.numerosemanafinal>=" + ocurso.getNumerosemanas() + " and v.tipodata='" + tipoData + "' and v.coprodutos.idcoprodutos=" + idCoProdutos;
+
+        List<Valorcoprodutos> listaValorcoprodutoses = valorCoProdutosFacade.listar(sql);
+        if (listaValorcoprodutoses != null) {
+            for (int n = 0; n < listaValorcoprodutoses.size(); n++) {
+                if (valorcoprodutos == null) {
+                    valorcoprodutos = new Valorcoprodutos();
+                    valorcoprodutos = listaValorcoprodutoses.get(n);
+                } else {
+                    valorcoprodutos = compararValores(listaValorcoprodutoses.get(n), valorcoprodutos);
+                }
+
+            }
+        }
+        if (valorcoprodutos != null) {
+            ProdutosOrcamentoBean po = new ProdutosOrcamentoBean();
+            po.setValorcoprodutos(valorcoprodutos);
+            int multiplicador =1;
+            if (valorcoprodutos.getCobranca().equalsIgnoreCase("S")){
+                multiplicador = fornecedorProdutosBean.getOcurso().getNumerosemanas();
+            }else if (valorcoprodutos.getCobranca().equalsIgnoreCase("D")){
+                multiplicador = fornecedorProdutosBean.getOcurso().getNumerosemanas() * 7;
+            }
+            if (valorcoprodutos.getValorpromocional() > 0) {
+                po.setValorOrigianl(valorcoprodutos.getValororiginal() * multiplicador);
+                po.setValorPromocional(valorcoprodutos.getValorpromocional() * multiplicador);
+            } else {
+                float valor = (float) (valorcoprodutos.getValororiginal() * 1.1);
+                po.setValorOrigianl(valor * multiplicador);
+                po.setValorPromocional(valorcoprodutos.getValororiginal() * multiplicador);
+
+            }
+            po.setValorPromocionalRS(po.getValorPromocional() * fornecedorProdutosBean.getCambio().getValor());
+            po.setValorOrigianl(po.getValorOrigianl() * fornecedorProdutosBean.getCambio().getValor());
+            po.setSelecionado(true);
+            return po;
+        }
+        return null;
     }
     
     public Valorcoprodutos compararValores(Valorcoprodutos valorNovo, Valorcoprodutos valorAtual){

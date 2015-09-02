@@ -41,7 +41,7 @@
         <h:form id="cadastroproduto" style="text-align:left;font-size: 10px;">
             <title>Cadastro de Valores</title><br></br>
             
-            <p:selectOneRadio id="tipodata" value="#{coProdutosMB.valorcoproduto.tipodata}" layout="custom">
+            <p:selectOneRadio id="tipodata" value="#{cadValorCoProdutosMB.valorcoprodutos.tipodata}" layout="custom">
                 <f:selectItem itemLabel="Data Inscrição" itemValue="DM" />
                 <f:selectItem itemLabel="Data Início" itemValue="DI" />
                 <f:selectItem itemLabel="Data Suplemento" itemValue="DS" />
@@ -57,32 +57,32 @@
             <br></br><br></br>
             
             <p:outputLabel value="Período:" for="datainicio" class="espacocobranca42"/>
-            <p:inputMask id="datainicio"  value="#{coProdutosMB.valorcoproduto.datainicial}" size="8" mask="99/99/9999"  maxlength="15" class="espacocobranca29" >
+            <p:inputMask id="datainicio"  value="#{cadValorCoProdutosMB.valorcoprodutos.datainicial}" size="8" mask="99/99/9999"  maxlength="15" class="espacocobranca29" >
                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
             </p:inputMask>
-            <p:inputMask id="datafinal" size="8" value="#{coProdutosMB.valorcoproduto.datafinal}" mask="99/99/9999"  maxlength="15" class="espacocobranca29" >
+            <p:inputMask id="datafinal" size="8" value="#{cadValorCoProdutosMB.valorcoprodutos.datafinal}" mask="99/99/9999"  maxlength="15" class="espacocobranca29" >
                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
             </p:inputMask>
             <p:outputLabel value="Nº Semanas:" for="nsemanasinicial" class="espacocobranca42"/>
-            <p:inputText value="#{coProdutosMB.valorcoproduto.numerosemanainicial}" id="nsemanasinicial" style="width:10%;" class="espacocobranca29" title="Nº de Semanas inícial"/>
+            <p:inputText value="#{cadValorCoProdutosMB.valorcoprodutos.numerosemanainicial}" id="nsemanasinicial" style="width:10%;" class="espacocobranca29" title="Nº de Semanas inícial"/>
             <p:outputLabel value="Até:" for="nsemanasfinal" class="espacocobranca29"/>
-            <p:inputText value="#{coProdutosMB.valorcoproduto.numerosemanafinal}" id="nsemanasfinal" style="width:10%;" class="espacocobranca29"  title="Nº de Semanas final"/>
+            <p:inputText value="#{cadValorCoProdutosMB.valorcoprodutos.numerosemanafinal}" id="nsemanasfinal" style="width:10%;" class="espacocobranca29"  title="Nº de Semanas final"/>
             
             
             <br></br><br></br>
             
             <p:outputLabel value="Valor Original:" for="valorOriginal" class="espacocobranca29"/>
-            <p:inputText id="valorOriginal" value="#{coProdutosMB.valorcoproduto.valororiginal}" style="width:13.2%;" class="espacocobranca29r" >
+            <p:inputText id="valorOriginal" value="#{cadValorCoProdutosMB.valorcoprodutos.valororiginal}" style="width:13.2%;" class="espacocobranca29r" >
                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
             </p:inputText>
             <p:outputLabel value="Valor Promocional:" for="valorPromocional" class="espacocobranca24"/>
-            <p:inputText id="valorPromocional" value="#{coProdutosMB.valorcoproduto.valorpromocional}" style="width:14%;" class="espacocobranca29r" >
+            <p:inputText id="valorPromocional" value="#{cadValorCoProdutosMB.valorcoprodutos.valorpromocional}" style="width:14%;" class="espacocobranca29r" >
                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
             </p:inputText>
             <br></br><br></br><br></br>
             <p class="botaocadpacote"><br></br>
-                <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Confirmar" action="#"></p:commandButton>
-                <p:commandButton class="espacocampos" onclick="" icon="ui-icon-close" value="Cancelar" action="#"></p:commandButton>
+                <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Confirmar" action="#{cadValorCoProdutosMB.salvar()}"></p:commandButton>
+                <p:commandButton class="espacocampos" onclick="" icon="ui-icon-close" value="Cancelar" action="#{cadValorCoProdutosMB.cancelar()}"></p:commandButton>
             <br></br><br></br></p>
         </h:form>     
     </h:body>

@@ -151,29 +151,20 @@ public class CoProdutosMB implements Serializable{
         }
     }
     
-    public List<Coprodutos> gerarListaCoObrigatorio(String sql){
-        CoProdutosFacade coObrigatorioFacade = new CoProdutosFacade();
-        List<Coprodutos> listaObrigatorio = coObrigatorioFacade.listar(sql);
-        if (listaObrigatorio==null){
-           listaObrigatorio = new ArrayList<Coprodutos>();
-        }
-        return listaObrigatorio;
-    }
-    
     public String cadProduto(){
+        FacesContext fc = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+        session.setAttribute("fornecedorCidade", fornecedorcidade);
          RequestContext.getCurrentInstance().openDialog("cadProdutos");
         return "";
     }
     
-    public String cadValoresProdutos(){
+    
+    
+    public String consValorProduto(Coprodutos coprodutos){
         FacesContext fc = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
-        session.setAttribute("CoProdutos", coprodutos);
-        RequestContext.getCurrentInstance().openDialog("cadValorCoProdutos");
-        return "";
-    }
-    
-    public String consValorProduto(){
+        session.setAttribute("coprodutos", coprodutos);
         return "consValorCoProdutos";
     }
     
