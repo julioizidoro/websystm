@@ -26,7 +26,9 @@ public class OrcamentoCursoMB implements Serializable{
     
     @Inject
     private UsuarioLogadoMB usuarioLogadoMB;
-    private FornecedorProdutosBean fornecedorProdutosBean;
+    @Inject 
+    private FiltrarEscolaMB filtrarEscolaMB;
+    //private FornecedorProdutosBean filtrarEscolaMB.getFornecedorProdutosBean();
     private boolean seguroSelecionado = false;
     private boolean acomodacaoSelecionado = false;
     private Seguroviagem seguroviagem;
@@ -42,11 +44,19 @@ public class OrcamentoCursoMB implements Serializable{
     public OrcamentoCursoMB() {
         FacesContext fc = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
-        fornecedorProdutosBean = (FornecedorProdutosBean) session.getAttribute("fornecedorProdutosBean");
-        session.removeAttribute("fornecedorProdutosBean");
-        if (fornecedorProdutosBean!=null){
+        //filtrarEscolaMB.getFornecedorProdutosBean() = (FornecedorProdutosBean) session.getAttribute("filtrarEscolaMB.getFornecedorProdutosBean()");
+        session.removeAttribute("filtrarEscolaMB.getFornecedorProdutosBean()");
+        if (filtrarEscolaMB.getFornecedorProdutosBean()!=null){
             calcularTotais();
         }
+    }
+
+    public FiltrarEscolaMB getFiltrarEscolaMB() {
+        return filtrarEscolaMB;
+    }
+
+    public void setFiltrarEscolaMB(FiltrarEscolaMB filtrarEscolaMB) {
+        this.filtrarEscolaMB = filtrarEscolaMB;
     }
     
     
@@ -77,14 +87,7 @@ public class OrcamentoCursoMB implements Serializable{
         this.usuarioLogadoMB = usuarioLogadoMB;
     }
 
-    public FornecedorProdutosBean getFornecedorProdutosBean() {
-        return fornecedorProdutosBean;
-    }
-
-    public void setFornecedorProdutosBean(FornecedorProdutosBean fornecedorProdutosBean) {
-        this.fornecedorProdutosBean = fornecedorProdutosBean;
-    }
-
+    
     public boolean isSeguroSelecionado() {
         return seguroSelecionado;
     }
@@ -211,17 +214,17 @@ public class OrcamentoCursoMB implements Serializable{
          if (seguroviagem!=null){
              if (seguroviagem.getValorSeguro()!=null){
                  totalRS = totalRS + seguroviagem.getValorSeguro();
-                 total = total + (seguroviagem.getValorSeguro() / fornecedorProdutosBean.getCambio().getValor());
+                 total = total + (seguroviagem.getValorSeguro() / filtrarEscolaMB.getFornecedorProdutosBean().getCambio().getValor());
              }
          }
-         for(int i=0;i<fornecedorProdutosBean.getListaObrigaroerios().size();i++){
-             total = total + fornecedorProdutosBean.getListaObrigaroerios().get(i).getValorPromocional();
-             totalRS = totalRS + fornecedorProdutosBean.getListaObrigaroerios().get(i).getValorPromocionalRS();
+         for(int i=0;i<filtrarEscolaMB.getFornecedorProdutosBean().getListaObrigaroerios().size();i++){
+             total = total + filtrarEscolaMB.getFornecedorProdutosBean().getListaObrigaroerios().get(i).getValorPromocional();
+             totalRS = totalRS + filtrarEscolaMB.getFornecedorProdutosBean().getListaObrigaroerios().get(i).getValorPromocionalRS();
          }
-         for(int i=0;i<fornecedorProdutosBean.getListaOpcionais().size();i++){
-             if (fornecedorProdutosBean.getListaOpcionais().get(i).isSelecionado()){
-                total = total + fornecedorProdutosBean.getListaOpcionais().get(i).getValorPromocional();
-                totalRS = totalRS + fornecedorProdutosBean.getListaOpcionais().get(i).getValorPromocionalRS();
+         for(int i=0;i<filtrarEscolaMB.getFornecedorProdutosBean().getListaOpcionais().size();i++){
+             if (filtrarEscolaMB.getFornecedorProdutosBean().getListaOpcionais().get(i).isSelecionado()){
+                total = total + filtrarEscolaMB.getFornecedorProdutosBean().getListaOpcionais().get(i).getValorPromocional();
+                totalRS = totalRS + filtrarEscolaMB.getFornecedorProdutosBean().getListaOpcionais().get(i).getValorPromocionalRS();
              }
          }
          valorTotal = total;

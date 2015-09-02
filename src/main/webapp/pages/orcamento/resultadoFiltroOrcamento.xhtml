@@ -11,7 +11,7 @@
                 <div id="centro">
                     <br></br><br></br>
                     <p:commandButton id="bntvoltar" class="espacocobranca3botao" style="font-size:12px;" value="Voltar"  action="#{listaEscolasMB.voltar()}" icon="ui-icon-arrowreturnthick-1-w" />
-                    <p:dataScroller value="#{listaEscolasMB.listaFornecedorProdutosBean}" var="listaEscolas" chunkSize="10" style="background:#fff">
+                    <p:dataScroller value="#{listaEscolasMB.filtrarEscolaMB.listaFornecedorProdutosBean}" var="listaEscolas" chunkSize="10" style="background:#fff">
                         <f:facet name="header">
                             Resultados
                         </f:facet>

@@ -8,11 +8,11 @@ package br.com.travelmate.managerBean.OrcamentoCurso;
 import br.com.travelmate.model.Fornecedor;
 import br.com.travelmate.model.Parametrosprodutos;
 import java.io.Serializable;
-import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 
@@ -24,13 +24,24 @@ import javax.servlet.http.HttpSession;
 @SessionScoped
 public class ListaEscolasMB implements Serializable{
     
+    @Inject
+    private FiltrarEscolaMB filtrarEscolaMB;
     private Parametrosprodutos parametrosprodutos;
-    private List<FornecedorProdutosBean> listaFornecedorProdutosBean;
-
-    public ListaEscolasMB() {
+    //private List<FornecedorProdutosBean> listaFornecedorProdutosBean;
+    
+    @PostConstruct
+    public void init() {
         FacesContext fc = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
-        listaFornecedorProdutosBean = (List<FornecedorProdutosBean>) session.getAttribute("listaFornecedorProdutosBean");
+        //filtrarEscolaMB.setListaFornecedorProdutosBean(null); = (List<FornecedorProdutosBean>) session.getAttribute("listaFornecedorProdutosBean");
+    }
+
+    public FiltrarEscolaMB getFiltrarEscolaMB() {
+        return filtrarEscolaMB;
+    }
+
+    public void setFiltrarEscolaMB(FiltrarEscolaMB filtrarEscolaMB) {
+        this.filtrarEscolaMB = filtrarEscolaMB;
     }
 
     public Parametrosprodutos getParametrosprodutos() {
@@ -40,16 +51,6 @@ public class ListaEscolasMB implements Serializable{
     public void setParametrosprodutos(Parametrosprodutos parametrosprodutos) {
         this.parametrosprodutos = parametrosprodutos;
     }
-
-    
-    public List<FornecedorProdutosBean> getListaFornecedorProdutosBean() {
-        return listaFornecedorProdutosBean;
-    }
-
-    public void setListaFornecedorProdutosBean(List<FornecedorProdutosBean> listaFornecedorProdutosBean) {
-        this.listaFornecedorProdutosBean = listaFornecedorProdutosBean;
-    }
-    
     
     public String srcLogo(Fornecedor fornecedor){
         String logo ="";

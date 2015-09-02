@@ -48,6 +48,7 @@ public class FiltrarEscolaMB implements Serializable{
     private List<Filtroorcamentoproduto> listaProdutosOrcamento;
     private Ocurso ocurso;
     private List<FornecedorProdutosBean> listaFornecedorProdutosBean;
+    private FornecedorProdutosBean fornecedorProdutosBean;
     
     
     @PostConstruct
@@ -135,6 +136,14 @@ public class FiltrarEscolaMB implements Serializable{
         return ocurso;
     }
 
+    public FornecedorProdutosBean getFornecedorProdutosBean() {
+        return fornecedorProdutosBean;
+    }
+
+    public void setFornecedorProdutosBean(FornecedorProdutosBean fornecedorProdutosBean) {
+        this.fornecedorProdutosBean = fornecedorProdutosBean;
+    }
+
     
     
 
@@ -159,7 +168,9 @@ public class FiltrarEscolaMB implements Serializable{
                 FacesContext fc = FacesContext.getCurrentInstance();
                 HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
                 session.setAttribute("listaFornecedorProdutosBean", listaFornecedorProdutosBean);
-                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("ListaEscolaMB");
+                if (FacesContext.getCurrentInstance().getExternalContext().getSessionMap().containsKey("listaEscolasMB")){
+                    FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("listaEscolasMB");
+                }
                 return "resultadoFiltroOrcamento";
             }else {
                 return null;

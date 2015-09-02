@@ -10,16 +10,16 @@
         <ui:define name="corpo">
             <h:form id="orcamentoCurso">
                 <div id="centro"> <br></br>
-                    <img  src="#{orcamentoCursoMB.srcLogo(orcamentoCursoMB.fornecedorProdutosBean.fornecedorCidade.fornecedor)}" /> 
+                    <img  src="#{orcamentoCursoMB.srcLogo(orcamentoCursoMB.filtrarEscolaMB.fornecedorProdutosBean.fornecedorCidade.fornecedor)}" /> 
                     <h:panelGrid columns="1" style="width: 100%;margin-left:12%;margin-top: -8%">
-                        <h:outputText value="#{orcamentoCursoMB.fornecedorProdutosBean.fornecedorCidade.produtos.descricao}" style="font-weight:bold;font-size: 20px;color: #fff" class="espacocobranca29"/>
-                        <p:commandLink value="#{orcamentoCursoMB.fornecedorProdutosBean.fornecedorCidade.fornecedor.nome}" title="Descrição" style="font-weight:bold;font-size: 19px;color: #fff" class="espacocobranca29" oncomplete="PF('descricaoEscola').show()"/>
-                        <p:commandLink value="#{orcamentoCursoMB.fornecedorProdutosBean.fornecedorCidade.cidade.nome}" title="Mapa" style="font-weight:bold;font-size: 13px;color: #fff" class="espacocobranca29"  oncomplete="PF('mapaEscola').show()"/>
+                        <h:outputText value="#{orcamentoCursoMB.filtrarEscolaMB.fornecedorProdutosBean.fornecedorCidade.produtos.descricao}" style="font-weight:bold;font-size: 20px;color: #fff" class="espacocobranca29"/>
+                        <p:commandLink value="#{orcamentoCursoMB.filtrarEscolaMB.fornecedorProdutosBean.fornecedorCidade.fornecedor.nome}" title="Descrição" style="font-weight:bold;font-size: 19px;color: #fff" class="espacocobranca29" oncomplete="PF('descricaoEscola').show()"/>
+                        <p:commandLink value="#{orcamentoCursoMB.filtrarEscolaMB.fornecedorProdutosBean.fornecedorCidade.cidade.nome}" title="Mapa" style="font-weight:bold;font-size: 13px;color: #fff" class="espacocobranca29"  oncomplete="PF('mapaEscola').show()"/>
                     </h:panelGrid>
                     <p:commandButton id="bntvoltar" class="espacocobranca3botao" style="font-size:12px;margin-left:91%" value="Voltar"  action="#{orcamentoCursoMB.voltar()}" icon="ui-icon-arrowreturnthick-1-w" />
                      <br></br>
                     <h:outputText value="Curso" style="font-weight:bold;font-size: 17px;color: #fff" class="espacocobranca29"/>
-                    <p:dataScroller id="tabelaprodutoObrigatorio" value="#{orcamentoCursoMB.fornecedorProdutosBean.listaObrigaroerios}" var="obrigatorio" chunkSize="10" style="background:#fff" >
+                    <p:dataScroller id="tabelaprodutoObrigatorio" value="#{orcamentoCursoMB.filtrarEscolaMB.fornecedorProdutosBean.listaObrigaroerios}" var="obrigatorio" chunkSize="10" style="background:#fff" >
                         <p:outputPanel style="text-align: right;width:100%">
                             <h:panelGrid columns="3" style="width:100%;background:#fff" >
                                 <p:outputPanel style="width:50%;" >
@@ -32,10 +32,10 @@
                         <p:outputPanel style="text-align: right;width:100%;background:#fff;margin-top: -3%" >
                                 <h:panelGrid columns="1" cellpadding="5" style="text-align: right;width:100%">
                                    
-                                    <p:commandLink id="valorOriginal" value="#{orcamentoCursoMB.retornarValorString(obrigatorio.valorOrigianl, orcamentoCursoMB.fornecedorProdutosBean.cambio.moedas.sigla)}" style="color:#4DA20B;font-size: 9px;text-align: right;text-decoration:line-through;"/>
+                                    <p:commandLink id="valorOriginal" value="#{orcamentoCursoMB.retornarValorString(obrigatorio.valorOrigianl, orcamentoCursoMB.filtrarEscolaMB.fornecedorProdutosBean.cambio.moedas.sigla)}" style="color:#4DA20B;font-size: 9px;text-align: right;text-decoration:line-through;"/>
                                     <p:overlayPanel id="painelDescricao" for="valorOriginal" hideEffect="fade" style="width:30%;background:#CCCCCC" >
                                         <h:outputText value="Valor Original:" style="font-weight:bold"/>
-                                        <h:outputText value="#{orcamentoCursoMB.fornecedorProdutosBean.cambio.moedas.sigla}" style="font-weight:bold" class="espacocobranca29"/>
+                                        <h:outputText value="#{orcamentoCursoMB.filtrarEscolaMB.fornecedorProdutosBean.cambio.moedas.sigla}" style="font-weight:bold" class="espacocobranca29"/>
                                         <h:outputText value="#{obrigatorio.valorOrigianl}" style="font-weight:bold">
                                             <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                         </h:outputText>
@@ -45,7 +45,7 @@
                                         </h:outputText>
                                         <br></br><br></br>
                                         <h:outputText value="R$ Promocional:" style="font-weight:bold"/>
-                                        <h:outputText value="#{orcamentoCursoMB.fornecedorProdutosBean.cambio.moedas.sigla}" style="font-weight:bold" class="espacocobranca29"/>
+                                        <h:outputText value="#{orcamentoCursoMB.filtrarEscolaMB.fornecedorProdutosBean.cambio.moedas.sigla}" style="font-weight:bold" class="espacocobranca29"/>
                                         <h:outputText value="#{obrigatorio.valorPromocional}" style="font-weight:bold">
                                             <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                         </h:outputText>
@@ -53,10 +53,10 @@
                                         <h:outputText value="#{obrigatorio.valorPromocionalRS}" style="font-size:9px;"/>
                                     </p:overlayPanel>
                                    
-                                    <p:commandLink id="valorPromocional" value="#{orcamentoCursoMB.retornarValorString(obrigatorio.valorPromocional, orcamentoCursoMB.fornecedorProdutosBean.cambio.moedas.sigla)}"  style="font-weight:bold;font-size:14px;text-align: right;"/>
+                                    <p:commandLink id="valorPromocional" value="#{orcamentoCursoMB.retornarValorString(obrigatorio.valorPromocional, orcamentoCursoMB.filtrarEscolaMB.fornecedorProdutosBean.cambio.moedas.sigla)}"  style="font-weight:bold;font-size:14px;text-align: right;"/>
                                     <p:overlayPanel id="painelDescricao2" for="valorPromocional" hideEffect="fade" style="width:30%;background:#CCCCCC" >
                                         <h:outputText value="Valor Original:" style="font-weight:bold"/>
-                                        <h:outputText value="#{orcamentoCursoMB.fornecedorProdutosBean.cambio.moedas.sigla}" style="font-weight:bold" class="espacocobranca29"/>
+                                        <h:outputText value="#{orcamentoCursoMB.filtrarEscolaMB.fornecedorProdutosBean.cambio.moedas.sigla}" style="font-weight:bold" class="espacocobranca29"/>
                                         <h:outputText value="#{obrigatorio.valorOrigianl}" style="font-weight:bold">
                                             <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                         </h:outputText>
@@ -66,7 +66,7 @@
                                         </h:outputText>
                                         <br></br><br></br>
                                         <h:outputText value="R$ Promocional:" style="font-weight:bold"/>
-                                        <h:outputText value="#{orcamentoCursoMB.fornecedorProdutosBean.cambio.moedas.sigla}" style="font-weight:bold" class="espacocobranca29"/>
+                                        <h:outputText value="#{orcamentoCursoMB.filtrarEscolaMB.fornecedorProdutosBean.cambio.moedas.sigla}" style="font-weight:bold" class="espacocobranca29"/>
                                         <h:outputText value="#{obrigatorio.valorPromocional}" style="font-weight:bold">
                                             <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                         </h:outputText>
@@ -79,7 +79,7 @@
                     </p:dataScroller>
                     <br></br> <br></br>
                     <h:outputText value="Opcional" style="font-weight:bold;font-size: 17px;color: #fff" class="espacocobranca29"/>
-                    <p:dataScroller id="tabelaprodutoOpcional" value="#{orcamentoCursoMB.fornecedorProdutosBean.listaOpcionais}" var="opcional" chunkSize="10" style="background:#fff" >
+                    <p:dataScroller id="tabelaprodutoOpcional" value="#{orcamentoCursoMB.filtrarEscolaMB.fornecedorProdutosBean.listaOpcionais}" var="opcional" chunkSize="10" style="background:#fff" >
                         <p:outputPanel style="text-align: right;width:100%">
                             <h:panelGrid columns="3" style="width:100%;background:#fff" >
                                 <p:outputPanel  >
@@ -95,11 +95,11 @@
                         <p:outputPanel style="text-align: right;width:100%;background:#fff;margin-top: -3%" >
                                 <h:panelGrid id="valoresOpcional" columns="1" cellpadding="5" style="text-align: right;width:100%">
                                    
-                                    <p:commandLink id="valorOriginal" value="#{orcamentoCursoMB.retornarValorString(opcional.valorOrigianl, orcamentoCursoMB.fornecedorProdutosBean.cambio.moedas.sigla)}" style="color:#4DA20B;font-size: 9px;text-align: right;text-decoration:line-through;"/>
+                                    <p:commandLink id="valorOriginal" value="#{orcamentoCursoMB.retornarValorString(opcional.valorOrigianl, orcamentoCursoMB.filtrarEscolaMB.fornecedorProdutosBean.cambio.moedas.sigla)}" style="color:#4DA20B;font-size: 9px;text-align: right;text-decoration:line-through;"/>
                                     
                                     <p:overlayPanel id="painelDescricaoOriginal" for="valorOriginal" hideEffect="fade" style="width:30%;background:#CCCCCC" >
                                         <h:outputText value="Valor Original:" style="font-weight:bold"/>
-                                        <h:outputText value="#{orcamentoCursoMB.fornecedorProdutosBean.cambio.moedas.sigla}" style="font-weight:bold" class="espacocobranca29"/>
+                                        <h:outputText value="#{orcamentoCursoMB.filtrarEscolaMB.fornecedorProdutosBean.cambio.moedas.sigla}" style="font-weight:bold" class="espacocobranca29"/>
                                         <h:outputText value="#{opcional.valorOrigianl}" style="font-weight:bold">
                                             <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                         </h:outputText>
@@ -109,7 +109,7 @@
                                         </h:outputText>
                                         <br></br><br></br>
                                         <h:outputText value="R$ Promocional:" style="font-weight:bold"/>
-                                        <h:outputText value="#{orcamentoCursoMB.fornecedorProdutosBean.cambio.moedas.sigla}" style="font-weight:bold" class="espacocobranca29"/>
+                                        <h:outputText value="#{orcamentoCursoMB.filtrarEscolaMB.fornecedorProdutosBean.cambio.moedas.sigla}" style="font-weight:bold" class="espacocobranca29"/>
                                         <h:outputText value="#{opcional.valorPromocional}" style="font-weight:bold">
                                             <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                         </h:outputText>
@@ -119,10 +119,10 @@
                                         </h:outputText>
                                     </p:overlayPanel>
                                   
-                                    <p:commandLink id="valorPromocional" value="#{orcamentoCursoMB.retornarValorString(opcional.valorPromocional, orcamentoCursoMB.fornecedorProdutosBean.cambio.moedas.sigla)}"  style="font-weight:bold;font-size:14px;text-align: right;"/>
+                                    <p:commandLink id="valorPromocional" value="#{orcamentoCursoMB.retornarValorString(opcional.valorPromocional, orcamentoCursoMB.filtrarEscolaMB.fornecedorProdutosBean.cambio.moedas.sigla)}"  style="font-weight:bold;font-size:14px;text-align: right;"/>
                                     <p:overlayPanel id="painelDescricaoPromocional" for="valorPromocional" hideEffect="fade" style="width:30%;background:#CCCCCC" >
                                         <h:outputText value="Valor Original:" style="font-weight:bold"/>
-                                        <h:outputText value="#{orcamentoCursoMB.fornecedorProdutosBean.cambio.moedas.sigla}" style="font-weight:bold" class="espacocobranca29"/>
+                                        <h:outputText value="#{orcamentoCursoMB.filtrarEscolaMB.fornecedorProdutosBean.cambio.moedas.sigla}" style="font-weight:bold" class="espacocobranca29"/>
                                         <h:outputText value="#{opcional.valorOrigianl}" style="font-weight:bold">
                                             <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                         </h:outputText>
@@ -132,7 +132,7 @@
                                         </h:outputText>
                                         <br></br><br></br>
                                         <h:outputText value="R$ Promocional:" style="font-weight:bold"/>
-                                        <h:outputText value="#{orcamentoCursoMB.fornecedorProdutosBean.cambio.moedas.sigla}" style="font-weight:bold" class="espacocobranca29"/>
+                                        <h:outputText value="#{orcamentoCursoMB.filtrarEscolaMB.fornecedorProdutosBean.cambio.moedas.sigla}" style="font-weight:bold" class="espacocobranca29"/>
                                         <h:outputText value="#{opcional.valorPromocional}" style="font-weight:bold">
                                             <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                         </h:outputText>
@@ -255,7 +255,7 @@
                             <p:outputPanel style="text-align: right;width:100%" >
                                 <h:outputText value="Desconto" style="font-weight:bold;font-size: 18px;color:#4DA20B" />
                                 <br></br>
-                                <h:outputText value="#{orcamentoCursoMB.fornecedorProdutosBean.cambio.moedas.sigla}" style="font-weight:bold;font-size: 14px;color:#4DA20B" />
+                                <h:outputText value="#{orcamentoCursoMB.filtrarEscolaMB.fornecedorProdutosBean.cambio.moedas.sigla}" style="font-weight:bold;font-size: 14px;color:#4DA20B" />
                                 <h:outputText value="#{orcamentoCursoMB.valorDesconto}" class="espacocobranca29" style="font-weight:bold;font-size: 15px;color:#4DA20B" >
                                     <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 </h:outputText>
@@ -268,7 +268,7 @@
                             <p:outputPanel style="text-align: right;width:100%" >
                                 <h:outputText value="Total" style="font-weight:bold;font-size: 18px;color:#4DA20B" />
                                 <br></br>
-                                <h:outputText value="#{orcamentoCursoMB.fornecedorProdutosBean.cambio.moedas.sigla}" style="font-weight:bold;font-size: 14px;" />
+                                <h:outputText value="#{orcamentoCursoMB.filtrarEscolaMB.fornecedorProdutosBean.cambio.moedas.sigla}" style="font-weight:bold;font-size: 14px;" />
                                 <h:outputText value="#{orcamentoCursoMB.valorTotal}" style="font-weight:bold;font-size: 15px;" class="espacocobranca29">
                                     <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 </h:outputText>
