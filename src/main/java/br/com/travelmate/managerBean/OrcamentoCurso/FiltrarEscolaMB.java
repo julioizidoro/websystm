@@ -159,6 +159,7 @@ public class FiltrarEscolaMB implements Serializable{
                 FacesContext fc = FacesContext.getCurrentInstance();
                 HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
                 session.setAttribute("listaFornecedorProdutosBean", listaFornecedorProdutosBean);
+                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("ListaEscolaMB");
                 return "resultadoFiltroOrcamento";
             }else {
                 return null;

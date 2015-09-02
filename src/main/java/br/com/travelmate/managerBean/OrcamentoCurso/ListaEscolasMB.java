@@ -62,6 +62,7 @@ public class ListaEscolasMB implements Serializable{
      public String orcamentoResultado(FornecedorProdutosBean fornecedorProdutosBean){
         if(fornecedorProdutosBean!=null){
             FacesContext fc = FacesContext.getCurrentInstance();
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("OrcamentoCursoMB");
             HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
             session.setAttribute("fornecedorProdutosBean", fornecedorProdutosBean);
             return "orcamentoCurso";
