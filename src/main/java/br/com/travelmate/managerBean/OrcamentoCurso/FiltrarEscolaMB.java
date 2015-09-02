@@ -190,8 +190,8 @@ public class FiltrarEscolaMB implements Serializable{
             fpb.setValorMoedaNacional(calcularValorMoedaNacioanl(fpb));
            
             fpb.setSvalorDesconto(Formatacao.formatarFloatString(fpb.getValorDesconto()));
-            fpb.setSvalorMoedaEstrangeira(Formatacao.formatarFloatString(fpb.getValorMoedaEstrangeira()));
-            fpb.setSvalorMoedaNacional(Formatacao.formatarFloatString(fpb.getValorMoedaNacional()));
+            fpb.setSvalorMoedaEstrangeira(fpb.getCambio().getMoedas().getSigla() + " " +  Formatacao.formatarFloatString(fpb.getValorMoedaEstrangeira()));
+            fpb.setSvalorMoedaNacional("R$ " + Formatacao.formatarFloatString(fpb.getValorMoedaNacional()));
             listaFornecedorProdutosBean.add(fpb);
         }
         
