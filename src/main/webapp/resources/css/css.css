@@ -950,6 +950,9 @@ text-align: left;
 .espacocobranca11{
     margin-left:10%;
 }
+.espacocobranca111{
+    margin-left:9.5%;
+}
 .espacocobranca11rig{
     margin-left:10%;
     text-align: right;
@@ -1097,6 +1100,10 @@ text-align: left;
 }
 .espacocobranca29{
     margin-left:2%;
+}
+.espacocobranca29c{
+    margin-left:2%;
+    margin-top: 2%;
 }
 .espacocobranca29r{
     margin-left:2%;

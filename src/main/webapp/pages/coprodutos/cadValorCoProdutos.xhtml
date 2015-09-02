@@ -41,18 +41,25 @@
         <h:form id="cadastroproduto" style="text-align:left;font-size: 10px;">
             <title>Cadastro de Valores</title><br></br>
             
+            <p:outputLabel value="Cobrança:" for="idcobranca" class="espacocobranca38"/>
+            <p:selectOneMenu id="idcobranca" value="#{cadValorCoProdutosMB.valorcoprodutos.cobranca}" style="width:13%;font-size: 10px" class="espacocobranca29c" >
+                <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true"/> 
+                <f:selectItem itemLabel="Fixo" itemValue="F" /> 
+                <f:selectItem itemLabel="Semana" itemValue="S" /> 
+                <f:selectItem itemLabel="Dia" itemValue="D" /> 
+            </p:selectOneMenu>
             <p:selectOneRadio id="tipodata" value="#{cadValorCoProdutosMB.valorcoprodutos.tipodata}" layout="custom">
                 <f:selectItem itemLabel="Data Inscrição" itemValue="DM" />
                 <f:selectItem itemLabel="Data Início" itemValue="DI" />
                 <f:selectItem itemLabel="Data Suplemento" itemValue="DS" />
             </p:selectOneRadio>
-            <p:radioButton id="opt1" for="tipodata" itemIndex="1" class="espacocobranca35"/>
+            <p:radioButton id="opt1" for="tipodata" itemIndex="1" class="espacocobranca29"/>
             <h:outputLabel for="opt1" value="Data Inscrição" class="espacocobranca29"/>
 
-            <p:radioButton id="opt2" for="tipodata" itemIndex="2" class="espacocobranca23"/>
+            <p:radioButton id="opt2" for="tipodata" itemIndex="2" class="espacocobranca28"/>
             <h:outputLabel for="opt2" value="Data Início" class="espacocobranca29"/>
 
-            <p:radioButton id="opt3" for="tipodata" itemIndex="3" class="espacocobranca23"/>
+            <p:radioButton id="opt3" for="tipodata" itemIndex="3" class="espacocobranca28"/>
             <h:outputLabel for="opt3" value="Data Suplemento" class="espacocobranca29"/>
             <br></br><br></br>
             
@@ -69,16 +76,17 @@
             <p:inputText value="#{cadValorCoProdutosMB.valorcoprodutos.numerosemanafinal}" id="nsemanasfinal" style="width:10%;" class="espacocobranca29"  title="Nº de Semanas final"/>
             
             
-            <br></br><br></br>
+            <br></br><br></br><br></br>
             
             <p:outputLabel value="Valor Original:" for="valorOriginal" class="espacocobranca29"/>
             <p:inputText id="valorOriginal" value="#{cadValorCoProdutosMB.valorcoprodutos.valororiginal}" style="width:13.2%;" class="espacocobranca29r" >
                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
             </p:inputText>
-            <p:outputLabel value="Valor Promocional:" for="valorPromocional" class="espacocobranca24"/>
-            <p:inputText id="valorPromocional" value="#{cadValorCoProdutosMB.valorcoprodutos.valorpromocional}" style="width:14%;" class="espacocobranca29r" >
+            <p:outputLabel value="Valor Promocional:" for="valorPromocional" class="espacocobranca111"/>
+            <p:inputText id="valorPromocional" value="#{cadValorCoProdutosMB.valorcoprodutos.valorpromocional}" style="width:12%;" class="espacocobranca29r" >
                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
             </p:inputText>
+            
             <br></br><br></br><br></br>
             <p class="botaocadpacote"><br></br>
                 <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Confirmar" action="#{cadValorCoProdutosMB.salvar()}"></p:commandButton>
