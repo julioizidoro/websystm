@@ -9,9 +9,9 @@ import br.com.travelmate.model.Fornecedor;
 import br.com.travelmate.model.Parametrosprodutos;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
@@ -21,7 +21,7 @@ import javax.servlet.http.HttpSession;
  * @author Wolverine
  */
 @Named
-@SessionScoped
+@ViewScoped
 public class ListaEscolasMB implements Serializable{
     
     @Inject
@@ -62,10 +62,7 @@ public class ListaEscolasMB implements Serializable{
     
      public String orcamentoResultado(FornecedorProdutosBean fornecedorProdutosBean){
         if(fornecedorProdutosBean!=null){
-            FacesContext fc = FacesContext.getCurrentInstance();
-            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("OrcamentoCursoMB");
-            HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
-            session.setAttribute("fornecedorProdutosBean", fornecedorProdutosBean);
+            filtrarEscolaMB.setFornecedorProdutosBean(fornecedorProdutosBean);
             return "orcamentoCurso";
         }else {
             FacesMessage mensagem = new FacesMessage("Erro! ", "Fornecedor não encontrado.");

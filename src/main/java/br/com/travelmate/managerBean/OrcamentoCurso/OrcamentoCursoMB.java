@@ -7,20 +7,17 @@ import br.com.travelmate.model.Fornecedor;
 import br.com.travelmate.model.Fornecedorcidade;
 import br.com.travelmate.model.Paisproduto;
 import br.com.travelmate.model.Seguroviagem;
-import static br.com.travelmate.model.Seguroviagem_.valoresseguro;
 import br.com.travelmate.model.Valoresseguro;
 import br.com.travelmate.util.Formatacao;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.SessionScoped;
-import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.servlet.http.HttpSession;
 
 @Named
-@SessionScoped
+@ViewScoped
 public class OrcamentoCursoMB implements Serializable{
     
     
@@ -41,28 +38,8 @@ public class OrcamentoCursoMB implements Serializable{
     private Valoresseguro valorSeguro;
     
 
-    public OrcamentoCursoMB() {
-        FacesContext fc = FacesContext.getCurrentInstance();
-        HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
-        //filtrarEscolaMB.getFornecedorProdutosBean() = (FornecedorProdutosBean) session.getAttribute("filtrarEscolaMB.getFornecedorProdutosBean()");
-        session.removeAttribute("filtrarEscolaMB.getFornecedorProdutosBean()");
-        if (filtrarEscolaMB.getFornecedorProdutosBean()!=null){
-            calcularTotais();
-        }
-    }
-
-    public FiltrarEscolaMB getFiltrarEscolaMB() {
-        return filtrarEscolaMB;
-    }
-
-    public void setFiltrarEscolaMB(FiltrarEscolaMB filtrarEscolaMB) {
-        this.filtrarEscolaMB = filtrarEscolaMB;
-    }
-    
-    
-    
     @PostConstruct
-    public void init(){
+    public void init() {
         int idProduto=0;
         getUsuarioLogadoMB();
         PaisProdutoFacade paisProdutoFacade = new PaisProdutoFacade();
@@ -76,6 +53,18 @@ public class OrcamentoCursoMB implements Serializable{
         }else{
             fornecedorcidade = seguroviagem.getValoresseguro().getFornecedorcidade();
         }
+        getFiltrarEscolaMB();
+        if (filtrarEscolaMB.getFornecedorProdutosBean()!=null){
+            calcularTotais();
+        }
+    }
+    
+    public FiltrarEscolaMB getFiltrarEscolaMB() {
+        return filtrarEscolaMB;
+    }
+
+    public void setFiltrarEscolaMB(FiltrarEscolaMB filtrarEscolaMB) {
+        this.filtrarEscolaMB = filtrarEscolaMB;
     }
     
 

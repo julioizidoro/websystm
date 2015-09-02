@@ -51,6 +51,7 @@ public class FiltrarEscolaMB implements Serializable{
     private FornecedorProdutosBean fornecedorProdutosBean;
     
     
+    
     @PostConstruct
     public void init(){
         int idProduto = 0;
@@ -144,6 +145,7 @@ public class FiltrarEscolaMB implements Serializable{
         this.fornecedorProdutosBean = fornecedorProdutosBean;
     }
 
+  
     
     
 
