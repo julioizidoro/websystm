@@ -357,6 +357,34 @@
                             <p:inputText id="valoreal" value="" style="width:13%" class="espacocobranca29r">
                                  <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText> 
+                            <br></br>
+                            <h:panelGrid columns="2">
+                                <p:commandButton id="btnadicionarproduto" value="Adicionar" icon="ui-icon-plusthick" class="campos3"/>
+                                <p:commandButton id="btnexcluirproduto" value="Excluir" icon=" ui-icon-close" class="espacocobranca26"/>
+                            </h:panelGrid><br></br><br></br>
+                            <p:dataTable id="tabelaprodutoscurso" var="produtoscurso"  value="#" class="tabela6" 
+                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
+                                         paginator="true" rows="10" style="margin-bottom:20px" >
+                                <p:column headerText="Produto Orçamento" >
+                                    <h:outputText value="#" />
+                                </p:column>
+                                <p:column headerText="Moeda Estrangeira" style="text-align:right;width:130px;" >
+                                    <h:outputText value="#" />
+                                </p:column>
+                                <p:column headerText="Valor R$" style="text-align:right;width:130px;" >
+                                    <h:outputText value="" >
+                                        <f:convertNumber currencySymbol="" type="currency"/>
+                                    </h:outputText>
+                                </p:column>
+                                <p:column headerText="Nº Parcelas" style="text-align:center;" sortBy="#">
+                                    <h:outputText value="#" />
+                                </p:column>
+                                <p:column headerText="Valor Parcela" style="text-align:right;" sortBy="#">
+                                    <h:outputText value="" >
+                                        <f:convertNumber currencySymbol="" type="currency"/>
+                                    </h:outputText>
+                                </p:column>
+                            </p:dataTable><br></br><br></br>
                         </p:tab>
                         <p:tab  title="Forma de Pagto" titleStyle="font-size: 11px">
                             <legend id="iUsu3" style="font-size:11px;"><b>Pagamentos</b></legend>
