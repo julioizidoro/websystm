@@ -232,7 +232,7 @@ public class DadosBoletoBean implements Serializable{
         Titulo titulo = criarTitulo(contaBancaria, sacado, cedente);
         boleto = new Boleto(titulo);
         boleto.setLocalPagamento("PAGAVEL EM QUALQUER BANCO ATE O VENCIMENTO");
-        boleto.setInstrucaoAoSacado("Instruções de responsabilidade do BENEFIÁRIO. Qualquer dúvida sobre este boleto, contate o BENEFICIÁRIO.");
+        boleto.setInstrucaoAoSacado("Instruções de responsabilidade do BENEFICIÁRIO. Qualquer dúvida sobre este boleto, contate o BENEFICIÁRIO.");
         String codigoCedente  = agencias + "/" + numeroContas +"-" + digitoContas;
         String nossoNumeroExibicao = carteiras + "/" + nossoNumeros + "-" + digitoNossoNumeros;
         boleto.addTextosExtras("txtFcAgenciaCodigoCedente", codigoCedente);

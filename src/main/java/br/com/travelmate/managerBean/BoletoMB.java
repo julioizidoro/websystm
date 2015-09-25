@@ -159,6 +159,9 @@ public class BoletoMB implements Serializable {
         dadosBoletoBean.getEnderecoSacado().setLogradouro(conta.getVendas().getCliente().getTipologradouro() + " " + conta.getVendas().getCliente().getLogradouro());
         dadosBoletoBean.getEnderecoSacado().setNumero(conta.getVendas().getCliente().getNumero());
         dadosBoletoBean.getEnderecoSacado().setUF(UnidadeFederativa.valueOfSigla(conta.getVendas().getCliente().getEstado()));
+        dadosBoletoBean.setValorJuros(calcularMultaJuros(conta.getValorparcela(), conta.getVendas().getUnidadenegocio().getBanco().getValorjuros()));
+        dadosBoletoBean.setValorMulta(calcularMultaJuros(conta.getValorparcela(), conta.getVendas().getUnidadenegocio().getBanco().getValormulta()));
+        
         dadosBoletoBean.criarBoleto();
         return dadosBoletoBean.getBoleto();
     }
