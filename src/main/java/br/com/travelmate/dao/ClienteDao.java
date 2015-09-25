@@ -53,7 +53,7 @@ public class ClienteDao {
     public List<Cliente> consultarNome(String nome) throws SQLException{
         manager = ConectionFactory.getConnection();
          manager.getTransaction().begin();
-        Query q = manager.createQuery("select c from Cliente c where like nome '%" + nome + "%'" );
+        Query q = manager.createQuery("select c from Cliente c where c.nome like '%" + nome + "%'" );
           manager.getTransaction().commit();
         if (q.getResultList().size()>0){
             return  q.getResultList();

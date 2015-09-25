@@ -18,18 +18,10 @@ import javax.inject.Named;
 @SessionScoped
 public class MenuMB implements Serializable{
 
-    
-    
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	/**
-	 * 
-	 */
+    private static final long serialVersionUID = 1L;
 	
-	public String comissaoVendas(){
-        return "consultacomissaovenda";
+    public String comissaoVendas(){
+        return "comissaovenda";
     }
     
     public String contasPagar(){

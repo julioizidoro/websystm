@@ -202,7 +202,7 @@ public class CadPacoteOperadoraMB implements Serializable {
             HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
             session.setAttribute("pacoteTrecho", pacotetrecho);
             //return "pacotecarro";
-            RequestContext.getCurrentInstance().openDialog("pacotecarroteste");
+            RequestContext.getCurrentInstance().openDialog("pacotecarro");
         } else {
             FacesMessage mensagem = new FacesMessage("Atenção! ", "Trecho Não Localizado.");
             FacesContext.getCurrentInstance().addMessage(null, mensagem);
