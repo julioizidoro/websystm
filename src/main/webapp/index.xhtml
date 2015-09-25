@@ -8,14 +8,17 @@
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>SysTM</title>
-         <link href="resources/css/css.css" rel="stylesheet" type="text/css" />
-         <link href="resources/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
+        <link href="resources/css/csslogin.css" rel="stylesheet" type="text/css" />
+        <link rel="SHORTCUT ICON" href="http://cdn8.staztic.com/app/a/6090/6090049/travelmate-9-l-280x280.png"/>
     </h:head>
 
-    <h:body>
+    <h:body >
             <h:form id="login" class="login">
+                <img  class="logologin" src="resources/img/logoquadrada.png" />
                 <div id="centrologin" class="tabelalogin">
-                    <br></br><br></br>
+                    
+                    <br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+                    <br></br><br></br><br></br><br></br>
                     <p:outputLabel value="Login" class="espacologinbra"/>
                     <br></br>
                     <p:inputText value="#{usuarioLogadoMB.usuario.login}" size="40" class="espacologin" />
@@ -27,7 +30,7 @@
                      <p:commandButton value="Login" class="loginButton" action="#{usuarioLogadoMB.validarUsuario()}"/>
                     <p:commandButton value="Alterar Senha" action="#{usuarioLogadoMB.validarTrocarSenha()}" class="loginButton2"  oncomplete="PF('dll').show()"  />
                                 
-                    <br></br><br></br><br></br>
+                    <br></br><br></br><br></br><br></br><br></br>
                 </div>
             </h:form>
         <h:outputScript library="js" name="jquery.js" />
