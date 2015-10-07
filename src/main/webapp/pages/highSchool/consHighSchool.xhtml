@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/pages/templates/default.xhtml">
+        <ui:define name="corpo">
+            <h:form id="consultahighschool">
+                <div id="centro">
+                    <p:growl id="growl" showDetail="true" sticky="true"/>
+                     <br></br> 
+                    <p:outputLabel value="Pesquisar Nome Cliente" for="cliente" class="imgadd" style="font-size:11px;color: #fff"/> <br></br>
+                    <p:inputText id="cliente" size="50" maxlength="100" class="imgadd" value="#"  />
+                  <br></br> <br></br> 
+                    <img src="../../resources/img/add.png" class="imgadd"/>
+                    <p:commandLink value="Nova Ficha de High School"  action="#{highSchoolMB.cadastrarFicha()}" class="add"/>
+                    
+                    <legend id="iUsu2" ><b>Consulta Ficha de High School</b></legend>
+                    <p:dataTable id="tabelaConsultaHighSchool" var="highSchool"  value="#" class="tabela" 
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+                                 paginator="true" rows="10" style="margin-bottom:20px" >
+                        <f:facet name="{Exporters}">
+                            <h:commandLink>
+                                <img src="../../resources/img/excel.png" width="20" class="imagens"/>
+                                <p:dataExporter type="xls" target="highSchool" fileName="highSchool" />
+                            </h:commandLink>
+                        </f:facet>
+                        <p:column headerText="Situação" style="text-align:center;width:80px;" sortBy="#">
+                            <h:outputText value="#" />
+                        </p:column>
+                        <p:column headerText="Cliente" style="text-align:center;" sortBy="#">
+                            <h:outputText value="#" />
+                        </p:column>
+                        <p:column headerText="Data Inscrição" style="text-align:center;" >
+                            <h:outputText value="">
+                                <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                            </h:outputText>
+                        </p:column>
+                        <p:column headerText="Unidade"  style="width:240px;text-align:center;" styleClass="alinharCenter" >
+                            <h:outputText value="#"/>
+                        </p:column>
+                        <p:column headerText="Agente"  style="width:200px;text-align:center;" styleClass="alinharCenter" >
+                            <h:outputText value="#"/>
+                        </p:column>
+                    </p:dataTable>
+                    <br></br>
+                    <br></br>
+                </div>
+            </h:form>     
+        </ui:define>
+    </ui:composition>
+</html>
