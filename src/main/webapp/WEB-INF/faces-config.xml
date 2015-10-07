@@ -242,6 +242,30 @@
         <navigation-rule>
 		<from-view-id>*</from-view-id>
 		<navigation-case>
+			<from-outcome>consultaProgramasTeens</from-outcome>
+			<to-view-id>/pages/programasteens/consProgramaTeens.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+        <navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>consultaLadies</from-outcome>
+			<to-view-id>/pages/ladies/consLadies.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+        <navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>consultaHighSchool</from-outcome>
+			<to-view-id>/pages/highSchool/consHighSchool.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+        <navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
 			<from-outcome>resultado</from-outcome>
 			<to-view-id>/pages/orcamento/resultadoFiltroOrcamento.xhtml</to-view-id>
 			<redirect />

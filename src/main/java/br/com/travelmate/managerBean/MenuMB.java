@@ -61,6 +61,19 @@ public class MenuMB implements Serializable{
     public String curso(){
         return "consultafichacurso";
     }
+    
+    public String highSchool(){
+        return "consultaHighSchool";
+    }
+    
+    public String ladies(){
+        return "consultaLadies";
+    }
+    
+    public String cursosTeens(){
+        return "consultaProgramasTeens";
+    }
+    
     public String autorizacao(){
         return "autorizacaodebito";
     }
