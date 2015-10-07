@@ -43,7 +43,7 @@
                            
                             <br></br><br></br>
                             <legend id="iUsu3" ><b>Escola</b></legend>
-                            <p:outputLabel value="Pais:" for="pais" />
+                            <p:outputLabel value="Pais:" for="pais" style="margin-left: 4%"/>
                             <p:selectOneMenu id="pais" value="#" style="width:18%;" class="espacocobranca29" 
                                              converter="PaisConverter" filter="true" filterMatchMode="startsWith" panelStyle="width:180px" >
                                 <f:selectItem itemLabel="País" itemValue="0" noSelectionOption="true"/> 
@@ -202,8 +202,8 @@
                             <p:inputText id="alergia" style="width:78.5%;" maxlength="100"  value="#"  class="espacocobranca28"/>
                             <br></br><br></br>
                             
-                            <p:outputLabel value="Solicitações Especiais:" for="solicitacaoespecial" class="espacocobranca39"/> 
-                            <p:inputText id="solicitacaoespecial" style="width:67.5%;" maxlength="100"  value="#"  class="espacocobranca29" />
+                            <p:outputLabel value="Solicitações Especiais:" for="solicitacaoespecial" class="espacocobranca11r"/> 
+                            <p:inputText id="solicitacaoespecial" style="width:67.8%;" maxlength="100"  value="#"  class="espacocobranca29" />
                             <br></br><br></br>
                             
                             <p:outputLabel value="Quais seus interesses e  hobbies:" for="hobbies"/> 
@@ -257,11 +257,11 @@
                             <p:outputLabel value="Através da TravelMate"  for="atravestravel2" class="espacocobranca29" style="font-size: 11px"/> 
                             <br></br><br></br>
                             
-                            <p:outputLabel value="Entrega dos Documentos:"  for="dataentregavisto"  style="font-size: 10px"/> 
+                            <p:outputLabel value="Entrega dos Documentos:"  for="dataentregavisto"  style="font-size: 11px"/> 
                             <p:calendar id="dataentregavisto" class="espacocobranca29" locale="pt"  pattern="dd/MM/yyyy"  mask="true"  maxlength="15" size="10">
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </p:calendar>
-                            <p:outputLabel value="Observação:"  for="obs" class="espacocobranca4" style="font-size: 10px"/> 
+                            <p:outputLabel value="Observação:"  for="obs" class="espacocobranca4" style="font-size: 11px"/> 
                             <p:inputText id="obs2" style="width:45%;" maxlength="100" class="espacocobranca29" value="#"  />
                             <br></br>
                         </p:tab>
@@ -394,20 +394,21 @@
                                 <f:selectItem itemLabel="Á Vista" itemValue="avista" /> 
                                 <f:selectItem itemLabel="Parcelado" itemValue="parcelado" /> 
                             </p:selectOneMenu>
-                            <p:outputLabel value="Valor Orçamento:" for="valorOrca" class="espacocobranca29" />
+                            <p:outputLabel value="Valor Orçamento:" for="valorOrca" class="espacocobranca24" />
                              <p:inputText id="valorOrca" style="width:10%;" class="espacocobranca29r" value="">
                                 <f:convertNumber currencySymbol="" type="currency"/>
                             </p:inputText>
-                            <p:outputLabel value="Acrescentar Juros:" for="acrejuros" class="espacocobranca29" /> 
+                            <p:outputLabel value="Acrescentar Juros:" for="acrejuros" class="espacocobranca24" /> 
                             <p:selectOneMenu id="acrejuros" value="#" style="width:10%;font-size: 10px" class="espacocobranca29" >
                                 <f:selectItem itemLabel="Sim" itemValue="sim"/> 
                                 <f:selectItem itemLabel="Não" itemValue="nao" noSelectionOption="true"/> 
                             </p:selectOneMenu>
-                            <p:outputLabel value="Valor Juros:" for="valorJuros" class="espacocobranca29" /> 
+                            <br></br><br></br>
+                            <p:outputLabel value="Valor Juros:" for="valorJuros" class="espacocobranca24" /> 
                             <p:inputText id="valorJuros" style="width:10%;" class="espacocobranca29r" value="">
                                 <f:convertNumber currencySymbol="" type="currency"/>
                             </p:inputText>
-                            <p:outputLabel value="Total a Pagar:" for="totalpag" class="espacocobranca29"/> 
+                            <p:outputLabel value="Total a Pagar:" for="totalpag" class="espacocobranca38"/> 
                             <p:inputText id="totalpag" style="width:10%;" class="espacocobranca29r" value="">
                                 <f:convertNumber currencySymbol="" type="currency"/>
                             </p:inputText>

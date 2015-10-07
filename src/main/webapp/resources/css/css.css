@@ -12,7 +12,7 @@ h1 {
 #tudo {
     top:-15px;
     position: relative;
-    background: #ffffff;
+    background: #F2F2F2;
     margin: 0px 0 20px -390px;
     width: 900px;
     left:19.7%;
@@ -84,6 +84,7 @@ text-align: left;
 }
 .logo{
     margin-left:0px;
+    background: #F2F2F2;
 }
 .cambiovalores2{
     margin-left:160px;
