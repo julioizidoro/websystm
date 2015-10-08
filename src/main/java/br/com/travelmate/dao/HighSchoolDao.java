@@ -20,7 +20,7 @@ public class HighSchoolDao {
     public List<Highschool> listar(String nome) throws SQLException{
         EntityManager manager = ConectionFactory.getConnection();
         manager.getTransaction().begin();
-        Query q = manager.createQuery("select h from Highschool h order by h.dataInicio");
+        Query q = manager.createQuery("select h from Highschool h order by h.vendas.dataVenda");
         List<Highschool> lista = q.getResultList();
         manager.getTransaction().commit();
         return lista;
