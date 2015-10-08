@@ -8,21 +8,22 @@
     <ui:composition template="/pages/templates/default.xhtml">
         <ui:define name="corpo">
             <h:form id="telaFichaCurso" style="font-size: 10px;">
-                <div id="centro">
-                    <br></br><br></br>
-                    <p:tabView class="painelcobranca2">
-                        <p:tab  title="Curso" class="tab" titleStyle="font-size: 11px">
+                <div id="centro"> <br></br> 
+                    
+                    <p:outputLabel value="Ficha de Curso" style="font-size: 22px;color: #fff; margin-left:40%"/>
+                    <p:tabView class="painelhighSchool" scrollable="true" >
+                        <p:tab  title="Curso" class="tab" titleStyle="font-size: 11px" >
                             <br></br>
-                            <p:outputLabel value="Cliente:" for="cliente" class="espacocobranca23"/>
-                             <p:selectOneMenu id="cliente" value="#" style="width:75%;" class="espacocobranca29" 
+                            <p:outputLabel value="Cliente:" for="cliente" class="espacocobranca5" style="color: #fff"/>
+                             <p:selectOneMenu id="cliente" value="#" style="width:76%;-webkit-border-radius: 1px;-moz-border-radius: 1px;border-radius: 1px;" class="espacocobranca29" 
                                               filter="true" filterMatchMode="startsWith" panelStyle="width:180px" >
                                 <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
                                 <f:selectItems id="idcliente" value="#" var="scliente" itemLabel="#" itemValue="#"/>
                             </p:selectOneMenu>
                            
                             <br></br> <br></br> 
-                            <p:outputLabel value="Idioma que irá Estudar:" for="idioma"  style="font-size: 11px"/> 
-                            <p:selectOneMenu class="espacocobranca29" id="idioma"  value="#"  style="width:22%;">
+                            <p:outputLabel value="Idioma que irá Estudar:" for="idioma"  style="font-size: 11px;color: #fff;-moz-border-radius: 1px;border-radius: 1px;" /> 
+                            <p:selectOneMenu class="espacocobranca29" id="idioma"  value="#"  style="width:23%;">
                                 <f:selectItem itemLabel="Selecione" itemValue="selecione" noSelectionOption="true"  />
                                 <f:selectItem itemLabel="Alemão" itemValue="Alemão"/> 
                                 <f:selectItem itemLabel="Espanhol" itemValue="Espanhol"/> 
@@ -30,8 +31,8 @@
                                 <f:selectItem itemLabel="Inglês" itemValue="Inglês"/> 
                                 <f:selectItem itemLabel="Outro" itemValue="Outro"/> 
                             </p:selectOneMenu>
-                            <p:outputLabel value="Nível Conhecimento:" for="nivel" class="espacocobranca24" style="font-size: 11px"/> 
-                             <p:selectOneMenu class="espacocobranca29" id="nivel"  value="#"  style="width:28%;">
+                            <p:outputLabel value="Nível Conhecimento:" for="nivel" class="espacocobranca11" style="font-size: 11px;color: #fff"/> 
+                             <p:selectOneMenu class="espacocobranca29" id="nivel"  value="#"  style="width:28%;-moz-border-radius: 1px;border-radius: 1px;">
                                 <f:selectItem itemLabel="Selecione" itemValue="selecione" noSelectionOption="true"  />
                                 <f:selectItem itemLabel="Básico" itemValue="Básico"/> 
                                 <f:selectItem itemLabel="Pré-Intermediário" itemValue="Pré-Intermediário"/> 
@@ -42,25 +43,25 @@
                             </p:selectOneMenu>
                            
                             <br></br><br></br>
-                            <legend id="iUsu3" ><b>Escola</b></legend>
-                            <p:outputLabel value="Pais:" for="pais" style="margin-left: 4%"/>
-                            <p:selectOneMenu id="pais" value="#" style="width:18%;" class="espacocobranca29" 
+                            <legend id="iUsu6" ><b>Escola</b></legend>
+                            <p:outputLabel value="Pais:" for="pais" style="margin-left:5%;color: #fff"/>
+                            <p:selectOneMenu id="pais" value="#" style="width:18%;-moz-border-radius: 1px;border-radius: 1px;" class="espacocobranca29" 
                                              converter="PaisConverter" filter="true" filterMatchMode="startsWith" panelStyle="width:180px" >
                                 <f:selectItem itemLabel="País" itemValue="0" noSelectionOption="true"/> 
                                 <f:selectItems id="idpais" value="#" var="cpais" itemLabel="#" itemValue="#"/>
                                 <f:attribute name="listaPais" value="#"/>
                                 <p:ajax event="change" update="cidade"/> 
                             </p:selectOneMenu>
-                            <p:outputLabel value="Cidade:" for="cidade" class="espacocobranca28" />
-                           <p:selectOneMenu id="cidade" value="#" style="width:21%;" class="espacocobranca29" 
+                            <p:outputLabel value="Cidade:" for="cidade" class="espacocobranca28" style="color: #fff"/>
+                           <p:selectOneMenu id="cidade" value="#" style="width:21%;-moz-border-radius: 1px;border-radius: 1px;" class="espacocobranca29" 
                                              converter="CidadeConverter" filter="true" filterMatchMode="startsWith">
                                 <f:selectItem itemLabel="Cidade" itemValue="0" noSelectionOption="true"/> 
                                 <f:selectItems id="idcidade2" value="#" var="ccidade" itemLabel="#" itemValue="#"/>
                                 <f:attribute name="listaCidade" value=""/>
                                 <p:ajax event="change"  update="fornecedor" />
                             </p:selectOneMenu>
-                            <p:outputLabel value="Escola:" for="fornecedor" class="espacocobranca28" />
-                            <p:selectOneMenu id="fornecedor" value="#" style="width:23%;" class="espacocobranca29"
+                            <p:outputLabel value="Escola:" for="fornecedor" class="imgadd" style="color: #fff"/>
+                            <p:selectOneMenu id="fornecedor" value="#" style="width:23%;-moz-border-radius: 1px;border-radius: 1px;" class="espacocobranca29"
                                              converter="FornecedorCidadeConverter" filter="true" filterMatchMode="startsWith">
                                 <f:selectItem itemLabel="Fornecedor" itemValue="0" noSelectionOption="true"/> 
                                 <f:selectItems id="idfornecedor" value="#" var="fornecedor" itemLabel="#" itemValue="#"/>
@@ -68,57 +69,57 @@
                             </p:selectOneMenu>
                             
                             <br></br><br></br><br></br> 
-                            <legend id="iUsu3" ><b>Curso Principal</b></legend>
-                            <p:outputLabel value="Curso:" for="curso"  class="espacocobranca38" /> 
-                            <p:inputText id="curso" style="width:80.5%;" maxlength="100"  value="#" class="espacocobranca29" />
+                            <legend id="iUsu6" ><b>Curso Principal</b></legend>
+                            <p:outputLabel value="Curso:" for="curso"  class="espacocobranca20" style="color: #fff"/> 
+                            <p:inputText id="curso" style="width:80.5%;-moz-border-radius: 1px;border-radius: 1px;" maxlength="100"  value="#" class="espacocobranca29" />
                             <br></br> <br></br>    
                             
-                            <p:outputLabel value="Data de Início:" for="datainicio"  />
-                            <p:calendar id="datainicio3"   locale="pt"  pattern="dd/MM/yyyy"  mask="true"  maxlength="15" class="espacocobranca29" >
+                            <p:outputLabel value="Data de Início:" for="datainicio" style="color: #fff"/>
+                            <p:calendar id="datainicio3"   locale="pt"  pattern="dd/MM/yyyy"  mask="true"  maxlength="15" class="espacocobranca29" style="-moz-border-radius: 1px;border-radius: 1px;">
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </p:calendar>
-                            <p:outputLabel value="No. Semanas:" for="nsemanas" class="espacocobranca28" />
+                            <p:outputLabel value="No. Semanas:" for="nsemanas" class="espacocobranca24" style="color: #fff"/>
                             <p:inputText id="nsemanas" style="width:13.5%;" maxlength="100"  value="#"  class="espacocobranca29"/>
-                            <p:outputLabel value="Data Término:" for="datatermino" class="espacocobranca28" />
+                            <p:outputLabel value="Data Término:" for="datatermino" class="espacocobranca5" style="color: #fff;;-moz-border-radius: 1px;border-radius: 1px;"/>
                             <p:calendar id="datatermino2" class="espacocobranca29"  locale="pt"  pattern="dd/MM/yyyy"  mask="true"  maxlength="15" >
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </p:calendar>
                              <br></br>   <br></br> 
-                            <p:outputLabel value="Carga Horária:" for="cargahoraria2" />
-                            <p:inputText id="cargahoraria2" style="width:17%;" maxlength="100"  value="#" class="espacocobranca29"  />
+                            <p:outputLabel value="Carga Horária:" for="cargahoraria2" style="color: #fff"/>
+                            <p:inputText id="cargahoraria2" style="width:17%;-moz-border-radius: 1px;border-radius: 1px;" maxlength="100"  value="#" class="espacocobranca29"  />
                            
                             <p:selectBooleanCheckbox value="#" class="espacocobranca20" id="hrsporsemana"/>
-                            <p:outputLabel value="Horas por Semana" for="hrsporsemana" class="espacocobranca29"  />
+                            <p:outputLabel value="Horas por Semana" for="hrsporsemana" class="espacocobranca29"  style="color: #fff"/>
                             <p:selectBooleanCheckbox value="#" class="espacocobranca20" id="aulasporsemana"/>
-                            <p:outputLabel value="Aulas por Semana" for="aulasporsemana" class="espacocobranca29"  />
+                            <p:outputLabel value="Aulas por Semana" for="aulasporsemana" class="espacocobranca29" style="color: #fff" />
                             <br></br>  <br></br>  <br></br>  
                             
                             
-                            <legend id="iUsu3" ><b>Segundo Curso  
-                                    <p:selectBooleanCheckbox value="#" class="espacopreto" id="habilitarsegundocurso"/>
-                                    <p:outputLabel value="Habilitar Segundo Curso" for="habilitarsegundocurso"  class="loginButton2" style="font-size: 10px;"/></b></legend>
-                            <p:outputLabel value="Curso:" for="curso2"  class="espacocobranca38"  /> 
-                            <p:inputText id="curso2" style="width:80.5%;" maxlength="100"  value="#" class="espacocobranca29" />
+                            <legend id="iUsu6" ><b>Segundo Curso  
+                                    <p:selectBooleanCheckbox value="#" class="espacopreto" id="habilitarsegundocurso" />
+                                    <p:outputLabel value="Habilitar Segundo Curso" for="habilitarsegundocurso"  class="loginButton2" style="font-size: 10px;color: #fff"/></b></legend>
+                            <p:outputLabel value="Curso:" for="curso2"  class="espacocobranca20"  style="color: #fff"/> 
+                            <p:inputText id="curso2" style="width:80.5%;-moz-border-radius: 1px;border-radius: 1px;" maxlength="100"  value="#" class="espacocobranca29" />
                             <br></br> <br></br>    
                             
-                            <p:outputLabel value="Data de Início:" for="datainicio2" />
-                            <p:calendar id="datainicio2"   locale="pt"  pattern="dd/MM/yyyy"  mask="true"  maxlength="15" class="espacocobranca29" >
+                            <p:outputLabel value="Data de Início:" for="datainicio2" style="color: #fff"/>
+                            <p:calendar id="datainicio2"   locale="pt"  pattern="dd/MM/yyyy"  mask="true"  maxlength="15" class="espacocobranca29" style="-moz-border-radius: 1px;border-radius: 1px;">
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </p:calendar>
-                            <p:outputLabel value="No. Semanas:" for="nsemanas2" class="espacocobranca28"/>
-                            <p:inputText id="nsemanas2" style="width:13.5%;" maxlength="100"  value="#"  class="espacocobranca29"/>
-                            <p:outputLabel value="Data Término:" for="datatermino3" class="espacocobranca28" />
-                            <p:calendar id="datatermino3" class="espacocobranca29"  locale="pt"  pattern="dd/MM/yyyy"  mask="true"  maxlength="15" >
+                            <p:outputLabel value="No. Semanas:" for="nsemanas2" class="espacocobranca24" style="color: #fff"/>
+                            <p:inputText id="nsemanas2" style="width:13.5%;-moz-border-radius: 1px;border-radius: 1px;" maxlength="100"  value="#"  class="espacocobranca29"/>
+                            <p:outputLabel value="Data Término:" for="datatermino3" class="espacocobranca5" style="color: #fff" />
+                            <p:calendar id="datatermino3" class="espacocobranca29"  locale="pt"  pattern="dd/MM/yyyy"  mask="true"  maxlength="15" style="-moz-border-radius: 1px;border-radius: 1px;" >
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </p:calendar>
                              <br></br>   <br></br> 
-                            <p:outputLabel value="Carga Horária:" for="cargahoraria" />
-                            <p:inputText id="cargahoraria" style="width:17%;" maxlength="100"  value="#" class="espacocobranca29"  />
+                            <p:outputLabel value="Carga Horária:" for="cargahoraria" style="color: #fff"/>
+                            <p:inputText id="cargahoraria" style="width:17%;-moz-border-radius: 1px;border-radius: 1px;" maxlength="100"  value="#" class="espacocobranca29"  />
                            
                             <p:selectBooleanCheckbox value="#" class="espacocobranca20" id="hrsporsemana2"/>
-                            <p:outputLabel value="Horas por Semana" for="hrsporsemana2"  class="espacocobranca29" />
+                            <p:outputLabel value="Horas por Semana" for="hrsporsemana2"  class="espacocobranca29" style="color: #fff"/>
                             <p:selectBooleanCheckbox value="#" class="espacocobranca20" id="aulasporsemana2"/>
-                            <p:outputLabel value="Aulas por Semana" for="aulasporsemana2" class="espacocobranca29"  />
+                            <p:outputLabel value="Aulas por Semana" for="aulasporsemana2" class="espacocobranca29"  style="color: #fff"/>
                             <br></br>    
                             <br></br>  
                         </p:tab>
@@ -523,7 +524,6 @@
 
                             </h:panelGrid>
                         </p:tab>
-
                     </p:tabView>
                     <p class="botaocadpacote"><br></br>
                         <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Confirmar" action="#"></p:commandButton>

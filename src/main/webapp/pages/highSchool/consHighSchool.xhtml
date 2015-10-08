@@ -11,26 +11,33 @@
                 <div id="centro">
                     <p:growl id="growl" showDetail="true" sticky="true"/>
                      <br></br> 
-                    <p:outputLabel value="Pesquisar Nome Cliente" for="cliente" class="imgadd" style="font-size:11px;color: #fff"/> <br></br>
-                    <p:inputText id="cliente" size="50" maxlength="100" class="imgadd" value="#"  />
-                 
-                    <p:commandLink title="Nova Ficha" style="margin-left:55%" action="#{highSchoolMB.cadastrarFicha()}">
-                        <img src="../../resources/img/adicionar.png" />
-                    </p:commandLink>
-                    
-                      <br></br> <br></br> 
-                    <p:outputLabel value="Fichas High School" style="font-size: 22px;color: #fff; margin-left:40%"/>
+                     <p:accordionPanel class="painel" activeIndex="-1" >
+                        <p:tab titleStyle="color:#000;font-size:11px;background:#c7d95f;" title="Pesquisar" >
+                            <p:outputLabel value="Pesquisar Nome Cliente" for="cliente" class="imgadd" style="font-size:11px;"/> <br></br>
+                            <p:inputText id="cliente" size="50" maxlength="100" class="imgadd" value="#"  />
+                        </p:tab>
+                     </p:accordionPanel>
+                     <br></br>
+                    <p:outputLabel value="Consulta de High School" style="font-size: 22px;color: #fff; margin-left:37%"/>
+                    <br></br>
+                    <p:commandButton id="bnteditar" class="botaoConsulta" style="font-size:12px;margin-left:6%" value="Editar" action="#" />
+                    <p:commandButton id="bntfinalizar" class="botaoConsulta" style="font-size:12px;" value="Finalizar"  action="#"/>
+                    <p:commandButton id="bntimprimir" class="botaoConsulta" style="font-size:12px;" value="Imprimir" />
+                    <p:commandButton id="bntboleto" class="botaoConsulta" style="font-size:12px;" value="Boleto" />
+                    <p:commandButton id="bntpesquisar" class="botaoConsulta" style="font-size:12px;" value="Pesquisar" />
+                    <p:commandButton id="bntemail" class="botaoConsulta" style="font-size:12px;" value="Email" />
+                    <p:commandButton id="bntobstm" class="botaoConsulta" style="font-size:12px;" value="Obs TM" />
                     <p:dataTable id="tabelaConsultaHighSchool" var="highSchool"  value="#{highSchoolMB.listaHighSchool}" class="tabelaHighSchool" 
                                  paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink}  {Exporters}"
                                  paginator="true" rows="15" style="margin-bottom:20px" >
                         <f:facet name="{Exporters}">
-                            <h:commandLink style="margin-left:70%">
-                                <img src="../../resources/img/excel.png" width="20" class="imagens"/>
-                                <p:dataExporter type="xls" target="highSchool" fileName="highSchool" />
-                            </h:commandLink>
+                            <p:commandLink title="Nova Ficha"  action="#{highSchoolMB.cadastrarFicha()}" style="margin-left: 60%">
+                                <p:outputLabel value="Nova Ficha"/>
+                                <img src="../../resources/img/adicionar.png" width="20"/>
+                            </p:commandLink>
                         </f:facet>
                         <p:column style="width:40px;border:none;">
-                            <p:rowToggler />
+                            <p:selectBooleanCheckbox />
                         </p:column>
                         
                         <p:column headerText="Situação" style="text-align:center;width:80px;border:none;" sortBy="#">
@@ -50,31 +57,7 @@
                         <p:column headerText="Agente"  style="width:200px;border:none;" styleClass="alinharCenter" >
                             <h:outputText value="#{highSchool.vendas.usuario.nome}"/>
                         </p:column>
-                        <p:rowExpansion>
-                            <p:commandLink title="Editar" style="margin-left:11%">
-                                <img src="../../resources/img/editar.png"/>
-                            </p:commandLink>
-                            
-                            <p:commandLink title="Finalizar" style="margin-left:9%">
-                                <img src="../../resources/img/finalizar.png"/>
-                            </p:commandLink>
-                            
-                            <p:commandLink title="Imprimir" style="margin-left:9%">
-                                <img src="../../resources/img/imprimir.png"/>
-                            </p:commandLink>
-                            
-                            <p:commandLink title="Boleto" style="margin-left:9%">
-                                <img src="../../resources/img/cambio_2.png"/>
-                            </p:commandLink>
-                            
-                            <p:commandLink title="Pesquisar" style="margin-left:9%">
-                                <img src="../../resources/img/pesquisar.png"/>
-                            </p:commandLink>
-                            
-                            <p:commandLink title="Email" style="margin-left:9%">
-                                <img src="../../resources/img/email.jpg"/>
-                            </p:commandLink>
-                    </p:rowExpansion>
+                        
                     </p:dataTable>
                     <br></br>
                     <br></br>

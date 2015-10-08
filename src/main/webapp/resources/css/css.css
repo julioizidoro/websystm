@@ -270,6 +270,15 @@ text-align: left;
     width: 100%;
 }
 
+#centro legend#iUsu6 b{
+    font-size: 14px;
+    font-family: tahoma;
+    color:#ffffff;
+    
+}
+#centro legend#iUsu6 {
+    width: 96%;
+}
 .leftcampo{
     font-size: 10px;
     margin-left:100px;
@@ -376,6 +385,12 @@ text-align: left;
     color:#fff;
     width:85%;
     margin-left:7%;
+    text-align: left;
+}
+
+.painelhighSchool{
+    background:#1F8871;
+    width:100%;
     text-align: left;
 }
 .acaocambio{
@@ -555,7 +570,7 @@ text-align: left;
     text-align: right;
 }
 .tab{
-    background: #fff;
+    background:transparent -moz-linear-gradient(center top , #EEE5DE 0%, #C7D95F 20%, #EEE5DE 30%, #C7D95F) repeat scroll 0% 0%;
     background-color: #000;
 }
 ////////////////////////
@@ -917,7 +932,7 @@ text-align: left;
         #c7d95f 0%,
         #EEE5DE 10%,
         #c7d95f 30%,
-        #fff);margin-left: 0px;margin-top:1%;border: #fff;text-align: center;
+        #fff);margin-left: 0px;margin-top:-0.5%;border: #fff;text-align: center;
     -webkit-border-bottom-right-radius: 5px;
     -webkit-border-bottom-left-radius: 5px;
     -moz-border-radius-bottomright: 5px;
@@ -1006,6 +1021,14 @@ text-align: left;
 }
 .espacocobranca19{
     margin-left:17%;
+}
+.botaoConsulta{
+    width:12%;
+}
+.botaoConsulta:hover{
+    height: 20px;
+    width: 11.1%;
+    border: #1F8871;
 }
 .espacocobranca20botao{
     margin-left:5%;
