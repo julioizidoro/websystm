@@ -7,8 +7,8 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:composition template="/pages/templates/default.xhtml">
         <ui:define name="corpo">
-            <h:form id="consultaLadies">
-                <div id="centro">
+            <h:form id="consultacursosteens">
+                 <div id="centro">
                     <p:growl id="growl" showDetail="true" sticky="true"/>
                      <br></br> 
                      <p:accordionPanel class="painel" activeIndex="-1" >
@@ -18,7 +18,7 @@
                         </p:tab>
                      </p:accordionPanel>
                      <br></br>
-                      <p:outputLabel value="Consulta de High School" style="font-size: 22px;color: #fff; margin-left:37%"/>
+                    <p:outputLabel value="Consulta de Cursos teens" style="font-size: 22px;color: #fff; margin-left:37%"/>
                     <br></br>
                     <p:commandButton id="bnteditar" class="botaoConsulta" style="font-size:12px;margin-left:6%" value="Editar" action="#" />
                     <p:commandButton id="bntfinalizar" class="botaoConsulta" style="font-size:12px;" value="Finalizar"  action="#"/>
@@ -27,38 +27,39 @@
                     <p:commandButton id="bntpesquisar" class="botaoConsulta" style="font-size:12px;" value="Pesquisar" />
                     <p:commandButton id="bntemail" class="botaoConsulta" style="font-size:12px;" value="Email" />
                     <p:commandButton id="bntobstm" class="botaoConsulta" style="font-size:12px;" value="Obs TM" />
-                    <p:dataTable id="tabelaConsultaLadies" var="ladies"  value="#{ladiesMB.listaLadies}" class="tabelaHighSchool" 
+                   <p:dataTable id="tabelaConsultaHighSchool" var="cursosTeens"  value="#{cursosTeensMB.listaCursosTeens}" class="tabelaHighSchool" 
                                  paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink}  {Exporters}"
                                  paginator="true" rows="15" style="margin-bottom:20px" >
-                    <f:facet name="{Exporters}">    
-                        <p:commandLink title="Nova Ficha"  action="#{ladiesMB.cadastrarFicha()}" style="margin-left: 60%">
-                            <p:outputLabel value="Nova Ficha"/>
+                        <f:facet name="{Exporters}">
+                            <p:commandLink title="Nova Ficha" action="#{cursosTeensMB.cadastrarFicha()}" style="margin-left: 60%">
+                        <p:outputLabel value="Nova Ficha"/>
                         <img src="../../resources/img/adicionar.png" width="20" />
                     </p:commandLink>
-                    </f:facet>
-                      <br></br> <br></br> 
-                         <p:column style="width:40px;border:none;">
+                        </f:facet>
+                      <p:column style="width:40px;border:none;">
                             <p:selectBooleanCheckbox />
                         </p:column>
-                        
-                        <p:column headerText="Cliente" style="border:none;">
-                            <h:outputText value="#{ladies.vendas.cliente.nome}" />
+                                         
+                        <p:column headerText="Cliente" style="width:150px; border:none;">
+                            <h:outputText value="#{cursosTeens.vendas.cliente.nome}" />
                         </p:column>
-                        <p:column headerText="Data Inscrição" style="text-align:center;width:100px;border:none;" >
-                            <h:outputText value="#{ladies.vendas.dataVenda}">
+                        <p:column headerText="Data Inscrição" style="text-align:center;width:150px;border:none;" >
+                            <h:outputText value="#{cursosTeens.vendas.dataVenda}">
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </h:outputText>
                         </p:column>
-                        <p:column headerText="Cursos" style="border:none;">
-                            <h:outputText value="#" />
+                        
+                        <p:column headerText="Cursos"  style="width:150px;border:none;" styleClass="alinharCenter" >
+                            <h:outputText value="#"/>
                         </p:column>
-                        <p:column headerText="Unidade"  style="width:200px;border:none;" styleClass="alinharCenter" >
-                            <h:outputText value="#{ladies.vendas.unidadenegocio.nomeFantasia}"/>
+                        <p:column headerText="Unidade"  style="width:150px;border:none;" styleClass="alinharCenter" >
+                            <h:outputText value="#{cursosTeens.vendas.unidadenegocio.nomeFantasia}"/>
                         </p:column>
-                        <p:column headerText="Agente"  style="width:200px;border:none;" styleClass="alinharCenter" >
-                            <h:outputText value="#{ladies.vendas.usuario.nome}"/>
+                        <p:column headerText="Agente"  style="width:150px;border:none;" styleClass="alinharCenter" >
+                            <h:outputText value="#{cursosTeens.vendas.usuario.nome}"/>
                         </p:column>
-                     </p:dataTable>
+                                     
+                    </p:dataTable>
                     <br></br>
                     <br></br>
                 </div>

@@ -8,25 +8,37 @@
     <ui:composition template="/pages/templates/default.xhtml">
         <ui:define name="corpo">
             <h:form id="consultacursos">
-                <div id="centro">
+                 <div id="centro">
                     <p:growl id="growl" showDetail="true" sticky="true"/>
                      <br></br> 
-                    <p:outputLabel value="Pesquisar Nome Cliente" for="cliente" class="imgadd" style="font-size:11px;color: #fff"/> <br></br>
-                    <p:inputText id="cliente" size="50" maxlength="100" class="imgadd" value="#"  />
-                  <br></br> <br></br> 
-                    <img src="../../resources/img/add.png" class="imgadd"/>
-                    <p:commandLink value="Nova Ficha de Curso"  action="#{cursoMB.cadastrarFicha()}" class="add"/>
-                    
-                    <legend id="iUsu2" ><b>Consulta Ficha de Cursos</b></legend>
-                    <p:dataTable id="cursos" var="cursos"  value="#" class="tabela" 
+                     <p:accordionPanel class="painel" activeIndex="-1" >
+                        <p:tab titleStyle="color:#000;font-size:11px;background:#c7d95f;" title="Pesquisar" >
+                            <p:outputLabel value="Pesquisar Nome Cliente" for="cliente" class="imgadd" style="font-size:11px;"/> <br></br>
+                            <p:inputText id="cliente" size="50" maxlength="100" class="imgadd" value="#"  />
+                        </p:tab>
+                     </p:accordionPanel>
+                     <br></br>
+                     <legend id="iUsu2" ><b>Consulta Ficha de Cursos</b></legend>
+                      <br></br>
+                    <p:commandButton id="bnteditar" class="botaoConsulta" style="font-size:12px;margin-left:6%" value="Editar" action="#" />
+                    <p:commandButton id="bntfinalizar" class="botaoConsulta" style="font-size:12px;" value="Finalizar"  action="#"/>
+                    <p:commandButton id="bntimprimir" class="botaoConsulta" style="font-size:12px;" value="Imprimir" />
+                    <p:commandButton id="bntboleto" class="botaoConsulta" style="font-size:12px;" value="Boleto" />
+                    <p:commandButton id="bntpesquisar" class="botaoConsulta" style="font-size:12px;" value="Pesquisar" />
+                    <p:commandButton id="bntemail" class="botaoConsulta" style="font-size:12px;" value="Email" />
+                    <p:commandButton id="bntobstm" class="botaoConsulta" style="font-size:12px;" value="Obs TM" />
+                     <p:dataTable id="cursos" var="cursos"  value="#" class="tabela" 
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
                                  paginator="true" rows="10" style="margin-bottom:20px" >
                         <f:facet name="{Exporters}">
-                            <h:commandLink>
-                                <img src="../../resources/img/excel.png" width="20" class="imagens"/>
-                                <p:dataExporter type="xls" target="cliente" fileName="cliente" />
-                            </h:commandLink>
+                    <p:commandLink value="Nova Ficha de Curso"  action="#{cursoMB.cadastrarFicha()}" class="add">
+                        <p:outputLabel value="Nova Ficha"/>
+                        <img src="../../resources/img/adicionar.png" width="20"/>
+                    </p:commandLink>
                         </f:facet>
+                         <p:column style="width:40px;border:none;">
+                            <p:selectBooleanCheckbox />
+                        </p:column>
                         <p:column headerText="Situação" style="text-align:center;width:80px;" sortBy="#">
                             <h:outputText value="#" />
                         </p:column>
