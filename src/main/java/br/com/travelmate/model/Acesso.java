@@ -28,6 +28,8 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "Acesso.findAll", query = "SELECT a FROM Acesso a")})
 public class Acesso implements Serializable {
+    @Column(name = "cursoalterarescola")
+    private Integer cursoalterarescola;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -1143,6 +1145,14 @@ public class Acesso implements Serializable {
     @Override
     public String toString() {
         return "br.com.travelmate.model.Acesso[ idacesso=" + idacesso + " ]";
+    }
+
+    public Integer getCursoalterarescola() {
+        return cursoalterarescola;
+    }
+
+    public void setCursoalterarescola(Integer cursoalterarescola) {
+        this.cursoalterarescola = cursoalterarescola;
     }
     
 }

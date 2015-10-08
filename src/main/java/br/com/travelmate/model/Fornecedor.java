@@ -29,6 +29,18 @@ import javax.validation.constraints.Size;
 @NamedQueries({
     @NamedQuery(name = "Fornecedor.findAll", query = "SELECT f FROM Fornecedor f")})
 public class Fornecedor implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedor")
+    private List<Programasteens> programasteensList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedor")
+    private List<Ladies> ladiesList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedor")
+    private List<Highschool> highschoolList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedor")
+    private List<Valoreshighschool> valoreshighschoolList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedor")
+    private List<Fornecedorcidade> fornecedorcidadeList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedor")
+    private List<Vendas> vendasList;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -249,6 +261,54 @@ public class Fornecedor implements Serializable {
     @Override
     public String toString() {
         return "br.com.travelmate.model.Fornecedor[ idfornecedor=" + idfornecedor + " ]";
+    }
+
+    public List<Highschool> getHighschoolList() {
+        return highschoolList;
+    }
+
+    public void setHighschoolList(List<Highschool> highschoolList) {
+        this.highschoolList = highschoolList;
+    }
+
+    public List<Valoreshighschool> getValoreshighschoolList() {
+        return valoreshighschoolList;
+    }
+
+    public void setValoreshighschoolList(List<Valoreshighschool> valoreshighschoolList) {
+        this.valoreshighschoolList = valoreshighschoolList;
+    }
+
+    public List<Fornecedorcidade> getFornecedorcidadeList() {
+        return fornecedorcidadeList;
+    }
+
+    public void setFornecedorcidadeList(List<Fornecedorcidade> fornecedorcidadeList) {
+        this.fornecedorcidadeList = fornecedorcidadeList;
+    }
+
+    public List<Vendas> getVendasList() {
+        return vendasList;
+    }
+
+    public void setVendasList(List<Vendas> vendasList) {
+        this.vendasList = vendasList;
+    }
+
+    public List<Programasteens> getProgramasteensList() {
+        return programasteensList;
+    }
+
+    public void setProgramasteensList(List<Programasteens> programasteensList) {
+        this.programasteensList = programasteensList;
+    }
+
+    public List<Ladies> getLadiesList() {
+        return ladiesList;
+    }
+
+    public void setLadiesList(List<Ladies> ladiesList) {
+        this.ladiesList = ladiesList;
     }
 
     

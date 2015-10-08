@@ -51,6 +51,11 @@
     <class>br.com.travelmate.model.Vendascomissao</class>
     <class>br.com.travelmate.model.Filtroorcamentoproduto</class>
     <class>br.com.travelmate.model.Ocurso</class>
+    <class>br.com.travelmate.model.Highschool</class>
+    <class>br.com.travelmate.model.Valoreshighschool</class>
+    <class>br.com.travelmate.model.Ladies</class>
+    <class>br.com.travelmate.model.Programasteens</class>
+    <class>br.com.travelmate.model.Valoresprogramasteens</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
     <validation-mode>NONE</validation-mode>

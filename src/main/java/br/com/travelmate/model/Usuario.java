@@ -32,6 +32,9 @@ import javax.validation.constraints.Size;
 @NamedQueries({
     @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u")})
 public class Usuario implements Serializable {
+    @Size(max = 50)
+    @Column(name = "departamento")
+    private String departamento;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     private List<Pacotes> pacotesList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
@@ -260,6 +263,14 @@ public class Usuario implements Serializable {
 
     public void setPacotesList(List<Pacotes> pacotesList) {
         this.pacotesList = pacotesList;
+    }
+
+    public String getDepartamento() {
+        return departamento;
+    }
+
+    public void setDepartamento(String departamento) {
+        this.departamento = departamento;
     }
     
 }

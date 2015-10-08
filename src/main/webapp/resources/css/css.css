@@ -106,7 +106,13 @@ text-align: left;
     margin-top:0px;
     width: 900px;
     margin-left:0px;
-    font-size:10px;color:#1F8871;
+    font-size:11px;color:#1F8871;
+}
+.tabelaHighSchool{
+    margin-top:0px;
+    width: 94%;
+    margin-left:2.5%;
+    font-size:11px;color:#1F8871;
 }
 .tabela2{
     width: 840px;
@@ -215,12 +221,12 @@ text-align: left;
     position: absolute;
     width: 30px;
     height: 25px; 
-    margin-left:740px;
+    margin-left:670px;
 }
 .usuariologado{
     margin-top:8px;
     position: absolute;
-    width:700px;
+    width:600px;
     text-align: right;
     color:#000;
     

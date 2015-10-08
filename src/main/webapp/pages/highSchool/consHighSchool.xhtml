@@ -13,37 +13,68 @@
                      <br></br> 
                     <p:outputLabel value="Pesquisar Nome Cliente" for="cliente" class="imgadd" style="font-size:11px;color: #fff"/> <br></br>
                     <p:inputText id="cliente" size="50" maxlength="100" class="imgadd" value="#"  />
-                  <br></br> <br></br> 
-                    <img src="../../resources/img/add.png" class="imgadd"/>
-                    <p:commandLink value="Nova Ficha de High School"  action="#{highSchoolMB.cadastrarFicha()}" class="add"/>
+                 
+                    <p:commandLink title="Nova Ficha" style="margin-left:55%" action="#{highSchoolMB.cadastrarFicha()}">
+                        <img src="../../resources/img/adicionar.png" />
+                    </p:commandLink>
                     
-                    <legend id="iUsu2" ><b>Consulta Ficha de High School</b></legend>
-                    <p:dataTable id="tabelaConsultaHighSchool" var="highSchool"  value="#" class="tabela" 
-                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
-                                 paginator="true" rows="10" style="margin-bottom:20px" >
+                      <br></br> <br></br> 
+                    <p:outputLabel value="Fichas High School" style="font-size: 22px;color: #fff; margin-left:40%"/>
+                    <p:dataTable id="tabelaConsultaHighSchool" var="highSchool"  value="#{highSchoolMB.listaHighSchool}" class="tabelaHighSchool" 
+                                 paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink}  {Exporters}"
+                                 paginator="true" rows="15" style="margin-bottom:20px" >
                         <f:facet name="{Exporters}">
-                            <h:commandLink>
+                            <h:commandLink style="margin-left:70%">
                                 <img src="../../resources/img/excel.png" width="20" class="imagens"/>
                                 <p:dataExporter type="xls" target="highSchool" fileName="highSchool" />
                             </h:commandLink>
                         </f:facet>
-                        <p:column headerText="Situação" style="text-align:center;width:80px;" sortBy="#">
-                            <h:outputText value="#" />
+                        <p:column style="width:40px;border:none;">
+                            <p:rowToggler />
                         </p:column>
-                        <p:column headerText="Cliente" style="text-align:center;" sortBy="#">
-                            <h:outputText value="#" />
+                        
+                        <p:column headerText="Situação" style="text-align:center;width:80px;border:none;" sortBy="#">
+                            <h:outputText value="#{highSchool.controle}" />
                         </p:column>
-                        <p:column headerText="Data Inscrição" style="text-align:center;" >
-                            <h:outputText value="">
+                        <p:column headerText="Cliente" style="border:none;">
+                            <h:outputText value="#{highSchool.vendas.cliente.nome}" />
+                        </p:column>
+                        <p:column headerText="Data Inscrição" style="text-align:center;width:100px;border:none;" >
+                            <h:outputText value="#{highSchool.vendas.dataVenda}">
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </h:outputText>
                         </p:column>
-                        <p:column headerText="Unidade"  style="width:240px;text-align:center;" styleClass="alinharCenter" >
-                            <h:outputText value="#"/>
+                        <p:column headerText="Unidade"  style="width:200px;border:none;" styleClass="alinharCenter" >
+                            <h:outputText value="#{highSchool.vendas.unidadenegocio.nomeFantasia}"/>
                         </p:column>
-                        <p:column headerText="Agente"  style="width:200px;text-align:center;" styleClass="alinharCenter" >
-                            <h:outputText value="#"/>
+                        <p:column headerText="Agente"  style="width:200px;border:none;" styleClass="alinharCenter" >
+                            <h:outputText value="#{highSchool.vendas.usuario.nome}"/>
                         </p:column>
+                        <p:rowExpansion>
+                            <p:commandLink title="Editar" style="margin-left:11%">
+                                <img src="../../resources/img/editar.png"/>
+                            </p:commandLink>
+                            
+                            <p:commandLink title="Finalizar" style="margin-left:9%">
+                                <img src="../../resources/img/finalizar.png"/>
+                            </p:commandLink>
+                            
+                            <p:commandLink title="Imprimir" style="margin-left:9%">
+                                <img src="../../resources/img/imprimir.png"/>
+                            </p:commandLink>
+                            
+                            <p:commandLink title="Boleto" style="margin-left:9%">
+                                <img src="../../resources/img/cambio_2.png"/>
+                            </p:commandLink>
+                            
+                            <p:commandLink title="Pesquisar" style="margin-left:9%">
+                                <img src="../../resources/img/pesquisar.png"/>
+                            </p:commandLink>
+                            
+                            <p:commandLink title="Email" style="margin-left:9%">
+                                <img src="../../resources/img/email.jpg"/>
+                            </p:commandLink>
+                    </p:rowExpansion>
                     </p:dataTable>
                     <br></br>
                     <br></br>

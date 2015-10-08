@@ -30,6 +30,12 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Moedas.findAll", query = "SELECT m FROM Moedas m")})
 public class Moedas implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "moedas")
+    private List<Valoresprogramasteens> valoresprogramasteensList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "moedas")
+    private List<Valoreshighschool> valoreshighschoolList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "moedas1")
+    private List<Valoreshighschool> valoreshighschoolList1;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "moedas")
     private List<Valoresseguro> valoresseguroList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "moedas")
     private List<Cambio> cambioList;
@@ -126,6 +132,30 @@ public class Moedas implements Serializable {
 
     public void setValoresseguroList(List<Valoresseguro> valoresseguroList) {
         this.valoresseguroList = valoresseguroList;
+    }
+
+    public List<Valoreshighschool> getValoreshighschoolList() {
+        return valoreshighschoolList;
+    }
+
+    public void setValoreshighschoolList(List<Valoreshighschool> valoreshighschoolList) {
+        this.valoreshighschoolList = valoreshighschoolList;
+    }
+
+    public List<Valoreshighschool> getValoreshighschoolList1() {
+        return valoreshighschoolList1;
+    }
+
+    public void setValoreshighschoolList1(List<Valoreshighschool> valoreshighschoolList1) {
+        this.valoreshighschoolList1 = valoreshighschoolList1;
+    }
+
+    public List<Valoresprogramasteens> getValoresprogramasteensList() {
+        return valoresprogramasteensList;
+    }
+
+    public void setValoresprogramasteensList(List<Valoresprogramasteens> valoresprogramasteensList) {
+        this.valoresprogramasteensList = valoresprogramasteensList;
     }
     
 }

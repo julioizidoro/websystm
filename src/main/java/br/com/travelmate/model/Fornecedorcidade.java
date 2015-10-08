@@ -32,6 +32,12 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Fornecedorcidade.findAll", query = "SELECT f FROM Fornecedorcidade f")})
 public class Fornecedorcidade implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedorcidade")
+    private List<Valoresprogramasteens> valoresprogramasteensList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedorcidade")
+    private List<Valoreshighschool> valoreshighschoolList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedorcidade")
+    private List<Vendas> vendasList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedorcidade")
     private List<Valoresseguro> valoresseguroList;
     private static final long serialVersionUID = 1L;
     @Id
@@ -140,6 +146,30 @@ public class Fornecedorcidade implements Serializable {
 
     public void setValoresseguroList(List<Valoresseguro> valoresseguroList) {
         this.valoresseguroList = valoresseguroList;
+    }
+
+    public List<Valoreshighschool> getValoreshighschoolList() {
+        return valoreshighschoolList;
+    }
+
+    public void setValoreshighschoolList(List<Valoreshighschool> valoreshighschoolList) {
+        this.valoreshighschoolList = valoreshighschoolList;
+    }
+
+    public List<Vendas> getVendasList() {
+        return vendasList;
+    }
+
+    public void setVendasList(List<Vendas> vendasList) {
+        this.vendasList = vendasList;
+    }
+
+    public List<Valoresprogramasteens> getValoresprogramasteensList() {
+        return valoresprogramasteensList;
+    }
+
+    public void setValoresprogramasteensList(List<Valoresprogramasteens> valoresprogramasteensList) {
+        this.valoresprogramasteensList = valoresprogramasteensList;
     }
     
 }
