@@ -16,6 +16,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -34,8 +35,61 @@ import javax.validation.constraints.Size;
 @NamedQueries({
     @NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c")})
 public class Cliente implements Serializable {
+    @Size(max = 100)
+    @Column(name = "razaosocial")
+    private String razaosocial;
+    @Size(max = 100)
+    @Column(name = "nomefantasia")
+    private String nomefantasia;
+    @Size(max = 18)
+    @Column(name = "cnpj")
+    private String cnpj;
+    @Size(max = 20)
+    @Column(name = "tipogradouro")
+    private String tipogradouro;
+    @Size(max = 100)
+    @Column(name = "contato")
+    private String contato;
+    @Size(max = 15)
+    @Column(name = "telefone")
+    private String telefone;
+    @Lob
+    @Size(max = 65535)
+    @Column(name = "observacao")
+    private String observacao;
+    @Column(name = "datacontrato")
+    @Temporal(TemporalType.DATE)
+    private Date datacontrato;
+    @Column(name = "datarenovacao")
+    @Temporal(TemporalType.DATE)
+    private Date datarenovacao;
+    @Column(name = "getaofinanceira")
+    private Boolean getaofinanceira;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "valorgestaofinanceira")
+    private Float valorgestaofinanceira;
+    @Column(name = "contabilidade")
+    private Boolean contabilidade;
+    @Column(name = "valorcontabilidade")
+    private Float valorcontabilidade;
+    @Column(name = "tercerizacao")
+    private Boolean tercerizacao;
+    @Column(name = "valortercerizacao")
+    private Float valortercerizacao;
+    @Column(name = "outros")
+    private Boolean outros;
+    @Column(name = "valoroutros")
+    private Float valoroutros;
+    @Size(max = 20)
+    @Column(name = "inscricaoestadual")
+    private String inscricaoestadual;
+    @Size(max = 20)
+    @Column(name = "inscricaomunicipal")
+    private String inscricaomunicipal;
+    @Size(max = 15)
+    @Column(name = "situacao")
+    private String situacao;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
-    private List<Pacotes> pacotesList;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -556,12 +610,166 @@ public class Cliente implements Serializable {
         return getNome();
     }
 
-    public List<Pacotes> getPacotesList() {
-        return pacotesList;
+
+    public String getRazaosocial() {
+        return razaosocial;
     }
 
-    public void setPacotesList(List<Pacotes> pacotesList) {
-        this.pacotesList = pacotesList;
+    public void setRazaosocial(String razaosocial) {
+        this.razaosocial = razaosocial;
     }
+
+    public String getNomefantasia() {
+        return nomefantasia;
+    }
+
+    public void setNomefantasia(String nomefantasia) {
+        this.nomefantasia = nomefantasia;
+    }
+
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
+    }
+
+    public String getTipogradouro() {
+        return tipogradouro;
+    }
+
+    public void setTipogradouro(String tipogradouro) {
+        this.tipogradouro = tipogradouro;
+    }
+
+    public String getContato() {
+        return contato;
+    }
+
+    public void setContato(String contato) {
+        this.contato = contato;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getObservacao() {
+        return observacao;
+    }
+
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
+    }
+
+    public Date getDatacontrato() {
+        return datacontrato;
+    }
+
+    public void setDatacontrato(Date datacontrato) {
+        this.datacontrato = datacontrato;
+    }
+
+    public Date getDatarenovacao() {
+        return datarenovacao;
+    }
+
+    public void setDatarenovacao(Date datarenovacao) {
+        this.datarenovacao = datarenovacao;
+    }
+
+    public Boolean getGetaofinanceira() {
+        return getaofinanceira;
+    }
+
+    public void setGetaofinanceira(Boolean getaofinanceira) {
+        this.getaofinanceira = getaofinanceira;
+    }
+
+    public Float getValorgestaofinanceira() {
+        return valorgestaofinanceira;
+    }
+
+    public void setValorgestaofinanceira(Float valorgestaofinanceira) {
+        this.valorgestaofinanceira = valorgestaofinanceira;
+    }
+
+    public Boolean getContabilidade() {
+        return contabilidade;
+    }
+
+    public void setContabilidade(Boolean contabilidade) {
+        this.contabilidade = contabilidade;
+    }
+
+    public Float getValorcontabilidade() {
+        return valorcontabilidade;
+    }
+
+    public void setValorcontabilidade(Float valorcontabilidade) {
+        this.valorcontabilidade = valorcontabilidade;
+    }
+
+    public Boolean getTercerizacao() {
+        return tercerizacao;
+    }
+
+    public void setTercerizacao(Boolean tercerizacao) {
+        this.tercerizacao = tercerizacao;
+    }
+
+    public Float getValortercerizacao() {
+        return valortercerizacao;
+    }
+
+    public void setValortercerizacao(Float valortercerizacao) {
+        this.valortercerizacao = valortercerizacao;
+    }
+
+    public Boolean getOutros() {
+        return outros;
+    }
+
+    public void setOutros(Boolean outros) {
+        this.outros = outros;
+    }
+
+    public Float getValoroutros() {
+        return valoroutros;
+    }
+
+    public void setValoroutros(Float valoroutros) {
+        this.valoroutros = valoroutros;
+    }
+
+    public String getInscricaoestadual() {
+        return inscricaoestadual;
+    }
+
+    public void setInscricaoestadual(String inscricaoestadual) {
+        this.inscricaoestadual = inscricaoestadual;
+    }
+
+    public String getInscricaomunicipal() {
+        return inscricaomunicipal;
+    }
+
+    public void setInscricaomunicipal(String inscricaomunicipal) {
+        this.inscricaomunicipal = inscricaomunicipal;
+    }
+
+    public String getSituacao() {
+        return situacao;
+    }
+
+    public void setSituacao(String situacao) {
+        this.situacao = situacao;
+    }
+
 
 }
