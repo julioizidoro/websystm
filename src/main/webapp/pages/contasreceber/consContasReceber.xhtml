@@ -71,6 +71,12 @@
                                 <p:dataExporter type="xls" target="contaPagar" fileName="contas" />
                             </h:commandLink>
                         </f:facet>
+                        <f:facet name="{Exporters}">
+                            <p:commandLink title="Adicionar Conta" action="#{editarContasReceberMB.adicionarContasReceber()}" style="margin-left: 60%">
+                        <p:outputLabel value="Adicionar Conta"/>
+                        <img src="../../resources/img/adicionar.png" width="20" />
+                    </p:commandLink>
+                        </f:facet>
                         <p:column headerText="Nº Documento" style="width:75px;" sortBy="#{contasrecebe.numerodocumento}">
                             <p:outputLabel value="#{contasrecebe.numerodocumento}" />
                         </p:column>

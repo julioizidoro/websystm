@@ -5,15 +5,17 @@
  */
 package br.com.travelmate.managerBean;
 
+import br.com.travelmate.facade.BancoFacade;
 import br.com.travelmate.facade.ContasReceberFacade;
 import br.com.travelmate.model.Banco;
 import br.com.travelmate.model.Contasreceber;
-import br.com.travelmate.util.GerarListas;
+
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
+
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 import org.primefaces.context.RequestContext;
@@ -29,13 +31,13 @@ public class EditarContasReceberMB implements Serializable{
     
     private Contasreceber conta;
     private List<Banco> listaBanco;
+    private BancoFacade bancoFacade;
 
     public EditarContasReceberMB() {
         FacesContext fc = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
         conta = (Contasreceber) session.getAttribute("contareceber");
         session.removeAttribute("contareceber");
-        listaBanco = GerarListas.listarBancos();
     }
 
     public Contasreceber getConta() {
@@ -47,6 +49,10 @@ public class EditarContasReceberMB implements Serializable{
     }
 
     public List<Banco> getListaBanco() {
+        if (listaBanco == null){
+            gerarListaBanco();
+        }
+        
         return listaBanco;
     }
 
@@ -58,7 +64,13 @@ public class EditarContasReceberMB implements Serializable{
         ContasReceberFacade contasReceberFacade = new ContasReceberFacade();
         contasReceberFacade.salvar(conta);
         RequestContext.getCurrentInstance().closeDialog(null);
-        return "consultacontasreceber";
+        return "consContasReceber";
+    }
+    
+      public String adicionarContasReceber(){
+          conta = new Contasreceber();
+        RequestContext.getCurrentInstance().openDialog("adicionarContasReceber");
+        return "";
     }
     
     public String cancelar(){
@@ -66,6 +78,13 @@ public class EditarContasReceberMB implements Serializable{
         return null;
     }
     
+    public void gerarListaBanco(){
+        BancoFacade bancoFacade = new BancoFacade();
+        listaBanco = bancoFacade.listar();
+        if (listaBanco==null){
+            listaBanco = new ArrayList<Banco>();
+        }
+    }
     
     
 }
