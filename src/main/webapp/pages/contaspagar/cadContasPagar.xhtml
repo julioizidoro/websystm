@@ -60,7 +60,7 @@
                                 <p:outputLabel value="Data Compensação" for="dataComp" class="left1"/>
                             </h:panelGrid>
                             <h:panelGrid columns="5" cellpadding="1">
-                                <p:inputText id="dataEnv" size="10"  class="left3" value="#" readonly="true">
+                                <p:inputText id="dataEnv" size="10"  class="left3" value="" readonly="true">
                                     <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                                 </p:inputText>
                                 <p:calendar id="dataVenc"  pattern="dd/MM/yyyy" mask="true" size="13" maxlength="14" class="left4">
@@ -114,7 +114,7 @@
                             </h:panelGrid>            
                         </p:tab>
                     </p:tabView>  
-                    <p:commandButton value="Confirmar" icon=" ui-icon-plusthick" class="cadastrar"  actionListener="#" update="growl" action="#"/>
+                    <p:commandButton value="Confirmar" icon=" ui-icon-plusthick" class="cadastrar"  update="growl" action="#{contasPagarMB.confirmarContaPagar()}"/>
                     <p:commandButton value="Cancelar" icon=" ui-icon-cancel " class="pesquisar2"  action="#"/>
                     <br></br>
                     <br></br>

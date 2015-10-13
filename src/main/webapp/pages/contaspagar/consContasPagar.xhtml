@@ -18,7 +18,7 @@
                                     <p:outputLabel value="Unidade" for="unidade" class="fontebranca"/> 
                                     <p:outputLabel value="Data Inicial" for="dataIni" class="left2"/> 
                                     <p:outputLabel value="Data Final" for="dataFinal" class="left3"/>
-                                    <p:selectBooleanCheckbox  class="left4" value="#{ContasPagarMB.liberadas}"/>
+                                    <p:selectBooleanCheckbox  class="left4" value="#"/>
                                     <h:outputText value="Liberadas"  class="fontebranca"/>
                                     <p:selectBooleanCheckbox  class="left3" value="#" />
                                     <h:outputText value="Autorizadas"  class="fontebranca"/>    
@@ -42,7 +42,7 @@
                          <br></br>
                         <legend id="iUsu2" ><b>Consulta de Contas a Pagar </b></legend>
                         <h:panelGrid columns="6" cellpadding="1" class="vertical">
-                            <p:commandButton value="Adicionar" icon=" ui-icon-plus " class="btn btn-default" action="#{menuMB.cadContaPagar()}"/>
+                            <p:commandButton value="Adicionar" icon=" ui-i con-plus " class="btn btn-default" action="#{contasPagarMB.cadastrarContaPagar()}"/>
                             <p:commandButton value="Excluir" class="btn btn-default" icon=" ui-icon-trash " update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" actionListener="#{mensagem.excluiMessagem()}"  action="#"/>
                             <p:commandButton value="Liberar" class="btn btn-default" icon=" ui-icon-check " update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#"  />
                             <p:commandButton value="Autorizar" class="btn btn-default" icon=" ui-icon-check " update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#" actionListener="#"  />
@@ -58,32 +58,32 @@
                                     <p:dataExporter type="xls" target="contaPagar" fileName="contas" />
                                 </h:commandLink>
                             </f:facet>
-                            <p:column headerText="Status"  style="width:47px;background:#ffffff;color:#1F8871;text-align:left;" styleClass="alinharCenter">
+                            <p:column headerText="Status"  style="width:47px;text-align:left;" styleClass="alinharCenter">
                                 <p:graphicImage  value="#"/>
                             </p:column>
-                            <p:column headerText="Data Vencimento" style="width:115px;background:#ffffff;color:#1F8871;text-align:center;">
+                            <p:column headerText="Data Vencimento" style="width:115px;text-align:center;">
                                 <h:outputText  >
                                      <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                                 </h:outputText>
                             </p:column>
-                            <p:column headerText="Cliente"  style="width:120px;background:#ffffff;color:#1F8871;text-align:center;">
+                            <p:column headerText="Cliente"  style="width:120px;text-align:center;">
                                 <h:outputText value="#{contasPagar.produtos.descricao}"/>
                             </p:column>
-                            <p:column headerText="Descrição" style="background:#ffffff;color:#1F8871;text-align:center;" >
+                            <p:column headerText="Descrição" style=";text-align:center;" >
                                 <h:outputText value="#"/>
                             </p:column>
-                            <p:column headerText="Autorizadas"  style="width:80px;background:#ffffff;color:#1F8871;text-align:center;" styleClass="alinharCenter" >
+                            <p:column headerText="Autorizadas"  style="width:80px;text-align:center;" styleClass="alinharCenter" >
                                 <p:graphicImage value="#"/>
                             </p:column>
-                            <p:column headerText="Fornecedor" style="width:120px;background:#ffffff;color:#1F8871;text-align:center;" >
+                            <p:column headerText="Fornecedor" style="width:120px;text-align:center;" >
                                 <h:outputText value="#"/>
                             </p:column>
-                            <p:column headerText="Valor Conta" style="width:85px;background:#ffffff;color:#1F8871;text-align: right;" styleClass="alinharCenter">
+                            <p:column headerText="Valor Conta" style="width:85px;text-align: right;" styleClass="alinharCenter">
                                 <h:outputText >
                                     <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 </h:outputText>                                    
                             </p:column>
-                             <p:column style="width:42px;background:#ffffff;color:#1F8871;text-align: center">
+                             <p:column style="width:42px;text-align: center">
                                  <p:commandButton title="Editar" icon="ui-icon-pencil"/>
                             </p:column>
                         </p:dataTable>

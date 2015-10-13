@@ -56,6 +56,8 @@
     <class>br.com.travelmate.model.Ladies</class>
     <class>br.com.travelmate.model.Programasteens</class>
     <class>br.com.travelmate.model.Valoresprogramasteens</class>
+    <class>br.com.travelmate.model.Contaspagar</class>
+    <class>br.com.travelmate.model.Eventocontaspagar</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
     <validation-mode>NONE</validation-mode>
