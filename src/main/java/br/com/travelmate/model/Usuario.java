@@ -32,6 +32,8 @@ import javax.validation.constraints.Size;
 @NamedQueries({
     @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u")})
 public class Usuario implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
+    private List<Eventocontaspagar> eventocontaspagarList;
     @Size(max = 50)
     @Column(name = "departamento")
     private String departamento;
@@ -271,6 +273,14 @@ public class Usuario implements Serializable {
 
     public void setDepartamento(String departamento) {
         this.departamento = departamento;
+    }
+
+    public List<Eventocontaspagar> getEventocontaspagarList() {
+        return eventocontaspagarList;
+    }
+
+    public void setEventocontaspagarList(List<Eventocontaspagar> eventocontaspagarList) {
+        this.eventocontaspagarList = eventocontaspagarList;
     }
     
 }
