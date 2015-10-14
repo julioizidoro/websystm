@@ -6,15 +6,19 @@
 package br.com.travelmate.managerBean;
 
 import br.com.travelmate.bean.LerRetornoItauBean;
+import br.com.travelmate.facade.BancoFacade;
 import br.com.travelmate.facade.CobrancaFacade;
 import br.com.travelmate.facade.ContasReceberFacade;
 import br.com.travelmate.facade.HistoricoCobrancaFacade;
+import br.com.travelmate.facade.VendasFacade;
+import br.com.travelmate.model.Banco;
 import br.com.travelmate.model.Cobranca;
 import br.com.travelmate.model.Contasreceber;
 import br.com.travelmate.model.Historicocobranca;
 import br.com.travelmate.model.Pacotes;
 import br.com.travelmate.model.Vendas;
 import br.com.travelmate.util.Formatacao;
+
 import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -29,6 +33,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
+
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.event.RowEditEvent;
@@ -57,6 +62,7 @@ public class ContasReceberMB implements Serializable{
     private Vendas vendas;
     private Date dataAnterior;
     
+    
     @PostConstruct
     public void init(){
        FacesContext fc = FacesContext.getCurrentInstance();
@@ -66,6 +72,8 @@ public class ContasReceberMB implements Serializable{
         String sql = "Select c from Contasreceber c where c.valorpago=0 order by c.datavencimento, c.vendas.cliente.nome";
         carregarContasReceber(sql);
         conta = new Contasreceber();
+       
+       
     }
 
     public UsuarioLogadoMB getUsuarioLogadoMB() {
@@ -192,15 +200,15 @@ public class ContasReceberMB implements Serializable{
             FacesContext fc = FacesContext.getCurrentInstance();
             HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
             session.setAttribute("contareceber", conta);       
-            RequestContext.getCurrentInstance().openDialog("editarContasReceber");
+            RequestContext.getCurrentInstance().openDialog("adicionarContasReceber");
         }
         return "";
     }
+    
+    
     public String cobranca(){
         return "cobranca";
     }
-    
-    
     
     public String dialogBoletos() {
         List<Contasreceber> lista = new ArrayList<>();
@@ -369,5 +377,11 @@ public class ContasReceberMB implements Serializable{
         }
         return null;
     }
+    
+    public String adicionarContasReceber(){
+        RequestContext.getCurrentInstance().openDialog("adicionarContasReceber");
+        return "";
+    }
      
+    
 }

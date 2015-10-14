@@ -7,14 +7,21 @@ package br.com.travelmate.managerBean;
 
 import br.com.travelmate.facade.BancoFacade;
 import br.com.travelmate.facade.ContasReceberFacade;
+import br.com.travelmate.facade.PlanoContaFacade;
+import br.com.travelmate.facade.VendasFacade;
 import br.com.travelmate.model.Banco;
 import br.com.travelmate.model.Contasreceber;
+import br.com.travelmate.model.Planoconta;
+import br.com.travelmate.model.Vendas;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
@@ -28,16 +35,27 @@ import org.primefaces.context.RequestContext;
 @ViewScoped
 public class EditarContasReceberMB implements Serializable{
     
-    
+    @Inject
+    private UsuarioLogadoMB usuarioLogadoMB;
     private Contasreceber conta;
     private List<Banco> listaBanco;
-    private BancoFacade bancoFacade;
-
+    private Banco banco;
+    private String idVendas;
+    private String nomeCliente;
+    private Vendas vendas;
+   
+    
     public EditarContasReceberMB() {
         FacesContext fc = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
         conta = (Contasreceber) session.getAttribute("contareceber");
         session.removeAttribute("contareceber");
+        if (conta==null){
+            conta = new Contasreceber();
+        }else {
+            vendas = conta.getVendas();
+            nomeCliente = vendas.getCliente().getNome();
+        }
     }
 
     public Contasreceber getConta() {
@@ -59,19 +77,61 @@ public class EditarContasReceberMB implements Serializable{
     public void setListaBanco(List<Banco> listaBanco) {
         this.listaBanco = listaBanco;
     }
+
+    public String getIdVendas() {
+        return idVendas;
+    }
+
+    public void setIdVendas(String idVendas) {
+        this.idVendas = idVendas;
+    }
+
+    public String getNomeCliente() {
+        return nomeCliente;
+    }
+
+    public void setNomeCliente(String nomeCliente) {
+        this.nomeCliente = nomeCliente;
+    }
+
+    public Vendas getVendas() {
+        return vendas;
+    }
+
+    public void setVendas(Vendas vendas) {
+        this.vendas = vendas;
+    }
+
+    public UsuarioLogadoMB getUsuarioLogadoMB() {
+        return usuarioLogadoMB;
+    }
+
+    public void setUsuarioLogadoMB(UsuarioLogadoMB usuarioLogadoMB) {
+        this.usuarioLogadoMB = usuarioLogadoMB;
+    }
+
+   
+    
     
     public String salvar(){
         ContasReceberFacade contasReceberFacade = new ContasReceberFacade();
+        conta.setVendas(vendas);
+        conta.setBoletocancelado(Boolean.FALSE);
+        conta.setBoletoenviado(Boolean.FALSE);
+        conta.setBoletogerado("NAO");
+        conta.setDataEmissao(new Date());
+        conta.setDesagio(0.0f);
+        conta.setJuros(0.0f);
+        conta.setValorpago(0.0f);
+        PlanoContaFacade planoCoontaFacade = new  PlanoContaFacade();
+        Planoconta plano = planoCoontaFacade.consultar(usuarioLogadoMB.getParametrosprodutos().getIdplanocontas());
+        conta.setPlanoconta(plano);
         contasReceberFacade.salvar(conta);
         RequestContext.getCurrentInstance().closeDialog(null);
         return "consContasReceber";
     }
     
-      public String adicionarContasReceber(){
-          conta = new Contasreceber();
-        RequestContext.getCurrentInstance().openDialog("adicionarContasReceber");
-        return "";
-    }
+      
     
     public String cancelar(){
         RequestContext.getCurrentInstance().closeDialog(null);
@@ -86,5 +146,19 @@ public class EditarContasReceberMB implements Serializable{
         }
     }
     
+    public String buscarPoIdVenda(){
+        if (idVendas.length()>0){
+            VendasFacade vendasFacade = new VendasFacade();
+            this.vendas = vendasFacade.consultarVendas(Integer.parseInt(idVendas));
+            if (vendas==null){
+              FacesMessage msg = new FacesMessage("Erro! ", "Venda não localizada.");
+            }else {
+                nomeCliente = vendas.getCliente().getNome();
+                conta.setNumerodocumento(String.valueOf(idVendas));
+            }
+        }
+        return "";
+        
+    }
     
 }

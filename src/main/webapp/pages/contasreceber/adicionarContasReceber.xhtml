@@ -10,15 +10,28 @@
         
     </h:head>
     <h:body>
-        <h:form id="adicionarContasReceber" style="text-align:left;font-size: 10px;"><br></br>
+        <h:form id="adicionarContasReceber" style="text-align:left;font-size: 10px; margin-left: 7%; "><br></br>
+
+            <p:tab titleStyle="color:#000;font-size:11px;background:#c7d95f;" title="Pesquisar">
+                <p:outputLabel value="Vendas" for="vendas" class="espacocobranca28" style="margin-left: 6%" /> 
+                <p:outputLabel value="Cliente" class="espacocobranca7"/>
+                <br></br>
+                <p:inputText id="vendas" style="width: 17%; margin-left: 6%" maxlength="100" class="fontebranca"  value="#{editarContasReceberMB.idVendas}"/>
+                <p:commandButton icon="ui-icon-search" class="botaopesquisar" action="#{editarContasReceberMB.buscarPoIdVenda()}" update=":adicionarContasReceber:nomecliente, :adicionarContasReceber:numeroDocumento"/>
+                <p:inputText id="nomecliente" style="width: 38%; margin-left: 18%" maxlength="100" class="fontebranca"  value="#{editarContasReceberMB.nomeCliente}"/>
+            </p:tab>
+
+            <br></br> <br></br> <br></br>
             <title>Adicionar Conta a Receber</title>
+                 
                 <p:outputLabel value="Nº Documento" class="espacocobranca14"/>
                 <p:outputLabel value="Nº Parcelas" class="espacocobranca11"/>
                 <p:outputLabel value="Valor Parcela" class="espacocobranca11"/>
                 <p:outputLabel value="Data Vencimento" class="espacocobranca24"/>
                 
                 <br></br>
-                <p:inputText value="#{editarContasReceberMB.conta.numerodocumento}" style="width:17%" class="espacocobranca14"/>
+                
+                <p:inputText id="numeroDocumento" value="#{editarContasReceberMB.conta.numerodocumento}" style="width:17%" class="espacocobranca14"/>
                 <p:inputText value="#{editarContasReceberMB.conta.numeroparcelas}"  style="width:15%" class="espacocobranca20"/>
                 
                 <p:inputText value="#{editarContasReceberMB.conta.valorparcela}"  style="width:15%" class="espacocobranca20rig">
@@ -27,25 +40,7 @@
                 <p:inputMask id="dataVenc" class="imgadd"    mask="99/99/9999"  maxlength="15" value="#{editarContasReceberMB.conta.datavencimento}">
                     <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                </p:inputMask>
-                <br></br><br></br>
-                <p:outputLabel value="Juros " class="espacocobranca14"/>
-                <p:outputLabel value="Desagio" class="espacocobranca12"/>
-                <p:outputLabel value="Valor Pago" class="espacocobranca2"/>
-                <p:outputLabel value="Data de Pagamento" class="espacocobranca111"/>
-                <br></br>
-                <p:inputText value="#{editarContasReceberMB.conta.juros}" style="width:17%" class="espacocobranca14">
-                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
-                </p:inputText>
-                <p:inputText value="#{editarContasReceberMB.conta.desagio}" style="width:15%" class="espacocobranca20">
-                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
-                </p:inputText>
-               <p:inputText value="#{editarContasReceberMB.conta.valorpago}"  style="width:15%" class="espacocobranca20rig">
-                    <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
-               </p:inputText>
-               <p:inputMask id="datapagamento" class="imgadd"    mask="99/99/9999"  maxlength="15" value="#{editarContasReceberMB.conta.datapagamento}">
-                    <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
-               </p:inputMask>
-              
+                          
                 <br></br><br></br><br></br>
 
                 <p:outputLabel value="Tipo de Documento" class="espacocobranca14"/>
