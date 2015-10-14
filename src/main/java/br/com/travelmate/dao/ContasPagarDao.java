@@ -7,8 +7,12 @@ package br.com.travelmate.dao;
 
 import br.com.travelmate.connection.ConectionFactory;
 import br.com.travelmate.model.Contaspagar;
+import br.com.travelmate.model.Planoconta;
+import br.com.travelmate.model.Produtos;
 import java.sql.SQLException;
+import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 /**
  *
@@ -25,5 +29,14 @@ public class ContasPagarDao {
         manager.getTransaction().commit();
         return conta;
     }
+    
+    public List<Contaspagar> listar(String sql)throws SQLException{
+        manager = ConectionFactory.getConnection();
+         manager.getTransaction().begin();
+        Query q = manager.createQuery(sql);
+        manager.getTransaction().commit();
+        return q.getResultList();
+    }
+    
     
 }

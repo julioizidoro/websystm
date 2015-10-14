@@ -42,7 +42,7 @@
                          <br></br>
                         <legend id="iUsu2" ><b>Consulta de Contas a Pagar </b></legend>
                         <h:panelGrid columns="6" cellpadding="1" class="vertical">
-                            <p:commandButton value="Adicionar" icon=" ui-i con-plus " class="btn btn-default" action="#{contasPagarMB.cadastrarContaPagar()}"/>
+                           
                             <p:commandButton value="Excluir" class="btn btn-default" icon=" ui-icon-trash " update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" actionListener="#{mensagem.excluiMessagem()}"  action="#"/>
                             <p:commandButton value="Liberar" class="btn btn-default" icon=" ui-icon-check " update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#"  />
                             <p:commandButton value="Autorizar" class="btn btn-default" icon=" ui-icon-check " update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#" actionListener="#"  />
@@ -56,6 +56,12 @@
                                 <h:commandLink>
                                     <img src="../../resources/img/excel.png" width="20" class="imagens"/>
                                     <p:dataExporter type="xls" target="contaPagar" fileName="contas" />
+                                </h:commandLink>
+                            </f:facet>
+                            <f:facet name="{Exporters}">
+                                <h:commandLink title="Adicionar conta" action="#{contasPagarMB.cadastrarContaPagar()}" style="margin-left: 60%;">
+                                    <p:outputLabel value="Adicionar Conta"/>
+                                    <img src="../../resources/img/adicionar.png" width="20" class="imagens"/>
                                 </h:commandLink>
                             </f:facet>
                             <p:column headerText="Status"  style="width:47px;text-align:left;" styleClass="alinharCenter">

@@ -3,41 +3,39 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <ui:composition template="/pages/templates/default.xhtml">
-        <ui:define name="corpo">
-            <h:form>
-                <div id="centro">
+    <h:head>
+        <link href="../../resources/css/css.css" rel="stylesheet" type="text/css"  />
+    </h:head>
+    <h:body style="width: 60%;">
+        <h:form id="confContasPagar" style="text-align:left;font-size: 10px;" ><br></br>
                     <p:growl id="growl" showDetail="true" sticky="true" />
-                    <br></br>
-                    <br></br>
-                    <p:tabView class="cadastroContasPagar">
-                        <p:tab >
-                            
-                            
-                            <h:panelGrid columns="5" cellpadding="1">
+                    
+                    <h:panelGrid columns="5" cellpadding="1" >
+                        <p:outputLabel value="Nro. Lançamento:" >
+                            <br/><br/>
+                            <p:inputText id="historico" size="26" style="margin-right: 90px;"  value=""/>
+                        </p:outputLabel>
                                 
-                                    <p:outputLabel value="Nro. Lançamento:" >
-                                        <p:inputText id="historico" size="26" style="margin-left: 10px;"  value=""/>
-                                    </p:outputLabel>
-                                
-                                <p:outputLabel value="Data Emissão" for="dataVenc" style="margin-left: 20px;"/>
-                                        <p:calendar id="dataVenc"  pattern="dd/MM/yyyy" mask="true" size="13" maxlength="14" style="margin-left: 10px;" >
-                                             <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
-                                        </p:calendar>              
-                                    
-                            </h:panelGrid>
+                        <p:outputLabel value="Data Emissão" for="dataVenc" style="margin-left: 60px;">
+                               <br/><br/>
+                            <p:calendar id="dataVenc"  pattern="dd/MM/yyyy" mask="true" size="19" maxlength="14" style=" margin-left: 60px;" >
+                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                            </p:calendar>              
+                        </p:outputLabel>    
+                    </h:panelGrid>
                             <br/>
                             
                             <h:panelGrid columns="2" cellpadding="3">
                                 <p:outputLabel value="Unidade de negócio" for="planoConta" /> 
                                 
                             </h:panelGrid>  
+                            
                             <h:panelGrid columns="2" cellpadding="3">
-                                <p:selectOneMenu id="unidade"  style="width:370px"  value="#">
-                                    <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true"/> 
-                                    <f:selectItems value="#" var="unidade" itemLabel="#" itemValue="#"/>
+                                <p:selectOneMenu id="unidade"  style="width:430px"  value="#{contasPagarMB.conta.unidadenegocio}" converter="UnidadeNegocioConverter">
+                                    <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
+                                    <f:selectItems value="#{contasPagarMB.listaUnidadeNegocio}" var="unidadenegocio" itemLabel="#{unidadenegocio.nomeFantasia}" itemValue="#{unidadenegocio}"/>
+                                    <f:attribute name="listaUnidade" value="#{contasPagarMB.listaUnidadeNegocio}"/>
                                 </p:selectOneMenu>                   
                                 
                             </h:panelGrid>
@@ -46,70 +44,66 @@
                                 
                             </h:panelGrid>  
                             <h:panelGrid columns="2" cellpadding="3">
-                                <p:selectOneMenu id="planoConta"  style="width:370px"  value="#">
-                                    <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true"/> 
-                                    <f:selectItems value="#" var="planoConta" itemLabel="#" itemValue="#"/>
+                                <p:selectOneMenu id="planoConta"  style="width:430px"  value="#{contasPagarMB.conta.planoconta}" converter="PlanoContaConverter">
+                                    <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
+                                    <f:selectItems value="#{contasPagarMB.listaPlanoConta}" var="planoConta" itemLabel="#{planoConta.descricao}" itemValue="#{planoConta}"/>
+                                    <f:attribute name="listaPlanoConta" value="#{contasPagarMB.listaPlanoConta}"/>
                                 </p:selectOneMenu>  
                                
                             </h:panelGrid>
                             <br/>
-                            
-                            <p:outputLabel value="Histórico" >
-                                <p:inputTextarea id="historico" style="width: 500px; margin-right: 60%;"  class="left3" value=""/>
-                            </p:outputLabel> 
+                            <h:panelGrid columns="2" cellpadding="3">
+                                <p:outputLabel value="Histórico" >
+                                    <br/><br/>
+                                    <p:inputTextarea id="historico" style="width: 420px; margin-right: 100px;"   value=""/>
+                                </p:outputLabel>
+                            </h:panelGrid>
+                                
                             <br/><br/> 
                             
-                            <h:panelGrid>
-                             
+                            <h:panelGrid columns="5" cellpadding="1">
                                 <p:fieldset style="position: relative" >
-                                    <legend>Provisão</legend>
-                                    
-                                    <h:panelGrid columns="5" cellpadding="1">
-                                        <p:outputLabel value="Data Vencimento" for="dataVenc" />
-                                        <p:calendar id="dataVenc"  pattern="dd/MM/yyyy" mask="true" size="13" maxlength="14" style="margin-left: 10px;" >
-                                             <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
-                                        </p:calendar>   
-                                    </h:panelGrid>
+                                    <legend style="font-size: 15px;">Provisão</legend>
                                     <br/>
+                                        <p:outputLabel value="Data Vencimento" for="dataVenc" />
+                                        <p:calendar id="dataVenc"  pattern="dd/MM/yyyy" mask="true" size="8" maxlength="14" style="margin-left: 10px;" >
+                                             <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                                        </p:calendar>
+                                    <br/><br/>
                                     <p:outputLabel value="Valor" >
-                                        <p:inputText id="historico" size="26" style="margin-left: 10px;"  value=""/>
+                                        <p:inputText id="valor" size="26" style="margin-left: 10px; width: 119px;"  value=""/>
                                     </p:outputLabel>
                                 </p:fieldset>
                             </h:panelGrid>
+                            
                             <h:panelGrid>
-                                <p:fieldset style="position: relative; margin-left: 40%;margin-top: -19%;">
-                                    <legend>Realização</legend>
-                                    
+                                <p:fieldset style="position: relative; margin-left: 50%;margin-top: -28.5%;">
+                                    <legend style="font-size: 15px;">Realização</legend>
+                                    <br/>
                                     <h:panelGrid columns="5" cellpadding="1">
                                         <p:outputLabel value="Data do Pagamento" for="dataVenc" />
-                                        <p:calendar id="dataVenc"  pattern="dd/MM/yyyy" mask="true" size="13" maxlength="14" style="margin-left: 10px;">
-                                             <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                                        <p:calendar id="dataVenc"  pattern="dd/MM/yyyy" mask="true" size="8" maxlength="14" style="margin-left: 10px;">
+                                             <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo" />
                                         </p:calendar>   
                                     </h:panelGrid>
-                                    <br/>
-                                   
+                                    
                                     <h:panelGrid columns="2" cellpadding="3" >
                                          <p:outputLabel value="Conta" for="planoConta" /> 
-                                        <p:selectOneMenu id="conta"  style="width:370px; margin-left: 10px;"  value="#">
+                                        <p:selectOneMenu id="conta"  style="width:131px; margin-left: 10px;"  value="#">
                                             <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true"/> 
                                             <f:selectItems value="#" var="conta" itemLabel="#" itemValue="#"/>
-                                        </p:selectOneMenu>                   
-                                
+                                        </p:selectOneMenu> 
                                     </h:panelGrid>
                                 </p:fieldset>
                             </h:panelGrid>
                             
-                           
-
-                        </p:tab>
-                    </p:tabView>  
-                    <br/>
-                    <p:commandButton value="Salvar" icon=" ui-icon-check" class="cadastrar"  update="growl" action="#"/>
-                    <p:commandButton value="Cancelar" icon=" ui-icon-cancel " class="pesquisar2"  action="#"/>
-                </div>
+                <p class="botaoeditareceber" style="width: 440px;"><br></br>
+                    <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Confirmar" action="#"></p:commandButton>
+                    <p:commandButton class="espacocampos" onclick="" icon="ui-icon-close" value="Cancelar" action="#{contasPagarMB.cancelar()}"></p:commandButton>
+                </p>
+                
             </h:form>
-        </ui:define>
-    </ui:composition>
+    </h:body>
 </html>
 
 

@@ -14,10 +14,7 @@ import javax.faces.convert.FacesConverter;
 
 
 
-/**
- *
- * @author Wolverine
- */
+
 @FacesConverter(value="UnidadeNegocioConverter")
 public class UnidadeNegocioConverter implements Converter{
 
