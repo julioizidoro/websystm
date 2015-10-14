@@ -25,7 +25,7 @@ public class ContasPagarFacade {
         try {
             return contasPagarDao.salvar(conta);
         } catch (SQLException ex) {
-            Logger.getLogger(ContasReceberFacade.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ContasPagarFacade.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
     }

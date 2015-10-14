@@ -1,9 +1,11 @@
 package br.com.travelmate.managerBean;
 
+import br.com.travelmate.facade.BancoFacade;
 import br.com.travelmate.facade.ContasPagarFacade;
 import br.com.travelmate.facade.ContasReceberFacade;
 import br.com.travelmate.facade.PlanoContaFacade;
 import br.com.travelmate.facade.UnidadeNegocioFacade;
+import br.com.travelmate.model.Banco;
 import br.com.travelmate.model.Contaspagar;
 import br.com.travelmate.model.Contasreceber;
 import br.com.travelmate.model.Planoconta;
@@ -27,6 +29,10 @@ public class ContasPagarMB implements Serializable{
     private Contaspagar conta;
     private List<Unidadenegocio> listaUnidadeNegocio;
     private List<Planoconta> listaPlanoConta;
+    private List<Banco> listaBanco;
+    private Unidadenegocio unidadenegocio;
+    private Banco banco;
+    private Planoconta planoconta; 
     
     public ContasPagarMB() {
         FacesContext fc = FacesContext.getCurrentInstance();
@@ -35,6 +41,8 @@ public class ContasPagarMB implements Serializable{
         session.removeAttribute("contapagar");
         carregarUnidadeNegocio();
         carregarPlanoConta();
+        carregarBanco();
+        
     }
 
     public Contaspagar getConta() {
@@ -60,18 +68,46 @@ public class ContasPagarMB implements Serializable{
     public void setListaPlanoConta(List<Planoconta> listaPlanoConta) {
         this.listaPlanoConta = listaPlanoConta;
     }
+
+    public List<Banco> getListaBanco() {
+        return listaBanco;
+    }
+
+    public void setListaBanco(List<Banco> listaBanco) {
+        this.listaBanco = listaBanco;
+    }
+
+    public Unidadenegocio getUnidadenegocio() {
+        return unidadenegocio;
+    }
+
+    public void setUnidadenegocio(Unidadenegocio unidadenegocio) {
+        this.unidadenegocio = unidadenegocio;
+    }
+
+    public Banco getBanco() {
+        return banco;
+    }
+
+    public void setBanco(Banco banco) {
+        this.banco = banco;
+    }
+
+    public Planoconta getPlanoconta() {
+        return planoconta;
+    }
+
+    public void setPlanoconta(Planoconta planoconta) {
+        this.planoconta = planoconta;
+    }
     
    
     
     public String cadastrarContaPagar(){
-        return "cadContasPagar";
-    }
-    
-    public String confirmarContaPagar(){
-        conta = new Contaspagar();
         Map<String,Object> options = new HashMap<String, Object>();
         options.put("contentWidth",800);
         RequestContext.getCurrentInstance().openDialog("confContasPagar", options, null);
+        conta= new Contaspagar();
         return "";
     }
     
@@ -83,6 +119,9 @@ public class ContasPagarMB implements Serializable{
      
      public String salvar(){
         ContasPagarFacade contasReceberFacade = new ContasPagarFacade();
+        conta.setBanco(banco);
+        conta.setUnidadenegocio(unidadenegocio);
+        conta.setPlanoconta(planoconta);
         contasReceberFacade.salvar(conta);
         RequestContext.getCurrentInstance().closeDialog(null);
         return "consContasPagar";
@@ -104,4 +143,12 @@ public class ContasPagarMB implements Serializable{
         }
     }
      
+   public void carregarBanco(){
+        BancoFacade bancoFacade = new BancoFacade();
+        listaBanco = bancoFacade.listar();
+        if (listaBanco==null){
+            listaBanco = new ArrayList<Banco>();
+        }
+    } 
+    
 }
