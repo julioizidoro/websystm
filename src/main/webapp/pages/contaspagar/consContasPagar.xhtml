@@ -47,7 +47,7 @@
                             <p:commandButton value="Arquivo"  style="font-size:12px;" icon="ui-icon-folder-open "  action="#" />
                             <p:commandButton value="Usuários" style="font-size:12px;" icon="ui-icon-person" action="#"/>
                 
-                        <p:dataTable id="contaPagar" var="contasPagar"  value="#{vendasMB.listaVendaComissao}" class="tabela" 
+                        <p:dataTable id="contaPagar" var="contasPagar"  value="#" class="tabela" 
                                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
                                      paginator="true" rows="10" style="margin-bottom:20px" >
                             <f:facet name="{Exporters}">
@@ -91,19 +91,6 @@
                                  <p:commandButton title="Editar" icon="ui-icon-pencil"/>
                             </p:column>
                         </p:dataTable>
-                        <h:panelGrid columns="4" cellpadding="3">
-                            <p:outputLabel value="Total Contas Vencidas" for="contasVenc" class="left" /> 
-                            <p:outputLabel value="Total Contas Vencendo" for="contasVencendo" class="left1"/> 
-                            <p:outputLabel value="Total Contas a Vencer" for="contasVencer" class="left1"/>
-                            <p:outputLabel value="Total Contas a Pagar" for="contasPagar" class="left1"/>
-                        </h:panelGrid>
-                        <h:panelGrid columns="5" cellpadding="1">
-
-                            <p:inputText id="contasVenc" size="21" maxlength="100" class="leftcampoo"   readonly="true"/>
-                            <p:inputText id="contasVencendo" size="22" maxlength="100" class="left1campo"   readonly="true"/>
-                            <p:inputText id="contasVencer" size="21" maxlength="100" class="left1campo"   readonly="true"/>
-                            <p:inputText id="contasPagar" size="17" maxlength="100" class="left1campo"   readonly="true"/>
-                        </h:panelGrid>  
                         <br></br>
                         <br></br>
                         <br></br>
