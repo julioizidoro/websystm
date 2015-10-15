@@ -40,22 +40,16 @@
                        </p:accordionPanel>
                          <br></br>
                         <legend id="iUsu2" ><b>Consulta de Contas a Pagar </b></legend>
-                           
-                            <p:commandButton value="Excluir" style="font-size:12px;margin-left:29%" icon=" ui-icon-trash " update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" actionListener="#{mensagem.excluiMessagem()}"  action="#"/>
-                            <p:commandButton value="Liberar" style="font-size:12px;" icon=" ui-icon-check " update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#"  />
-                            <p:commandButton value="Autorizar" style="font-size:12px;" icon=" ui-icon-check " update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#" actionListener="#"  />
+                            <p:commandButton value="Liberar" style="font-size:12px;margin-left:32%" icon=" ui-icon-check " update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#"  />
                             <p:commandButton value="Arquivo"  style="font-size:12px;" icon="ui-icon-folder-open "  action="#" />
                             <p:commandButton value="Usuários" style="font-size:12px;" icon="ui-icon-person" action="#"/>
-                
-                        <p:dataTable id="contaPagar" var="contasPagar"  value="#" class="tabela" 
+                            <p:contextMenu for="tabelacontaPagar">
+                                <p:menuitem value="Alterar"  icon=" ui-icon-pencil"  action="#{contasPagarMB.editar()}" />
+                                <p:menuitem value="Excluir" style="font-size:12px;" icon=" ui-icon-trash " update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" actionListener="#{mensagem.excluiMessagem()}"  action="#{contasPagarMB.excluir()}"/>
+                            </p:contextMenu>
+                            <p:dataTable id="tabelacontaPagar" var="contasPagar"  value="#{contasPagarMB.listaContasPagar}" class="tabela" 
                                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
                                      paginator="true" rows="10" style="margin-bottom:20px" >
-                            <f:facet name="{Exporters}">
-                                <h:commandLink>
-                                    <img src="../../resources/img/excel.png" width="20" class="imagens"/>
-                                    <p:dataExporter type="xls" target="contaPagar" fileName="contas" />
-                                </h:commandLink>
-                            </f:facet>
                             <f:facet name="{Exporters}">
                                 <h:commandLink title="Adicionar conta" action="#{contasPagarMB.cadastrarContaPagar()}" style="margin-left: 60%;">
                                     <p:outputLabel value="Adicionar Conta"/>
@@ -63,32 +57,20 @@
                                 </h:commandLink>
                             </f:facet>
                             <p:column headerText="Status"  style="width:47px;text-align:left;" styleClass="alinharCenter">
-                                <p:graphicImage  value="#"/>
+                                <p:graphicImage  value="#{contasPagar.contapaga}"/>
                             </p:column>
                             <p:column headerText="Data Vencimento" style="width:115px;text-align:center;">
-                                <h:outputText  >
+                                <h:outputText  value="#{contasPagar.datavencimento}">
                                      <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                                 </h:outputText>
                             </p:column>
-                            <p:column headerText="Cliente"  style="width:120px;text-align:center;">
-                                <h:outputText value="#{contasPagar.produtos.descricao}"/>
-                            </p:column>
                             <p:column headerText="Descrição" style=";text-align:center;" >
-                                <h:outputText value="#"/>
-                            </p:column>
-                            <p:column headerText="Autorizadas"  style="width:80px;text-align:center;" styleClass="alinharCenter" >
-                                <p:graphicImage value="#"/>
-                            </p:column>
-                            <p:column headerText="Fornecedor" style="width:120px;text-align:center;" >
-                                <h:outputText value="#"/>
+                                <h:outputText value="#{contasPagar.descricao}"/>
                             </p:column>
                             <p:column headerText="Valor Conta" style="width:85px;text-align: right;" styleClass="alinharCenter">
-                                <h:outputText >
+                                <h:outputText value="#{contasPagar.valorconta}">
                                     <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 </h:outputText>                                    
-                            </p:column>
-                             <p:column style="width:42px;text-align: center">
-                                 <p:commandButton title="Editar" icon="ui-icon-pencil"/>
                             </p:column>
                         </p:dataTable>
                         <br></br>

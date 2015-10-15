@@ -38,5 +38,14 @@ public class ContasPagarDao {
         return q.getResultList();
     }
     
-    
+    public void excluir(int idContasPagar) throws SQLException {
+        EntityManager manager = ConectionFactory.getConnection();
+        manager.getTransaction().begin();
+        Query q = manager.createQuery("Select c from Contaspagar c where c.idcontaspagar=" + idContasPagar);
+        if (q.getResultList().size()>0){
+            Contaspagar contaspagar = (Contaspagar) q.getResultList().get(0);
+            manager.remove(contaspagar);
+        }
+        manager.getTransaction().commit();
+    }
 }

@@ -40,4 +40,13 @@ public class ContasPagarFacade {
         }
     }
     
+    
+    public void excluir(int idContapagar) {
+        contasPagarDao = new ContasPagarDao();
+        try {
+            contasPagarDao.excluir(idContapagar);
+        } catch (SQLException ex) {
+            Logger.getLogger(ContasReceberFacade.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
