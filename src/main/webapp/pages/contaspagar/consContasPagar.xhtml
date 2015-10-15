@@ -49,7 +49,7 @@
                             </p:contextMenu>
                             <p:dataTable id="tabelacontaPagar" var="contasPagar"  value="#{contasPagarMB.listaContasPagar}" class="tabela" 
                                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
-                                     paginator="true" rows="10" style="margin-bottom:20px" >
+                                     paginator="true" rows="10" style="margin-bottom:20px" selection="#{contasPagarMB.conta}" selectionMode="single" rowKey="#{contasPagar.idcontaspagar}" >
                             <f:facet name="{Exporters}">
                                 <h:commandLink title="Adicionar conta" action="#{contasPagarMB.cadastrarContaPagar()}" style="margin-left: 60%;">
                                     <p:outputLabel value="Adicionar Conta"/>
