@@ -84,10 +84,10 @@ public class ContasPagarMB implements Serializable{
      public String excluir(){
         ContasPagarFacade contasPagarFacade = new ContasPagarFacade();
         contasPagarFacade.excluir(conta.getIdcontaspagar());
-        String sql = "Select c from Contaspagar c where c.contapaga='Pendente' order by c.datavencimento";
+        String sql = "Select c from Contaspagar c order by c.datavencimento";
         carregarContasPagar(sql);
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage("Excluido com Sucesso", ""));
-        return "consContaPagar";
+        return "";
      }
 }

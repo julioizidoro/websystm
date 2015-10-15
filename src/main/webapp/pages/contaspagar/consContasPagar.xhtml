@@ -16,12 +16,8 @@
                            <p:tab titleStyle="color:#000;font-size:11px;background:#c7d95f;" title="Pesquisar">
                                 <h:panelGrid columns="7" cellpadding="3">
                                     <p:outputLabel value="Unidade" for="unidade" class="fontebranca"/> 
-                                    <p:outputLabel value="Data Inicial" for="dataIni" class="left2"/> 
-                                    <p:outputLabel value="Data Final" for="dataFinal" class="left3"/>
-                                    <p:selectBooleanCheckbox  class="left4" value="#"/>
-                                    <h:outputText value="Liberadas"  class="fontebranca"/>
-                                    <p:selectBooleanCheckbox  class="left3" value="#" />
-                                    <h:outputText value="Autorizadas"  class="fontebranca"/>    
+                                    <p:outputLabel value="Data Vencimento" for="dataIni" class="left2"/> 
+                                    
 
                                 </h:panelGrid>
 
@@ -29,9 +25,8 @@
                                     <p:calendar id="dataIni" style="margin-left:11%"  locale="pt"  pattern="dd/MM/yyyy"  mask="true" size="10" maxlength="15" >
                                          <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                                     </p:calendar>
-                                    <p:calendar id="dataFinal" style="margin-left:4.5%"  locale="pt"  pattern="dd/MM/yyyy"  mask="true" size="10" maxlength="15">
-                                        <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
-                                    </p:calendar>
+                                    <p:selectBooleanCheckbox  class="left4" value="#"/>
+                                    <h:outputText value="Liberadas"  class="fontebranca"/> 
                                     <p:commandButton value="Pesquisar" class="botao"  icon=" ui-icon-search " update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#"/>
                                     <p:commandButton value="Limpar" icon="ui-icon-arrowrefresh-1-w"  class="botao3" update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#"/>
                      
@@ -40,18 +35,18 @@
                        </p:accordionPanel>
                          <br></br>
                         <legend id="iUsu2" ><b>Consulta de Contas a Pagar </b></legend>
-                            <p:commandButton value="Liberar" style="font-size:12px;margin-left:32%" icon=" ui-icon-check " update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#"  />
-                            <p:commandButton value="Arquivo"  style="font-size:12px;" icon="ui-icon-folder-open "  action="#" />
+                            <p:commandButton value="Arquivo"  style="font-size:12px;margin-left:44%" icon="ui-icon-folder-open "  action="#" />
                             <p:commandButton value="Usuários" style="font-size:12px;" icon="ui-icon-person" action="#"/>
                             <p:contextMenu for="tabelacontaPagar">
                                 <p:menuitem value="Alterar"  icon=" ui-icon-pencil"  action="#{contasPagarMB.editar()}" />
-                                <p:menuitem value="Excluir" style="font-size:12px;" icon=" ui-icon-trash " update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" actionListener="#{mensagem.excluiMessagem()}"  action="#{contasPagarMB.excluir()}"/>
+                                <p:menuitem value="Excluir" style="font-size:12px;" icon=" ui-icon-trash " update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}"  action="#{contasPagarMB.excluir()}"/>
+                                <p:menuitem value="Liberar"  icon=" ui-icon-check"  />
                             </p:contextMenu>
                             <p:dataTable id="tabelacontaPagar" var="contasPagar"  value="#{contasPagarMB.listaContasPagar}" class="tabela" 
                                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
                                      paginator="true" rows="10" style="margin-bottom:20px" selection="#{contasPagarMB.conta}" selectionMode="single" rowKey="#{contasPagar.idcontaspagar}" >
                             <f:facet name="{Exporters}">
-                                <h:commandLink title="Adicionar conta" action="#{contasPagarMB.cadastrarContaPagar()}" style="margin-left: 60%;">
+                                <h:commandLink title="Adicionar conta" action="#{contasPagarMB.cadastrarContaPagar()}" style="margin-left:53%;">
                                     <p:outputLabel value="Adicionar Conta"/>
                                     <img src="../../resources/img/adicionar.png" width="20" class="imagens"/>
                                 </h:commandLink>
@@ -65,6 +60,9 @@
                             <p:column headerText="Descrição" style=";text-align:center;" >
                                 <h:outputText value="#{contasPagar.descricao}"/>
                             </p:column>
+                                <p:column headerText="Descrição" style=";text-align:center;" >
+                                <h:outputText value="#{contasPagar.descricao}"/>
+                            </p:column>s
                             <p:column headerText="Valor Conta" style="width:85px;text-align: right;" styleClass="alinharCenter">
                                 <h:outputText value="#{contasPagar.valorconta}">
                                     <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
