@@ -72,12 +72,12 @@
                             </h:commandLink>
                         </f:facet>
                         <f:facet name="{Exporters}">
-                            <p:commandLink title="Adicionar Conta" action="#{contasReceberMB.adicionarContasReceber()}" style="margin-left: 60%">
+                            <p:commandLink title="Adicionar Conta" action="#{contasReceberMB.adicionarContasReceber()}" style="margin-left: 50%">
                         <p:outputLabel value="Adicionar Conta"/>
                         <img src="../../resources/img/adicionar.png" width="20" />
                     </p:commandLink>
                         </f:facet>
-                        <p:column headerText="Nº Documento" style="width:75px;" sortBy="#{contasrecebe.numerodocumento}">
+                        <p:column headerText="Nº Documento" style="width:75px;">
                             <p:outputLabel value="#{contasrecebe.numerodocumento}" />
                         </p:column>
                         <p:column headerText="Cliente"   styleClass="alinharCenter" >
@@ -94,10 +94,10 @@
                         <p:column headerText="Banco" style="width:70px;" styleClass="alinharCenter">
                             <h:outputText value="#{contasrecebe.banco}"/>                                   
                         </p:column>
-                        <p:column headerText="Unidade" style="width:160px;" styleClass="alinharCenter"  sortBy="#{contasrecebe.vendas.unidadenegocio}">
+                        <p:column headerText="Unidade" style="width:160px;" styleClass="alinharCenter"  >
                             <h:outputText value="#{contasrecebe.vendas.unidadenegocio}"/>                                   
                         </p:column>
-                        <p:column headerText="Data de Vencimento" style="width:95px;" styleClass="alinharCenter">
+                        <p:column headerText="Data de Vencimento" style="width:110px;" styleClass="alinharCenter">
                             <h:outputText value="#{contasrecebe.datavencimento}">
                                 <f:convertDateTime   pattern="dd/MM/yyyy"  timeZone="America/Sao_Paulo"/>
                             </h:outputText>
@@ -153,7 +153,7 @@
             </h:form>
             <h:form id="editarData">
                 <p:dialog id="dialog_editarDataVencimento" header="Editar Data" widgetVar="editarData" width="20%" style="background:#d0e9c6;text-align: left" >
-                    <p:outputLabel value="Data de Vencimento" for="dataVencimento" class="fontebranca" style="font-size: 11px"/> 
+                    <p:outputLabel value="Data de Vencimento" for="dataVencimento"  style="font-size: 11px"/> 
                     <br></br>
                     <p:calendar id="dataVencimento" class="fontebranca" value="#{contasReceberMB.conta.datavencimento}"  pattern="dd/MM/yyyy" mask="true"  maxlength="15" locale="pt"  >
                         <f:convertDateTime    timeZone="America/Sao_Paulo"/>

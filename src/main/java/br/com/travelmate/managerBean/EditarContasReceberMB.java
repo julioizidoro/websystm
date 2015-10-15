@@ -53,6 +53,7 @@ public class EditarContasReceberMB implements Serializable{
         if (conta==null){
             conta = new Contasreceber();
         }else {
+            idVendas = String.valueOf(conta.getVendas().getIdvendas());
             vendas = conta.getVendas();
             nomeCliente = vendas.getCliente().getNome();
         }
@@ -115,44 +116,45 @@ public class EditarContasReceberMB implements Serializable{
     
     public String salvar(){
         ContasReceberFacade contasReceberFacade = new ContasReceberFacade();
+        if (conta.getIdcontasreceber() == null) {
+            conta.setBoletocancelado(Boolean.FALSE);
+            conta.setBoletoenviado(Boolean.FALSE);
+            conta.setBoletogerado("NAO");
+            conta.setDataEmissao(new Date());
+            conta.setDataalterada(false);
+            conta.setDesagio(0.0f);
+            conta.setJuros(0.0f);
+            conta.setValorpago(0.0f);
+            PlanoContaFacade planoCoontaFacade = new PlanoContaFacade();
+            Planoconta plano = planoCoontaFacade.consultar(usuarioLogadoMB.getParametrosprodutos().getIdplanocontas());
+            conta.setPlanoconta(plano);
+        }
         conta.setVendas(vendas);
-        conta.setBoletocancelado(Boolean.FALSE);
-        conta.setBoletoenviado(Boolean.FALSE);
-        conta.setBoletogerado("NAO");
-        conta.setDataEmissao(new Date());
-        conta.setDesagio(0.0f);
-        conta.setJuros(0.0f);
-        conta.setValorpago(0.0f);
-        PlanoContaFacade planoCoontaFacade = new  PlanoContaFacade();
-        Planoconta plano = planoCoontaFacade.consultar(usuarioLogadoMB.getParametrosprodutos().getIdplanocontas());
-        conta.setPlanoconta(plano);
         contasReceberFacade.salvar(conta);
         RequestContext.getCurrentInstance().closeDialog(null);
         return "consContasReceber";
     }
-    
-      
-    
-    public String cancelar(){
+
+    public String cancelar() {
         RequestContext.getCurrentInstance().closeDialog(null);
         return null;
     }
-    
-    public void gerarListaBanco(){
+
+    public void gerarListaBanco() {
         BancoFacade bancoFacade = new BancoFacade();
         listaBanco = bancoFacade.listar();
-        if (listaBanco==null){
+        if (listaBanco == null) {
             listaBanco = new ArrayList<Banco>();
         }
     }
-    
-    public String buscarPoIdVenda(){
-        if (idVendas.length()>0){
+
+    public String buscarPoIdVenda() {
+        if (idVendas.length() > 0) {
             VendasFacade vendasFacade = new VendasFacade();
             this.vendas = vendasFacade.consultarVendas(Integer.parseInt(idVendas));
-            if (vendas==null){
-              FacesMessage msg = new FacesMessage("Erro! ", "Venda não localizada.");
-            }else {
+            if (vendas == null) {
+                FacesMessage msg = new FacesMessage("Erro! ", "Venda não localizada.");
+            } else {
                 nomeCliente = vendas.getCliente().getNome();
                 conta.setNumerodocumento(String.valueOf(idVendas));
             }
