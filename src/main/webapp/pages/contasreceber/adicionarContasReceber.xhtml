@@ -18,7 +18,7 @@
                 <br></br>
                 <p:inputText id="vendas" style="width: 17%" maxlength="100" class="espacocobranca28"  value="#{editarContasReceberMB.idVendas}"/>
                 <p:commandButton icon="ui-icon-search" class="botaopesquisar" action="#{editarContasReceberMB.buscarPoIdVenda()}" update=":adicionarContasReceber:nomecliente, :adicionarContasReceber:numeroDocumento"/>
-                <p:inputText id="nomecliente" style="width: 42%; margin-left: 18%" maxlength="100" class="fontebranca"  value="#{editarContasReceberMB.nomeCliente}"/>
+                <p:inputText id="nomecliente" style="width: 42%; margin-left: 18%" maxlength="100" class="fontebranca" value="#{editarContasReceberMB.nomeCliente}" readonly="true"/>
             </p:tab>
 
             <br></br> <br></br> <br></br>
@@ -31,8 +31,8 @@
                 
                 <br></br>
                 
-                <p:inputText id="numeroDocumento" class="espacocobranca28" value="#{editarContasReceberMB.conta.numerodocumento}" style="width:17%"/>
-                <p:inputText value="#{editarContasReceberMB.conta.numeroparcelas}"  style="width:15%" class="espacocobranca20"/>
+                <p:inputText id="numeroDocumento" class="espacocobranca28" readonly="true" value="#{editarContasReceberMB.conta.numerodocumento}" style="width:17%"/>
+                <p:inputText value="#{editarContasReceberMB.conta.numeroparcelas}"  style="width:15%" class="espacocobranca20" />
                 
                 <p:inputText value="#{editarContasReceberMB.conta.valorparcela}"  style="width:15%" class="espacocobranca20rig">
                     <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
