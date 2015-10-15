@@ -24,31 +24,29 @@
                                     <h:outputText value="Autorizadas"  class="fontebranca"/>    
 
                                 </h:panelGrid>
-                                <h:panelGrid columns="6" cellpadding="1">
 
                                     <p:inputText id="unidade" size="44" maxlength="100" class="fontebranca"   readonly="true"/>
-                                    <p:calendar id="dataIni" class="espacocampospesquisa"  locale="pt"  pattern="dd/MM/yyyy"  mask="true" size="10" maxlength="15" >
+                                    <p:calendar id="dataIni" style="margin-left:11%"  locale="pt"  pattern="dd/MM/yyyy"  mask="true" size="10" maxlength="15" >
                                          <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                                     </p:calendar>
-                                    <p:calendar id="dataFinal" class="espacocampospesquisa2" locale="pt"  pattern="dd/MM/yyyy"  mask="true" size="10" maxlength="15">
+                                    <p:calendar id="dataFinal" style="margin-left:4.5%"  locale="pt"  pattern="dd/MM/yyyy"  mask="true" size="10" maxlength="15">
                                         <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                                     </p:calendar>
                                     <p:commandButton value="Pesquisar" class="botao"  icon=" ui-icon-search " update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#"/>
                                     <p:commandButton value="Limpar" icon="ui-icon-arrowrefresh-1-w"  class="botao3" update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#"/>
-                                </h:panelGrid>  
+                     
                                 <br></br>
                            </p:tab>
                        </p:accordionPanel>
                          <br></br>
                         <legend id="iUsu2" ><b>Consulta de Contas a Pagar </b></legend>
-                        <h:panelGrid columns="6" cellpadding="1" class="vertical">
                            
-                            <p:commandButton value="Excluir" class="btn btn-default" icon=" ui-icon-trash " update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" actionListener="#{mensagem.excluiMessagem()}"  action="#"/>
-                            <p:commandButton value="Liberar" class="btn btn-default" icon=" ui-icon-check " update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#"  />
-                            <p:commandButton value="Autorizar" class="btn btn-default" icon=" ui-icon-check " update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#" actionListener="#"  />
-                            <p:commandButton value="Arquivo" class="btn btn-default" icon="ui-icon-folder-open "  action="#" />
-                            <p:commandButton value="Usuários" class="btn btn-default" icon="ui-icon-person" action="#"/>
-                        </h:panelGrid>
+                            <p:commandButton value="Excluir" style="font-size:12px;margin-left:29%" icon=" ui-icon-trash " update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" actionListener="#{mensagem.excluiMessagem()}"  action="#"/>
+                            <p:commandButton value="Liberar" style="font-size:12px;" icon=" ui-icon-check " update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#"  />
+                            <p:commandButton value="Autorizar" style="font-size:12px;" icon=" ui-icon-check " update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#" actionListener="#"  />
+                            <p:commandButton value="Arquivo"  style="font-size:12px;" icon="ui-icon-folder-open "  action="#" />
+                            <p:commandButton value="Usuários" style="font-size:12px;" icon="ui-icon-person" action="#"/>
+                
                         <p:dataTable id="contaPagar" var="contasPagar"  value="#{vendasMB.listaVendaComissao}" class="tabela" 
                                      paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
                                      paginator="true" rows="10" style="margin-bottom:20px" >

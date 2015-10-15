@@ -105,7 +105,7 @@ public class ContasPagarMB implements Serializable{
     
     public String cadastrarContaPagar(){
         Map<String,Object> options = new HashMap<String, Object>();
-        options.put("contentWidth",800);
+        options.put("contentWidth",570);
         RequestContext.getCurrentInstance().openDialog("confContasPagar", options, null);
         conta= new Contaspagar();
         return "";
