@@ -56,9 +56,7 @@
                                     <img src="../../resources/img/adicionar.png" width="20" class="imagens"/>
                                 </h:commandLink>
                             </f:facet>
-                            <p:column headerText="Status"  style="width:47px;text-align:left;" styleClass="alinharCenter">
-                                <p:graphicImage  value="#{contasPagar.contapaga}"/>
-                            </p:column>
+                          
                             <p:column headerText="Data Vencimento" style="width:115px;text-align:center;">
                                 <h:outputText  value="#{contasPagar.datavencimento}">
                                      <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>

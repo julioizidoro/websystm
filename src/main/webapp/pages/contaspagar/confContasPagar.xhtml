@@ -17,42 +17,44 @@
             <p:outputLabel value="Nro. Lançamento:" ></p:outputLabel>
             <p:outputLabel value="Data Emissão" for="dataEmi" style="margin-left:42%;"> </p:outputLabel>   
             <br></br>
-            <p:inputText id="numeroLancamento" size="26"  value=""/>
-            <p:calendar id="dataEmi" value="#{contasPagarMB.conta.datalancamento}" pattern="dd/MM/yyyy" mask="true" size="19" maxlength="14" style=" margin-left:29%;" >
+            <p:inputText id="numeroLancamento" size="26"  value="#"/>
+            <p:calendar id="dataEmi" value="#{cadContasPagarMB.conta.datalancamento}" pattern="dd/MM/yyyy" mask="true" size="19" maxlength="14" style=" margin-left:29%;" >
                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
             </p:calendar>   
 
 
             <p:outputLabel value="Unidade de negócio" for="unidadeNegocio" /> 
             <br></br>
-            <p:selectOneMenu id="unidadeNegocio"  style="width:83.5%"  value="#{contasPagarMB.unidadenegocio}" converter="UnidadeNegocioConverter">
+            <p:selectOneMenu id="unidadeNegocio"  style="width:83.5%"  value="#{cadContasPagarMB.conta.unidadenegocio}" converter="UnidadeNegocioConverter">
                 <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
-                <f:selectItems value="#{contasPagarMB.listaUnidadeNegocio}" var="unidadenegocio" itemLabel="#{unidadenegocio.nomeFantasia}" itemValue="#{unidadenegocio}"/>
-                <f:attribute name="listaUnidade" value="#{contasPagarMB.listaUnidadeNegocio}"/>
+                <f:selectItems value="#{cadContasPagarMB.listaUnidadeNegocio}" var="unidadenegocio" itemLabel="#{unidadenegocio.nomeFantasia}" itemValue="#{unidadenegocio}"/>
+                <f:attribute name="listaUnidade" value="#{cadContasPagarMB.listaUnidadeNegocio}"/>
             </p:selectOneMenu>                   
                       <br></br><br></br>          
             <p:outputLabel value="Plano de Contas" for="planoConta" /> 
             <br></br>
-            <p:selectOneMenu id="planoConta"  style="width:83.5%"  value="#{contasPagarMB.planoconta}" converter="PlanoContaConverter">
+            <p:selectOneMenu id="planoConta"  style="width:83.5%"  value="#{cadContasPagarMB.conta.planoconta}" converter="PlanoContaConverter">
                 <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
-                <f:selectItems value="#{contasPagarMB.listaPlanoConta}" var="planoConta" itemLabel="#{planoConta.descricao}" itemValue="#{planoConta}"/>
-                <f:attribute name="listaPlanoConta" value="#{contasPagarMB.listaPlanoConta}"/>
+                <f:selectItems value="#{cadContasPagarMB.listaPlanoConta}" var="planoConta" itemLabel="#{planoConta.descricao}" itemValue="#{planoConta}"/>
+                <f:attribute name="listaPlanoConta" value="#{cadContasPagarMB.listaPlanoConta}"/>
             </p:selectOneMenu>  
              <br></br><br></br>    
             <p:outputLabel value="Histórico" > </p:outputLabel>
             <br></br>
-            <p:inputTextarea id="historico" rows="3" cols="80" value="#{contasPagarMB.conta.descricao}"/>
+            <p:inputTextarea id="historico" rows="3" cols="80" value="#{cadContasPagarMB.conta.descricao}"/>
             <br></br> <br></br>
                 <h:panelGrid columns="5" cellpadding="1">
                     <p:fieldset style="position: relative" >
                         <legend style="font-size: 15px;">Provisão</legend>
                             <p:outputLabel value="Data Vencimento" for="dataVenc" />
-                            <p:calendar id="dataVenc" value="#{contasPagarMB.conta.datavencimento}"  pattern="dd/MM/yyyy" mask="true" size="8" maxlength="14" style="margin-left: 10px;" >
+                            <p:calendar id="dataVenc" value="#{cadContasPagarMB.conta.datavencimento}"  pattern="dd/MM/yyyy" mask="true" size="8" maxlength="14" style="margin-left: 10px;" >
                                  <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </p:calendar>
                         <br/><br/>
                         <p:outputLabel value="Valor" >
-                            <p:inputText id="valor" size="26" style="margin-left: 10px; width: 119px;"  value="#{contasPagarMB.conta.valorconta}"/>
+                            <p:inputText id="valor" size="26" style="margin-left: 10px; width: 119px; text-align: right"  value="#{cadContasPagarMB.conta.valorconta}">
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                            </p:inputText>    
                         </p:outputLabel>
                     </p:fieldset>
                 </h:panelGrid>
@@ -62,22 +64,22 @@
                         <legend style="font-size: 15px;">Realização</legend>
                        
                             <p:outputLabel value="Data do Pagamento" for="dataPag" />
-                            <p:calendar id="dataPag" value="#{contasPagarMB.conta.datacompensacao}"  pattern="dd/MM/yyyy" mask="true" size="8" maxlength="14" style="margin-left: 10px;">
+                            <p:calendar id="dataPag" value="#{cadContasPagarMB.conta.datacompensacao}"  pattern="dd/MM/yyyy" mask="true" size="8" maxlength="14" style="margin-left: 10px;">
                                  <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo" />
                             </p:calendar>   
                             <br/><br/>
                              <p:outputLabel value="Conta" for="banco" /> 
-                             <p:selectOneMenu id="banco"  style="width:131px; margin-left: 10px;"  value="#{contasPagarMB.banco}" converter="BancoConverter">
+                             <p:selectOneMenu id="banco"  style="width:131px; margin-left: 10px;"  value="#{cadContasPagarMB.conta.banco}" converter="BancoConverter">
                                 <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
-                                <f:selectItems value="#{contasPagarMB.listaBanco}" var="conta" itemLabel="#{conta.nome}" itemValue="#{conta}"/>
-                                <f:attribute name="listaBanco" value="#{contasPagarMB.listaBanco}"/>
+                                <f:selectItems value="#{cadContasPagarMB.listaBanco}" var="conta" itemLabel="#{conta.nome}" itemValue="#{conta}"/>
+                                <f:attribute name="listaBanco" value="#{cadContasPagarMB.listaBanco}"/>
                             </p:selectOneMenu> 
                     </p:fieldset>
                 </h:panelGrid>
                             
                 <p class="botaoeditareceber" style="width: 440px;"><br></br>
-                    <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Confirmar" action="#{contasPagarMB.salvar()}"></p:commandButton>
-                    <p:commandButton class="espacocampos" onclick="" icon="ui-icon-close" value="Cancelar" action="#{contasPagarMB.cancelar()}"></p:commandButton>
+                    <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Confirmar" action="#{cadContasPagarMB.salvar()}"></p:commandButton>
+                    <p:commandButton class="espacocampos" onclick="" icon="ui-icon-close" value="Cancelar" action="#{cadContasPagarMB.cancelar()}"></p:commandButton>
                 </p>
                 
         </h:form>     

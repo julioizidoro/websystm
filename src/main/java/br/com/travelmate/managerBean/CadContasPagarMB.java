@@ -112,9 +112,8 @@ public class CadContasPagarMB implements Serializable{
     
     public String salvar(){
         ContasPagarFacade contasReceberFacade = new ContasPagarFacade();
-        conta.setBanco(banco);
-        conta.setUnidadenegocio(unidadenegocio);
-        conta.setPlanoconta(planoconta);
+        conta.setTipodocumento(" ");
+        conta.setCompetencia(" ");
         contasReceberFacade.salvar(conta);
         RequestContext.getCurrentInstance().closeDialog(null);
         return "consContasPagar";
