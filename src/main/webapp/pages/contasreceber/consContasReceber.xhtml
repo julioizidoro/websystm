@@ -65,12 +65,7 @@
                     <p:dataTable id="tabelacontasRecebe" var="contasrecebe"  value="#{contasReceberMB.listaContas}" class="tabela" editable="true"
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
                                  paginator="true" rows="10" style="margin-bottom:20px" selection="#{contasReceberMB.conta}" selectionMode="single" rowKey="#{contasrecebe.idcontasreceber}" >
-                        <f:facet name="{Exporters}">
-                            <h:commandLink>
-                                <img src="../../resources/img/excel.png" width="20" class="imagens"/>
-                                <p:dataExporter type="xls" target="contaPagar" fileName="contas" />
-                            </h:commandLink>
-                        </f:facet>
+                        
                         <f:facet name="{Exporters}">
                             <p:commandLink title="Adicionar Conta" action="#{contasReceberMB.adicionarContasReceber()}" style="margin-left: 50%">
                         <p:outputLabel value="Adicionar Conta"/>
