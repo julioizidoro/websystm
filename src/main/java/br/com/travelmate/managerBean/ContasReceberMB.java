@@ -6,20 +6,15 @@
 package br.com.travelmate.managerBean;
 
 import br.com.travelmate.bean.LerRetornoItauBean;
-import br.com.travelmate.facade.BancoFacade;
 import br.com.travelmate.facade.CobrancaFacade;
 import br.com.travelmate.facade.ContasReceberFacade;
 import br.com.travelmate.facade.HistoricoCobrancaFacade;
-import br.com.travelmate.facade.VendasFacade;
-import br.com.travelmate.model.Banco;
 import br.com.travelmate.model.Cobranca;
 import br.com.travelmate.model.Contasreceber;
 import br.com.travelmate.model.Historicocobranca;
-import br.com.travelmate.model.Pacotes;
 import br.com.travelmate.model.Vendas;
 import br.com.travelmate.util.Formatacao;
 
-import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -36,7 +31,7 @@ import javax.servlet.http.HttpSession;
 
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.FileUploadEvent;
-import org.primefaces.event.RowEditEvent;
+import org.primefaces.event.SelectEvent;
 import org.primefaces.model.UploadedFile;
 
 /**
@@ -382,6 +377,21 @@ public class ContasReceberMB implements Serializable{
         RequestContext.getCurrentInstance().openDialog("adicionarContasReceber");
         return "";
     }
+    
+    public void retornoDialogoNovo(SelectEvent event){
+        Contasreceber conta = (Contasreceber) event.getObject();
+        listaContas.add(conta);
+    }
+    
+    public void retornoDialogoEditar(SelectEvent event){
+        FacesContext fc = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+        String linha = (String) session.getAttribute("linha");
+        Contasreceber conta = (Contasreceber) event.getObject();
+        listaContas.set(Integer.parseInt(linha), conta);
+    }
+    
+    
      
     
 }

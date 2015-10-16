@@ -43,6 +43,7 @@ public class EditarContasReceberMB implements Serializable{
     private String idVendas;
     private String nomeCliente;
     private Vendas vendas;
+    private boolean botaovendas;
    
     
     public EditarContasReceberMB() {
@@ -50,13 +51,16 @@ public class EditarContasReceberMB implements Serializable{
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
         conta = (Contasreceber) session.getAttribute("contareceber");
         session.removeAttribute("contareceber");
-        if (conta==null){
+        if (conta == null){
             conta = new Contasreceber();
+            botaovendas = false;
         }else {
             idVendas = String.valueOf(conta.getVendas().getIdvendas());
             vendas = conta.getVendas();
             nomeCliente = vendas.getCliente().getNome();
+            botaovendas = true;
         }
+        
     }
 
     public Contasreceber getConta() {
@@ -111,12 +115,31 @@ public class EditarContasReceberMB implements Serializable{
         this.usuarioLogadoMB = usuarioLogadoMB;
     }
 
+    public Banco getBanco() {
+        return banco;
+    }
+
+    public void setBanco(Banco banco) {
+        this.banco = banco;
+    }
+
+    public boolean isBotaovendas() {
+        return botaovendas;
+    }
+
+    public void setBotaovendas(boolean botaovendas) {
+        this.botaovendas = botaovendas;
+    }
+
    
     
     
-    public String salvar(){
-        ContasReceberFacade contasReceberFacade = new ContasReceberFacade();
-        if (conta.getIdcontasreceber() == null) {
+    public void salvar() {
+        if (vendas == null) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, new FacesMessage("Erro!", "Venda não adicionada"));
+        } else if (conta.getIdcontasreceber() == null) {
+            ContasReceberFacade contasReceberFacade = new ContasReceberFacade();
             conta.setBoletocancelado(Boolean.FALSE);
             conta.setBoletoenviado(Boolean.FALSE);
             conta.setBoletogerado("NAO");
@@ -128,11 +151,11 @@ public class EditarContasReceberMB implements Serializable{
             PlanoContaFacade planoCoontaFacade = new PlanoContaFacade();
             Planoconta plano = planoCoontaFacade.consultar(usuarioLogadoMB.getParametrosprodutos().getIdplanocontas());
             conta.setPlanoconta(plano);
+            conta.setVendas(vendas);
+            contasReceberFacade.salvar(conta);
+            RequestContext.getCurrentInstance().closeDialog(conta);
         }
-        conta.setVendas(vendas);
-        contasReceberFacade.salvar(conta);
-        RequestContext.getCurrentInstance().closeDialog(null);
-        return "consContasReceber";
+
     }
 
     public String cancelar() {

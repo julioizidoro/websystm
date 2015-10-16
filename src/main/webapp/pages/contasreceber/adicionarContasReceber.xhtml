@@ -11,13 +11,15 @@
     </h:head>
     <h:body>
         <h:form id="adicionarContasReceber" style="text-align:left;font-size: 10px; margin-left: 7%; "><br></br>
-
+          
+            <p:growl id="growl" showDetail="true" sticky="true" />
+            
             <p:tab titleStyle="color:#000;font-size:11px;background:#c7d95f;" title="Pesquisar">
                 <p:outputLabel value="Vendas" for="vendas" class="espacocobranca28" /> 
                 <p:outputLabel value="Cliente" class="espacocobranca47"/>
                 <br></br>
-                <p:inputText id="vendas" style="width: 17%" maxlength="100" class="espacocobranca28"  value="#{editarContasReceberMB.idVendas}"/>
-                <p:commandButton icon="ui-icon-search" class="botaopesquisar" action="#{editarContasReceberMB.buscarPoIdVenda()}" update=":adicionarContasReceber:nomecliente, :adicionarContasReceber:numeroDocumento"/>
+                <p:inputText id="vendas" style="width: 17%" maxlength="100" class="espacocobranca28"  value="#{editarContasReceberMB.idVendas}" readonly="#{editarContasReceberMB.botaovendas}" />
+                <p:commandButton icon="ui-icon-search" class="botaopesquisar" action="#{editarContasReceberMB.buscarPoIdVenda()}" update=":adicionarContasReceber:nomecliente, :adicionarContasReceber:numeroDocumento" disabled="#{editarContasReceberMB.botaovendas}"/>
                 <p:inputText id="nomecliente" style="width: 42%; margin-left: 18%" maxlength="100" class="fontebranca" value="#{editarContasReceberMB.nomeCliente}" readonly="true"/>
             </p:tab>
 
@@ -66,7 +68,7 @@
                 
                 <br></br> <br></br><br></br>
                 <p class="botaoeditareceber" style="margin-right: -20%;width:92%"><br></br>
-                    <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Confirmar" action="#{editarContasReceberMB.salvar()}"></p:commandButton>
+                    <p:commandButton class="imagemm" onclick="" update="growl" icon="ui-icon-check" value="Confirmar" action="#{editarContasReceberMB.salvar()}"></p:commandButton>
                     <p:commandButton class="espacocampos" onclick="" icon="ui-icon-close" value="Cancelar" action="#{editarContasReceberMB.cancelar()}"></p:commandButton>
                 </p>
         </h:form>     
