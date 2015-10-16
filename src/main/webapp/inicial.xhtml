@@ -7,7 +7,7 @@
    
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>SysTM</title>
+        <title>WebSysTM</title>
          <link href="resources/css/css.css" rel="stylesheet" type="text/css" />
          <link rel="SHORTCUT ICON" href="http://cdn8.staztic.com/app/a/6090/6090049/travelmate-9-l-280x280.png"/>
          <link href="resources/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
@@ -55,33 +55,6 @@
                         <div class="container">
                             <div class="nav navbar-nav">
                                 <ul class="menu">
-                                    <li><a>Financeiro</a>
-                                        <ul class="submenu-1"> 
-                                            <li class="comissao"><h:commandLink action="#{menuMB.comissaoVendas()}" value="Comissão"></h:commandLink></li>
-                                            <li class="comissao"> <h:commandLink action="#{menuMB.contasReceber()}" value="Contas a Receber"></h:commandLink></li>
-                                            <li class="comissao"> <h:commandLink action="#{menuMB.contasPagar()}" value="Contas a Pagar"></h:commandLink></li>
-                                        </ul>
-                                    </li>
-                                    <li><a>Emissão</a>
-                                        <ul class="submenu-1"> 
-                                            <li class="comissao"><h:commandLink action="#{menuMB.curso()}" value="Curso"></h:commandLink></li>
-                                                <li class="comissao"><a>Programas Teens</a>
-                                                    <ul class="submenu-2">
-                                                        <li class="comissao"><h:commandLink action="#{menuMB.cursosTeens()}" value="Cursos Teens"></h:commandLink></li>
-                                                        <li class="comissao"><h:commandLink action="#{menuMB.highSchool()}" value="High School"></h:commandLink></li>
-                                                        <li class="comissao"><h:commandLink action="#{menuMB.ladies()}" value="Ladies"></h:commandLink></li>
-                                                    </ul>
-                                                </li>
-                                            <li class="comissao"><a>Turismo</a>
-                                                <ul class="submenu-2">
-                                                    <li class="comissao"><h:commandLink action="#{menuMB.pacoteso()}" value="Pacotes Operadora"></h:commandLink></li> 
-                                                    <li class="comissao"><h:commandLink action="#{menuMB.pacotesa()}" value="Pacotes Agencia"></h:commandLink></li> 
-                                                    <li class="comissao"><h:commandLink action="#{menuMB.passagem()}" value="Passagem Aérea"></h:commandLink></li>
-                                                    <li class="comissao"><h:commandLink action="#{menuMB.autorizacao()}" value="Autorização de Débito"></h:commandLink></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
                                     <li><a>Cadastro</a>
                                         <ul class="submenu-1"> 
                                             <li class="comissao"><h:commandLink action="#{menuMB.cliente()}" value="Cliente"></h:commandLink></li>
@@ -89,10 +62,11 @@
                                             <li class="comissao"><h:commandLink action="#{menuMB.produtos()}" value="Produtos"></h:commandLink></li>
                                         </ul>
                                     </li>
-                                    <li><a>Orçamento</a>
+                                    <li><a>Financeiro</a>
                                         <ul class="submenu-1"> 
-                                            <li class="comissao"><h:commandLink action="#{menuMB.produtoCurso()}" value="Produtos Curso"></h:commandLink></li>
-                                            <li class="comissao"><h:commandLink action="#{menuMB.orcamentoCurso()}" value="Orçamento de Curso"></h:commandLink></li>
+                                            <li class="comissao"><h:commandLink action="#{menuMB.comissaoVendas()}" value="Comissão"></h:commandLink></li>
+                                            <li class="comissao"> <h:commandLink action="#{menuMB.contasReceber()}" value="Contas a Receber"></h:commandLink></li>
+                                            <li class="comissao"> <h:commandLink action="#{menuMB.contasPagar()}" value="Contas a Pagar"></h:commandLink></li>
                                         </ul>
                                     </li>
                                 </ul>

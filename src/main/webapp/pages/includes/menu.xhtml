@@ -1,9 +1,9 @@
 <h:form xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:f="http://xmlns.jcp.org/jsf/core">
+
     <script>
         $('.collapse').on('shown.bs.collapse', function (e) {
             $('.collapse').not(this).removeClass('in');
@@ -31,43 +31,15 @@
     <div id="tudo">
         <navBar class="navbar navbar-default " role="navigation">
             <img  class="logo" src="../../resources/img/logo.png" />
-                 
-                    <a class="usuariologado" ><p:outputLabel value="#{usuarioLogadoMB.usuario.nome}" class="fontedez"/></a>
-                    <p:commandButton icon=" ui-icon-closethick" title="Sair" class="botaodeslogar"/>
+
+            <a class="usuariologado" ><p:outputLabel value="#{usuarioLogadoMB.usuario.nome}" class="fontedez"/></a>
+            <p:commandButton icon=" ui-icon-closethick" title="Sair" class="botaodeslogar"/>
         </navBar>
-         <navBar class="navbar navbar-default " role="navigation">
+        <navBar class="navbar navbar-default " role="navigation">
             <img src="../../resources/img/dinheiro.png" height="50" width="38" class="iconcambio"/> 
             <div class="container">
                 <div class="nav navbar-nav">
                     <ul class="menu">
-                        <li><a>Financeiro</a>
-                            <ul class="submenu-1"> 
-                                <li class="comissao"><h:commandLink action="#{menuMB.comissaoVendas()}" value="Comissão"></h:commandLink></li>
-                                <li class="comissao"> <h:commandLink action="#{menuMB.contasReceber()}" value="Contas a Receber"></h:commandLink></li>
-                                <li class="comissao"> <h:commandLink action="#{menuMB.contasPagar()}" value="Contas a Pagar"></h:commandLink></li>
-                                
-                            </ul>
-                        </li>
-                        <li><a>Emissão</a>
-                            <ul class="submenu-1"> 
-                                <li class="comissao"><h:commandLink action="#{menuMB.curso()}" value="Curso"></h:commandLink></li>
-                                <li class="comissao"><a>Programas Teens</a>
-                                    <ul class="submenu-2">
-                                        <li class="comissao"><h:commandLink action="#{menuMB.cursosTeens()}" value="Cursos Teens"></h:commandLink></li>
-                                        <li class="comissao"><h:commandLink action="#{menuMB.highSchool()}" value="High School"></h:commandLink></li>
-                                        <li class="comissao"><h:commandLink action="#{menuMB.ladies()}" value="Ladies"></h:commandLink></li>
-                                    </ul>
-                                </li>
-                                <li class="comissao"><a>Turismo</a>
-                                    <ul class="submenu-2">
-                                        <li class="comissao"><h:commandLink action="#{menuMB.pacoteso()}" value="Pacotes Operadora"></h:commandLink></li> 
-                                        <li class="comissao"><h:commandLink action="#{menuMB.pacotesa()}" value="Pacotes Agencia"></h:commandLink></li> 
-                                        <li class="comissao"><h:commandLink action="#{menuMB.passagem()}" value="Passagem Aérea"></h:commandLink></li>
-                                        <li class="comissao"><h:commandLink action="#{menuMB.autorizacao()}" value="Autorização de Débito"></h:commandLink></li>
-                                     </ul>
-                                </li>
-                            </ul>
-                        </li>
                         <li><a>Cadastro</a>
                             <ul class="submenu-1"> 
                                 <li class="comissao"><h:commandLink action="#{menuMB.cliente()}" value="Cliente"></h:commandLink></li>
@@ -75,17 +47,18 @@
                                 <li class="comissao"><h:commandLink action="#{menuMB.produtos()}" value="Produtos"></h:commandLink></li>
                             </ul>
                         </li>
-                        <li><a>Orçamento</a>
+                        <li><a>Financeiro</a>
                             <ul class="submenu-1"> 
-                                <li class="comissao"><h:commandLink action="#{menuMB.produtoCurso()}" value="Produtos Curso"></h:commandLink></li>
-                                <li class="comissao"><h:commandLink action="#{menuMB.orcamentoCurso()}" value="Orçamento de Curso"></h:commandLink></li>
+                                <li class="comissao"><h:commandLink action="#{menuMB.comissaoVendas()}" value="Comissão"></h:commandLink></li>
+                                <li class="comissao"> <h:commandLink action="#{menuMB.contasReceber()}" value="Contas a Receber"></h:commandLink></li>
+                                <li class="comissao"> <h:commandLink action="#{menuMB.contasPagar()}" value="Contas a Pagar"></h:commandLink></li>
                             </ul>
                         </li>
                     </ul>
                 </div>
             </div>		
         </navBar>
-         
+
         <h:panelGrid columns="7" cellpadding="1" class="menuTravel">
             <img src="../../resources/img/cursos.jpg" alt="portrait" class="imagemlogo"/>
             <img src="../../resources/img/high-school.jpg" class="imagemlogos"/>
@@ -104,7 +77,7 @@
             <p:outputLabel class="" value="Universidade"/>
             <p:outputLabel class="" value="Work and Travel"/>
         </h:panelGrid>
-       
+
         <div class="menu_mluv_retratil">
 
             <a class="mostra-esconde-menu" href="javascript:void(0);">Câmbio</a>
