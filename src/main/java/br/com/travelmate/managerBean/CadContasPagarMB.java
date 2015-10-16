@@ -23,6 +23,7 @@ import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 import org.primefaces.context.RequestContext;
 
+
 @Named
 @ViewScoped
 public class CadContasPagarMB implements Serializable{
@@ -110,13 +111,12 @@ public class CadContasPagarMB implements Serializable{
         return "confContasPagar";
     }
     
-    public String salvar(){
+    public void salvar(){
         ContasPagarFacade contasReceberFacade = new ContasPagarFacade();
         conta.setTipodocumento(" ");
         conta.setCompetencia(" ");
-        contasReceberFacade.salvar(conta);
-        RequestContext.getCurrentInstance().closeDialog(null);
-        return "consContasPagar";
+        conta = contasReceberFacade.salvar(conta);
+        RequestContext.getCurrentInstance().closeDialog(conta);
     }
     
     public void carregarUnidadeNegocio(){
@@ -147,5 +147,7 @@ public class CadContasPagarMB implements Serializable{
         RequestContext.getCurrentInstance().closeDialog(null);
         return null;
     }
+   
+   
      
 }

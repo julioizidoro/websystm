@@ -14,6 +14,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 import org.primefaces.context.RequestContext;
+import org.primefaces.event.SelectEvent;
 
 
 @Named
@@ -90,4 +91,11 @@ public class ContasPagarMB implements Serializable{
         context.addMessage(null, new FacesMessage("Excluido com Sucesso", ""));
         return "";
      }
+     
+     public void retornoDialogNovo(SelectEvent event){
+       Contaspagar contaspagar = (Contaspagar) event.getObject();
+       listaContasPagar.add(contaspagar);
+   }
+     
+   
 }
