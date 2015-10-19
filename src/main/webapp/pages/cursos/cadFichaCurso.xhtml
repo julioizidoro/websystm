@@ -75,9 +75,9 @@
                             <br></br> <br></br>    
                             
                             <p:outputLabel value="Data de Início:" for="datainicio"  style="-webkit-border-radius: 1px;-moz-border-radius: 1px;border-radius: 1px;" />
-                            <p:calendar id="datainicio3"   locale="pt"  pattern="dd/MM/yyyy"  mask="true"  maxlength="15" class="espacocobranca29">
+                            <p:inputMask id="datainicio3"  mask="99/99/9999"  maxlength="15" class="espacocobranca29">
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
-                            </p:calendar>
+                            </p:inputMask>
                             <p:outputLabel value="No. Semanas:" for="nsemanas" class="espacocobranca11" style="-webkit-border-radius: 1px;-moz-border-radius: 1px;border-radius: 1px;"  />
                             <p:inputText id="nsemanas" style="width:13.5%;" maxlength="100"  value="#"  class="espacocobranca29"/>
                             <p:outputLabel value="Data Término:" for="datatermino" class="espacocobranca11" />
@@ -103,9 +103,9 @@
                             <br></br> <br></br>    
                             
                             <p:outputLabel value="Data de Início:" for="datainicio2"   />
-                            <p:calendar id="datainicio2"   locale="pt"  pattern="dd/MM/yyyy"  mask="true"  maxlength="15" class="espacocobranca29" style="-moz-border-radius: 1px;border-radius: 1px;">
+                            <p:inputMask id="datainicio2" mask="99/99/9999"  maxlength="15" class="espacocobranca29" >
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
-                            </p:calendar>
+                            </p:inputMask>
                             <p:outputLabel value="No. Semanas:" for="nsemanas2" class="espacocobranca11" style="-webkit-border-radius: 1px;-moz-border-radius: 1px;border-radius: 1px;"  />
                             <p:inputText id="nsemanas2" style="width:13.5%;" maxlength="100"  value="#"  class="espacocobranca29"/>
                             <p:outputLabel value="Data Término:" for="datatermino3" class="espacocobranca11"    />
