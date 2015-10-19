@@ -11,7 +11,7 @@
                 <div id="centro"> <br></br> 
                     
                     <p:outputLabel value="Ficha de High School" style="font-size: 22px;color: #fff; margin-left:40%"/>
-                    <p:tabView class="painelhighSchool" scrollable="true" >
+                    <p:accordionPanel class="painelhighSchool"  >
                         <p:tab  title="Curso" class="tab" titleStyle="font-size: 11px" >
                             <br></br>
                             <p:outputLabel value="Cliente:" for="cliente" class="espacocobranca5" style="color: #fff"/>
@@ -342,7 +342,7 @@
 
                             </h:panelGrid>
                         </p:tab>
-                    </p:tabView>
+                    </p:accordionPanel>
                     <p class="botaocadpacote"><br></br>
                         <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Confirmar" action="#"></p:commandButton>
                         <p:commandButton class="espacocampos" onclick="" icon="ui-icon-close" value="Cancelar" action="#"></p:commandButton>

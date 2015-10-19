@@ -28,14 +28,14 @@
                     <p:commandButton id="bntemail" class="botaoConsulta" style="font-size:12px;" value="Email" />
                     <p:commandButton id="bntobstm" class="botaoConsulta" style="font-size:12px;" value="Obs TM" />
                      <p:dataTable id="cursos" var="cursos"  value="#" class="tabela" 
-                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+                                 paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
                                  paginator="true" rows="10" style="margin-bottom:20px" >
-                        <f:facet name="{Exporters}">
-                    <p:commandLink value="Nova Ficha de Curso"  action="#{cursoMB.cadastrarFicha()}" class="add">
-                        <p:outputLabel value="Nova Ficha"/>
-                        <img src="../../resources/img/adicionar.png" width="20"/>
-                    </p:commandLink>
-                        </f:facet>
+                         <f:facet name="{Exporters}">
+                             <p:commandLink action="#{cursoMB.cadastrarFicha()}" style="margin-left: 60%">
+                                 <p:outputLabel value="Nova Ficha"/>
+                                <img src="../../resources/img/adicionar.png" width="20"/>
+                             </p:commandLink>
+                         </f:facet>
                          <p:column style="width:40px;border:none;">
                             <p:selectBooleanCheckbox />
                         </p:column>
