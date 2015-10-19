@@ -81,9 +81,9 @@
                             <p:outputLabel value="No. Semanas:" for="nsemanas" class="espacocobranca11" style="-webkit-border-radius: 1px;-moz-border-radius: 1px;border-radius: 1px;"  />
                             <p:inputText id="nsemanas" style="width:13.5%;" maxlength="100"  value="#"  class="espacocobranca29"/>
                             <p:outputLabel value="Data Término:" for="datatermino" class="espacocobranca11" />
-                            <p:calendar id="datatermino2" class="espacocobranca29"  locale="pt"  pattern="dd/MM/yyyy"  mask="true"  maxlength="15" >
+                            <p:inputMask id="datatermino2" class="espacocobranca29"    mask="99/99/9999"  maxlength="15" >
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
-                            </p:calendar>
+                            </p:inputMask>
                              <br></br>   <br></br> 
                             <p:outputLabel value="Carga Horária:" for="cargahoraria2" style="-webkit-border-radius: 1px;-moz-border-radius: 1px;border-radius: 1px;"  />
                             <p:inputText id="cargahoraria2" style="width:14%;" maxlength="100"  value="#" class="espacocobranca29"  />
@@ -109,9 +109,9 @@
                             <p:outputLabel value="No. Semanas:" for="nsemanas2" class="espacocobranca11" style="-webkit-border-radius: 1px;-moz-border-radius: 1px;border-radius: 1px;"  />
                             <p:inputText id="nsemanas2" style="width:13.5%;" maxlength="100"  value="#"  class="espacocobranca29"/>
                             <p:outputLabel value="Data Término:" for="datatermino3" class="espacocobranca11"    />
-                            <p:calendar id="datatermino3" class="espacocobranca29"  locale="pt"  pattern="dd/MM/yyyy"  mask="true"  maxlength="15" style="-moz-border-radius: 1px;border-radius: 1px;" >
+                            <p:inputMask id="datatermino3" class="espacocobranca29"   mask="99/99/9999"  maxlength="15" style="-moz-border-radius: 1px;border-radius: 1px;" >
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
-                            </p:calendar>
+                            </p:inputMask>
                              <br></br>   <br></br> 
                             <p:outputLabel value="Carga Horária:" for="cargahoraria" style="-webkit-border-radius: 1px;-moz-border-radius: 1px;border-radius: 1px;"  />
                             <p:inputText id="cargahoraria" style="width:14%;" maxlength="100"  value="#" class="espacocobranca29"  />
