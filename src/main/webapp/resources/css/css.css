@@ -10,15 +10,15 @@ h1 {
     margin: 10px 20px 10px 20px;
 }
 #tudo {
-    top:-15px;
+    top:5%;
     position: relative;
     background: #ffffff;
-    margin: 0px 0 20px -390px;
-    width: 900px;
-    left:19.7%;
-    margin-top:-15px;
+    margin: 0% 0% 0% 0%;
+    width: 67.5%;
+    left:49%;
+    margin-top:-2%;
     border: 0px solid #aaa;
-    margin-left:-10px;text-align: left;
+    margin-left:-30%;text-align: left;
 }
 
 .tabelalogin{
@@ -39,28 +39,26 @@ h1 {
 
 .menuTravel{
     font-size:10px;
-    height:67px;
-    width: 900px;
+    height:40%;
+    width: 100%;
     color:#4F4F4F;
     background:#fff;
     margin-top: -5%;
 }
 .menuTravel2{
     font-size:11px;
-    margin-top:-10px;
-    height:33px;
-    width: 900px;
+    height:40%;
+    width: 100%;
     color:#4F4F4F;
     background:#fff;
 }
 #centro {
     font-size:10px;
-    top:-76px;
+    top:-5%;
     position: relative;
     background:#1F8871;
-text-align: left;
-    margin: 0px 0 20px -390px;
-    width: 900px;
+    text-align: left;
+    width: 67.6%;
     left:19.7%;
 
     border: 0px solid #aaa;
@@ -103,9 +101,7 @@ text-align: left;
     font-size:10px;
 }
 .tabela{
-    margin-top:0px;
-    width: 900px;
-    margin-left:0px;
+    width: 100%;
     font-size:11px;color:#1F8871;
 }
 .tabelaHighSchool{
@@ -217,16 +213,16 @@ text-align: left;
     height:25px;
 }
 .botaodeslogar{
-    margin-top:8px;
+    margin-top:1%;
     position: absolute;
-    width: 30px;
-    height: 25px; 
-    margin-left:670px;
+    width: 3%;
+    height: 10%; 
+    margin-left:70%;
 }
 .usuariologado{
-    margin-top:8px;
+    margin-top:1%;
     position: absolute;
-    width:600px;
+    width:60%;
     text-align: right;
     color:#000;
     
@@ -239,7 +235,7 @@ text-align: left;
     
 }
 #centro legend#iUsu2 {
-    width: 900px;
+    width: 100%;
 }
 #centro legend#iUsu3 b{
     font-size: 14px;
@@ -359,8 +355,8 @@ text-align: left;
 }
 .painel{
     color:#fff;
-    width:840px;
-    margin-left: 25px;
+    width:100%;
+    
 }
 .paineleditar{
     color:#fff;
@@ -409,15 +405,17 @@ text-align: left;
     width:115px;
 }
 .imagemlogo{
-    margin-left:270px;
+    margin-left:31%;
     overflow: hidden;
 }
 .imagemlogos{
-    margin-left:25px;
+    margin-left:3%;
 }
 .menuTravel img {
-  height: 60px;
-  width: 60px;
+    width: 6.5%;
+    height: 4%;
+    
+  
  
   -webkit-transition: all 1s ease;
      -moz-transition: all 1s ease;
@@ -431,28 +429,28 @@ text-align: left;
   height:50px;
 }
 .cursomenu{
-    font-size: 11px;
-    margin-left:280px;
+    font-size: 100%;
+    margin-left:87%;
 }
 .left20{
     font-size: 10px;
     margin-left:235px;
 }
 .highmenu{
-    font-size: 11px;
-    margin-left:-60px;
+    font-size: 100%;
+    margin-left:19%;
 }
 .teensmenu{
-    font-size: 11px;
-    margin-left:30px;
+    font-size: 100%;
+    margin-left:2%;
 }
 .turismomenu{
-    font-size: 11px;
-    margin-left:30px;
+    font-size: 100%;
+    margin-left:30%;
 }
 .traineemenu{
-    font-size: 11px;
-    margin-left:-10px;
+    font-size: 100%;
+    margin-left:2%;
 }
 .comissao { 
     top:5px; 
@@ -467,8 +465,8 @@ text-align: left;
 }
 .iconcambio{
     position: absolute;
-    margin-top:35px;
-    margin-left: 0px;
+    margin-top:6.7%;
+    margin-left: 6%;
     z-index: 3!important;
         overflow: visible!important; 
 }
