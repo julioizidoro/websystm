@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <link href="../../resources/css/css.css" rel="stylesheet" type="text/css" />
+        <link href="../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
+        
+    </h:head>
+    <h:body>
+        <h:form id="editarComissao" style="text-align:left;font-size: 10px; margin-left: 7%; "><br></br>
+
+            <br></br> 
+            <title>Venda No. 1738</title>
+            <legend id="iUsu2" style="font-size: 14px" ><b>Base de Cálculo</b></legend>
+                <p:selectBooleanCheckbox />
+                <p:outputLabel value="Base de Cálculo:" for="baseCalculo" style="margin-left:5%"/>
+                <p:inputText id="baseCalculo" style="margin-left:1%;width:34%" value=""/>
+                <p:outputLabel value="Percetual:" for="percentual" style="margin-left:4%;"/>
+                <p:inputText id="percentual" style="margin-left:0.5%;width:10%" value=""/>
+                
+                <p:outputLabel value="Novo Valor:" for="novovalor" style="margin-left:4%;"/>
+                <p:inputText id="novovalor" style="margin-left:0.5%;width:10%;text-align: right" value="">
+                    <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                </p:inputText>
+                <br></br> <br></br> 
+                <legend id="iUsu2" style="font-size: 14px" ><b>Moeda</b></legend>
+                <p:selectBooleanCheckbox />
+                <p:outputLabel value="Moeda:" for="moeda" style="margin-left:5.5%"/>
+                <p:inputText id="moeda" style="margin-left:1%;width:14%" value=""/>
+                <p:outputLabel value="Câmbio do Dia:" for="cambiodia" style="margin-left:2.5%;"/>
+                <p:inputText id="cambiodia" style="margin-left:0.5%;width:10%;text-align:right" readonly="true" value=""/>
+                
+                <p:outputLabel value="Valor na Moeda:" for="valormoeda" style="margin-left:2.5%;"/>
+                <p:inputText id="valormoeda" style="margin-left:0.5%;width:10%;text-align: right" value="">
+                    <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                </p:inputText>
+                <p:outputLabel value="Novo Valor:" for="novovalormoeda" style="margin-left:3%;"/>
+                <p:inputText id="novovalormoeda" style="margin-left:0.5%;width:10%;text-align: right" value="">
+                    <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                </p:inputText>
+                
+                <legend id="iUsu2" style="font-size: 14px"><b>Manual</b></legend>
+                <p:selectBooleanCheckbox />
+                <p:outputLabel value="Novo Valor:" for="valormanual" style="margin-left:5.8%;"/>
+                <p:inputText id="valormanual" style="margin-left:0.5%;width:15%;text-align: right" value="">
+                    <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                </p:inputText>
+        </h:form>     
+    </h:body>
+</html>

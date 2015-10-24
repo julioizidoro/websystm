@@ -28,6 +28,10 @@ public class MenuMB implements Serializable{
         return "consultacontaspagar";
     }
     
+    public String vendas(){
+        return "vendas";
+    }
+    
     public String contasRecebers(){
         DadosBoletoBean dadosBoletoBean = new DadosBoletoBean();
         dadosBoletoBean.emitir();

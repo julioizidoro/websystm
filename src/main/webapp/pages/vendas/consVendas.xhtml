@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/pages/templates/default.xhtml">
+        <ui:define name="corpo">
+            <h:form id="telaconsultavendas">
+                <div id="centro">
+                    <p:growl id="growl" showDetail="true" sticky="true"/>
+                    
+                    <br></br> <br></br> <br></br>
+
+                    <p:accordionPanel class="painel" activeIndex="-1" >
+                        <p:tab titleStyle="color:#000;font-size:11px;background:#c7d95f;" title="Pesquisar"><br></br>
+                            <p:outputLabel value="ID:" for="id" class="fontebranca" style="margin-left:4%"/> 
+                            <p:inputText value="#" style="margin-left:1%;width:8%" id="id" />
+                            <p:outputLabel value="Cliente:" for="cliente" class="fontebranca" style="margin-left:5%"/> 
+                            <p:selectOneMenu id="cliente" value="#" style="width:40%;font-size: 10px;margin-left: 1%" >
+                                <f:selectItem itemLabel="Todos os Clientes" itemValue="sn" noSelectionOption="true"/> 
+                            </p:selectOneMenu>
+                            <p:outputLabel value="Periodo:" for="dataIni" style="margin-left:5%" /> 
+                            <p:calendar id="dataIni" title="Data Inicial" style="margin-left: 1%"  locale="pt"  pattern="dd/MM/yyyy"  mask="true"  size="10">
+                                <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                            </p:calendar>
+                            <p:calendar id="dataFinal" title="Data Final" style="margin-left: 3%" locale="pt"  pattern="dd/MM/yyyy"  mask="true"  size="10">
+                                <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                            </p:calendar>
+                            <br></br><br></br><br></br>
+                            <p:outputLabel value="Unidade:" for="unidades" style="margin-left:0.8%"/>
+                            <p:selectOneMenu id="unidades" value="#" style="width:25%;font-size: 10px;margin-left: 1%" >
+                                <f:selectItem itemLabel="Todas as Unidades" itemValue="sn" noSelectionOption="true"/> 
+                            </p:selectOneMenu>
+                             <h:outputLabel value="Status do C.R:"  style="margin-left:4%" />  
+                             <p:selectOneMenu id="cr" value="#" style="width:12%;font-size: 10px;margin-left:1%" >
+                                <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true"/> 
+                                <f:selectItem itemLabel="Gerado" itemValue="Gerado" />  
+                                <f:selectItem itemLabel="Não Gerado" itemValue="Não Gerado" /> 
+                            </p:selectOneMenu>
+                             <h:outputLabel value="Produto:"  style="margin-left:4%"/>  
+                             <p:selectOneMenu id="produto" value="#" style="width:20%;font-size: 10px;margin-left:1%" >
+                                <f:selectItem itemLabel="Todos os Produtos" itemValue="sn" noSelectionOption="true"/> 
+                            </p:selectOneMenu>
+                                 <p:commandButton title="Pesquisar" style="margin-left:3%"  icon=" ui-icon-search "  action="#"/>
+                                 <p:commandButton title="Limpar" icon="ui-icon-arrowrefresh-1-w"  style="margin-left: 1%" action="#"/>
+                              <br></br><br></br>
+                        </p:tab>
+                    </p:accordionPanel>
+                    <br></br>
+                    <legend id="iUsu2" ><b>Consulta de Vendas </b></legend>
+                    <p:dataTable id="tabelaVendas" var="vendas"  value="#" class="tabela" scrollable="true" scrollHeight="430"
+                                  style="margin-bottom:20px" >
+                        
+                        <p:column headerText="ID" style="width:8%;">
+                            <p:commandLink action="#{vendasMB.informacoesAdicionais()}" style="text-decoration: none" title="Informações Adicionais">
+                               <p:outputLabel value="1738" />
+                            </p:commandLink>
+                        </p:column>
+                        <p:column headerText="Cliente" style="width:30%;">
+                            <h:outputText value="Carlos Henrique Souza"/>
+                        </p:column>
+                        <p:column headerText="Produto"  style="width:25%">
+                            <h:outputText value="Curso"/>
+                        </p:column>
+                        <p:column headerText="Data de Vencimento" style="width:12%;" styleClass="alinharCenter">
+                            <h:outputText value="21/10/2015">
+                                <!--<f:convertDateTime   pattern="dd/MM/yyyy"  timeZone="America/Sao_Paulo"/>-->
+                            </h:outputText>
+                        </p:column>
+                        <p:column headerText="Unidade" style="width:24%;" >
+                            <h:outputText value="Curitiba"/>                                   
+                        </p:column>
+                        <p:column headerText="Valor Bruto" style="width:14%;text-align: right" >
+                            <p:commandLink action="#{vendasMB.produtoVendas()}" style="text-decoration: none">
+                                <h:outputText value="17.000,00">
+                                     <!--<f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />-->
+                                </h:outputText>
+                            </p:commandLink>
+                        </p:column>
+                        <p:column headerText="C.R." style="width:6%;text-align: center;" styleClass="alinharCenter">
+                            <p:commandLink action="#" style="text-decoration: none" update="tabelaVendas">
+                                <p:graphicImage value="../../resources/img/bolaVerde.png" title="Gerado" />    
+                            </p:commandLink>
+                        </p:column>
+                        <p:column headerText="Pgto" style="width:8%;text-align: center">
+                            <p:commandButton title="Visualizar Contas a Receber" action="#{vendasMB.visualizarContasReceber()}" icon="ui-icon-pencil"/>
+                        </p:column>
+                        <p:column headerText="B.O." style="width:8%;text-align: center">
+                            <p:commandButton title="Editar Comissões" action="#{vendasMB.editarComissao()}" icon="ui-icon-pencil"/>
+                        </p:column>
+                    </p:dataTable>
+                    <br></br>
+                    <br></br>
+                </div>
+            </h:form>    
+        </ui:define>
+    </ui:composition>
+</html>

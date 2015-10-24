@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <link href="../../resources/css/css.css" rel="stylesheet" type="text/css" />
+        <link href="../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
+    </h:head>
+    <h:body>
+        <h:form id="produtoVendas" style="text-align:left;font-size: 10px;"><br></br>
+            <br></br> 
+            <title>Produtos da Venda</title>
+                <p:outputLabel value="Valor do Câmbio:" for="valorCambio" style="margin-left:1%"/>
+                <p:inputText id="valorCambio" style="margin-left:1%;width:14%;text-align: right" readonly="true" value="3,09"/>
+                <p:outputLabel value="Valor Total R$:" for="valorReal" style="margin-left:32%;"/>
+                <p:inputText id="valorReal" style="margin-left:1%;width:17%;text-align: right" readonly="true"  value="7.469,36"/>
+                <br></br> <br></br> 
+                 <p:dataTable id="tabelaProdutoVendas" var="produtovendas"  value="#"  style="margin-bottom:20px" >
+                    <p:column headerText="Descrição" style="width:80%;">
+                        <h:outputText value="Taxa TM"/>
+                    </p:column>
+                    <p:column headerText="Moeda Estrangeira" style="width:34%;text-align: right" >
+                            <h:outputText value="0,00">
+                                 <!--<f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />-->
+                            </h:outputText>
+                    </p:column>
+                     <p:column headerText="Moeda R$" style="width:20%;text-align: right" >
+                            <h:outputText value="350,00">
+                                 <!--<f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />-->
+                            </h:outputText>
+                    </p:column>
+                </p:dataTable>
+                 <br></br> 
+        </h:form>     
+    </h:body>
+</html>
