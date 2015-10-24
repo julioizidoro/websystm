@@ -48,6 +48,8 @@
                 <p:inputText id="valormanual" style="margin-left:0.5%;width:15%;text-align: right" value="">
                     <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                 </p:inputText>
+                <p:commandButton value="Confirmar" icon=" ui-icon-check" action="#" style="margin-left:50%"/>
+                <p:commandButton value="Confirmar" icon="ui-icon-closethick" action="#{vendasMB.fecharEditarInformacoes()}" style="margin-left:50%"/>
         </h:form>     
     </h:body>
 </html>
