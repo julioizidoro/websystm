@@ -28,8 +28,6 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "contaspagar")
-@NamedQueries({
-    @NamedQuery(name = "Contaspagar.findAll", query = "SELECT c FROM Contaspagar c")})
 public class Contaspagar implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -37,9 +35,9 @@ public class Contaspagar implements Serializable {
     @Basic(optional = false)
     @Column(name = "idcontaspagar")
     private Integer idcontaspagar;
-    @Column(name = "datalancamento")
+    @Column(name = "dataEmissao")
     @Temporal(TemporalType.DATE)
-    private Date datalancamento;
+    private Date dataEmissao;
     @Column(name = "datavencimento")
     @Temporal(TemporalType.DATE)
     private Date datavencimento;
@@ -55,12 +53,6 @@ public class Contaspagar implements Serializable {
     @Column(name = "datacompensacao")
     @Temporal(TemporalType.DATE)
     private Date datacompensacao;
-    @Size(max = 50)
-    @Column(name = "formapgamento")
-    private String formapgamento;
-    @Size(max = 50)
-    @Column(name = "tipodocumento")
-    private String tipodocumento;
     @JoinColumn(name = "unidadeNegocio_idunidadeNegocio", referencedColumnName = "idunidadeNegocio")
     @ManyToOne(optional = false)
     private Unidadenegocio unidadenegocio;
@@ -86,14 +78,15 @@ public class Contaspagar implements Serializable {
         this.idcontaspagar = idcontaspagar;
     }
 
-    public Date getDatalancamento() {
-        return datalancamento;
+    public Date getDataEmissao() {
+        return dataEmissao;
     }
 
-    public void setDatalancamento(Date datalancamento) {
-        this.datalancamento = datalancamento;
+    public void setDataEmissao(Date dataEmissao) {
+        this.dataEmissao = dataEmissao;
     }
 
+    
     public Date getDatavencimento() {
         return datavencimento;
     }
@@ -132,22 +125,6 @@ public class Contaspagar implements Serializable {
 
     public void setDatacompensacao(Date datacompensacao) {
         this.datacompensacao = datacompensacao;
-    }
-
-    public String getFormapgamento() {
-        return formapgamento;
-    }
-
-    public void setFormapgamento(String formapgamento) {
-        this.formapgamento = formapgamento;
-    }
-
-    public String getTipodocumento() {
-        return tipodocumento;
-    }
-
-    public void setTipodocumento(String tipodocumento) {
-        this.tipodocumento = tipodocumento;
     }
 
     public Unidadenegocio getUnidadenegocio() {

@@ -40,8 +40,9 @@ public class Contasreceber implements Serializable {
     @Size(max = 30)
     @Column(name = "numerodocumento")
     private String numerodocumento;
+    @Size(max = 8)
     @Column(name = "numeroparcelas")
-    private Integer numeroparcelas;
+    private String numeroparcelas;
     @Column(name = "datavencimento")
     @Temporal(TemporalType.DATE)
     private Date datavencimento;
@@ -113,11 +114,11 @@ public class Contasreceber implements Serializable {
         this.numerodocumento = numerodocumento;
     }
 
-    public Integer getNumeroparcelas() {
+    public String getNumeroparcelas() {
         return numeroparcelas;
     }
 
-    public void setNumeroparcelas(Integer numeroparcelas) {
+    public void setNumeroparcelas(String numeroparcelas) {
         this.numeroparcelas = numeroparcelas;
     }
 
