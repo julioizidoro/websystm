@@ -19,7 +19,7 @@
                 <p:inputText id="comissaotm" style="margin-left:0.5%;width:11%;text-align:right" readonly="true" value="">
                     <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                 </p:inputText>
-                <p:commandLink style="margin-left:0.4%;text-decoration:none;" >
+                <p:commandLink style="margin-left:0.4%;text-decoration:none;" action="#{vendasMB.editarInformacoes()}">
                     <img src="../../resources/img/editardata.png"/>
                 </p:commandLink>
                 <p:outputLabel value="Valor NET:" for="valornet" style="margin-left:2%;"/>
