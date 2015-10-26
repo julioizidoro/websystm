@@ -97,7 +97,7 @@ ul.menu{ float:left; font-family:Verdana, Geneva, sans-serif; font-size:15px; bo
                          #EEE5DE 0%,
                          #c7d95f 20%,
                          #EEE5DE 30%,
-                         #c7d95f); -moz-border-radius:5px; border-radius:50px; position: relative; top: 0;  font-size:1px;color:#fff}
+                         #c7d95f); -moz-border-radius:5px; border-radius:50px; position: relative; top: 0;  font-size:0.1px;color:#fff}
 
 .menu_mluv_retratil.esconder {width:100%; position: relative;-moz-border-radius:0px; border-radius:0px;font-size:12px;text-align:right;padding:23px 23px;color:#000}
 .menu_mluv_retratil nav {margin: 0 5px; padding: 0; list-style: none; float: left;}
