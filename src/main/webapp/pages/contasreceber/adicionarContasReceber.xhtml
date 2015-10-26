@@ -18,8 +18,8 @@
                 <p:outputLabel value="Vendas" for="vendas" class="espacocobranca28" /> 
                 <p:outputLabel value="Cliente" class="espacocobranca47"/>
                 <br></br>
-                <p:inputText id="vendas" style="width: 17%" maxlength="100" class="espacocobranca28"  value="#{editarContasReceberMB.idVendas}" readonly="#{editarContasReceberMB.botaovendas}" />
-                <p:commandButton icon="ui-icon-search" class="botaopesquisar" action="#{editarContasReceberMB.buscarPoIdVenda()}" update=":adicionarContasReceber:nomecliente, :adicionarContasReceber:numeroDocumento" disabled="#{editarContasReceberMB.botaovendas}"/>
+                <p:inputText id="vendas" style="width: 17%" maxlength="100" class="espacocobranca28"  value="#{editarContasReceberMB.idVendas}" readonly="#{editarContasReceberMB.botaovendas()}" />
+                <p:commandButton icon="ui-icon-search" class="botaopesquisar" action="#{editarContasReceberMB.buscarPoIdVenda()}" update=":adicionarContasReceber:nomecliente, :adicionarContasReceber:numeroDocumento" disabled="#{editarContasReceberMB.botaovendas()}"/>
                 <p:inputText id="nomecliente" style="width: 42%; margin-left: 18%" maxlength="100" class="fontebranca" value="#{editarContasReceberMB.nomeCliente}" readonly="true"/>
             </p:tab>
 

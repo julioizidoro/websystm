@@ -163,4 +163,9 @@ public class EditarContasReceberMB implements Serializable{
         
     }
     
+    public String botaovendas(){
+        if(idVendas==null){
+            return "false";
+        }else return "true";
+    }
 }

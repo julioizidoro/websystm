@@ -242,9 +242,11 @@ h1 {
     font-family: tahoma;
     text-align: center;
     color:#000;
+    border-color: #000;
 }
-#centro legend#iUsu3 {
+#legend#iUsu3 {
     width: 100%;
+    border-color: #000;
 }
 #centro legend#iUsu4 b{
     font-size: 10px;

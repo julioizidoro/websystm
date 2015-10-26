@@ -15,25 +15,25 @@
 
                     <p:accordionPanel class="painel" activeIndex="-1" >
                         <p:tab titleStyle="color:#000;font-size:11px;background:#c7d95f;" title="Pesquisar">
-                            <p:outputLabel value="Cliente" for="cliente" class="fontebranca" style="margin-left: 2%"/> 
+                               <p:outputLabel value="Cliente" for="cliente" class="fontebranca" style="margin-left: 2%"/> 
                                 <p:outputLabel value="Periodo" for="dataIni" class="espacocobranca13" /> 
-                                <p:outputLabel value="Unidade" for="dataIni" class="espacocobranca34"/>
+                                
                                  <br></br>
                                  <p:inputText id="cliente" style="width: 32%;margin-left: 2%" maxlength="100" class="fontebranca"  value="#"/>
                                 <p:commandButton icon="ui-icon-search" class="botaopesquisar"/>
-                                <p:calendar id="dataIni" class="imgadd"  locale="pt"  pattern="dd/MM/yyyy"  mask="true"  maxlength="15" >
+                                <p:calendar id="dataIni" style="margin-left:4%" locale="pt"  pattern="dd/MM/yyyy"  mask="true"  maxlength="15" >
                                     <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                                 </p:calendar>
                                 <p:calendar id="dataFinal" class="loginButton2"  locale="pt"  pattern="dd/MM/yyyy"  mask="true" maxlength="15">
                                     <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                                 </p:calendar>
-                                <p:selectOneMenu id="unidades" value="#" style="width:20%;font-size: 10px" class="espacocobranca28">
-                                    <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true"/> 
-                                </p:selectOneMenu>
+                                
+                                <p:commandButton value="Pesquisar" class="espacocobranca28"  icon=" ui-icon-search " update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#"/>
+                                <p:commandButton value="Limpar" icon="ui-icon-arrowrefresh-1-w"  class="imgadd" update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#"/>
+                            
                              <br></br> <br></br>
                              
                              <h:outputLabel value="Forma de Pagamento"  style="margin-left: 2%" />  
-                             <h:outputLabel value="Banco"  class="espacocobranca10"/>  
                              <br></br>
                                 <p:selectOneMenu id="formapag" value="#" style="width:32%;font-size: 10px;margin-left: 2%" class="fontebranca">
                                     <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true"/> 
@@ -44,12 +44,7 @@
                                     <f:selectItem itemLabel="Cheque" itemValue="Cheque" />  
                                     <f:selectItem itemLabel="Depósito" itemValue="Depósito" /> 
                                 </p:selectOneMenu>
-                                <p:selectOneMenu id="banco" value="#" style="width:32%;font-size: 10px" class="espacocobranca24">
-                                    <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true"/> 
-                                </p:selectOneMenu>
-                                <p:commandButton value="Pesquisar" class="espacocobranca28"  icon=" ui-icon-search " update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#"/>
-                                <p:commandButton value="Limpar" icon="ui-icon-arrowrefresh-1-w"  class="imgadd" update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#"/>
-                            
+                              
                             <br></br>
                         </p:tab>
                     </p:accordionPanel>
@@ -88,12 +83,7 @@
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </h:outputText>  
                         </p:column>
-                        <p:column headerText="Banco" style="width:70px;" styleClass="alinharCenter">
-                            <h:outputText value="#{contasrecebe.banco}"/>                                   
-                        </p:column>
-                        <p:column headerText="Unidade" style="width:160px;" styleClass="alinharCenter"  >
-                            <h:outputText value="#{contasrecebe.vendas.unidadenegocio}"/>                                   
-                        </p:column>
+                       
                         <p:column headerText="Data de Vencimento" style="width:110px;" styleClass="alinharCenter">
                             <h:outputText value="#{contasrecebe.datavencimento}">
                                 <f:convertDateTime   pattern="dd/MM/yyyy"  timeZone="America/Sao_Paulo"/>

@@ -18,7 +18,7 @@
             <p:outputLabel value="Data Emissão" for="dataEmi" style="margin-left:47%;"> </p:outputLabel>   
             <br></br>
             <p:inputText id="numeroLancamento" size="26"  value="#"/>
-            <p:calendar id="dataEmi" value="#{cadContasPagarMB.conta.datalancamento}" pattern="dd/MM/yyyy" mask="true" size="19" maxlength="14" style=" margin-left:34.3%;" >
+            <p:calendar id="dataEmi" value="#{cadContasPagarMB.conta.dataEmissao}" pattern="dd/MM/yyyy" mask="true" size="19" maxlength="14" style=" margin-left:34.3%;" >
                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
             </p:calendar>   
             <br/><br/>
