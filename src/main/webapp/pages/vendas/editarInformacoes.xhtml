@@ -10,19 +10,25 @@
         
     </h:head>
     <h:body>
-        <h:form id="editarComissao" style="text-align:left;font-size: 10px; margin-left: 7%; "><br></br>
-
-            <br></br> 
+        <h:form id="editarComissao" style="text-align:left;font-size: 10px; margin-left: 7%; ">
             <title>Venda No. 1738</title>
             <legend id="iUsu2" style="font-size: 14px" ><b>Base de Cálculo</b></legend>
-                <p:selectBooleanCheckbox />
-                <p:outputLabel value="Base de Cálculo:" for="baseCalculo" style="margin-left:5%"/>
-                <p:inputText id="baseCalculo" style="margin-left:1%;width:34%" value=""/>
-                <p:outputLabel value="Percetual:" for="percentual" style="margin-left:4%;"/>
-                <p:inputText id="percentual" style="margin-left:0.5%;width:10%" value=""/>
                 
-                <p:outputLabel value="Novo Valor:" for="novovalor" style="margin-left:4%;"/>
-                <p:inputText id="novovalor" style="margin-left:0.5%;width:10%;text-align: right" value="">
+                <p:outputLabel value="Base de Cálculo" for="baseCalculo" style="margin-left:8%"/>
+                <p:outputLabel value="Percetual" for="percentual" style="margin-left:4%;"/>
+                <p:outputLabel value="Novo Valor" for="novovalor" style="margin-left:4%;"/>
+                <br></br> 
+                <p:selectBooleanCheckbox />
+                <p:selectOneMenu id="baseCalculo"  value="" style="margin-left:5.8%;width:42%">  
+                    <f:selectItem itemLabel="Selecione" itemValue="sn" />  
+                    <f:selectItem itemLabel="Valor Comissionável" itemValue="valorcomissao" />  
+                    <f:selectItem itemLabel="Valor Total" itemValue="valortotal" />  
+                    <f:selectItem itemLabel="Comissão TM" itemValue="comissaotm" />  
+                    <f:selectItem itemLabel="Comissão TM - Desconto Matriz + Taxa TM - Desagio" itemValue="comTMdescontoMatrizTaxaTMdesagio" />  
+                    <f:selectItem itemLabel="Comissão Franquia - Comissão Terceiros" itemValue="comFranquiaComTerceiros" />  
+                </p:selectOneMenu> 
+                <p:inputText id="percentual" style="margin-left:16%;width:13%" value=""/>
+                <p:inputText id="novovalor" style="margin-left:8%;width:13%;text-align: right" value="">
                     <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                 </p:inputText>
                 <br></br> <br></br> 

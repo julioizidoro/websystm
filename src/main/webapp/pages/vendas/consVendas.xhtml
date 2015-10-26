@@ -54,8 +54,8 @@
                                   style="margin-bottom:20px" >
                         
                         <p:column headerText="ID" style="width:8%;">
-                            <p:commandLink action="#{vendasMB.informacoesAdicionais()}" style="text-decoration: none" title="Informações Adicionais" >
-                               <p:outputLabel value="1738"  />
+                            <p:commandLink action="#{vendasMB.informacoesAdicionais()}" style="text-decoration: overline" title="Informações Adicionais" >
+                                <p:outputLabel value="1738" style="text-decoration-line: underline" />
                             </p:commandLink>
                         </p:column>
                         <p:column headerText="Cliente" style="width:30%;">
@@ -73,8 +73,8 @@
                             <h:outputText value="Curitiba"/>                                   
                         </p:column>
                         <p:column headerText="Valor Bruto" style="width:14%;text-align: right" >
-                            <p:commandLink action="#{vendasMB.produtoVendas()}" style="text-decoration: none">
-                                <h:outputText value="17.000,00">
+                            <p:commandLink action="#{vendasMB.produtoVendas()}" style="text-decoration: none" title="Produtos da Venda">
+                                <h:outputText value="17.000,00" style="text-decoration-line: underline">
                                      <!--<f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />-->
                                 </h:outputText>
                             </p:commandLink>
