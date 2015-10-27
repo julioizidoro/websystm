@@ -39,13 +39,6 @@ public class VendasDao {
         return venda;
     }
     
-   
-    
-    
-    
-    
-    
-   
     public void excluir(int idVenda) throws SQLException{
         manager = ConectionFactory.getConnection();
         //abrindo uma transação
@@ -55,8 +48,6 @@ public class VendasDao {
         //fechando uma transação
         manager.getTransaction().commit();
     }
-    
-    
     
     public Vendas vendaCliente(int idCliente) throws SQLException{
         
@@ -70,10 +61,10 @@ public class VendasDao {
         return null;
     }
     
-    public List<Vendas> lista() throws SQLException{
+    public List<Vendas> lista(String sql) throws SQLException{
         manager = ConectionFactory.getConnection();
          manager.getTransaction().begin();
-        Query q = manager.createQuery("Select v from Vendas v where v.fornecedorcidade.idfornecedorcidade=1");
+        Query q = manager.createQuery(sql);
          manager.getTransaction().commit();
         return q.getResultList();
     }

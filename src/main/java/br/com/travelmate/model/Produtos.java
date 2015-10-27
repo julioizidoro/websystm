@@ -14,8 +14,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
@@ -26,8 +24,6 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "produtos")
-@NamedQueries({
-    @NamedQuery(name = "Produtos.findAll", query = "SELECT p FROM Produtos p")})
 public class Produtos implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "produtos")
     private List<Vendas> vendasList;

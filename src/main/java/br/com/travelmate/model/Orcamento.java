@@ -7,7 +7,9 @@ package br.com.travelmate.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,6 +19,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -28,8 +31,6 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "orcamento")
-@NamedQueries({
-    @NamedQuery(name = "Orcamento.findAll", query = "SELECT o FROM Orcamento o")})
 public class Orcamento implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -58,7 +59,10 @@ public class Orcamento implements Serializable {
     @JoinColumn(name = "vendas_idvendas", referencedColumnName = "idvendas")
     @ManyToOne(optional = false)
     private Vendas vendas;
-
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "orcamento")
+    private List<Orcamentoprodutosorcamento> orcamentoprodutosorcamentoList;
+    
+    
     public Orcamento() {
     }
 
@@ -161,6 +165,14 @@ public class Orcamento implements Serializable {
     @Override
     public String toString() {
         return "br.com.travelmate.model.Orcamento[ idorcamento=" + idorcamento + " ]";
+    }
+
+    public List<Orcamentoprodutosorcamento> getOrcamentoprodutosorcamentoList() {
+        return orcamentoprodutosorcamentoList;
+    }
+
+    public void setOrcamentoprodutosorcamentoList(List<Orcamentoprodutosorcamento> orcamentoprodutosorcamentoList) {
+        this.orcamentoprodutosorcamentoList = orcamentoprodutosorcamentoList;
     }
     
 }

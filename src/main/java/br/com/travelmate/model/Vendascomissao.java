@@ -6,6 +6,7 @@
 package br.com.travelmate.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +18,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 
 /**
@@ -45,6 +48,8 @@ public class Vendascomissao implements Serializable {
     private Float taxatm;
     @Column(name = "descontotm")
     private Float descontotm;
+    @Column(name = "descontoloja")
+    private Float descontoloja;
     @Column(name = "comissaoemissor")
     private Float comissaoemissor;
     @Column(name = "comissaogerente")
@@ -55,9 +60,16 @@ public class Vendascomissao implements Serializable {
     private Float comissaofraquia;
     @Column(name = "desagio")
     private Float desagio;
-    @Column(name = "total")
-    private Float total;
+    @Column(name = "incentivo")
+    private Float incentivo;
+    @Column(name = "liquidovendas")
+    private Float liquidovendas;
+    @Column(name = "liquidofranquia")
+    private Float liquidofranquia;
     @Size(max = 3)
+    @Column(name = "previsaopagamento")
+    @Temporal(TemporalType.DATE)
+    private Date previsaopagamento;
     @Column(name = "paga")
     private String paga;
     @JoinColumn(name = "produtos_idprodutos", referencedColumnName = "idprodutos")
@@ -69,6 +81,9 @@ public class Vendascomissao implements Serializable {
     @JoinColumn(name = "vendas_idvendas", referencedColumnName = "idvendas")
     @ManyToOne(optional = false)
     private Vendas vendas;
+    @JoinColumn(name = "tecerios_idterceiros", referencedColumnName = "idterceiros")
+    @ManyToOne(optional = false)
+    private Terceiros terceiros;
 
     public Vendascomissao() {
     }
@@ -125,6 +140,14 @@ public class Vendascomissao implements Serializable {
         this.descontotm = descontotm;
     }
 
+    public Float getDescontoloja() {
+        return descontoloja;
+    }
+
+    public void setDescontoloja(Float descontoloja) {
+        this.descontoloja = descontoloja;
+    }
+
     public Float getComissaoemissor() {
         return comissaoemissor;
     }
@@ -133,12 +156,46 @@ public class Vendascomissao implements Serializable {
         this.comissaoemissor = comissaoemissor;
     }
 
+    public Float getLiquidovendas() {
+        return liquidovendas;
+    }
+
+    public void setLiquidovendas(Float liquidovendas) {
+        this.liquidovendas = liquidovendas;
+    }
+
+    public Date getPrevisaopagamento() {
+        return previsaopagamento;
+    }
+
+    public void setPrevisaopagamento(Date previsaopagamento) {
+        this.previsaopagamento = previsaopagamento;
+    }
+
+    
+
     public Float getComissaogerente() {
         return comissaogerente;
     }
 
     public void setComissaogerente(Float comissaogerente) {
         this.comissaogerente = comissaogerente;
+    }
+
+    public Float getIncentivo() {
+        return incentivo;
+    }
+
+    public void setIncentivo(Float incentivo) {
+        this.incentivo = incentivo;
+    }
+
+    public Float getLiquidofranquia() {
+        return liquidofranquia;
+    }
+
+    public void setLiquidofranquia(Float liquidofranquia) {
+        this.liquidofranquia = liquidofranquia;
     }
 
     public Float getComissaoterceiros() {
@@ -165,13 +222,6 @@ public class Vendascomissao implements Serializable {
         this.desagio = desagio;
     }
 
-    public Float getTotal() {
-        return total;
-    }
-
-    public void setTotal(Float total) {
-        this.total = total;
-    }
 
     public String getPaga() {
         return paga;
@@ -203,6 +253,14 @@ public class Vendascomissao implements Serializable {
 
     public void setVendas(Vendas vendas) {
         this.vendas = vendas;
+    }
+
+    public Terceiros getTerceiros() {
+        return terceiros;
+    }
+
+    public void setTerceiros(Terceiros terceiros) {
+        this.terceiros = terceiros;
     }
 
     @Override

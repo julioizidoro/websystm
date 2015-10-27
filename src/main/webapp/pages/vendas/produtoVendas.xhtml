@@ -11,28 +11,32 @@
     <h:body>
         <h:form id="produtoVendas" style="text-align:left;font-size: 10px;"><br></br>
             <br></br> 
-            <title>Produtos da Venda</title>
+            <title>#{vendasProdutosMB.titulo}</title>
                 <p:outputLabel value="Moeda" for="moeda" style="margin-left:1%"/>
                 <p:outputLabel value="Valor do Câmbio" for="valorCambio" style="margin-left:8%"/>
                 <p:outputLabel value="Valor Total R$" for="valorReal" style="margin-left:50.4%;"/>
                
                 <br></br> 
-                <p:inputText id="moeda" style="margin-left:1%;width:10.7%;" readonly="true" value="USD"/>
-                <p:inputText id="valorCambio" style="margin-left:4%;width:17%;text-align: right" readonly="true" value="3,09"/>
-                <p:inputText id="valorReal" style="margin-left:49%;width:17%;text-align: right" readonly="true"  value="7.469,36"/>
+                <p:inputText id="moeda" style="margin-left:1%;width:10.7%;" readonly="true" value="#{vendasProdutosMB.orcamento.cambio.moedas.sigla}"/>
+                <p:inputText id="valorCambio" style="margin-left:4%;width:17%;text-align: right" readonly="true" value="#{vendasProdutosMB.orcamento.cambio.valor}">
+                    <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                </p:inputText>
+                <p:inputText id="valorReal" style="margin-left:49%;width:17%;text-align: right" readonly="true"  value="#{vendasProdutosMB.orcamento.totalMoedaNacional}">
+                    <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                </p:inputText>
                 <br></br> <br></br> 
-                 <p:dataTable id="tabelaProdutoVendas" var="produtovendas"  value="#"  style="margin-bottom:20px" >
+                <p:dataTable id="tabelaProdutoVendas" var="produtovendas"  value="#{vendasProdutosMB.orcamento.orcamentoprodutosorcamentoList}"  style="margin-bottom:20px" >
                     <p:column headerText="Descrição" style="width:80%;">
-                        <h:outputText value="Taxa TM"/>
+                        <h:outputText value="#{produtovendas.produtosorcamento.descricao}"/>
                     </p:column>
                     <p:column headerText="Moeda Estrangeira" style="width:34%;text-align: right" >
-                            <h:outputText value="0,00">
-                                 <!--<f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />-->
+                        <h:outputText value="#{produtovendas.valorMoedaEstrangeira}">
+                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </h:outputText>
                     </p:column>
                      <p:column headerText="Moeda R$" style="width:20%;text-align: right" >
-                            <h:outputText value="350,00">
-                                 <!--<f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />-->
+                         <h:outputText value="#{produtovendas.valorMoedaNacional}">
+                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </h:outputText>
                     </p:column>
                 </p:dataTable>

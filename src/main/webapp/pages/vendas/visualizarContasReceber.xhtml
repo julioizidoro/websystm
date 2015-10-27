@@ -10,33 +10,33 @@
     </h:head>
     <h:body>
         <h:form id="visualizarContasReceber" style="text-align:left;font-size: 10px;">
-            <title>Visualizar o Contas a Receber</title>
+            <title>#{vendasContasReceberMB.titulo}</title>
                 <br></br> 
-                 <p:dataTable id="tabelaContasRecebers" var="contasreceber"  value="#"  style="margin-bottom:20px" >
+                <p:dataTable id="tabelaContasRecebers" var="contasreceber"  value="#{vendasContasReceberMB.venda.contasreceberList}"  style="margin-bottom:20px" >
                     <p:column headerText="ID" style="width:8%;">
-                        <h:outputText value="1738"/>
+                        <h:outputText value="#{contasreceber.numerodocumento}"/>
                     </p:column>
                      <p:column headerText="Cliente" style="width:42%;">
-                        <h:outputText value="Carlos Henrique Souza"/>
+                         <h:outputText value="#{contasreceber.vendas.cliente.nome}"/>
                     </p:column>
                      <p:column headerText="Parcela" style="width:13%;">
-                        <h:outputText value="1/3"/>
+                         <h:outputText value="#{contasreceber.numeroparcelas}"/>
                     </p:column>
                     <p:column headerText="Vencimento" style="width:17%;text-align: right" >
-                            <h:outputText value="21/10/2015">
-                                 <!--<f:convertDateTime   pattern="dd/MM/yyyy"  timeZone="America/Sao_Paulo"/>-->
+                        <h:outputText value="#{contasreceber.datavencimento}">
+                                 <f:convertDateTime   pattern="dd/MM/yyyy"  timeZone="America/Sao_Paulo"/>
                             </h:outputText>
                     </p:column>
                      <p:column headerText="Valor" style="width:17%;text-align: right" >
-                            <h:outputText value="650,00">
-                                 <!--<f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />-->
+                         <h:outputText value="#{contasreceber.valorparcela}">
+                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </h:outputText>
                     </p:column>
                      <p:column headerText="Recebimento" style="width:16.5%;">
-                        <h:outputText value="18/10/2015"/>
+                         <h:outputText value="#{contasreceber.datapagamento}"/>
                     </p:column>
                      <p:column headerText="Status" style="width:10%;">
-                         <img src="../../resources/img/bolaVerde.png" title="Já Recebido"/>
+                         <img src="#{vendasContasReceberMB.gerarStatusImagem(contasreceber)}" title="#{vendasContasReceberMB.gerarTitulo(contasreceber)}"/>
                     </p:column>
                 </p:dataTable>
                  <br></br> 

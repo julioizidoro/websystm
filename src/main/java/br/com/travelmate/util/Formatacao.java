@@ -29,6 +29,7 @@ import org.primefaces.model.UploadedFile;
 
 import br.com.travelmate.facade.CambioFacade;
 import br.com.travelmate.model.Cambio;
+import br.com.travelmate.model.Produtos;
 
 /**
  *
@@ -739,4 +740,13 @@ public class Formatacao {
         bfReader = new BufferedReader(new InputStreamReader(is));
         return bfReader;
     }
+    
+    public static Date formatarDataAgora(){
+        Date data = new Date();
+        String sData = Formatacao.ConvercaoDataPadrao(data);
+        data = Formatacao.ConvercaoStringData(sData);
+        return data;
+    }
+    
+   
 }

@@ -188,6 +188,7 @@ public class UsuarioLogadoMB implements Serializable{
             if (usuario==null){
                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "Acesso Negado."));
             }else {
+                usuario.setSenha("");
                 carregarCambioDia();
                 return "inicial";
             }

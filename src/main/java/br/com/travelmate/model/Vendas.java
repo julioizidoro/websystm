@@ -8,7 +8,6 @@ package br.com.travelmate.model;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -19,8 +18,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -33,22 +30,7 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "vendas")
-@NamedQueries({
-    @NamedQuery(name = "Vendas.findAll", query = "SELECT v FROM Vendas v")})
 public class Vendas implements Serializable {
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendas")
-    private List<Programasteens> programasteensList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendas")
-    private List<Ladies> ladiesList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendas")
-    private List<Highschool> highschoolList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendas")
-    private List<Contasreceber> contasreceberList;
-   
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendas")
-    private List<Pacotes> pacotesList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendas")
-    private List<Passagemaerea> passagemaereaList;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -101,6 +83,24 @@ public class Vendas implements Serializable {
     private Usuario usuario;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendas")
     private List<Cobranca> cobrancaList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendas")
+    private List<Programasteens> programasteensList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendas")
+    private List<Ladies> ladiesList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendas")
+    private List<Highschool> highschoolList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendas")
+    private List<Contasreceber> contasreceberList;   
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendas")
+    private List<Pacotes> pacotesList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendas")
+    private List<Passagemaerea> passagemaereaList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendas")
+    private List<Orcamento> orcamentoList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendas")
+    private List<Vendascomissao> vendascomissaoList;
+
+    
     
 
     public Vendas() {
@@ -318,6 +318,24 @@ public class Vendas implements Serializable {
     public void setLadiesList(List<Ladies> ladiesList) {
         this.ladiesList = ladiesList;
     }
+
+    public List<Orcamento> getOrcamentoList() {
+        return orcamentoList;
+    }
+
+    public void setOrcamentoList(List<Orcamento> orcamentoList) {
+        this.orcamentoList = orcamentoList;
+    }
+
+    public List<Vendascomissao> getVendascomissaoList() {
+        return vendascomissaoList;
+    }
+
+    public void setVendascomissaoList(List<Vendascomissao> vendascomissaoList) {
+        this.vendascomissaoList = vendascomissaoList;
+    }
+
+    
 
     
 

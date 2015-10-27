@@ -44,10 +44,10 @@ public class VendasFacade {
     }
     
    
-    public List<Vendas> lista() {
+    public List<Vendas> lista(String sql) {
         vendasDao = new VendasDao();
         try {
-            return vendasDao.lista();
+            return vendasDao.lista(sql);
         } catch (SQLException ex) {
             Logger.getLogger(VendasFacade.class.getName()).log(Level.SEVERE, null, ex);
             return null;
