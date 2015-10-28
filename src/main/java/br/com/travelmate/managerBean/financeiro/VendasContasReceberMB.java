@@ -8,6 +8,7 @@ package br.com.travelmate.managerBean.financeiro;
 import br.com.travelmate.model.Contasreceber;
 import br.com.travelmate.model.Vendas;
 import br.com.travelmate.util.Formatacao;
+import java.io.Serializable;
 import java.util.Date;
 import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
@@ -21,7 +22,7 @@ import javax.servlet.http.HttpSession;
  */
 @Named
 @ViewScoped
-public class VendasContasReceberMB {
+public class VendasContasReceberMB implements Serializable{
     
     private Vendas venda;
     private String titulo;

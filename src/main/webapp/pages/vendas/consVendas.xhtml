@@ -11,7 +11,7 @@
                 <div id="centro">
                     <p:growl id="growl" showDetail="true" sticky="true"/>
                     
-                    <br></br> <br></br> <br></br>
+                    <br></br>
 
                     <p:accordionPanel class="painel" activeIndex="-1" >
                         <p:tab titleStyle="color:#000;font-size:11px;background:#c7d95f;" title="Pesquisar"><br></br>
@@ -51,7 +51,7 @@
                     <p:dataTable id="tabelaVendas" var="vendas"  value="#{vendasFinanceiroMB.listaVendas}" class="tabela" scrollable="true" scrollHeight="430"
                                   style="margin-bottom:20px" >    
                         <p:column headerText="ID" style="width:8%;">
-                            <p:commandLink action="#{vendasFinanceiroMB.informacoesAdicionais(vendas)}" style="text-decoration: overline" title="Informações Adicionais" >
+                            <p:commandLink action="#{vendasFinanceiroMB.informacoesAdicionais(vendas)}" style="text-decoration: overline" title="Informações Adicionais" update=":telaconsultavendas:growl">
                                 <p:outputLabel value="#{vendas.idvendas}" style="text-decoration-line: underline" />
                             </p:commandLink>
                         </p:column>
@@ -70,17 +70,17 @@
                             <h:outputText value="#{vendas.unidadenegocio.nomeFantasia}"/>                                   
                         </p:column>
                         <p:column headerText="Valor Bruto" style="width:14%;text-align: right" >
-                            <p:commandLink action="#{vendasFinanceiroMB.produtoVendas(vendas)}" style="text-decoration: none" title="Produtos da Venda">
+                            <p:commandLink action="#{vendasFinanceiroMB.produtoVendas(vendas)}" update=":telaconsultavendas:growl" style="text-decoration: none" title="Produtos da Venda">
                                 <h:outputText value="#{vendas.valor}" style="text-decoration-line: underline">
                                      <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 </h:outputText>
                             </p:commandLink>
                         </p:column>
                         <p:column headerText="Pgto" style="width:8%;text-align: center">
-                            <p:commandButton title="Visualizar Contas a Receber" action="#{vendasFinanceiroMB.visualizarContasReceber(vendas)}" icon="ui-icon-pencil"/>
+                            <p:commandButton title="Visualizar Contas a Receber" action="#{vendasFinanceiroMB.visualizarContasReceber(vendas)}" icon="ui-icon-pencil" update=":telaconsultavendas:growl"/>
                         </p:column>
                         <p:column headerText="B.O." style="width:8%;text-align: center">
-                            <p:commandButton title="Editar Comissões" action="#{vendasFinanceiroMB.editarComissao(vendas)}" icon="ui-icon-pencil"/>
+                            <p:commandButton title="Editar Comissões" action="#{vendasFinanceiroMB.editarComissao(vendas)}" icon="ui-icon-pencil" update=":telaconsultavendas:growl"/>
                         </p:column>
                     </p:dataTable>
                     <br></br>

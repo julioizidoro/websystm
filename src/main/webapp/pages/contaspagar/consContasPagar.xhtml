@@ -26,7 +26,6 @@
                                          <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                                     </p:calendar>
                                     <p:selectBooleanCheckbox  class="left4" value="#"/>
-                                    <h:outputText value="Liberadas"  class="fontebranca" style="margin-left: 1%;"/> 
                                     <p:commandButton value="Pesquisar" class="botao"  icon=" ui-icon-search " update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#"/>
                                     <p:commandButton value="Limpar" icon="ui-icon-arrowrefresh-1-w"  class="botao3" update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#"/>
                      
@@ -42,8 +41,8 @@
                                 
                             </p:contextMenu>
                             <p:dataTable id="tabelacontaPagar" var="contasPagar"  value="#{contasPagarMB.listaContasPagar}" class="tabela" 
-                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
-                                     paginator="true" rows="10" style="margin-bottom:20px" selection="#{contasPagarMB.conta}" selectionMode="single" rowKey="#{contasPagar.idcontaspagar}" >
+                                     paginatorTemplate="{Exporters}" scrollable="true" scrollHeight="225" 
+                                     paginator="true" style="margin-bottom:20px" selection="#{contasPagarMB.conta}" selectionMode="single" rowKey="#{contasPagar.idcontaspagar}" >
                                 <f:facet name="{Exporters}">
                                     <p:commandLink title="Adicionar conta" action="#{contasPagarMB.cadastrarContaPagar()}" style="margin-left:53%;">
                                         <p:outputLabel value="Adicionar Conta"/>
@@ -70,9 +69,6 @@
                                     <h:outputText  value="#{contasPagar.datacompensacao}">
                                          <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                                     </h:outputText>
-                                </p:column>
-                                <p:column headerText="Banco" style="width: 10%;text-align:center;" >
-                                    <h:outputText value="#{contasPagar.banco}"/>
                                 </p:column>
                         </p:dataTable>
                         <br></br>

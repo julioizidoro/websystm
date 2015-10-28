@@ -13,10 +13,11 @@
     </h:head>
 
     <h:body >
+       
             <h:form id="login" class="login">
                 <img  class="logologin" src="resources/img/logoquadrada.png" />
                 <div id="centrologin" class="tabelalogin">
-                    
+                     
                     <br></br><br></br><br></br><br></br><br></br><br></br><br></br>
                     <br></br><br></br><br></br><br></br>
                     <p:outputLabel value="Login" class="espacologinbra"/>
@@ -31,6 +32,11 @@
                     <p:commandButton value="Alterar Senha" action="#{usuarioLogadoMB.validarTrocarSenha()}" class="loginButton2"  oncomplete="PF('dll').show()"  />
                                 
                     <br></br><br></br><br></br><br></br><br></br>
+                    <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+
+                    <p:dialog widgetVar="statusDialog" modal="true" style="margin-left: 45%;margin-top: 20%" draggable="false" closable="false" resizable="false" showHeader="false">
+                        <img src="resources/img/ajax-loader.gif" />
+                    </p:dialog>
                 </div>
             </h:form>
         <h:outputScript library="js" name="jquery.js" />

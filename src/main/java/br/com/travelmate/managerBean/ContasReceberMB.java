@@ -245,6 +245,36 @@ public class ContasReceberMB implements Serializable{
         return retorno;
     }
     
+    public String retornarStatusConta(Contasreceber conta){
+        String retorno;
+        Date data = new Date();
+        String dataPadrao = Formatacao.ConvercaoDataPadrao(data);
+        Date dataNova = Formatacao.ConvercaoStringData(dataPadrao);
+        if(conta.getDatavencimento().equals(data)){
+            retorno = "../../resources/img/bolaAmarela.png";
+        }else if(conta.getDatavencimento().before(data)){
+            retorno = "../../resources/img/bolaVermelha.png";
+        }else {
+            retorno = "../../resources/img/bolaVerde.png";
+        }
+        return retorno;
+    }
+    
+    public String retornarTitleStatusConta(Contasreceber conta){
+        String retorno;
+        Date data = new Date();
+        String dataPadrao = Formatacao.ConvercaoDataPadrao(data);
+        Date dataNova = Formatacao.ConvercaoStringData(dataPadrao);
+        if(conta.getDatavencimento().equals(dataNova)){
+            retorno = "A vencer";
+        }else if(conta.getDatavencimento().before(dataNova)){
+            retorno = "Vencido";
+        }else {
+            retorno = "Recebido";
+        }
+        return retorno;
+    }
+    
     public String retornarTipoDocumento(Contasreceber conta){
         String retorno;
         if(conta.getTipodocumento().equalsIgnoreCase("Dinheiro")){

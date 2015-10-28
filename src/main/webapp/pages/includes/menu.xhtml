@@ -29,6 +29,11 @@
         });
     </script>
     <div id="tudo">
+        <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+
+            <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+                <img src="../../resources/img/ajax-loader.gif" />
+            </p:dialog>
         <navBar class="navbar navbar-default " role="navigation">
             <img  class="logo" src="../../resources/img/logo.png" />
 

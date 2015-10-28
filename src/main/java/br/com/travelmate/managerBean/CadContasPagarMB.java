@@ -16,9 +16,12 @@ import br.com.travelmate.model.Unidadenegocio;
 import br.com.travelmate.model.Vendas;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 import org.primefaces.context.RequestContext;
@@ -28,6 +31,8 @@ import org.primefaces.context.RequestContext;
 @ViewScoped
 public class CadContasPagarMB implements Serializable{
     
+    @Inject
+    private UsuarioLogadoMB usuarioLogadoMB;
     private Contaspagar conta;
     private List<Unidadenegocio> listaUnidadeNegocio;
     private List<Planoconta> listaPlanoConta;
@@ -36,7 +41,8 @@ public class CadContasPagarMB implements Serializable{
     private Banco banco;
     private Planoconta planoconta; 
     
-    public CadContasPagarMB() {
+    @PostConstruct
+    public void init(){
         FacesContext fc = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
         conta = (Contaspagar) session.getAttribute("contapagar");
@@ -44,9 +50,12 @@ public class CadContasPagarMB implements Serializable{
         carregarUnidadeNegocio();
         carregarPlanoConta();
         carregarBanco();
+        getUsuarioLogadoMB();
         if (conta==null){
             conta = new Contaspagar();
         }
+        conta.setDataEmissao(new Date());
+        conta.setUnidadenegocio(usuarioLogadoMB.getUsuario().getUnidadenegocio());
     }
 
     public Contaspagar getConta() {
@@ -103,6 +112,14 @@ public class CadContasPagarMB implements Serializable{
 
     public void setPlanoconta(Planoconta planoconta) {
         this.planoconta = planoconta;
+    }
+
+    public UsuarioLogadoMB getUsuarioLogadoMB() {
+        return usuarioLogadoMB;
+    }
+
+    public void setUsuarioLogadoMB(UsuarioLogadoMB usuarioLogadoMB) {
+        this.usuarioLogadoMB = usuarioLogadoMB;
     }
 
     

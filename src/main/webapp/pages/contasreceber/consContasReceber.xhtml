@@ -11,45 +11,43 @@
                 <div id="centro">
                     <p:growl id="growl" showDetail="true" sticky="true"/>
                     
-                    <br></br> <br></br> <br></br>
-
+                    <br></br>
                     <p:accordionPanel class="painel" activeIndex="-1" >
                         <p:tab titleStyle="color:#000;font-size:11px;background:#c7d95f;" title="Pesquisar">
-                               <p:outputLabel value="Cliente" for="cliente" class="fontebranca" style="margin-left: 2%"/> 
-                                <p:outputLabel value="Periodo" for="dataIni" class="espacocobranca13" /> 
-                                
+                                <p:outputLabel value="Id da Venda" for="idvenda" class="fontebranca" style="margin-left: 2%"/> 
+                                <p:outputLabel value="Cliente" for="cliente" class="fontebranca" style="margin-left:5%"/> 
+                                <p:outputLabel value="Periodo" for="dataIni" style="margin-left:23.5%" /> 
+                                <p:outputLabel value="Unidade" for="unidade" class="fontebranca" style="margin-left:19%"/> 
+                                <p:outputLabel value="Status" for="status" class="fontebranca" style="margin-left:18%"/> 
                                  <br></br>
-                                 <p:inputText id="cliente" style="width: 32%;margin-left: 2%" maxlength="100" class="fontebranca"  value="#"/>
-                                <p:commandButton icon="ui-icon-search" class="botaopesquisar"/>
-                                <p:calendar id="dataIni" style="margin-left:4%" locale="pt"  pattern="dd/MM/yyyy"  mask="true"  maxlength="15" >
-                                    <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
-                                </p:calendar>
-                                <p:calendar id="dataFinal" class="loginButton2"  locale="pt"  pattern="dd/MM/yyyy"  mask="true" maxlength="15">
-                                    <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
-                                </p:calendar>
-                                
-                                <p:commandButton value="Pesquisar" class="espacocobranca28"  icon=" ui-icon-search " update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#"/>
-                                <p:commandButton value="Limpar" icon="ui-icon-arrowrefresh-1-w"  class="imgadd" update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#"/>
-                            
-                             <br></br> <br></br>
-                             
-                             <h:outputLabel value="Forma de Pagamento"  style="margin-left: 2%" />  
-                             <br></br>
-                                <p:selectOneMenu id="formapag" value="#" style="width:32%;font-size: 10px;margin-left: 2%" class="fontebranca">
-                                    <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true"/> 
-                                    <f:selectItem itemLabel="Cartão" itemValue="Cartão" />  
-                                    <f:selectItem itemLabel="Débito em Conta" itemValue="debito em conta" /> 
-                                    <f:selectItem itemLabel="Boleto" itemValue="Boleto" />  
-                                    <f:selectItem itemLabel="Dinheiro" itemValue="Dinheiro" />
-                                    <f:selectItem itemLabel="Cheque" itemValue="Cheque" />  
-                                    <f:selectItem itemLabel="Depósito" itemValue="Depósito" /> 
-                                </p:selectOneMenu>
-                              
-                            <br></br>
+                                 <h:panelGrid columns="6">
+                                    <p:inputText id="idvenda" style="width:43%;margin-left:11%" maxlength="100" class="fontebranca"  value="#"/>
+                                    <p:selectOneMenu  id="cliente"  value="#" style="width:200px;margin-left:-13%">
+                                        <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true"  />
+                                    </p:selectOneMenu>
+                                    <p:calendar id="dataIni" size="12" style="margin-left:5%" locale="pt"  pattern="dd/MM/yyyy"  mask="true"  maxlength="15" >
+                                        <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                                    </p:calendar>
+                                    <p:calendar id="dataFinal" size="12" style="margin-left:10%"  locale="pt"  pattern="dd/MM/yyyy"  mask="true" maxlength="15">
+                                        <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                                    </p:calendar>
+                                    <p:selectOneMenu  id="unidade"  value="#"  style="width:180px;margin-left: 15%">
+                                        <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true"  />
+                                    </p:selectOneMenu>
+                                    <p:selectOneMenu  id="status"  value="#" style="width:95px;margin-left: 13%">
+                                        <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true"  />
+                                        <f:selectItem itemLabel="Vencida" itemValue="Vencida"/> 
+                                        <f:selectItem itemLabel="Vencer" itemValue="Vencer"/> 
+                                        <f:selectItem itemLabel="Recebidas" itemValue="Recebidas"/>  
+                                    </p:selectOneMenu>
+</h:panelGrid><br></br>
+                                    <p:commandButton value="Pesquisar" style="margin-left:77.8%" icon=" ui-icon-search " update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#"/>
+                                    <p:commandButton value="Limpar" icon="ui-icon-arrowrefresh-1-w"  class="imgadd" update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#"/>
+                                 
+                                    <br></br> 
                         </p:tab>
                     </p:accordionPanel>
-                    <br></br>
-                    <legend id="iUsu2" ><b>Consulta de Contas a Receber </b></legend><br></br>
+                    <legend id="iUsu2" ><b>Consulta de Contas a Receber </b></legend>
                     <p:commandButton id="bntreceber" class="espacocobranca22botao" style="font-size:12px;" value="Receber" action="#{contasReceberMB.recebimento()}" />
                     <p:commandButton id="bntgerarboleto" class="espacocobranca21botao" style="font-size:12px;" value="Boletos"  action="#{contasReceberMB.dialogBoletos()}" ajax="false"/>
                     <p:commandButton id="bntcarregarboleto" class="espacocobranca21botao" style="font-size:12px;" value="Retorno"  update=":dialogUpload:dialog_uploadboleto"  oncomplete="PF('uploadboleto').show()"/>
@@ -59,11 +57,11 @@
                         <p:menuitem value="Cobrança"  icon=" ui-icon-tag" action="#{contasReceberMB.iniciarCobranca()}"  />
                     </p:contextMenu><br></br><br></br>
                     <p:dataTable id="tabelacontasRecebe" var="contasrecebe"  value="#{contasReceberMB.listaContas}" class="tabela" editable="true"
-                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
-                                 paginator="true" rows="10" style="margin-bottom:20px" selection="#{contasReceberMB.conta}" selectionMode="single" rowKey="#{contasrecebe.idcontasreceber}" >
+                                 paginatorTemplate="{Exporters}"
+                                 paginator="true" scrollable="true" scrollHeight="430" style="margin-bottom:20px" selection="#{contasReceberMB.conta}" selectionMode="single" rowKey="#{contasrecebe.idcontasreceber}" >
                         
                         <f:facet name="{Exporters}">
-                            <p:commandLink title="Adicionar Conta" action="#{contasReceberMB.adicionarContasReceber()}" style="margin-left: 50%">
+                            <p:commandLink title="Adicionar Conta" action="#{contasReceberMB.adicionarContasReceber()}" style="margin-left:80%">
                                 <p:ajax event="dialogReturn" listener="#{contasReceberMB.retornoDialogoNovo}" process="@this" update="tabelacontasRecebe"/>
                         <p:outputLabel value="Adicionar Conta"/>
                         <img src="../../resources/img/adicionar.png" width="20" />
@@ -101,6 +99,16 @@
                                 <img src="#{contasReceberMB.retornarBoletoGerado(contasrecebe)}" />
                             </h:commandLink>
                         </p:column>
+                        <p:column headerText="Data de Recebimento" style="width:110px;" styleClass="alinharCenter">
+                            <h:outputText value="#{contasrecebe.datapagamento}">
+                                <f:convertDateTime   pattern="dd/MM/yyyy"  timeZone="America/Sao_Paulo"/>
+                            </h:outputText>
+                        </p:column>
+                        <p:column headerText="Status" style="width:63px;text-align: center;" styleClass="alinharCenter">
+                            <h:commandLink title="#{contasReceberMB.retornarTitleStatusConta(contasrecebe)}">
+                                <img src="#{contasReceberMB.retornarStatusConta(contasrecebe)}" />
+                            </h:commandLink>
+                        </p:column>
                         <p:column style="width:32px;text-align: center">
                             <p:selectBooleanCheckbox value="#{contasrecebe.selecionado}"/>
                         </p:column>
@@ -125,9 +133,7 @@
                         <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                     </p:inputText>
 
-                    <br></br> <br></br>
-                 
-                    <br></br>
+                    <br></br> 
                 </p:dialog>
             </h:form>
             <h:form id="dialogUpload">

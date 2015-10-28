@@ -28,8 +28,6 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "vendascomissao")
-@NamedQueries({
-    @NamedQuery(name = "Vendascomissao.findAll", query = "SELECT v FROM Vendascomissao v")})
 public class Vendascomissao implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -81,7 +79,7 @@ public class Vendascomissao implements Serializable {
     @JoinColumn(name = "vendas_idvendas", referencedColumnName = "idvendas")
     @ManyToOne(optional = false)
     private Vendas vendas;
-    @JoinColumn(name = "tecerios_idterceiros", referencedColumnName = "idterceiros")
+    @JoinColumn(name = "terceiros_idterceiros", referencedColumnName = "idterceiros")
     @ManyToOne(optional = false)
     private Terceiros terceiros;
 

@@ -11,6 +11,7 @@ import br.com.travelmate.model.Terceiros;
 import br.com.travelmate.model.Usuario;
 import br.com.travelmate.model.Vendas;
 import br.com.travelmate.model.Vendascomissao;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -25,7 +26,7 @@ import javax.servlet.http.HttpSession;
  */
 @Named
 @ViewScoped
-public class VendasFinanceiroComissaoMB {
+public class VendasFinanceiroComissaoMB implements Serializable{
     
     private Vendas venda;
     private String titulo;
