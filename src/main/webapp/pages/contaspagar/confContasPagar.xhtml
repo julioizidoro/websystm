@@ -14,11 +14,13 @@
 
             <title>Adicionar Conta a Pagar</title>
                  
-           <p:outputLabel value="Data Emissão" for="dataEmi" style="margin-left:47%;"> </p:outputLabel>   
-            <br></br>
-             <p:calendar id="dataEmi" value="#{cadContasPagarMB.conta.dataEmissao}" pattern="dd/MM/yyyy" mask="true" size="19" maxlength="14" style=" margin-left:34.3%;" >
+           <p:outputLabel value="Data Emissão" for="dataEmi" > </p:outputLabel> 
+           <p:outputLabel value="Competência" for="competencia" style="margin-left:55.5%"> </p:outputLabel> 
+           <br></br>
+           <p:inputText id="dataEmi" value="#{cadContasPagarMB.conta.dataEmissao}" readonly="true" style="width:19%;margin-left:0%" maxlength="14" >
                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
-            </p:calendar>   
+            </p:inputText>   
+           <p:inputMask id="competencia" value="#{cadContasPagarMB.conta.competencia}" mask="99/9999" style="margin-left:50%;width: 19.5%"/>
             <br/><br/>
 
             <p:outputLabel value="Unidade de negócio" for="unidadeNegocio" /> 
@@ -31,48 +33,41 @@
                       <br></br><br></br>          
             <p:outputLabel value="Plano de Contas" for="planoConta" /> 
             <br></br>
-            <p:selectOneMenu id="planoConta"  style="width:88.5%"  value="#{cadContasPagarMB.conta.planoconta}" converter="PlanoContaConverter">
+            <p:selectOneMenu id="planoConta"  style="width:83%"  value="#{cadContasPagarMB.conta.planoconta}" converter="PlanoContaConverter">
                 <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
                 <f:selectItems value="#{cadContasPagarMB.listaPlanoConta}" var="planoConta" itemLabel="#{planoConta.descricao}" itemValue="#{planoConta}"/>
                 <f:attribute name="listaPlanoConta" value="#{cadContasPagarMB.listaPlanoConta}"/>
             </p:selectOneMenu>  
+            <p:commandLink action="#{cadContasPagarMB.adicionarPlanoConta()}" title="Adicionar Plano de Contas" style="text-decoration: none">
+                <img src="../../resources/img/adicionar.png" width="25" height="25" style="margin-top: -4%;"/>
+            </p:commandLink>
              <br></br><br></br>    
-            <p:outputLabel value="Histórico" > </p:outputLabel>
+            <p:outputLabel value="Descrição" > </p:outputLabel>
             <br></br>
             <p:inputTextarea id="historico" rows="3" cols="85" value="#{cadContasPagarMB.conta.descricao}"/>
             <br></br> <br></br>
-                <h:panelGrid columns="5" cellpadding="1">
-                    <p:fieldset style="position: relative" >
-                        <legend style="font-size: 15px;">Provisão</legend>
-                            <p:outputLabel value="Data Vencimento" for="dataVenc" />
+                    <p:fieldset style="width:88%" >
+                        
+                        <p:outputLabel value="Data Vencimento" for="dataVenc" style="margin-left: 2.5%"/>
                             <p:calendar id="dataVenc" value="#{cadContasPagarMB.conta.datavencimento}"  pattern="dd/MM/yyyy" mask="true" size="11" maxlength="14" style="margin-left: 10px;" >
                                  <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </p:calendar>
-                        <br/><br/>
-                        <p:outputLabel value="Valor" >
-                            <p:inputText id="valor" size="26" style="margin-left: 10px; width: 75%; text-align: right"  value="#{cadContasPagarMB.conta.valorconta}">
+                            <p:outputLabel value="Valor" style="margin-left: 15%">
+                            <p:inputText id="valor" style="margin-left:3%; width:75%; text-align: right"  value="#{cadContasPagarMB.conta.valorconta}">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>    
                         </p:outputLabel>
-                    </p:fieldset>
-                </h:panelGrid>
-
-                <h:panelGrid>
-                    <p:fieldset style="position: relative; margin-left: 50%;margin-top: -29.5%;width: 52%;">
-                        <legend style="font-size: 15px;">Realização</legend>
-                       
-                            <p:outputLabel value="Data do Pagamento" for="dataPag" />
+                            <br></br> <br></br>
+                            <p:outputLabel value="Data Compensação" for="dataPag" />
                             <p:calendar id="dataPag" value="#{cadContasPagarMB.conta.datacompensacao}"  pattern="dd/MM/yyyy" mask="true" size="11" maxlength="14" style="margin-left: 10px;">
                                  <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo" />
                             </p:calendar>   
-                            <br/><br/>
-                            <p:outputLabel value="Conta" for="banco" /> 
-                             <p:selectOneMenu id="banco"  style="width:75.5%; margin-left: 6%;"  value="#{cadContasPagarMB.conta.banco}" converter="BancoConverter">
+                            <p:outputLabel value="Conta" for="banco" style="margin-left: 6%;"/> 
+                             <p:selectOneMenu id="banco"  style="width:35%; margin-left:2%;"  value="#{cadContasPagarMB.conta.banco}" converter="BancoConverter">
                                    <f:selectItems value="#{cadContasPagarMB.listaBanco}" var="conta" itemLabel="#{conta.nome}" itemValue="#{conta}"/>
                                    <f:attribute name="listaBanco" value="#{cadContasPagarMB.listaBanco}"/>
                                 </p:selectOneMenu> 
                     </p:fieldset>
-                </h:panelGrid>
                             
                 <p class="botaoeditareceber" style="width: 87.5%;"><br></br>
                     <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Confirmar" action="#{cadContasPagarMB.salvar()}"></p:commandButton>

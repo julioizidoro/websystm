@@ -28,6 +28,10 @@ public class MenuMB implements Serializable{
         return "consultacontaspagar";
     }
     
+    public String planoConta(){
+        return "consplanoconta";
+    }
+    
     public String vendas(){
         return "vendas";
     }

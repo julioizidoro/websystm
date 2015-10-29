@@ -17,6 +17,22 @@
         <navigation-rule>
 		<from-view-id>*</from-view-id>
 		<navigation-case>
+			<from-outcome>planoconta</from-outcome>
+			<to-view-id>/pages/planoconta/cadPlanoConta.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+        <navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>consplanoconta</from-outcome>
+			<to-view-id>/pages/planoconta/consPlanoConta.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+        <navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
 			<from-outcome>consultacontasreceber</from-outcome>
 			<to-view-id>/pages/contasreceber/consContasReceber.xhtml</to-view-id>
 			<redirect />
