@@ -77,6 +77,25 @@
                                             <li class="comissao"> <h:commandLink action="#{menuMB.vendas()}" value="Vendas"></h:commandLink></li>
                                         </ul>
                                     </li>
+                                    <li><a>Relatorios</a>
+                                        <ul class="submenu-1"> 
+                                            <li class="comissao"><a>Contas a Pagar</a>
+                                                <ul class="submenu-2">
+                                                    <li class="comissao"><h:commandLink action="#{menuMB.conciliacaoBancaria()}" value="Conciliação Bancaria"></h:commandLink></li> 
+                                                    <li class="comissao"><h:commandLink action="#{menuMB.pagamentos()}" value="Pagamentos"></h:commandLink></li> 
+                                                </ul>
+                                            </li>
+                                            <li class="comissao"> <h:commandLink action="#{menuMB.relatoriosContasReceber()}" value="Contas a Receber"></h:commandLink></li>
+                                            <li class="comissao"><a>Vendas</a>
+                                                <ul class="submenu-2">
+                                                    <li class="comissao"><h:commandLink action="#{menuMB.relatorioVendas()}" value="Vendas"></h:commandLink></li> 
+                                                    <li class="comissao"><h:commandLink action="#{menuMB.comissaoconsultor()}" value="Comissão de Consultor"></h:commandLink></li> 
+                                                    <li class="comissao"><h:commandLink action="#{menuMB.comissaogerente()}" value="Comissão de Gerente"></h:commandLink></li> 
+                                                    <li class="comissao"><h:commandLink action="#{menuMB.comissaoterceiros()}" value="Comissão de Terceiros"></h:commandLink></li> 
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
                                      <li><a>Emissão</a>
                                         <ul class="submenu-1"> 
                                             <li class="comissao"><h:commandLink action="#{menuMB.curso()}" value="Curso"></h:commandLink></li>

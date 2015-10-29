@@ -60,6 +60,7 @@
     <class>br.com.travelmate.model.Eventocontaspagar</class>
     <class>br.com.travelmate.model.Orcamentoprodutosorcamento</class>
     <class>br.com.travelmate.model.Terceiros</class>
+    <class>br.com.travelmate.model.Conciliacao</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
     <validation-mode>NONE</validation-mode>

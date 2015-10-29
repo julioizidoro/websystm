@@ -49,11 +49,10 @@
                             <p:contextMenu for="tabelacontaPagar">
                                 <p:menuitem value="Alterar"  icon=" ui-icon-pencil"  action="#{contasPagarMB.editar()}" />
                                 <p:menuitem value="Excluir"  icon=" ui-icon-trash " update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}"  action="#{contasPagarMB.excluir()}"/>
-                                
-                            </p:contextMenu>
+                             </p:contextMenu>
                             <p:dataTable id="tabelacontaPagar" var="contasPagar"  value="#{contasPagarMB.listaContasPagar}" class="tabela" paginator="true"
-                                         paginatorTemplate="{Exporters}" scrollable="true" scrollHeight="430" rowStyleClass="#{empty rowIx or rowIx mod 2 ne 0 ? 'even-row' : 'odd-row'}"
-                                         style="margin-bottom:20px;background: #fff" selection="#{contasPagarMB.conta}" selectionMode="single" rowKey="#{contasPagar.idcontaspagar}" >
+                                         paginatorTemplate="{Exporters}" scrollable="true" scrollHeight="450" rowStyleClass="#{empty rowIx or rowIx mod 2 ne 0 ? 'even-row' : 'odd-row'}"
+                                         style="margin-bottom:20px;" selection="#{contasPagarMB.conta}" selectionMode="single" rowKey="#{contasPagar.idcontaspagar}" >
                                 <f:facet name="{Exporters}">
                                     <p:commandLink title="Adicionar conta" action="#{contasPagarMB.cadastrarContaPagar()}" style="margin-left:78%;">
                                         <p:outputLabel value="Adicionar Conta"/>
@@ -70,21 +69,27 @@
                                 <p:column headerText="Descrição"  >
                                     <h:outputText value="#{contasPagar.descricao}" style="text-align:left;" />
                                 </p:column>
-                                <p:column headerText="Valor Conta" style="width:85px;text-align: right;" styleClass="alinharCenter">
-                                    <h:outputText value="#{contasPagar.valorconta}">
+                                <p:column headerText="Valor Entrada" style="width:90px;text-align: right;" styleClass="alinharCenter">
+                                    <h:outputText value="#{contasPagar.valorentrada}">
                                         <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                     </h:outputText>                                    
                                 </p:column>
-                                
+                                <p:column headerText="Valor Saída" style="width:85px;text-align: right;" styleClass="alinharCenter">
+                                    <h:outputText value="#{contasPagar.valorsaida}">
+                                        <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                                    </h:outputText>                                    
+                                </p:column>
+                                <p:outputLabel value="Valor Entrada" style="margin-left: 15%">
+                                <p:inputText id="valor" style="margin-left:3%; width:30%; text-align: right"  value="#{cadContasPagarMB.conta.valorentrada}">
+                                    <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                                </p:inputText>   
+                            </p:outputLabel>
                                 <p:column headerText="Data Pagamento" style="width:115px;text-align:center;">
                                     <h:outputText  value="#{contasPagar.datacompensacao}">
                                          <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                                     </h:outputText>
                                 </p:column>
                         </p:dataTable>
-                        <br></br>
-                        <br></br>
-                        <br></br>
                 </div>
             </h:form>     
            

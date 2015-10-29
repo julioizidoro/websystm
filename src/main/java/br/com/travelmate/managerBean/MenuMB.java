@@ -7,8 +7,11 @@ package br.com.travelmate.managerBean;
 
 import br.com.travelmate.bean.DadosBoletoBean;
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
+import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -93,4 +96,53 @@ public class MenuMB implements Serializable{
     public String orcamentoCurso(){
         return "filtrarorcamento";
     }
+    
+    public String conciliacaoBancaria(){
+        Map<String,Object> options = new HashMap<String, Object>();
+        options.put("contentWidth",490);
+        RequestContext.getCurrentInstance().openDialog("conciliacaobancaria", options, null);
+        return "";
+    }
+    
+    public String pagamentos(){
+        Map<String,Object> options = new HashMap<String, Object>();
+        options.put("contentWidth",450);
+        RequestContext.getCurrentInstance().openDialog("pagamentos", options, null);
+        return "";
+    }
+    
+    public String relatorioVendas(){
+        Map<String,Object> options = new HashMap<String, Object>();
+        options.put("contentWidth",450);
+        RequestContext.getCurrentInstance().openDialog("filtrarvendas", options, null);
+        return "";
+    }
+    
+    public String comissaoconsultor(){
+        Map<String,Object> options = new HashMap<String, Object>();
+        options.put("contentWidth",450);
+        RequestContext.getCurrentInstance().openDialog("comissaoconsultor", options, null);
+        return "";
+    }
+    
+    public String comissaogerente(){
+        Map<String,Object> options = new HashMap<String, Object>();
+        options.put("contentWidth",450);
+        RequestContext.getCurrentInstance().openDialog("comissaogerente", options, null);
+        return "";
+    }
+    
+    public String relatoriosContasReceber(){
+        Map<String,Object> options = new HashMap<String, Object>();
+        options.put("contentWidth",450);
+        RequestContext.getCurrentInstance().openDialog("filtrarcontasreceber", options, null);
+        return "";
+    }
+     public String comissaoterceiros(){
+        Map<String,Object> options = new HashMap<String, Object>();
+        options.put("contentWidth",490);
+        RequestContext.getCurrentInstance().openDialog("comissaoterceiros", options, null);
+        return "";
+    }
+    
 }

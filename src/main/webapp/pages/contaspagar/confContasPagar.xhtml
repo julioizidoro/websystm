@@ -47,26 +47,32 @@
             <p:inputTextarea id="historico" rows="3" cols="85" value="#{cadContasPagarMB.conta.descricao}"/>
             <br></br> <br></br>
                     <p:fieldset style="width:88%" >
-                        
                         <p:outputLabel value="Data Vencimento" for="dataVenc" style="margin-left: 2.5%"/>
-                            <p:calendar id="dataVenc" value="#{cadContasPagarMB.conta.datavencimento}"  pattern="dd/MM/yyyy" mask="true" size="11" maxlength="14" style="margin-left: 10px;" >
+                        <p:outputLabel value="Valor Entrada" style="margin-left:15%"/>
+                        <p:outputLabel value="Valor Saída" style="margin-left:15%"/>
+                            <br></br>
+                            <p:calendar id="dataVenc" value="#{cadContasPagarMB.conta.datavencimento}"  pattern="dd/MM/yyyy" mask="true" size="14" maxlength="14" style="margin-left: 10px;" >
                                  <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </p:calendar>
-                            <p:outputLabel value="Valor" style="margin-left: 15%">
-                            <p:inputText id="valor" style="margin-left:3%; width:75%; text-align: right"  value="#{cadContasPagarMB.conta.valorconta}">
+                            <p:inputText id="valorentrada" style="margin-left:13%; width:22%; text-align: right"  value="#{cadContasPagarMB.conta.valorentrada}">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
-                            </p:inputText>    
-                        </p:outputLabel>
+                            </p:inputText>
+                            <p:inputText id="valorsaida" style="margin-left:9.5%; width:25%; text-align: right"  value="#{cadContasPagarMB.conta.valorsaida}">
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                            </p:inputText>   
                             <br></br> <br></br>
-                            <p:outputLabel value="Data Compensação" for="dataPag" />
-                            <p:calendar id="dataPag" value="#{cadContasPagarMB.conta.datacompensacao}"  pattern="dd/MM/yyyy" mask="true" size="11" maxlength="14" style="margin-left: 10px;">
-                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo" />
-                            </p:calendar>   
-                            <p:outputLabel value="Conta" for="banco" style="margin-left: 6%;"/> 
-                             <p:selectOneMenu id="banco"  style="width:35%; margin-left:2%;"  value="#{cadContasPagarMB.conta.banco}" converter="BancoConverter">
-                                   <f:selectItems value="#{cadContasPagarMB.listaBanco}" var="conta" itemLabel="#{conta.nome}" itemValue="#{conta}"/>
-                                   <f:attribute name="listaBanco" value="#{cadContasPagarMB.listaBanco}"/>
-                                </p:selectOneMenu> 
+                            <p:outputLabel value="Data Compensação" for="dataPag" style="margin-left:  2.5%"/>
+                            <p:outputLabel value="Conta" for="banco" style="margin-left:14%;"/> 
+                            <br></br>
+                            <h:panelGrid columns="2">
+                                <p:calendar id="dataPag" value="#{cadContasPagarMB.conta.datacompensacao}"  pattern="dd/MM/yyyy" mask="true" size="15" maxlength="14" style="margin-left: 10px;">
+                                     <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo" />
+                                </p:calendar>   
+                                 <p:selectOneMenu id="banco"  style="width:237px; margin-left:19.5%;"  value="#{cadContasPagarMB.conta.banco}" converter="BancoConverter">
+                                       <f:selectItems value="#{cadContasPagarMB.listaBanco}" var="conta" itemLabel="#{conta.nome}" itemValue="#{conta}"/>
+                                       <f:attribute name="listaBanco" value="#{cadContasPagarMB.listaBanco}"/>
+                                    </p:selectOneMenu> 
+                            </h:panelGrid>
                     </p:fieldset>
                             
                 <p class="botaoeditareceber" style="width: 87.5%;"><br></br>

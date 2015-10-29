@@ -28,8 +28,8 @@
                                 <p:menuitem value="Excluir"  icon=" ui-icon-trash " update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}"  action="#{contasPagarMB.excluir()}"/>
                             </p:contextMenu>
                         <p:dataTable id="tabelaplanoconta" var="planoconta"  value="#" class="tabela" paginator="true"
-                                         paginatorTemplate="{Exporters}" scrollable="true" scrollHeight="430" rowStyleClass="#{empty rowIx or rowIx mod 2 ne 0 ? 'even-row' : 'odd-row'}"
-                                          rowIndexVar="rowIx">
+                                         paginatorTemplate="{Exporters}" scrollable="true" scrollHeight="450" rowStyleClass="#{empty rowIx or rowIx mod 2 ne 0 ? 'even-row' : 'odd-row'}"
+                                          rowIndexVar="rowIx" style="margin-bottom:20px;">
                                 <f:facet name="{Exporters}">
                                     <p:commandLink title="Adicionar conta" action="#{planoContasMB.novo()}" style="margin-left:75%;">
                                         <p:outputLabel value="Adicionar Plano de Contas"/>
@@ -47,9 +47,6 @@
                                     <h:outputText value="#" style="text-align:left;" />
                                 </p:column>
                         </p:dataTable>
-                        <br></br>
-                        <br></br>
-                        <br></br>
                 </div>
             </h:form>     
            
