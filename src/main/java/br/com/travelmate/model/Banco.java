@@ -14,8 +14,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
@@ -26,9 +24,9 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "banco")
-@NamedQueries({
-    @NamedQuery(name = "Banco.findAll", query = "SELECT b FROM Banco b")})
 public class Banco implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "banco")
+    private List<Conciliacao> conciliacaoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "banco")
     private List<Contaspagar> contaspagarList;
     private static final long serialVersionUID = 1L;
@@ -246,6 +244,14 @@ public class Banco implements Serializable {
 
     public void setContaspagarList(List<Contaspagar> contaspagarList) {
         this.contaspagarList = contaspagarList;
+    }
+
+    public List<Conciliacao> getConciliacaoList() {
+        return conciliacaoList;
+    }
+
+    public void setConciliacaoList(List<Conciliacao> conciliacaoList) {
+        this.conciliacaoList = conciliacaoList;
     }
     
 }

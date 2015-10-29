@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Mapa de Vendas Gerencial" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="320dd56b-4281-455e-becf-bdbfae77892b">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Conciliação Bancária" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="320dd56b-4281-455e-becf-bdbfae77892b">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -11,43 +11,46 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<parameter name="dataFinal" class="java.util.Date"/>
-	<parameter name="logo" class="java.awt.Image"/>
-	<parameter name="sql" class="java.lang.String">
-		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
-	</parameter>
-	<parameter name="idCliente" class="java.lang.Integer"/>
+	<parameter name="idUnidade" class="java.lang.Integer"/>
 	<parameter name="idBanco" class="java.lang.Integer"/>
 	<queryString>
-		<![CDATA[
-]]>
+		<![CDATA[SELECT distinct conciliacao.data, planoconta.descricao as planocontas, conciliacao.descricao,
+conciliacao.valorentrada, conciliacao.valorsaida, banco.nome,
+unidadenegocio.nomefantasia
+From
+	conciliacao join unidadenegocio on conciliacao.unidadeNegocio_idunidadeNegocio = unidadenegocio.idunidadeNegocio
+    join banco on conciliacao.banco_idbanco = banco.idbanco
+    join planoconta on conciliacao.planoconta_idplanoconta = planoconta.idplanoconta
+where
+	conciliacao.data >=$P{dataInicial} and conciliacao.data<=$P{dataFinal} and
+    conciliacao.unidadeNegocio_idunidadeNegocio=$P{idUnidade} and
+    conciliacao.banco_idbanco=$P{idBanco}
+order by conciliacao.data]]>
 	</queryString>
-	<field name="dataCompensacao" class="java.sql.Date">
+	<field name="data" class="java.sql.Date">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="planocontas" class="java.lang.String"/>
 	<field name="descricao" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="valorEntrada" class="java.lang.Float">
+	<field name="valorentrada" class="java.lang.Float">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="valorSaida" class="java.lang.Float">
+	<field name="valorsaida" class="java.lang.Float">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="nome" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="nomeFantasia" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="planoContas" class="java.lang.String"/>
-	<field name="idmovimentobanco" class="java.lang.Integer">
+	<field name="nomefantasia" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<variable name="totalEntrada" class="java.lang.Float" calculation="Sum">
-		<variableExpression><![CDATA[$F{valorEntrada}]]></variableExpression>
+		<variableExpression><![CDATA[$F{valorentrada}]]></variableExpression>
 	</variable>
 	<variable name="totalSaida" class="java.lang.Float" calculation="Sum">
-		<variableExpression><![CDATA[$F{valorSaida}]]></variableExpression>
+		<variableExpression><![CDATA[$F{valorsaida}]]></variableExpression>
 	</variable>
 	<background>
 		<band splitType="Stretch"/>
@@ -84,7 +87,7 @@
 			</textField>
 			<image>
 				<reportElement x="10" y="10" width="255" height="94" uuid="4e2916c0-3c7e-4cbb-b349-67c7cfc09527"/>
-				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+				<imageExpression><![CDATA["logo.jpg"]]></imageExpression>
 			</image>
 			<textField>
 				<reportElement x="14" y="147" width="71" height="20" uuid="301daa18-f9e0-4bc1-9318-13fab4a0b9ac"/>
@@ -98,7 +101,7 @@
 				<textElement>
 					<font size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{nomeFantasia}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nomefantasia}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="347" y="147" width="51" height="20" uuid="574b1da3-07cd-406f-b687-d6b8aa664f4d"/>
@@ -154,40 +157,40 @@
 			<rectangle>
 				<reportElement x="0" y="0" width="555" height="20" uuid="ee86d585-c7cb-4176-b6d0-71932d13f089"/>
 			</rectangle>
-			<textField pattern="dd/MM/yyyy">
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
 				<reportElement style="Detail" x="6" y="2" width="67" height="15" uuid="4167ced3-989a-461d-94be-9bb6e2543f83"/>
 				<textElement textAlignment="Left">
 					<font size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{dataCompensacao}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{data}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement style="Detail" x="76" y="2" width="133" height="15" uuid="e0df543e-f9a3-4983-8b5f-111cc992c08b"/>
 				<textElement textAlignment="Left">
 					<font size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{planoContas}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{planocontas}]]></textFieldExpression>
 			</textField>
-			<textField pattern="#,##0.00">
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
 				<reportElement style="Detail" x="398" y="2" width="80" height="15" uuid="4c0b5781-b7bb-4213-a971-00ea0f01211d"/>
 				<textElement textAlignment="Right">
 					<font size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{valorEntrada}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{valorentrada}]]></textFieldExpression>
 			</textField>
-			<textField pattern="">
+			<textField pattern="" isBlankWhenNull="true">
 				<reportElement style="Detail" x="217" y="2" width="179" height="15" uuid="292c73a8-45fe-48d9-b46b-e85bf4b09d50"/>
 				<textElement textAlignment="Left">
 					<font size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
 			</textField>
-			<textField pattern="#,##0.00">
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
 				<reportElement style="Detail" x="483" y="2" width="68" height="15" uuid="d4edab43-c0ec-430f-8014-e493b1ff6bcc"/>
 				<textElement textAlignment="Right">
 					<font size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{valorSaida}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{valorsaida}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -196,7 +199,7 @@
 			<rectangle>
 				<reportElement x="0" y="0" width="555" height="25" uuid="b8c193a8-2523-40fa-9449-47c25c8af7a9"/>
 			</rectangle>
-			<textField pattern="#,##0.00">
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
 				<reportElement style="Detail" x="412" y="6" width="131" height="15" uuid="4c0b5781-b7bb-4213-a971-00ea0f01211d"/>
 				<textElement textAlignment="Right">
 					<font size="10"/>

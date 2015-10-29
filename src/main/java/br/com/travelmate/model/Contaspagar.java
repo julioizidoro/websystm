@@ -15,8 +15,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -45,8 +43,10 @@ public class Contaspagar implements Serializable {
     @Column(name = "descricao")
     private String descricao;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "valorconta")
-    private Float valorconta;
+    @Column(name = "valorsaida")
+    private Float valorsaida;
+    @Column(name = "valorentrada")
+    private Float valorentrada;
     @Size(max = 7)
     @Column(name = "competencia")
     private String competencia;
@@ -62,6 +62,8 @@ public class Contaspagar implements Serializable {
     @JoinColumn(name = "banco_idbanco", referencedColumnName = "idbanco")
     @ManyToOne(optional = false)
     private Banco banco;
+    @Column(name = "idconciliacao")
+    private int idconciliacao;
 
     public Contaspagar() {
     }
@@ -103,12 +105,29 @@ public class Contaspagar implements Serializable {
         this.descricao = descricao;
     }
 
-    public Float getValorconta() {
-        return valorconta;
+    public Float getValorsaida() {
+        return valorsaida;
     }
 
-    public void setValorconta(Float valorconta) {
-        this.valorconta = valorconta;
+    public void setValorsaida(Float valorsaida) {
+        this.valorsaida = valorsaida;
+    }
+
+    public Float getValorentrada() {
+        return valorentrada;
+    }
+
+    public void setValorentrada(Float valorentrada) {
+        this.valorentrada = valorentrada;
+    }
+
+
+    public int getIdconciliacao() {
+        return idconciliacao;
+    }
+
+    public void setIdconciliacao(int idconciliacao) {
+        this.idconciliacao = idconciliacao;
     }
 
     public String getCompetencia() {

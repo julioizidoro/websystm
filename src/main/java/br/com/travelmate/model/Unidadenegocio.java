@@ -17,8 +17,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -31,9 +29,9 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "unidadenegocio")
-@NamedQueries({
-    @NamedQuery(name = "Unidadenegocio.findAll", query = "SELECT u FROM Unidadenegocio u")})
 public class Unidadenegocio implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "unidadenegocio")
+    private List<Conciliacao> conciliacaoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "unidadenegocio")
     private List<Contaspagar> contaspagarList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "unidadenegocio")
@@ -338,6 +336,14 @@ public class Unidadenegocio implements Serializable {
 
     public void setContaspagarList(List<Contaspagar> contaspagarList) {
         this.contaspagarList = contaspagarList;
+    }
+
+    public List<Conciliacao> getConciliacaoList() {
+        return conciliacaoList;
+    }
+
+    public void setConciliacaoList(List<Conciliacao> conciliacaoList) {
+        this.conciliacaoList = conciliacaoList;
     }
     
 }

@@ -79,6 +79,8 @@ public class Contasreceber implements Serializable {
     private Boolean dataalterada;
     @Column(name = "boletocancelado")
     private Boolean boletocancelado;
+    @Column(name = "idconciliacao")
+    private int idconciliacao;
     @JoinColumn(name = "banco_idbanco", referencedColumnName = "idbanco")
     @ManyToOne(optional = false)
     private Banco banco;
@@ -265,6 +267,14 @@ public class Contasreceber implements Serializable {
 
     public void setSelecionado(boolean selecionado) {
         this.selecionado = selecionado;
+    }
+
+    public int getIdconciliacao() {
+        return idconciliacao;
+    }
+
+    public void setIdconciliacao(int idconciliacao) {
+        this.idconciliacao = idconciliacao;
     }
 
     @Override
