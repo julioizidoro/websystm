@@ -100,7 +100,6 @@ public class RelaorioPagamentos implements Serializable{
                  + " contaspagar.valorentrada, contaspagar.valorsaida, contaspagar.competencia"
                 + " From "
             	+ " contaspagar join unidadenegocio on contaspagar.unidadeNegocio_idunidadeNegocio = unidadenegocio.idunidadeNegocio"
-                +" join banco on contaspagar.banco_idbanco = banco.idbanco"
                 + " join planoconta on contaspagar.planoconta_idplanoconta = planoconta.idplanoconta"
                 + "where ";
         if ((dataInicio!=null) && (dataTermino!=null)){
@@ -112,7 +111,8 @@ public class RelaorioPagamentos implements Serializable{
         if (unidadenegocio!=null){
             sql = sql + " contaspagar.unidadeNegocio_idunidadeNegocio=" + unidadenegocio.getIdunidadeNegocio();
         }
-        sql = sql + " order by contaspagar.datacompensacao";
+        sql = sql + "Group by contaspagar.planoContas_idplanoContas, contaspagar.dataCompensacao, contaspagar.descricao, contaspagar.valorEntrada, contaspgar.valorSaida, planocontas.descricao, unidade.nomefantasia, contaspagar.compentencia ";
+        sql = sql + " order by contaspagar.dataCompensacao, planoconta.idplanoconta, contaspagar.descricao, contaspagar.valorEntrada, contaspgar.valorSaida, planocontas.descricao, unidade.nomefantasia, contaspagar.compentencia ";
         return sql;
     }
     
@@ -120,19 +120,19 @@ public class RelaorioPagamentos implements Serializable{
     
     public String gerarRelatorio(HttpServletRequest request, HttpServletResponse response) {
         ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
-        String caminhoRelatorio = "/reports/financeiro/conciliacao.jasper";  
+        String caminhoRelatorio = "/reports/financeiro/Pagamentos.jasper";  
         Map parameters = new HashMap();
-        parameters.put("dataInicial", dataInicio);
-        parameters.put("dataFinal", dataTermino);
+        parameters.put("sql", gerarSql());
         parameters.put("unidade", unidadenegocio.getNomeFantasia());
         String periodo= "";
         if ((dataInicio!=null) && (dataTermino!=null)){
                 periodo = "Período : " + Formatacao.ConvercaoDataPadrao(dataInicio) 
                         + "    " + Formatacao.ConvercaoDataPadrao(dataTermino);
             }else periodo = "Competência : " + competencia;
+        parameters.put("periodo", periodo);
         GerarRelatorio gerarRelatorio = new GerarRelatorio();
         try {
-            gerarRelatorio.gerarRelatorioSqlPDF(caminhoRelatorio, parameters, "Conciliação.pdf", null);
+            gerarRelatorio.gerarRelatorioSqlPDF(caminhoRelatorio, parameters, "Pagamentos.pdf", null);
         } catch (JRException ex) {
             Logger.getLogger(RelatorioConciliacaoMB.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
