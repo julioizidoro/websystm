@@ -17,7 +17,9 @@ import br.com.travelmate.model.Vendas;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -164,6 +166,11 @@ public class CadContasPagarMB implements Serializable{
         return null;
     }
    
-   
+   public String adicionarPlanoConta(){
+        Map<String,Object> options = new HashMap<String, Object>();
+        options.put("contentWidth",400);
+        RequestContext.getCurrentInstance().openDialog("planoconta", options, null);
+        return "";
+    }
      
 }

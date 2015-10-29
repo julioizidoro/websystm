@@ -10,25 +10,36 @@
             <h:form>
                 <div id="centro">
                     <p:growl id="growl" showDetail="true" sticky="true"/>
-                        <br></br> <br></br> <br></br>
+                        <br></br>
                         
                        <p:accordionPanel class="painel" activeIndex="-1" >
                            <p:tab titleStyle="color:#000;font-size:11px;background:#c7d95f;" title="Pesquisar">
-                                <h:panelGrid columns="7" cellpadding="3">
-                                    <p:outputLabel value="Unidade" for="unidade" class="fontebranca"/> 
-                                    <p:outputLabel value="Data Vencimento" for="dataIni" class="left2"/> 
-                                    
-
-                                </h:panelGrid>
-
-                                    <p:inputText id="unidade" size="44" maxlength="100" class="fontebranca"   readonly="true"/>
-                                    <p:calendar id="dataIni" style="margin-left:11%"  locale="pt"  pattern="dd/MM/yyyy"  mask="true" size="10" maxlength="15" >
+                               <p:outputLabel value="Unidade" for="unidade" style="margin-left: 4%"/> 
+                                <p:outputLabel value="Periodo" for="Periodo" style="margin-left:33%"/> 
+                                <br></br>
+                                <h:panelGrid columns="5">
+                                     <p:selectOneMenu id="unidade"  style="width:250px; margin-left:12.5%;"  value="#" >
+                                       <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
+                                    </p:selectOneMenu> 
+                                    <p:calendar id="Periodo" style="margin-left:95%" title="Data Inícial" locale="pt"  pattern="dd/MM/yyyy"  mask="true" size="10" maxlength="15" >
                                          <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                                     </p:calendar>
-                                    <p:selectBooleanCheckbox  class="left4" value="#"/>
-                                    <p:commandButton value="Pesquisar" class="botao"  icon=" ui-icon-search " update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#"/>
-                                    <p:commandButton value="Limpar" icon="ui-icon-arrowrefresh-1-w"  class="botao3" update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#"/>
-                     
+                                    <p:calendar id="Periodo2" style="margin-left:105%" title="Data Final" locale="pt"  pattern="dd/MM/yyyy"  mask="true" size="10" maxlength="15" >
+                                         <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                                    </p:calendar>
+                                    <p:commandButton value="Pesquisar" style="margin-left:70%" icon=" ui-icon-search " update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#"/>
+                                     <p:commandButton value="Limpar" icon="ui-icon-arrowrefresh-1-w"  class="botao3" update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#"/>
+                            </h:panelGrid>
+                                <br></br>
+                                <p:outputLabel value="Plano de Contas" for="planocontas" style="margin-left:4%"/> 
+                                <p:outputLabel value="Descrição" for="descricao" style="margin-left:29%"/> 
+                                
+                                <h:panelGrid columns="2">
+                                    <p:selectOneMenu id="planocontas"  style="width:250px; margin-left:12.5%;"  value="#" >
+                                           <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
+                                        </p:selectOneMenu> 
+                                    <p:inputText value="#" id="descricao" style="width:220%;margin-left:37%"/>
+                                </h:panelGrid>
                                 <br></br>
                            </p:tab>
                        </p:accordionPanel>
@@ -40,11 +51,11 @@
                                 <p:menuitem value="Excluir"  icon=" ui-icon-trash " update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}"  action="#{contasPagarMB.excluir()}"/>
                                 
                             </p:contextMenu>
-                            <p:dataTable id="tabelacontaPagar" var="contasPagar"  value="#{contasPagarMB.listaContasPagar}" class="tabela" 
-                                     paginatorTemplate="{Exporters}" scrollable="true" scrollHeight="225" 
-                                     paginator="true" style="margin-bottom:20px" selection="#{contasPagarMB.conta}" selectionMode="single" rowKey="#{contasPagar.idcontaspagar}" >
+                            <p:dataTable id="tabelacontaPagar" var="contasPagar"  value="#{contasPagarMB.listaContasPagar}" class="tabela" paginator="true"
+                                         paginatorTemplate="{Exporters}" scrollable="true" scrollHeight="430" rowStyleClass="#{empty rowIx or rowIx mod 2 ne 0 ? 'even-row' : 'odd-row'}"
+                                         style="margin-bottom:20px;background: #fff" selection="#{contasPagarMB.conta}" selectionMode="single" rowKey="#{contasPagar.idcontaspagar}" >
                                 <f:facet name="{Exporters}">
-                                    <p:commandLink title="Adicionar conta" action="#{contasPagarMB.cadastrarContaPagar()}" style="margin-left:53%;">
+                                    <p:commandLink title="Adicionar conta" action="#{contasPagarMB.cadastrarContaPagar()}" style="margin-left:78%;">
                                         <p:outputLabel value="Adicionar Conta"/>
                                         <img src="../../resources/img/adicionar.png" width="20" class="imagens"/>
                                         <p:ajax event="dialogReturn" listener="#{contasPagarMB.retornoDialogNovo}" process="@this" update="tabelacontaPagar"/>
