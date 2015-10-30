@@ -14,7 +14,7 @@
 	<parameter name="idUnidade" class="java.lang.Integer"/>
 	<parameter name="idBanco" class="java.lang.Integer"/>
 	<queryString>
-		<![CDATA[SELECT distinct conciliacao.data, planoconta.descricao as planocontas, conciliacao.descricao,
+		<![CDATA[SELECT distinct conciliacao.data, planoconta.descricao as planoconta, conciliacao.descricao,
 conciliacao.valorentrada, conciliacao.valorsaida, banco.nome,
 unidadenegocio.nomefantasia
 From
@@ -30,7 +30,7 @@ order by conciliacao.data]]>
 	<field name="data" class="java.sql.Date">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="planocontas" class="java.lang.String"/>
+	<field name="planoconta" class="java.lang.String"/>
 	<field name="descricao" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
@@ -169,7 +169,7 @@ order by conciliacao.data]]>
 				<textElement textAlignment="Left">
 					<font size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{planocontas}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{planoconta}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00" isBlankWhenNull="true">
 				<reportElement style="Detail" x="398" y="2" width="80" height="15" uuid="4c0b5781-b7bb-4213-a971-00ea0f01211d"/>

@@ -1,11 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.travelmate.managerBean.financeiro;
 
+import br.com.travelmate.facade.BancoFacade;
+import br.com.travelmate.facade.ProdutoFacade;
 import br.com.travelmate.facade.UnidadeNegocioFacade;
+import br.com.travelmate.model.Banco;
+import br.com.travelmate.model.Produtos;
 import br.com.travelmate.model.Unidadenegocio;
 import br.com.travelmate.util.Formatacao;
 import br.com.travelmate.util.GerarRelatorio;
@@ -23,29 +22,24 @@ import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import net.sf.jasperreports.engine.JRException;
 import org.primefaces.context.RequestContext;
 
-/**
- *
- * @author Wolverine
- */
 @Named
 @ViewScoped
-public class RelaorioPagamentos implements Serializable{
+public class RelatorioVendasMB implements Serializable{
     
     private List<Unidadenegocio> listaUnidadeNegocio;
+    private Unidadenegocio unidadenegocio;
     private Date dataInicio;
     private Date dataTermino;
-    private Unidadenegocio unidadenegocio;
-    private String competencia;
-    
+    private List<Produtos> listaProdutos;
+    private Produtos produtos;
     
     @PostConstruct()
     public void init(){
         gerarListaUnidadeNegocio();
+        gerarListaProduto();
     }
 
     public List<Unidadenegocio> getListaUnidadeNegocio() {
@@ -54,6 +48,14 @@ public class RelaorioPagamentos implements Serializable{
 
     public void setListaUnidadeNegocio(List<Unidadenegocio> listaUnidadeNegocio) {
         this.listaUnidadeNegocio = listaUnidadeNegocio;
+    }
+
+    public Unidadenegocio getUnidadenegocio() {
+        return unidadenegocio;
+    }
+
+    public void setUnidadenegocio(Unidadenegocio unidadenegocio) {
+        this.unidadenegocio = unidadenegocio;
     }
 
     public Date getDataInicio() {
@@ -72,20 +74,20 @@ public class RelaorioPagamentos implements Serializable{
         this.dataTermino = dataTermino;
     }
 
-    public Unidadenegocio getUnidadenegocio() {
-        return unidadenegocio;
+    public List<Produtos> getListaProdutos() {
+        return listaProdutos;
     }
 
-    public void setUnidadenegocio(Unidadenegocio unidadenegocio) {
-        this.unidadenegocio = unidadenegocio;
+    public void setListaProdutos(List<Produtos> listaProdutos) {
+        this.listaProdutos = listaProdutos;
     }
 
-    public String getCompetencia() {
-        return competencia;
+    public Produtos getProdutos() {
+        return produtos;
     }
 
-    public void setCompetencia(String competencia) {
-        this.competencia = competencia;
+    public void setProdutos(Produtos produtos) {
+        this.produtos = produtos;
     }
     
     public void gerarListaUnidadeNegocio(){
@@ -96,24 +98,33 @@ public class RelaorioPagamentos implements Serializable{
         }
     }
     
+    public void gerarListaProduto(){
+        ProdutoFacade produtosFacade = new ProdutoFacade();
+        listaProdutos = produtosFacade.listarProdutos(" ");
+        if (listaProdutos == null) {
+            listaProdutos = new ArrayList<Produtos>();
+        }
+    }
+    
     public String gerarSql(){
-        String sql = "SELECT distinct contaspagar.datacompensacao, planoconta.descricao as planoconta, contaspagar.descricao,"
-                 + " contaspagar.valorentrada, contaspagar.valorsaida, contaspagar.competencia, planoconta.idplanoconta"
-                + " From "
-            	+ " contaspagar join unidadenegocio on contaspagar.unidadeNegocio_idunidadeNegocio = unidadenegocio.idunidadeNegocio"
-                + " join planoconta on contaspagar.planoconta_idplanoconta = planoconta.idplanoconta"
-                + " where ";
-        if ((dataInicio!=null) && (dataTermino!=null)){
-            sql = sql + " contaspagar.data >='"  + Formatacao.ConvercaoDataSql(dataInicio) + " ' and contaspagar.data<='"
+        String sql = "SELECT distinct vendas.idvendas, vendas.dataVenda, produtos.descricao, unidadenegocio.nomefantasia, vendas.valor, "
+                + "cliente.nome as nomecliente, vendascomissao.comissaotm, vendascomissao.taxatm, vendascomissao.descontotm, usuario.nome as usuarionome, "
+                + " vendascomissao.comissaoemissor, vendascomissao.comissaogerente, vendascomissao.comissaofraquia,"
+                + " vendascomissao.comissaoterceiros, vendascomissao.desagio From "
+            	+ " vendas join produtos on vendas.produtos_idprodutos = produtos.idprodutos"
+                + " join unidadenegocio on vendas.unidadeNegocio_idunidadeNegocio = unidadenegocio.idunidadeNegocio"
+                + " join cliente on vendas.cliente_idcliente = cliente.idcliente"
+                + " join vendascomissao on vendas.idvendas = vendascomissao.vendas_idvendas "
+                + " join usuario on vendas.usuario_idusuario = usuario.idusuario"
+                + " where  vendas.dataVenda >='"  + Formatacao.ConvercaoDataSql(dataInicio) + " ' and vendas.dataVenda<='"
                         + Formatacao.ConvercaoDataSql(dataTermino) + "' ";
-        }else {
-            sql = sql + " contaspagar.competencia='" + competencia + "' ";
-        }
         if (unidadenegocio!=null){
-            sql = sql + " and contaspagar.unidadeNegocio_idunidadeNegocio=" + unidadenegocio.getIdunidadeNegocio();
+            sql = sql + " and vendas.unidadeNegocio_idunidadeNegocio=" + unidadenegocio.getIdunidadeNegocio();
         }
-        sql = sql + "  Group by contaspagar.planoConta_idplanoConta, contaspagar.dataCompensacao, contaspagar.descricao, contaspagar.valorEntrada, contaspagar.valorSaida, planoconta.descricao, unidadenegocio.nomefantasia, contaspagar.competencia ";
-        sql = sql + " order by contaspagar.dataCompensacao, planoconta.idplanoconta, contaspagar.descricao, contaspagar.valorEntrada, contaspagar.valorSaida, planoconta.descricao, unidadenegocio.nomefantasia, contaspagar.competencia ";
+        if (produtos!=null){
+            sql = sql + " and vendas.produtos_idprodutos=" + unidadenegocio.getIdunidadeNegocio();
+        }
+        sql = sql + " order by vendas.dataVenda ";
         return sql;
     }
     
@@ -121,7 +132,7 @@ public class RelaorioPagamentos implements Serializable{
     
     public String gerarRelatorio() {
         ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
-        String caminhoRelatorio = "/reports/financeiro/Pagamentos.jasper";  
+        String caminhoRelatorio = "/reports/financeiro/vendas.jasper";  
         Map parameters = new HashMap();
         parameters.put("sql", gerarSql());
         parameters.put("unidade", unidadenegocio.getNomeFantasia());
@@ -129,11 +140,11 @@ public class RelaorioPagamentos implements Serializable{
         if ((dataInicio!=null) && (dataTermino!=null)){
                 periodo = "Período : " + Formatacao.ConvercaoDataPadrao(dataInicio) 
                         + "    " + Formatacao.ConvercaoDataPadrao(dataTermino);
-            }else periodo = "Competência : " + competencia;
+            }else periodo = "Produto : " + produtos;
         parameters.put("periodo", periodo);
         GerarRelatorio gerarRelatorio = new GerarRelatorio();
         try {
-            gerarRelatorio.gerarRelatorioSqlPDF(caminhoRelatorio, parameters, "Pagamentos.pdf", null);
+            gerarRelatorio.gerarRelatorioSqlPDF(caminhoRelatorio, parameters, "vendas.pdf", null);
         } catch (JRException ex) {
             Logger.getLogger(RelatorioConciliacaoMB.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {

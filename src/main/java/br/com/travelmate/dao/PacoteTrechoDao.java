@@ -13,10 +13,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-/**
- *
- * @author Wolverine
- */
+
 public class PacoteTrechoDao {
     
     private EntityManager manager;
@@ -30,6 +27,7 @@ public class PacoteTrechoDao {
         manager.getTransaction().commit();
         return pacotetrecho;
     }
+    
     
     public List<Pacotetrecho> listar(String sql) throws SQLException{
         manager = ConectionFactory.getConnection();

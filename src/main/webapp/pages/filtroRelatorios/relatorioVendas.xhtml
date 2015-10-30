@@ -15,20 +15,22 @@
             <title>Relatório de Vendas</title>
             <p:outputLabel value="Unidade" for="unidade" style="margin-left:-1%"> </p:outputLabel> 
             <br></br>
-            <p:selectOneMenu id="unidade"  style="width:95%;margin-left:-1%"  value="#" >
+            <p:selectOneMenu id="unidade"  style="width:95%;margin-left:-1%"  value="#{relatorioVendasMB.unidadenegocio}" converter="UnidadeNegocioConverter">
                 <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
-            </p:selectOneMenu> 
+                <f:selectItems value="#{relatorioVendasMB.listaUnidadeNegocio}" var="unidade" itemLabel="#{unidade.nomeFantasia}" itemValue="#{unidade}"/>
+                <f:attribute name="listaUnidade" value="#{relatorioVendasMB.listaUnidadeNegocio}"/>
+            </p:selectOneMenu>
             <br/><br/>
             
             <p:outputLabel value="Período" for="datainicial" style="margin-left:-1%"> </p:outputLabel>  <br/>
-            <p:inputMask id="datainicial"  mask="99/99/9999"   class="espacocobranca29" style="margin-left: -1%;width: 20%">
+            <p:inputMask id="datainicial"  mask="99/99/9999" value="#{relatorioVendasMB.dataInicio}"  class="espacocobranca29" style="margin-left: -1%;width: 20%">
                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
             </p:inputMask>
-            <p:inputMask id="dataFinal"  mask="99/99/9999"   class="espacocobranca29" style="margin-left: 5%;width: 20%">
+            <p:inputMask id="dataFinal"  mask="99/99/9999"  value="#{relatorioVendasMB.dataTermino}" class="espacocobranca29" style="margin-left: 5%;width: 20%">
                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
             </p:inputMask>
-            <p:commandButton value="Confirmar" style="margin-left:7%" icon="ui-icon-check" action="#"/>
-            <p:commandButton  style="margin-left: 1%" icon="ui-icon-close" value="Cancelar" action="#"></p:commandButton>
+            <p:commandButton value="Confirmar" style="margin-left:7%" icon="ui-icon-check" action="#{relatorioVendasMB.gerarRelatorio()}" ajax="false"/>
+            <p:commandButton  style="margin-left: 1%" icon="ui-icon-close" value="Cancelar" action="#{relatorioVendasMB.fechar()}"></p:commandButton>
             <br/><br/>
         </h:form>     
     </h:body>

@@ -10,7 +10,7 @@
 		<from-view-id>*</from-view-id>
 		<navigation-case>
 			<from-outcome>conciliacaobancaria</from-outcome>
-			<to-view-id>/pages/filtroRelatorios/filtrarConciliacao.xhtml</to-view-id>
+			<to-view-id>/pages/filtroRelatorios/relatorioConciliacao.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
@@ -18,15 +18,7 @@
 		<from-view-id>*</from-view-id>
 		<navigation-case>
 			<from-outcome>pagamentos</from-outcome>
-			<to-view-id>/pages/filtroRelatorios/filtrarPagamentos.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-	</navigation-rule>
-        <navigation-rule>
-		<from-view-id>*</from-view-id>
-		<navigation-case>
-			<from-outcome>pagamentos</from-outcome>
-			<to-view-id>/pages/filtroRelatorios/filtrarPagamentos.xhtml</to-view-id>
+			<to-view-id>/pages/filtroRelatorios/relatorioPagamentos.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
@@ -34,7 +26,7 @@
 		<from-view-id>*</from-view-id>
 		<navigation-case>
 			<from-outcome>filtrarvendas</from-outcome>
-			<to-view-id>/pages/filtroRelatorios/filtrarVendas.xhtml</to-view-id>
+			<to-view-id>/pages/filtroRelatorios/relatorioVendas.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
@@ -42,7 +34,7 @@
 		<from-view-id>*</from-view-id>
 		<navigation-case>
 			<from-outcome>comissaoconsultor</from-outcome>
-			<to-view-id>/pages/filtroRelatorios/filtrarComissaoConsultor.xhtml</to-view-id>
+			<to-view-id>/pages/filtroRelatorios/relatorioComissaoConsultor.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
@@ -50,7 +42,7 @@
 		<from-view-id>*</from-view-id>
 		<navigation-case>
 			<from-outcome>comissaogerente</from-outcome>
-			<to-view-id>/pages/filtroRelatorios/filtrarGerente.xhtml</to-view-id>
+			<to-view-id>/pages/filtroRelatorios/relatorioGerente.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
@@ -58,7 +50,7 @@
 		<from-view-id>*</from-view-id>
 		<navigation-case>
 			<from-outcome>comissaoterceiros</from-outcome>
-			<to-view-id>/pages/filtroRelatorios/filtrarComissaoTerceiros.xhtml</to-view-id>
+			<to-view-id>/pages/filtroRelatorios/relatorioComissaoTerceiros.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
@@ -66,7 +58,7 @@
 		<from-view-id>*</from-view-id>
 		<navigation-case>
 			<from-outcome>filtrarcontasreceber</from-outcome>
-			<to-view-id>/pages/filtroRelatorios/filtrarContasReceber.xhtml</to-view-id>
+			<to-view-id>/pages/filtroRelatorios/relatorioContasReceber.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>

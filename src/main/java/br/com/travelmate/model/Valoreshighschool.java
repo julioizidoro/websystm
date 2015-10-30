@@ -22,10 +22,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
-/**
- *
- * @author Kamila
- */
+
 @Entity
 @Table(name = "valoreshighschool")
 @NamedQueries({

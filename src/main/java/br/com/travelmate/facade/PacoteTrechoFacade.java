@@ -18,6 +18,7 @@ import java.util.logging.Logger;
  */
 public class PacoteTrechoFacade {
     
+    
     PacoteTrechoDao pacoteTrechoDao;
     
     public Pacotetrecho salvar(Pacotetrecho pacotetrecho) {

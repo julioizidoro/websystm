@@ -11,6 +11,8 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.servlet.ServletContext;
@@ -50,7 +52,6 @@ public class GerarRelatorio {
         EntityManager mg = getConnection();
         mg.getTransaction().begin();
         Connection conn = mg.unwrap(java.sql.Connection.class);
-        //Connection conn = ConectionFactory.getConexao();
         if (subDir!=null){
             subDir = servletContext.getRealPath(subDir);
             subDir = subDir + File.separator + "a";
@@ -60,6 +61,7 @@ public class GerarRelatorio {
         }
         JasperPrint arquivoPrint=null;
         HttpServletResponse response = (HttpServletResponse) facesContext.getExternalContext().getResponse();
+        response.reset();
         response.setContentType("application/pdf");
         response.addHeader("Content-disposition", "attachment; filename=\"" + nomeArquivo + ".pdf\"");
         arquivoPrint = JasperFillManager.fillReport(caminhoRelatorio, parameters, conn);
@@ -69,5 +71,4 @@ public class GerarRelatorio {
         facesContext.responseComplete();
         mg.getTransaction().commit();
     }
-    
 }

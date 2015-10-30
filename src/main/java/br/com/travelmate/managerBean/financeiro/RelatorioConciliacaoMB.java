@@ -27,6 +27,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import net.sf.jasperreports.engine.JRException;
+import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -107,16 +108,14 @@ public class RelatorioConciliacaoMB implements Serializable{
     }
     
     public void gerarListaBanco(){
-        if (unidadenegocio!=null){
-            BancoFacade bancoFacade = new BancoFacade();
-            listaBanco = bancoFacade.listar();
-            if (listaBanco==null){
-                listaBanco = new ArrayList<Banco>();
-            }
+        BancoFacade bancoFacade = new BancoFacade();
+        listaBanco = bancoFacade.listar();
+        if (listaBanco == null) {
+            listaBanco = new ArrayList<Banco>();
         }
     }
     
-    public String gerarRelatorio(HttpServletRequest request, HttpServletResponse response) {
+    public String gerarRelatorio() {
         ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
         String caminhoRelatorio = "/reports/financeiro/conciliacao.jasper";  
         Map parameters = new HashMap();
@@ -126,12 +125,17 @@ public class RelatorioConciliacaoMB implements Serializable{
         parameters.put("idBanco", banco.getIdbanco());
         GerarRelatorio gerarRelatorio = new GerarRelatorio();
         try {
-            gerarRelatorio.gerarRelatorioSqlPDF(caminhoRelatorio, parameters, "Conciliação.pdf", null);
+            gerarRelatorio.gerarRelatorioSqlPDF(caminhoRelatorio, parameters, "Conciliação", null);
         } catch (JRException ex) {
             Logger.getLogger(RelatorioConciliacaoMB.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(RelatorioConciliacaoMB.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return "";
+    }
+    
+    public String fechar(){
+        RequestContext.getCurrentInstance().closeDialog(null);
         return "";
     }
 }
