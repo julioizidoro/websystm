@@ -13,22 +13,24 @@
         <h:form id="filtrarcomissaogerente" style="text-align:left;font-size: 10px; margin-left: 7%; "><br></br>
 
             <title>Relatório Comissão de Gerente</title>
-            <p:outputLabel value="Gerente" for="geretnte" style="margin-left:-1%"> </p:outputLabel> 
+            <p:outputLabel value="Gerente" for="gerente" style="margin-left:-1%"> </p:outputLabel> 
             <br></br>
-            <p:selectOneMenu id="geretnte"  style="width:95%;margin-left:-1%"  value="#" >
+            <p:selectOneMenu id="gerente"  style="width:95%;margin-left:-1%"  value="#{relatorioComissaoGerenteMB.usuario}" converter="UsuarioConverter">
                 <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
-            </p:selectOneMenu> 
+                <f:selectItems value="#{relatorioComissaoGerenteMB.listaGerente}" var="gerente" itemLabel="#{gerente.nome}" itemValue="#{gerente}"/>
+                <f:attribute name="listaUsuario" value="#{relatorioComissaoGerenteMB.listaGerente}"/>
+            </p:selectOneMenu>
             <br/><br/>
             
-            <p:outputLabel value="Período" for="datainicial" style="margin-left:-1%"> </p:outputLabel>  <br/>
-            <p:inputMask id="datainicial"  mask="99/99/9999"   class="espacocobranca29" style="margin-left: -1%;width: 20%">
+            <p:outputLabel value="Período" for="datainicial"  style="margin-left:-1%"> </p:outputLabel>  <br/>
+            <p:inputMask id="datainicial"  mask="99/99/9999" value="#{relatorioComissaoGerenteMB.dataInicio}"  class="espacocobranca29" style="margin-left: -1%;width: 20%">
                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
             </p:inputMask>
-            <p:inputMask id="dataFinal"  mask="99/99/9999"   class="espacocobranca29" style="margin-left: 5%;width: 20%">
+            <p:inputMask id="dataFinal"  mask="99/99/9999" value="#{relatorioComissaoGerenteMB.dataTermino}"  class="espacocobranca29" style="margin-left: 5%;width: 20%">
                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
             </p:inputMask>
-            <p:commandButton value="Confirmar" style="margin-left:7%" icon="ui-icon-check" action="#"/>
-            <p:commandButton  style="margin-left: 1%" icon="ui-icon-close" value="Cancelar" action="#"></p:commandButton>
+            <p:commandButton value="Confirmar" style="margin-left:7%" icon="ui-icon-check" action="#{relatorioComissaoGerenteMB.gerarRelatorio()}" ajax="false"/>
+            <p:commandButton  style="margin-left: 1%" icon="ui-icon-close" value="Cancelar" action="#{relatorioComissaoGerenteMB.fechar()}"></p:commandButton>
             <br/><br/>
         </h:form>     
     </h:body>

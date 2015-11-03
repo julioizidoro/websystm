@@ -64,6 +64,16 @@ public class UsuarioFacade {
         }
     }
     
+    public List<Usuario> listar(String sql) {
+        usuarioDao = new UsuarioDao();
+        try {
+            return usuarioDao.listar(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioFacade.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    
     public List<Usuario> listaUsuario(String nome) {
         usuarioDao = new UsuarioDao();
         try {

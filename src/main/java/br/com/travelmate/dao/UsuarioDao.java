@@ -72,7 +72,13 @@ public class UsuarioDao {
         return null;
     }
     
-   
+     public List<Usuario> listar(String sql) throws SQLException{
+        manager = ConectionFactory.getConnection();
+        manager.getTransaction().begin();
+        Query q = manager.createQuery(sql);
+        manager.getTransaction().commit();
+        return q.getResultList();
+    }
     
     public List<Usuario> listaUsuario(String nome) throws SQLException{
         manager = ConectionFactory.getConnection();

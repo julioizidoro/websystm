@@ -15,20 +15,22 @@
             <title>Relatório Comissão de Terceiros</title>
             <p:outputLabel value="Terceiros" for="terceiros" style="margin-left:-1%"> </p:outputLabel> 
             <br></br>
-            <p:selectOneMenu id="terceiros"  style="width:95%;margin-left:-1%"  value="#" >
+            <p:selectOneMenu id="terceiros"  style="width:95%;margin-left:-1%"  value="#{relatorioComissaoTerceirosMB.terceiros}" converter="TerceirosConverter" >
                 <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
-            </p:selectOneMenu> 
+                <f:selectItems value="#{relatorioComissaoTerceirosMB.listaTerceiros}" var="terceiros" itemLabel="#{terceiros.nome}" itemValue="#{terceiros}"/>
+                <f:attribute name="listaTerceiros" value="#{relatorioComissaoTerceirosMB.listaTerceiros}"/>
+            </p:selectOneMenu>
             <br/><br/>
             
             <p:outputLabel value="Período" for="datainicial" style="margin-left:-1%"> </p:outputLabel>  <br/>
-            <p:inputMask id="datainicial"  mask="99/99/9999"   class="espacocobranca29" style="margin-left: -1%;width: 20%">
+            <p:inputMask id="datainicial"  mask="99/99/9999"  value="#{relatorioComissaoTerceirosMB.dataInicio}" class="espacocobranca29" style="margin-left: -1%;width: 20%">
                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
             </p:inputMask>
-            <p:inputMask id="dataFinal"  mask="99/99/9999"   class="espacocobranca29" style="margin-left: 5%;width: 20%">
+            <p:inputMask id="dataFinal"  mask="99/99/9999" value="#{relatorioComissaoTerceirosMB.dataTermino}"  class="espacocobranca29" style="margin-left: 5%;width: 20%">
                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
             </p:inputMask>
-            <p:commandButton value="Confirmar" style="margin-left:10%" icon="ui-icon-check" action="#"/>
-            <p:commandButton  style="margin-left: 1%" icon="ui-icon-close" value="Cancelar" action="#"></p:commandButton>
+            <p:commandButton value="Confirmar" style="margin-left:10%" icon="ui-icon-check" action="#{relatorioComissaoTerceirosMB.gerarRelatorio()}" ajax="false"/>
+            <p:commandButton  style="margin-left: 1%" icon="ui-icon-close" value="Cancelar" action="#{relatorioComissaoTerceirosMB.fechar()}"></p:commandButton>
             <br/><br/>
         </h:form>     
     </h:body>
