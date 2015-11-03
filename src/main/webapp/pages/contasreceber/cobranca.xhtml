@@ -80,7 +80,7 @@
                     <p:inputTextarea id="assunto" rows="4" cols="60" maxlength="100" class="espacocobranca28" value="#{cobrancaMB.historico.assunto}"  />
                     <br></br><br></br>
                     <p:commandButton value="Confirmar" icon="ui-icon-check" action="#{cobrancaMB.salvarHitorico()}" class="espacocobranca28" />
-                    <p:commandButton value="Cancelar" icon="ui-icon-close"  class="espacocampos" action="#{historicoCobrancaMB.voltar()}" update=":cobrancaform:dialog_novo"/>
+                    <p:commandButton value="Cancelar" icon="ui-icon-close"  class="espacocampos" onclick="historico.hide();" update=":cobrancaform:dialog_novo"/>
                 </p:dialog>
             </h:form>
              <h:form id="editarcobrancaform">
@@ -97,7 +97,7 @@
                     <p:inputTextarea id="assunto" rows="4" cols="60" maxlength="100" class="espacocobranca28" value="#{cobrancaMB.historico.assunto}"  />
                     <br></br><br></br>
                     <p:commandButton value="Confirmar" icon="ui-icon-check" action="#{historicoCobrancaMB.salvarEdicao()}" class="espacocobranca28" />
-                    <p:commandButton value="Cancelar" icon="ui-icon-close"  class="espacocampos" action="#{historicoCobrancaMB.voltar()}" update=":editarcobrancaform:dialog_editar"/>
+                    <p:commandButton value="Cancelar" icon="ui-icon-close"  class="espacocampos" onclick="editarhistorico.hide();" update=":editarcobrancaform:dialog_editar"/>
                 </p:dialog>
             </h:form>
         </ui:define>

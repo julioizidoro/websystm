@@ -62,7 +62,7 @@
                         
                         <f:facet name="{Exporters}">
                             <p:commandLink title="Adicionar Conta" action="#{contasReceberMB.adicionarContasReceber()}" style="margin-left:80%">
-                                <p:ajax event="dialogReturn" listener="#{contasReceberMB.retornoDialogoNovo}" process="@this" update="tabelacontasRecebe"/>
+                                <p:ajax event="dialogReturn" listener="#{contasReceberMB.retornoDialogoNovo}" process="@this" update=":telacontareceber:tabelacontasRecebe"/>
                         <p:outputLabel value="Adicionar Conta"/>
                         <img src="../../resources/img/adicionar.png" width="20" />
                     </p:commandLink>

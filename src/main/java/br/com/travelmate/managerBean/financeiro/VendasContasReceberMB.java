@@ -60,7 +60,7 @@ public class VendasContasReceberMB implements Serializable{
         }else{
             Date data = Formatacao.formatarDataAgora();
             if (data.before(conta.getDatavencimento())){
-                return "../../resources/img/bolaVermelho.png";
+                return "../../resources/img/bolaVermelha.png";
             }else {
                 return "../../resources/img/bolaAmarela.png";
             }
@@ -73,9 +73,9 @@ public class VendasContasReceberMB implements Serializable{
         }else{
             Date data = Formatacao.formatarDataAgora();
             if (data.before(conta.getDatavencimento())){
-                return "Dentro do prazo";
-            }else {
                 return "Em atraso";
+            }else {
+                return "Dentro do prazo";
             }
         }
     }

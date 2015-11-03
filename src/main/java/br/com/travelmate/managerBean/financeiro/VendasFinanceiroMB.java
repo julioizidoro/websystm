@@ -147,8 +147,10 @@ public class VendasFinanceiroMB  implements Serializable{
             options.put("contentWidth",570);
             RequestContext.getCurrentInstance().openDialog("produtoVendas", options, null);
         }
-        FacesMessage msg = new FacesMessage("Venda não Possui produtos! ", " ");
-        FacesContext.getCurrentInstance().addMessage(null, msg);
+        else{
+            FacesMessage msg = new FacesMessage("Venda não Possui produtos! ", " ");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+        }
         return "";
     }
     
@@ -161,8 +163,10 @@ public class VendasFinanceiroMB  implements Serializable{
             options.put("contentWidth", 620);
             RequestContext.getCurrentInstance().openDialog("visualizarContasReceber", options, null);
         }
-        FacesMessage msg = new FacesMessage("Venda não Possui Contas a Receber! ", " ");
-        FacesContext.getCurrentInstance().addMessage(null, msg);
+        else{
+            FacesMessage msg = new FacesMessage("Venda não Possui Contas a Receber! ", " ");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+        }
         return "";
     }
     
@@ -175,8 +179,10 @@ public class VendasFinanceiroMB  implements Serializable{
             options.put("contentWidth",850);
             RequestContext.getCurrentInstance().openDialog("editarComissoes", options, null);
         }
-        FacesMessage msg = new FacesMessage("Venda não Possui Comissão! ", " ");
-        FacesContext.getCurrentInstance().addMessage(null, msg);
+        else{
+            FacesMessage msg = new FacesMessage("Venda não Possui Comissão! ", " ");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+        }
         return "";
     }
     
