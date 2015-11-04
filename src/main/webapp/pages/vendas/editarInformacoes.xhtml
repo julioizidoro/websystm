@@ -29,6 +29,7 @@
                     <f:selectItem  itemValue="basecalculo" />
                     <f:selectItem itemValue="moeda" />
                     <f:selectItem  itemValue="manual" />
+                    <p:ajax event="change" />
                 </p:selectOneRadio>
                     <p:radioButton id="opt1" for="oneRadioEditar" itemIndex="0" />
                     <p:selectOneMenu id="baseCalculo"  value="#{editarValoresComissaoMB.baseCalculo}" style="margin-left:12.5%;width:300px">  
@@ -38,11 +39,13 @@
                         <f:selectItem itemLabel="Comissão TM" itemValue="comissaotm" />  
                         <f:selectItem itemLabel="Comissão TM - Desconto Matriz + Taxa TM - Desagio" itemValue="comTMdescontoMatrizTaxaTMdesagio" />  
                         <f:selectItem itemLabel="Comissão Franquia - Comissão Terceiros" itemValue="comFranquiaComTerceiros" />  
+                        <p:ajax event="change" />
                     </p:selectOneMenu> 
-                    <p:inputMask id="percentual" mask="999" style="margin-left:40%;width:110px" value="#{editarValoresComissaoMB.percentual}">
+                    <p:inputText id="percentual"  style="margin-left:40%;width:110px" value="#{editarValoresComissaoMB.percentual}">
                         <p:ajax event="keyup" update="novovalor" listener="#{editarValoresComissaoMB.iniciarCalculo()}"/>
-                    </p:inputMask>
-                    <p:inputText id="novovalor" style="margin-left:30%;width:110px;text-align: right" value="#{editarValoresComissaoMB.novoValor}">
+                        <p:ajax event="blur" />
+                    </p:inputText>
+                    <p:inputText id="novovalor" style="margin-left:30%;width:110px;text-align: right" value="#{editarValoresComissaoMB.novoValorBaseCalculo}">
                         <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                     </p:inputText>
                 </h:panelGrid>
@@ -60,15 +63,18 @@
                         <f:selectItem itemLabel="Câmbio" itemValue="0"/> 
                         <f:selectItems value="#{editarValoresComissaoMB.listaCambio}" var="cambio" itemLabel="#{cambio.moedas.sigla}" itemValue="#{cambio}"/>
                         <f:attribute name="listaCambio" value="#{editarValoresComissaoMB.listaCambio}"/>
+                        <p:ajax event="change" />
                     </p:selectOneMenu>
                     <p:inputText id="cambiodia" style="margin-left:34%;width:52%;text-align:right" readonly="true" value="#{editarValoresComissaoMB.cambio.valor}">
                         <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                        <p:ajax event="change" />
                    </p:inputText>
                     <p:inputText id="valormoeda" value="#{editarValoresComissaoMB.valorMoeda}" style="margin-left:29%;width:52%;text-align: right" >
                        <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                        <p:ajax event="keyup" update="novovalormoeda" listener="#{editarValoresComissaoMB.iniciarCalculo()}"/>
-                   </p:inputText>
-                    <p:inputText id="novovalormoeda" style="margin-left:22%;width:69%;text-align: right" value="#{editarValoresComissaoMB.novoValor}">
+                       <p:ajax event="blur" />
+                    </p:inputText>
+                    <p:inputText id="novovalormoeda" style="margin-left:22%;width:69%;text-align: right" value="#{editarValoresComissaoMB.novoValorMoeda}">
                        <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                    </p:inputText>
                     </h:panelGrid>

@@ -10,6 +10,7 @@ import br.com.travelmate.model.Cambio;
 import br.com.travelmate.model.Vendas;
 import br.com.travelmate.model.Vendascomissao;
 import br.com.travelmate.util.Formatacao;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -26,7 +27,7 @@ import org.primefaces.context.RequestContext;
  */
 @Named
 @ViewScoped
-public class EditarValoresComissaoMB {
+public class EditarValoresComissaoMB implements Serializable{
     
     private String titulo;
     private String selecao;
@@ -34,6 +35,8 @@ public class EditarValoresComissaoMB {
     private float valorMoeda;
     private String baseCalculo;
     private double percentual;
+    private float novoValorBaseCalculo;
+    private float novoValorMoeda;
     private float novoValor;
     private List<Cambio> listaCambio;
     private Vendascomissao vendascomissao;
@@ -100,6 +103,22 @@ public class EditarValoresComissaoMB {
         this.percentual = percentual;
     }
 
+    public float getNovoValorBaseCalculo() {
+        return novoValorBaseCalculo;
+    }
+
+    public void setNovoValorBaseCalculo(float novoValorBaseCalculo) {
+        this.novoValorBaseCalculo = novoValorBaseCalculo;
+    }
+
+    public float getNovoValorMoeda() {
+        return novoValorMoeda;
+    }
+
+    public void setNovoValorMoeda(float novoValorMoeda) {
+        this.novoValorMoeda = novoValorMoeda;
+    }
+
     public float getNovoValor() {
         return novoValor;
     }
@@ -108,6 +127,7 @@ public class EditarValoresComissaoMB {
         this.novoValor = novoValor;
     }
 
+    
     public List<Cambio> getListaCambio() {
         return listaCambio;
     }
@@ -148,10 +168,11 @@ public class EditarValoresComissaoMB {
             iniciarBaseCalculo();
         }else if (selecao.equalsIgnoreCase("moeda")){
             if (cambio==null){
-                novoValor = 0.0f;
+                novoValorMoeda = 0.0f;
             }else if (valorMoeda==0){
-                novoValor=0.0f;
-            }else novoValor = cambio.getValor() * valorMoeda;
+                novoValorMoeda=0.0f;
+            }else novoValorMoeda = cambio.getValor() * valorMoeda;
+            novoValor = novoValorMoeda;
         }
     }
     
@@ -171,33 +192,38 @@ public class EditarValoresComissaoMB {
     
     public void baseCalculoValorComissionavel(){
         if (percentual>0){
-           novoValor = (float) (vendascomissao.getValorbruto() * (percentual / 100));
+           novoValorBaseCalculo = (float) (vendascomissao.getValorbruto() * (percentual / 100));
+           novoValor = novoValorBaseCalculo;
         }
     }
     
     public void baseCalculoValorTotal(){
         if (percentual>0){
-            novoValor = (float) (vendascomissao.getVendas().getValor() * (percentual/100));
+            novoValorBaseCalculo = (float) (vendascomissao.getVendas().getValor() * (percentual/100));
+            novoValor = novoValorBaseCalculo;
         }
     }
     
     public void baseCalculoComissaoTM(){
         if (percentual>0){
-            novoValor = (float) (vendascomissao.getComissaotm() * (percentual/100));
+            novoValorBaseCalculo = (float) (vendascomissao.getComissaotm() * (percentual/100));
+            novoValor = novoValorBaseCalculo;
         }
     }
     
     public void baseCalculoComissaoTMDescontoMatrizTaxaTMDesagio(){
         if (percentual>0){
             float base = (vendascomissao.getComissaotm() + vendascomissao.getTaxatm()) - (vendascomissao.getDescontotm() + vendascomissao.getDesagio());
-            novoValor = (float) (base * (percentual/100));
+            novoValorBaseCalculo = (float) (base * (percentual/100));
+            novoValor = novoValorBaseCalculo;
         }
     }
     
     public void baseCalculoComissaoFranquiasComissaoTerceiros(){
         if (percentual>0){
             float base = vendascomissao.getComissaofraquia() - vendascomissao.getComissaoemissor();
-            novoValor = (float) (base * (percentual/100));
+            novoValorBaseCalculo = (float) (base * (percentual/100));
+            novoValor = novoValorBaseCalculo;
         }
     }
     
@@ -209,11 +235,12 @@ public class EditarValoresComissaoMB {
         RequestContext.getCurrentInstance().closeDialog(null);
     }
     
-    public void confirmar(){
+    public String confirmar(){
         FacesContext fc = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
         session.setAttribute("campoAlteracao", campoAlteracao);
         session.setAttribute("nonoValor", novoValor);
         RequestContext.getCurrentInstance().closeDialog(null);
+        return "";
     }
 }

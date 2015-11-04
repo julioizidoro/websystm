@@ -110,7 +110,7 @@ public class VendasFinanceiroComissaoMB implements Serializable{
         return "";
     }
     
-    private void retornoDialog(SelectEvent event){
+    public void retornoDialog(SelectEvent event){
         FacesContext fc = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
         String campoAlterado = (String) session.getAttribute("campoAlteracao");
@@ -138,11 +138,11 @@ public class VendasFinanceiroComissaoMB implements Serializable{
         }
     }
     
-    private void cancelar(){
+    public void cancelar(){
         RequestContext.getCurrentInstance().closeDialog(null);
     }
     
-    private void confirmar(){
+    public void confirmar(){
         VendasComissaoFacade vendasComissaoFacade = new VendasComissaoFacade();
         vendasComissaoFacade.salvar(vendascomissao);
         RequestContext.getCurrentInstance().closeDialog(null);
