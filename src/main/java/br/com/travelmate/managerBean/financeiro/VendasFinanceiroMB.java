@@ -4,7 +4,6 @@ import br.com.travelmate.facade.ProdutoFacade;
 import br.com.travelmate.facade.UnidadeNegocioFacade;
 import br.com.travelmate.facade.VendasFacade;
 import br.com.travelmate.managerBean.UsuarioLogadoMB;
-import br.com.travelmate.model.Pacotetrecho;
 import br.com.travelmate.model.Produtos;
 import br.com.travelmate.model.Unidadenegocio;
 import br.com.travelmate.model.Vendas;

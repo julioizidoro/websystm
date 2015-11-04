@@ -7,6 +7,7 @@ package br.com.travelmate.managerBean.financeiro;
 
 import br.com.travelmate.facade.TerceirosFacade;
 import br.com.travelmate.facade.UsuarioFacade;
+import br.com.travelmate.facade.VendasComissaoFacade;
 import br.com.travelmate.model.Terceiros;
 import br.com.travelmate.model.Usuario;
 import br.com.travelmate.model.Vendas;
@@ -85,7 +86,9 @@ public class VendasFinanceiroComissaoMB implements Serializable{
     public String nomeGerente(){
         UsuarioFacade usuarioFacade = new UsuarioFacade();
         Usuario usuario = usuarioFacade.consultar(vendascomissao.getProdutos().getIdgerente());
-        return usuario.getNome();
+        if (usuario==null){
+            return "sem nome";
+        }else return usuario.getNome();
     }
     
     private void gerarListaTerceiros(){
@@ -114,5 +117,34 @@ public class VendasFinanceiroComissaoMB implements Serializable{
         Float novoValor = (Float) session.getAttribute("novoValor");
         session.removeAttribute("campoAlteracao");
         session.removeAttribute("novoValor");
+        setNovoValor(campoAlterado, novoValor);
+    }
+    
+    private void setNovoValor(String campo, float novoValor){
+        if (campo.equalsIgnoreCase("comissaotm")){
+            vendascomissao.setComissaotm(novoValor);
+        }else if (campo.equalsIgnoreCase("desagio")){
+            vendascomissao.setDesagio(novoValor);
+        }else if (campo.equalsIgnoreCase("comissaofranquia")){
+            vendascomissao.setComissaofraquia(novoValor);
+        }else if (campo.equalsIgnoreCase("incentivo")){
+            vendascomissao.setIncentivo(novoValor);
+        }else if (campo.equalsIgnoreCase("comissaoterceitos")){
+            vendascomissao.setComissaoterceiros(novoValor);
+        }else if (campo.equalsIgnoreCase("comissaoconsultor")){
+            vendascomissao.setComissaoemissor(novoValor);
+        }else if (campo.equalsIgnoreCase("comissaogerente")){
+            vendascomissao.setComissaogerente(novoValor);
+        }
+    }
+    
+    private void cancelar(){
+        RequestContext.getCurrentInstance().closeDialog(null);
+    }
+    
+    private void confirmar(){
+        VendasComissaoFacade vendasComissaoFacade = new VendasComissaoFacade();
+        vendasComissaoFacade.salvar(vendascomissao);
+        RequestContext.getCurrentInstance().closeDialog(null);
     }
 }
