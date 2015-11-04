@@ -13,12 +13,16 @@ import br.com.travelmate.model.Vendas;
 import br.com.travelmate.model.Vendascomissao;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
+import org.primefaces.context.RequestContext;
+import org.primefaces.event.SelectEvent;
 
 /**
  *
@@ -90,5 +94,25 @@ public class VendasFinanceiroComissaoMB implements Serializable{
         if (listaTerceiros!=null){
             listaTerceiros = new ArrayList<Terceiros>();
         }
+    }
+    
+    public String editarInformacoes(String campo){
+        FacesContext fc = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+        session.setAttribute("campoAlteracao", campo);
+        session.setAttribute("venda", venda);
+        Map<String,Object> options = new HashMap<String, Object>();
+        options.put("contentWidth",800);
+        RequestContext.getCurrentInstance().openDialog("editarInformacoes", options, null);
+        return "";
+    }
+    
+    private void retornoDialog(SelectEvent event){
+        FacesContext fc = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+        String campoAlterado = (String) session.getAttribute("campoAlteracao");
+        Float novoValor = (Float) session.getAttribute("novoValor");
+        session.removeAttribute("campoAlteracao");
+        session.removeAttribute("novoValor");
     }
 }

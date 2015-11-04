@@ -186,15 +186,10 @@ public class VendasFinanceiroMB  implements Serializable{
         return "";
     }
     
-    public String editarInformacoes(){
-        Map<String,Object> options = new HashMap<String, Object>();
-        options.put("contentWidth",800);
-        RequestContext.getCurrentInstance().openDialog("editarInformacoes", options, null);
-        return "";
-    }
+    
     
     public String fecharEditarInformacoes(){
-        RequestContext.getCurrentInstance().openDialog("editarInformacoes");
+        
         return "";
     }
     
