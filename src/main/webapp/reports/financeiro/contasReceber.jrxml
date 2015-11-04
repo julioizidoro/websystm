@@ -14,7 +14,7 @@
 	<parameter name="titulo" class="java.lang.String"/>
 	<parameter name="unidade" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[SELECT distinct contasreceber.idcontasReceber, contasreceber.numeroDocumento, contasreceber.valorParcela, contasreceber.numeroparcelas,contasreceber.dataVencimento, contasreceber.juros, contasreceber.desagio,contasreceber.tipodocumento, contasreceber.dataPagamento, contasreceber.valorpago, cliente.nome,banco.nome as nomeBanco From  contasreceber join vendas on contasreceber.vendas_idvendas join cliente on vendas.cliente_idcliente = cliente.idcliente join unidadenegocio on vendas.unidadeNegocio_idunidadeNegocio = unidadenegocio.idUnidadeNegocio join banco on contasreceber.banco_idbanco = banco.idbanco where  contasreceber.datavencimento >='2015/05/02 ' and contasreceber.datavencimento<='2015/12/12'  and unidadenegocio.idunidadeNegocio=1  order by contasreceber.datavencimento ]]>
+		<![CDATA[$P!{sql}]]>
 	</queryString>
 	<field name="idcontasReceber" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>

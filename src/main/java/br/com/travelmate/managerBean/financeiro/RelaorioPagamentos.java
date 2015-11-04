@@ -104,7 +104,7 @@ public class RelaorioPagamentos implements Serializable{
                 + " join planoconta on contaspagar.planoconta_idplanoconta = planoconta.idplanoconta"
                 + " where ";
         if ((dataInicio!=null) && (dataTermino!=null)){
-            sql = sql + " contaspagar.data >='"  + Formatacao.ConvercaoDataSql(dataInicio) + " ' and contaspagar.data<='"
+            sql = sql + " contaspagar.datacompensacao >='"  + Formatacao.ConvercaoDataSql(dataInicio) + " ' and contaspagar.datacompensacao<='"
                         + Formatacao.ConvercaoDataSql(dataTermino) + "' ";
         }else {
             sql = sql + " contaspagar.competencia='" + competencia + "' ";
@@ -133,7 +133,7 @@ public class RelaorioPagamentos implements Serializable{
         parameters.put("periodo", periodo);
         GerarRelatorio gerarRelatorio = new GerarRelatorio();
         try {
-            gerarRelatorio.gerarRelatorioSqlPDF(caminhoRelatorio, parameters, "Pagamentos.pdf", null);
+            gerarRelatorio.gerarRelatorioSqlPDF(caminhoRelatorio, parameters, "Pagamentos", null);
         } catch (JRException ex) {
             Logger.getLogger(RelatorioConciliacaoMB.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
