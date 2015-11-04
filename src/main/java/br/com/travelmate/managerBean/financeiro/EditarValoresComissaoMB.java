@@ -107,6 +107,32 @@ public class EditarValoresComissaoMB {
     public void setNovoValor(float novoValor) {
         this.novoValor = novoValor;
     }
+
+    public List<Cambio> getListaCambio() {
+        return listaCambio;
+    }
+
+    public void setListaCambio(List<Cambio> listaCambio) {
+        this.listaCambio = listaCambio;
+    }
+
+    public Vendascomissao getVendascomissao() {
+        return vendascomissao;
+    }
+
+    public void setVendascomissao(Vendascomissao vendascomissao) {
+        this.vendascomissao = vendascomissao;
+    }
+
+    public String getCampoAlteracao() {
+        return campoAlteracao;
+    }
+
+    public void setCampoAlteracao(String campoAlteracao) {
+        this.campoAlteracao = campoAlteracao;
+    }
+    
+    
     
     public void consultarCambio(Date dataCambio){
         CambioFacade cambioFacade = new CambioFacade();
@@ -180,7 +206,7 @@ public class EditarValoresComissaoMB {
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
         session.setAttribute("campoAlteracao", "cancelado");
         session.setAttribute("nonoValor", 0.01f);
-        RequestContext.getCurrentInstance().closeDialog("editarInformacoes");
+        RequestContext.getCurrentInstance().closeDialog(null);
     }
     
     public void confirmar(){
@@ -188,6 +214,6 @@ public class EditarValoresComissaoMB {
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
         session.setAttribute("campoAlteracao", campoAlteracao);
         session.setAttribute("nonoValor", novoValor);
-        RequestContext.getCurrentInstance().closeDialog("editarInformacoes");
+        RequestContext.getCurrentInstance().closeDialog(null);
     }
 }

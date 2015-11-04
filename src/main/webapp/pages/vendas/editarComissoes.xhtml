@@ -27,7 +27,7 @@
                 <p:inputText id="comissaotm" style="margin-left:8%;width:12%;text-align:right" readonly="true" value="#{vendasFinanceiroComissaoMB.vendascomissao.comissaotm}">
                     <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                 </p:inputText>
-                <p:commandLink style="margin-left:0.4%;text-decoration:none;" action="#{vendasFinanceiroMB.editarInformacoes()}">
+                <p:commandLink style="margin-left:0.4%;text-decoration:none;" action="#{vendasFinanceiroComissaoMB.editarInformacoes("comissaotm")}">
                     <img src="../../resources/img/editardata.png"/>
                 </p:commandLink>
                 <p:inputText id="valornet" style="margin-left:8%;width:12%;text-align: right" readonly="true" value="#{vendasFinanceiroComissaoMB.vendascomissao.valorfornecedor}">
@@ -36,7 +36,7 @@
                 <p:inputMask id="prePagamento" style="margin-left:8%;width:12%;" mask="99/99/9999" readonly="true" value="#{vendasFinanceiroComissaoMB.vendascomissao.previsaopagamento}">
                     <f:convertDateTime   pattern="dd/MM/yyyy"  timeZone="America/Sao_Paulo"/>
                 </p:inputMask>
-                <p:commandLink style="margin-left:0.4%;text-decoration:none;" action="#{vendasFinanceiroMB.editarInformacoes()}">
+                <p:commandLink style="margin-left:0.4%;text-decoration:none;" >
                     <img src="../../resources/img/editardata.png"/>
                 </p:commandLink>
                 <br></br>  
@@ -52,7 +52,7 @@
                 <p:inputText id="desagio" style="margin-left:11.5%;width:15%;text-align: right" readonly="true" value="#{vendasFinanceiroComissaoMB.vendascomissao.desagio}">
                     <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                 </p:inputText>
-                <p:commandLink style="margin-left:0.4%;text-decoration:none;" >
+                <p:commandLink style="margin-left:0.4%;text-decoration:none;" action="#{vendasFinanceiroComissaoMB.editarInformacoes("desagio")}">
                     <img src="../../resources/img/editardata.png"/>
                 </p:commandLink>
                 <p:inputText id="descontomatriz" style="margin-left:8.6%;width:15%;text-align: right" readonly="true" value="#{vendasFinanceiroComissaoMB.vendascomissao.descontotm}">
@@ -72,13 +72,13 @@
                 <p:inputText id="comissaofranquia" style="margin-left:8%;width:12%;text-align:right" readonly="true" value="#{vendasFinanceiroComissaoMB.vendascomissao.comissaofraquia}">
                     <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                 </p:inputText>
-                <p:commandLink style="margin-left:0.4%;text-decoration:none;" >
+                <p:commandLink style="margin-left:0.4%;text-decoration:none;"  action="#{vendasFinanceiroComissaoMB.editarInformacoes("comissaofranquia")}">
                     <img src="../../resources/img/editardata.png"/>
                 </p:commandLink>
                 <p:inputText id="incentivofranquia" style="margin-left:8%;width:12%;text-align:right" readonly="true" value="#{vendasFinanceiroComissaoMB.vendascomissao.incentivo}">
                     <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                 </p:inputText>
-                <p:commandLink style="margin-left:0.4%;text-decoration:none;" >
+                <p:commandLink style="margin-left:0.4%;text-decoration:none;" action="#{vendasFinanceiroComissaoMB.editarInformacoes("incentivo")}">
                     <img src="../../resources/img/editardata.png"/>
                 </p:commandLink>
                 <p:inputText id="liquidofrq" style="margin-left:6%;width:12%;text-align:right" readonly="true" value="#{vendasFinanceiroComissaoMB.vendascomissao.liquidofranquia}">
@@ -97,7 +97,7 @@
                 <p:inputText id="comissaoterceiros" style="margin-left:8%;width:15%;text-align:right" readonly="true" value="#{vendasFinanceiroComissaoMB.vendascomissao.comissaoterceiros}">
                     <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                 </p:inputText>
-                <p:commandLink style="margin-left:0.4%;text-decoration:none;" >
+                <p:commandLink style="margin-left:0.4%;text-decoration:none;" action="#{vendasFinanceiroComissaoMB.editarInformacoes("comissaoterceiros")}">
                     <img src="../../resources/img/editardata.png"/>
                 </p:commandLink>
                 
@@ -109,7 +109,7 @@
                <p:inputText id="comissaoconsultor" style="margin-left:8%;width:15%;text-align:right" readonly="true" value="#{vendasFinanceiroComissaoMB.vendascomissao.comissaoemissor}">
                     <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                 </p:inputText>
-                <p:commandLink style="margin-left:0.4%;text-decoration:none;" >
+                <p:commandLink style="margin-left:0.4%;text-decoration:none;" action="#{vendasFinanceiroComissaoMB.editarInformacoes("comissaoconsultor")}" >
                     <img src="../../resources/img/editardata.png"/>
                 </p:commandLink>
                 
@@ -121,7 +121,7 @@
                 <p:inputText id="comissaogerente" style="margin-left:8%;width:15%;text-align:right" readonly="true" value="#{vendasFinanceiroComissaoMB.vendascomissao.comissaogerente}">
                     <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                 </p:inputText>
-                <p:commandLink style="margin-left:0.4%;text-decoration:none;" >
+                <p:commandLink style="margin-left:0.4%;text-decoration:none;" action="#{vendasFinanceiroComissaoMB.editarInformacoes("comissaogerente")}">
                     <img src="../../resources/img/editardata.png"/>
                 </p:commandLink>
                 <br></br><br></br> 
