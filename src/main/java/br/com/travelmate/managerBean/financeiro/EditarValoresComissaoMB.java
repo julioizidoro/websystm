@@ -37,6 +37,7 @@ public class EditarValoresComissaoMB implements Serializable{
     private double percentual;
     private float novoValorBaseCalculo;
     private float novoValorMoeda;
+    private float novoValorManual;
     private float novoValor;
     private List<Cambio> listaCambio;
     private Vendascomissao vendascomissao;
@@ -152,6 +153,14 @@ public class EditarValoresComissaoMB implements Serializable{
     public void setCampoAlteracao(String campoAlteracao) {
         this.campoAlteracao = campoAlteracao;
     }
+
+    public float getNovoValorManual() {
+        return novoValorManual;
+    }
+
+    public void setNovoValorManual(float novoValorManual) {
+        this.novoValorManual = novoValorManual;
+    }
     
     
     
@@ -172,9 +181,11 @@ public class EditarValoresComissaoMB implements Serializable{
                 novoValorMoeda = 0.0f;
             }else if (valorMoeda==0){
                 novoValorMoeda=0.0f;
-            }else novoValorMoeda = cambio.getValor() * valorMoeda;
-            novoValor = novoValorMoeda;
-        }
+            }else {
+                novoValorMoeda = cambio.getValor() * valorMoeda;
+                novoValor = novoValorMoeda;
+            }
+        }else novoValor = novoValorManual;
     }
     
     public void iniciarBaseCalculo(){
@@ -232,7 +243,7 @@ public class EditarValoresComissaoMB implements Serializable{
         FacesContext fc = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
         session.setAttribute("campoAlteracao", "cancelado");
-        session.setAttribute("nonoValor", 0.01f);
+        session.setAttribute("novoValor", 0.01f);
         RequestContext.getCurrentInstance().closeDialog(null);
         return "";
     }
@@ -241,7 +252,7 @@ public class EditarValoresComissaoMB implements Serializable{
         FacesContext fc = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
         session.setAttribute("campoAlteracao", campoAlteracao);
-        session.setAttribute("nonoValor", novoValor);
+        session.setAttribute("novoValor", novoValor);
         RequestContext.getCurrentInstance().closeDialog(null);
         return "";
     }

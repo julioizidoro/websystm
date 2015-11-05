@@ -16,7 +16,7 @@
                 <img src="../../resources/img/ajax-loader.gif" />
             </p:dialog>
         <h:form id="editarComissao" style="text-align:left;font-size: 10px; margin-left: 7%; ">
-            <title>Venda No. 1738</title>
+            <title><p:outputLabel value="#{editarValoresComissaoMB.titulo}"/></title>
             <legend id="iUsu3" style="font-size: 14px;border-color: #000;" ><b>Base de Cálculo</b></legend>
                 
                 <p:outputLabel value="Base de Cálculo" for="baseCalculo" style="margin-left:8%"/>
@@ -41,8 +41,8 @@
                         <f:selectItem itemLabel="Comissão Franquia - Comissão Terceiros" itemValue="comFranquiaComTerceiros" />  
                         <p:ajax event="change" />
                     </p:selectOneMenu> 
-                    <p:inputText id="percentual"  style="margin-left:40%;width:110px" value="#{editarValoresComissaoMB.percentual}">
-                        <p:ajax event="keyup" update="novovalor" listener="#{editarValoresComissaoMB.iniciarCalculo()}"/>
+                    <p:inputText id="percentual"  style="margin-left:40%;width:110px;text-align: right" value="#{editarValoresComissaoMB.percentual}">
+                       <p:ajax event="keyup" update="novovalor" listener="#{editarValoresComissaoMB.iniciarCalculo()}"/>
                         <p:ajax event="blur" />
                     </p:inputText>
                     <p:inputText id="novovalor" style="margin-left:30%;width:110px;text-align: right" value="#{editarValoresComissaoMB.novoValorBaseCalculo}">
@@ -83,8 +83,9 @@
                 
                 <br></br>
                 <p:radioButton id="opt3" for="oneRadioEditar" itemIndex="3" />
-                <p:inputText id="valormanual" style="margin-left:79%;width:15%;text-align: right" value="#{editarValoresComissaoMB.novoValor}">
+                <p:inputText id="valormanual" style="margin-left:79%;width:15%;text-align: right" value="#{editarValoresComissaoMB.novoValorManual}">
                     <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                    <p:ajax event="keyup" listener="#{editarValoresComissaoMB.iniciarCalculo()}"/>
                 </p:inputText>
                 
                 <br></br><br></br><br></br>

@@ -37,6 +37,13 @@ public class VendasFinanceiroComissaoMB implements Serializable{
     private String titulo;
     private Vendascomissao vendascomissao;
     private List<Terceiros> listaTerceiros;
+    private String editarComissaoConsultor = "comissaoconsultor";
+    private String editarcomissaotm = "comissaotm";
+    private String editardesagio = "desagio";
+    private String editarcomissaofranquia = "comissaofranquia";
+    private String editarincentivo = "incentivo";
+    private String editarcomissaoterceiros = "comissaoterceiros";
+    private String editarcomissaogerente = "comissaogerente";
     
     @PostConstruct
     private void init(){
@@ -59,6 +66,38 @@ public class VendasFinanceiroComissaoMB implements Serializable{
         this.venda = venda;
     }
 
+    public String getEditardesagio() {
+        return editardesagio;
+    }
+
+    public void setEditardesagio(String editardesagio) {
+        this.editardesagio = editardesagio;
+    }
+
+    public String getEditarcomissaofranquia() {
+        return editarcomissaofranquia;
+    }
+
+    public void setEditarcomissaofranquia(String editarcomissaofranquia) {
+        this.editarcomissaofranquia = editarcomissaofranquia;
+    }
+
+    public String getEditarincentivo() {
+        return editarincentivo;
+    }
+
+    public void setEditarincentivo(String editarincentivo) {
+        this.editarincentivo = editarincentivo;
+    }
+
+    public String getEditarcomissaoterceiros() {
+        return editarcomissaoterceiros;
+    }
+
+    public void setEditarcomissaoterceiros(String editarcomissaoterceiros) {
+        this.editarcomissaoterceiros = editarcomissaoterceiros;
+    }
+    
     public String getTitulo() {
         return titulo;
     }
@@ -67,6 +106,14 @@ public class VendasFinanceiroComissaoMB implements Serializable{
         this.titulo = titulo;
     }
 
+    public String getEditarcomissaotm() {
+        return editarcomissaotm;
+    }
+
+    public void setEditarcomissaotm(String editarcomissaotm) {
+        this.editarcomissaotm = editarcomissaotm;
+    }
+    
     public Vendascomissao getVendascomissao() {
         return vendascomissao;
     }
@@ -82,6 +129,23 @@ public class VendasFinanceiroComissaoMB implements Serializable{
     public void setListaTerceiros(List<Terceiros> listaTerceiros) {
         this.listaTerceiros = listaTerceiros;
     }
+
+    public String getEditarComissaoConsultor() {
+        return editarComissaoConsultor;
+    }
+
+    public void setEditarComissaoConsultor(String editarComissaoConsultor) {
+        this.editarComissaoConsultor = editarComissaoConsultor;
+    }
+
+    public String getEditarcomissaogerente() {
+        return editarcomissaogerente;
+    }
+
+    public void setEditarcomissaogerente(String editarcomissaogerente) {
+        this.editarcomissaogerente = editarcomissaogerente;
+    }
+    
     
     public String nomeGerente(){
         UsuarioFacade usuarioFacade = new UsuarioFacade();
@@ -129,7 +193,7 @@ public class VendasFinanceiroComissaoMB implements Serializable{
             novoValorComissaoFranquia(novoValor);
         }else if (campo.equalsIgnoreCase("incentivo")){
             novoValorIncentivo(novoValor);
-        }else if (campo.equalsIgnoreCase("comissaoterceitos")){
+        }else if (campo.equalsIgnoreCase("comissaoterceiros")){
             novoValorComissaoTerceiros(novoValor);
         }else if (campo.equalsIgnoreCase("comissaoconsultor")){
             novoValorComissaoConsultor(novoValor);

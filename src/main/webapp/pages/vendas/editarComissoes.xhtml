@@ -20,7 +20,7 @@
                 <p:inputText id="comissaotm" style="margin-left:4.5%;width:12%;text-align:right" readonly="true" value="#{vendasFinanceiroComissaoMB.vendascomissao.comissaotm}">
                     <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                 </p:inputText>
-                <p:commandLink  action="#{vendasFinanceiroComissaoMB.editarInformacoes(comissaotm)}" style="margin-left:0.4%;text-decoration:none;">
+                <p:commandLink  action="#{vendasFinanceiroComissaoMB.editarInformacoes(vendasFinanceiroComissaoMB.editarcomissaotm)}" style="margin-left:0.4%;text-decoration:none;">
                     <img src="../../resources/img/editardata.png"/>
                     <p:ajax event="dialogReturn" listener="#{vendasFinanceiroComissaoMB.retornoDialog}" process="@this" update=":editarComissao:comissaotm" />
                 </p:commandLink>
@@ -46,7 +46,7 @@
                 <p:inputText id="desagio" style="margin-left:11.5%;width:15%;text-align: right" readonly="true" value="#{vendasFinanceiroComissaoMB.vendascomissao.desagio}">
                     <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                 </p:inputText>
-                <p:commandLink style="margin-left:0.4%;text-decoration:none;" action="#{vendasFinanceiroComissaoMB.editarInformacoes(desagio)}">
+                <p:commandLink style="margin-left:0.4%;text-decoration:none;" action="#{vendasFinanceiroComissaoMB.editarInformacoes(vendasFinanceiroComissaoMB.editardesagio)}">
                     <img src="../../resources/img/editardata.png"/>
                     <p:ajax event="dialogReturn" listener="#{vendasFinanceiroComissaoMB.retornoDialog}" process="@this" update=":editarComissao:desagio" />
                 </p:commandLink>
@@ -67,15 +67,16 @@
                 <p:inputText id="comissaofranquia" style="margin-left:6%;width:12%;text-align:right" readonly="true" value="#{vendasFinanceiroComissaoMB.vendascomissao.comissaofraquia}">
                     <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                 </p:inputText>
-                <p:commandLink style="margin-left:0.4%;text-decoration:none;"  action="#{vendasFinanceiroComissaoMB.editarInformacoes(comissaofranquia)}">
+                <p:commandLink style="margin-left:0.4%;text-decoration:none;"  action="#{vendasFinanceiroComissaoMB.editarInformacoes(vendasFinanceiroComissaoMB.editarcomissaofranquia)}">
                     <img src="../../resources/img/editardata.png"/>
                     <p:ajax event="dialogReturn" listener="#{vendasFinanceiroComissaoMB.retornoDialog}" process="@this" update=":editarComissao:comissaofranquia" />
                 </p:commandLink>
                 <p:inputText id="incentivofranquia" style="margin-left:6%;width:13%;text-align:right" readonly="true" value="#{vendasFinanceiroComissaoMB.vendascomissao.incentivo}">
                     <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                 </p:inputText>
-                <p:commandLink style="margin-left:0.4%;text-decoration:none;" action="#{vendasFinanceiroComissaoMB.editarInformacoes(incentivo)}">
+                <p:commandLink style="margin-left:0.4%;text-decoration:none;" action="#{vendasFinanceiroComissaoMB.editarInformacoes(vendasFinanceiroComissaoMB.editarincentivo)}">
                     <img src="../../resources/img/editardata.png"/>
+                    <p:ajax event="dialogReturn" listener="#{vendasFinanceiroComissaoMB.retornoDialog}" process="@this" update=":editarComissao:incentivofranquia" />
                 </p:commandLink>
                 <p:inputText id="liquidofrq" style="margin-left:6%;width:13.5%;text-align:right" readonly="true" value="#{vendasFinanceiroComissaoMB.vendascomissao.liquidofranquia}">
                     <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
@@ -93,7 +94,7 @@
                 <p:inputText id="comissaoterceiros" style="margin-left:8%;width:15%;text-align:right" readonly="true" value="#{vendasFinanceiroComissaoMB.vendascomissao.comissaoterceiros}">
                     <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                 </p:inputText>
-                <p:commandLink style="margin-left:0.4%;text-decoration:none;" action="#{vendasFinanceiroComissaoMB.editarInformacoes(comissaoterceiros)}">
+                <p:commandLink style="margin-left:0.4%;text-decoration:none;" action="#{vendasFinanceiroComissaoMB.editarInformacoes(vendasFinanceiroComissaoMB.editarcomissaoterceiros)}">
                     <img src="../../resources/img/editardata.png"/>
                     <p:ajax event="dialogReturn" listener="#{vendasFinanceiroComissaoMB.retornoDialog}" process="@this" update=":editarComissao:comissaoterceiros" />
                 </p:commandLink>
@@ -106,9 +107,9 @@
                <p:inputText id="comissaoconsultor" style="margin-left:8%;width:15%;text-align:right" readonly="true" value="#{vendasFinanceiroComissaoMB.vendascomissao.comissaoemissor}">
                     <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                 </p:inputText>
-                <p:commandLink style="margin-left:0.4%;text-decoration:none;" action="#{vendasFinanceiroComissaoMB.editarInformacoes(comissaoconsultor)}" >
+               <p:commandLink style="margin-left:0.4%;text-decoration:none;" action="#{vendasFinanceiroComissaoMB.editarInformacoes(vendasFinanceiroComissaoMB.editarComissaoConsultor)}" >
                     <img src="../../resources/img/editardata.png"/>
-                    <p:ajax event="dialogReturn" listener="#{vendasFinanceiroComissaoMB.retornoDialog}" process="@this" update=":editarComissao:comissaoconsultor" />
+                    <p:ajax event="dialogReturn" listener="#{vendasFinanceiroComissaoMB.retornoDialog}" process="@this" update="comissaoconsultor" />
                 </p:commandLink>
                 
                  <br></br><br></br>
@@ -119,9 +120,9 @@
                 <p:inputText id="comissaogerente" style="margin-left:8%;width:15%;text-align:right" readonly="true" value="#{vendasFinanceiroComissaoMB.vendascomissao.comissaogerente}">
                     <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                 </p:inputText>
-                <p:commandLink style="margin-left:0.4%;text-decoration:none;"  action="#{vendasFinanceiroComissaoMB.editarInformacoes(comissaogerente)}" >
+                <p:commandLink style="margin-left:0.4%;text-decoration:none;"  action="#{vendasFinanceiroComissaoMB.editarInformacoes(vendasFinanceiroComissaoMB.editarcomissaogerente)}" >
                      <img src="../../resources/img/editardata.png"/>
-                     <p:ajax event="dialogReturn" listener="#{vendasFinanceiroComissaoMB.retornoDialog}" process="@this" update=":editarComissao:comissaoconsultor" />
+                     <p:ajax event="dialogReturn" listener="#{vendasFinanceiroComissaoMB.retornoDialog}" process="@this" update=":editarComissao:comissaogerente" />
                 </p:commandLink>
                 <br></br><br></br> 
                 <legend id="iUsu3"  style="font-size:12px;margin-left:4%;border-color: #fff;color:#fff;width: 92%"><b style="color:#fff">Líquido da Venda</b></legend>
