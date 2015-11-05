@@ -53,6 +53,7 @@ public class EditarValoresComissaoMB implements Serializable{
         campoAlteracao = (String) session.getAttribute("campoAlteracao");
         consultarCambio(venda.getDataVenda());
         vendascomissao = venda.getVendascomissaoList().get(0);
+        selecao= "manual";
     }
 
     public String getTitulo() {
@@ -227,12 +228,13 @@ public class EditarValoresComissaoMB implements Serializable{
         }
     }
     
-    public void cancalar(){
+    public String cancalar(){
         FacesContext fc = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
         session.setAttribute("campoAlteracao", "cancelado");
         session.setAttribute("nonoValor", 0.01f);
         RequestContext.getCurrentInstance().closeDialog(null);
+        return "";
     }
     
     public String confirmar(){

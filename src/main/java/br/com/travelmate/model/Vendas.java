@@ -83,18 +83,7 @@ public class Vendas implements Serializable {
     private Usuario usuario;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendas")
     private List<Cobranca> cobrancaList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendas")
-    private List<Programasteens> programasteensList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendas")
-    private List<Ladies> ladiesList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendas")
-    private List<Highschool> highschoolList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendas")
     private List<Contasreceber> contasreceberList;   
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendas")
-    private List<Pacotes> pacotesList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendas")
-    private List<Passagemaerea> passagemaereaList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendas")
     private List<Orcamento> orcamentoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendas")
@@ -271,22 +260,7 @@ public class Vendas implements Serializable {
         this.cobrancaList = cobrancaList;
     }
 
-    public List<Pacotes> getPacotesList() {
-        return pacotesList;
-    }
-
-    public void setPacotesList(List<Pacotes> pacotesList) {
-        this.pacotesList = pacotesList;
-    }
-
-    public List<Passagemaerea> getPassagemaereaList() {
-        return passagemaereaList;
-    }
-
-    public void setPassagemaereaList(List<Passagemaerea> passagemaereaList) {
-        this.passagemaereaList = passagemaereaList;
-    }
-
+    
     public List<Contasreceber> getContasreceberList() {
         return contasreceberList;
     }
@@ -295,30 +269,7 @@ public class Vendas implements Serializable {
         this.contasreceberList = contasreceberList;
     }
 
-    public List<Highschool> getHighschoolList() {
-        return highschoolList;
-    }
-
-    public void setHighschoolList(List<Highschool> highschoolList) {
-        this.highschoolList = highschoolList;
-    }
-
-    public List<Programasteens> getProgramasteensList() {
-        return programasteensList;
-    }
-
-    public void setProgramasteensList(List<Programasteens> programasteensList) {
-        this.programasteensList = programasteensList;
-    }
-
-    public List<Ladies> getLadiesList() {
-        return ladiesList;
-    }
-
-    public void setLadiesList(List<Ladies> ladiesList) {
-        this.ladiesList = ladiesList;
-    }
-
+    
     public List<Orcamento> getOrcamentoList() {
         return orcamentoList;
     }

@@ -122,19 +122,19 @@ public class VendasFinanceiroComissaoMB implements Serializable{
     
     private void setNovoValor(String campo, float novoValor){
         if (campo.equalsIgnoreCase("comissaotm")){
-            vendascomissao.setComissaotm(novoValor);
+            novoValorComissaoTM(novoValor);
         }else if (campo.equalsIgnoreCase("desagio")){
-            vendascomissao.setDesagio(novoValor);
+            novoValorDessagio(novoValor);
         }else if (campo.equalsIgnoreCase("comissaofranquia")){
-            vendascomissao.setComissaofraquia(novoValor);
+            novoValorComissaoFranquia(novoValor);
         }else if (campo.equalsIgnoreCase("incentivo")){
-            vendascomissao.setIncentivo(novoValor);
+            novoValorIncentivo(novoValor);
         }else if (campo.equalsIgnoreCase("comissaoterceitos")){
-            vendascomissao.setComissaoterceiros(novoValor);
+            novoValorComissaoTerceiros(novoValor);
         }else if (campo.equalsIgnoreCase("comissaoconsultor")){
-            vendascomissao.setComissaoemissor(novoValor);
+            novoValorComissaoConsultor(novoValor);
         }else if (campo.equalsIgnoreCase("comissaogerente")){
-            vendascomissao.setComissaogerente(novoValor);
+            novoValorComissaoGerente(novoValor);
         }
     }
     
@@ -146,5 +146,80 @@ public class VendasFinanceiroComissaoMB implements Serializable{
         VendasComissaoFacade vendasComissaoFacade = new VendasComissaoFacade();
         vendasComissaoFacade.salvar(vendascomissao);
         RequestContext.getCurrentInstance().closeDialog(null);
+    }
+    
+    public void novoValorComissaoTM(float novoValor){
+         vendascomissao.setComissaotm(novoValor);
+         vendascomissao.setValorfornecedor(venda.getValor() - (vendascomissao.getComissaotm() + vendascomissao.getTaxatm()));
+         float valorComissao = vendascomissao.getComissaotm() + vendascomissao.getTaxatm();
+         valorComissao = valorComissao - (vendascomissao.getDesagio() + vendascomissao.getDescontotm() + vendascomissao.getDescontoloja() + vendascomissao.getLiquidofranquia());
+         valorComissao = (float) (valorComissao * (venda.getProdutos().getComissaogerente()/100));
+         vendascomissao.setComissaogerente(valorComissao);
+         calcularLiquidoVendas();
+    }
+    
+    public void novoValorDessagio(float novoValor){
+        //Comissão Franquia = % comissão franquia * Valor Comissionavel + 50% Taxa TM – 50% Desconto Matriz – 100% Desconto Loja + Incentivo
+        vendascomissao.setDesagio(novoValor);
+        float comissaoFranquia = vendascomissao.getComissaofranquiabruta() + (vendascomissao.getTaxatm()/2);
+        comissaoFranquia = comissaoFranquia - ((vendascomissao.getDescontotm()/2) + vendascomissao.getDescontoloja() + vendascomissao.getDesagio());
+        vendascomissao.setComissaofraquia(comissaoFranquia);
+        vendascomissao.setLiquidofranquia(vendascomissao.getComissaofraquia() + vendascomissao.getIncentivo());
+        
+        //Comissão Gerente = % comissão gerente * (Comissão TM + Taxa TM – Deságio – Desconto Matriz – Desconto Loja – Líquido FRQ)
+        float comissaoGerente = vendascomissao.getComissaotm() + vendascomissao.getTaxatm();
+         comissaoGerente = comissaoGerente - (vendascomissao.getDesagio() + vendascomissao.getDescontotm() + vendascomissao.getDescontoloja() + vendascomissao.getLiquidofranquia());
+         comissaoGerente = (float) (comissaoGerente * (venda.getProdutos().getComissaogerente()/100));
+         vendascomissao.setComissaogerente(comissaoGerente);
+         
+         //Comissão Consultor = % comissão consultor * Líquido FRQ
+         vendascomissao.setComissaoemissor(vendascomissao.getLiquidofranquia() * (venda.getUnidadenegocio().getPerconsultor().floatValue()/100));
+         calcularLiquidoVendas();
+        
+    }
+    
+    public void novoValorComissaoFranquia(float novoValor){
+        vendascomissao.setComissaofraquia(novoValor);
+        vendascomissao.setLiquidofranquia(vendascomissao.getComissaofraquia() + vendascomissao.getIncentivo());
+        float comissaoGerente = vendascomissao.getComissaotm() + vendascomissao.getTaxatm();
+         comissaoGerente = comissaoGerente - (vendascomissao.getDesagio() + vendascomissao.getDescontotm() + vendascomissao.getDescontoloja() + vendascomissao.getLiquidofranquia());
+         comissaoGerente = (float) (comissaoGerente * (venda.getProdutos().getComissaogerente()/100));
+         vendascomissao.setComissaogerente(comissaoGerente);
+        vendascomissao.setComissaoemissor(vendascomissao.getLiquidofranquia() * (venda.getUnidadenegocio().getPerconsultor().floatValue()/100));
+         calcularLiquidoVendas();
+    }
+    
+    public void novoValorIncentivo(float novoValor){
+        vendascomissao.setIncentivo(novoValor);
+        vendascomissao.setLiquidofranquia(vendascomissao.getComissaofraquia() + vendascomissao.getIncentivo());
+        float comissaoGerente = vendascomissao.getComissaotm() + vendascomissao.getTaxatm();
+         comissaoGerente = comissaoGerente - (vendascomissao.getDesagio() + vendascomissao.getDescontotm() + vendascomissao.getDescontoloja() + vendascomissao.getLiquidofranquia());
+         comissaoGerente = (float) (comissaoGerente * (venda.getProdutos().getComissaogerente()/100));
+         vendascomissao.setComissaogerente(comissaoGerente);
+        vendascomissao.setComissaoemissor(vendascomissao.getLiquidofranquia() * (venda.getUnidadenegocio().getPerconsultor().floatValue()/100));
+         calcularLiquidoVendas();
+    }
+    
+    public void novoValorComissaoTerceiros(float novoValor){
+        vendascomissao.setComissaoterceiros(novoValor);
+         calcularLiquidoVendas();
+    }
+    
+    public void novoValorComissaoConsultor(float novoValor){
+        vendascomissao.setComissaoemissor(novoValor);
+         calcularLiquidoVendas();
+    }
+    
+    public void novoValorComissaoGerente(float novoValor){
+        vendascomissao.setComissaogerente(novoValor);
+         calcularLiquidoVendas();
+    }
+    
+    public void calcularLiquidoVendas(){
+        float somar = vendascomissao.getComissaotm() + vendascomissao.getTaxatm();
+        float subtrair = vendascomissao.getDescontotm() + vendascomissao.getComissaoemissor() + 
+                vendascomissao.getComissaogerente() + vendascomissao.getComissaoterceiros() +
+                vendascomissao.getComissaofraquia() + vendascomissao.getDesagio();
+        vendascomissao.setLiquidovendas(somar - subtrair);
     }
 }

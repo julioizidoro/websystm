@@ -15,8 +15,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -82,6 +80,10 @@ public class Vendascomissao implements Serializable {
     @JoinColumn(name = "terceiros_idterceiros", referencedColumnName = "idterceiros")
     @ManyToOne(optional = false)
     private Terceiros terceiros;
+    @Column(name = "comissaofranquiabruta")
+    private float comissaofranquiabruta;
+    
+    
 
     public Vendascomissao() {
     }
@@ -168,6 +170,14 @@ public class Vendascomissao implements Serializable {
 
     public void setPrevisaopagamento(Date previsaopagamento) {
         this.previsaopagamento = previsaopagamento;
+    }
+
+    public float getComissaofranquiabruta() {
+        return comissaofranquiabruta;
+    }
+
+    public void setComissaofranquiabruta(float comissaofranquiabruta) {
+        this.comissaofranquiabruta = comissaofranquiabruta;
     }
 
     
