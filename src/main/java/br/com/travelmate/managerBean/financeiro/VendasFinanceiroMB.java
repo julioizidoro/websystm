@@ -176,7 +176,7 @@ public class VendasFinanceiroMB  implements Serializable{
             session.setAttribute("venda", venda);
             Map<String,Object> options = new HashMap<String, Object>();
             options.put("contentWidth",850);
-            RequestContext.getCurrentInstance().openDialog("editarComissoes", options, null);
+            return "editarComissoes";
         }
         else{
             FacesMessage msg = new FacesMessage("Venda não Possui Comissão! ", " ");

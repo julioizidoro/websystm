@@ -138,8 +138,8 @@ public class VendasFinanceiroComissaoMB implements Serializable{
         }
     }
     
-    public void cancelar(){
-        RequestContext.getCurrentInstance().closeDialog(null);
+    public String cancelar(){
+        return "consVendas";
     }
     
     public void confirmar(){
