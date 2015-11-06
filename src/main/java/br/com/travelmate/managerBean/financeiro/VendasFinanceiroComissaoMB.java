@@ -206,10 +206,10 @@ public class VendasFinanceiroComissaoMB implements Serializable{
         return "consVendas";
     }
     
-    public void confirmar(){
+    public String confirmar(){
         VendasComissaoFacade vendasComissaoFacade = new VendasComissaoFacade();
         vendasComissaoFacade.salvar(vendascomissao);
-        RequestContext.getCurrentInstance().closeDialog(null);
+        return "consVendas";
     }
     
     public void novoValorComissaoTM(float novoValor){
