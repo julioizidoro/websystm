@@ -130,8 +130,8 @@ public class EditarContasReceberMB implements Serializable{
             conta.setPlanoconta(plano);
         }
         conta.setVendas(vendas);
-        contasReceberFacade.salvar(conta);
-        RequestContext.getCurrentInstance().closeDialog(null);
+        conta = contasReceberFacade.salvar(conta);
+        RequestContext.getCurrentInstance().closeDialog(conta);
         return "consContasReceber";
     }
 
