@@ -30,7 +30,7 @@
                 <p:inputMask id="prePagamento" style="margin-left:7.5%;width:14%;" mask="99/99/9999" readonly="true" value="#{vendasFinanceiroComissaoMB.vendascomissao.previsaopagamento}">
                     <f:convertDateTime   pattern="dd/MM/yyyy"  timeZone="America/Sao_Paulo"/>
                 </p:inputMask>
-                <p:commandLink style="margin-left:0.4%;text-decoration:none;" >
+                <p:commandLink style="margin-left:0.4%;text-decoration:none;" update=":editarData:dialog_editarDataVencimento"  oncomplete="PF('editarData').show()" title="Editar data">
                     <img src="../../resources/img/editardata.png"/>
                 </p:commandLink>
                 <br></br>  <br></br>
@@ -133,7 +133,19 @@
                 <p:commandButton value="Cancelar" icon="ui-icon-closethick" action="#{vendasFinanceiroComissaoMB.cancelar()}" style="margin-left:3%"/>
                 <br></br><br></br> <br></br> 
                 </div>
-            </h:form>    
+            </h:form>  
+            <h:form id="editarData">
+                <p:dialog id="dialog_editarDataVencimento" header="Editar Data" widgetVar="editarData" width="20%" style="background:#d0e9c6;text-align: left" >
+                    <p:outputLabel value="Data de Vencimento" for="dataVencimento"  style="font-size: 11px"/> 
+                    <br></br>
+                    <p:calendar id="dataVencimento" class="fontebranca" value="#{vendasFinanceiroComissaoMB.venda.dataVenda}"  pattern="dd/MM/yyyy" mask="true"  maxlength="15" locale="pt"  >
+                        <f:convertDateTime    timeZone="America/Sao_Paulo"/>
+                        <p:ajax event="change" />
+                        <p:ajax event="dateSelect" />
+                    </p:calendar>
+                    <p:commandButton value="Salvar" icon="ui-icon-check" action="#{vendasFinanceiroComissaoMB.confirmaAlterarDataVenda()}" class="espacocobranca23botao" style="font-size:11px;" update="@all"/>
+                </p:dialog>
+            </h:form>
         </ui:define>
     </ui:composition>
 </html>
