@@ -195,7 +195,7 @@ public class VendasFinanceiroMB  implements Serializable{
     public void gerarListaVendas(String sql){
         VendasFacade vendasFacade = new VendasFacade();
         if (sql==null){
-            String sData = Formatacao.SubtarirDatas(new Date(), 90, "yyyy-MM-dd");
+            String sData = Formatacao.SubtarirDatas(new Date(), 30, "yyyy-MM-dd");
             sql = "Select v From Vendas v where v.dataVenda>='" + sData + "' order by v.dataVenda, v.idvendas";
         }
         listaVendas = vendasFacade.lista(sql);
