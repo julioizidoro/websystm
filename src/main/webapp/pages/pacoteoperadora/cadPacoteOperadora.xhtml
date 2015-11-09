@@ -15,30 +15,33 @@
                             <p:outputLabel value="Descrição" for="descricao"/>
                             <p:outputLabel value="Unidade" for="unidade" class="espacopreto"/>
                             <br></br>
-                            <p:inputText id="descricao" value="#{cadPacoteOperadoraMB.pacotes.descricao}" style="width:59%" maxlength="200" class="espacocampos2"/>
-                            <p:selectOneMenu class="espacocamposgrande" style="width:230px;" id="unidade"  value="#{cadPacoteOperadoraMB.pacotes.unidadenegocio}" converter="UnidadeNegocioConverter"  filter="true" filterMatchMode="startsWith">
-                                <f:selectItem itemLabel="Selecione" itemValue="0"/>
-                                <f:selectItems id="idnidade" value="#{cadPacoteOperadoraMB.listaUnidadeNegocio}" var="unidadeNegocio" itemLabel="#{unidadeNegocio.nomeFantasia}" itemValue="#{unidadeNegocio}"/>
-                                <f:attribute name="listaUnidade" value="#{cadPacoteOperadoraMB.listaUnidadeNegocio}"/>
-                            </p:selectOneMenu>
+                            <h:panelGrid columns="2">
+                                <p:inputText id="descricao" value="#{cadPacoteOperadoraMB.pacotes.descricao}" style="width:300%" maxlength="200" class="espacocampos2"/>
+                                <p:selectOneMenu style="width:232px;margin-left:58.5%" id="unidade"  value="#{cadPacoteOperadoraMB.pacotes.unidadenegocio}" converter="UnidadeNegocioConverter"  filter="true" filterMatchMode="startsWith">
+                                    <f:selectItem itemLabel="Selecione" itemValue="0"/>
+                                    <f:selectItems id="idnidade" value="#{cadPacoteOperadoraMB.listaUnidadeNegocio}" var="unidadeNegocio" itemLabel="#{unidadeNegocio.nomeFantasia}" itemValue="#{unidadeNegocio}"/>
+                                    <f:attribute name="listaUnidade" value="#{cadPacoteOperadoraMB.listaUnidadeNegocio}"/>
+                                </p:selectOneMenu>
+                            </h:panelGrid>
                             <br></br><br></br>
                             <p:outputLabel value="Período" class=""/>
                             <p:outputLabel value="Cartão VTM" for="cartaovtm" class="espacocobranca34"/>
                             <p:outputLabel value="Número do Cartão" for="numerocartao" class="espacocobranca33"/>
                             <p:outputLabel value="Moeda" class="espacocobranca3" for="moedas"/>
                             <br></br>
-                            <p:calendar id="datainicio"  class="espacocampos5" locale="pt"  pattern="dd/MM/yyyy" value="#{cadPacoteOperadoraMB.pacotes.datainicio}" size="14"/>
-                            <p:calendar id="datatermino"   class="espacocobranca4" locale="pt"   pattern="dd/MM/yyyy" value="#{cadPacoteOperadoraMB.pacotes.datetermino}" size="15"/>
-                            <p:selectOneMenu  id="cartaovtm"  value="#{cadPacoteOperadoraMB.pacotes.cartaovtm}" class="espacocampos" style="width:12%">
-                                <f:selectItem itemLabel="Não" itemValue="nao"/> 
-                                <f:selectItem itemLabel="Sim" itemValue="sim"/> 
-                            </p:selectOneMenu>
-                            <p:inputText id="numerocartao" value="#{cadPacoteOperadoraMB.pacotes.numerocartaovtm}" style="width:19%" class="espacocobranca24"/>
-                            <p:selectOneMenu id="moedas" value="#{cadPacoteOperadoraMB.pacotes.moeda}" class="espacocobranca24" style="width:14%;">
-                                <f:selectItem itemLabel="Moedas" itemValue="0"/>
-                                <f:selectItems value="#{usuarioLogadoMB.listaCambio}" var="cambio" itemLabel="#{cambio.moedas.sigla}" itemValue="#{cambio.moedas.sigla}"/>
-                            </p:selectOneMenu>
-
+                            <h:panelGrid columns="5">
+                                <p:calendar id="datainicio"  class="espacocampos5" locale="pt"  pattern="dd/MM/yyyy" value="#{cadPacoteOperadoraMB.pacotes.datainicio}" size="14"/>
+                                <p:calendar id="datatermino"   class="espacocobranca20" locale="pt"   pattern="dd/MM/yyyy" value="#{cadPacoteOperadoraMB.pacotes.datetermino}" size="15"/>
+                                <p:selectOneMenu  id="cartaovtm"  value="#{cadPacoteOperadoraMB.pacotes.cartaovtm}" style="width:100px;margin-left:34.5%">
+                                    <f:selectItem itemLabel="Não" itemValue="nao"/> 
+                                    <f:selectItem itemLabel="Sim" itemValue="sim"/> 
+                                </p:selectOneMenu>
+                                <p:inputText id="numerocartao" value="#{cadPacoteOperadoraMB.pacotes.numerocartaovtm}" style="width:100%;margin-left:25%"/>
+                                <p:selectOneMenu id="moedas" value="#{cadPacoteOperadoraMB.pacotes.moeda}" style="width:100px;margin-left:40%">
+                                    <f:selectItem itemLabel="Moedas" itemValue="0"/>
+                                    <f:selectItems value="#{usuarioLogadoMB.listaCambio}" var="cambio" itemLabel="#{cambio.moedas.sigla}" itemValue="#{cambio.moedas.sigla}"/>
+                                </p:selectOneMenu>
+                            </h:panelGrid>
                             <br></br><br></br>
                             <p:outputLabel value="Câmbio" for="moeda" class=""/>
                             <p:outputLabel value="Valor do Câmbio" for="idvalorcambio" class="espacocobranca5"/>
@@ -56,7 +59,7 @@
                             <h:commandLink action="#"  title="Editar Câmbio">  
                                 <img id="editarcambio" class="" src="../../resources/img/cambio_1.png"/>
                             </h:commandLink>
-                            <p:commandButton id="bntiniciar" class="espacocobranca20botao" style="font-size:12px;" icon="ui-icon-triangle-1-e" value="Iniciar" action="#{cadPacoteOperadoraMB.iniciarPacote()}" disabled="#{cadPacoteOperadoraMB.btniniciar}" ajax="false" >
+                            <p:commandButton id="bntiniciar" class="espacocobranca20botao" style="font-size:12px;margin-left:18%" icon="ui-icon-triangle-1-e" value="Iniciar" action="#{cadPacoteOperadoraMB.iniciarPacote()}" disabled="#{cadPacoteOperadoraMB.btniniciar}" ajax="false" >
                                 <p:ajax event="click" update="bntiniciar" listener="#{cadPacoteOperadoraMB.verificarBotoes()}" />
                                 <p:ajax event="click" update="btnfinalizar" />
                             </p:commandButton>
@@ -81,13 +84,13 @@
                             <p:inputText id="valorgross" value="#{cadPacoteOperadoraMB.pacotes.valorgross}" style="width:12%" maxlength="15" class="espacocobranca24r" readonly="true">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
-                            <p:inputText id="comissao" value="#{cadPacoteOperadoraMB.pacotes.comissao}" style="width:12%" class="espacocobranca24r" readonly="true">
+                            <p:inputText id="comissao" value="#{cadPacoteOperadoraMB.pacotes.comissao}" style="width:11.5%" class="espacocobranca24r" readonly="true">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
-                            <p:inputText id="moedanacional" value="#{cadPacoteOperadoraMB.pacotes.valormoedanacional}" style="width:14%" maxlength="15" class="espacocobranca24r" readonly="true">
+                            <p:inputText id="moedanacional" value="#{cadPacoteOperadoraMB.pacotes.valormoedanacional}" style="width:13.2%" maxlength="15" class="espacocobranca24r" readonly="true">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
-                            <p:inputText id="comissaoloja" value="#{cadPacoteOperadoraMB.pacotes.comissaoloja}" style="width:13%" maxlength="15" class="espacocobranca24r" readonly="true">
+                            <p:inputText id="comissaoloja" value="#{cadPacoteOperadoraMB.pacotes.comissaoloja}" style="width:14%" maxlength="15" class="espacocobranca24r" readonly="true">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
                             
@@ -107,40 +110,45 @@
                                 </p:column>
                                  
                                 <p:column headerText="Itens" style="width: 38%">    
-                                    <p:commandLink  title="Aereo" action="#{cadPacoteOperadoraMB.novoPassagem(trecho)}">
+                                    <p:commandLink  title="Aereo" action="#{cadPacoteOperadoraMB.novoPassagem(trecho)}" >
                                          <img  src="#{cadPacoteOperadoraMB.imagemAereo(trecho)}" />
+                                         <p:ajax event="dialogReturn" listener="#{cadPacoteOperadoraMB.retornoDialogNovo()}" process="@this" update="idlistatrechos"/>
                                     </p:commandLink>
                                     <p:commandLink  action="#{cadPacoteOperadoraMB.novoCarro(trecho)}" title="Carro" style="margin-left:2%;">
                                         <img  src="#{cadPacoteOperadoraMB.imagemCarro(trecho)}" />
+                                        <p:ajax event="dialogReturn" listener="#{cadPacoteOperadoraMB.retornoDialogNovo()}" process="@this" update="idlistatrechos"/>
                                     </p:commandLink>
                                     <p:commandLink action="#{cadPacoteOperadoraMB.novoCruzeiro(trecho)}" title="Cruzeiro" style="margin-left:2%;">
                                          <img  src="#{cadPacoteOperadoraMB.imagemCruzeiro(trecho)}" />
+                                         <p:ajax event="dialogReturn" listener="#{cadPacoteOperadoraMB.retornoDialogNovo()}" process="@this" update="idlistatrechos"/>
                                     </p:commandLink>
                                     <p:commandLink  action="#{cadPacoteOperadoraMB.novoHotel(trecho)}" title="Hotel" style="margin-left:2%;">
                                          <img  src="#{cadPacoteOperadoraMB.imagemHotel(trecho)}" />
+                                         <p:ajax event="dialogReturn" listener="#{cadPacoteOperadoraMB.retornoDialogNovo()}" process="@this" update="idlistatrechos"/>
                                     </p:commandLink>
                                     <p:commandLink action="#{cadPacoteOperadoraMB.novoIngresso(trecho)}" title="Ingresso"  style="margin-left:2%;">
                                          <img  src="#{cadPacoteOperadoraMB.imagemIngresso(trecho)}" />
+                                         <p:ajax event="dialogReturn" listener="#{cadPacoteOperadoraMB.retornoDialogNovo()}" process="@this" update="idlistatrechos"/>
                                     </p:commandLink>
                                     <p:commandLink action="#{cadPacoteOperadoraMB.novoPasseio(trecho)}" title="Passeio"  style="margin-left:2%;">
                                          <img  src="#{cadPacoteOperadoraMB.imagemPasseio(trecho)}" />
+                                         <p:ajax event="dialogReturn" listener="#{cadPacoteOperadoraMB.retornoDialogNovo()}" process="@this" update="idlistatrechos"/>
                                     </p:commandLink>
                                     <p:commandLink  action="#{cadPacoteOperadoraMB.novoTransfer(trecho)}" title="Transfer"  style="margin-left:2%;">
                                          <img  src="#{cadPacoteOperadoraMB.imagemTransfer(trecho)}" />
+                                         <p:ajax event="dialogReturn" listener="#{cadPacoteOperadoraMB.retornoDialogNovo()}" process="@this" update="idlistatrechos"/>
                                     </p:commandLink>
                                     <p:commandLink  action="#{cadPacoteOperadoraMB.novoTrem(trecho)}" title="Trem"  style="margin-left:2%;">
                                          <img  src="#{cadPacoteOperadoraMB.imagemTrem(trecho)}" />
+                                         <p:ajax event="dialogReturn" listener="#{cadPacoteOperadoraMB.retornoDialogNovo()}" process="@this" update="idlistatrechos"/>
                                     </p:commandLink>
-                                </p:column>
-                                <p:column headerText="Editar"  style="width:7%">
-                                    <p:commandButton  id="editar" icon="ui-icon-pencil" title="Editar" action="#" />
                                 </p:column>
                             </p:dataTable>
                             
                              <br></br><br></br><br></br> <br></br><br></br><br></br> <br></br><br></br><br></br><br></br><br></br><br></br>
                             <p class="botaocadpacote"><br></br>
-                                <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Confirmar" action="#"></p:commandButton>
-                                <p:commandButton class="espacocampos" onclick="" icon="ui-icon-close" value="Cancelar" action="#"></p:commandButton>
+                                <p:commandButton class="imagemm"  icon="ui-icon-check" value="Confirmar" action="#{cadPacoteOperadoraMB.salvar()}"></p:commandButton>
+                                <p:commandButton class="espacocampos" icon="ui-icon-close" value="Cancelar" action="#{cadPacoteOperadoraMB.cancelar()}"></p:commandButton>
                             </p>
                         </p:tab>
                     </p:accordionPanel>

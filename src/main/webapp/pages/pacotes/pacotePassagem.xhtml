@@ -92,7 +92,8 @@
                     <p:outputLabel value="RG/Passaporte" for="rgPassaporte" class="espacocobranca15" style="font-size:10px;"/>
                     <p:outputLabel value="Categoria" for="idpassageirotipo" class="espacocobranca15" style="font-size:10px;"/> 
                     <br></br>
-                        <p:inputText id="nome" style="width:30%;" class="camposs" value="#{pacotePassagemMB.passageirosBean.nome}"  />
+                       
+                    <p:inputText id="nome" style="width:30%;" class="camposs" value="#{pacotePassagemMB.passageirosBean.nome}"  />
                         <p:inputMask mask="99/99/9999" id="datasnac" style="width:14%;" class="espacocobranca28" value="#{pacotePassagemMB.passageirosBean.dataNascimento}">
                             <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                         </p:inputMask>

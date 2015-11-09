@@ -379,13 +379,8 @@ public class PacotePassagemMB implements Serializable{
         context.addMessage(null, new FacesMessage("Salvo com Sucesso", ""));
         HttpSession session = (HttpSession) context.getExternalContext().getSession(false);  
         session.setAttribute("pacote", pacotepassagem.getPacotetrecho().getPacotes());
-        if (pacotepassagem.getPacotetrecho().getPacotes().getOperacao().equalsIgnoreCase("Operadora")){
-            RequestContext.getCurrentInstance().closeDialog("cadpacotesoperadora");
-            return "";
-        }else{
-            RequestContext.getCurrentInstance().closeDialog("cadPacote");
-            return "";
-        }   
+        RequestContext.getCurrentInstance().closeDialog(pacotepassagem);
+        return "";
     }
     
     public void salvarPassageiro(){

@@ -161,13 +161,8 @@ public class PacoteHotelMB implements Serializable{
         context.addMessage(null, new FacesMessage("Salvo com Sucesso", ""));
         HttpSession session = (HttpSession) context.getExternalContext().getSession(false);  
         session.setAttribute("pacote", pacotehotel.getPacotetrecho().getPacotes());
-        if (pacotehotel.getPacotetrecho().getPacotes().getOperacao().equalsIgnoreCase("Operadora")){
-            RequestContext.getCurrentInstance().closeDialog("cadpacotesoperadora");
-            return "";
-        }else{
-            RequestContext.getCurrentInstance().closeDialog("cadPacote");
-            return "";
-        }   
+        RequestContext.getCurrentInstance().closeDialog(pacotehotel);
+        return "";
     }
     
     public void calcularValorGross(){

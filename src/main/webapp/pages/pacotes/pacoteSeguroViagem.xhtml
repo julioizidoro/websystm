@@ -41,28 +41,28 @@
         <h:form id="cadastropacoteseguro" style="text-align:left;font-size: 10px;">
             <title>Seguro Viagem</title>
             
-                    <br></br><br></br>
                     <p:outputLabel value="Seguradora" for="seguradora" class="espacocobranca24"/>
                     <p:outputLabel value="Plano" for="plano" class="espacocobranca16"/>
                     <p:outputLabel value="Cobrança" for="cobranca" class="espacocobranca22"/>
 
                     <br></br>
-                    <p:selectOneMenu class="espacocobranca24" style="width:26%;" id="seguradora"  value="#{seguroViagemMB.fornecedorcidade}" 
-                                     converter="FornecedorCidadeConverter">
-                        <f:selectItem itemLabel="Seguradora" itemValue="0" noSelectionOption="true" /> 
-                        <f:selectItems id="idcidade" value="#{seguroViagemMB.listaFornecedorCidade}" var="ccidade" itemLabel="#{ccidade.fornecedor.nome}" itemValue="#{ccidade}"/>
-                        <f:attribute name="listaFornecedorCidade" value="#{seguroViagemMB.listaFornecedorCidade}"/>
-                        <p:ajax event="change" update="plano"/> 
-                    </p:selectOneMenu>
-                    <p:selectOneMenu id="plano" class="espacocampos" style="width:25%;" value="#{seguroViagemMB.valoresseguro}"
-                                     converter="ValorSeguroConverter" >
-                        <f:selectItem itemLabel="Seguradora" itemValue="0" noSelectionOption="true"/> 
-                        <f:selectItems id="idvaloresseguro" value="#{seguroViagemMB.fornecedorcidade.valoresseguroList}" var="cvalorseguro" itemLabel="#{cvalorseguro.plano}" itemValue="#{cvalorseguro}"/>
-                        <f:attribute name="listaValorSeguro" value="#{seguroViagemMB.fornecedorcidade.valoresseguroList}"/>
-                        <p:ajax event="change" update="cobranca" />
-                    </p:selectOneMenu>
-                    <p:inputText id="cobranca" value="#{seguroViagemMB.valoresseguro.cobranca}" style="width:25%" maxlength="45" class="espacocampos" readonly="true"/>
-
+                    <h:panelGrid columns="3">
+                        <p:selectOneMenu  style="width:160px;margin-left:23%" id="seguradora"  value="#{seguroViagemMB.fornecedorcidade}" 
+                                         converter="FornecedorCidadeConverter">
+                            <f:selectItem itemLabel="Seguradora" itemValue="0" noSelectionOption="true" /> 
+                            <f:selectItems id="idcidade" value="#{seguroViagemMB.listaFornecedorCidade}" var="ccidade" itemLabel="#{ccidade.fornecedor.nome}" itemValue="#{ccidade}"/>
+                            <f:attribute name="listaFornecedorCidade" value="#{seguroViagemMB.listaFornecedorCidade}"/>
+                            <p:ajax event="change" update="plano"/> 
+                        </p:selectOneMenu>
+                        <p:selectOneMenu id="plano" style="width:157px;margin-left:17%" value="#{seguroViagemMB.valoresseguro}"
+                                         converter="ValorSeguroConverter" >
+                            <f:selectItem itemLabel="Seguradora" itemValue="0" noSelectionOption="true"/> 
+                            <f:selectItems id="idvaloresseguro" value="#{seguroViagemMB.fornecedorcidade.valoresseguroList}" var="cvalorseguro" itemLabel="#{cvalorseguro.plano}" itemValue="#{cvalorseguro}"/>
+                            <f:attribute name="listaValorSeguro" value="#{seguroViagemMB.fornecedorcidade.valoresseguroList}"/>
+                            <p:ajax event="change" update="cobranca" />
+                        </p:selectOneMenu>
+                        <p:inputText id="cobranca" value="#{seguroViagemMB.valoresseguro.cobranca}" style="width:100%" maxlength="45" class="espacocampos" readonly="true"/>
+                    </h:panelGrid>
 
                     <br></br><br></br>
                     <p:outputLabel value="Data inicial" for="datainicio" class="espacocobranca24"/>
@@ -80,15 +80,15 @@
                         <p:ajax event="blur" update="datatermino" listener="#{seguroViagemMB.calcularDataTermino()}" /> 
                         <p:ajax event="blur" update="valorseguro" /> 
                     </p:inputText>
-                    <p:calendar id="datatermino" value="#{seguroViagemMB.seguroviagem.dataTermino}" size="12" class="espacocampos" locale="pt"  pattern="dd/MM/yyyy" >
+                    <p:calendar id="datatermino" value="#{seguroViagemMB.seguroviagem.dataTermino}" size="13" class="espacocampos" locale="pt"  pattern="dd/MM/yyyy" >
                         <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                     </p:calendar>
-                    <p:inputText id="valorseguro" value="#{seguroViagemMB.seguroviagem.valorSeguro}" style="width:25%" maxlength="45" class="espacocamposright" readonly="true">
+                    <p:inputText id="valorseguro" value="#{seguroViagemMB.seguroviagem.valorSeguro}" style="width:26.5%" maxlength="45" class="espacocamposright" readonly="true">
                         <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                     </p:inputText>
 
                     <br></br><br></br>
-                    <legend id="iUsu4" style="font-size: 11px;" class="espacocobranca24"><b>Contato de Emergência no Brasil</b></legend>
+                    <legend id="iUsu4" style="font-size: 11px;width: 85%" class="espacocobranca24"><b>Contato de Emergência no Brasil</b></legend>
                     <p:outputLabel value="Nome" for="nome" class="espacocobranca24"/>
                     <p:outputLabel value="Telefone" for="telefone" class="espaco1p" />
                     <br></br>
@@ -102,7 +102,7 @@
                         <p:commandButton class="espacocampos"  icon="ui-icon-close" value="Cancelar" action="#{seguroViagemMB.cancelar()}"></p:commandButton>
                         <p:commandButton class="espacocampos" icon="ui-icon-trash" value="Excluir" action="#{seguroViagemMB.excluir()}"></p:commandButton>
                         <br></br><br></br>
-                    </p><br></br>
+                    </p>
         </h:form>     
     </h:body>
 </html>

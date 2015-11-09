@@ -162,10 +162,8 @@ public class PacoteTremMB implements Serializable{
         context.addMessage(null, new FacesMessage("Salvo com Sucesso", ""));
         HttpSession session = (HttpSession) context.getExternalContext().getSession(false);  
         session.setAttribute("pacote", pacotetrem.getPacotetrecho().getPacotes());
-        if (pacotetrem.getPacotetrecho().getPacotes().getOperacao().equalsIgnoreCase("Operadora")){
-            RequestContext.getCurrentInstance().closeDialog("cadpacotesoperadora");
-            return "";
-        }else return "cadPacote";
+        RequestContext.getCurrentInstance().closeDialog(pacotetrem);
+        return "";
     }
     
     public void calcularValorGross(){

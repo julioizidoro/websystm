@@ -33,6 +33,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 import org.primefaces.context.RequestContext;
+import org.primefaces.event.SelectEvent;
 
 /**
  *
@@ -320,6 +321,18 @@ public class CadPacoteOperadoraMB implements Serializable {
         }
         return "";
     }
+    
+    public void retornoDialogNovo() {
+        imagemAereo(pacotetrecho);
+        imagemCarro(pacotetrecho);
+        imagemCruzeiro(pacotetrecho);
+        imagemHotel(pacotetrecho);
+        imagemIngresso(pacotetrecho);
+        imagemPasseio(pacotetrecho);
+        imagemSeguro(pacotetrecho);
+        imagemTransfer(pacotetrecho);
+        imagemTrem(pacotetrecho);
+    }
 
     public String imagemAereo(Pacotetrecho pacotetrecho) {
         boolean verdade = true;
@@ -447,5 +460,15 @@ public class CadPacoteOperadoraMB implements Serializable {
             btniniciar = true;
             btnfinalizar = false;
         }
+    }
+    
+    public String cancelar(){
+        return "consultapacotesoperadora";
+    }
+    
+    public String salvar(){
+        PacotesFacade pacotesFacade = new PacotesFacade();
+        pacotes = pacotesFacade.salvar(pacotes);
+        return "consultapacotesoperadora";
     }
 }

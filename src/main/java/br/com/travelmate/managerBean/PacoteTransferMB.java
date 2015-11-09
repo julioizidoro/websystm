@@ -161,10 +161,8 @@ public class PacoteTransferMB implements Serializable{
         context.addMessage(null, new FacesMessage("Salvo com Sucesso", ""));
         HttpSession session = (HttpSession) context.getExternalContext().getSession(false);  
         session.setAttribute("pacote", pacotetransfer.getPacotetrecho().getPacotes());
-        if (pacotetransfer.getPacotetrecho().getPacotes().getOperacao().equalsIgnoreCase("Operadora")){
-            RequestContext.getCurrentInstance().closeDialog("cadpacotesoperadora");
-            return "";
-        }else return "cadPacote";
+        RequestContext.getCurrentInstance().closeDialog(pacotetransfer);
+        return "";
     }
     
     public void calcularValorGross(){
