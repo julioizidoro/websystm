@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package br.com.travelmate.facade;
-
 import br.com.travelmate.dao.ContasPagarDao;
 import br.com.travelmate.model.Contaspagar;
 import java.sql.SQLException;

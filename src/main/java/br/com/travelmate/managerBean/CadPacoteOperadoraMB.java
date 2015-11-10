@@ -24,7 +24,9 @@ import br.com.travelmate.util.GerarListas;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -202,8 +204,9 @@ public class CadPacoteOperadoraMB implements Serializable {
             FacesContext fc = FacesContext.getCurrentInstance();
             HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
             session.setAttribute("pacoteTrecho", pacotetrecho);
-            //return "pacotecarro";
-            RequestContext.getCurrentInstance().openDialog("pacotecarro");
+            Map<String,Object> options = new HashMap<String, Object>();
+            options.put("contentWidth", 700);
+            RequestContext.getCurrentInstance().openDialog("pacotecarro", options, null);
         } else {
             FacesMessage mensagem = new FacesMessage("Atenção! ", "Trecho Não Localizado.");
             FacesContext.getCurrentInstance().addMessage(null, mensagem);
@@ -230,7 +233,9 @@ public class CadPacoteOperadoraMB implements Serializable {
             FacesContext fc = FacesContext.getCurrentInstance();
             HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
             session.setAttribute("pacoteTrecho", pacotetrecho);
-            RequestContext.getCurrentInstance().openDialog("pacotehotel");
+            Map<String,Object> options = new HashMap<String, Object>();
+            options.put("contentWidth", 700);
+            RequestContext.getCurrentInstance().openDialog("pacotehotel", options, null);
             return "";
         } else {
             FacesMessage mensagem = new FacesMessage("Atenção! ", "Trecho Não Localizado.");

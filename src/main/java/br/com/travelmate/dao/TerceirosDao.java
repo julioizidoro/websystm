@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package br.com.travelmate.dao;
-
 import br.com.travelmate.connection.ConectionFactory;
 import br.com.travelmate.model.Terceiros;
 import java.sql.SQLException;

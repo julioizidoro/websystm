@@ -6,7 +6,6 @@ import br.com.travelmate.model.Historicocobranca;
 import java.sql.SQLException;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-
 /**
  *
  * @author Wolverine

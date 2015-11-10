@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-
 /**
  *
  * @author Wolverine

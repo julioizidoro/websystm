@@ -61,4 +61,13 @@ public class ClienteDao {
         return null;
     }
     
+    public List<Cliente> listar(String sql) throws SQLException{
+        EntityManager manager = ConectionFactory.getConnection();
+        manager.getTransaction().begin();
+        Query q = manager.createQuery(sql);
+        List<Cliente> lista = q.getResultList();
+        manager.getTransaction().commit();
+        return lista;
+    }
+    
 }

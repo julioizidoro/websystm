@@ -60,4 +60,14 @@ public class ClienteFacade {
         }
     }
     
+    public List<Cliente> listar(String sql) {
+        clienteDao = new ClienteDao();
+        try {
+            return clienteDao.listar(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(ClienteFacade.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    
 }

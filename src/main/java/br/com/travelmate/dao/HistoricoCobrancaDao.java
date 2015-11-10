@@ -7,7 +7,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-
 public class HistoricoCobrancaDao {
     
      private EntityManager manager;

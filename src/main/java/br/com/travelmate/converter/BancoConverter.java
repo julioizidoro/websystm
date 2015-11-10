@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package br.com.travelmate.converter;
-
 import br.com.travelmate.model.Banco;
 import java.util.List;
 import javax.faces.component.UIComponent;

@@ -52,6 +52,7 @@ public class CadPacoteAgenciaMB implements Serializable {
     private boolean btniniciar = false;
     private boolean btnfinalizar = true;
     private Cliente cliente;
+    private List<Cliente> listaCliente;
 
     @PostConstruct
     public void init() {
@@ -143,6 +144,29 @@ public class CadPacoteAgenciaMB implements Serializable {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
+
+    public List<Cliente> getListaCliente() {
+        if(listaCliente==null){
+            gerarListaCliente();
+        }
+        return listaCliente;
+    }
+
+    public void setListaCliente(List<Cliente> listaCliente) {
+        this.listaCliente = listaCliente;
+    }
+    
+    
+    public void gerarListaCliente(){
+        ClienteFacade clienteFacade = new ClienteFacade();
+        listaCliente = clienteFacade.listar("select c from Cliente c where c.unidadenegocio.idunidadeNegocio="
+                +usuarioLogadoMB.getUsuario().getUnidadenegocio().getIdunidadeNegocio()+
+                " order by c.nome");
+        if (listaCliente==null){
+         listaCliente = new ArrayList<Cliente>();
+        }
+    }
+    
 
     public String iniciarPacote() {
         if (pacotes.getVendas() == null) {
@@ -457,4 +481,5 @@ public class CadPacoteAgenciaMB implements Serializable {
             btnfinalizar = false;
         }
     }
+    
 }

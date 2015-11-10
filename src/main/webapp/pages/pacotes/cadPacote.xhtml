@@ -12,43 +12,48 @@
                     <br></br><br></br>
                     <p:tabView class="painelPacote" style="background: #fff">
                         <p:tab titleStyle="font-size: 10px" title="Cadastro">
-                            <p:outputLabel value="Descrição" for="descricao"/>
-                            <p:outputLabel value="Cliente" for="cliente" class="espacopreto"/>
+                            <p:outputLabel value="Descrição" for="descricao" style="margin-left: 2%"/>
+                            <p:outputLabel value="Cliente" for="cliente" style="margin-left: 46%"/>
                             <br></br>
-                            <p:inputText id="descricao" value="#{cadPacoteAgenciaMB.pacotes.descricao}" style="width:60%" maxlength="200" class="espacocampos2"/>
-                            <p:inputText class="espacocampos" style="width:32%;" id="cliente"  value="#{cadPacoteAgenciaMB.cliente.nome}" />
+                            <h:panelGrid columns="2">
+                                <p:inputText id="descricao" value="#{cadPacoteAgenciaMB.pacotes.descricao}" style="width:250%;margin-left:10%" maxlength="200" class="espacocampos2"/>
+                                <p:selectOneMenu id="cliente" value="#{cadPacoteAgenciaMB.cliente}" style="width:311px;margin-left:45%" 
+                                                 filter="true" filterMatchMode="startsWith" panelStyle="width:180px" >
+                                    <f:selectItem itemLabel="Selecione" itemValue="0"/>
+                                    <f:selectItems value="#{cadPacoteAgenciaMB.listaCliente}" var="clienteSelecionado" itemLabel="#{clienteSelecionado.nome}" itemValue="#{clienteSelecionado}"/>
+                                    <f:attribute name="listaCliente" value="#{cadPacoteAgenciaMB.listaCliente}"/>
+                                </p:selectOneMenu>
+                            </h:panelGrid>
                             <br></br><br></br>
-                            <p:outputLabel value="Período" class=""/>
+                            <p:outputLabel value="Período" style="margin-left: 2%"/>
                             <p:outputLabel value="Cartão VTM" for="cartaovtm" class="espacocobranca34"/>
                             <p:outputLabel value="Número do Cartão" for="numerocartao" class="espacocobranca23"/>
                             <p:outputLabel value="Moeda" class="espacocobranca30" for="idmoeda"/>
+                            <h:panelGrid columns="5">
+                                <p:calendar id="datainicio"  class="espacocampos5" locale="pt"  pattern="dd/MM/yyyy" value="#{cadPacoteAgenciaMB.pacotes.datainicio}" size="14" style="margin-left:14%">
+                                    <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                                </p:calendar>
+                                <p:calendar id="datatermino"   class="espacocobranca19" locale="pt"   pattern="dd/MM/yyyy" value="#{cadPacoteAgenciaMB.pacotes.datetermino}" size="15">
+                                    <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                                </p:calendar>
+                                <p:selectOneMenu  id="cartaovtm"  value="#{cadPacoteAgenciaMB.pacotes.cartaovtm}" style="width:100px;margin-left:41%">
+                                    <f:selectItem itemLabel="Não" itemValue="nao"/> 
+                                    <f:selectItem itemLabel="Sim" itemValue="sim"/> 
+                                </p:selectOneMenu>
+                                <p:inputText id="numerocartao" value="#{cadPacoteAgenciaMB.pacotes.numerocartaovtm}" style="width:100%;margin-left:25%"/>
+                                <p:selectOneMenu id="idmoeda" value="#{cadPacoteAgenciaMB.pacotes.moeda}" style="width:100px;margin-left:40%">
+                                    <f:selectItem itemLabel="Moedas" itemValue="0"/>
+                                    <f:selectItems value="#{usuarioLogadoMB.listaCambio}" var="cambio" itemLabel="#{cambio.moedas.sigla}" itemValue="#{cambio.moedas.sigla}"/>
+                                </p:selectOneMenu>
+                            </h:panelGrid>
                             <br></br>
-                            <p:calendar id="datainicio"  class="espacocampos5" locale="pt"  pattern="dd/MM/yyyy" value="#{cadPacoteAgenciaMB.pacotes.datainicio}" size="14">
-                                <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
-                            </p:calendar>
-                            <p:calendar id="datatermino"   class="espacocobranca4" locale="pt"   pattern="dd/MM/yyyy" value="#{cadPacoteAgenciaMB.pacotes.datetermino}" size="15">
-                                <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
-                            </p:calendar>
-                            <p:selectOneMenu  id="cartaovtm"  value="#{cadPacoteAgenciaMB.pacotes.cartaovtm}" class="espacocampos" style="width:12%">
-                                <f:selectItem itemLabel="Não" itemValue="nao"/> 
-                                <f:selectItem itemLabel="Sim" itemValue="sim"/> 
-                            </p:selectOneMenu>
-                            <p:inputText id="numerocartao" value="#{cadPacoteAgenciaMB.pacotes.numerocartaovtm}" style="width:20%" class="espacocobranca24"/>
-                            <p:selectOneMenu id="moedas" value="#{cadPacoteAgenciaMB.cambio}" class="espacocobranca24" style="width:13%;" converter="CambioConverter">
-                                <f:selectItem itemLabel="Câmbio" itemValue="0" noSelectionOption="true"/> 
-                                <f:selectItems id="idmoeda" value="#{usuarioLogadoMB.listaCambio}" var="cambio" itemLabel="#{cambio.moedas.sigla}" itemValue="#{cambio}"/>
-                                <f:attribute name="listaCambio" value="#{usuarioLogadoMB.listaCambio}"/>
-                                <p:ajax event="change" update="idvalorcambio" />
-                            </p:selectOneMenu>
-
-                            <br></br><br></br>
-                            <p:outputLabel value="Câmbio" for="moeda" class=""/>
+                            <p:outputLabel value="Câmbio" for="moeda" style="margin-left: 2%"/>
                             <p:outputLabel value="Valor do Câmbio" for="idvalorcambio" class="espacocobranca5"/>
 
                             <br></br>
-                            <p:selectOneMenu class="espacocampos5" style="width:73px;" id="moeda"  value="#{cadPacoteAgenciaMB.cambio}" converter="CambioConverter">
+                            <p:selectOneMenu class="espacocampos5" style="width:73px;margin-left: 2%" id="moeda"  value="#{cadPacoteAgenciaMB.cambio}" converter="CambioConverter">
                                 <f:selectItem itemLabel="Câmbio" itemValue="0"/> 
-                                <f:selectItems id="idmoedas" value="#{usuarioLogadoMB.listaCambio}" var="cambio" itemLabel="#{cambio.moedas.sigla}" itemValue="#{cambio}"/>
+                                <f:selectItems id="idmoedascambio" value="#{usuarioLogadoMB.listaCambio}" var="cambio" itemLabel="#{cambio.moedas.sigla}" itemValue="#{cambio}"/>
                                 <f:attribute name="listaCambio" value="#{usuarioLogadoMB.listaCambio}"/>
                                 <p:ajax event="change" update="idvalorcambio" />
                             </p:selectOneMenu>
@@ -70,13 +75,13 @@
                             <p:commandButton id="btnseguro" class="espacocobranca3botao" style="font-size:12px;" icon="ui-icon-plus" value="Adicionar Seguro" action="#{cadPacoteAgenciaMB.novoSeguro()}"/>
                             <p:commandButton id="btnimportar" class="espacocobranca3botao" style="font-size:12px;" icon="ui-icon-arrowthickstop-1-s" value="Operadora" action="#"/>
                             <br></br><br></br>
-                            <p:outputLabel value="Valor Net" for="valornet" class=""/>
+                            <p:outputLabel value="Valor Net" for="valornet" style="margin-left: 2%"/>
                             <p:outputLabel value="Valor Gross" for="valorgross" class="espacocobranca2"/>
                             <p:outputLabel value="Comissão" for="comissao" class="espacocobranca33"/>
                             <p:outputLabel value="Valor R$" for="moedanacional" class="espacocobranca2"/>
                             <p:outputLabel value="Comissão Loja" for="comissaoloja" class="espacocobranca3"/>
                             <br></br>
-                            <p:inputText id="valornet" value="#{cadPacoteAgenciaMB.pacotes.valornet}" style="width:12%" class="fontebrancaa" readonly="true">
+                            <p:inputText id="valornet" value="#{cadPacoteAgenciaMB.pacotes.valornet}" style="width:12%;margin-left: 2%" class="fontebrancaa" readonly="true">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 <p:ajax event="blur" />
                             </p:inputText>
@@ -94,9 +99,9 @@
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
 
-                            <legend id="iUsu4" ><b>Trecho</b></legend>
-                            <p:inputText id="trecho" value="#" style="width:76%" maxlength="200" class="espacocampos2"/>
-                            <p:commandButton class="espacocobranca5" icon="ui-icon-plus" value="Adicionar" action="#" 
+                            <legend id="iUsu4" style="margin-left: 2%"><b>Trecho</b></legend>
+                            <p:inputText id="trecho" value="#{cadPacoteAgenciaMB.pacotetrecho.descritivo}" style="width:76%;margin-left: 2%" maxlength="200" class="espacocampos2"/>
+                            <p:commandButton class="espacocobranca5" icon="ui-icon-plus" value="Adicionar" action="#{cadPacoteAgenciaMB.adicionarTrecho()}" 
                                              update="tabelalistatrecho"  />
                             <br></br><br></br>
 
@@ -143,13 +148,13 @@
                         </p:tab>
                         <p:tab titleStyle="font-size: 10px" title="Forma de Pagamento">
                             <legend id="iUsu3" style="font-size:11px;"><b>Pagamentos</b></legend>
-                            <p:outputLabel value="Forma de Pagamento" for="formPag" class="espaco0p" style="font-size: 10px"/> 
+                            <p:outputLabel value="Forma de Pagamento" for="formPag" class="espaco0p" style="font-size: 10px;margin-left: 2%"/> 
                             <p:outputLabel value="Valor Orçamento" for="valorOrca" class="espacocobranca23" style="font-size: 10px"/> 
                             <p:outputLabel value="Acrescentar Juros" for="acrejuros" class="espacocobranca24" style="font-size: 10px"/> 
                             <p:outputLabel value="Valor Juros" for="valorJuros" class="espacocobranca23" style="font-size: 10px"/> 
                             <p:outputLabel value="Total a Pagar" for="totalpag" class="espacocobranca24" style="font-size: 10px"/> 
                             <br></br>
-                            <p:selectOneMenu id="formPag" value="#{passagemMB.passagem.formaPagamento}" style="width:23%;font-size: 10px" class="campossf" >
+                            <p:selectOneMenu id="formPag" value="#{passagemMB.passagem.formaPagamento}" style="width:23%;font-size: 10px;margin-left: 2%" class="campossf" >
                                 <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true"/> 
                                 <f:selectItem itemLabel="Á Vista" itemValue="avista" /> 
                                 <f:selectItem itemLabel="Parcelado" itemValue="parcelado" /> 
@@ -169,11 +174,11 @@
                             </p:inputText>
 
                             <br></br><br></br>
-                            <p:outputLabel value="Saldo a Receber" for="saldoreceber" class="espacocobranca31" style="font-size: 10px"/> 
+                            <p:outputLabel value="Saldo a Receber" for="saldoreceber" class="espacocobranca31" style="font-size: 10px;margin-left: 2%"/> 
                             <p:outputLabel value="Saldo a Parcelar" for="saldoparcelar" class="espacocobranca15" style="font-size: 10px"/> 
                             <p:outputLabel value="Forma de Pagamento" for="formPag2" class="espacocobranca12" style="font-size: 10px"/> 
                             <br></br>
-                            <p:selectBooleanCheckbox id="vendamatriz" />
+                            <p:selectBooleanCheckbox id="vendamatriz" style="margin-left: 2%"/>
                             <p:outputLabel value="Venda pela matriz" for="vendamatriz" class="fontebranca" style="font-size: 10px"/> 
                             <p:inputText  value="" id="saldoreceber" class="camposr" style="width:13%;font-size: 10px"/> 
                             <p:inputText value="" id="saldoparcelar" class="espacocamposright" style="width:14%;font-size: 10px"/> 
@@ -191,13 +196,13 @@
 
                             <br></br><br></br><br></br>
 
-                            <p:outputLabel value="Tipo de Parcelamento" for="tipoparcelamento" class="camposs" style="font-size: 10px"/> 
+                            <p:outputLabel value="Tipo de Parcelamento" for="tipoparcelamento" class="camposs" style="font-size: 10px;margin-left: 2%"/> 
                             <p:outputLabel value="Data 1o. Vencimento"  class="espacocobranca5" style="font-size: 10px"/> 
                             <p:outputLabel value="Valor a Parcelar" for="valoraparcelar" class="espacocobranca20" style="font-size: 10px"/>
                             <p:outputLabel value="Nº Parcelas" for="nparcela" class="espacocobranca5" style="font-size: 10px"/> 
                             <p:outputLabel value="Valor Parcela" for="valorparcela" class="espacocobranca23" style="font-size: 10px"/> 
                             <br></br>
-                            <p:selectOneMenu id="tipoparcelamento" value="#" style="width:20%;font-size: 10px;" class="espacocampos2" >
+                            <p:selectOneMenu id="tipoparcelamento" value="#" style="width:20%;font-size: 10px;margin-left: 2%" class="espacocampos2" >
                                 <f:selectItem itemLabel="Matriz" itemValue="avista" noSelectionOption="true"/> 
                                 <f:selectItem itemLabel="Loja" itemValue="loja" /> 
                                 <f:selectItem itemLabel="Fornecedor" itemValue="Fornecedor" /> 

@@ -40,18 +40,18 @@
     <h:body>
         <h:form id="cadastropacotetransfer" style="text-align:left;font-size: 10px;">
             <title>Trem</title>
-                            <p:outputLabel value="Pais" for="pais1" />
+            <p:outputLabel value="Pais" for="pais1" style="margin-left: 1%"/>
                             <p:outputLabel value="Cidade" for="cidade1" class="espacocobranca10"/>
                             <p:outputLabel value="Fornecedor" for="fornecedor" class="espacocobranca9"/>
                             <br></br>
-                            <p:selectOneMenu id="pais1" value="#{pacoteTremMB.pais}" style="width:26.5%;font-size: 10px" class="espacocampos2" 
+                            <p:selectOneMenu id="pais1" value="#{pacoteTremMB.pais}" style="width:26.5%;font-size: 10px;margin-left: 1%" class="espacocampos2" 
                                              converter="PaisConverter" filter="true" filterMatchMode="startsWith" >
                                 <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
                                 <f:selectItems id="idpais" value="#{pacoteTremMB.listaPais}" var="cpais" itemLabel="#{cpais.pais.nome}" itemValue="#{cpais.pais}"/>
                                 <f:attribute name="listaPais" value="#{pacoteTremMB.listaPais}"/>
                                 <p:ajax event="change" update="cidade1"/> 
                             </p:selectOneMenu>
-                            <p:selectOneMenu id="cidade1" value="#{pacoteTremMB.cidade}" style="width:31%;font-size: 10px" class="espacocampos" 
+                            <p:selectOneMenu id="cidade1" value="#{pacoteTremMB.cidade}" style="width:31%;font-size: 10px;" class="espacocampos" 
                                              converter="CidadeConverter" filter="true" filterMatchMode="startsWith">
                                 <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
                                 <f:selectItems id="idcidade" value="#{pacoteTremMB.pais.cidadeList}" var="ccidade" itemLabel="#{ccidade.nome}" itemValue="#{ccidade}"/>
@@ -65,13 +65,13 @@
                                 <f:attribute name="listaFornecedorCidade" value="#{pacoteTremMB.listaFornecedorCidade}"/>
                             </p:selectOneMenu>
                             <br></br><br></br><br></br> 
-                            <p:outputLabel value="De" for="de" class=""/>
+                            <p:outputLabel value="De" for="de" style="margin-left: 1%"/>
                             <p:outputLabel value="Para" for="para" class="espacocobranca10"/>
                             <p:outputLabel value="Hora Saída" for="horasaida" class="espacocobranca18"/>
                             <p:outputLabel value="Hora Chegada" for="horachegada" style="margin-left:6.5%"/>
                             <p:outputLabel value="Data" for="data" class="imgadd"/>
                             <br></br>
-                            <p:inputText id="de" value="#{pacoteTremMB.pacotetrem.de}" style="width:25%;" maxlength="100" class=""/>
+                            <p:inputText id="de" value="#{pacoteTremMB.pacotetrem.de}" style="width:25%;margin-left: 1%" maxlength="100" class=""/>
                             <p:inputText id="para" value="#{pacoteTremMB.pacotetrem.para}" style="width:19%;" maxlength="100" class="espacocampos"/>
                              <p:inputMask id="horasaida" value="#{pacoteTremMB.pacotetrem.horasaida}" mask="99:99" style="width:11%;" class="espacocampos"/>
                             <p:inputMask id="horachegada" value="#{pacoteTremMB.pacotetrem.horachegada}" mask="99:99" style="width:13%;" class="espacocampos"/>
@@ -80,22 +80,22 @@
                             </p:calendar>
                             <br></br><br></br><br></br>
                             
-                            <p:outputLabel value="Classe" for="classe" class=""/>
+                            <p:outputLabel value="Classe" for="classe" style="margin-left: 1%"/>
                             <p:outputLabel value="Qntd Adultos" for="qntdadulto" class="espacocobranca13"/>
                             <p:outputLabel value="Qntd Infantil" for="qntdInfantil" class="espacocobranca5"/>
                             <p:outputLabel value="Qntd Criança" for="qntdAdolescente" class="espacocobranca33"/>
                             <br></br>
-                            <p:inputText id="classe" value="#{pacoteTremMB.pacotetrem.classe}" style="width:32%;" maxlength="20" class=""/>
+                            <p:inputText id="classe" value="#{pacoteTremMB.pacotetrem.classe}" style="width:32%;margin-left: 1%" maxlength="20" class=""/>
                             <p:inputText id="qntdadulto" value="#{pacoteTremMB.pacotetrem.adt}" style="width:13.5%;" class="espacocobranca11"/>
                             <p:inputText id="qntdInfantil" value="#{pacoteTremMB.pacotetrem.inf}" style="width:14%;" class="espacocobranca15"/>
                             <p:inputText id="qntdAdolescente" value="#{pacoteTremMB.pacotetrem.chd}" style="width:14%;" class="espacocobranca24"/>
                             <br></br><br></br><br></br>
                            
-                            <p:outputLabel value="Câmbio" for="moeda" class="" style="font-size:10px;"/>
-                            <p:outputLabel value="Valor do Câmbio" for="idvalorcambio" class="espacocobranca35" style="font-size:10px;"/>
+                            <p:outputLabel value="Câmbio" for="moeda" class="" style="font-size:11px;margin-left: 1%"/>
+                            <p:outputLabel value="Valor do Câmbio" for="idvalorcambio" class="espacocobranca3" style="font-size:11px;"/>
                             <br></br>
                             <h:panelGrid columns="3">
-                                <p:selectOneMenu class="espacocampos5" style="width:105px;font-size:10px;" id="moeda"  value="#{pacoteTremMB.cambio}" converter="CambioConverter">
+                                <p:selectOneMenu class="espacocampos5" style="width:105px;font-size:10px;margin-left: 1%" id="moeda"  value="#{pacoteTremMB.cambio}" converter="CambioConverter">
                                     <f:selectItem itemLabel="Câmbio" itemValue="0"/> 
                                     <f:selectItems value="#{usuarioLogadoMB.listaCambio}" var="cambio" itemLabel="#{cambio.moedas.sigla}" itemValue="#{cambio}"/>
                                     <f:attribute name="listaCambio" value="#{usuarioLogadoMB.listaCambio}"/>
@@ -110,14 +110,14 @@
                             </h:panelGrid>
                             <br></br>
                             
-                            <p:outputLabel value="Valor Net" for="valornet" class="" style="font-size:10px;"/>
-                            <p:outputLabel value="Comissão" for="comissao" class="espacocobranca2" style="font-size:10px;"/>
-                            <p:outputLabel value="Valor Gross" for="valorgross" class="espacocobranca33" style="font-size:10px;"/>
-                            <p:outputLabel value="Valor R$" for="moedanacional" class="espacocobranca33" style="font-size:10px;"/>
-                            <p:outputLabel value="Comissão Loja" for="comissaoloja" class="espacocobranca30" style="font-size:10px;"/>
+                            <p:outputLabel value="Valor Net" for="valornet" class="" style="font-size:11px;margin-left: 1%"/>
+                            <p:outputLabel value="Comissão" for="comissao" class="espacocobranca33" style="font-size:11px;"/>
+                            <p:outputLabel value="Valor Gross" for="valorgross" class="espacocobranca23" style="font-size:11px;"/>
+                            <p:outputLabel value="Valor R$" for="moedanacional" class="espacocobranca23" style="font-size:11px;"/>
+                            <p:outputLabel value="Comissão Loja" for="comissaoloja" class="espacocobranca30" style="font-size:11px;"/>
                             <br></br>
                             
-                            <p:inputText id="valornet" value="#{pacoteTremMB.pacotetrem.valornet}" style="width:15%;font-size:10px;" class="fontebrancaa">
+                            <p:inputText id="valornet" value="#{pacoteTremMB.pacotetrem.valornet}" style="width:15%;font-size:10px;margin-left: 1%" class="fontebrancaa">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 <p:ajax event="blur" />
                             </p:inputText>

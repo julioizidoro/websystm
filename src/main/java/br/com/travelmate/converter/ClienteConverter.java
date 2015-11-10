@@ -4,42 +4,48 @@
  * and open the template in the editor.
  */
 package br.com.travelmate.converter;
-import br.com.travelmate.model.Terceiros;
+
 import java.util.List;
+
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import br.com.travelmate.model.Cliente;
+
 
 /**
  *
  * @author Wolverine
  */
-@FacesConverter(value="TerceirosConverter")
-public class TerceirosConverter implements Converter{
-
+@FacesConverter(value="ClienteConverter")
+public class ClienteConverter  implements Converter{
+    
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
-        List<Terceiros> listaTerceiros = (List<Terceiros>) component.getAttributes().get("listaTerceiros");
-        if (listaTerceiros != null) {
-            for (Terceiros terceiros : listaTerceiros) {
-                if (terceiros.getNome().equalsIgnoreCase(value)) {
-                    return terceiros;
+        List<Cliente> listaCliente = (List<Cliente>) component.getAttributes().get("listaCliente");
+        if (listaCliente != null) {
+            for (Cliente cliente : listaCliente) {
+                if (cliente.getNome().equalsIgnoreCase(value)) {
+                    return cliente;
                 }
             }
         } else {
-            return new Terceiros();
+            return new Cliente();
         }
         return null;
     }
 
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
-        if (value instanceof Terceiros) {
-            Terceiros terceiros = (Terceiros) value;
-            return terceiros.getNome();
-        } else {
-            return "";
+        if (value.toString().equalsIgnoreCase("0")){
+            return "Selecione";
+        }else {
+            if (value instanceof Cliente){
+                Cliente cliente = (Cliente) value;
+                 return cliente.getNome();
+            }else return "";
         }
     }
+    
 }
