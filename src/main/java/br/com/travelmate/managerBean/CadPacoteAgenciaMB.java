@@ -14,6 +14,7 @@ import br.com.travelmate.facade.ProdutoFacade;
 import br.com.travelmate.facade.VendasFacade;
 import br.com.travelmate.model.Cambio;
 import br.com.travelmate.model.Cliente;
+import br.com.travelmate.model.Contaspagar;
 import br.com.travelmate.model.Fornecedorcidade;
 import br.com.travelmate.model.Pacotes;
 import br.com.travelmate.model.Pacotetrecho;
@@ -33,6 +34,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 import org.primefaces.context.RequestContext;
+import org.primefaces.event.SelectEvent;
 
 /**
  *
@@ -174,6 +176,8 @@ public class CadPacoteAgenciaMB implements Serializable {
             Fornecedorcidade fornecedorcidade = fornecedorCidadeFacade.getFornecedorCidade(usuarioLogadoMB.getParametrosprodutos().getFornecedorpacote());
             ProdutoFacade produtoFacade = new ProdutoFacade();
             Produtos produto = produtoFacade.consultar(usuarioLogadoMB.getParametrosprodutos().getPacotes());
+            ClienteFacade clienteFacade = new ClienteFacade();
+            Cliente cliente = clienteFacade.consultar(usuarioLogadoMB.getParametrosprodutos().getClientepacote());
             Vendas venda = new Vendas();
             venda.setCliente(cliente);
             venda.setDataVenda(new Date());
@@ -193,7 +197,7 @@ public class CadPacoteAgenciaMB implements Serializable {
             venda = vendasFacade.salvar(venda);
             pacotes.setVendas(venda);
         }
-        pacotes.setOperacao("Agencia");
+        pacotes.setOperacao("agencia");
         pacotes.setUsuario(usuarioLogadoMB.getUsuario());
         pacotes.setCambio(cambio);
         pacotes.setCliente(pacotes.getVendas().getCliente());
@@ -482,4 +486,16 @@ public class CadPacoteAgenciaMB implements Serializable {
         }
     }
     
+    public String importarPacote(){
+        RequestContext.getCurrentInstance().openDialog("importarPacoteOperadora");
+        return "";
+    }
+    
+    public void retornoDialogNovo(SelectEvent event){
+       Pacotes pacote = (Pacotes) event.getObject();
+       setPacotes(pacote);
+       listaTrecho = pacote.getPacotetrechoList();
+       cambio = pacote.getCambio();
+       
+   }
 }

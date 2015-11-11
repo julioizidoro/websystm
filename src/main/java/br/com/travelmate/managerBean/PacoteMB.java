@@ -14,6 +14,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
+import org.primefaces.context.RequestContext;
 
 
 /**
@@ -65,6 +66,14 @@ public class PacoteMB implements Serializable{
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);  
         session.setAttribute("pacote", pacote);
         return "cadPacoteOperadora";
+    }
+    
+    public String retornarPacoteImportado(Pacotes pacote){
+        FacesContext fc = FacesContext.getCurrentInstance();  
+        HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);  
+        session.setAttribute("pacote", pacote);
+        RequestContext.getCurrentInstance().closeDialog(pacote);
+        return "cadPacote";
     }
 }
 

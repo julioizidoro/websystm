@@ -40,42 +40,36 @@
     <h:body>
         <h:form id="importarpacoteoperadora" style="text-align:left;font-size: 10px;">
             <title>Importar Pacote</title>
-                            <p:dataTable id="tabelaimportarpacote" var="importar"  value="#" class="tabela1" 
-                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
-                                         paginator="true" rows="8" style="margin-bottom:20px" rowIndexVar="linha">
-                                <f:facet name="{Exporters}">
-                                    <h:commandLink>
-                                        <img src="../../resources/img/excel.png" width="20" class="imagens"/>
-                                        <p:dataExporter type="xls" target="importar" fileName="listapacoteoperadora" />
-                                    </h:commandLink>
-                                </f:facet>
+                            <p:dataTable id="tabelaimportarpacote" var="importar"  value="#{pacoteMB.listaPacotes}" class="tabela1" 
+                                         rows="8" style="margin-bottom:20px" rowIndexVar="linha">
+                                
                                 <p:column headerText="No. Pacote"  style="width:80px;text-align:center;" styleClass="alinharCenter" >
-                                    <h:outputText value="#"/>
+                                    <h:outputText value="#{importar.idpacotes}"/>
                                 </p:column>
                                 <p:column headerText="Descrição"  style="width:180px;text-align:left;" styleClass="alinharCenter" >
-                                    <h:outputText value="#"/>
+                                    <h:outputText value="#{importar.descricao}"/>
                                 </p:column>
                                 <p:column headerText="Data Início" style="width:80px;text-align: left;" styleClass="alinharCenter">
-                                    <h:outputText value="">
+                                    <h:outputText value="#{importar.datainicio}">
                                         <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                                     </h:outputText>                           
                                 </p:column>
                                 <p:column headerText="Data Final" style="width:80px;text-align: left;" styleClass="alinharCenter">
-                                    <h:outputText value="">
+                                    <h:outputText value="#{importar.datetermino}">
                                         <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                                     </h:outputText>                           
                                 </p:column>
                                 <p:column headerText="Valor" style="width:80px;text-align:right;" styleClass="alinharCenter">
-                                    <h:outputText value="">
+                                    <h:outputText value="#{importar.vendas.valor}">
                                         <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                     </h:outputText>                           
                                 </p:column>
                                 <p:column style="width:50px;text-align: center">
-                                    <p:commandButton  icon="ui-icon-trash" title="Excluir" action="#" update="tabelaimportarpacote" ></p:commandButton>
+                                    <p:commandButton  icon="ui-icon-arrowthickstop-1-s" title="Importar" action="#{pacoteMB.retornarPacoteImportado(importar)}"  ></p:commandButton>
                                 </p:column>
                             </p:dataTable>
                             <p class="botaocadpacote"><br></br>
-                                <p:commandButton class="imagemm" icon="ui-icon-check" value="Finalizar" action="#"></p:commandButton>
+                                <p:commandButton class="imagemm" icon="ui-icon-check" value="Cancelar" action="#"></p:commandButton>
                            <br></br><br></br>
                             </p>
                         </h:form>     
