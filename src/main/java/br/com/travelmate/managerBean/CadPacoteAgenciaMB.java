@@ -10,14 +10,17 @@ import br.com.travelmate.facade.ClienteFacade;
 import br.com.travelmate.facade.FornecedorCidadeFacade;
 import br.com.travelmate.facade.PacoteTrechoFacade;
 import br.com.travelmate.facade.PacotesFacade;
+import br.com.travelmate.facade.ParcelamentoPagamentoFacade;
 import br.com.travelmate.facade.ProdutoFacade;
 import br.com.travelmate.facade.VendasFacade;
 import br.com.travelmate.model.Cambio;
 import br.com.travelmate.model.Cliente;
 import br.com.travelmate.model.Contaspagar;
+import br.com.travelmate.model.Formapagamento;
 import br.com.travelmate.model.Fornecedorcidade;
 import br.com.travelmate.model.Pacotes;
 import br.com.travelmate.model.Pacotetrecho;
+import br.com.travelmate.model.Parcelamentopagamento;
 import br.com.travelmate.model.Produtos;
 import br.com.travelmate.model.Unidadenegocio;
 import br.com.travelmate.model.Vendas;
@@ -55,6 +58,10 @@ public class CadPacoteAgenciaMB implements Serializable {
     private boolean btnfinalizar = true;
     private Cliente cliente;
     private List<Cliente> listaCliente;
+    private Formapagamento formapagamento;
+    private Parcelamentopagamento parcelamentopagamento;
+    private List<Parcelamentopagamento> listaParcelamento;
+    private float saldoParcelar;
 
     @PostConstruct
     public void init() {
@@ -158,6 +165,39 @@ public class CadPacoteAgenciaMB implements Serializable {
         this.listaCliente = listaCliente;
     }
     
+    public Formapagamento getFormapagamento() {
+        return formapagamento;
+    }
+
+    public void setFormapagamento(Formapagamento formapagamento) {
+        this.formapagamento = formapagamento;
+    }
+
+    public Parcelamentopagamento getParcelamentopagamento() {
+        return parcelamentopagamento;
+    }
+
+    public void setParcelamentopagamento(Parcelamentopagamento parcelamentopagamento) {
+        this.parcelamentopagamento = parcelamentopagamento;
+    }
+
+    public List<Parcelamentopagamento> getListaParcelamento() {
+        return listaParcelamento;
+    }
+
+    public void setListaParcelamento(List<Parcelamentopagamento> listaParcelamento) {
+        this.listaParcelamento = listaParcelamento;
+    }
+
+    public float getSaldoParcelar() {
+        return saldoParcelar;
+    }
+
+    public void setSaldoParcelar(float saldoParcelar) {
+        this.saldoParcelar = saldoParcelar;
+    }
+    
+    
     
     public void gerarListaCliente(){
         ClienteFacade clienteFacade = new ClienteFacade();
@@ -239,7 +279,7 @@ public class CadPacoteAgenciaMB implements Serializable {
             HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
             session.setAttribute("pacoteTrecho", pacotetrecho);
             //return "pacotecarro";
-            RequestContext.getCurrentInstance().openDialog("pacotecarroteste");
+            RequestContext.getCurrentInstance().openDialog("pacoteCarro");
         } else {
             FacesMessage mensagem = new FacesMessage("Atenção! ", "Trecho Não Localizado.");
             FacesContext.getCurrentInstance().addMessage(null, mensagem);
@@ -498,4 +538,53 @@ public class CadPacoteAgenciaMB implements Serializable {
        cambio = pacote.getCambio();
        
    }
+    
+    public void calcularSaldoParcelar() {
+        Float saldo = formapagamento.getValorTotal() + formapagamento.getValorJuros();
+        saldoParcelar = saldo;
+    }
+    
+    public void calcularParcelamentoPagamento() {
+        if (listaParcelamento != null) {
+            Float valorParcelado = 0.0f;
+            for (int i = 0; i < listaParcelamento.size(); i++) {
+                valorParcelado = valorParcelado + listaParcelamento.get(i).getValorParcelamento();
+            }
+            Float saldo = (formapagamento.getValorTotal() + formapagamento.getValorJuros()) - valorParcelado;
+            saldoParcelar = saldo;
+        }
+    }
+    
+    public String validarFormaPagamento(){
+        String msg = "";
+        Date data=null;
+        if (parcelamentopagamento.getDiaVencimento().equals(data)){
+            msg = msg + "Data primeiro vencimento obrigatória";
+        }
+        if (parcelamentopagamento.getFormaPagamento().equalsIgnoreCase(null)){
+            msg = msg + "Campo forma de pagamento obrigatório";
+        }
+        return msg;
+    }
+    
+    public void carregarListaParcelamento(){
+        List<Parcelamentopagamento> listanova=null;
+        listanova = listaParcelamento;
+        if (formapagamento != null) {
+            ParcelamentoPagamentoFacade parcalamentoPagamentoFacade = new ParcelamentoPagamentoFacade();
+            listaParcelamento = parcalamentoPagamentoFacade.listar(formapagamento.getIdformaPagamento());
+            if (listaParcelamento == null) {
+                listaParcelamento = new ArrayList<Parcelamentopagamento>();
+            }
+        }else {
+                listaParcelamento = new ArrayList<Parcelamentopagamento>();
+        }
+        if (listanova != null) {
+            for (int i = 0; i < listanova.size(); i++) {
+                if (listanova.get(i).getIdparcemlamentoPagamento() == null) {
+                    listaParcelamento.add(listanova.get(i));
+                }
+            }
+        }
+    }
 }

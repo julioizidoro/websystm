@@ -5,6 +5,7 @@
  */
 package br.com.travelmate.managerBean;
 
+import br.com.travelmate.model.Formapagamento;
 import br.com.travelmate.model.Pacotes;
 import br.com.travelmate.util.GerarListas;
 import java.io.Serializable;
@@ -25,13 +26,12 @@ import org.primefaces.context.RequestContext;
 @ViewScoped
 public class PacoteMB implements Serializable{
     
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private List<Pacotes> listaPacotes;
+    
+    private static final long serialVersionUID = 1L;
+    private List<Pacotes> listaPacotes;
     @Inject
     private UsuarioLogadoMB usuarioLogadoMB;
+    
 
     public PacoteMB() {
         String sql = "Select p from Pacotes p where p.operacao='Operadora' order by p.vendas.dataVenda";
@@ -55,6 +55,7 @@ public class PacoteMB implements Serializable{
     public void setUsuarioLogadoMB(UsuarioLogadoMB usuarioLogadoMB) {
         this.usuarioLogadoMB = usuarioLogadoMB;
     }
+
     
     
     public String novoPacotes(){
