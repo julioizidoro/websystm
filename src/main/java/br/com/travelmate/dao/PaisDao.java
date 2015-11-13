@@ -6,10 +6,8 @@ import java.sql.SQLException;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-/**
- *
- * @author Wolverine
- */
+
+
 public class PaisDao {
     
     private EntityManager manager;

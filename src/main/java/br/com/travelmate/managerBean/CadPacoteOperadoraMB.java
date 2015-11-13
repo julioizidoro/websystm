@@ -165,6 +165,7 @@ public class CadPacoteOperadoraMB implements Serializable {
         }
         pacotes.setOperacao("Operadora");
         pacotes.setUsuario(usuarioLogadoMB.getUsuario());
+        
         pacotes.setCambio(cambio);
         pacotes.setCliente(pacotes.getVendas().getCliente());
         PacotesFacade pacotesFacade = new PacotesFacade();

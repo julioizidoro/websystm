@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package br.com.travelmate.facade;
-
+ 
 import br.com.travelmate.dao.LadiesDao;
 import br.com.travelmate.model.Ladies;
 import java.util.List;

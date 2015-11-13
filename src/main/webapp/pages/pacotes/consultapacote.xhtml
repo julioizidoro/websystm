@@ -26,16 +26,16 @@
                                 <p:calendar id="dataFinal" class="espacocampospesquisa2" locale="pt"  pattern="dd/MM/yyyy"  mask="true" size="11" maxlength="15">
                                     <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                                 </p:calendar>
-                                <p:commandButton value="Pesquisar" class="espacodialog2"  icon=" ui-icon-search " update="telapacotes:conspacote"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#"/>
+                                <p:commandButton value="Pesquisar" class="espacodialog2"  icon=" ui-icon-search " update="telapacotes:idconspacoteagencia"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" action="#"/>
                             </h:panelGrid><br></br>
                             <br></br>
                         </p:tab>
                     </p:accordionPanel>
                     <br></br>
                     <img src="../../resources/img/add.png" class="imgadd"/>
-                    <p:commandLink value="Novo Pacote"  class="add" action="#{passagemMB.pacotenovos()}"/>
+                    <p:commandLink value="Novo Pacote"  class="add" action="#{pacoteAgenciaMB.novoPacotes()}"/>
                     <legend id="iUsu2" ><b>Consulta de Pacotes </b></legend>
-                    <p:dataTable id="conspacote" var="conspacote"  value="#{pacoteAgenciaMB.listaPacotes}" class="tabela" 
+                    <p:dataTable id="idconspacoteagencia" var="conspacoteagencia"  value="#{pacoteMB.listaPacotesAgencia}" class="tabela" 
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
                                  paginator="true" rows="10" style="margin-bottom:20px" >
                         <f:facet name="{Exporters}">
@@ -45,21 +45,21 @@
                             </h:commandLink>
                         </f:facet>
                         <p:column  style="text-align:center;width:48px;">
-                            <p:commandButton  id="editar" icon="ui-icon-pencil" title="Editar" action="#{pacoteAgenciaMB.editarPacote(conspacote)}" />
+                            <p:commandButton  id="editar" icon="ui-icon-pencil" title="Editar" action="#{pacoteMB.editarPacoteAgencia(conspacoteagencia)}" />
                         </p:column>
-                        <p:column headerText="Descrição"  style="width:210px;text-align:center;" styleClass="alinharCenter" sortBy="#{contasrecebe.vendas.cliente}">
-                            <h:outputText value="#{conspacote.descricao}"/>
+                        <p:column headerText="Descrição"  style="width:210px;text-align:left;" styleClass="alinharCenter" sortBy="#{contasrecebe.vendas.cliente}">
+                            <h:outputText value="#{conspacoteagencia.descricao}"/>
                         </p:column>
-                        <p:column headerText="Cliente"  style="width:200px;text-align:center;" styleClass="alinharCenter" >
-                            <h:outputText value="#{conspacote.cliente.nome}"/>
+                        <p:column headerText="Unidade"  style="width:200px;text-align:left;" styleClass="alinharCenter" >
+                            <h:outputText value="#{conspacoteagencia.unidadenegocio.nomeFantasia}"/>
                         </p:column>
-                        <p:column headerText="Data Início" style="width:80px;text-align:center;" >
-                            <h:outputText value="#{conspacote.datainicio}">
+                        <p:column headerText="Data Início" style="width:80px;text-align:left;" >
+                            <h:outputText value="#{conspacoteagencia.datainicio}">
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </h:outputText>  
                         </p:column>
-                        <p:column headerText="Data Termino" style="width:80px;text-align: center;" styleClass="alinharCenter">
-                            <h:outputText value="#{conspacote.datetermino}">
+                        <p:column headerText="Data Termino" style="width:80px;text-align:left;" styleClass="alinharCenter">
+                            <h:outputText value="#{conspacoteagencia.datetermino}">
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </h:outputText>                           
                         </p:column>

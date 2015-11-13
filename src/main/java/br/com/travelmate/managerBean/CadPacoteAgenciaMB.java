@@ -7,6 +7,7 @@ package br.com.travelmate.managerBean;
 
 import br.com.travelmate.bean.FinalizarPacoteOperadora;
 import br.com.travelmate.facade.ClienteFacade;
+import br.com.travelmate.facade.FormaPagamentoFacade;
 import br.com.travelmate.facade.FornecedorCidadeFacade;
 import br.com.travelmate.facade.PacoteTrechoFacade;
 import br.com.travelmate.facade.PacotesFacade;
@@ -28,7 +29,9 @@ import br.com.travelmate.util.GerarListas;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -62,6 +65,7 @@ public class CadPacoteAgenciaMB implements Serializable {
     private Parcelamentopagamento parcelamentopagamento;
     private List<Parcelamentopagamento> listaParcelamento;
     private float saldoParcelar;
+    private Vendas vendass;
 
     @PostConstruct
     public void init() {
@@ -71,7 +75,6 @@ public class CadPacoteAgenciaMB implements Serializable {
         session.removeAttribute("pacote");
         if (this.pacotes == null) {
             pacotes = new Pacotes();
-            cliente = new Cliente();
             listaTrecho = new ArrayList<Pacotetrecho>();
         } else {
             cambio = pacotes.getCambio();
@@ -80,6 +83,9 @@ public class CadPacoteAgenciaMB implements Serializable {
         }
         pacotetrecho = new Pacotetrecho();
         listaUnidadeNegocio = GerarListas.listarUnidade();
+        parcelamentopagamento = new Parcelamentopagamento();
+        formapagamento = new Formapagamento();
+        vendass = new Vendas();
     }
 
     public Pacotes getPacotes() {
@@ -196,6 +202,14 @@ public class CadPacoteAgenciaMB implements Serializable {
     public void setSaldoParcelar(float saldoParcelar) {
         this.saldoParcelar = saldoParcelar;
     }
+
+    public Vendas getVendas() {
+        return vendass;
+    }
+
+    public void setVendas(Vendas vendass) {
+        this.vendass = vendass;
+    }
     
     
     
@@ -218,29 +232,33 @@ public class CadPacoteAgenciaMB implements Serializable {
             Produtos produto = produtoFacade.consultar(usuarioLogadoMB.getParametrosprodutos().getPacotes());
             ClienteFacade clienteFacade = new ClienteFacade();
             Cliente cliente = clienteFacade.consultar(usuarioLogadoMB.getParametrosprodutos().getClientepacote());
-            Vendas venda = new Vendas();
-            venda.setCliente(cliente);
-            venda.setDataVenda(new Date());
-            venda.setFornecedor(fornecedorcidade.getFornecedor());
-            venda.setFornecedorcidade(fornecedorcidade);
-            venda.setProdutos(produto);
-            venda.setSituacao("Processo");
-            venda.setUnidadenegocio(usuarioLogadoMB.getUsuario().getUnidadenegocio());
-            venda.setUsuario(usuarioLogadoMB.getUsuario());
-            venda.setValor(0.0f);
-            venda.setVendasMatriz("S");
-            venda.setVendaimportada(0);
-            venda.setObsCancelar("");
-            venda.setUsuariocancelamento(0);
-            venda.setObstm("");
+            vendass.setCliente(cliente);
+            vendass.setDataVenda(new Date());
+            vendass.setFornecedor(fornecedorcidade.getFornecedor());
+            vendass.setFornecedorcidade(fornecedorcidade);
+            vendass.setProdutos(produto);
+            vendass.setSituacao("Processo");
+            vendass.setUnidadenegocio(usuarioLogadoMB.getUsuario().getUnidadenegocio());
+            vendass.setUsuario(usuarioLogadoMB.getUsuario());
+            vendass.setValor(0.0f);
+            vendass.setVendasMatriz("S");
+            vendass.setVendaimportada(0);
+            vendass.setObsCancelar("");
+            vendass.setUsuariocancelamento(0);
+            vendass.setObstm("");
             VendasFacade vendasFacade = new VendasFacade();
-            venda = vendasFacade.salvar(venda);
-            pacotes.setVendas(venda);
+            vendass = vendasFacade.salvar(vendass);
+            pacotes.setVendas(vendass);
+            formapagamento.setVendas(vendass);
+            FormaPagamentoFacade formaPagamentoFacade = new FormaPagamentoFacade();
+            formapagamento = formaPagamentoFacade.salvar(formapagamento);
         }
+        
         pacotes.setOperacao("agencia");
         pacotes.setUsuario(usuarioLogadoMB.getUsuario());
         pacotes.setCambio(cambio);
         pacotes.setCliente(pacotes.getVendas().getCliente());
+        pacotes.setUnidadenegocio(usuarioLogadoMB.getUsuario().getUnidadenegocio());
         PacotesFacade pacotesFacade = new PacotesFacade();
         pacotes = pacotesFacade.salvar(pacotes);
         return "";
@@ -278,8 +296,9 @@ public class CadPacoteAgenciaMB implements Serializable {
             FacesContext fc = FacesContext.getCurrentInstance();
             HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
             session.setAttribute("pacoteTrecho", pacotetrecho);
-            //return "pacotecarro";
-            RequestContext.getCurrentInstance().openDialog("pacoteCarro");
+            Map<String,Object> options = new HashMap<String, Object>();
+            options.put("contentWidth", 700);
+            RequestContext.getCurrentInstance().openDialog("pacotecarro", options, null);
         } else {
             FacesMessage mensagem = new FacesMessage("Atenção! ", "Trecho Não Localizado.");
             FacesContext.getCurrentInstance().addMessage(null, mensagem);
@@ -306,7 +325,9 @@ public class CadPacoteAgenciaMB implements Serializable {
             FacesContext fc = FacesContext.getCurrentInstance();
             HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
             session.setAttribute("pacoteTrecho", pacotetrecho);
-            RequestContext.getCurrentInstance().openDialog("pacotehotel");
+            Map<String,Object> options = new HashMap<String, Object>();
+            options.put("contentWidth", 700);
+            RequestContext.getCurrentInstance().openDialog("pacotehotel", options, null);
             return "";
         } else {
             FacesMessage mensagem = new FacesMessage("Atenção! ", "Trecho Não Localizado.");
@@ -586,5 +607,39 @@ public class CadPacoteAgenciaMB implements Serializable {
                 }
             }
         }
+    }
+    
+    public String adicionarParcelamento(){
+        if(formapagamento!=null){
+            parcelamentopagamento.setFormapagamento(formapagamento);
+            ParcelamentoPagamentoFacade parcelamentoPagamentoFacade = new ParcelamentoPagamentoFacade();
+            parcelamentopagamento = parcelamentoPagamentoFacade.salvar(parcelamentopagamento);
+        }else{
+            FacesMessage msg = new FacesMessage("Atenção! ", "Primeiramente Inície o pacote.");
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+        }
+        return "";
+    }
+    
+    public String salvar(){
+        PacotesFacade pacotesFacade = new PacotesFacade();
+        pacotes = pacotesFacade.salvar(pacotes);
+        return "consultapacote";
+    }
+    
+    public String cancelar(){
+        return "consultapacote";
+    }
+    
+    public void retornoDialogNovo() {
+        imagemAereo(pacotetrecho);
+        imagemCarro(pacotetrecho);
+        imagemCruzeiro(pacotetrecho);
+        imagemHotel(pacotetrecho);
+        imagemIngresso(pacotetrecho);
+        imagemPasseio(pacotetrecho);
+        imagemSeguro(pacotetrecho);
+        imagemTransfer(pacotetrecho);
+        imagemTrem(pacotetrecho);
     }
 }

@@ -10,6 +10,7 @@ import br.com.travelmate.model.Pacotes;
 import br.com.travelmate.util.GerarListas;
 import java.io.Serializable;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -31,15 +32,14 @@ public class PacoteMB implements Serializable{
     private List<Pacotes> listaPacotes;
     @Inject
     private UsuarioLogadoMB usuarioLogadoMB;
-    
+    private List<Pacotes> listaPacotesAgencia;
 
-    public PacoteMB() {
-        String sql = "Select p from Pacotes p where p.operacao='Operadora' order by p.vendas.dataVenda";
-        listaPacotes = GerarListas.listarPacotes(sql);
+    @PostConstruct
+    public void init() {
+        listaPacotes = GerarListas.listarPacotes("Select p from Pacotes p where  p.operacao='Operadora' order by p.vendas.dataVenda");
+        listaPacotesAgencia = GerarListas.listarPacotes("Select p from Pacotes p where p.operacao='agencia' and p.unidadenegocio.idunidadeNegocio='"+usuarioLogadoMB.getUsuario().getUnidadenegocio().getIdunidadeNegocio()+"' order by p.vendas.dataVenda");
     }
     
-    
-
     public List<Pacotes> getListaPacotes() {
         return listaPacotes;
     }
@@ -56,6 +56,14 @@ public class PacoteMB implements Serializable{
         this.usuarioLogadoMB = usuarioLogadoMB;
     }
 
+    public List<Pacotes> getListaPacotesAgencia() {
+        return listaPacotesAgencia;
+    }
+
+    public void setListaPacotesAgencia(List<Pacotes> listaPacotesAgencia) {
+        this.listaPacotesAgencia = listaPacotesAgencia;
+    }
+
     
     
     public String novoPacotes(){
@@ -69,7 +77,16 @@ public class PacoteMB implements Serializable{
         return "cadPacoteOperadora";
     }
     
+    
+    public String editarPacoteAgencia(Pacotes pacote){
+        FacesContext fc = FacesContext.getCurrentInstance();  
+        HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);  
+        session.setAttribute("pacote", pacote);
+        return "cadPacote";
+    }
+    
     public String retornarPacoteImportado(Pacotes pacote){
+        
         FacesContext fc = FacesContext.getCurrentInstance();  
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);  
         session.setAttribute("pacote", pacote);

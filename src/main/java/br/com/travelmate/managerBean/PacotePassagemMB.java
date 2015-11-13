@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package br.com.travelmate.managerBean;
-
 import br.com.travelmate.bean.PassageirosBean;
 import br.com.travelmate.facade.PacotesPassagemFacade;
 import br.com.travelmate.facade.PaisProdutoFacade;

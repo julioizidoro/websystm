@@ -9,7 +9,6 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
-
 import org.primefaces.context.RequestContext;
 
 import br.com.travelmate.facade.PacotesCarroFacade;
