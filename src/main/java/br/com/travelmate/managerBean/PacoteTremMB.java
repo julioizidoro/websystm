@@ -200,7 +200,10 @@ public class PacoteTremMB implements Serializable{
         if (pacotetrem.getPacotetrecho().getPacotes().getOperacao().equalsIgnoreCase("Operadora")){
             RequestContext.getCurrentInstance().closeDialog("cadpacotesoperadora");
             return "";
-        }else return "cadPacote";
+        }else{
+            RequestContext.getCurrentInstance().closeDialog("cadPacote");
+            return "";
+        }
     }
     
     public String excluir(){
@@ -214,7 +217,10 @@ public class PacoteTremMB implements Serializable{
             //return "cadpacotesoperadora";
             RequestContext.getCurrentInstance().closeDialog("cadpacotesoperadora");
             return "";
-        }else return "cadPacote";
+        }else{
+            RequestContext.getCurrentInstance().closeDialog("cadPacote");
+            return "";
+        }
     }
     
 }

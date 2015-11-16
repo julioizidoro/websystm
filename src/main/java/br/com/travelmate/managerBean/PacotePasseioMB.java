@@ -216,7 +216,10 @@ public class PacotePasseioMB implements Serializable{
         if (pacotepasseio.getPacotetrecho().getPacotes().getOperacao().equalsIgnoreCase("Operadora")){
             RequestContext.getCurrentInstance().closeDialog("cadpacotesoperadora");
             return "";
-        }else return "cadPacote";
+        }else{
+           RequestContext.getCurrentInstance().closeDialog("cadPacote");
+           return "";
+        }
     }
     
     public String excluirItem(String linha){

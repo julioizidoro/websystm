@@ -198,7 +198,10 @@ public class PacoteHotelMB implements Serializable{
         if (pacotehotel.getPacotetrecho().getPacotes().getOperacao().equalsIgnoreCase("Operadora")){
             RequestContext.getCurrentInstance().closeDialog("cadpacotesoperadora");
             return "";
-        }else return "cadPacote";
+        }else{
+            RequestContext.getCurrentInstance().closeDialog("cadPacote");
+            return "";
+        }
     }
     
     public String excluir(){
@@ -212,6 +215,9 @@ public class PacoteHotelMB implements Serializable{
             //return "cadpacotesoperadora";
             RequestContext.getCurrentInstance().closeDialog("cadpacotesoperadora");
             return "";
-        }else return "cadPacote";
+        }else{
+            RequestContext.getCurrentInstance().closeDialog("cadPacote");
+            return "";
+        }
     }
 }

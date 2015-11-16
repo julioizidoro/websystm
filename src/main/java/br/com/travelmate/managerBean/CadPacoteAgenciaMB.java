@@ -76,6 +76,7 @@ public class CadPacoteAgenciaMB implements Serializable {
         if (this.pacotes == null) {
             pacotes = new Pacotes();
             listaTrecho = new ArrayList<Pacotetrecho>();
+            formapagamento = new Formapagamento();
         } else {
             cambio = pacotes.getCambio();
             cliente = pacotes.getCliente();
@@ -84,7 +85,7 @@ public class CadPacoteAgenciaMB implements Serializable {
         pacotetrecho = new Pacotetrecho();
         listaUnidadeNegocio = GerarListas.listarUnidade();
         parcelamentopagamento = new Parcelamentopagamento();
-        formapagamento = new Formapagamento();
+        
         vendass = new Vendas();
     }
 

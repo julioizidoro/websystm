@@ -198,7 +198,10 @@ public class PacoteTransferMB implements Serializable{
         if (pacotetransfer.getPacotetrecho().getPacotes().getOperacao().equalsIgnoreCase("Operadora")){
             RequestContext.getCurrentInstance().closeDialog("cadpacotesoperadora");
             return "";
-        }else return "cadPacote";
+        }else{
+            RequestContext.getCurrentInstance().closeDialog("cadPacote");
+            return "";
+        }
     }
     
     public String excluir(){
@@ -212,7 +215,10 @@ public class PacoteTransferMB implements Serializable{
             //return "cadpacotesoperadora";
             RequestContext.getCurrentInstance().closeDialog("cadpacotesoperadora");
             return "";
-        }else return "cadPacote";
+        }else{
+            RequestContext.getCurrentInstance().closeDialog("cadPacote");
+            return "";
+        }
     }
     
     
