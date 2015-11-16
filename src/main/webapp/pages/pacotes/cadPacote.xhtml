@@ -178,7 +178,7 @@
                                 </p:inputText>
                                 <p:inputText id="totalpag" value="#{cadPacoteAgenciaMB.formapagamento.valorTotal}" style="width:80%;;margin-left: 10%" class="espacocobranca29r" >
                                     <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
-                                    <p:ajax event="keyup" listener="#{cadPacoteAgenciaMB.calcularSaldoParcelar()}"  update=":cadastropacote:saldoparcelar"/>
+                                    <p:ajax event="keyup" listener="#{cadPacoteAgenciaMB.calcularSaldoParcelar()}"  update="saldoparcelar"/>
                                     <p:ajax event="blur" />
                                 </p:inputText>
                             </h:panelGrid>
