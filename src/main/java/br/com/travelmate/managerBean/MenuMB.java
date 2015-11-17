@@ -73,6 +73,10 @@ public class MenuMB implements Serializable{
         return "consultafichacurso";
     }
     
+    public String faturafranquia(){
+        return "faturafranquia";
+    }
+    
     public String highSchool(){
         return "consultaHighSchool";
     }

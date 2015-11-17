@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/pages/templates/default.xhtml">
+        <ui:define name="corpo">
+            <h:form id="idtelafaturafranquia">
+                <div id="centro">
+                    <p:growl id="growl" showDetail="true" sticky="true"/>
+                        <br></br>
+                        <p:accordionPanel class="painel"  >
+                        <p:tab titleStyle="color:#000;background:#c7d95f;" title="Pesquisar">
+                                <p:outputLabel value="Unidade" style="margin-left:4.2%;font-size: 11px"/> 
+                                <br></br>
+                                <h:panelGrid columns="2">
+                                    <p:selectOneMenu id="unidade"  style="width:350px;margin-left:9.5%"  value="#{faturaFranquiaMB.unidadenegocio}" converter="UnidadeNegocioConverter">
+                                        <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
+                                        <f:selectItems value="#{faturaFranquiaMB.listaUnidadeNegocio}" var="unidade" itemLabel="#{unidade.nomeFantasia}" itemValue="#{unidade}"/>
+                                        <f:attribute name="listaUnidade" value="#{faturaFranquiaMB.listaUnidadeNegocio}"/>
+                                    </p:selectOneMenu>
+                                    <p:commandButton value="Pesquisar" style="margin-left:15%" icon=" ui-icon-search " update=":idtelafaturafranquia:idtabelafaturafraquia"  action="#{faturaFranquiaMB.gerarListaFaturaFranquia()}"/>
+                                </h:panelGrid>
+                                <br></br> 
+                        </p:tab>
+                    </p:accordionPanel>
+                        <legend id="iUsu2" ><b>Relatório Fatura de Franquia</b></legend>
+                        
+                        <p:dataTable id="idtabelafaturafraquia" var="faturafranquia"  value="#{faturaFranquiaMB.listaFatura}" class="tabela" scrollable="true" scrollHeight="450" rowStyleClass="#{empty rowIx or rowIx mod 2 ne 0 ? 'even-row' : 'odd-row'}"
+                                          rowIndexVar="rowIx" style="margin-bottom:20px;">
+                               
+                                <p:column headerText="Mês Cobrança" style="width:60px;">
+                                    <h:outputText  value="#"/>
+                                </p:column>
+                                <p:column headerText="Cliente"  >
+                                    <h:outputText value="#{faturafranquia.vendas.cliente.nome}"/>
+                                </p:column>
+                                <p:column headerText="Data Venda"  style="width:55px;" >
+                                    <h:outputText value="#{faturafranquia.vendas.dataVenda}">
+                                        <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                                    </h:outputText>
+                                </p:column>
+                                <p:column headerText="Programa/ Produto" style="width:70px;"  >
+                                    <h:outputText value="#{faturafranquia.vendas.produtos.descricao}"/>
+                                </p:column>
+                                <p:column headerText="Fornecedor" style="width:70px;"  >
+                                    <h:outputText value="#{faturafranquia.vendas.fornecedor.nome}"/>
+                                </p:column> 
+                                <p:column headerText="Valor Bruto" style="width:55px;"  >
+                                    <h:outputText value="#{faturafranquia.vendas.valor}">
+                                        <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                                    </h:outputText>
+                                </p:column>
+                                <p:column headerText="Valor Comissionavel" style="width:60px;"  >
+                                    <h:outputText value="#{faturaFranquiaMB.valorComissionavel}">
+                                        <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                                    </h:outputText>
+                                </p:column>
+                                <p:column headerText="% Comissão" style="width:50px;"  >
+                                    <h:outputText value="#{faturafranquia.vendas.fornecedor.comissaoFranquia}"/>
+                                </p:column> 
+                                <p:column headerText="Comissão" style="width:60px;"  >
+                                    <h:outputText value="#{faturafranquia.comissaofraquia}">
+                                        <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                                    </h:outputText>
+                                </p:column>
+                                <p:column headerText="Taxa TM" style="width:60px;"  >
+                                    <h:outputText value="#{faturafranquia.taxatm}">
+                                        <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                                    </h:outputText>
+                                </p:column>
+                                <p:column headerText="Deságio" style="width:60px;"  >
+                                    <h:outputText value="#{faturafranquia.desagio}">
+                                        <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                                    </h:outputText>
+                                </p:column>
+                                <p:column headerText="Desconto Matriz" style="width:60px;"  >
+                                    <h:outputText value="#{faturafranquia.descontotm}">
+                                        <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                                    </h:outputText>
+                                </p:column>
+                                <p:column headerText="Desconto Loja" style="width:60px;"  >
+                                    <h:outputText value="#{faturafranquia.descontoloja}">
+                                        <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                                    </h:outputText>
+                                </p:column>
+                                <p:column headerText="Recebido na Matriz" style="width:60px;"  >
+                                    <h:outputText value="">
+                                        <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                                    </h:outputText>
+                                </p:column>
+                                 <p:column headerText="Total" style="width:60px;"  >
+                                     <h:outputText value="#{faturafranquia.valorfornecedor}">
+                                        <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                                    </h:outputText>
+                                </p:column>
+                        </p:dataTable>
+                </div>
+            </h:form>     
+           
+        </ui:define>
+    </ui:composition>
+</html>
