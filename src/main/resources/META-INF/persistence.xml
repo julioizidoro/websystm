@@ -61,6 +61,13 @@
     <class>br.com.travelmate.model.Orcamentoprodutosorcamento</class>
     <class>br.com.travelmate.model.Terceiros</class>
     <class>br.com.travelmate.model.Conciliacao</class>
+    <class>br.com.travelmate.Interface.Programa</class>
+    <class>br.com.travelmate.Interface.Programafornecedor</class>
+    <class>br.com.travelmate.Interface.Servico</class>
+    <class>br.com.travelmate.Interface.Tarifario</class>
+    <class>br.com.travelmate.Interface.Tiposervico</class>
+    <class>br.com.travelmate.Interface.Worcamentocurso</class>
+    <class>br.com.travelmate.model.Tarifarioservico</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
     <validation-mode>NONE</validation-mode>

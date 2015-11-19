@@ -7,15 +7,16 @@ package br.com.travelmate.managerBean.financeiro;
 
 import br.com.travelmate.facade.UnidadeNegocioFacade;
 import br.com.travelmate.facade.VendasComissaoFacade;
-import br.com.travelmate.facade.VendasFacade;
+import br.com.travelmate.managerBean.UsuarioLogadoMB;
 import br.com.travelmate.model.Unidadenegocio;
-import br.com.travelmate.model.Vendas;
 import br.com.travelmate.model.Vendascomissao;
+import br.com.travelmate.util.Formatacao;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
@@ -26,10 +27,12 @@ import javax.inject.Named;
 @ViewScoped
 public class FaturaFranquiaMB implements Serializable{
     
+    @Inject 
+    private UsuarioLogadoMB usuarioLogadoMB;
     private Unidadenegocio unidadenegocio;
     private List<Unidadenegocio> listaUnidadeNegocio;
     private List<Vendascomissao> listaFatura;
-    private Float valorComissionavel;
+    
     
     @PostConstruct()
     public void init(){
@@ -60,16 +63,6 @@ public class FaturaFranquiaMB implements Serializable{
         this.listaFatura = listaFatura;
     }
 
-    public Float getValorComissionavel() {
-        return valorComissionavel;
-    }
-
-    public void setValorComissionavel(Float valorComissionavel) {
-        this.valorComissionavel = valorComissionavel;
-    }
-
-    
-
     
     public void gerarListaUnidadeNegocio(){
         UnidadeNegocioFacade unidadeNegocioFacade = new UnidadeNegocioFacade();
@@ -87,17 +80,23 @@ public class FaturaFranquiaMB implements Serializable{
         if (listaFatura==null){
             listaFatura = new ArrayList<Vendascomissao>();
         }
-        valorComissionavel();
     }
     
-    public void valorComissionavel(){
-        for(int i=0;i<listaFatura.size();i++){
-            if(listaFatura.get(i).getVendas().getProdutos().getIdprodutos()==1){
-                valorComissionavel = 0f;
-            }else{
-                valorComissionavel = listaFatura.get(i).getValorbruto();
+    public String calcularPercentualComissao(Vendascomissao vendaComissao){
+        float percentual = 0.0f;
+        if (vendaComissao!=null){
+            if ((vendaComissao.getComissaofranquiabruta()>0) && (vendaComissao.getValorcomissionavel()>0)){
+                percentual = vendaComissao.getComissaofranquiabruta() / vendaComissao.getValorcomissionavel();
+                percentual = percentual * 100;
             }
+            
         }
+        return Formatacao.formatarFloatString(percentual);
     }
     
+    public void gerarMesPagamento(Vendascomissao vendascomissao){
+        String dataInicio = Formatacao.ConvercaoDataPadrao(vendascomissao.getDatainicioprograma());
+        
+        
+    }
 }

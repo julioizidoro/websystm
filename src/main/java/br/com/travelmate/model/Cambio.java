@@ -5,6 +5,7 @@
  */
 package br.com.travelmate.model;
 
+import br.com.travelmate.Interface.Worcamentocurso;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -33,6 +34,8 @@ import javax.persistence.TemporalType;
 @NamedQueries({
     @NamedQuery(name = "Cambio.findAll", query = "SELECT c FROM Cambio c")})
 public class Cambio implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cambio")
+    private List<Worcamentocurso> worcamentocursoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cambio")
     private List<Orcamento> orcamentoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cambio")
@@ -211,6 +214,14 @@ public class Cambio implements Serializable {
 
     public void setOrcamentoList(List<Orcamento> orcamentoList) {
         this.orcamentoList = orcamentoList;
+    }
+
+    public List<Worcamentocurso> getWorcamentocursoList() {
+        return worcamentocursoList;
+    }
+
+    public void setWorcamentocursoList(List<Worcamentocurso> worcamentocursoList) {
+        this.worcamentocursoList = worcamentocursoList;
     }
     
 }

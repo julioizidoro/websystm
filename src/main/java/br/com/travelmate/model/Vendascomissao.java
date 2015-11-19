@@ -82,6 +82,11 @@ public class Vendascomissao implements Serializable {
     private Terceiros terceiros;
     @Column(name = "comissaofranquiabruta")
     private float comissaofranquiabruta;
+    @Column(name = "valorcomissionavel")
+    private float valorcomissionavel;
+    @Column(name = "datainicioprograma")
+    @Temporal(TemporalType.DATE)
+    private Date datainicioprograma;
     
     
 
@@ -112,12 +117,28 @@ public class Vendascomissao implements Serializable {
         return valorfornecedor;
     }
 
+    public float getValorcomissionavel() {
+        return valorcomissionavel;
+    }
+
+    public void setValorcomissionavel(float valorcomissionavel) {
+        this.valorcomissionavel = valorcomissionavel;
+    }
+
     public void setValorfornecedor(Float valorfornecedor) {
         this.valorfornecedor = valorfornecedor;
     }
 
     public Float getComissaotm() {
         return comissaotm;
+    }
+
+    public Date getDatainicioprograma() {
+        return datainicioprograma;
+    }
+
+    public void setDatainicioprograma(Date datainicioprograma) {
+        this.datainicioprograma = datainicioprograma;
     }
 
     public void setComissaotm(Float comissaotm) {

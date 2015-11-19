@@ -5,6 +5,7 @@
  */
 package br.com.travelmate.model;
 
+import br.com.travelmate.Interface.Worcamentocurso;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -32,6 +33,8 @@ import javax.validation.constraints.Size;
 @NamedQueries({
     @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u")})
 public class Usuario implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
+    private List<Worcamentocurso> worcamentocursoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     private List<Eventocontaspagar> eventocontaspagarList;
     @Size(max = 50)
@@ -281,6 +284,14 @@ public class Usuario implements Serializable {
 
     public void setEventocontaspagarList(List<Eventocontaspagar> eventocontaspagarList) {
         this.eventocontaspagarList = eventocontaspagarList;
+    }
+
+    public List<Worcamentocurso> getWorcamentocursoList() {
+        return worcamentocursoList;
+    }
+
+    public void setWorcamentocursoList(List<Worcamentocurso> worcamentocursoList) {
+        this.worcamentocursoList = worcamentocursoList;
     }
     
 }
