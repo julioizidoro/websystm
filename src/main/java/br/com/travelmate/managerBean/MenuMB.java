@@ -39,6 +39,10 @@ public class MenuMB implements Serializable{
         return "vendas";
     }
     
+    public String cancelamento(){
+        return "conscancelamento";
+    }
+    
     public String contasRecebers(){
         DadosBoletoBean dadosBoletoBean = new DadosBoletoBean();
         dadosBoletoBean.emitir();
