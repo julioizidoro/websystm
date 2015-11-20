@@ -20,7 +20,6 @@ import javax.inject.Named;
 @ViewScoped
 public class OrcamentoCursoMB implements Serializable{
     
-    
     @Inject
     private UsuarioLogadoMB usuarioLogadoMB;
     @Inject 
@@ -201,7 +200,7 @@ public class OrcamentoCursoMB implements Serializable{
          float total =0.0f;
          float totalRS=0.0f;
          float totalDesconto=0.0f;
-         float totalDescontoRS=0.0f;
+         float totalDescontoRS =0.0f;
          if (seguroviagem!=null){
              if (seguroviagem.getValorSeguro()!=null){
                  totalRS = totalRS + seguroviagem.getValorSeguro();
