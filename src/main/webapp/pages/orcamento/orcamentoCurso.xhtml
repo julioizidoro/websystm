@@ -184,6 +184,7 @@
                             <p:inputText id="semanas" value="#{orcamentoCursoMB.seguroviagem.numeroSemanas}" style="width:7%" maxlength="45" class="loginButton2"  disabled="#{orcamentoCursoMB.habilitarSeguro()}">
                                 <f:convertNumber  type="number"/>
                                 <p:ajax event="blur" update="datatermino, valorseguro" listener="#{orcamentoCursoMB.calcularDataTermino()}" /> 
+                                <p:ajax event="blur" listener="#{orcamentoCursoMB.calcularTotais()}" update="orcamentoCurso:tabelatotal"/>
                             </p:inputText>
                             <p:outputLabel value="Data Final:" for="datatermino" class="imgadd" />
                             <p:calendar id="datatermino" value="#{orcamentoCursoMB.seguroviagem.dataTermino}" size="15" class="loginButton2" locale="pt"  pattern="dd/MM/yyyy" disabled="#{orcamentoCursoMB.habilitarSeguro()}">
@@ -283,7 +284,7 @@
                     <br></br><br></br><br></br>
                 </div>
                 
-                <p:dialog id="dialog_descricaoescola" header="DescriÃ§Ã£o" widgetVar="descricaoEscola" style="text-align: left;" width="400">
+                <p:dialog id="dialog_descricaoescola" header="Descrição" widgetVar="descricaoEscola" style="text-align: left;" width="400">
                     <h:outputText value="Ec" style="font-weight:bold;font-size: 20px;color:#4DA20B;" />
                     <br></br>
                     <h:outputText value="Descrição" style="font-weight:bold;font-size: 12px;" />

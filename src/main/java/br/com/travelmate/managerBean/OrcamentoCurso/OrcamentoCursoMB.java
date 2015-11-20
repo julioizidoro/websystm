@@ -200,6 +200,8 @@ public class OrcamentoCursoMB implements Serializable{
      public void calcularTotais(){
          float total =0.0f;
          float totalRS=0.0f;
+         float totalDesconto=0.0f;
+         float totalDescontoRS=0.0f;
          if (seguroviagem!=null){
              if (seguroviagem.getValorSeguro()!=null){
                  totalRS = totalRS + seguroviagem.getValorSeguro();
@@ -209,16 +211,20 @@ public class OrcamentoCursoMB implements Serializable{
          for(int i=0;i<filtrarEscolaMB.getFornecedorProdutosBean().getListaObrigaroerios().size();i++){
              total = total + filtrarEscolaMB.getFornecedorProdutosBean().getListaObrigaroerios().get(i).getValorPromocional();
              totalRS = totalRS + filtrarEscolaMB.getFornecedorProdutosBean().getListaObrigaroerios().get(i).getValorPromocionalRS();
+             totalDesconto = totalDesconto + filtrarEscolaMB.getFornecedorProdutosBean().getListaObrigaroerios().get(i).getValorOrigianl();
+            // totalDescontoRS = totalDescontoRS + filtrarEscolaMB.getFornecedorProdutosBean().getListaObrigaroerios().get(i).getValorOriginalRS();
          }
          for(int i=0;i<filtrarEscolaMB.getFornecedorProdutosBean().getListaOpcionais().size();i++){
              if (filtrarEscolaMB.getFornecedorProdutosBean().getListaOpcionais().get(i).isSelecionado()){
                 total = total + filtrarEscolaMB.getFornecedorProdutosBean().getListaOpcionais().get(i).getValorPromocional();
                 totalRS = totalRS + filtrarEscolaMB.getFornecedorProdutosBean().getListaOpcionais().get(i).getValorPromocionalRS();
+                totalDesconto = totalDesconto + filtrarEscolaMB.getFornecedorProdutosBean().getListaOpcionais().get(i).getValorOrigianl();
+             //   totalDescontoRS = totalDescontoRS + filtrarEscolaMB.getFornecedorProdutosBean().getListaOpcionais().get(i).getValorOriginalRS();
              }
          }
          valorTotal = total;
          valorTotalRS = totalRS;
-         valorDesconto =0.0f;
+         valorDesconto = totalDesconto - total;
          valorDescontoRS = 0.0f;
      }
      
