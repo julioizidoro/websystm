@@ -5,6 +5,8 @@
  */
 package br.com.travelmate.model;
 
+import br.com.travelmate.Interface.Programafornecedor;
+import br.com.travelmate.Interface.Worcamentocurso;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -31,6 +33,10 @@ import javax.validation.constraints.Size;
 @NamedQueries({
     @NamedQuery(name = "Fornecedorcidade.findAll", query = "SELECT f FROM Fornecedorcidade f")})
 public class Fornecedorcidade implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedorcidade")
+    private List<Worcamentocurso> worcamentocursoList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedorcidade")
+    private List<Programafornecedor> programafornecedorList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedorcidade")
     private List<Valoresprogramasteens> valoresprogramasteensList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedorcidade")
@@ -170,6 +176,22 @@ public class Fornecedorcidade implements Serializable {
 
     public void setValoresprogramasteensList(List<Valoresprogramasteens> valoresprogramasteensList) {
         this.valoresprogramasteensList = valoresprogramasteensList;
+    }
+
+    public List<Worcamentocurso> getWorcamentocursoList() {
+        return worcamentocursoList;
+    }
+
+    public void setWorcamentocursoList(List<Worcamentocurso> worcamentocursoList) {
+        this.worcamentocursoList = worcamentocursoList;
+    }
+
+    public List<Programafornecedor> getProgramafornecedorList() {
+        return programafornecedorList;
+    }
+
+    public void setProgramafornecedorList(List<Programafornecedor> programafornecedorList) {
+        this.programafornecedorList = programafornecedorList;
     }
     
 }

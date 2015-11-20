@@ -49,17 +49,17 @@
                                     <h:outputText value="#{faturafranquia.vendas.fornecedor.nome}"/>
                                 </p:column> 
                                 <p:column headerText="Valor Bruto" style="width:55px;"  >
-                                    <h:outputText value="#{faturafranquia.vendas.valor}">
+                                    <h:outputText value="#{faturafranquia.valorbruto}">
                                         <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                     </h:outputText>
                                 </p:column>
                                 <p:column headerText="Valor Comissionavel" style="width:60px;"  >
-                                    <h:outputText value="#{faturaFranquiaMB.valorComissionavel}">
+                                    <h:outputText value="#{faturafranquia.valorcomissionavel}">
                                         <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                     </h:outputText>
                                 </p:column>
                                 <p:column headerText="% Comissão" style="width:50px;"  >
-                                    <h:outputText value="#{faturafranquia.vendas.fornecedor.comissaoFranquia}"/>
+                                    <h:outputText value="#{faturaFranquiaMB.calcularPercentualComissao(faturafranquia)}"/>
                                 </p:column> 
                                 <p:column headerText="Comissão" style="width:60px;"  >
                                     <h:outputText value="#{faturafranquia.comissaofraquia}">

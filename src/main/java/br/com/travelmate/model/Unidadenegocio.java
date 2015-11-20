@@ -5,6 +5,7 @@
  */
 package br.com.travelmate.model;
 
+import br.com.travelmate.Interface.Worcamentocurso;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -30,6 +31,8 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "unidadenegocio")
 public class Unidadenegocio implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "unidadenegocio")
+    private List<Worcamentocurso> worcamentocursoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "unidadenegocio")
     private List<Conciliacao> conciliacaoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "unidadenegocio")
@@ -105,6 +108,9 @@ public class Unidadenegocio implements Serializable {
     private Banco banco;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "unidadenegocio")
     private List<Usuario> usuarioList;
+    @Column(name = "mespagamento")
+    private int mespagamento;
+    
 
     public Unidadenegocio() {
     }
@@ -249,6 +255,14 @@ public class Unidadenegocio implements Serializable {
         this.dataembarcadocurso = dataembarcadocurso;
     }
 
+    public int getMespagamento() {
+        return mespagamento;
+    }
+
+    public void setMespagamento(int mespagamento) {
+        this.mespagamento = mespagamento;
+    }
+
     public String getTipo() {
         return tipo;
     }
@@ -344,6 +358,14 @@ public class Unidadenegocio implements Serializable {
 
     public void setConciliacaoList(List<Conciliacao> conciliacaoList) {
         this.conciliacaoList = conciliacaoList;
+    }
+
+    public List<Worcamentocurso> getWorcamentocursoList() {
+        return worcamentocursoList;
+    }
+
+    public void setWorcamentocursoList(List<Worcamentocurso> worcamentocursoList) {
+        this.worcamentocursoList = worcamentocursoList;
     }
     
 }

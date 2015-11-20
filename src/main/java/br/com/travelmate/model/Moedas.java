@@ -5,6 +5,7 @@
  */
 package br.com.travelmate.model;
 
+import br.com.travelmate.Interface.Tarifario;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -29,6 +30,8 @@ import javax.validation.constraints.Size;
 @NamedQueries({
     @NamedQuery(name = "Moedas.findAll", query = "SELECT m FROM Moedas m")})
 public class Moedas implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "moedas")
+    private List<Tarifario> tarifarioList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "moedas")
     private List<Valoresprogramasteens> valoresprogramasteensList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "moedas")
@@ -156,6 +159,14 @@ public class Moedas implements Serializable {
 
     public void setValoresprogramasteensList(List<Valoresprogramasteens> valoresprogramasteensList) {
         this.valoresprogramasteensList = valoresprogramasteensList;
+    }
+
+    public List<Tarifario> getTarifarioList() {
+        return tarifarioList;
+    }
+
+    public void setTarifarioList(List<Tarifario> tarifarioList) {
+        this.tarifarioList = tarifarioList;
     }
     
 }
