@@ -23,7 +23,7 @@ public class CancelamentoMB implements Serializable{
      public String reembolsoCredito() {
         Map<String, Object> options = new HashMap<String, Object>();
         options.put("contentWidth", 380);
-        RequestContext.getCurrentInstance().openDialog("reembolso");
+        RequestContext.getCurrentInstance().openDialog("reembolso",options,null);
         return "";
     }
    

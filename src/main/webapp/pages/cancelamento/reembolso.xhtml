@@ -24,37 +24,38 @@
             <title  >Reembolso e Credito</title>
             <p:growl id="growl" showDetail="true" sticky="true" />
             <br></br>
-            <p:outputLabel value="Data Solicitação cliente:" for="dataSoliciCliente" style="margin-left: 7%"/> 
            
-            <p:inputMask id="dataSoliciCliente" mask="99/99/9999" size="15" maxlength="15" style="margin-left: 5%;height: 15px" >
+            <p:outputLabel value="Data Solicitação cliente:" for="dataSoliciCliente" style="margin-left: 8%"/> 
+           
+            <p:inputMask id="dataSoliciCliente" mask="99/99/9999" size="15" maxlength="15" style="margin-left: 11.5%;height: 15px" >
                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
             </p:inputMask>
             
-            <br></br><br></br>
+            <br></br> <br></br>
             
-            <p:outputLabel value="Valor recebido na Matriz:" for="valorRecebMatriz" style="margin-left: 5%"/>
-            <p:inputText id="valorRecebMatriz" size="15"  style="margin-left: 5%;text-align: right;height: 15px" value="">
+            <p:outputLabel value="Valor recebido na Matriz:" for="valorRecebMatriz" style="margin-left: 5.1%"/>
+            <p:inputText id="valorRecebMatriz" size="15"  style="margin-left: 11.5%;text-align: right;height: 15px" value="">
                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
             </p:inputText>
-             <br></br><br></br>
-            <p:outputLabel value="Valor recebido na Loja:" for="valorRecebLoja" style="margin-left: 7.1%"/>
-           <p:inputText id="valorRecebLoja" size="15"  style="margin-left: 5%;text-align: right;height: 15px" value="">
+             <br></br> <br></br>
+            <p:outputLabel value="Valor recebido na Loja:" for="valorRecebLoja" style="margin-left: 8.5%"/>
+           <p:inputText id="valorRecebLoja" size="15"  style="margin-left: 11.5%;text-align: right;height: 15px" value="">
                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
             </p:inputText>
             
-            <br></br><br></br>
+            <br></br> <br></br>
             
-            <p:outputLabel value="Multa R$:" for="multa" style="margin-left: 20.2%"/>
-             <p:inputText id="multa" size="15"  style="margin-left: 5%;text-align: right;height: 15px" value="">
+            <p:outputLabel value="Multa R$:" for="multa" style="margin-left: 31%"/>
+             <p:inputText id="multa" size="15"  style="margin-left: 11.5%;text-align: right;height: 15px" value="">
                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
             </p:inputText>
-            <br></br><br></br>
+            <br></br> <br></br>
             <p:outputLabel value="Valor Reembolso/Crédito:" for="valorReembCredito" style="margin-left: 4.7%" />
-            <p:inputText id="valorReembCredito" size="15"  style="margin-left: 5%;text-align: right;height: 15px" value="">
+            <p:inputText id="valorReembCredito" size="15"  style="margin-left: 11.5%;text-align: right;height: 15px" value="">
                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
             </p:inputText>
-            <br></br><br></br>
-            <p:fieldset style="margin-bottom:20px">
+            <br></br> <br></br>
+            <p:fieldset style="margin-bottom:20px;text-align: center">
             
             <p:selectOneRadio id="reembCreditoSelecionada" value="#" layout="custom" >
                 <f:selectItem itemLabel="Reembolso" itemValue="reembolso" />
@@ -68,39 +69,36 @@
             <h:outputLabel for="credito" value="Credito" style="margin-left:2%"/>
 
             </p:fieldset>
-            <br></br><br></br>
-            <p:outputLabel value="Data Acerto cliente:" for="dataAcertoCliente" style="margin-left: 11%"/> 
+            
+            <p:outputLabel value="Data Acerto cliente:" for="dataAcertoCliente" style="margin-left: 16%"/> 
            
-            <p:inputMask id="dataAcertoCliente" mask="99/99/9999" size="15" maxlength="15" style="margin-left: 5%;height: 15px" >
+            <p:inputMask id="dataAcertoCliente" mask="99/99/9999" size="15" maxlength="15" style="margin-left: 11.5%;height: 15px" >
                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
             </p:inputMask>
 
-            <br></br><br></br>
-            <p:fieldset style="margin-bottom:20px">
+             <br></br> <br></br>
+            <p:fieldset style="margin-bottom:20px;text-align: center">
             <p:selectOneRadio id="realizadoMatrizLoja" value="#" layout="custom" >
                 <f:selectItem itemLabel="Loja" itemValue="Realizado na Loja"  />
                 <f:selectItem itemLabel="Matriz" itemValue="Realizado na Matriz" />
             </p:selectOneRadio>
 
-            <p:radioButton id="realizadoLoja" for="realizadoMatrizLoja" itemIndex="1" style="margin-left:5%"/>
+            <p:radioButton id="realizadoLoja" for="realizadoMatrizLoja" itemIndex="1" />
             <h:outputLabel for="realizadoLoja" value="Loja" style="margin-left:2%"/>
 
-            <p:radioButton id="realizadoMatriz" for="realizadoMatrizLoja" itemIndex="2" style="margin-left:20%"/>
+            <p:radioButton id="realizadoMatriz" for="realizadoMatrizLoja" itemIndex="2" style="margin-left:26%"/>
             <h:outputLabel for="realizadoMatriz" value="Matriz" style="margin-left:2%"/>
             </p:fieldset>
-            <br></br>
+            
             <p:outputLabel value="Observação" for="valorRecebMatriz" style="margin-left: 5%"/>
-            <br></br><br></br>
-            <p:inputTextarea rows="5" cols="49" style="margin-left: 5%" />
+            <br></br> 
+            <p:inputTextarea rows="3" cols="49" style="margin-left: 5%" />
 
             <p class="botaoeditareceber" style="width: 87.5%;"><br></br>
-                <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Confirmar" action="#" style="margin-left: 25%"></p:commandButton>
+                <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Confirmar" action="#" style="margin-left: 33%"></p:commandButton>
                 <p:commandButton class="espacocampos" onclick="" icon="ui-icon-close" value="Cancelar" action="#" style="margin-left: 2%"></p:commandButton>
             </p>
-            <br></br>
-            <br></br>
-
-        </h:form>
+         </h:form>
     </h:body>
 
 </html>
