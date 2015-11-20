@@ -266,7 +266,6 @@ public class FiltrarEscolaMB implements Serializable{
                 " and c.tipo='" + tipo + "'";
         listaCoProdutos = coProdutosFacade.listar(sql);
         if (listaCoProdutos!=null){
-            ValorCoProdutosFacade valorCoProdutosFacade = new ValorCoProdutosFacade();
             for(int i=0;i<listaCoProdutos.size();i++){
                 ProdutosOrcamentoBean po = consultarValores("DI", listaCoProdutos.get(i).getIdcoprodutos(), fornecedorProdutosBean);
                 if (po!=null){
@@ -308,6 +307,7 @@ public class FiltrarEscolaMB implements Serializable{
         if (valorcoprodutos != null) {
             ProdutosOrcamentoBean po = new ProdutosOrcamentoBean();
             po.setValorcoprodutos(valorcoprodutos);
+            po.setIdproduto(valorcoprodutos.getCoprodutos().getIdcoprodutos());
             int multiplicador =1;
             if (valorcoprodutos.getCobranca().equalsIgnoreCase("S")){
                 multiplicador = fornecedorProdutosBean.getOcurso().getNumerosemanas();
@@ -369,7 +369,7 @@ public class FiltrarEscolaMB implements Serializable{
     public void gerarListaCursos(){
         FiltroOrcamentoProdutoFacade filtroOrcamentoProdutoFacade = new FiltroOrcamentoProdutoFacade();
         String sql = "select f from Filtroorcamentoproduto f where f.produtos.idprodutos=" + 
-                usuarioLogadoMB.getParametrosprodutos().getCursos() + " and f.produtosorcamento.tipo='C' order by f.produtosorcamento.descricao";
+                usuarioLogadoMB.getParametrosprodutos().getCursos() + " and f.produtosorcamento.tipo='O' order by f.produtosorcamento.descricao";
         listaProdutosOrcamento = filtroOrcamentoProdutoFacade.pesquisar(sql);
         if (listaProdutosOrcamento==null){
             listaProdutosOrcamento = new ArrayList<Filtroorcamentoproduto>();

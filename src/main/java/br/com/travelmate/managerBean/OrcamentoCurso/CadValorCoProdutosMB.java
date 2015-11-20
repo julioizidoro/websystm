@@ -29,9 +29,8 @@ public class CadValorCoProdutosMB implements Serializable{
     public CadValorCoProdutosMB() {
         FacesContext fc = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+        valorcoprodutos = (Valorcoprodutos) session.getAttribute("valorcoprodutos");
         Coprodutos coprodutos = (Coprodutos) session.getAttribute("coprodutos");
-        valorcoprodutos = (Valorcoprodutos) session.getAttribute("valorcoproduros");
-        session.removeAttribute("coprodutos");
         session.removeAttribute("valorcoprodutos");
         if (valorcoprodutos==null){
             valorcoprodutos = new Valorcoprodutos();
@@ -50,7 +49,7 @@ public class CadValorCoProdutosMB implements Serializable{
     public String salvar(){
         ValorCoProdutosFacade valorCoProdutosFacade = new ValorCoProdutosFacade();  
         valorCoProdutosFacade.salvar(valorcoprodutos);
-        RequestContext.getCurrentInstance().closeDialog(null);
+        RequestContext.getCurrentInstance().closeDialog(valorcoprodutos);
         return "";
     }
     

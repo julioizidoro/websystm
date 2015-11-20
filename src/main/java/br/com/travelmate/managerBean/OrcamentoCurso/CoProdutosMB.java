@@ -12,7 +12,9 @@ import br.com.travelmate.model.Valorcoprodutos;
 import br.com.travelmate.util.GerarListas;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -20,6 +22,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 import org.primefaces.context.RequestContext;
+import org.primefaces.event.SelectEvent;
 
 @Named
 @ViewScoped
@@ -41,12 +44,22 @@ public class CoProdutosMB implements Serializable{
     public void init(){
         int idProduto = 0;
         getUsuarioLogadoMB();
+        FacesContext fc = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+        coprodutos = (Coprodutos) session.getAttribute("coprodutos");
+        session.removeAttribute("coprodutos");
         PaisProdutoFacade paisProdutoFacade = new PaisProdutoFacade();
         idProduto = usuarioLogadoMB.getParametrosprodutos().getCursos();
         listaPais = paisProdutoFacade.listar(idProduto);
-        fornecedorcidade = new Fornecedorcidade();
-        pais = new Pais();
-        cidade = new Cidade();   
+        if(coprodutos==null){
+            fornecedorcidade = new Fornecedorcidade();
+            pais = new Pais();
+            cidade = new Cidade();   
+        }else{
+            fornecedorcidade = coprodutos.getFornecedorcidade();
+            pais = coprodutos.getFornecedorcidade().getCidade().getPais();
+            cidade = coprodutos.getFornecedorcidade().getCidade();
+        }
     }
 
     public UsuarioLogadoMB getUsuarioLogadoMB() {
@@ -73,11 +86,6 @@ public class CoProdutosMB implements Serializable{
         this.valorcoproduto = valorcoproduto;
     }
     
-    
-    
-
-    
-
     public List<Coprodutos> getListaCoProdutos() {
         return listaCoProdutos;
     }
@@ -151,11 +159,13 @@ public class CoProdutosMB implements Serializable{
         }
     }
     
-    public String cadProduto(){
+    public String cadProduto() {
         FacesContext fc = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
         session.setAttribute("fornecedorCidade", fornecedorcidade);
-         RequestContext.getCurrentInstance().openDialog("cadProdutos");
+        Map<String, Object> options = new HashMap<String, Object>();
+        options.put("contentWidth", 500);
+        RequestContext.getCurrentInstance().openDialog("cadProdutos", options, null);
         return "";
     }
     
@@ -168,4 +178,9 @@ public class CoProdutosMB implements Serializable{
         return "consValorCoProdutos";
     }
     
+    
+    public void retornoDialogoNovo(SelectEvent event){
+        Coprodutos coproduto = (Coprodutos) event.getObject();
+        listaCoProdutos.add(coproduto);
+    }
 }

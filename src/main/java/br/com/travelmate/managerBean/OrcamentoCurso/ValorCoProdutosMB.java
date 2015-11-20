@@ -17,6 +17,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 import org.primefaces.context.RequestContext;
+import org.primefaces.event.SelectEvent;
 
 /**
  *
@@ -75,6 +76,24 @@ public class ValorCoProdutosMB implements Serializable{
         return "";
     }
     
+    public String voltar(){
+        FacesContext fc = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+        session.setAttribute("coprodutos", coprodutos);
+        return "consProdutos";
+    }
+    
+    public String editar(Valorcoprodutos valorcoprodutos){
+        FacesContext fc = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+        session.setAttribute("valorcoprodutos", valorcoprodutos);
+        RequestContext.getCurrentInstance().openDialog("cadValorCoProdutos");
+        return "";
+    }
     
     
+    public void retornoDialogoNovo(SelectEvent event){
+        Valorcoprodutos valorcoprodutos = (Valorcoprodutos) event.getObject();
+        listaValores.add(valorcoprodutos);
+    }
 }

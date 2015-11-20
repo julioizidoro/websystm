@@ -40,7 +40,6 @@ public class CadCoProdutosMB implements Serializable{
         getUsuarioLogadoMB();
         coprodutos = new Coprodutos();
         prdutoOrcamento = new Produtosorcamento();
-        gerarListaProdutosOrcamento();
      }
 
     public UsuarioLogadoMB getUsuarioLogadoMB() {
@@ -87,8 +86,23 @@ public class CadCoProdutosMB implements Serializable{
     
     public void gerarListaProdutosOrcamento(){
         FiltroOrcamentoProdutoFacade filtroOrcamentoProdutoFacade = new FiltroOrcamentoProdutoFacade();
-        String sql = "select f from Filtroorcamentoproduto f where f.produtos.idprodutos=" + 
-                usuarioLogadoMB.getParametrosprodutos().getCursos() + " order by f.produtosorcamento.descricao";
+        String sql="";
+        if(coprodutos.getTipo().equalsIgnoreCase("Acomodacao")){
+            sql = "select f from Filtroorcamentoproduto f where f.produtos.idprodutos=" + 
+                usuarioLogadoMB.getParametrosprodutos().getCursos() + " and f.produtosorcamento.tipo='A' order by f.produtosorcamento.descricao";
+        }else if(coprodutos.getTipo().equalsIgnoreCase("Transfer")){
+            sql = "select f from Filtroorcamentoproduto f where f.produtos.idprodutos=" + 
+                usuarioLogadoMB.getParametrosprodutos().getCursos() + " and f.produtosorcamento.tipo='T' order by f.produtosorcamento.descricao";
+        }else if(coprodutos.getTipo().equalsIgnoreCase("Transfer")){
+            sql = "select f from Filtroorcamentoproduto f where f.produtos.idprodutos=" + 
+                usuarioLogadoMB.getParametrosprodutos().getCursos() + " and f.produtosorcamento.tipo='T' order by f.produtosorcamento.descricao";
+        }else if(coprodutos.getTipo().equalsIgnoreCase("Opcional")){
+            sql = "select f from Filtroorcamentoproduto f where f.produtos.idprodutos=" + 
+                usuarioLogadoMB.getParametrosprodutos().getCursos() + " and f.produtosorcamento.tipo='D' order by f.produtosorcamento.descricao";
+        }else if(coprodutos.getTipo().equalsIgnoreCase("Obrigatorio")){
+            sql = "select f from Filtroorcamentoproduto f where f.produtos.idprodutos=" + 
+                usuarioLogadoMB.getParametrosprodutos().getCursos() + " and f.produtosorcamento.tipo='O' order by f.produtosorcamento.descricao";
+        }
         listaFiltroorcamentoproduto = filtroOrcamentoProdutoFacade.pesquisar(sql);
         if (listaFiltroorcamentoproduto==null){
             listaFiltroorcamentoproduto = new ArrayList<Filtroorcamentoproduto>();
@@ -100,8 +114,7 @@ public class CadCoProdutosMB implements Serializable{
         coprodutos.setProdutosorcamento(prdutoOrcamento);
         CoProdutosFacade coProdutosFacade = new CoProdutosFacade();
         coProdutosFacade.salvar(coprodutos);
-        coprodutos = new Coprodutos();
-        RequestContext.getCurrentInstance().closeDialog(null);
+        RequestContext.getCurrentInstance().closeDialog(coprodutos);
         return "orcamentocurso";
     }
     
@@ -110,4 +123,5 @@ public class CadCoProdutosMB implements Serializable{
         coprodutos = new Coprodutos();
         return "";
     }
+    
 }

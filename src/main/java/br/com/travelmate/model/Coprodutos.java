@@ -6,25 +6,23 @@
 package br.com.travelmate.model;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
 /**
  *
- * @author Wolverine
+ * @author Kamila
  */
 @Entity
 @Table(name = "coprodutos")
@@ -40,17 +38,16 @@ public class Coprodutos implements Serializable {
     @Size(max = 20)
     @Column(name = "tipo")
     private String tipo;
-    @Size(max = 10)
-    @Column(name = "licoes")
-    private String licoes;
-    @JoinColumn(name = "fornecedorcidade_idfornecedorcidade", referencedColumnName = "idfornecedorcidade")
-    @ManyToOne(optional = false)
-    private Fornecedorcidade fornecedorcidade;
+    @Lob
+    @Size(max = 16777215)
+    @Column(name = "descricao")
+    private String descricao;
     @JoinColumn(name = "produtosOrcamento_idprodutosOrcamento", referencedColumnName = "idprodutosOrcamento")
     @ManyToOne(optional = false)
     private Produtosorcamento produtosorcamento;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "coprodutos")
-    private List<Valorcoprodutos> valorcoprodutosList;
+    @JoinColumn(name = "fornecedorcidade_idfornecedorcidade", referencedColumnName = "idfornecedorcidade")
+    @ManyToOne(optional = false)
+    private Fornecedorcidade fornecedorcidade;
 
     public Coprodutos() {
     }
@@ -75,20 +72,12 @@ public class Coprodutos implements Serializable {
         this.tipo = tipo;
     }
 
-    public String getLicoes() {
-        return licoes;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setLicoes(String licoes) {
-        this.licoes = licoes;
-    }
-
-    public Fornecedorcidade getFornecedorcidade() {
-        return fornecedorcidade;
-    }
-
-    public void setFornecedorcidade(Fornecedorcidade fornecedorcidade) {
-        this.fornecedorcidade = fornecedorcidade;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public Produtosorcamento getProdutosorcamento() {
@@ -99,12 +88,12 @@ public class Coprodutos implements Serializable {
         this.produtosorcamento = produtosorcamento;
     }
 
-    public List<Valorcoprodutos> getValorcoprodutosList() {
-        return valorcoprodutosList;
+    public Fornecedorcidade getFornecedorcidade() {
+        return fornecedorcidade;
     }
 
-    public void setValorcoprodutosList(List<Valorcoprodutos> valorcoprodutosList) {
-        this.valorcoprodutosList = valorcoprodutosList;
+    public void setFornecedorcidade(Fornecedorcidade fornecedorcidade) {
+        this.fornecedorcidade = fornecedorcidade;
     }
 
     @Override

@@ -24,6 +24,7 @@ public class OrcamentoCursoMB implements Serializable{
     private UsuarioLogadoMB usuarioLogadoMB;
     @Inject 
     private FiltrarEscolaMB filtrarEscolaMB;
+    private ProdutosOrcamentoBean produtosOrcamentoBean;
     //private FornecedorProdutosBean filtrarEscolaMB.getFornecedorProdutosBean();
     private boolean seguroSelecionado = false;
     private boolean acomodacaoSelecionado = false;
@@ -35,6 +36,8 @@ public class OrcamentoCursoMB implements Serializable{
     private float valorDesconto;
     private float valorDescontoRS;
     private Valoresseguro valorSeguro;
+    private String acomodacaoHabiliada;
+   
     
 
     @PostConstruct
@@ -155,20 +158,40 @@ public class OrcamentoCursoMB implements Serializable{
     public void setValorSeguro(Valoresseguro valorSeguro) {
         this.valorSeguro = valorSeguro;
     }
+
+    public String getAcomodacaoHabiliada() {
+        return acomodacaoHabiliada;
+    }
+
+    public void setAcomodacaoHabiliada(String acomodacaoHabiliada) {
+        this.acomodacaoHabiliada = acomodacaoHabiliada;
+    }
+
+    public ProdutosOrcamentoBean getProdutosOrcamentoBean() {
+        return produtosOrcamentoBean;
+    }
+
+    public void setProdutosOrcamentoBean(ProdutosOrcamentoBean produtosOrcamentoBean) {
+        this.produtosOrcamentoBean = produtosOrcamentoBean;
+    }
+    
     
     
     public String habilitarSeguro(){
         if(seguroSelecionado){
-            return "false";
+            return acomodacaoHabiliada="false";
         }
-        return "true";
+        return acomodacaoHabiliada="true";
     }
     
     public String habilitarAcomodacao(){
-        if(acomodacaoSelecionado){
-            return "false";
+        for(int i=0;i<filtrarEscolaMB.getFornecedorProdutosBean().getListaAcomodacoes().size();i++){
+            if(filtrarEscolaMB.getFornecedorProdutosBean().getListaAcomodacoes().get(i).getSelecionadoString().equalsIgnoreCase("Acomodacao")){
+                return "false";
+            }
+            return "true";
         }
-        return "true";
+         return "";
     }
     
      public String srcLogo(Fornecedor fornecedor){
@@ -207,6 +230,7 @@ public class OrcamentoCursoMB implements Serializable{
                  total = total + (seguroviagem.getValorSeguro() / filtrarEscolaMB.getFornecedorProdutosBean().getCambio().getValor());
              }
          }
+         
          for(int i=0;i<filtrarEscolaMB.getFornecedorProdutosBean().getListaObrigaroerios().size();i++){
              total = total + filtrarEscolaMB.getFornecedorProdutosBean().getListaObrigaroerios().get(i).getValorPromocional();
              totalRS = totalRS + filtrarEscolaMB.getFornecedorProdutosBean().getListaObrigaroerios().get(i).getValorPromocionalRS();
@@ -221,6 +245,7 @@ public class OrcamentoCursoMB implements Serializable{
              //   totalDescontoRS = totalDescontoRS + filtrarEscolaMB.getFornecedorProdutosBean().getListaOpcionais().get(i).getValorOriginalRS();
              }
          }
+         
          valorTotal = total;
          valorTotalRS = totalRS;
          valorDesconto = totalDesconto - total;
@@ -279,5 +304,16 @@ public class OrcamentoCursoMB implements Serializable{
      
     public String voltar(){
         return "resultadoFiltroOrcamento";
+    }
+    
+    
+    public void calcularValorAcomodacao(ProdutosOrcamentoBean produtosOrcamentoBean){
+           produtosOrcamentoBean.setValorPromocional(produtosOrcamentoBean.getNumeroSemanas()*produtosOrcamentoBean.getValorcoprodutos().getValorpromocional());
+            produtosOrcamentoBean.setValorPromocionalRS(produtosOrcamentoBean.getNumeroSemanas()*(produtosOrcamentoBean.getValorcoprodutos().getValorpromocional()*filtrarEscolaMB.getFornecedorProdutosBean().getCambio().getValor()));
+            calcularTotais();
+            valorTotal = valorTotal + produtosOrcamentoBean.getValorPromocional();
+            valorTotalRS = valorTotalRS + produtosOrcamentoBean.getValorPromocionalRS();
+            valorDesconto = valorDesconto + produtosOrcamentoBean.getValorOrigianl();
+       //   valorDescontoRS = totalDescontoRS + produtosOrcamentoBean.getValorOriginalRS();
     }
 }

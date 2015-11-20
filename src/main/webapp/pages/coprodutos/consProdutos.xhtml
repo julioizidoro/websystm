@@ -36,21 +36,23 @@
                     </p:selectOneMenu>
                     <br></br> <br></br> 
                     <img src="../../resources/img/add.png" class="espacocobranca29"/>
-                    <p:commandLink value="Adicionar Produto"  action="#{coProdutosMB.cadProduto()}" class="add"/>
+                    <p:commandLink value="Adicionar Produto"  action="#{coProdutosMB.cadProduto()}" class="add">
+                        <p:ajax event="dialogReturn" listener="#{coProdutosMB.retornoDialogoNovo}" process="@this" update=":orcamentocurso:tabelaprodutos"/>
+                    </p:commandLink>
                     <br></br> <br></br>
                     
                     <p:dataTable id="tabelaprodutos" var="produtos"  value="#{coProdutosMB.listaCoProdutos}" class="tabela" 
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
                                  paginator="true" rows="10" style="margin-bottom:20px" >
                         
-                        <p:column headerText="Descrição"  >
+                        <p:column headerText="Produto"  >
                             <h:outputText value="#{produtos.produtosorcamento.descricao}" />
                         </p:column>
                         <p:column headerText="Tipo" style="width:180px;" >
                             <h:outputText value="#{produtos.tipo}" />
                         </p:column>
-                         <p:column headerText="Lições" style="width:200px;" >
-                             <h:outputText value="#{produtos.licoes}" />
+                         <p:column headerText="Descrição" style="width:350px;" >
+                             <h:outputText value="#{produtos.descricao}" />
                         </p:column>
                         <p:column style="width:90px;text-align: center;" >
                             <p:commandButton value="Valores" action="#{coProdutosMB.consValorProduto(produtos)}"/>
