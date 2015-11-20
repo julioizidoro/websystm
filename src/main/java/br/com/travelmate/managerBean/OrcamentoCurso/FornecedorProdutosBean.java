@@ -19,6 +19,8 @@ public class FornecedorProdutosBean {
         private Fornecedorcidade fornecedorCidade;
         private List<ProdutosOrcamentoBean> listaObrigaroerios;
         private List<ProdutosOrcamentoBean> listaOpcionais;
+        private List<ProdutosOrcamentoBean> listaAcomodacoes;
+        private List<ProdutosOrcamentoBean> listaTransfer;
         private Ocurso ocurso;
         private Float valorMoedaEstrangeira;
         private String svalorMoedaEstrangeira;
@@ -117,6 +119,22 @@ public class FornecedorProdutosBean {
 
     public void setListaOpcionais(List<ProdutosOrcamentoBean> listaOpcionais) {
         this.listaOpcionais = listaOpcionais;
+    }
+
+    public List<ProdutosOrcamentoBean> getListaAcomodacoes() {
+        return listaAcomodacoes;
+    }
+
+    public void setListaAcomodacoes(List<ProdutosOrcamentoBean> listaAcomodacoes) {
+        this.listaAcomodacoes = listaAcomodacoes;
+    }
+
+    public List<ProdutosOrcamentoBean> getListaTransfer() {
+        return listaTransfer;
+    }
+
+    public void setListaTransfer(List<ProdutosOrcamentoBean> listaTransfer) {
+        this.listaTransfer = listaTransfer;
     }
 
     

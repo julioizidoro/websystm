@@ -199,6 +199,8 @@ public class FiltrarEscolaMB implements Serializable{
             fpb.setOcurso(nocurso);
             fpb.setListaObrigaroerios(gerarListaValorCoProdutos(fpb, "Obrigatorio"));
             fpb.setListaOpcionais(gerarListaValorCoProdutos(fpb, "Opcional"));
+            fpb.setListaAcomodacoes(gerarListaValorCoProdutos(fpb, "Acomodacao"));
+            fpb.setListaTransfer(gerarListaValorCoProdutos(fpb, "Transfer"));
             fpb.setValorDesconto(0.0f);
             fpb.setValorMoedaEstrangeira(valorMoedaEstrangeira(fpb));
             fpb.setValorMoedaNacional(calcularValorMoedaNacioanl(fpb));
