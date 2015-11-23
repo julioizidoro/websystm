@@ -7,7 +7,9 @@ package br.com.travelmate.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,6 +17,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,6 +30,12 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "vendascomissao")
 public class Vendascomissao implements Serializable {
+    @Column(name = "comissaofranquiabruta")
+    private Float comissaofranquiabruta;
+    @Column(name = "valorcomissionavel")
+    private Float valorcomissionavel;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendascomissao")
+    private List<Faturafranquias> faturafranquiasList;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -80,10 +89,6 @@ public class Vendascomissao implements Serializable {
     @JoinColumn(name = "terceiros_idterceiros", referencedColumnName = "idterceiros")
     @ManyToOne(optional = false)
     private Terceiros terceiros;
-    @Column(name = "comissaofranquiabruta")
-    private float comissaofranquiabruta;
-    @Column(name = "valorcomissionavel")
-    private float valorcomissionavel;
     @Column(name = "datainicioprograma")
     @Temporal(TemporalType.DATE)
     private Date datainicioprograma;
@@ -117,13 +122,6 @@ public class Vendascomissao implements Serializable {
         return valorfornecedor;
     }
 
-    public float getValorcomissionavel() {
-        return valorcomissionavel;
-    }
-
-    public void setValorcomissionavel(float valorcomissionavel) {
-        this.valorcomissionavel = valorcomissionavel;
-    }
 
     public void setValorfornecedor(Float valorfornecedor) {
         this.valorfornecedor = valorfornecedor;
@@ -193,13 +191,6 @@ public class Vendascomissao implements Serializable {
         this.previsaopagamento = previsaopagamento;
     }
 
-    public float getComissaofranquiabruta() {
-        return comissaofranquiabruta;
-    }
-
-    public void setComissaofranquiabruta(float comissaofranquiabruta) {
-        this.comissaofranquiabruta = comissaofranquiabruta;
-    }
 
     
 
@@ -315,6 +306,30 @@ public class Vendascomissao implements Serializable {
     @Override
     public String toString() {
         return "br.com.travelmate.model.Vendascomissao[ idvendascomissao=" + idvendascomissao + " ]";
+    }
+
+    public Float getComissaofranquiabruta() {
+        return comissaofranquiabruta;
+    }
+
+    public void setComissaofranquiabruta(Float comissaofranquiabruta) {
+        this.comissaofranquiabruta = comissaofranquiabruta;
+    }
+
+    public Float getValorcomissionavel() {
+        return valorcomissionavel;
+    }
+
+    public void setValorcomissionavel(Float valorcomissionavel) {
+        this.valorcomissionavel = valorcomissionavel;
+    }
+
+    public List<Faturafranquias> getFaturafranquiasList() {
+        return faturafranquiasList;
+    }
+
+    public void setFaturafranquiasList(List<Faturafranquias> faturafranquiasList) {
+        this.faturafranquiasList = faturafranquiasList;
     }
     
 }

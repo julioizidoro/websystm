@@ -6,12 +6,15 @@
 package br.com.travelmate.model;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
@@ -22,6 +25,8 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "terceiros")
 public class Terceiros implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "terceiros")
+    private List<Vendascomissao> vendascomissaoList;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -78,6 +83,14 @@ public class Terceiros implements Serializable {
     @Override
     public String toString() {
         return "br.com.travelmate.model.Terceiros[ idterceiros=" + idterceiros + " ]";
+    }
+
+    public List<Vendascomissao> getVendascomissaoList() {
+        return vendascomissaoList;
+    }
+
+    public void setVendascomissaoList(List<Vendascomissao> vendascomissaoList) {
+        this.vendascomissaoList = vendascomissaoList;
     }
     
 }

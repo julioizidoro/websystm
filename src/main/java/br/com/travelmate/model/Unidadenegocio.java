@@ -31,6 +31,8 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "unidadenegocio")
 public class Unidadenegocio implements Serializable {
+    @Column(name = "mespagamento")
+    private Integer mespagamento;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "unidadenegocio")
     private List<Worcamentocurso> worcamentocursoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "unidadenegocio")
@@ -108,8 +110,6 @@ public class Unidadenegocio implements Serializable {
     private Banco banco;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "unidadenegocio")
     private List<Usuario> usuarioList;
-    @Column(name = "mespagamento")
-    private int mespagamento;
     
 
     public Unidadenegocio() {
@@ -255,13 +255,6 @@ public class Unidadenegocio implements Serializable {
         this.dataembarcadocurso = dataembarcadocurso;
     }
 
-    public int getMespagamento() {
-        return mespagamento;
-    }
-
-    public void setMespagamento(int mespagamento) {
-        this.mespagamento = mespagamento;
-    }
 
     public String getTipo() {
         return tipo;
@@ -366,6 +359,14 @@ public class Unidadenegocio implements Serializable {
 
     public void setWorcamentocursoList(List<Worcamentocurso> worcamentocursoList) {
         this.worcamentocursoList = worcamentocursoList;
+    }
+
+    public Integer getMespagamento() {
+        return mespagamento;
+    }
+
+    public void setMespagamento(Integer mespagamento) {
+        this.mespagamento = mespagamento;
     }
     
 }

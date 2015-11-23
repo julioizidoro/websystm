@@ -5,15 +5,19 @@
  */
 package br.com.travelmate.managerBean.financeiro;
 
+import br.com.travelmate.facade.FaturaFranquiasFacade;
 import br.com.travelmate.facade.UnidadeNegocioFacade;
-import br.com.travelmate.facade.VendasComissaoFacade;
 import br.com.travelmate.managerBean.UsuarioLogadoMB;
+import br.com.travelmate.model.Faturafranquias;
 import br.com.travelmate.model.Unidadenegocio;
 import br.com.travelmate.model.Vendascomissao;
 import br.com.travelmate.util.Formatacao;
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -31,7 +35,7 @@ public class FaturaFranquiaMB implements Serializable{
     private UsuarioLogadoMB usuarioLogadoMB;
     private Unidadenegocio unidadenegocio;
     private List<Unidadenegocio> listaUnidadeNegocio;
-    private List<Vendascomissao> listaFatura;
+    private List<Faturafranquias> listaFatura;
     
     
     @PostConstruct()
@@ -55,13 +59,23 @@ public class FaturaFranquiaMB implements Serializable{
         this.listaUnidadeNegocio = listaUnidadeNegocio;
     }
 
-    public List<Vendascomissao> getListaFatura() {
+    public UsuarioLogadoMB getUsuarioLogadoMB() {
+        return usuarioLogadoMB;
+    }
+
+    public void setUsuarioLogadoMB(UsuarioLogadoMB usuarioLogadoMB) {
+        this.usuarioLogadoMB = usuarioLogadoMB;
+    }
+
+    public List<Faturafranquias> getListaFatura() {
         return listaFatura;
     }
 
-    public void setListaFatura(List<Vendascomissao> listaFatura) {
+    public void setListaFatura(List<Faturafranquias> listaFatura) {
         this.listaFatura = listaFatura;
     }
+
+    
 
     
     public void gerarListaUnidadeNegocio(){
@@ -73,12 +87,16 @@ public class FaturaFranquiaMB implements Serializable{
     }
     
     public void gerarListaFaturaFranquia(){
-        VendasComissaoFacade vendasFacade = new VendasComissaoFacade();
+        FaturaFranquiasFacade faturaFranquiasFacade = new FaturaFranquiasFacade();
         if(unidadenegocio!=null){
-             listaFatura = vendasFacade.listar("Select v from Vendascomissao v where v.vendas.unidadenegocio.idunidadeNegocio="+ unidadenegocio.getIdunidadeNegocio() +" order by v.vendas.dataVenda");
+            try {
+                listaFatura = faturaFranquiasFacade.listar("Select f from Faturafranquias f where f.vendascomissao.vendas.unidadenegocio.idunidadeNegocio="+ unidadenegocio.getIdunidadeNegocio() +" order by f.vendascomissao.vendas.dataVenda");
+            } catch (SQLException ex) {
+                Logger.getLogger(FaturaFranquiaMB.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         if (listaFatura==null){
-            listaFatura = new ArrayList<Vendascomissao>();
+            listaFatura = new ArrayList<Faturafranquias>();
         }
     }
     
@@ -94,9 +112,53 @@ public class FaturaFranquiaMB implements Serializable{
         return Formatacao.formatarFloatString(percentual);
     }
     
-    public void gerarMesPagamento(Vendascomissao vendascomissao){
-        String dataInicio = Formatacao.ConvercaoDataPadrao(vendascomissao.getDatainicioprograma());
-        
-        
+    public String gerarMesPagamento(Faturafranquias faturafranquias){
+        Vendascomissao vendascomissao = faturafranquias.getVendascomissao();
+        if (faturafranquias.getLiquidopagar() < 0) {
+            if (vendascomissao.getDatainicioprograma() != null) {
+                String dataInicio = Formatacao.ConvercaoDataPadrao(vendascomissao.getDatainicioprograma());
+                String sAno = dataInicio.substring(6, 10);
+                String sDia = dataInicio.substring(1, 3);
+                String sMes = dataInicio.substring(4, 5);
+                int mes = Integer.parseInt(sMes);
+                int ano = Integer.parseInt(sAno);
+                if (vendascomissao.getVendas().getUnidadenegocio().getMespagamento() == 1) {
+                    if (mes == 12) {
+                        mes = 1;
+                        ano = ano + 1;
+                    } else {
+                        mes = mes + 1;
+                    }
+                } else {
+                    if (mes == 11) {
+                        mes = 01;
+                        ano = ano + 1;
+                    } else if (mes == 12) {
+                        mes = 02;
+                        ano = ano + 1;
+                    } else {
+                        mes = mes + 2;
+                    }
+                }
+                dataInicio = Formatacao.nomeMes(mes) + "/" + String.valueOf(ano);
+                return dataInicio;
+            }
+            return "";
+        } else {
+            String dataInicio = Formatacao.ConvercaoDataPadrao(vendascomissao.getVendas().getDataVenda());
+            String sAno = dataInicio.substring(6, 10);
+            String sDia = dataInicio.substring(1, 3);
+            String sMes = dataInicio.substring(4, 5);
+            int mes = Integer.parseInt(sMes);
+            int ano = Integer.parseInt(sAno);
+            if (mes == 12) {
+                mes = 1;
+                ano = ano + 1;
+            } else {
+                 mes = mes + 1;
+            }
+            dataInicio = Formatacao.nomeMes(mes) + "/" + String.valueOf(ano);
+            return dataInicio;
+        }
     }
 }
