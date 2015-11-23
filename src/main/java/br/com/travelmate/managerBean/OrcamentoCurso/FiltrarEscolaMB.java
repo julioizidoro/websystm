@@ -244,14 +244,14 @@ public class FiltrarEscolaMB implements Serializable{
         if (fornecedorProdutosBean.getListaObrigaroerios() != null) {
             for (int i = 0; i < fornecedorProdutosBean.getListaObrigaroerios().size(); i++) {
                 if (fornecedorProdutosBean.getListaObrigaroerios() != null) {
-                    total = total + fornecedorProdutosBean.getListaObrigaroerios().get(i).getValorPromocional();
+                    total = total + fornecedorProdutosBean.getListaObrigaroerios().get(i).getValorOrigianl();
                 }
             }
         }
 
         if (fornecedorProdutosBean.getListaOpcionais() != null) {
             for (int i = 0; i < fornecedorProdutosBean.getListaOpcionais().size(); i++) {
-                total = total + fornecedorProdutosBean.getListaOpcionais().get(i).getValorPromocional();
+                total = total + fornecedorProdutosBean.getListaOpcionais().get(i).getValorOrigianl();
             }
             return total;
         }
@@ -262,20 +262,27 @@ public class FiltrarEscolaMB implements Serializable{
         List<ProdutosOrcamentoBean> listaRetorno = new ArrayList<ProdutosOrcamentoBean>();
         List<Coprodutos> listaCoProdutos;
         CoProdutosFacade coProdutosFacade = new CoProdutosFacade();
-        String sql = "Select c from Coprodutos c where c.fornecedorcidade.idfornecedorcidade=" + fornecedorProdutosBean.getFornecedorCidade().getIdfornecedorcidade() + 
+        String sql = null;
+        if (tipo.equalsIgnoreCase("Obrigatorio")){
+            sql = "Select c from Coprodutos c where c.fornecedorcidade.idfornecedorcidade=" + fornecedorProdutosBean.getFornecedorCidade().getIdfornecedorcidade() + 
+                " and c.tipo='" + tipo + "' and c.produtosorcamento.idprodutosOrcamento=" + ocurso.getProdutosorcamento().getIdprodutosOrcamento();
+        }else {
+            sql = "Select c from Coprodutos c where c.fornecedorcidade.idfornecedorcidade=" + fornecedorProdutosBean.getFornecedorCidade().getIdfornecedorcidade() + 
                 " and c.tipo='" + tipo + "'";
+        }
+        
         listaCoProdutos = coProdutosFacade.listar(sql);
         if (listaCoProdutos!=null){
             for(int i=0;i<listaCoProdutos.size();i++){
-                ProdutosOrcamentoBean po = consultarValores("DI", listaCoProdutos.get(i).getIdcoprodutos(), fornecedorProdutosBean);
+                ProdutosOrcamentoBean po = consultarValores("DI", listaCoProdutos.get(i).getIdcoprodutos(), fornecedorProdutosBean, new Date());
                 if (po!=null){
                     listaRetorno.add(po);
                 }
-                po = consultarValores("DM", listaCoProdutos.get(i).getIdcoprodutos(), fornecedorProdutosBean);
+                po = consultarValores("DM", listaCoProdutos.get(i).getIdcoprodutos(), fornecedorProdutosBean, ocurso.getDatainicio());
                 if (po!=null){
                     listaRetorno.add(po);
                 }
-                po = consultarValores("DS", listaCoProdutos.get(i).getIdcoprodutos(), fornecedorProdutosBean);
+                po = consultarValores("DS", listaCoProdutos.get(i).getIdcoprodutos(), fornecedorProdutosBean, ocurso.getDatainicio());
                 if (po!=null){
                     listaRetorno.add(po);
                 }
@@ -284,11 +291,11 @@ public class FiltrarEscolaMB implements Serializable{
         return listaRetorno;
     }
     
-    public ProdutosOrcamentoBean consultarValores(String tipoData, int idCoProdutos, FornecedorProdutosBean fornecedorProdutosBean) {
+    public ProdutosOrcamentoBean consultarValores(String tipoData, int idCoProdutos, FornecedorProdutosBean fornecedorProdutosBean, Date dataConsulta) {
         ValorCoProdutosFacade valorCoProdutosFacade = new ValorCoProdutosFacade();
         Valorcoprodutos valorcoprodutos = null;
         String sql = "Select v from  Valorcoprodutos v where v.datainicial<='"
-                + Formatacao.ConvercaoDataSql(new Date()) + "' and v.datafinal>='"
+                + Formatacao.ConvercaoDataSql(ocurso.getDatainicio()) + "' and v.datafinal>='"
                 + Formatacao.ConvercaoDataSql(new Date()) + "' and v.numerosemanainicial<="
                 + ocurso.getNumerosemanas() + " and v.numerosemanafinal>=" + ocurso.getNumerosemanas() + " and v.tipodata='" + tipoData + "' and v.coprodutos.idcoprodutos=" + idCoProdutos;
 
@@ -325,7 +332,8 @@ public class FiltrarEscolaMB implements Serializable{
             }
             po.setValorPromocionalRS(po.getValorPromocional() * fornecedorProdutosBean.getCambio().getValor());
             po.setValorOrigianl(po.getValorOrigianl() * fornecedorProdutosBean.getCambio().getValor());
-            po.setSelecionado(true);
+            po.setValorOriginalRS(po.getValorOrigianl() * fornecedorProdutosBean.getCambio().getValor());
+            po.setSelecionadoOpcional(true);
             return po;
         }
         return null;

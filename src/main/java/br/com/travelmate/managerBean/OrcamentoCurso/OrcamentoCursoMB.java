@@ -27,14 +27,12 @@ public class OrcamentoCursoMB implements Serializable{
     private ProdutosOrcamentoBean produtosOrcamentoBean;
     //private FornecedorProdutosBean filtrarEscolaMB.getFornecedorProdutosBean();
     private boolean seguroSelecionado = false;
-    private boolean acomodacaoSelecionado = false;
+    private boolean obrigatorioSelecionado = true;
     private Seguroviagem seguroviagem;
     private Fornecedorcidade fornecedorcidade;
     private List<Fornecedorcidade> listaFornecedorCidade;
     private float valorTotal;
     private float valorTotalRS;
-    private float valorDesconto;
-    private float valorDescontoRS;
     private Valoresseguro valorSeguro;
     private String acomodacaoHabiliada;
    
@@ -60,6 +58,7 @@ public class OrcamentoCursoMB implements Serializable{
             calcularTotais();
         }
     }
+    
     
     public FiltrarEscolaMB getFiltrarEscolaMB() {
         return filtrarEscolaMB;
@@ -87,13 +86,15 @@ public class OrcamentoCursoMB implements Serializable{
         this.seguroSelecionado = seguroSelecionado;
     }
 
-    public boolean isAcomodacaoSelecionado() {
-        return acomodacaoSelecionado;
+    public boolean isObrigatorioSelecionado() {
+        return obrigatorioSelecionado;
     }
 
-    public void setAcomodacaoSelecionado(boolean acomodacaoSelecionado) {
-        this.acomodacaoSelecionado = acomodacaoSelecionado;
+    public void setObrigatorioSelecionado(boolean obrigatorioSelecionado) {
+        this.obrigatorioSelecionado = obrigatorioSelecionado;
     }
+
+   
 
     public Seguroviagem getSeguroviagem() {
         return seguroviagem;
@@ -135,21 +136,6 @@ public class OrcamentoCursoMB implements Serializable{
         this.valorTotalRS = valorTotalRS;
     }
 
-    public float getValorDesconto() {
-        return valorDesconto;
-    }
-
-    public void setValorDesconto(float valorDesconto) {
-        this.valorDesconto = valorDesconto;
-    }
-
-    public float getValorDescontoRS() {
-        return valorDescontoRS;
-    }
-
-    public void setValorDescontoRS(float valorDescontoRS) {
-        this.valorDescontoRS = valorDescontoRS;
-    }
 
     public Valoresseguro getValorSeguro() {
         return valorSeguro;
@@ -184,15 +170,7 @@ public class OrcamentoCursoMB implements Serializable{
         return acomodacaoHabiliada="true";
     }
     
-    public String habilitarAcomodacao(){
-        for(int i=0;i<filtrarEscolaMB.getFornecedorProdutosBean().getListaAcomodacoes().size();i++){
-            if(filtrarEscolaMB.getFornecedorProdutosBean().getListaAcomodacoes().get(i).getSelecionadoString().equalsIgnoreCase("Acomodacao")){
-                return "false";
-            }
-            return "true";
-        }
-         return "";
-    }
+   
     
      public String srcLogo(Fornecedor fornecedor){
         String logo ="";
@@ -222,8 +200,6 @@ public class OrcamentoCursoMB implements Serializable{
      public void calcularTotais(){
          float total =0.0f;
          float totalRS=0.0f;
-         float totalDesconto=0.0f;
-         float totalDescontoRS =0.0f;
          if (seguroviagem!=null){
              if (seguroviagem.getValorSeguro()!=null){
                  totalRS = totalRS + seguroviagem.getValorSeguro();
@@ -232,24 +208,18 @@ public class OrcamentoCursoMB implements Serializable{
          }
          
          for(int i=0;i<filtrarEscolaMB.getFornecedorProdutosBean().getListaObrigaroerios().size();i++){
-             total = total + filtrarEscolaMB.getFornecedorProdutosBean().getListaObrigaroerios().get(i).getValorPromocional();
-             totalRS = totalRS + filtrarEscolaMB.getFornecedorProdutosBean().getListaObrigaroerios().get(i).getValorPromocionalRS();
-             totalDesconto = totalDesconto + filtrarEscolaMB.getFornecedorProdutosBean().getListaObrigaroerios().get(i).getValorOrigianl();
-            // totalDescontoRS = totalDescontoRS + filtrarEscolaMB.getFornecedorProdutosBean().getListaObrigaroerios().get(i).getValorOriginalRS();
+             total = total + filtrarEscolaMB.getFornecedorProdutosBean().getListaObrigaroerios().get(i).getValorOrigianl();
+             totalRS = totalRS + filtrarEscolaMB.getFornecedorProdutosBean().getListaObrigaroerios().get(i).getValorOriginalRS();
          }
          for(int i=0;i<filtrarEscolaMB.getFornecedorProdutosBean().getListaOpcionais().size();i++){
-             if (filtrarEscolaMB.getFornecedorProdutosBean().getListaOpcionais().get(i).isSelecionado()){
-                total = total + filtrarEscolaMB.getFornecedorProdutosBean().getListaOpcionais().get(i).getValorPromocional();
-                totalRS = totalRS + filtrarEscolaMB.getFornecedorProdutosBean().getListaOpcionais().get(i).getValorPromocionalRS();
-                totalDesconto = totalDesconto + filtrarEscolaMB.getFornecedorProdutosBean().getListaOpcionais().get(i).getValorOrigianl();
-             //   totalDescontoRS = totalDescontoRS + filtrarEscolaMB.getFornecedorProdutosBean().getListaOpcionais().get(i).getValorOriginalRS();
+             if (filtrarEscolaMB.getFornecedorProdutosBean().getListaOpcionais().get(i).isSelecionadoOpcional()){
+                total = total + filtrarEscolaMB.getFornecedorProdutosBean().getListaOpcionais().get(i).getValorOrigianl();
+                totalRS = totalRS + filtrarEscolaMB.getFornecedorProdutosBean().getListaOpcionais().get(i).getValorOriginalRS();
              }
          }
          
          valorTotal = total;
          valorTotalRS = totalRS;
-         valorDesconto = totalDesconto - total;
-         valorDescontoRS = 0.0f;
      }
      
      public void calcularValorSeguroViagem(){
@@ -300,6 +270,7 @@ public class OrcamentoCursoMB implements Serializable{
                 calcularTotais();
             }
         }
+        
     }
      
     public String voltar(){
@@ -308,12 +279,16 @@ public class OrcamentoCursoMB implements Serializable{
     
     
     public void calcularValorAcomodacao(ProdutosOrcamentoBean produtosOrcamentoBean){
-           produtosOrcamentoBean.setValorPromocional(produtosOrcamentoBean.getNumeroSemanas()*produtosOrcamentoBean.getValorcoprodutos().getValorpromocional());
-            produtosOrcamentoBean.setValorPromocionalRS(produtosOrcamentoBean.getNumeroSemanas()*(produtosOrcamentoBean.getValorcoprodutos().getValorpromocional()*filtrarEscolaMB.getFornecedorProdutosBean().getCambio().getValor()));
+            produtosOrcamentoBean.setValorOrigianl(produtosOrcamentoBean.getNumeroSemanas()*produtosOrcamentoBean.getValorcoprodutos().getValororiginal());
+            produtosOrcamentoBean.setValorOriginalRS(produtosOrcamentoBean.getNumeroSemanas()*(produtosOrcamentoBean.getValorcoprodutos().getValororiginal()*filtrarEscolaMB.getFornecedorProdutosBean().getCambio().getValor()));
             calcularTotais();
-            valorTotal = valorTotal + produtosOrcamentoBean.getValorPromocional();
-            valorTotalRS = valorTotalRS + produtosOrcamentoBean.getValorPromocionalRS();
-            valorDesconto = valorDesconto + produtosOrcamentoBean.getValorOrigianl();
-       //   valorDescontoRS = totalDescontoRS + produtosOrcamentoBean.getValorOriginalRS();
+            valorTotal = valorTotal + produtosOrcamentoBean.getValorOrigianl();
+            valorTotalRS = valorTotalRS + produtosOrcamentoBean.getValorOriginalRS();
+    }
+    
+    public void calcularValorTransfer(ProdutosOrcamentoBean produtosOrcamentoBean){
+            calcularTotais();
+            valorTotal = valorTotal + produtosOrcamentoBean.getValorOrigianl();
+            valorTotalRS = valorTotalRS + produtosOrcamentoBean.getValorOriginalRS();
     }
 }

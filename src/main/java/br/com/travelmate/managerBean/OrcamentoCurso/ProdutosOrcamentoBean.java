@@ -18,8 +18,8 @@ public class ProdutosOrcamentoBean {
     private Float valorOriginalRS;
     private Float valorPromocional;
     private Float valorPromocionalRS;
-    private boolean selecionado;
-    private String selecionadoString;
+    private boolean selecionadoOpcional;
+    private String selecionado;
     private int numeroSemanas;
     private int idproduto;
     
@@ -66,21 +66,23 @@ public class ProdutosOrcamentoBean {
         this.valorPromocional = valorPromocional;
     }
 
-    public boolean isSelecionado() {
+    public boolean isSelecionadoOpcional() {
+        return selecionadoOpcional;
+    }
+
+    public void setSelecionadoOpcional(boolean selecionadoOpcional) {
+        this.selecionadoOpcional = selecionadoOpcional;
+    }
+
+    public String getSelecionado() {
         return selecionado;
     }
 
-    public void setSelecionado(boolean selecionado) {
+    public void setSelecionado(String selecionado) {
         this.selecionado = selecionado;
     }
 
-    public String getSelecionadoString() {
-        return selecionadoString;
-    }
-
-    public void setSelecionadoString(String selecionadoString) {
-        this.selecionadoString = selecionadoString;
-    }
+    
 
     public int getNumeroSemanas() {
         return numeroSemanas;
