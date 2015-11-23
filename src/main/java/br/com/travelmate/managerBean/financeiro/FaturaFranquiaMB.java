@@ -123,21 +123,21 @@ public class FaturaFranquiaMB implements Serializable{
                 int mes = Integer.parseInt(sMes);
                 int ano = Integer.parseInt(sAno);
                 if (vendascomissao.getVendas().getUnidadenegocio().getMespagamento() == 1) {
-                    if (mes == 12) {
-                        mes = 1;
-                        ano = ano + 1;
+                    if (mes == 1) {
+                        mes = 12;
+                        ano = ano - 1;
                     } else {
-                        mes = mes + 1;
+                        mes = mes - 1;
                     }
                 } else {
-                    if (mes == 11) {
-                        mes = 01;
-                        ano = ano + 1;
-                    } else if (mes == 12) {
-                        mes = 02;
-                        ano = ano + 1;
+                    if (mes == 02) {
+                        mes = 12;
+                        ano = ano - 1;
+                    } else if (mes == 01) {
+                        mes = 11;
+                        ano = ano - 1;
                     } else {
-                        mes = mes + 2;
+                        mes = mes - 2;
                     }
                 }
                 dataInicio = Formatacao.nomeMes(mes) + "/" + String.valueOf(ano);

@@ -34,6 +34,7 @@ public class CadValorCoProdutosMB implements Serializable{
         session.removeAttribute("valorcoprodutos");
         if (valorcoprodutos==null){
             valorcoprodutos = new Valorcoprodutos();
+            valorcoprodutos.setValorpromocional(0.0f);
             valorcoprodutos.setCoprodutos(coprodutos);
         }
         
@@ -48,8 +49,11 @@ public class CadValorCoProdutosMB implements Serializable{
     }
     
     public String salvar(){
+        if (valorcoprodutos.getValorpromocional()>0){
+            valorcoprodutos.setPromocional(false);
+        }else valorcoprodutos.setPromocional(true);
         ValorCoProdutosFacade valorCoProdutosFacade = new ValorCoProdutosFacade();  
-        valorCoProdutosFacade.salvar(valorcoprodutos);
+        valorcoprodutos = valorCoProdutosFacade.salvar(valorcoprodutos);
         RequestContext.getCurrentInstance().closeDialog(valorcoprodutos);
         return "";
     }
