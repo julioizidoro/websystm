@@ -59,7 +59,10 @@ public class CoProdutosMB implements Serializable{
             fornecedorcidade = coprodutos.getFornecedorcidade();
             pais = coprodutos.getFornecedorcidade().getCidade().getPais();
             cidade = coprodutos.getFornecedorcidade().getCidade();
+            listarFornecedorCidade("0");
+            listarCoProdutos();
         }
+        
         
     }
 

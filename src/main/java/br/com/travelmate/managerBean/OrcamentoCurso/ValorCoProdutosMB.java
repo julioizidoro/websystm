@@ -8,8 +8,10 @@ package br.com.travelmate.managerBean.OrcamentoCurso;
 import br.com.travelmate.facade.ValorCoProdutosFacade;
 import br.com.travelmate.model.Coprodutos;
 import br.com.travelmate.model.Valorcoprodutos;
+import br.com.travelmate.util.Formatacao;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
@@ -59,7 +61,8 @@ public class ValorCoProdutosMB implements Serializable{
     }
     
     public void gerarListaValores(){
-        String sql = "Select v from Valorcoprodutos v where v.coprodutos.idcoprodutos=" + coprodutos.getIdcoprodutos();
+        String sql = "Select v from Valorcoprodutos v where v.coprodutos.idcoprodutos=" + coprodutos.getIdcoprodutos() 
+                + " and v.datafinal>='" + Formatacao.SubtarirDatas(new Date(), 60, "yyyy-MM-dd") + "' order by v.datainicial" ;
         ValorCoProdutosFacade valorCoProdutosFacade = new ValorCoProdutosFacade();
         listaValores = valorCoProdutosFacade.listar(sql);
         if (listaValores==null){
