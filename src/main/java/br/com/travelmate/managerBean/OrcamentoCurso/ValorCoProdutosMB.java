@@ -35,7 +35,6 @@ public class ValorCoProdutosMB implements Serializable{
         FacesContext fc = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
         coprodutos = (Coprodutos) session.getAttribute("coprodutos");
-        session.removeAttribute("coprodutos");
         if (coprodutos!=null){
             gerarListaValores();
         }else{
@@ -69,17 +68,11 @@ public class ValorCoProdutosMB implements Serializable{
     }
     
     public String cadValoresProdutos(){
-        FacesContext fc = FacesContext.getCurrentInstance();
-        HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
-        session.setAttribute("coprodutos", coprodutos);
         RequestContext.getCurrentInstance().openDialog("cadValorCoProdutos");
         return "";
     }
     
     public String voltar(){
-        FacesContext fc = FacesContext.getCurrentInstance();
-        HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
-        session.setAttribute("coprodutos", coprodutos);
         return "consProdutos";
     }
     
