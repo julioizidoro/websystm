@@ -40,6 +40,7 @@ public class CadCoProdutosMB implements Serializable{
         getUsuarioLogadoMB();
         coprodutos = new Coprodutos();
         prdutoOrcamento = new Produtosorcamento();
+        
      }
 
     public UsuarioLogadoMB getUsuarioLogadoMB() {

@@ -36,6 +36,7 @@ public class CadValorCoProdutosMB implements Serializable{
             valorcoprodutos = new Valorcoprodutos();
             valorcoprodutos.setCoprodutos(coprodutos);
         }
+        
     }
 
     public Valorcoprodutos getValorcoprodutos() {
