@@ -114,7 +114,7 @@ public class CadCoProdutosMB implements Serializable{
         coprodutos.setFornecedorcidade(fornecedorcidade);
         coprodutos.setProdutosorcamento(prdutoOrcamento);
         CoProdutosFacade coProdutosFacade = new CoProdutosFacade();
-        coProdutosFacade.salvar(coprodutos);
+        coprodutos = coProdutosFacade.salvar(coprodutos);
         RequestContext.getCurrentInstance().closeDialog(coprodutos);
         return "orcamentocurso";
     }
