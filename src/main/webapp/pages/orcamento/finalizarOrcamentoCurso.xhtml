@@ -10,13 +10,163 @@
             <h:form id="filtrarOrcamentoCurso">
                 <div id="centro">
                     <br></br><br></br>
-                    <p:commandButton id="bntvoltar" class="espacocobranca3botao" style="font-size:12px;" value="Voltar"  action="#{listaEscolasMB.voltar()}" icon="ui-icon-arrowreturnthick-1-w" />
                     
                     <p:fieldset id="idpagamentoavista" legend="Opção 01 - Pagamento á Vista" toggleable="true" style="font-size: 10px;" >
                         <p:outputLabel value="Valor R$" style="margin-left: 2%"/>
-                        
+                        <br></br>
+                        <p:inputText value="#{finalizarOrcamentoCursoMB.formaPagamento.AVista}" style="margin-left: 2%">
+                            <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                        </p:inputText>
                         <p:outputLabel value="( não é aceito cartão de crédito/débito para esta opção)" style="font-size: 9px;"/>
                     </p:fieldset>
+                    <br></br> <br></br><br></br>
+                    <p:fieldset id="idparcelamentoantesviagem" legend="Opção 02 - Parcelamento antes da viagem" toggleable="true" style="font-size: 10px;" >
+                        <p:outputLabel value="% Entrada" style="margin-left: 2%"/>
+                        <p:outputLabel value="Valor da Entrada R$" style="margin-left:12%"/>
+                        <p:outputLabel value="Nº Parcelas" style="margin-left:6%"/>
+                        <p:outputLabel value="% Saldo" style="margin-left:6.5%"/>
+                        <p:outputLabel value="Saldo R$" style="margin-left:13.5%"/>
+                        <p:outputLabel value="Valor da Parcela" style="margin-left:13%"/>
+                        <br></br>
+                        <h:panelGrid columns="6">
+                            <p:inputText value="#{finalizarOrcamentoCursoMB.formaPagamento.percentualEntrada2}" style="margin-left:10%"/>
+                            <p:inputText value="#{finalizarOrcamentoCursoMB.formaPagamento.valorEntrada2}" style="margin-left: 2%;margin-left: 20%">
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                            </p:inputText>
+                            <p:selectOneMenu class="espacocobranca29" id="nparcela2"  value="#{finalizarOrcamentoCursoMB.formaPagamento.numeroParcelas02}"  style="width:80px;margin-left: 20%">
+                                <f:selectItem itemLabel="0" itemValue="0"  />
+                                <f:selectItem itemLabel="1" itemValue="1"/> 
+                                <f:selectItem itemLabel="2" itemValue="2"/> 
+                                <f:selectItem itemLabel="3" itemValue="3"/> 
+                                <f:selectItem itemLabel="4" itemValue="4"/> 
+                                <f:selectItem itemLabel="5" itemValue="5"/> 
+                                <f:selectItem itemLabel="6" itemValue="6"/> 
+                                <f:selectItem itemLabel="7" itemValue="7"/> 
+                                <f:selectItem itemLabel="8" itemValue="8"/> 
+                                <f:selectItem itemLabel="9" itemValue="9"/> 
+                                <f:selectItem itemLabel="10" itemValue="10"/> 
+                                <f:selectItem itemLabel="11" itemValue="11"/> 
+                                <f:selectItem itemLabel="12" itemValue="12"/> 
+                                <f:selectItem itemLabel="13" itemValue="13"/> 
+                                <f:selectItem itemLabel="14" itemValue="14"/> 
+                                <f:selectItem itemLabel="15" itemValue="15"/> 
+                                <f:selectItem itemLabel="16" itemValue="16"/> 
+                                <f:selectItem itemLabel="17" itemValue="17"/> 
+                                <f:selectItem itemLabel="18" itemValue="18"/> 
+                                <f:selectItem itemLabel="19" itemValue="19"/> 
+                                <f:selectItem itemLabel="20" itemValue="20"/> 
+                                <f:selectItem itemLabel="21" itemValue="21"/> 
+                                <f:selectItem itemLabel="22" itemValue="22"/> 
+                                <f:selectItem itemLabel="23" itemValue="23"/> 
+                                <f:selectItem itemLabel="24" itemValue="24"/> 
+                            </p:selectOneMenu>
+                            <p:inputText value="#{finalizarOrcamentoCursoMB.formaPagamento.percentualSaldo2}" style="margin-left: 2%;margin-left: 20%"/>
+                            <p:inputText value="#{finalizarOrcamentoCursoMB.formaPagamento.valorSaldo2}" style="margin-left: 2%;margin-left: 20%">
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                            </p:inputText>
+                            <p:inputText value="#{finalizarOrcamentoCursoMB.formaPagamento.valorParcela02}" style="margin-left: 2%;margin-left: 20%">
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                            </p:inputText>
+                        </h:panelGrid>
+                    </p:fieldset>
+                    
+                    <br></br><br></br><br></br>
+                    <p:fieldset id="idparcelamentoemcartaocredito" legend="Opção 03 - Parcelamento em cartão de crédito em até 12x" toggleable="true" style="font-size: 10px;" >
+                        <p:outputLabel value="% Entrada" style="margin-left: 2%"/>
+                        <p:outputLabel value="Valor da Entrada R$" style="margin-left:12%"/>
+                        <p:outputLabel value="Nº Parcelas" style="margin-left:6%"/>
+                        <p:outputLabel value="% Saldo" style="margin-left:6.5%"/>
+                        <p:outputLabel value="Saldo R$" style="margin-left:13.5%"/>
+                        <p:outputLabel value="Valor da Parcela" style="margin-left:13%"/>
+                        <br></br>
+                        <h:panelGrid columns="6">
+                            <p:inputText value="#{finalizarOrcamentoCursoMB.formaPagamento.percentualEntrada3}" style="margin-left:10%"/>
+                            <p:inputText value="#{finalizarOrcamentoCursoMB.formaPagamento.valorEntrada3}" style="margin-left: 2%;margin-left: 20%">
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                            </p:inputText>
+                            <p:selectOneMenu class="espacocobranca29" id="nparcela3"  value="#{finalizarOrcamentoCursoMB.formaPagamento.numeroParcelas03}"  style="width:80px;margin-left: 20%">
+                                <f:selectItem itemLabel="0" itemValue="0"  />
+                                <f:selectItem itemLabel="1" itemValue="1"/> 
+                                <f:selectItem itemLabel="2" itemValue="2"/> 
+                                <f:selectItem itemLabel="3" itemValue="3"/> 
+                                <f:selectItem itemLabel="4" itemValue="4"/> 
+                                <f:selectItem itemLabel="5" itemValue="5"/> 
+                                <f:selectItem itemLabel="6" itemValue="6"/> 
+                                <f:selectItem itemLabel="7" itemValue="7"/> 
+                                <f:selectItem itemLabel="8" itemValue="8"/> 
+                                <f:selectItem itemLabel="9" itemValue="9"/> 
+                                <f:selectItem itemLabel="10" itemValue="10"/> 
+                                <f:selectItem itemLabel="11" itemValue="11"/> 
+                                <f:selectItem itemLabel="12" itemValue="12"/> 
+                                <f:selectItem itemLabel="13" itemValue="13"/> 
+                                <f:selectItem itemLabel="14" itemValue="14"/> 
+                                <f:selectItem itemLabel="15" itemValue="15"/> 
+                                <f:selectItem itemLabel="16" itemValue="16"/> 
+                                <f:selectItem itemLabel="17" itemValue="17"/> 
+                                <f:selectItem itemLabel="18" itemValue="18"/> 
+                                <f:selectItem itemLabel="19" itemValue="19"/> 
+                                <f:selectItem itemLabel="20" itemValue="20"/> 
+                                <f:selectItem itemLabel="21" itemValue="21"/> 
+                                <f:selectItem itemLabel="22" itemValue="22"/> 
+                                <f:selectItem itemLabel="23" itemValue="23"/> 
+                                <f:selectItem itemLabel="24" itemValue="24"/> 
+                            </p:selectOneMenu>
+                            <p:inputText value="#{finalizarOrcamentoCursoMB.formaPagamento.percentualSaldo3}" style="margin-left: 2%;margin-left: 20%"/>
+                            <p:inputText value="#{finalizarOrcamentoCursoMB.formaPagamento.valorSaldo3}" style="margin-left: 2%;margin-left: 20%">
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                            </p:inputText>
+                            <p:inputText value="#{finalizarOrcamentoCursoMB.formaPagamento.valorParcela03}" style="margin-left: 2%;margin-left: 20%">
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                            </p:inputText>
+                        </h:panelGrid>
+                    </p:fieldset>
+                     <br></br> <br></br> <br></br>
+                      <p:fieldset id="idparcelamentoemcheque" legend="Opção 4 - Parcelamento em cheque, boleto ou débito em conta em até 24X via financeira*" toggleable="true" style="font-size: 10px;" >
+                        <p:outputLabel value="Nº Parcelas" style="margin-left: 2.5%"/>
+                        <p:outputLabel value="Valor da Parcela R$" style="margin-left:6.5%"/>
+                        <br></br>
+                        <h:panelGrid columns="6">
+                            <p:selectOneMenu class="espacocobranca29" id="nparcela4"  value="#{finalizarOrcamentoCursoMB.formaPagamento.numeroParcelasFinanciamento}"  style="width:80px;margin-left: 20%">
+                                <f:selectItem itemLabel="0" itemValue="0"  />
+                                <f:selectItem itemLabel="1" itemValue="1"/> 
+                                <f:selectItem itemLabel="2" itemValue="2"/> 
+                                <f:selectItem itemLabel="3" itemValue="3"/> 
+                                <f:selectItem itemLabel="4" itemValue="4"/> 
+                                <f:selectItem itemLabel="5" itemValue="5"/> 
+                                <f:selectItem itemLabel="6" itemValue="6"/> 
+                                <f:selectItem itemLabel="7" itemValue="7"/> 
+                                <f:selectItem itemLabel="8" itemValue="8"/> 
+                                <f:selectItem itemLabel="9" itemValue="9"/> 
+                                <f:selectItem itemLabel="10" itemValue="10"/> 
+                                <f:selectItem itemLabel="11" itemValue="11"/> 
+                                <f:selectItem itemLabel="12" itemValue="12"/> 
+                                <f:selectItem itemLabel="13" itemValue="13"/> 
+                                <f:selectItem itemLabel="14" itemValue="14"/> 
+                                <f:selectItem itemLabel="15" itemValue="15"/> 
+                                <f:selectItem itemLabel="16" itemValue="16"/> 
+                                <f:selectItem itemLabel="17" itemValue="17"/> 
+                                <f:selectItem itemLabel="18" itemValue="18"/> 
+                                <f:selectItem itemLabel="19" itemValue="19"/> 
+                                <f:selectItem itemLabel="20" itemValue="20"/> 
+                                <f:selectItem itemLabel="21" itemValue="21"/> 
+                                <f:selectItem itemLabel="22" itemValue="22"/> 
+                                <f:selectItem itemLabel="23" itemValue="23"/> 
+                                <f:selectItem itemLabel="24" itemValue="24"/> 
+                            </p:selectOneMenu>
+                            <p:inputText value="#{finalizarOrcamentoCursoMB.formaPagamento.finaciamento}" style="margin-left: 2%;margin-left: 20%">
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                            </p:inputText>
+                        </h:panelGrid>
+                    </p:fieldset>
+                     <br></br> 
+                     
+                     <p:commandButton id="bntconfirmar" style="font-size:12px;margin-left: 31%" value="Confirmar" action="#{finalizarOrcamentoCursoMB.finalziar()}"  icon="ui-icon-check" />
+                    <p:commandButton id="bntmodulo" style="font-size:12px;margin-left: 5%" value="Modelo"  icon="ui-icon-bullet " />
+                    <p:commandButton id="bntvoltar" style="font-size:12px;margin-left: 5%" value="Voltar"  icon="ui-icon-arrowreturnthick-1-w" />
+                    
+                     <br></br> 
+                     <br></br> 
+                     <br></br>
                 </div>
             </h:form>     
         </ui:define>
