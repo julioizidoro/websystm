@@ -18,11 +18,11 @@ import org.primefaces.context.RequestContext;
 @Named
 @ViewScoped
 public class ProdutosMB implements Serializable{
+    
     private Produtos produtos;
     private List<Produtos> listaProdutos;
     private List<Usuario> listaUsuario;
     private Usuario usuario;
-    
     
     @PostConstruct
     public void init(){
@@ -37,7 +37,6 @@ public class ProdutosMB implements Serializable{
             listaProdutos = new ArrayList<Produtos>();
         }
     }
-    
 
     public Produtos getProdutos() {
         return produtos;

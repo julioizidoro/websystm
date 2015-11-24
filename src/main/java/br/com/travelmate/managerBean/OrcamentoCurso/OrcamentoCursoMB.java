@@ -281,14 +281,17 @@ public class OrcamentoCursoMB implements Serializable{
     public void calcularValorAcomodacao(ProdutosOrcamentoBean produtosOrcamentoBean){
             produtosOrcamentoBean.setValorOrigianl(produtosOrcamentoBean.getNumeroSemanas()*produtosOrcamentoBean.getValorcoprodutos().getValororiginal());
             produtosOrcamentoBean.setValorOriginalRS(produtosOrcamentoBean.getNumeroSemanas()*(produtosOrcamentoBean.getValorcoprodutos().getValororiginal()*filtrarEscolaMB.getFornecedorProdutosBean().getCambio().getValor()));
-            calcularTotais();
-            valorTotal = valorTotal + produtosOrcamentoBean.getValorOrigianl();
-            valorTotalRS = valorTotalRS + produtosOrcamentoBean.getValorOriginalRS();
+            
+                calcularTotais();
+                valorTotal = valorTotal + produtosOrcamentoBean.getValorOrigianl();
+                valorTotalRS = valorTotalRS + produtosOrcamentoBean.getValorOriginalRS();
+            
     }
     
     public void calcularValorTransfer(ProdutosOrcamentoBean produtosOrcamentoBean){
-            calcularTotais();
+          calcularTotais();
             valorTotal = valorTotal + produtosOrcamentoBean.getValorOrigianl();
             valorTotalRS = valorTotalRS + produtosOrcamentoBean.getValorOriginalRS();
+       
     }
 }

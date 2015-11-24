@@ -1268,3 +1268,12 @@ h1 {
     font-size: 12px;
 }
 
+.line_1{
+    height: 1px;
+    clear: both;
+    overflow: hidden;
+    background-color: #3D3D3D;
+}
+.ui-fieldset .ui-fieldset-legend{
+    font-size: 12px;
+}

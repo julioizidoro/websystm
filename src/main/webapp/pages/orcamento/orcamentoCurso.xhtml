@@ -18,10 +18,10 @@
                     </h:panelGrid>
                     <p:commandButton id="bntvoltar" class="espacocobranca3botao" style="font-size:12px;margin-left:91%" value="Voltar"  action="#{orcamentoCursoMB.voltar()}" icon="ui-icon-arrowreturnthick-1-w" />
                     <br></br>
-                    <h:outputText value="Curso" style="font-weight:bold;font-size: 17px;color: #fff" class="espacocobranca29"/>
-                    <p:dataScroller id="tabelaprodutoObrigatorio" value="#{orcamentoCursoMB.filtrarEscolaMB.fornecedorProdutosBean.listaObrigaroerios}" var="obrigatorio" chunkSize="10" style="background:#fff" >
+                    <p:fieldset id="idtabelaObrigatorio" legend="Obrigatórios" toggleable="true" style="font-size: 10px;" >
+                    <p:dataScroller id="tabelaprodutoObrigatorio" value="#{orcamentoCursoMB.filtrarEscolaMB.fornecedorProdutosBean.listaObrigaroerios}" var="obrigatorio" chunkSize="10"  >
                         <p:outputPanel style="text-align: right;width:100%">
-                            <h:panelGrid columns="3" style="width:100%;background:#fff" >
+                            <h:panelGrid columns="3" style="width:100%" >
                                 <p:outputPanel style="width:50%;" >
                                     <h:panelGrid columns="2" >
                                         <p:selectBooleanCheckbox value="#{orcamentoCursoMB.obrigatorioSelecionado}" disabled="true"></p:selectBooleanCheckbox>
@@ -30,7 +30,7 @@
                                 </p:outputPanel>
                             </h:panelGrid>
                         </p:outputPanel>
-                        <p:outputPanel style="text-align: right;width:100%;background:#fff;margin-top: -3%" >
+                        <p:outputPanel style="text-align: right;width:100%;margin-top: -3%" >
                             <h:panelGrid columns="1" cellpadding="5" style="text-align: right;width:100%">
                                 <p:commandLink id="valorPromocional" value="#{orcamentoCursoMB.retornarValorString(obrigatorio.valorOrigianl, orcamentoCursoMB.filtrarEscolaMB.fornecedorProdutosBean.cambio.moedas.sigla)}"  style="font-weight:bold;font-size:14px;text-align: right;"/>
                                 <p:overlayPanel id="painelDescricao2" for="valorPromocional" hideEffect="fade" style="width:30%;background:#CCCCCC" >
@@ -47,11 +47,12 @@
                             </h:panelGrid>
                         </p:outputPanel>
                     </p:dataScroller>
+                    </p:fieldset>
                     <br></br> <br></br>
-                    <h:outputText value="Opcional" style="font-weight:bold;font-size: 17px;color: #fff" class="espacocobranca29"/>
+                     <p:fieldset id="idtabelaOpcional" legend="Opcional" toggleable="true" style="font-size: 10px;" >
                     <p:dataScroller id="tabelaprodutoOpcional" value="#{orcamentoCursoMB.filtrarEscolaMB.fornecedorProdutosBean.listaOpcionais}" var="opcional" chunkSize="10" style="background:#fff" >
                         <p:outputPanel style="text-align: right;width:100%">
-                            <h:panelGrid columns="3" style="width:100%;background:#fff" >
+                            <h:panelGrid columns="3" style="width:100%;" >
                                 <p:outputPanel  >
                                     <h:panelGrid columns="2" >
                                         <p:selectBooleanCheckbox value="#{opcional.selecionadoOpcional}">
@@ -62,7 +63,7 @@
                                 </p:outputPanel>
                             </h:panelGrid>
                         </p:outputPanel>
-                        <p:outputPanel style="text-align: right;width:100%;background:#fff;margin-top: -3%" >
+                        <p:outputPanel style="text-align: right;width:100%;margin-top: -3%" >
                             <h:panelGrid id="valoresOpcional" columns="1" cellpadding="5" style="text-align: right;width:100%">
                                 <p:commandLink id="valorPromocional" value="#{orcamentoCursoMB.retornarValorString(opcional.valorOrigianl, orcamentoCursoMB.filtrarEscolaMB.fornecedorProdutosBean.cambio.moedas.sigla)}"  style="font-weight:bold;font-size:14px;text-align: right;"/>
                                 <p:overlayPanel id="painelDescricaoPromocional" for="valorPromocional" hideEffect="fade" style="width:30%;background:#CCCCCC" >
@@ -81,14 +82,13 @@
                             </h:panelGrid>
                         </p:outputPanel>
                     </p:dataScroller>
+                     </p:fieldset>
                     <br></br> <br></br>
                     <p:selectBooleanCheckbox value="#{orcamentoCursoMB.seguroSelecionado}" class="espacocobranca29">
                         <p:ajax update="tabelaAdicionarSeguro" listener="#{orcamentoCursoMB.selecionarSeguro()}"/>
                         <p:ajax update="orcamentoCurso:tabelatotal" />
                     </p:selectBooleanCheckbox>
-                    <h:outputText  value="Seguro Viagem" style="font-weight:bold;font-size: 17px;color: #fff" class="espacocobranca29"/>
-                    <p:accordionPanel id="tabelaAdicionarSeguro"  class="painelPacote" style="width: 100%;margin-left:0%" activeIndex="-1">
-                        <p:tab  title="Adicionar">
+                    <p:fieldset id="tabelaAdicionarSeguro" legend="Seguro Viagem" toggleable="true" style="font-size: 10px;" >
                             <p:outputLabel value="Seguradora:" for="seguradora" class="espacocobranca11"/>
                             <p:selectOneMenu class="espacocobranca29" style="width:15%;" id="seguradora"  value="#{orcamentoCursoMB.fornecedorcidade}" 
                                              converter="FornecedorCidadeConverter" disabled="#{orcamentoCursoMB.habilitarSeguro()}">
@@ -123,73 +123,117 @@
                                 <p:ajax event="blur" listener="#{orcamentoCursoMB.calcularTotais()}" update="orcamentoCurso:tabelatotal"/>
                             </p:inputText>
                             <p:outputLabel value="Data Final:" for="datatermino" class="imgadd" />
-                            <p:calendar id="datatermino" value="#{orcamentoCursoMB.seguroviagem.dataTermino}" size="15" class="loginButton2" locale="pt"  pattern="dd/MM/yyyy" disabled="#{orcamentoCursoMB.habilitarSeguro()}">
+                            <p:inputMask id="datatermino" value="#{orcamentoCursoMB.seguroviagem.dataTermino}" size="15" class="loginButton2" mask="99/99/9999" disabled="#{orcamentoCursoMB.habilitarSeguro()}">
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                                 <p:ajax event="blur" update="valorseguro" listener="#{orcamentoCursoMB.calcularValorSeguroViagem()}" />
                                 <p:ajax event="blur" listener="#{orcamentoCursoMB.calcularTotais()}" update="orcamentoCurso:tabelatotal"/>
-                            </p:calendar>
+                            </p:inputMask>
                             <p:outputLabel value="Valor do Seguro:" for="valorseguro" class="imgadd"/>
                             <p:inputText id="valorseguro" value="#{orcamentoCursoMB.seguroviagem.valorSeguro}" style="width:11%" maxlength="45" readonly="true" class="loginButtonr" disabled="#{orcamentoCursoMB.habilitarSeguro()}">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
-                        </p:tab>
-                    </p:accordionPanel>
+                    </p:fieldset>
                     <br></br> <br></br>
-                    <h:outputText value="Acomodação" style="font-weight:bold;font-size: 17px;color: #fff" class="espacocobranca29"/>
-                     <p:dataTable id="idtabelaAcomodacao" var="acomodacao"  value="#{orcamentoCursoMB.filtrarEscolaMB.fornecedorProdutosBean.listaAcomodacoes}" class="tabela" 
-                            editable="true" editMode="cell"   style="border: none" selection="#{orcamentoCursoMB.produtosOrcamentoBean}" rowKey="#{acomodacao.idproduto}">
-                         <p:column style="width:32px" >   
-                             <p:selectBooleanCheckbox value="#{acomodacao.selecionado}">
+                   <p:fieldset legend="Acomodação" toggleable="true" style="font-size: 12px;" >
+                    <p:dataScroller id="idtabelaAcomodacao" value="#{orcamentoCursoMB.filtrarEscolaMB.fornecedorProdutosBean.listaAcomodacoes}" var="acomodacao" chunkSize="10" style="background:#fff" >
+                        <p:outputPanel style="text-align: left;width:100%">
+                            <p:selectBooleanCheckbox value="#{acomodacao.selecionado}" >
                                 <p:ajax listener="#{orcamentoCursoMB.calcularValorAcomodacao(acomodacao)}" update="orcamentoCurso:tabelatotal"/>
                             </p:selectBooleanCheckbox>
-                        </p:column>
-                        <p:column headerText="Descrição"  >
-                            <h:outputText value="#{acomodacao.valorcoprodutos.coprodutos.descricao}" />
-                        </p:column>
-                        <p:column headerText="Valor da Acomodação" style="width:140px;text-align: right" >
-                            <h:outputText value="#{acomodacao.valorcoprodutos.valororiginal}" >
-                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
-                             </h:outputText>
-                        </p:column>
-                        <p:column headerText="Nº de Semanas" style="width:125px;" >
-                            <p:cellEditor>
-                                <f:facet name="output"><h:outputText value="#{acomodacao.numeroSemanas}" /></f:facet>
-                                <f:facet name="input">
-                                    <p:inputText value="#{acomodacao.numeroSemanas}" style="width: 90%">
-                                        <p:ajax event="blur" listener="#{orcamentoCursoMB.calcularValorAcomodacao(acomodacao)}" update="orcamentoCurso:idtabelaAcomodacao, orcamentoCurso:tabelatotal"/>
-                                </p:inputText>
-                            </f:facet>
-                            </p:cellEditor>
-                        </p:column>
-                        <p:column headerText="Valor R$" style="width:90px;text-align: right" >
-                            <h:outputText value="#{acomodacao.valorOriginalRS}" >
-                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
-                             </h:outputText>
-                        </p:column>
-                        <p:column headerText="Valor" style="width:90px;text-align: right" >
-                            <h:outputText value="#{acomodacao.valorOrigianl}" >
+                            <h:outputText value="#{acomodacao.valorcoprodutos.coprodutos.descricao}" style="font-weight:bold;font-size: 13px;width: 20%;margin-left: 1%"/>
+                            <br></br> <br></br>
+                            <h:outputText value="#{orcamentoCursoMB.filtrarEscolaMB.fornecedorProdutosBean.cambio.moedas.sigla}" style="margin-left:42%" />
+                            <p:outputLabel id="valoracomodacao" value="#{acomodacao.valorcoprodutos.valororiginal}"  style="font-size:12px;text-align: right;margin-left:0.5%">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
-                            </h:outputText>
-                        </p:column>
-                    </p:dataTable>
+                            </p:outputLabel>
+
+                            <h:outputText value="Nº Semanas: " style="margin-left:8%" />
+                            <p:selectOneMenu class="espacocobranca29" id="sexo"  value="#{acomodacao.numeroSemanas}"  style="width:8%;">
+                                <f:selectItem itemLabel="0" itemValue="0"  />
+                                <f:selectItem itemLabel="1" itemValue="1"/> 
+                                <f:selectItem itemLabel="2" itemValue="2"/> 
+                                <f:selectItem itemLabel="3" itemValue="3"/> 
+                                <f:selectItem itemLabel="4" itemValue="4"/> 
+                                <f:selectItem itemLabel="5" itemValue="5"/> 
+                                <f:selectItem itemLabel="6" itemValue="6"/> 
+                                <f:selectItem itemLabel="7" itemValue="7"/> 
+                                <f:selectItem itemLabel="8" itemValue="8"/> 
+                                <f:selectItem itemLabel="9" itemValue="9"/> 
+                                <f:selectItem itemLabel="10" itemValue="10"/> 
+                                <f:selectItem itemLabel="11" itemValue="11"/> 
+                                <f:selectItem itemLabel="12" itemValue="12"/> 
+                                <f:selectItem itemLabel="13" itemValue="13"/> 
+                                <f:selectItem itemLabel="14" itemValue="14"/> 
+                                <f:selectItem itemLabel="15" itemValue="15"/> 
+                                <f:selectItem itemLabel="16" itemValue="16"/> 
+                                <f:selectItem itemLabel="17" itemValue="17"/> 
+                                <f:selectItem itemLabel="18" itemValue="18"/> 
+                                <f:selectItem itemLabel="19" itemValue="19"/> 
+                                <f:selectItem itemLabel="20" itemValue="20"/> 
+                                <f:selectItem itemLabel="21" itemValue="21"/> 
+                                <f:selectItem itemLabel="22" itemValue="22"/> 
+                                <f:selectItem itemLabel="23" itemValue="23"/> 
+                                <f:selectItem itemLabel="24" itemValue="24"/> 
+                                <f:selectItem itemLabel="25" itemValue="25"/> 
+                                <f:selectItem itemLabel="26" itemValue="26"/> 
+                                <f:selectItem itemLabel="27" itemValue="27"/> 
+                                <f:selectItem itemLabel="28" itemValue="28"/> 
+                                <f:selectItem itemLabel="29" itemValue="29"/> 
+                                <f:selectItem itemLabel="30" itemValue="30"/> 
+                                <f:selectItem itemLabel="31" itemValue="31"/> 
+                                <f:selectItem itemLabel="32" itemValue="32"/> 
+                                <f:selectItem itemLabel="33" itemValue="33"/> 
+                                <f:selectItem itemLabel="34" itemValue="34"/> 
+                                <f:selectItem itemLabel="35" itemValue="35"/> 
+                                <f:selectItem itemLabel="36" itemValue="36"/> 
+                                <f:selectItem itemLabel="37" itemValue="37"/> 
+                                <f:selectItem itemLabel="38" itemValue="38"/> 
+                                <f:selectItem itemLabel="39" itemValue="39"/> 
+                                <f:selectItem itemLabel="40" itemValue="40"/> 
+                                <f:selectItem itemLabel="41" itemValue="41"/> 
+                                <f:selectItem itemLabel="42" itemValue="42"/> 
+                                <f:selectItem itemLabel="43" itemValue="43"/> 
+                                <f:selectItem itemLabel="44" itemValue="44"/> 
+                                <f:selectItem itemLabel="45" itemValue="45"/> 
+                                <f:selectItem itemLabel="46" itemValue="46"/> 
+                                <f:selectItem itemLabel="47" itemValue="47"/> 
+                                <f:selectItem itemLabel="48" itemValue="48"/> 
+                                <p:ajax event="change" listener="#{orcamentoCursoMB.calcularValorAcomodacao(acomodacao)}" update="orcamentoCurso:idtabelaAcomodacao, orcamentoCurso:tabelatotal"/>
+                            </p:selectOneMenu>
+
+                            <h:outputText value="#{orcamentoCursoMB.filtrarEscolaMB.fornecedorProdutosBean.cambio.moedas.sigla}" style="margin-left:4%" class="espacocobranca29"/>
+                            <p:outputLabel id="valorOriginal" value="#{acomodacao.valorOrigianl}"  style="font-size:12px;text-align: right;margin-left:0.5%">
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                            </p:outputLabel>
+                            <h:outputText value="R$" style="" class="espacocobranca29"/>
+                            <p:outputLabel id="valorOriginalrs" value="#{acomodacao.valorOriginalRS}"  style="font-size:12px;text-align: right;margin-left:0.5%">
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                            </p:outputLabel>
+                            <br></br>
+                            <div class="line_1"></div>
+                            <br></br><br></br>
+                        </p:outputPanel>
+                    </p:dataScroller>
+                   </p:fieldset>
                     <br></br> <br></br>
-                    <h:outputText value="Transfer" style="font-weight:bold;font-size: 17px;color: #fff" class="espacocobranca29"/>
-                    <p:dataTable id="idtabelaTransfer" var="transfer"  value="#{orcamentoCursoMB.filtrarEscolaMB.fornecedorProdutosBean.listaTransfer}" class="tabela" 
-                            editable="true" editMode="cell"   style="border: none" selection="#{orcamentoCursoMB.produtosOrcamentoBean}" rowKey="#{acomodacao.idproduto}">
-                         <p:column style="width:32px" >   
-                             <p:selectBooleanCheckbox value="#{transfer.selecionado}">
-                                 <p:ajax listener="#{orcamentoCursoMB.calcularValorTransfer(transfer)}" update="orcamentoCurso:tabelatotal"/>
+                    <p:fieldset legend="Transfer" toggleable="true" style="font-size: 12px;" >
+                    <p:dataScroller id="idtabelaTransfer" value="#{orcamentoCursoMB.filtrarEscolaMB.fornecedorProdutosBean.listaTransfer}" var="transfer" chunkSize="10" style="background:#fff" >
+                        <p:outputPanel style="text-align: left;width:100%">
+                            <p:selectBooleanCheckbox value="#{transfer.selecionado}" >
+                                <p:ajax listener="#{orcamentoCursoMB.calcularValorTransfer(transfer)}" update="orcamentoCurso:tabelatotal"/>
                             </p:selectBooleanCheckbox>
-                        </p:column>
-                        <p:column headerText="Descrição"  >
-                            <h:outputText value="#{transfer.valorcoprodutos.coprodutos.descricao}" />
-                        </p:column>
-                        <p:column headerText="Valor do Transfer" style="width:140px;text-align: right" >
-                            <h:outputText value="#{transfer.valorcoprodutos.valororiginal}" >
-                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
-                             </h:outputText>
-                        </p:column>
-                    </p:dataTable>
+                            <h:outputText value="#{transfer.valorcoprodutos.coprodutos.descricao}" style="font-weight:bold;font-size: 13px;width: 20%;margin-left: 1%"/>
+                            <br></br> 
+                            <h:outputText value="#{orcamentoCursoMB.filtrarEscolaMB.fornecedorProdutosBean.cambio.moedas.sigla}" style="margin-left:91%" />
+                            <p:outputLabel id="valoracomodacao" value="#{transfer.valorcoprodutos.valororiginal}"  style="font-size:12px;text-align: right;margin-left:0.5%">
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                            </p:outputLabel>
+                            <br></br>
+                            <div class="line_1"></div>
+                            <br></br>
+                        </p:outputPanel>
+                    </p:dataScroller>
+                    </p:fieldset>
                     <br></br> <br></br>
                     <p:dataScroller id="tabelatotal" value="#" var="totais" chunkSize="10" style="background:#fff" >
                         <h:panelGrid columns="1" cellpadding="5" style="text-align: right;width:50%;margin-left: 50%"> 
@@ -208,6 +252,8 @@
                             </p:outputPanel>
                         </h:panelGrid>
                     </p:dataScroller>
+                    <p:commandButton id="bntfinalizar" style="font-size:12px;margin-left:89.5%" value="Finalizar"  action="#" icon=" ui-icon-check " />
+                    
                     <br></br><br></br><br></br>
                 </div>
             </h:form> 
