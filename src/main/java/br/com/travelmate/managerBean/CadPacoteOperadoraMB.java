@@ -480,7 +480,7 @@ public class CadPacoteOperadoraMB implements Serializable {
     
     public String editarcambio() {
         Map<String, Object> options = new HashMap<String, Object>();
-        options.put("contentWidth", 300);
+        options.put("contentWidth", 260);
         RequestContext.getCurrentInstance().openDialog("editarcambio", options, null);
         return "";
     }
