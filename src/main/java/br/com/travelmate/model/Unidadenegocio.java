@@ -31,6 +31,8 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "unidadenegocio")
 public class Unidadenegocio implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "unidadenegocio")
+    private List<Orcamentocurso> orcamentocursoList;
     @Column(name = "mespagamento")
     private Integer mespagamento;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "unidadenegocio")
@@ -367,6 +369,14 @@ public class Unidadenegocio implements Serializable {
 
     public void setMespagamento(Integer mespagamento) {
         this.mespagamento = mespagamento;
+    }
+
+    public List<Orcamentocurso> getOrcamentocursoList() {
+        return orcamentocursoList;
+    }
+
+    public void setOrcamentocursoList(List<Orcamentocurso> orcamentocursoList) {
+        this.orcamentocursoList = orcamentocursoList;
     }
     
 }

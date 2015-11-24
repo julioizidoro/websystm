@@ -5,7 +5,6 @@
  */
 package br.com.travelmate.model;
 
-import br.com.travelmate.Interface.Worcamentocurso;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -35,27 +34,7 @@ import javax.persistence.TemporalType;
     @NamedQuery(name = "Cambio.findAll", query = "SELECT c FROM Cambio c")})
 public class Cambio implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cambio")
-    private List<Worcamentocurso> worcamentocursoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cambio")
-    private List<Orcamento> orcamentoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cambio")
-    private List<Pacotes> pacotesList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cambio")
-    private List<Pacotepasseio> pacotepasseioList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cambio")
-    private List<Pacotecarro> pacotecarroList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cambio")
-    private List<Pacotetransfer> pacotetransferList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cambio")
-    private List<Pacotetrem> pacotetremList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cambio")
-    private List<Pacotehotel> pacotehotelList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cambio")
-    private List<Pacotecruzeiro> pacotecruzeiroList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cambio")
-    private List<Pacoteingresso> pacoteingressoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cambio")
-    private List<Pacotepassagem> pacotepassagemList;
+    private List<Ocurso> ocursoList;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -136,92 +115,13 @@ public class Cambio implements Serializable {
         return "br.com.travelmate.model.Cambio[ idcambio=" + idcambio + " ]";
     }
 
-    public List<Pacotes> getPacotesList() {
-        return pacotesList;
+    public List<Ocurso> getOcursoList() {
+        return ocursoList;
     }
 
-    public void setPacotesList(List<Pacotes> pacotesList) {
-        this.pacotesList = pacotesList;
+    public void setOcursoList(List<Ocurso> ocursoList) {
+        this.ocursoList = ocursoList;
     }
 
-    public List<Pacotepasseio> getPacotepasseioList() {
-        return pacotepasseioList;
-    }
-
-    public void setPacotepasseioList(List<Pacotepasseio> pacotepasseioList) {
-        this.pacotepasseioList = pacotepasseioList;
-    }
-
-    public List<Pacotecarro> getPacotecarroList() {
-        return pacotecarroList;
-    }
-
-    public void setPacotecarroList(List<Pacotecarro> pacotecarroList) {
-        this.pacotecarroList = pacotecarroList;
-    }
-
-    public List<Pacotetransfer> getPacotetransferList() {
-        return pacotetransferList;
-    }
-
-    public void setPacotetransferList(List<Pacotetransfer> pacotetransferList) {
-        this.pacotetransferList = pacotetransferList;
-    }
-
-    public List<Pacotetrem> getPacotetremList() {
-        return pacotetremList;
-    }
-
-    public void setPacotetremList(List<Pacotetrem> pacotetremList) {
-        this.pacotetremList = pacotetremList;
-    }
-
-    public List<Pacotehotel> getPacotehotelList() {
-        return pacotehotelList;
-    }
-
-    public void setPacotehotelList(List<Pacotehotel> pacotehotelList) {
-        this.pacotehotelList = pacotehotelList;
-    }
-
-    public List<Pacotecruzeiro> getPacotecruzeiroList() {
-        return pacotecruzeiroList;
-    }
-
-    public void setPacotecruzeiroList(List<Pacotecruzeiro> pacotecruzeiroList) {
-        this.pacotecruzeiroList = pacotecruzeiroList;
-    }
-
-    public List<Pacoteingresso> getPacoteingressoList() {
-        return pacoteingressoList;
-    }
-
-    public void setPacoteingressoList(List<Pacoteingresso> pacoteingressoList) {
-        this.pacoteingressoList = pacoteingressoList;
-    }
-
-    public List<Pacotepassagem> getPacotepassagemList() {
-        return pacotepassagemList;
-    }
-
-    public void setPacotepassagemList(List<Pacotepassagem> pacotepassagemList) {
-        this.pacotepassagemList = pacotepassagemList;
-    }
-
-    public List<Orcamento> getOrcamentoList() {
-        return orcamentoList;
-    }
-
-    public void setOrcamentoList(List<Orcamento> orcamentoList) {
-        this.orcamentoList = orcamentoList;
-    }
-
-    public List<Worcamentocurso> getWorcamentocursoList() {
-        return worcamentocursoList;
-    }
-
-    public void setWorcamentocursoList(List<Worcamentocurso> worcamentocursoList) {
-        this.worcamentocursoList = worcamentocursoList;
-    }
     
 }

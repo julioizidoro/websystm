@@ -6,7 +6,9 @@
 package br.com.travelmate.model;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,6 +19,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
@@ -29,6 +32,8 @@ import javax.validation.constraints.Size;
 @NamedQueries({
     @NamedQuery(name = "Coprodutos.findAll", query = "SELECT c FROM Coprodutos c")})
 public class Coprodutos implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "coprodutos")
+    private List<Valorcoprodutos> valorcoprodutosList;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -119,6 +124,14 @@ public class Coprodutos implements Serializable {
     @Override
     public String toString() {
         return "br.com.travelmate.model.Coprodutos[ idcoprodutos=" + idcoprodutos + " ]";
+    }
+
+    public List<Valorcoprodutos> getValorcoprodutosList() {
+        return valorcoprodutosList;
+    }
+
+    public void setValorcoprodutosList(List<Valorcoprodutos> valorcoprodutosList) {
+        this.valorcoprodutosList = valorcoprodutosList;
     }
     
 }

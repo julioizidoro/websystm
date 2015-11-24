@@ -31,6 +31,9 @@ import javax.validation.constraints.Size;
 @NamedQueries({
     @NamedQuery(name = "Ocurso.findAll", query = "SELECT o FROM Ocurso o")})
 public class Ocurso implements Serializable {
+    @JoinColumn(name = "produtosOrcamento_idprodutosOrcamento", referencedColumnName = "idprodutosOrcamento")
+    @ManyToOne(optional = false)
+    private Produtosorcamento produtosorcamento;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -54,15 +57,25 @@ public class Ocurso implements Serializable {
     private Date datatermino;
     @Column(name = "numerosemanas")
     private Integer numerosemanas;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "totalmoedaestrangeira")
+    private Float totalmoedaestrangeira;
+    @Column(name = "totalmoedanacional")
+    private Float totalmoedanacional;
+    @Column(name = "desconto")
+    private Float desconto;
+    @JoinColumn(name = "cambio_idcambio", referencedColumnName = "idcambio")
+    @ManyToOne(optional = false)
+    private Cambio cambio;
     @JoinColumn(name = "fornecedorcidade_idfornecedorcidade", referencedColumnName = "idfornecedorcidade")
     @ManyToOne(optional = false)
     private Fornecedorcidade fornecedorcidade;
     @JoinColumn(name = "idioma_ididioma", referencedColumnName = "ididioma")
     @ManyToOne(optional = false)
     private Idioma idioma;
-    @JoinColumn(name = "produtosOrcamento_idprodutosOrcamento", referencedColumnName = "idprodutosOrcamento")
+    @JoinColumn(name = "ocursoformapagamento_idocursoformapagamento", referencedColumnName = "idocursoformapagamento")
     @ManyToOne(optional = false)
-    private Produtosorcamento produtosorcamento;
+    private Ocursoformapagamento ocursoformapagamento;
 
     public Ocurso() {
     }
@@ -127,6 +140,38 @@ public class Ocurso implements Serializable {
         this.numerosemanas = numerosemanas;
     }
 
+    public Float getTotalmoedaestrangeira() {
+        return totalmoedaestrangeira;
+    }
+
+    public void setTotalmoedaestrangeira(Float totalmoedaestrangeira) {
+        this.totalmoedaestrangeira = totalmoedaestrangeira;
+    }
+
+    public Float getTotalmoedanacional() {
+        return totalmoedanacional;
+    }
+
+    public void setTotalmoedanacional(Float totalmoedanacional) {
+        this.totalmoedanacional = totalmoedanacional;
+    }
+
+    public Float getDesconto() {
+        return desconto;
+    }
+
+    public void setDesconto(Float desconto) {
+        this.desconto = desconto;
+    }
+
+    public Cambio getCambio() {
+        return cambio;
+    }
+
+    public void setCambio(Cambio cambio) {
+        this.cambio = cambio;
+    }
+
     public Fornecedorcidade getFornecedorcidade() {
         return fornecedorcidade;
     }
@@ -143,12 +188,12 @@ public class Ocurso implements Serializable {
         this.idioma = idioma;
     }
 
-    public Produtosorcamento getProdutosorcamento() {
-        return produtosorcamento;
+    public Ocursoformapagamento getOcursoformapagamento() {
+        return ocursoformapagamento;
     }
 
-    public void setProdutosorcamento(Produtosorcamento produtosorcamento) {
-        this.produtosorcamento = produtosorcamento;
+    public void setOcursoformapagamento(Ocursoformapagamento ocursoformapagamento) {
+        this.ocursoformapagamento = ocursoformapagamento;
     }
 
     @Override
@@ -174,6 +219,14 @@ public class Ocurso implements Serializable {
     @Override
     public String toString() {
         return "br.com.travelmate.model.Ocurso[ idocurso=" + idocurso + " ]";
+    }
+
+    public Produtosorcamento getProdutosorcamento() {
+        return produtosorcamento;
+    }
+
+    public void setProdutosorcamento(Produtosorcamento produtosorcamento) {
+        this.produtosorcamento = produtosorcamento;
     }
     
 }
