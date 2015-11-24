@@ -477,4 +477,11 @@ public class CadPacoteOperadoraMB implements Serializable {
         pacotes = pacotesFacade.salvar(pacotes);
         return "consultapacotesoperadora";
     }
+    
+    public String editarcambio() {
+        Map<String, Object> options = new HashMap<String, Object>();
+        options.put("contentWidth", 300);
+        RequestContext.getCurrentInstance().openDialog("editarcambio", options, null);
+        return "";
+    }
 }

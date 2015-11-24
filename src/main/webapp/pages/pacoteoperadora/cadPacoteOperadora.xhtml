@@ -56,7 +56,7 @@
                              <p:inputText id="idvalorcambio" value="#{cadPacoteOperadoraMB.cambio.valor}" style="width:13%" class="espacocamposright">
                                  <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText> 
-                            <h:commandLink action="#"  title="Editar Câmbio">  
+                            <h:commandLink action="#{cadPacoteOperadoraMB.editarcambio()}"  title="Editar Câmbio">  
                                 <img id="editarcambio" class="" src="../../resources/img/cambio_1.png"/>
                             </h:commandLink>
                             <p:commandButton id="bntiniciar" class="espacocobranca20botao" style="font-size:12px;margin-left:18%" icon="ui-icon-triangle-1-e" value="Iniciar" action="#{cadPacoteOperadoraMB.iniciarPacote()}" disabled="#{cadPacoteOperadoraMB.btniniciar}" ajax="false" >
