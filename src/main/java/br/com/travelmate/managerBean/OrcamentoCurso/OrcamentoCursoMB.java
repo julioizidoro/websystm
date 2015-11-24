@@ -294,4 +294,8 @@ public class OrcamentoCursoMB implements Serializable{
             valorTotalRS = valorTotalRS + produtosOrcamentoBean.getValorOriginalRS();
        
     }
+    
+    public String finalizarOrcamentoCurso(){
+        return "finalizarOrcamentoCurso";
+    }
 }

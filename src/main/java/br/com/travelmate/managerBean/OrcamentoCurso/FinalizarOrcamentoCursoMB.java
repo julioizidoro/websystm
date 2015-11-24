@@ -13,6 +13,7 @@ import br.com.travelmate.model.Coeficientejuros;
 import br.com.travelmate.model.Ocrusoprodutos;
 import br.com.travelmate.model.Ocurso;
 import br.com.travelmate.model.Ocursoformapagamento;
+import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -30,7 +31,7 @@ import javax.servlet.http.HttpSession;
  */
 @Named
 @ViewScoped
-public class FinalizarOrcamentoCursoMB {
+public class FinalizarOrcamentoCursoMB implements Serializable{
     
     private List<Ocrusoprodutos> listaProdutos;
     private Ocursoformapagamento formaPagamento;

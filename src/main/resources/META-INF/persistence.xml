@@ -69,6 +69,11 @@
     <class>br.com.travelmate.Interface.Worcamentocurso</class>
     <class>br.com.travelmate.model.Tarifarioservico</class>
     <class>br.com.travelmate.model.Faturafranquias</class>
+    <class>br.com.travelmate.model.Coeficientejuros</class>
+    <class>br.com.travelmate.model.Ocrusoprodutos</class>
+    <class>br.com.travelmate.model.Ocursoformapagamento</class>
+    <class>br.com.travelmate.model.Orcamentocurso</class>
+    <class>br.com.travelmate.model.Orcamentocursoformapagamento</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
     <validation-mode>NONE</validation-mode>
