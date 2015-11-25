@@ -31,9 +31,6 @@ import javax.validation.constraints.Size;
 @NamedQueries({
     @NamedQuery(name = "Ocurso.findAll", query = "SELECT o FROM Ocurso o")})
 public class Ocurso implements Serializable {
-    @JoinColumn(name = "produtosOrcamento_idprodutosOrcamento", referencedColumnName = "idprodutosOrcamento")
-    @ManyToOne(optional = false)
-    private Produtosorcamento produtosorcamento;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -64,9 +61,15 @@ public class Ocurso implements Serializable {
     private Float totalmoedanacional;
     @Column(name = "desconto")
     private Float desconto;
+    @Column(name = "dataorcamento")
+    @Temporal(TemporalType.DATE)
+    private Date dataorcamento;
     @JoinColumn(name = "cambio_idcambio", referencedColumnName = "idcambio")
     @ManyToOne(optional = false)
     private Cambio cambio;
+    @JoinColumn(name = "cliente_idcliente", referencedColumnName = "idcliente")
+    @ManyToOne(optional = false)
+    private Cliente cliente;
     @JoinColumn(name = "fornecedorcidade_idfornecedorcidade", referencedColumnName = "idfornecedorcidade")
     @ManyToOne(optional = false)
     private Fornecedorcidade fornecedorcidade;
@@ -76,6 +79,9 @@ public class Ocurso implements Serializable {
     @JoinColumn(name = "ocursoformapagamento_idocursoformapagamento", referencedColumnName = "idocursoformapagamento")
     @ManyToOne(optional = false)
     private Ocursoformapagamento ocursoformapagamento;
+    @JoinColumn(name = "produtosOrcamento_idprodutosOrcamento", referencedColumnName = "idprodutosOrcamento")
+    @ManyToOne(optional = false)
+    private Produtosorcamento produtosorcamento;
 
     public Ocurso() {
     }
@@ -164,12 +170,28 @@ public class Ocurso implements Serializable {
         this.desconto = desconto;
     }
 
+    public Date getDataorcamento() {
+        return dataorcamento;
+    }
+
+    public void setDataorcamento(Date dataorcamento) {
+        this.dataorcamento = dataorcamento;
+    }
+
     public Cambio getCambio() {
         return cambio;
     }
 
     public void setCambio(Cambio cambio) {
         this.cambio = cambio;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     public Fornecedorcidade getFornecedorcidade() {
@@ -196,6 +218,14 @@ public class Ocurso implements Serializable {
         this.ocursoformapagamento = ocursoformapagamento;
     }
 
+    public Produtosorcamento getProdutosorcamento() {
+        return produtosorcamento;
+    }
+
+    public void setProdutosorcamento(Produtosorcamento produtosorcamento) {
+        this.produtosorcamento = produtosorcamento;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -219,14 +249,6 @@ public class Ocurso implements Serializable {
     @Override
     public String toString() {
         return "br.com.travelmate.model.Ocurso[ idocurso=" + idocurso + " ]";
-    }
-
-    public Produtosorcamento getProdutosorcamento() {
-        return produtosorcamento;
-    }
-
-    public void setProdutosorcamento(Produtosorcamento produtosorcamento) {
-        this.produtosorcamento = produtosorcamento;
     }
     
 }
