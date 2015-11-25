@@ -92,4 +92,8 @@ public class ValorCoProdutosMB implements Serializable{
         Valorcoprodutos valorcoprodutos = (Valorcoprodutos) event.getObject();
         listaValores.add(valorcoprodutos);
     }
+    public void retornoDialogoEditar(){
+       gerarListaValores();
+        
+    }
 }

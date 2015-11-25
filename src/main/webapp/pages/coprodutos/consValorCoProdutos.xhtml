@@ -45,6 +45,7 @@
                         <p:column style="width:17px">
                             <p:commandLink action="#{valorCoProdutosMB.editar(valorproduto)}" style="text-decoration: none">
                                 <img src="../../resources/img/editaricon.png"/>
+                                <p:ajax event="dialogReturn" listener="#{valorCoProdutosMB.retornoDialogoEditar}" process="@this" update=":telavalorproduto:tabelavalorprodutos"/>
                             </p:commandLink>
                         </p:column>
                     </p:dataTable>
