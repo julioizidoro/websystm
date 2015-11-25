@@ -37,12 +37,6 @@ public class Ocurso implements Serializable {
     @Basic(optional = false)
     @Column(name = "idocurso")
     private Integer idocurso;
-    @Column(name = "datanascimento")
-    @Temporal(TemporalType.DATE)
-    private Date datanascimento;
-    @Size(max = 10)
-    @Column(name = "sexo")
-    private String sexo;
     @Size(max = 30)
     @Column(name = "nivelidioma")
     private String nivelidioma;
@@ -98,21 +92,6 @@ public class Ocurso implements Serializable {
         this.idocurso = idocurso;
     }
 
-    public Date getDatanascimento() {
-        return datanascimento;
-    }
-
-    public void setDatanascimento(Date datanascimento) {
-        this.datanascimento = datanascimento;
-    }
-
-    public String getSexo() {
-        return sexo;
-    }
-
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
-    }
 
     public String getNivelidioma() {
         return nivelidioma;

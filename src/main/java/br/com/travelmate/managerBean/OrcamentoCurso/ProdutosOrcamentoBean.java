@@ -20,7 +20,7 @@ public class ProdutosOrcamentoBean {
     private Float valorPromocionalRS;
     private boolean selecionadoOpcional;
     private boolean selecionado;
-    private int numeroSemanas;
+    private double numeroSemanas;
     private int idproduto;
     
 
@@ -82,17 +82,15 @@ public class ProdutosOrcamentoBean {
         this.selecionadoOpcional = selecionadoOpcional;
     }
 
-   
-
-    
-
-    public int getNumeroSemanas() {
+    public double getNumeroSemanas() {
         return numeroSemanas;
     }
 
-    public void setNumeroSemanas(int numeroSemanas) {
+    public void setNumeroSemanas(double numeroSemanas) {
         this.numeroSemanas = numeroSemanas;
     }
+    
+    
 
     public int getIdproduto() {
         return idproduto;

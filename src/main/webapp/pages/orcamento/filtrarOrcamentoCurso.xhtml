@@ -14,7 +14,7 @@
                         <p:tab titleStyle="font-size:10px;" title="">
                             <legend id="iUsu5" ><b>Orçamento de Curso</b></legend>
                             <p:outputLabel value="Data de Nascimento:" for="datanasci" />
-                            <p:inputMask value="#{filtrarEscolaMB.ocurso.datanascimento}" mask="99/99/9999"  id="datanasci" class="espacocobranca29" style="width:13%;">
+                            <p:inputMask value="#{filtrarEscolaMB.ocurso.cliente.dataNascimento}" mask="99/99/9999"  id="datanasci" class="espacocobranca29" style="width:13%;">
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </p:inputMask>
                             <p:outputLabel value="Idioma:" for="idioma" class="espacocobranca20"/>
@@ -26,7 +26,7 @@
                                 <p:ajax event="change"/> 
                             </p:selectOneMenu>
                             <p:outputLabel value="Sexo:" for="sexo" class="espacocobranca20"/>
-                            <p:selectOneMenu class="espacocobranca29" id="sexo"  value="#{filtrarEscolaMB.ocurso.sexo}"  style="width:22%;">
+                            <p:selectOneMenu class="espacocobranca29" id="sexo"  value="#{filtrarEscolaMB.ocurso.cliente.sexo}"  style="width:22%;">
                                 <f:selectItem itemLabel="Selecione" itemValue="selecione" noSelectionOption="true"  />
                                 <f:selectItem itemLabel="Feminino" itemValue="Feminino"/> 
                                 <f:selectItem itemLabel="Masculino" itemValue="Masculino"/> 

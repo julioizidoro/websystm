@@ -5,16 +5,20 @@ import br.com.travelmate.managerBean.UsuarioLogadoMB;
 import br.com.travelmate.model.Cambio;
 import br.com.travelmate.model.Fornecedor;
 import br.com.travelmate.model.Fornecedorcidade;
+import br.com.travelmate.model.Ocrusoprodutos;
 import br.com.travelmate.model.Paisproduto;
 import br.com.travelmate.model.Seguroviagem;
 import br.com.travelmate.model.Valoresseguro;
 import br.com.travelmate.util.Formatacao;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 
 @Named
 @ViewScoped
@@ -25,7 +29,6 @@ public class OrcamentoCursoMB implements Serializable{
     @Inject 
     private FiltrarEscolaMB filtrarEscolaMB;
     private ProdutosOrcamentoBean produtosOrcamentoBean;
-    //private FornecedorProdutosBean filtrarEscolaMB.getFornecedorProdutosBean();
     private boolean seguroSelecionado = false;
     private boolean obrigatorioSelecionado = true;
     private Seguroviagem seguroviagem;
@@ -278,14 +281,14 @@ public class OrcamentoCursoMB implements Serializable{
     }
     
     
-    public void calcularValorAcomodacao(ProdutosOrcamentoBean produtosOrcamentoBean){
-            produtosOrcamentoBean.setValorOrigianl(produtosOrcamentoBean.getNumeroSemanas()*produtosOrcamentoBean.getValorcoprodutos().getValororiginal());
-            produtosOrcamentoBean.setValorOriginalRS(produtosOrcamentoBean.getNumeroSemanas()*(produtosOrcamentoBean.getValorcoprodutos().getValororiginal()*filtrarEscolaMB.getFornecedorProdutosBean().getCambio().getValor()));
-            
-                calcularTotais();
-                valorTotal = valorTotal + produtosOrcamentoBean.getValorOrigianl();
-                valorTotalRS = valorTotalRS + produtosOrcamentoBean.getValorOriginalRS();
-            
+    public void calcularValorAcomodacao(ProdutosOrcamentoBean produtosOrcamentoBean) {
+        Double numeroSemanas = produtosOrcamentoBean.getNumeroSemanas();
+        produtosOrcamentoBean.setValorOrigianl(numeroSemanas.floatValue() * produtosOrcamentoBean.getValorcoprodutos().getValororiginal());
+        produtosOrcamentoBean.setValorOriginalRS(numeroSemanas.floatValue() * (produtosOrcamentoBean.getValorcoprodutos().getValororiginal() * filtrarEscolaMB.getFornecedorProdutosBean().getCambio().getValor()));
+        calcularTotais();
+        valorTotal = valorTotal + produtosOrcamentoBean.getValorOrigianl();
+        valorTotalRS = valorTotalRS + produtosOrcamentoBean.getValorOriginalRS();
+
     }
     
     public void calcularValorTransfer(ProdutosOrcamentoBean produtosOrcamentoBean){
@@ -296,6 +299,54 @@ public class OrcamentoCursoMB implements Serializable{
     }
     
     public String finalizarOrcamentoCurso(){
+        gerarListaProdutosSelecionados();
         return "finalizarOrcamentoCurso";
+    }
+    
+    public void gerarListaProdutosSelecionados(){
+        List<Ocrusoprodutos> listaProdutos = new ArrayList<Ocrusoprodutos>();
+        List<ProdutosOrcamentoBean> listaObrigaroerios = filtrarEscolaMB.getFornecedorProdutosBean().getListaObrigaroerios();
+        for(int i=0;i<listaObrigaroerios.size();i++){
+            Ocrusoprodutos produto = new Ocrusoprodutos();
+            produto.setNumerosemanas(listaObrigaroerios.get(i).getNumeroSemanas());
+            produto.setValorcoprodutos(listaObrigaroerios.get(i).getValorcoprodutos());
+            produto.setValororiginal(listaObrigaroerios.get(i).getValorOrigianl());
+            produto.setValorpromocional(listaObrigaroerios.get(i).getValorPromocional());
+            listaProdutos.add(produto);   
+        }
+        List<ProdutosOrcamentoBean> listaOpcionais = filtrarEscolaMB.getFornecedorProdutosBean().getListaOpcionais();
+        for (int i = 0; i < listaOpcionais.size(); i++) {
+            if (listaOpcionais.get(i).isSelecionado()) {
+                Ocrusoprodutos produto = new Ocrusoprodutos();
+                produto.setNumerosemanas(listaOpcionais.get(i).getNumeroSemanas());
+                produto.setValorcoprodutos(listaOpcionais.get(i).getValorcoprodutos());
+                produto.setValororiginal(listaOpcionais.get(i).getValorOrigianl());
+                produto.setValorpromocional(listaOpcionais.get(i).getValorPromocional());
+            }
+        }
+        List<ProdutosOrcamentoBean> listaAcomodacoes = filtrarEscolaMB.getFornecedorProdutosBean().getListaAcomodacoes();
+        for (int i = 0; i < listaAcomodacoes.size(); i++) {
+            if (listaAcomodacoes.get(i).isSelecionado()) {
+                Ocrusoprodutos produto = new Ocrusoprodutos();
+                produto.setNumerosemanas(listaAcomodacoes.get(i).getNumeroSemanas());
+                produto.setValorcoprodutos(listaAcomodacoes.get(i).getValorcoprodutos());
+                produto.setValororiginal(listaAcomodacoes.get(i).getValorOrigianl());
+                produto.setValorpromocional(listaAcomodacoes.get(i).getValorPromocional());
+            }
+        }
+        List<ProdutosOrcamentoBean> listaTransfer = filtrarEscolaMB.getFornecedorProdutosBean().getListaTransfer();
+        for (int i = 0; i < listaTransfer.size(); i++) {
+            if (listaAcomodacoes.get(i).isSelecionado()) {
+                Ocrusoprodutos produto = new Ocrusoprodutos();
+                produto.setNumerosemanas(listaTransfer.get(i).getNumeroSemanas());
+                produto.setValorcoprodutos(listaTransfer.get(i).getValorcoprodutos());
+                produto.setValororiginal(listaTransfer.get(i).getValorOrigianl());
+                produto.setValorpromocional(listaTransfer.get(i).getValorPromocional());
+            }
+        }
+        FacesContext fc = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+        session.setAttribute("listaProdutos", listaProdutos);
+        session.setAttribute("ocurso", filtrarEscolaMB.getFornecedorProdutosBean().getOcurso());
     }
 }

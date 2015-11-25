@@ -186,15 +186,20 @@ public class FiltrarEscolaMB implements Serializable{
             FornecedorProdutosBean fpb = new FornecedorProdutosBean();
             fpb.setFornecedorCidade(listaFornecedorCidadeIdioma.get(i).getFornecedorcidade());
             Ocurso nocurso = new Ocurso();
+            if (ocurso.getDataorcamento()==null){
+                nocurso.setDataorcamento(new Date());
+            }else {
+                nocurso.setDataorcamento(ocurso.getDataorcamento());
+            }
             nocurso.setDatainicio(ocurso.getDatainicio());
-            nocurso.setDatanascimento(ocurso.getDatanascimento());
             nocurso.setDatatermino(calcularDataTermino());
             nocurso.setFornecedorcidade(listaFornecedorCidadeIdioma.get(i).getFornecedorcidade());
             nocurso.setIdioma(ocurso.getIdioma());
             nocurso.setNivelidioma(ocurso.getNivelidioma());
             nocurso.setNumerosemanas(ocurso.getNumerosemanas());
             nocurso.setProdutosorcamento(ocurso.getProdutosorcamento());
-            nocurso.setSexo(ocurso.getSexo());
+            nocurso.setCliente(ocurso.getCliente());
+            nocurso.setDataorcamento(ocurso.getDataorcamento());
             fpb.setCambio(consultarCambio(fpb));
             fpb.setOcurso(nocurso);
             fpb.setListaObrigaroerios(gerarListaValorCoProdutos(fpb, "Obrigatorio"));

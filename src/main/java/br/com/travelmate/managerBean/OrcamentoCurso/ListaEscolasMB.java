@@ -14,7 +14,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -27,13 +26,9 @@ public class ListaEscolasMB implements Serializable{
     @Inject
     private FiltrarEscolaMB filtrarEscolaMB;
     private Parametrosprodutos parametrosprodutos;
-    //private List<FornecedorProdutosBean> listaFornecedorProdutosBean;
     
     @PostConstruct
     public void init() {
-        FacesContext fc = FacesContext.getCurrentInstance();
-        HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
-        //filtrarEscolaMB.setListaFornecedorProdutosBean(null); = (List<FornecedorProdutosBean>) session.getAttribute("listaFornecedorProdutosBean");
     }
 
     public FiltrarEscolaMB getFiltrarEscolaMB() {

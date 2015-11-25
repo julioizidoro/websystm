@@ -5,10 +5,12 @@
  */
 package br.com.travelmate.managerBean.OrcamentoCurso;
 
+import br.com.travelmate.facade.ClienteFacade;
 import br.com.travelmate.facade.CoeficienteJurosFacade;
 import br.com.travelmate.facade.OCursoFacade;
 import br.com.travelmate.facade.OCursoFormaPagamentoFacade;
 import br.com.travelmate.facade.OCursoProdutoFacade;
+import br.com.travelmate.model.Cliente;
 import br.com.travelmate.model.Coeficientejuros;
 import br.com.travelmate.model.Ocrusoprodutos;
 import br.com.travelmate.model.Ocurso;
@@ -147,6 +149,9 @@ public class FinalizarOrcamentoCursoMB implements Serializable{
             Logger.getLogger(FinalizarOrcamentoCursoMB.class.getName()).log(Level.SEVERE, null, ex);
             mostrarMensagem(ex, "Erro Salvar Forma de Pagamento", "ERRO");
         }
+        Cliente cliente = new Cliente();
+        ClienteFacade clienteFacade = new ClienteFacade();
+        ocurso.setCliente(clienteFacade.salvar(ocurso.getCliente()));
         OCursoProdutoFacade oCursoProdutoFacade = new OCursoProdutoFacade();
         OCursoFacade orCursoFacade = new OCursoFacade();
         try {
