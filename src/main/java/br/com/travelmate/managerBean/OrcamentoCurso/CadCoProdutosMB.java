@@ -102,7 +102,7 @@ public class CadCoProdutosMB implements Serializable{
                 usuarioLogadoMB.getParametrosprodutos().getCursos() + " and f.produtosorcamento.tipo='D' order by f.produtosorcamento.descricao";
         }else if(coprodutos.getTipo().equalsIgnoreCase("Obrigatorio")){
             sql = "select f from Filtroorcamentoproduto f where f.produtos.idprodutos=" + 
-                usuarioLogadoMB.getParametrosprodutos().getCursos() + " and f.produtosorcamento.tipo='O' order by f.produtosorcamento.descricao";
+                usuarioLogadoMB.getParametrosprodutos().getCursos() + " and f.produtosorcamento.tipo='O' or f.produtosorcamento.tipo='C' order by f.produtosorcamento.descricao";
         }
         listaFiltroorcamentoproduto = filtroOrcamentoProdutoFacade.pesquisar(sql);
         if (listaFiltroorcamentoproduto==null){

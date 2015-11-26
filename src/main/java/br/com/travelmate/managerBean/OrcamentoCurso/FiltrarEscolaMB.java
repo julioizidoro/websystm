@@ -69,6 +69,7 @@ public class FiltrarEscolaMB implements Serializable{
         listaPais = paisProdutoFacade.listar(idProduto);
         gerarListaCursos();
         gerarListaIdioma();
+        gerarListaPublicidade();
         pais = new Pais();
         cidade = new Cidade();   
         ocurso = new Ocurso();
@@ -398,7 +399,7 @@ public class FiltrarEscolaMB implements Serializable{
     public void gerarListaCursos(){
         FiltroOrcamentoProdutoFacade filtroOrcamentoProdutoFacade = new FiltroOrcamentoProdutoFacade();
         String sql = "select f from Filtroorcamentoproduto f where f.produtos.idprodutos=" + 
-                usuarioLogadoMB.getParametrosprodutos().getCursos() + " and f.produtosorcamento.tipo='O' order by f.produtosorcamento.descricao";
+                usuarioLogadoMB.getParametrosprodutos().getCursos() + " and f.produtosorcamento.tipo='C' order by f.produtosorcamento.descricao";
         listaProdutosOrcamento = filtroOrcamentoProdutoFacade.pesquisar(sql);
         if (listaProdutosOrcamento==null){
             listaProdutosOrcamento = new ArrayList<Filtroorcamentoproduto>();
