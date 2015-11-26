@@ -24,7 +24,9 @@ import br.com.travelmate.util.Formatacao;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
@@ -33,6 +35,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
+import org.primefaces.context.RequestContext;
 
 @Named
 @SessionScoped
@@ -387,6 +390,13 @@ public class FiltrarEscolaMB implements Serializable{
         if (listaProdutosOrcamento==null){
             listaProdutosOrcamento = new ArrayList<Filtroorcamentoproduto>();
         }
+    }
+    
+    public String pesquisarCliente(){
+        Map<String,Object> options = new HashMap<String, Object>();
+        options.put("contentWidth", 650);
+        RequestContext.getCurrentInstance().openDialog("consultarCliente", options, null);
+        return "";
     }
     
 }

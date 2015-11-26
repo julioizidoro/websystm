@@ -14,16 +14,12 @@
                         <p:tab titleStyle="font-size:10px;" title="">
                             <legend id="iUsu5" ><b>Orçamento de Curso</b></legend>
                             <p:outputLabel value="Cliente:" for="idcliente" style="margin-left:7.5%"/>
-                            <p:selectOneMenu class="espacocobranca29" id="idcliente"  value="#{filtrarEscolaMB.ocurso.cliente}"  style="width:250px;"
-                                              filter="true" filterMatchMode="startsWith" panelStyle="width:250px" >
-                                <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"  />
-                                <f:selectItems id="idlistacliente" value="#" var="clientecurso" itemLabel="#" itemValue="#"/>
-                                <f:attribute name="listaCliente" value="#"/>
-                                <p:ajax event="change"/> 
-                            </p:selectOneMenu>
-                            
+                            <p:inputText id="idcliente" style="width:33%;" maxlength="100"  value="#{filtrarEscolaMB.ocurso.cliente.nome}"  class="espacocobranca29"/>
+                            <p:commandLink action="#{filtrarEscolaMB.pesquisarCliente()}">
+                                <img src="../../resources/img/pesquisar.png" width="4%"/>
+                            </p:commandLink>
                             <p:outputLabel value="Email :" for="idemail" style="margin-left:8%"/>
-                            <p:inputText id="idemail" style="width:35%;" maxlength="100"  value="#{filtrarEscolaMB.ocurso.cliente.email}"  class="espacocobranca29"/>
+                            <p:inputText id="idemail" style="width:30%;" maxlength="100"  value="#{filtrarEscolaMB.ocurso.cliente.email}"  class="espacocobranca29"/>
                            
                             <br></br><br></br>
                             <p:outputLabel value="Fone Residencial:" for="idfoneresidencial" style="margin-left:2%"/>

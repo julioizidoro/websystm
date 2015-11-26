@@ -170,5 +170,11 @@ public class FinalizarOrcamentoCursoMB implements Serializable{
                 mostrarMensagem(ex, "Erro Salvar Produto", "ERRO");
             }
         }
+        enviarEmail(ocurso, listaProdutos, formaPagamento, ocurso.getCliente().getEmail());
+    }
+    
+    public void enviarEmail(Ocurso ocurso,  List<Ocrusoprodutos> listaProdutos, Ocursoformapagamento formaPagamento, String destinario){
+        EnviarEmailBean enviarEmailBean = new EnviarEmailBean(ocurso, listaProdutos, formaPagamento, ocurso.getCliente().getEmail());
+        enviarEmailBean.enviarEmail();
     }
 }

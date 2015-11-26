@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <link href="../../resources/css/css.css" rel="stylesheet" type="text/css" />
+        <link href="../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
+        <script type="text/javascript" src="../../resources/js/calendario.js"></script>  
+    </h:head>
+    <h:body>
+        <h:form id="cadastropacotecarro" style="text-align:left;font-size:11px;">
+            <title>Consulta de Clientes</title>
+                    <p:growl id="growl" showDetail="true" sticky="true"/>
+                     <br></br> 
+                    <p:outputLabel value="Pesquisar Nome Cliente" for="cliente" class="espaco0" style="font-size: 11px"/> <br></br>
+                    <p:inputText id="cliente" size="50" maxlength="100" class="camposs" value="#{consultaClienteMB.nome}"  />
+                    <br></br> <br></br>
+                    <p:dataTable id="clientetabela" var="cliente"  value="#{consultaClienteMB.listaCliente}" class="tabela" 
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+                                 paginator="true" rows="10" style="margin-bottom:20px" >
+                        <f:facet name="{Exporters}">
+                            <h:commandLink>
+                                <img src="../../resources/img/excel.png" width="20" class="imagens"/>
+                                <p:dataExporter type="xls" target="cliente" fileName="cliente" />
+                            </h:commandLink>
+                        </f:facet>
+                        <p:column headerText="Nome" style="text-align:center;" sortBy="#">
+                            <h:commandLink value="#{cliente.nome}" action="#{consultaClienteMB.selecionarCliente(cliente)}" />
+                        </p:column>
+                        <p:column headerText="Data Nascimento" style="width:150px;text-align:center;" >
+                            <h:outputText value="#{cliente.dataNascimento}">
+                                <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                            </h:outputText>
+                        </p:column>
+                        <p:column headerText="Fone Residencial"  style="width:150px;text-align:center;" styleClass="alinharCenter" >
+                            <h:outputText value="#{cliente.foneResidencial}"/>
+                        </p:column>
+                        <p:column headerText="Fone Celular"  style="width:160px;text-align:center;" styleClass="alinharCenter" >
+                            <h:outputText value="#{cliente.foneCelular}"/>
+                        </p:column>
+                    </p:dataTable>
+                    <br></br>
+                    <br></br>
+               </h:form>     
+    </h:body>
+</html>
