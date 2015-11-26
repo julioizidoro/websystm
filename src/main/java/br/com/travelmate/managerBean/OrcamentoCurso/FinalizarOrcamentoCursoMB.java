@@ -47,6 +47,7 @@ public class FinalizarOrcamentoCursoMB implements Serializable{
         ocurso = (Ocurso) session.getAttribute("ocurso");
         session.removeAttribute("ocurso");
         session.removeAttribute("listaProdutos");
+        formaPagamento = new Ocursoformapagamento();
     }
 
     public List<Ocrusoprodutos> getListaProdutos() {

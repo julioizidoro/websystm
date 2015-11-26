@@ -12,6 +12,7 @@ import br.com.travelmate.facade.ValorCoProdutosFacade;
 import br.com.travelmate.managerBean.UsuarioLogadoMB;
 import br.com.travelmate.model.Cambio;
 import br.com.travelmate.model.Cidade;
+import br.com.travelmate.model.Cliente;
 import br.com.travelmate.model.Coprodutos;
 import br.com.travelmate.model.Filtroorcamentoproduto;
 import br.com.travelmate.model.Fornecedorcidadeidioma;
@@ -74,6 +75,7 @@ public class FiltrarEscolaMB implements Serializable{
         cidade = new Cidade();   
         ocurso = new Ocurso();
         idioma = new Idioma();
+        ocurso.setCliente(new Cliente());
     }
 
     public UsuarioLogadoMB getUsuarioLogadoMB() {
