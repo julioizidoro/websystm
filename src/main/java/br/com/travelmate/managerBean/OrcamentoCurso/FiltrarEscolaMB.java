@@ -7,6 +7,7 @@ import br.com.travelmate.facade.FornecedorCidadeIdiomaFacade;
 import br.com.travelmate.facade.FornecedorFeriasFacade;
 import br.com.travelmate.facade.IdiomaFacade;
 import br.com.travelmate.facade.PaisProdutoFacade;
+import br.com.travelmate.facade.PublicidadeFacade;
 import br.com.travelmate.facade.ValorCoProdutosFacade;
 import br.com.travelmate.managerBean.UsuarioLogadoMB;
 import br.com.travelmate.model.Cambio;
@@ -19,9 +20,11 @@ import br.com.travelmate.model.Idioma;
 import br.com.travelmate.model.Ocurso;
 import br.com.travelmate.model.Pais;
 import br.com.travelmate.model.Paisproduto;
+import br.com.travelmate.model.Publicidade;
 import br.com.travelmate.model.Valorcoprodutos;
 import br.com.travelmate.util.Formatacao;
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -31,6 +34,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -52,6 +56,7 @@ public class FiltrarEscolaMB implements Serializable{
     private Ocurso ocurso;
     private List<FornecedorProdutosBean> listaFornecedorProdutosBean;
     private FornecedorProdutosBean fornecedorProdutosBean;
+    private List<Publicidade> listaPublicidades;
     
     
     
@@ -146,6 +151,14 @@ public class FiltrarEscolaMB implements Serializable{
 
     public void setFornecedorProdutosBean(FornecedorProdutosBean fornecedorProdutosBean) {
         this.fornecedorProdutosBean = fornecedorProdutosBean;
+    }
+
+    public List<Publicidade> getListaPublicidades() {
+        return listaPublicidades;
+    }
+
+    public void setListaPublicidades(List<Publicidade> listaPublicidades) {
+        this.listaPublicidades = listaPublicidades;
     }
 
   
@@ -398,5 +411,24 @@ public class FiltrarEscolaMB implements Serializable{
         RequestContext.getCurrentInstance().openDialog("consultarCliente", options, null);
         return "";
     }
+    
+    public void gerarListaPublicidade() {
+        PublicidadeFacade publicidadeFacade = new PublicidadeFacade();
+        try {
+            listaPublicidades = publicidadeFacade.listar();
+            if (listaPublicidades == null) {
+                listaPublicidades = new ArrayList<Publicidade>();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(FiltrarEscolaMB.class.getName()).log(Level.SEVERE, null, ex);
+            mostrarMensagem(ex, "Erro Listar Publicidade", "ERRO");
+        }
+    }
+    
+    public void mostrarMensagem(Exception ex, String erro, String titulo){
+        FacesContext context = FacesContext.getCurrentInstance();
+        erro = erro + " - " + ex;
+        context.addMessage(null, new FacesMessage(titulo, erro));
+    } 	
     
 }

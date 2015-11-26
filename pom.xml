@@ -22,12 +22,6 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>net.sf.jasperreports</groupId>
-            <artifactId>jasperreports</artifactId>
-            <version>5.6.0</version>
-            <type>jar</type>
-        </dependency>
-        <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml-schemas</artifactId>
             <version>3.11</version>
@@ -92,6 +86,11 @@
             <artifactId>commons-email</artifactId>
             <version>1.4</version>
             <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <version>5.6.0</version>
         </dependency>
         <dependency>
             <groupId>javax</groupId>
