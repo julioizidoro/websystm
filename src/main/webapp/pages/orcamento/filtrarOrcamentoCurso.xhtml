@@ -17,6 +17,7 @@
                             <p:inputText id="idcliente" style="width:33%;" maxlength="100"  value="#{filtrarEscolaMB.ocurso.cliente.nome}"  class="espacocobranca29"/>
                             <p:commandLink action="#{filtrarEscolaMB.pesquisarCliente()}">
                                 <img src="../../resources/img/pesquisar.png" width="4%"/>
+                                <p:ajax event="dialogReturn"  process="@this" listener="#{filtrarEscolaMB.retornoDialogNovo}" update="idcliente, idemail, idfoneresidencial, idfonecelular, idconheceutravel, datanasci, sexo"/>
                             </p:commandLink>
                             <p:outputLabel value="Email :" for="idemail" style="margin-left:8%"/>
                             <p:inputText id="idemail" style="width:30%;" maxlength="100"  value="#{filtrarEscolaMB.ocurso.cliente.email}"  class="espacocobranca29"/>

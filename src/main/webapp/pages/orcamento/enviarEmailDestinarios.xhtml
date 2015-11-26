@@ -5,7 +5,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Consulta de Clientes</title>
+        <title>Enviar Email</title>
         <link href="../../resources/css/css.css" rel="stylesheet" type="text/css" />
         <link href="../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
     </h:head>
@@ -13,18 +13,20 @@
         <h:form id="idteladestinoemail" style="text-align:left;font-size:11px;">
             
                      <br></br> 
-                    <p:outputLabel value="Destinatario" for="idDestinatario" class="espaco0" style="font-size: 11px"/> <br></br>
-                    <p:inputText id="idDestinatario"style="width: 50%" maxlength="100" class="camposs" value="#" />
+                    <p:outputLabel value="Destinatario" for="idDestinatario"  style="font-size: 12px;margin-left:10%"/> <br></br>
+                    <p:inputText id="idDestinatario" style="width:80%;margin-left:10%" maxlength="100" class="camposs" value="#{emailDestinarioMB.emailDestinario}" />
                        <br></br>  <br></br> 
-                    <p:outputLabel value="Consultor" for="idConsultor" class="espaco0" style="font-size: 11px"/> <br></br>
-                    <p:inputText id="idConsultor"style="width: 50%" maxlength="100" class="camposs" value="#" />
+                    <p:outputLabel value="Consultor" for="idConsultor"  style="font-size: 12px;margin-left:10%"/> <br></br>
+                    <p:inputText id="idConsultor" style="width:80%;margin-left:10%" maxlength="100" class="camposs" value="#{emailDestinarioMB.emailConsultor}" />
                     <br></br>  <br></br> 
-                    <p:outputLabel value="Cópia Oculta" for="idCopiaOculta" class="espaco0" style="font-size: 11px"/> <br></br>
-                    <p:inputText id="idCopiaOculta"style="width: 50%" maxlength="100" class="camposs" value="#" />
+                    <p:outputLabel value="Cópia Oculta" for="idCopiaOculta"  style="font-size: 12px;margin-left:10%"/> <br></br>
+                    <p:inputText id="idCopiaOculta" style="width:80%;margin-left:10%" maxlength="100" class="camposs" value="#{emailDestinarioMB.emailCopiaOculta}" />
                     <br></br>
                     <br></br>
-                    <p:commandButton value="Enviar" icon="ui-icon-check" action="#"/>
-                    <p:commandButton value="Cancelar" icon="ui-icon-close" action="#"/>
+                    <p:commandButton value="Salvar PDF" icon="ui-icon-check" action="#" style="margin-left:5%"/>
+                    
+                    <p:commandButton value="Enviar" icon="ui-icon-check" action="#{emailDestinarioMB.enviarEmailDestinario()}" style="margin-left:39%"/>
+                    <p:commandButton value="Cancelar" icon="ui-icon-close" action="#{emailDestinarioMB.cancelar()}" style="margin-left:2%"/>
                     <br></br>
                </h:form>     
     </h:body>

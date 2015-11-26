@@ -19,10 +19,12 @@ import br.com.travelmate.model.Fornecedorcidadeidioma;
 import br.com.travelmate.model.Fornecedorferias;
 import br.com.travelmate.model.Idioma;
 import br.com.travelmate.model.Ocurso;
+import br.com.travelmate.model.Pacotes;
 import br.com.travelmate.model.Pais;
 import br.com.travelmate.model.Paisproduto;
 import br.com.travelmate.model.Publicidade;
 import br.com.travelmate.model.Valorcoprodutos;
+import br.com.travelmate.model.Vendas;
 import br.com.travelmate.util.Formatacao;
 import java.io.Serializable;
 import java.sql.SQLException;
@@ -41,6 +43,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 import org.primefaces.context.RequestContext;
+import org.primefaces.event.SelectEvent;
 
 @Named
 @SessionScoped
@@ -58,7 +61,7 @@ public class FiltrarEscolaMB implements Serializable{
     private List<FornecedorProdutosBean> listaFornecedorProdutosBean;
     private FornecedorProdutosBean fornecedorProdutosBean;
     private List<Publicidade> listaPublicidades;
-    
+    private Cliente cliente;
     
     
     @PostConstruct
@@ -77,6 +80,7 @@ public class FiltrarEscolaMB implements Serializable{
         idioma = new Idioma();
         ocurso.setCliente(new Cliente());
     }
+    
 
     public UsuarioLogadoMB getUsuarioLogadoMB() {
         return usuarioLogadoMB;
@@ -433,5 +437,10 @@ public class FiltrarEscolaMB implements Serializable{
         erro = erro + " - " + ex;
         context.addMessage(null, new FacesMessage(titulo, erro));
     } 	
+    
+   public void retornoDialogNovo(SelectEvent event){
+       Cliente cliente = (Cliente) event.getObject();
+       ocurso.setCliente(cliente);
+   }
     
 }

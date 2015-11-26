@@ -20,11 +20,10 @@ public class EnviarEmailBean{
     private HtmlEmail email;
     private String destinatario;
     
-     public EnviarEmailBean(Ocurso ocurso,  List<Ocrusoprodutos> listaProdutos, Ocursoformapagamento formaPagamento, String destinario) {
+     public EnviarEmailBean(Ocurso ocurso,  List<Ocrusoprodutos> listaProdutos, Ocursoformapagamento formaPagamento) {
         this.ocurso = ocurso;
         this.formaPagamento = formaPagamento;
         this.listaProdutos = listaProdutos;
-        this.destinatario = destinario;
         criarCorpoEmail();
     }
 

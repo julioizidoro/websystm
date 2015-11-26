@@ -10,8 +10,10 @@ import br.com.travelmate.model.Cliente;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 import org.primefaces.context.RequestContext;
 
 /**
@@ -57,6 +59,9 @@ public class ConsultaClienteMB implements Serializable{
     }
     
     public void selecionarCliente(Cliente cliente){
+        FacesContext fc = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+        session.setAttribute("cliente", cliente);
         RequestContext.getCurrentInstance().closeDialog(cliente);
     }
 }

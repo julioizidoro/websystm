@@ -10,6 +10,7 @@ import br.com.travelmate.facade.CoeficienteJurosFacade;
 import br.com.travelmate.facade.OCursoFacade;
 import br.com.travelmate.facade.OCursoFormaPagamentoFacade;
 import br.com.travelmate.facade.OCursoProdutoFacade;
+import br.com.travelmate.managerBean.UsuarioLogadoMB;
 import br.com.travelmate.model.Cliente;
 import br.com.travelmate.model.Coeficientejuros;
 import br.com.travelmate.model.Ocrusoprodutos;
@@ -17,15 +18,19 @@ import br.com.travelmate.model.Ocurso;
 import br.com.travelmate.model.Ocursoformapagamento;
 import java.io.Serializable;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
+import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -35,6 +40,8 @@ import javax.servlet.http.HttpSession;
 @ViewScoped
 public class FinalizarOrcamentoCursoMB implements Serializable{
     
+    @Inject
+    private UsuarioLogadoMB usuarioLogadoMB;
     private List<Ocrusoprodutos> listaProdutos;
     private Ocursoformapagamento formaPagamento;
     private Ocurso ocurso;
@@ -48,6 +55,12 @@ public class FinalizarOrcamentoCursoMB implements Serializable{
         session.removeAttribute("ocurso");
         session.removeAttribute("listaProdutos");
         formaPagamento = new Ocursoformapagamento();
+        formaPagamento.setAVista(ocurso.getTotalmoedaestrangeira());
+        try {
+            calcularParcelamento();
+        } catch (SQLException ex) {
+            Logger.getLogger(FinalizarOrcamentoCursoMB.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public List<Ocrusoprodutos> getListaProdutos() {
@@ -73,6 +86,8 @@ public class FinalizarOrcamentoCursoMB implements Serializable{
     public void setOcurso(Ocurso ocurso) {
         this.ocurso = ocurso;
     }
+    
+    
     
     public void inicializarValores(){
         formaPagamento.setAVista(ocurso.getTotalmoedanacional());
@@ -152,6 +167,7 @@ public class FinalizarOrcamentoCursoMB implements Serializable{
         }
         Cliente cliente = new Cliente();
         ClienteFacade clienteFacade = new ClienteFacade();
+        ocurso.getCliente().setUnidadenegocio(usuarioLogadoMB.getUsuario().getUnidadenegocio());
         ocurso.setCliente(clienteFacade.salvar(ocurso.getCliente()));
         OCursoProdutoFacade oCursoProdutoFacade = new OCursoProdutoFacade();
         OCursoFacade orCursoFacade = new OCursoFacade();
@@ -171,11 +187,18 @@ public class FinalizarOrcamentoCursoMB implements Serializable{
                 mostrarMensagem(ex, "Erro Salvar Produto", "ERRO");
             }
         }
-        enviarEmail(ocurso, listaProdutos, formaPagamento, ocurso.getCliente().getEmail());
     }
     
-    public void enviarEmail(Ocurso ocurso,  List<Ocrusoprodutos> listaProdutos, Ocursoformapagamento formaPagamento, String destinario){
-        EnviarEmailBean enviarEmailBean = new EnviarEmailBean(ocurso, listaProdutos, formaPagamento, ocurso.getCliente().getEmail());
-        enviarEmailBean.enviarEmail();
+    public String adicionarDestinarios(){
+        FacesContext fc = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+        session.setAttribute("listaProdutos", listaProdutos);
+        session.setAttribute("ocurso", ocurso);
+        session.setAttribute("formaPagamento", formaPagamento);
+        Map<String,Object> options = new HashMap<String, Object>();
+        options.put("contentWidth", 400);
+        RequestContext.getCurrentInstance().openDialog("enviarEmailDestinarios", options, null);
+        return "";
     }
+    
 }
