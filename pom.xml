@@ -93,6 +93,16 @@
             <version>5.6.0</version>
         </dependency>
         <dependency>
+            <groupId>org.xhtmlrenderer</groupId>
+            <artifactId>core-renderer</artifactId>
+            <version>R8pre2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.maven-play-plugin.net.sf.jtidy</groupId>
+            <artifactId>jtidy</artifactId>
+            <version>r938</version>
+        </dependency>
+        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
             <version>7.0</version>
