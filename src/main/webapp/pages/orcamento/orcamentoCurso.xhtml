@@ -137,8 +137,8 @@
                    <p:fieldset legend="Acomodação" toggleable="true" style="font-size: 12px;" >
                     <p:dataScroller id="idtabelaAcomodacao" value="#{orcamentoCursoMB.filtrarEscolaMB.fornecedorProdutosBean.listaAcomodacoes}" var="acomodacao" chunkSize="10" style="background:#fff" >
                         <p:outputPanel style="text-align: left;width:100%">
-                            <p:selectBooleanCheckbox value="#{acomodacao.selecionado}" >
-                                <p:ajax listener="#{orcamentoCursoMB.calcularValorAcomodacao(acomodacao)}" update="orcamentoCurso:tabelatotal"/>
+                            <p:selectBooleanCheckbox  id="idcbacomodacao" value="#{acomodacao.selecionado}" >
+                                <p:ajax event="change" listener="#{orcamentoCursoMB.calcularValorAcomodacao(acomodacao)}" update="orcamentoCurso:tabelatotal"/>
                             </p:selectBooleanCheckbox>
                             <h:outputText value="#{acomodacao.valorcoprodutos.coprodutos.descricao}" style="font-weight:bold;font-size: 13px;width: 20%;margin-left: 1%"/>
                             <br></br> <br></br>

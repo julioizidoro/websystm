@@ -252,14 +252,17 @@
                     FacesContext fc = FacesContext.getCurrentInstance();
                     HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
                     session.setAttribute("listaFornecedorProdutosBean", listaFornecedorProdutosBean);
-                    if (FacesContext.getCurrentInstance().getExternalContext().getSessionMap().containsKey("listaEscolasMB")){
-                        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("listaEscolasMB");
-                    }
-                    if (ocurso.getIdocurso()!=null){
-                        return "resultadoFiltroOrcamento";
-                    }else{
-                        setFornecedorProdutosBean(listaFornecedorProdutosBean.get(0));
-                        return "orcamentoCurso";
+                    verificarListaEscolas();
+                    if (listaFornecedorProdutosBean.size() > 0) {
+                        if (ocurso.getIdocurso() == null) {
+                            return "resultadoFiltroOrcamento";
+                        } else {
+                            setFornecedorProdutosBean(listaFornecedorProdutosBean.get(0));
+                            return "orcamentoCurso";
+                        }
+                    }else {
+                        mostrarMensagem(null,"Nenhuma opção localizada", "INFO");
+                        return null;
                     }
                 }else {
                     return null;
@@ -327,14 +330,14 @@
              if (fornecedorProdutosBean.getListaObrigaroerios() != null) {
                 for (int i = 0; i < fornecedorProdutosBean.getListaObrigaroerios().size(); i++) {
                     if (fornecedorProdutosBean.getListaObrigaroerios() != null) {
-                        valorMoeda = valorMoeda + (fornecedorProdutosBean.getListaObrigaroerios().get(i).getValorOriginalRS() * fornecedorProdutosBean.getCambio().getValor());
+                        valorMoeda = valorMoeda + (fornecedorProdutosBean.getListaObrigaroerios().get(i).getValorOriginalRS());
                     }
                 }
             }
 
             if (fornecedorProdutosBean.getListaOpcionais() != null) {
                 for (int i = 0; i < fornecedorProdutosBean.getListaOpcionais().size(); i++) {
-                    valorMoeda = valorMoeda + (fornecedorProdutosBean.getListaObrigaroerios().get(i).getValorOriginalRS() * fornecedorProdutosBean.getCambio().getValor());
+                    valorMoeda = valorMoeda + (fornecedorProdutosBean.getListaObrigaroerios().get(i).getValorOriginalRS());
                 }
                 return valorMoeda;
             }
@@ -376,15 +379,15 @@
             listaCoProdutos = coProdutosFacade.listar(sql);
             if (listaCoProdutos!=null){
                 for(int i=0;i<listaCoProdutos.size();i++){
-                    ProdutosOrcamentoBean po = consultarValores("DI", listaCoProdutos.get(i).getIdcoprodutos(), fornecedorProdutosBean, new Date());
+                    ProdutosOrcamentoBean po = consultarValores("DI", listaCoProdutos.get(i).getIdcoprodutos(), fornecedorProdutosBean, new Date(), tipo);
                     if (po!=null){
                         listaRetorno.add(po);
                     }
-                    po = consultarValores("DM", listaCoProdutos.get(i).getIdcoprodutos(), fornecedorProdutosBean, ocurso.getDatainicio());
+                    po = consultarValores("DM", listaCoProdutos.get(i).getIdcoprodutos(), fornecedorProdutosBean, ocurso.getDatainicio(), tipo);
                     if (po!=null){
                         listaRetorno.add(po);
                     }
-                    po = consultarValores("DS", listaCoProdutos.get(i).getIdcoprodutos(), fornecedorProdutosBean, ocurso.getDatainicio());
+                    po = consultarValores("DS", listaCoProdutos.get(i).getIdcoprodutos(), fornecedorProdutosBean, ocurso.getDatainicio(), tipo);
                     if (po!=null){
                         listaRetorno.add(po);
                     }
@@ -393,7 +396,7 @@
             return listaRetorno;
         }
 
-        public ProdutosOrcamentoBean consultarValores(String tipoData, int idCoProdutos, FornecedorProdutosBean fornecedorProdutosBean, Date dataConsulta) {
+        public ProdutosOrcamentoBean consultarValores(String tipoData, int idCoProdutos, FornecedorProdutosBean fornecedorProdutosBean, Date dataConsulta, String tipo) {
             ValorCoProdutosFacade valorCoProdutosFacade = new ValorCoProdutosFacade();
             Valorcoprodutos valorcoprodutos = null;
             String sql = "Select v from  Valorcoprodutos v where v.datainicial<='"
@@ -423,19 +426,13 @@
                 }else if (valorcoprodutos.getCobranca().equalsIgnoreCase("D")){
                     multiplicador = fornecedorProdutosBean.getOcurso().getNumerosemanas() * 7;
                 }
-                if (valorcoprodutos.getValorpromocional() > 0) {
-                    po.setValorOrigianl(valorcoprodutos.getValororiginal() * multiplicador);
-                    po.setValorPromocional(valorcoprodutos.getValorpromocional() * multiplicador);
-                } else {
-                    float valor = (float) (valorcoprodutos.getValororiginal() * 1.1);
-                    po.setValorOrigianl(valor * multiplicador);
-                    po.setValorPromocional(valorcoprodutos.getValororiginal() * multiplicador);
-
-                }
-                po.setValorPromocionalRS(po.getValorPromocional() * fornecedorProdutosBean.getCambio().getValor());
-                po.setValorOrigianl(po.getValorOrigianl() * fornecedorProdutosBean.getCambio().getValor());
+                po.setValorOrigianl(valorcoprodutos.getValororiginal() * multiplicador);
                 po.setValorOriginalRS(po.getValorOrigianl() * fornecedorProdutosBean.getCambio().getValor());
                 po.setSelecionadoOpcional(true);
+                if (tipo.equalsIgnoreCase("Acomodacao")){
+                    po.setValorOrigianl(0.0f);
+                    po.setValorOriginalRS(0.0f);
+                }
                 return po;
             }
             return null;
@@ -523,6 +520,17 @@
             options.put("contentWidth", 260);
             RequestContext.getCurrentInstance().openDialog("editarcambio", options, null);
             return "";
-        }    
-
+        }   
+        
+        public void verificarListaEscolas(){
+            for(int i=0;i<listaFornecedorProdutosBean.size();i++){
+                if (listaFornecedorProdutosBean.get(i).getListaObrigaroerios().size()==0){
+                    listaFornecedorProdutosBean.remove(i);
+                }
+            }
+        }
+        
+        
     }
+
+
