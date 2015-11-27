@@ -62,6 +62,7 @@ public class FiltrarEscolaMB implements Serializable{
     private FornecedorProdutosBean fornecedorProdutosBean;
     private List<Publicidade> listaPublicidades;
     private Cliente cliente;
+    private Cambio cambio;
     
     
     @PostConstruct
@@ -168,10 +169,24 @@ public class FiltrarEscolaMB implements Serializable{
         this.listaPublicidades = listaPublicidades;
     }
 
-  
-    
-    
+    public Cliente getCliente() {
+        return cliente;
+    }
 
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Cambio getCambio() {
+        return cambio;
+    }
+
+    public void setCambio(Cambio cambio) {
+        this.cambio = cambio;
+    }
+
+   
+  
     public void gerarListaIdioma(){
         IdiomaFacade idiomaFacade = new IdiomaFacade();
         String sql = "Select i from Idioma  i  order by i.descricao";
@@ -232,7 +247,6 @@ public class FiltrarEscolaMB implements Serializable{
             fpb.setValorDesconto(0.0f);
             fpb.setValorMoedaEstrangeira(valorMoedaEstrangeira(fpb));
             fpb.setValorMoedaNacional(calcularValorMoedaNacioanl(fpb));
-           
             fpb.setSvalorDesconto(Formatacao.formatarFloatString(fpb.getValorDesconto()));
             fpb.setSvalorMoedaEstrangeira(fpb.getCambio().getMoedas().getSigla() + " " +  Formatacao.formatarFloatString(fpb.getValorMoedaEstrangeira()));
             fpb.setSvalorMoedaNacional("R$ " + Formatacao.formatarFloatString(fpb.getValorMoedaNacional()));
@@ -261,8 +275,19 @@ public class FiltrarEscolaMB implements Serializable{
     
     public Float calcularValorMoedaNacioanl(FornecedorProdutosBean fornecedorProdutosBean){
         float valorMoeda = 0.0f;
-        if (fornecedorProdutosBean.getCambio()!=null){
-             valorMoeda = fornecedorProdutosBean.getValorMoedaEstrangeira() * fornecedorProdutosBean.getCambio().getValor();
+         if (fornecedorProdutosBean.getListaObrigaroerios() != null) {
+            for (int i = 0; i < fornecedorProdutosBean.getListaObrigaroerios().size(); i++) {
+                if (fornecedorProdutosBean.getListaObrigaroerios() != null) {
+                    valorMoeda = valorMoeda + (fornecedorProdutosBean.getListaObrigaroerios().get(i).getValorOriginalRS() * fornecedorProdutosBean.getCambio().getValor());
+                }
+            }
+        }
+
+        if (fornecedorProdutosBean.getListaOpcionais() != null) {
+            for (int i = 0; i < fornecedorProdutosBean.getListaOpcionais().size(); i++) {
+                valorMoeda = valorMoeda + (fornecedorProdutosBean.getListaObrigaroerios().get(i).getValorOriginalRS() * fornecedorProdutosBean.getCambio().getValor());
+            }
+            return valorMoeda;
         }
         return valorMoeda;
     }
@@ -324,7 +349,7 @@ public class FiltrarEscolaMB implements Serializable{
         Valorcoprodutos valorcoprodutos = null;
         String sql = "Select v from  Valorcoprodutos v where v.datainicial<='"
                 + Formatacao.ConvercaoDataSql(ocurso.getDatainicio()) + "' and v.datafinal>='"
-                + Formatacao.ConvercaoDataSql(new Date()) + "' and v.numerosemanainicial<="
+                + Formatacao.ConvercaoDataSql(ocurso.getDatainicio()) + "' and v.numerosemanainicial<="
                 + ocurso.getNumerosemanas() + " and v.numerosemanafinal>=" + ocurso.getNumerosemanas() + " and v.tipodata='" + tipoData + "' and v.coprodutos.idcoprodutos=" + idCoProdutos;
 
         List<Valorcoprodutos> listaValorcoprodutoses = valorCoProdutosFacade.listar(sql);
@@ -443,4 +468,11 @@ public class FiltrarEscolaMB implements Serializable{
        ocurso.setCliente(cliente);
    }
     
+   
+    public String editarcambio() {
+        Map<String, Object> options = new HashMap<String, Object>();
+        options.put("contentWidth", 260);
+        RequestContext.getCurrentInstance().openDialog("editarcambio", options, null);
+        return "";
+    }
 }

@@ -30,7 +30,7 @@
                         <br></br>
                         <h:panelGrid columns="6">
                             <p:inputText id="idpercentual2" value="#{finalizarOrcamentoCursoMB.formaPagamento.percentualEntrada2}" style="margin-left:10%">
-                                <p:ajax event="blur" listener="#{finalizarOrcamentoCursoMB.calcularParcelamento()}" update="idvalorentrada2, nparcela2"/>
+                                <p:ajax event="blur" listener="#{finalizarOrcamentoCursoMB.calcularParcelamento()}" update="idvalorentrada2, idvalorsaldo2, idpercentual2"/>
                             </p:inputText>
                             <p:inputText id="idvalorentrada2" value="#{finalizarOrcamentoCursoMB.formaPagamento.valorEntrada2}" style="margin-left: 2%;margin-left: 20%">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
@@ -61,6 +61,7 @@
                                 <f:selectItem itemLabel="22" itemValue="22"/> 
                                 <f:selectItem itemLabel="23" itemValue="23"/> 
                                 <f:selectItem itemLabel="24" itemValue="24"/> 
+                                <p:ajax event="blur" listener="#{finalizarOrcamentoCursoMB.calcularParcelamento()}" update="idvalorparcela2"/>
                             </p:selectOneMenu>
                             <p:inputText id="idpersentualsaldo2" value="#{finalizarOrcamentoCursoMB.formaPagamento.percentualSaldo2}" style="margin-left: 2%;margin-left: 20%">
                                 <p:ajax event="blur" listener="#{finalizarOrcamentoCursoMB.calcularParcelamento()}" update="idvalorsaldo2, idvalorparcela2"/>
@@ -84,8 +85,8 @@
                         <p:outputLabel value="Valor da Parcela" style="margin-left:13%"/>
                         <br></br>
                         <h:panelGrid columns="6">
-                            <p:inputText value="#{finalizarOrcamentoCursoMB.formaPagamento.percentualEntrada3}" style="margin-left:10%">
-                                <p:ajax event="blur" listener="#{finalizarOrcamentoCursoMB.calcularParcelamento()}" update="idvalorentrada3, nparcela3"/>
+                            <p:inputText id="idpercentualentrada3" value="#{finalizarOrcamentoCursoMB.formaPagamento.percentualEntrada3}" style="margin-left:10%">
+                                <p:ajax event="blur" listener="#{finalizarOrcamentoCursoMB.calcularParcelamento()}" update="idvalorentrada3, idvalorsaldo3, idpercentualentrada3"/>
                             </p:inputText>
                             <p:inputText id="idvalorentrada3" value="#{finalizarOrcamentoCursoMB.formaPagamento.valorEntrada3}" style="margin-left: 2%;margin-left: 20%">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
@@ -104,9 +105,10 @@
                                 <f:selectItem itemLabel="10" itemValue="10"/> 
                                 <f:selectItem itemLabel="11" itemValue="11"/> 
                                 <f:selectItem itemLabel="12" itemValue="12"/>
-                            </p:selectOneMenu>
+                                <p:ajax event="blur" listener="#{finalizarOrcamentoCursoMB.calcularParcelamento()}" update="idvalorparcela3"/>
+                             </p:selectOneMenu>
                             <p:inputText value="#{finalizarOrcamentoCursoMB.formaPagamento.percentualSaldo3}" style="margin-left: 2%;margin-left: 20%">
-                                <p:ajax event="blur" listener="#{finalizarOrcamentoCursoMB.calcularParcelamento()}" update="idvalorsaldo3, idvalorparcela3"/>
+                            
                             </p:inputText>
                             <p:inputText id="idvalorsaldo3" value="#{finalizarOrcamentoCursoMB.formaPagamento.valorSaldo3}" style="margin-left: 2%;margin-left: 20%">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
@@ -157,7 +159,7 @@
                     </p:fieldset>
                      <br></br> 
                      
-                     <p:commandButton id="bntconfirmar" style="font-size:12px;margin-left: 34%" value="Confirmar"  action="#{finalizarOrcamentoCursoMB.adicionarDestinarios()}"  icon="ui-icon-check" />
+                     <p:commandButton id="bntconfirmar" style="font-size:12px;margin-left: 34%" value="Confirmar" actionListener="#{finalizarOrcamentoCursoMB.finalziar()}"  action="#{finalizarOrcamentoCursoMB.adicionarDestinarios()}"  icon="ui-icon-check" />
                     <!--  <p:commandButton id="bntmodulo" style="font-size:12px;margin-left: 5%" value="Modelo"  icon="ui-icon-bullet " />-->
                     <p:commandButton id="bntvoltar" style="font-size:12px;margin-left: 5%" value="Voltar"  icon="ui-icon-arrowreturnthick-1-w" />
                     

@@ -55,7 +55,7 @@ public class FinalizarOrcamentoCursoMB implements Serializable{
         session.removeAttribute("ocurso");
         session.removeAttribute("listaProdutos");
         formaPagamento = new Ocursoformapagamento();
-        formaPagamento.setAVista(ocurso.getTotalmoedaestrangeira());
+        formaPagamento.setAVista(ocurso.getTotalmoedanacional());
     }
 
     public List<Ocrusoprodutos> getListaProdutos() {

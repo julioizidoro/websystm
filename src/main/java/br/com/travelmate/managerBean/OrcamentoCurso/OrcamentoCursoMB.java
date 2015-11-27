@@ -344,6 +344,8 @@ public class OrcamentoCursoMB implements Serializable{
                 produto.setValorpromocional(listaTransfer.get(i).getValorPromocional());
             }
         }
+        filtrarEscolaMB.getFornecedorProdutosBean().getOcurso().setTotalmoedaestrangeira(valorTotal);
+        filtrarEscolaMB.getFornecedorProdutosBean().getOcurso().setTotalmoedanacional(valorTotalRS);
         FacesContext fc = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
         session.setAttribute("listaProdutos", listaProdutos);

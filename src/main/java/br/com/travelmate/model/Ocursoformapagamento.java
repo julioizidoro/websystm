@@ -83,6 +83,9 @@ public class Ocursoformapagamento implements Serializable {
         setValorParcela03(0.0f);
         setValorSaldo2(0.0f);
         setValorSaldo3(0.0f);
+        setNumeroParcelas02(0);
+        setNumeroParcelas03(0);
+        setNumeroParcelasFinanciamento(0);
     }
 
     public Ocursoformapagamento(Integer idocursoformapagamento) {
