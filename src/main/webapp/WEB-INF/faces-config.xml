@@ -368,6 +368,15 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
+        
+        <navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>consultaorcamentocurso</from-outcome>
+			<to-view-id>/pages/orcamento/consultaOrcamento.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
         <application>
             <action-listener>
                 org.primefaces.application.DialogActionListener

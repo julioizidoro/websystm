@@ -5,8 +5,6 @@
  */
 package br.com.travelmate.model;
 
-import br.com.travelmate.Interface.Servico;
-import br.com.travelmate.Interface.Tarifario;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -40,12 +38,6 @@ public class Tarifarioservico implements Serializable {
     private Float valor;
     @Column(name = "numerosemanas")
     private Integer numerosemanas;
-    @JoinColumn(name = "servico_idservico", referencedColumnName = "idservico")
-    @ManyToOne(optional = false)
-    private Servico servico;
-    @JoinColumn(name = "tarifario_idtarifario", referencedColumnName = "idtarifario")
-    @ManyToOne(optional = false)
-    private Tarifario tarifario;
 
     public Tarifarioservico() {
     }
@@ -78,21 +70,6 @@ public class Tarifarioservico implements Serializable {
         this.numerosemanas = numerosemanas;
     }
 
-    public Servico getServico() {
-        return servico;
-    }
-
-    public void setServico(Servico servico) {
-        this.servico = servico;
-    }
-
-    public Tarifario getTarifario() {
-        return tarifario;
-    }
-
-    public void setTarifario(Tarifario tarifario) {
-        this.tarifario = tarifario;
-    }
 
     @Override
     public int hashCode() {

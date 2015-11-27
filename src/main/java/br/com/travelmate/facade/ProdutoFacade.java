@@ -39,6 +39,16 @@ public class ProdutoFacade {
         }
     }
     
+    public List<Produtos> listarProdutos() {
+        produtoDao = new ProdutoDao();
+        try {
+            return produtoDao.listarProdutos();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoFacade.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    
     public Produtos consultar(int idProduto) {
         produtoDao = new ProdutoDao();
         try {

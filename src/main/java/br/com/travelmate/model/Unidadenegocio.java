@@ -5,7 +5,6 @@
  */
 package br.com.travelmate.model;
 
-import br.com.travelmate.Interface.Worcamentocurso;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -35,8 +34,7 @@ public class Unidadenegocio implements Serializable {
     private List<Orcamentocurso> orcamentocursoList;
     @Column(name = "mespagamento")
     private Integer mespagamento;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "unidadenegocio")
-    private List<Worcamentocurso> worcamentocursoList;
+   
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "unidadenegocio")
     private List<Conciliacao> conciliacaoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "unidadenegocio")
@@ -353,14 +351,6 @@ public class Unidadenegocio implements Serializable {
 
     public void setConciliacaoList(List<Conciliacao> conciliacaoList) {
         this.conciliacaoList = conciliacaoList;
-    }
-
-    public List<Worcamentocurso> getWorcamentocursoList() {
-        return worcamentocursoList;
-    }
-
-    public void setWorcamentocursoList(List<Worcamentocurso> worcamentocursoList) {
-        this.worcamentocursoList = worcamentocursoList;
     }
 
     public Integer getMespagamento() {

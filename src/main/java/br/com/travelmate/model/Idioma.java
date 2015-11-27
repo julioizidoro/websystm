@@ -5,7 +5,6 @@
  */
 package br.com.travelmate.model;
 
-import br.com.travelmate.Interface.Programa;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
@@ -30,8 +29,7 @@ import javax.validation.constraints.Size;
 @NamedQueries({
     @NamedQuery(name = "Idioma.findAll", query = "SELECT i FROM Idioma i")})
 public class Idioma implements Serializable {
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idioma")
-    private List<Programa> programaList;
+    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idioma")
     private List<Ocurso> ocursoList;
     private static final long serialVersionUID = 1L;
@@ -110,12 +108,5 @@ public class Idioma implements Serializable {
         this.ocursoList = ocursoList;
     }
 
-    public List<Programa> getProgramaList() {
-        return programaList;
-    }
-
-    public void setProgramaList(List<Programa> programaList) {
-        this.programaList = programaList;
-    }
     
 }

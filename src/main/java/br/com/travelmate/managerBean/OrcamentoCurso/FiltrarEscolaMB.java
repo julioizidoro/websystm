@@ -1,5 +1,4 @@
 package br.com.travelmate.managerBean.OrcamentoCurso;
-
 import br.com.travelmate.facade.CambioFacade;
 import br.com.travelmate.facade.CoProdutosFacade;
 import br.com.travelmate.facade.FiltroOrcamentoProdutoFacade;

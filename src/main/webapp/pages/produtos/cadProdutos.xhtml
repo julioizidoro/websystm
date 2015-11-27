@@ -41,23 +41,23 @@
             <title>Produtos</title>
             <p:growl id="growl" showDetail="true" sticky="true"/>
                 <p:outputLabel value="Descrição:" class="espacocobranca14"/>
-                <p:inputText value="#{produtosMB.produtos.descricao}" style="width:62%" class="espacocobranca29"/>
+                <p:inputText value="#{cadProdutosMB.produtos.descricao}" style="width:62%" class="espacocobranca29"/>
                 <br></br> <br></br>
                 <p:outputLabel value="Gerente:" for="gerente" class="espacocobranca155"/>
-                <p:selectOneMenu id="gerente" class="espacocobranca29" style="width:30%" value="#{produtosMB.usuario}" converter="UsuarioConverter" >
+                <p:selectOneMenu id="gerente" class="espacocobranca29" style="width:30%" value="#{cadProdutosMB.usuario}" converter="UsuarioConverter" >
                     <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/>
-                    <f:selectItems id="idgerente" value="#{produtosMB.listaUsuario}" var="produtogerente" itemLabel="#{produtogerente.nome}" itemValue="#{produtogerente}"/>
-                    <f:attribute name="listaUsuario" value="#{produtosMB.listaUsuario}"/>
+                    <f:selectItems id="idgerente" value="#{cadProdutosMB.listaUsuario}" var="produtogerente" itemLabel="#{produtogerente.nome}" itemValue="#{produtogerente}"/>
+                    <f:attribute name="listaUsuario" value="#{cadProdutosMB.listaUsuario}"/>
                     <p:ajax event="change"/> 
                 </p:selectOneMenu>
                 <p:outputLabel value="% Comissão Gerente:" class="espacocobranca14"/>
-                <p:inputText value="#{produtosMB.produtos.comissaogerente}" style="width:10%" class="espacocobranca29">
+                <p:inputText value="#{cadProdutosMB.produtos.comissaogerente}" style="width:10%" class="espacocobranca29">
                     <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                 </p:inputText>
                 <br></br> <br></br>
                 <p class="botaoeditareceber"><br></br>
-                    <p:commandButton class="imagemm"  icon="ui-icon-check" value="Confirmar" action="#{produtosMB.salvarProduto()}" update="growl"></p:commandButton>
-                    <p:commandButton class="espacocampos" icon="ui-icon-close" value="Cancelar" action="#{produtosMB.cancelarCadastro()}"></p:commandButton>
+                    <p:commandButton class="imagemm"  icon="ui-icon-check" value="Confirmar" action="#{cadProdutosMB.salvarProduto()}" update="growl"></p:commandButton>
+                    <p:commandButton class="espacocampos" icon="ui-icon-close" value="Cancelar" action="#{cadProdutosMB.cancelar()}"></p:commandButton>
                 </p>
         </h:form>     
     </h:body>

@@ -102,7 +102,7 @@ public class MenuMB implements Serializable{
     }
     
     public String orcamentoCurso(){
-        return "filtrarorcamento";
+        return "consultaorcamentocurso";
     }
     
     public String conciliacaoBancaria(){

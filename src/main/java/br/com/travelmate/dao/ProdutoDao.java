@@ -32,7 +32,15 @@ public class ProdutoDao {
     public List<Produtos> listarProdutos(String descricao) throws SQLException{
         manager = ConectionFactory.getConnection();
          manager.getTransaction().begin();
-        Query q = manager.createQuery("select p from Produtos p  where p.descricao like '" + descricao + "%' order by p.descricao" );
+        Query q = manager.createQuery("select p from Produtos p where p.descricao like '" + descricao + "%' order by p.descricao" );
+        manager.getTransaction().commit();
+        return q.getResultList();
+    }
+    
+    public List<Produtos> listarProdutos() throws SQLException{
+        manager = ConectionFactory.getConnection();
+         manager.getTransaction().begin();
+        Query q = manager.createQuery("select p from Produtos p order by p.descricao" );
         manager.getTransaction().commit();
         return q.getResultList();
     }
