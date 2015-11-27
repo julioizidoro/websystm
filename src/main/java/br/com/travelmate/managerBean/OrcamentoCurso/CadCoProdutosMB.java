@@ -6,6 +6,7 @@ import br.com.travelmate.managerBean.UsuarioLogadoMB;
 import br.com.travelmate.model.Coprodutos;
 import br.com.travelmate.model.Filtroorcamentoproduto;
 import br.com.travelmate.model.Fornecedorcidade;
+import br.com.travelmate.model.Fornecedorcidadeidioma;
 import br.com.travelmate.model.Produtosorcamento;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -35,8 +36,8 @@ public class CadCoProdutosMB implements Serializable{
     public void init(){
         FacesContext fc = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
-        fornecedorcidade =  (Fornecedorcidade) session.getAttribute("fornecedorCidade");
-        session.removeAttribute("fornecedorCidade");
+        Fornecedorcidadeidioma fornecedorcidadeidioma = (Fornecedorcidadeidioma) session.getAttribute("fornecedorcidadeidioma");
+        fornecedorcidade =  fornecedorcidadeidioma.getFornecedorcidade();
         getUsuarioLogadoMB();
         coprodutos = new Coprodutos();
         prdutoOrcamento = new Produtosorcamento();

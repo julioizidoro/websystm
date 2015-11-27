@@ -1,11 +1,15 @@
 package br.com.travelmate.managerBean.OrcamentoCurso;
 
 import br.com.travelmate.facade.CoProdutosFacade;
+import br.com.travelmate.facade.FornecedorCidadeIdiomaFacade;
+import br.com.travelmate.facade.IdiomaFacade;
 import br.com.travelmate.facade.PaisProdutoFacade;
 import br.com.travelmate.managerBean.UsuarioLogadoMB;
 import br.com.travelmate.model.Cidade;
 import br.com.travelmate.model.Coprodutos;
 import br.com.travelmate.model.Fornecedorcidade;
+import br.com.travelmate.model.Fornecedorcidadeidioma;
+import br.com.travelmate.model.Idioma;
 import br.com.travelmate.model.Pais;
 import br.com.travelmate.model.Paisproduto;
 import br.com.travelmate.model.Valorcoprodutos;
@@ -34,33 +38,40 @@ public class CoProdutosMB implements Serializable{
     private Coprodutos coprodutos;
     private Valorcoprodutos valorcoproduto;
     private List<Coprodutos> listaCoProdutos;
-     private Fornecedorcidade fornecedorcidade;
     private List<Paisproduto> listaPais;
     private Cidade cidade;
     private List<Fornecedorcidade> listaFornecedorCidade;
     private Pais pais;
+    private Idioma idioma;
+    private Fornecedorcidadeidioma fornecedorCidadeIdioma;
+    private List<Fornecedorcidadeidioma> listaFornecedorIdioma;
+    private List<Idioma> listaIdiomas;
 
     @PostConstruct
     public void init(){
         int idProduto = 0;
         getUsuarioLogadoMB();
+        listarIdiomas();
         FacesContext fc = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
         coprodutos = (Coprodutos) session.getAttribute("coprodutos");
+        session.removeAttribute("coprodutos");
+        fornecedorCidadeIdioma =  (Fornecedorcidadeidioma) session.getAttribute("fornecedorcidadeidioma");
         session.removeAttribute("coprodutos");
         PaisProdutoFacade paisProdutoFacade = new PaisProdutoFacade();
         idProduto = usuarioLogadoMB.getParametrosprodutos().getCursos();
         listaPais = paisProdutoFacade.listar(idProduto);
         if(coprodutos==null){
-            fornecedorcidade = new Fornecedorcidade();
+            fornecedorCidadeIdioma = new Fornecedorcidadeidioma();
             pais = new Pais();
             cidade = new Cidade();   
         }else{
-            fornecedorcidade = coprodutos.getFornecedorcidade();
+            //fornecedorCidadeIdioma = coprodutos.getFornecedorcidade().get
             pais = coprodutos.getFornecedorcidade().getCidade().getPais();
             cidade = coprodutos.getFornecedorcidade().getCidade();
-            listarFornecedorCidade("0");
+           // listarFornecedorCidade("0");
             listarCoProdutos();
+            listarForCidadeIdioma();
         }
         
         
@@ -97,17 +108,7 @@ public class CoProdutosMB implements Serializable{
     public void setListaCoProdutos(List<Coprodutos> listaCoProdutos) {
         this.listaCoProdutos = listaCoProdutos;
     }
-
     
-
-    public Fornecedorcidade getFornecedorcidade() {
-        return fornecedorcidade;
-    }
-
-    public void setFornecedorcidade(Fornecedorcidade fornecedorcidade) {
-        this.fornecedorcidade = fornecedorcidade;
-    }
-
     public List<Paisproduto> getListaPais() {
         return listaPais;
     }
@@ -139,9 +140,45 @@ public class CoProdutosMB implements Serializable{
     public void setPais(Pais pais) {
         this.pais = pais;
     }
+
+    public Idioma getIdioma() {
+        return idioma;
+    }
+
+    public void setIdioma(Idioma idioma) {
+        this.idioma = idioma;
+    }
+
+    public Fornecedorcidadeidioma getFornecedorCidadeIdioma() {
+        return fornecedorCidadeIdioma;
+    }
+
+    public void setFornecedorCidadeIdioma(Fornecedorcidadeidioma fornecedorCidadeIdioma) {
+        this.fornecedorCidadeIdioma = fornecedorCidadeIdioma;
+    }
     
     
-    public void listarFornecedorCidade(String id){
+
+    public List<Fornecedorcidadeidioma> getListaFornecedorIdioma() {
+        return listaFornecedorIdioma;
+    }
+
+    public void setListaFornecedorIdioma(List<Fornecedorcidadeidioma> listaFornecedorIdioma) {
+        this.listaFornecedorIdioma = listaFornecedorIdioma;
+    }
+
+    public List<Idioma> getListaIdiomas() {
+        return listaIdiomas;
+    }
+
+    public void setListaIdiomas(List<Idioma> listaIdiomas) {
+        this.listaIdiomas = listaIdiomas;
+    }
+    
+    
+    
+    
+   /*/ public void listarFornecedorCidade(String id){
         int idProduto = Integer.parseInt(id);
         if (usuarioLogadoMB!=null){
             idProduto = usuarioLogadoMB.getParametrosprodutos().getCursos();
@@ -149,12 +186,12 @@ public class CoProdutosMB implements Serializable{
         if ((idProduto>0) && (cidade!=null)){
             listaFornecedorCidade = GerarListas.listarFornecedorCidade(idProduto, cidade.getIdcidade());
         }
-    }
+    }/*/
     
     public void listarCoProdutos(){
-        if (fornecedorcidade!=null){
+        if (fornecedorCidadeIdioma!=null){
             String sql = "Select c from Coprodutos c where c.fornecedorcidade.idfornecedorcidade=" + 
-                    fornecedorcidade.getIdfornecedorcidade() + " order by c.produtosorcamento.descricao"; 
+                    fornecedorCidadeIdioma.getFornecedorcidade().getIdfornecedorcidade() + " order by c.produtosorcamento.descricao"; 
             CoProdutosFacade coProdutosFacade = new CoProdutosFacade();
             listaCoProdutos = coProdutosFacade.listar(sql);
             if (listaCoProdutos==null){
@@ -163,10 +200,35 @@ public class CoProdutosMB implements Serializable{
         }
     }
     
+    public void listarIdiomas(){
+        IdiomaFacade  idiomaFacade = new IdiomaFacade();
+        listaIdiomas = idiomaFacade.listar("Select i from Idioma i order by i.descricao");
+        if (listaIdiomas==null){
+            listaIdiomas = new ArrayList<Idioma>();
+        }
+    }
+    
+    public void listarForCidadeIdioma(){
+        
+        if(cidade !=null && idioma != null){
+            String sql = "select f from Fornecedorcidadeidioma f where f.fornecedorcidade.cidade.idcidade=" + 
+                    cidade.getIdcidade() + " and f.idioma.ididioma =" 
+                    + idioma.getIdidioma() + " order by f.fornecedorcidade.fornecedor.nome"; 
+            FornecedorCidadeIdiomaFacade fornecedorCidadeIdiomaFacade = new FornecedorCidadeIdiomaFacade();
+            listaFornecedorIdioma = fornecedorCidadeIdiomaFacade.listar(sql);
+            if (listaFornecedorIdioma == null){
+                listaFornecedorIdioma = new ArrayList<Fornecedorcidadeidioma>();
+            }
+           listaCoProdutos = new ArrayList<Coprodutos>();
+        }
+    }
+    
+   
+    
     public String cadProduto() {
         FacesContext fc = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
-        session.setAttribute("fornecedorCidade", fornecedorcidade);
+        session.setAttribute("fornecedorcidadeidioma", fornecedorCidadeIdioma);
         Map<String, Object> options = new HashMap<String, Object>();
         options.put("contentWidth", 500);
         RequestContext.getCurrentInstance().openDialog("cadProdutos", options, null);
