@@ -20,9 +20,8 @@
                         <p:ajax event="dialogReturn" listener="#{produtosMB.retornoDialogNovo}" process="@this" update="idtabelaprodutos"/>
                     </p:commandLink>
                      <p:contextMenu for="idtabelaprodutos">
-                        <p:menuitem value="Alterar"  icon=" ui-icon-pencil"  action="#" />
-                        <p:menuitem value="Usuário"  icon=" ui-icon-tag" action="#{produtosMB.consultarUsuarios()}"/>
-                        <p:menuitem value="Itens"  icon=" ui-icon-tag" action="#{produtosMB.adicionarItens()}"  />
+                        <p:menuitem value="Usuário"  icon=" ui-icon-tag" action="#{produtosMB.consultarUsuarios(produtosMB.produtos)}"/>
+                        <p:menuitem value="Itens"  icon=" ui-icon-tag" action="#{produtosMB.adicionarItens(produtosMB.produtos)}"  />
                     </p:contextMenu>
                     <legend id="iUsu2" ><b>Consulta de Produtos </b></legend>
                     <p:dataTable id="idtabelaprodutos" var="produtos"  value="#{produtosMB.listaProdutos}" class="tabela4" editable="true"
@@ -38,6 +37,11 @@
                         </p:column>
                         <p:column headerText="Descrição"  >
                             <h:outputText value="#{produtos.descricao}"/>
+                        </p:column>
+                        <p:column style="width:40px" >
+                            <h:commandLink action="#{produtosMB.editar(produtos)}">
+                                <img src="../../resources/img/editardata.png" width="20" class="imagens"/>
+                                 </h:commandLink>
                         </p:column>
                     </p:dataTable>
                     <br></br>

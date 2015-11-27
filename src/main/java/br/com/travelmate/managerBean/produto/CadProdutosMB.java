@@ -1,6 +1,7 @@
 package br.com.travelmate.managerBean.produto;
 
 import br.com.travelmate.facade.ProdutoFacade;
+import br.com.travelmate.facade.UsuarioFacade;
 import br.com.travelmate.model.Produtos;
 import br.com.travelmate.model.Usuario;
 import br.com.travelmate.util.GerarListas;
@@ -31,10 +32,10 @@ public class CadProdutosMB implements Serializable{
         String sql = "Select u from Usuario u where u.cargo like 'gerente%' order by u.nome";
         listaUsuario = GerarListas.listarUsuarios(sql);
         if(produtos==null){
-            usuario = new Usuario();
             produtos = new Produtos();
-        }else{
-            usuario.setIdusuario(produtos.getIdgerente());        
+        }else{  
+            UsuarioFacade usuarioFacade= new UsuarioFacade();
+            usuario = usuarioFacade.consultar(produtos.getIdgerente());
         }
     }
 

@@ -41,12 +41,13 @@
             <title>Produtos</title>
             <p:growl id="growl" showDetail="true" sticky="true"/>
                 <p:outputLabel value="Descrição:" class="espacocobranca14"/>
-                <p:inputText value="#{cadProdutosMB.produtos.descricao}" style="width:62%" class="espacocobranca29"/>
+                <p:inputText value="#{cadProdutosMB.produtos.descricao}" style="width:66%" class="espacocobranca29"/>
                 <br></br> <br></br>
                 <p:outputLabel value="Gerente:" for="gerente" class="espacocobranca155"/>
-                <p:selectOneMenu id="gerente" class="espacocobranca29" style="width:30%" value="#{cadProdutosMB.usuario}" converter="UsuarioConverter" >
+                <p:selectOneMenu id="gerente" class="espacocobranca29" style="width:30%" value="#{cadProdutosMB.usuario}" 
+                                 converter="UsuarioConverter" >
                     <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/>
-                    <f:selectItems id="idgerente" value="#{cadProdutosMB.listaUsuario}" var="produtogerente" itemLabel="#{produtogerente.nome}" itemValue="#{produtogerente}"/>
+                    <f:selectItems id="idgerente" value="#{cadProdutosMB.listaUsuario}" var="gerente" itemLabel="#{gerente.nome}" itemValue="#{gerente}"/>
                     <f:attribute name="listaUsuario" value="#{cadProdutosMB.listaUsuario}"/>
                     <p:ajax event="change"/> 
                 </p:selectOneMenu>

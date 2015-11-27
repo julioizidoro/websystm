@@ -10,6 +10,7 @@ import javax.faces.convert.FacesConverter;
 @FacesConverter(value="UsuarioConverter")
 public class UsuarioConverter implements Converter{
     
+    
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
         List<Usuario> listaUsuario = (List<Usuario>) component.getAttributes().get("listaUsuario");

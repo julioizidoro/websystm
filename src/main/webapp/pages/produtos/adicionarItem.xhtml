@@ -16,9 +16,8 @@
                     <img src="../../resources/img/add.png" class="imgadd"/>
                     <p:commandLink value="Cadastrar Novo Item"  action="#{produtosMB.consultarSubProdutos()}" class="espacocobranca29" style="color: #fff;font-size: 12px;" />
                    
-                    <p:dataTable id="tabelasubprodutos" var="subprodutos"  value="#" class="tabela4" editable="true"
-                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-                                 paginator="true" rows="10" style="margin-bottom:20px"  >
+                    <p:dataTable id="tabelasubprodutos" var="subprodutos"  value="#" class="tabela4" 
+                                 scrollable="true" scrollHeight="350" style="margin-bottom:20px"  >
 
                         <p:column headerText="Código" style="width:95px;" >
                             <p:outputLabel value="#" />
