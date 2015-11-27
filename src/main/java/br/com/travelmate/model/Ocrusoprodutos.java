@@ -40,6 +40,9 @@ public class Ocrusoprodutos implements Serializable {
     private Float valorpromocional;
     @Column(name = "valororiginal")
     private Float valororiginal;
+    @JoinColumn(name = "ocurso_idocurso", referencedColumnName = "idocurso")
+    @ManyToOne(optional = false)
+    private Ocurso ocurso;
     @JoinColumn(name = "valorcoprodutos_idvalorcoprodutos", referencedColumnName = "idvalorcoprodutos")
     @ManyToOne(optional = false)
     private Valorcoprodutos valorcoprodutos;
@@ -81,6 +84,14 @@ public class Ocrusoprodutos implements Serializable {
 
     public void setValororiginal(Float valororiginal) {
         this.valororiginal = valororiginal;
+    }
+
+    public Ocurso getOcurso() {
+        return ocurso;
+    }
+
+    public void setOcurso(Ocurso ocurso) {
+        this.ocurso = ocurso;
     }
 
     public Valorcoprodutos getValorcoprodutos() {

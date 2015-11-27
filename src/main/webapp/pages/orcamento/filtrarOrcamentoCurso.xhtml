@@ -99,7 +99,7 @@
                                     <p:tab titleStyle="font-size:10px;" title="Câmbio">
                                         <h:panelGrid columns="4">
                                             <p:outputLabel value="Câmbio:" for="idcambio" class="espacocobranca28"/>
-                                            <p:selectOneMenu class="espacocobranca29" id="idcambio"  value="#{filtrarEscolaMB.ocurso.produtosorcamento}"  style="width:90px;margin-left: 10%"
+                                            <p:selectOneMenu class="espacocobranca29" id="idcambio"  value="#{filtrarEscolaMB.cambio}"  style="width:90px;margin-left: 10%"
                                                              converter="CambioConverter">
                                                 <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"  />
                                                 <f:selectItems id="idSiglaCambio" value="#{usuarioLogadoMB.listaCambio}" var="cambio" itemLabel="#{cambio.moedas.sigla}" itemValue="#{cambio}"/>

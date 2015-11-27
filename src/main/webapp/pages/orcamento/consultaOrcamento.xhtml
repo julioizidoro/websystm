@@ -15,7 +15,7 @@
                     <p:inputText id="cliente" size="50" maxlength="100" class="imgadd" value="#{consultaOrcamentoMB.nomeCliente}"  >
                         <p:ajax event="blur" listener="#{consultaOrcamentoMB.gerarListaOrcamento()}" update="idtabelaconsultaorcamento"/>
                     </p:inputText>
-                    <p:commandButton id="bntnovo"  style="font-size:11px;margin-left:50%" value="Novo Orçamento" action="#{contasReceberMB.recebimento()}" />
+                    <p:commandButton id="bntnovo"  style="font-size:11px;margin-left:50%" value="Novo Orçamento" action="#{consultaOrcamentoMB.novo()}" />
 
                     <br></br> <br></br>
                     <legend id="iUsu2" ><b>Consulta Orçamento de Curso</b></legend>

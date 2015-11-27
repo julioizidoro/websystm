@@ -61,6 +61,9 @@ public class ConsultaOrcamentoMB implements Serializable{
         this.ocurso = ocurso;
     }
     
+    public String novo(){
+        return "filtrarorcamento";
+    }
     
     public void gerarListaOrcamento(){
         String sql = null;

@@ -160,7 +160,6 @@ public class FinalizarOrcamentoCursoMB implements Serializable{
             Logger.getLogger(FinalizarOrcamentoCursoMB.class.getName()).log(Level.SEVERE, null, ex);
             mostrarMensagem(ex, "Erro Salvar Forma de Pagamento", "ERRO");
         }
-        Cliente cliente = new Cliente();
         ClienteFacade clienteFacade = new ClienteFacade();
         ocurso.getCliente().setUnidadenegocio(usuarioLogadoMB.getUsuario().getUnidadenegocio());
         ocurso.setCliente(clienteFacade.salvar(ocurso.getCliente()));
