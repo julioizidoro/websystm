@@ -241,6 +241,7 @@ public class CoProdutosMB implements Serializable{
         FacesContext fc = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
         session.setAttribute("coprodutos", coprodutos);
+        session.setAttribute("fornecedorcidadeidioma", fornecedorCidadeIdioma);
         return "consValorCoProdutos";
     }
     
