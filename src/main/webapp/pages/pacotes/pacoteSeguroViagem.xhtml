@@ -66,24 +66,24 @@
 
                     <br></br><br></br>
                     <p:outputLabel value="Data inicial" for="datainicio" class="espacocobranca24"/>
-                    <p:outputLabel value="No. Semanas" for="semanas" class="espacocobranca23"/>
-                    <p:outputLabel value="Data Final" for="datatermino" class="espacocobranca5"/>
-                    <p:outputLabel value="Valor do Seguro" for="valorseguro" class="espacocobranca23"/>
+                    <p:outputLabel value="No. Semanas" for="semanas" class="espacocobranca30"/>
+                    <p:outputLabel value="Data Final" for="datatermino" style="margin-left: 13.5%"/>
+                    <p:outputLabel value="Valor do Seguro" for="valorseguro"  style="margin-left: 14.2%"/>
                     <br></br>
                     <p:calendar id="datainicio" value="#{seguroViagemMB.seguroviagem.dataInicio}" size="13"  class="espacocobranca24" locale="pt"  pattern="dd/MM/yyyy" >
                         <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                         <p:ajax event="change" />
                         <p:ajax event="dateSelect" />
                     </p:calendar>
-                    <p:inputText id="semanas" value="#{seguroViagemMB.seguroviagem.numeroSemanas}" style="width:15%" maxlength="45" class="espacocampos">
+                    <p:inputText id="semanas" value="#{seguroViagemMB.seguroviagem.numeroSemanas}" style="width:15%;margin-left: 9%" maxlength="45" class="espacocampos">
                         <f:convertNumber  type="number"/>
                         <p:ajax event="blur" update="datatermino" listener="#{seguroViagemMB.calcularDataTermino()}" /> 
                         <p:ajax event="blur" update="valorseguro" /> 
                     </p:inputText>
-                    <p:calendar id="datatermino" value="#{seguroViagemMB.seguroviagem.dataTermino}" size="13" class="espacocampos" locale="pt"  pattern="dd/MM/yyyy" >
+                    <p:calendar id="datatermino" value="#{seguroViagemMB.seguroviagem.dataTermino}" size="13" class="espacocampos" style="margin-left: 9%" locale="pt"  pattern="dd/MM/yyyy" >
                         <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                     </p:calendar>
-                    <p:inputText id="valorseguro" value="#{seguroViagemMB.seguroviagem.valorSeguro}" style="width:26.5%" maxlength="45" class="espacocamposright" readonly="true">
+                    <p:inputText id="valorseguro" value="#{seguroViagemMB.seguroviagem.valorSeguro}" style="width:15%;margin-left: 9%" maxlength="45" class="espacocamposright" readonly="true">
                         <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                     </p:inputText>
 

@@ -36,14 +36,8 @@
                     <p:commandLink value="Novo Pacote"  class="add" action="#{pacoteAgenciaMB.novoPacotes()}"/>
                     <legend id="iUsu2" ><b>Consulta de Pacotes </b></legend>
                     <p:dataTable id="idconspacoteagencia" var="conspacoteagencia"  value="#{pacoteMB.listaPacotesAgencia}" class="tabela" 
-                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
-                                 paginator="true" rows="10" style="margin-bottom:20px" >
-                        <f:facet name="{Exporters}">
-                            <h:commandLink>
-                                <img src="../../resources/img/excel.png" width="20" class="imagens"/>
-                                <p:dataExporter type="xls" target="contaPagar" fileName="contas" />
-                            </h:commandLink>
-                        </f:facet>
+                                 scrollable="true" scrollHeight="300" style="margin-bottom:20px" >
+                       
                         <p:column  style="text-align:center;width:48px;">
                             <p:commandButton  id="editar" icon="ui-icon-pencil" title="Editar" action="#{pacoteMB.editarPacoteAgencia(conspacoteagencia)}" />
                         </p:column>

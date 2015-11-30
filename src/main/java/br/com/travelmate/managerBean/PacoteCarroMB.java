@@ -21,6 +21,8 @@ import br.com.travelmate.model.Pacotetrecho;
 import br.com.travelmate.model.Pais;
 import br.com.travelmate.model.Paisproduto;
 import br.com.travelmate.util.GerarListas;
+import java.util.HashMap;
+import java.util.Map;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -223,5 +225,11 @@ public class PacoteCarroMB implements Serializable{
             RequestContext.getCurrentInstance().closeDialog("cadPacote");
             return "";
         }
+    }
+    public String editarcambio() {
+        Map<String, Object> options = new HashMap<String, Object>();
+        options.put("contentWidth", 260);
+        RequestContext.getCurrentInstance().openDialog("editarcambio", options, null);
+        return "";
     }
 }

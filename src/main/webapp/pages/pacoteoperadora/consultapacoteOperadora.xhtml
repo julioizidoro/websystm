@@ -36,8 +36,7 @@
                     <p:commandLink value="Novo Pacote"  class="add" action="#{pacoteMB.novoPacotes()}"/>
                     <legend id="iUsu2" ><b>Consulta de Pacotes </b></legend>
                     <p:dataTable id="conspacoteoperadora" var="conspacoteoperadora"  value="#{pacoteMB.listaPacotes}" class="tabela" 
-                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
-                                 paginator="true" rows="10" style="margin-bottom:20px" >
+                                 scrollable="true" scrollHeight="300" style="margin-bottom:20px" >
                         <f:facet name="{Exporters}">
                             <h:commandLink>
                                 <img src="../../resources/img/excel.png" width="20" class="imagens"/>
@@ -65,7 +64,7 @@
                         </p:column>
                     </p:dataTable>
                     <br></br>
-                    <br></br>
+                    
                 </div>
             </h:form>     
            

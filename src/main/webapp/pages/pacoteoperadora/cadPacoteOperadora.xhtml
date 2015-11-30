@@ -12,11 +12,11 @@
                     <br></br><br></br>
                     <p:accordionPanel class="painelPacote" >
                         <p:tab titleStyle="color:#000;font-size:10px;background:#c7d95f;" title="Cadastro">
-                            <p:outputLabel value="Descrição" for="descricao"/>
+                            <p:outputLabel value="Descrição" for="descricao" style="margin-left: 2%"/>
                             <p:outputLabel value="Unidade" for="unidade" class="espacopreto"/>
                             <br></br>
                             <h:panelGrid columns="2">
-                                <p:inputText id="descricao" value="#{cadPacoteOperadoraMB.pacotes.descricao}" style="width:300%" maxlength="200" class="espacocampos2"/>
+                                <p:inputText id="descricao" value="#{cadPacoteOperadoraMB.pacotes.descricao}" style="width:300%;margin-left: 10%" maxlength="200"/>
                                 <p:selectOneMenu style="width:232px;margin-left:58.5%" id="unidade"  value="#{cadPacoteOperadoraMB.pacotes.unidadenegocio}" converter="UnidadeNegocioConverter"  filter="true" filterMatchMode="startsWith">
                                     <f:selectItem itemLabel="Selecione" itemValue="0"/>
                                     <f:selectItems id="idnidade" value="#{cadPacoteOperadoraMB.listaUnidadeNegocio}" var="unidadeNegocio" itemLabel="#{unidadeNegocio.nomeFantasia}" itemValue="#{unidadeNegocio}"/>
@@ -24,59 +24,61 @@
                                 </p:selectOneMenu>
                             </h:panelGrid>
                             <br></br><br></br>
-                            <p:outputLabel value="Período" class=""/>
+                            <p:outputLabel value="Período" style="margin-left: 2%"/>
                             <p:outputLabel value="Cartão VTM" for="cartaovtm" class="espacocobranca34"/>
-                            <p:outputLabel value="Número do Cartão" for="numerocartao" class="espacocobranca33"/>
-                            <p:outputLabel value="Moeda" class="espacocobranca3" for="moedas"/>
+                            <p:outputLabel value="Número do Cartão" for="numerocartao" style="margin-left: 14.5%"/>
+                            <p:outputLabel value="Moeda"  for="moedas" style="margin-left: 13.5%" />
                             <br></br>
                             <h:panelGrid columns="5">
-                                <p:calendar id="datainicio"  class="espacocampos5" locale="pt"  pattern="dd/MM/yyyy" value="#{cadPacoteOperadoraMB.pacotes.datainicio}" size="14"/>
-                                <p:calendar id="datatermino"   class="espacocobranca20" locale="pt"   pattern="dd/MM/yyyy" value="#{cadPacoteOperadoraMB.pacotes.datetermino}" size="15"/>
-                                <p:selectOneMenu  id="cartaovtm"  value="#{cadPacoteOperadoraMB.pacotes.cartaovtm}" style="width:100px;margin-left:34.5%">
+                                <p:calendar id="datainicio"  style="margin-left: 15%" locale="pt"  pattern="dd/MM/yyyy" value="#{cadPacoteOperadoraMB.pacotes.datainicio}" size="14"/>
+                                <p:calendar id="datatermino"   class="espacocobranca22" locale="pt"   pattern="dd/MM/yyyy" value="#{cadPacoteOperadoraMB.pacotes.datetermino}" size="15"/>
+                                <p:selectOneMenu  id="cartaovtm"  value="#{cadPacoteOperadoraMB.pacotes.cartaovtm}" style="width:100px;margin-left:43%">
                                     <f:selectItem itemLabel="Não" itemValue="nao"/> 
                                     <f:selectItem itemLabel="Sim" itemValue="sim"/> 
                                 </p:selectOneMenu>
-                                <p:inputText id="numerocartao" value="#{cadPacoteOperadoraMB.pacotes.numerocartaovtm}" style="width:100%;margin-left:25%"/>
-                                <p:selectOneMenu id="moedas" value="#{cadPacoteOperadoraMB.pacotes.moeda}" style="width:100px;margin-left:40%">
+                                <p:inputText id="numerocartao" value="#{cadPacoteOperadoraMB.pacotes.numerocartaovtm}" style="width:90%;margin-left:33%"/>
+                                <p:selectOneMenu id="moedas" value="#{cadPacoteOperadoraMB.pacotes.moeda}" style="width:90px;margin-left:40%">
                                     <f:selectItem itemLabel="Moedas" itemValue="0"/>
                                     <f:selectItems value="#{usuarioLogadoMB.listaCambio}" var="cambio" itemLabel="#{cambio.moedas.sigla}" itemValue="#{cambio.moedas.sigla}"/>
                                 </p:selectOneMenu>
                             </h:panelGrid>
                             <br></br><br></br>
-                            <p:outputLabel value="Câmbio" for="moeda" class=""/>
-                            <p:outputLabel value="Valor do Câmbio" for="idvalorcambio" class="espacocobranca5"/>
+                            <p:outputLabel value="Câmbio" for="moeda" style="margin-left: 2.3%"/>
+                            <p:outputLabel value="Valor do Câmbio" for="idvalorcambio" style="margin-left: 14.5%"/>
                             
                             <br></br>
-                            <p:selectOneMenu class="espacocampos5" style="width:73px;" id="moeda"  value="#{cadPacoteOperadoraMB.cambio}" converter="CambioConverter">
+                            <h:panelGrid columns="7">
+                            <p:selectOneMenu class="espacocampos5" style="width:90px;margin-left: 15%" id="moeda"  value="#{cadPacoteOperadoraMB.cambio}" converter="CambioConverter">
                                 <f:selectItem itemLabel="Câmbio" itemValue="0"/> 
                                 <f:selectItems id="idmoedas" value="#{usuarioLogadoMB.listaCambio}" var="cambio" itemLabel="#{cambio.moedas.sigla}" itemValue="#{cambio}"/>
                                 <f:attribute name="listaCambio" value="#{usuarioLogadoMB.listaCambio}"/>
                                 <p:ajax event="change" update="idvalorcambio" />
                                 </p:selectOneMenu>
-                             <p:inputText id="idvalorcambio" value="#{cadPacoteOperadoraMB.cambio.valor}" style="width:13%" class="espacocamposright">
+                             <p:inputText id="idvalorcambio" value="#{cadPacoteOperadoraMB.cambio.valor}" style="width:50%;margin-left: 30%" >
                                  <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText> 
-                            <h:commandLink action="#{cadPacoteOperadoraMB.editarcambio()}"  title="Editar Câmbio">  
-                                <img id="editarcambio" class="" src="../../resources/img/cambio_1.png"/>
+                                <h:commandLink action="#{cadPacoteOperadoraMB.editarcambio()}"  title="Editar Câmbio" style="margin-left: -150%">  
+                                <img id="editarcambio"  src="../../resources/img/cambio_1.png"/>
                             </h:commandLink>
-                            <p:commandButton id="bntiniciar" class="espacocobranca20botao" style="font-size:12px;margin-left:18%" icon="ui-icon-triangle-1-e" value="Iniciar" action="#{cadPacoteOperadoraMB.iniciarPacote()}" disabled="#{cadPacoteOperadoraMB.btniniciar}" ajax="false" >
+                            <p:commandButton id="bntiniciar" class="espacocobranca20botao" style="font-size:12px;margin-left: 38%" icon="ui-icon-triangle-1-e" value="Iniciar" action="#{cadPacoteOperadoraMB.iniciarPacote()}" disabled="#{cadPacoteOperadoraMB.btniniciar}" ajax="false" >
                                 <p:ajax event="click" update="bntiniciar" listener="#{cadPacoteOperadoraMB.verificarBotoes()}" />
                                 <p:ajax event="click" update="btnfinalizar" />
                             </p:commandButton>
-                            <p:commandButton id="btnfinalizar" class="espacocobranca3botao" style="font-size:12px;" icon="ui-icon-check" value="Finalizar" action="#{cadPacoteOperadoraMB.finalizar()}"  disabled="#{cadPacoteOperadoraMB.btnfinalizar}" ajax="false" >
+                            <p:commandButton id="btnfinalizar" class="espacocobranca3botao" style="font-size:12px;margin-left: 24%" icon="ui-icon-check" value="Finalizar" action="#{cadPacoteOperadoraMB.finalizar()}"  disabled="#{cadPacoteOperadoraMB.btnfinalizar}" ajax="false" >
                                 <p:ajax event="click" update="bntiniciar" listener="#{cadPacoteOperadoraMB.verificarBotoes()}" />
                                 <p:ajax event="click" update="btnfinalizar" />
                                 <p:ajax event="click" update="valornet, valorgross, comissao, moedanacional, comissaoloja"/>
                             </p:commandButton>
-                             <p:commandButton id="btnseguro" class="espacocobranca3botao" style="font-size:12px;"  icon="ui-icon-plus" value="Adicionar Seguro" action="#{cadPacoteOperadoraMB.novoSeguro()}"/>
-                            <br></br><br></br>
-                            <p:outputLabel value="Valor Net" for="valornet" class=""/>
+                             <p:commandButton id="btnseguro"  style="font-size:12px;margin-left: 20%"  icon="ui-icon-plus" value="Adicionar Seguro" action="#{cadPacoteOperadoraMB.novoSeguro()}"/>
+                           </h:panelGrid>
+                             <br></br><br></br>
+                            <p:outputLabel value="Valor Net" for="valornet" style="margin-left: 2.3%"/>
                             <p:outputLabel value="Valor Gross" for="valorgross" class="espacocobranca30"/>
                             <p:outputLabel value="Comissão" for="comissao" class="espacocobranca2"/>
                             <p:outputLabel value="Valor R$" for="moedanacional" class="espacocobranca2"/>
                             <p:outputLabel value="Comissão Loja" for="comissaoloja" class="espacocobranca35"/>
                             <br></br>
-                            <p:inputText id="valornet" value="#{cadPacoteOperadoraMB.pacotes.valornet}" style="width:12%" class="fontebrancaa" readonly="true">
+                            <p:inputText id="valornet" value="#{cadPacoteOperadoraMB.pacotes.valornet}" style="width:12%;margin-left: 2.3%" class="fontebrancaa" readonly="true">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 <p:ajax event="blur" />
                             </p:inputText>
@@ -96,14 +98,13 @@
                             
                            
                             <br></br><br></br>
-                            <legend id="iUsu4" ><b>Trecho</b></legend>
-                            <p:inputText id="trecho" value="#{cadPacoteOperadoraMB.pacotetrecho.descritivo}" style="width:75%" maxlength="200" class="espacocampos2"/>
+                            <legend id="iUsu4" style="margin-left: 2%" ><b>Trecho</b></legend>
+                            <p:inputText id="trecho" value="#{cadPacoteOperadoraMB.pacotetrecho.descritivo}" style="width:75%;margin-left: 2%" maxlength="200"/>
                             <p:commandButton class="espacocobranca5" icon="ui-icon-check" value="Adicionar" action="#{cadPacoteOperadoraMB.adicionarTrecho()}"  
                                              update="idlistatrechos"/>
                             <br></br><br></br>
                             <p:dataTable id="idlistatrechos" var="trecho"  value="#{cadPacoteOperadoraMB.listaTrecho}" class="tabela3" 
-                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-                                         paginator="true" rows="10" style="margin-bottom:20px;font-size: 10px;" >
+                                         scrollable="true" scrollHeight="150" style="margin-bottom:20px;font-size: 10px;" >
                                 
                                 <p:column headerText="Descrição" >
                                     <h:outputText value="#{trecho.descritivo}" ></h:outputText>

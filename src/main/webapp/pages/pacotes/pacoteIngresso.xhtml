@@ -155,14 +155,8 @@
                 </p:tab>
                 <p:tab titleStyle="font-size:10px;" title="Consulta de Ingressos" class="tab">
                             <p:dataTable id="pacoteingresso" var="pacoteingresso"  value="#{pacoteIngressoMB.listaPacoteIngresso}" class="tabela1" 
-                                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
-                                         paginator="true" rows="10" style="margin-bottom:20px" rowIndexVar="linha">
-                                <f:facet name="{Exporters}">
-                                    <h:commandLink>
-                                        <img src="../../resources/img/excel.png" width="20" class="imagens"/>
-                                        <p:dataExporter type="xls" target="pacoteingresso" fileName="listaingresso" />
-                                    </h:commandLink>
-                                </f:facet>
+                                         scrollable="true" scrollHeight="300" style="margin-bottom:20px" rowIndexVar="linha">
+                               
                                 <p:column headerText="Descrição"  style="width:180px;background:#ffffff;color:#1F8871;text-align:center;" styleClass="alinharCenter" sortBy="#{pacoteIngressoMB.pacoteingresso.descritivo}">
                                     <h:outputText value="#{pacoteingresso.descritivo}"/>
                                 </p:column>

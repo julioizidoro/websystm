@@ -33,6 +33,7 @@ public class PacoteMB implements Serializable{
     @Inject
     private UsuarioLogadoMB usuarioLogadoMB;
     private List<Pacotes> listaPacotesAgencia;
+    private Pacotes pacotes;
 
     @PostConstruct
     public void init() {
@@ -64,6 +65,14 @@ public class PacoteMB implements Serializable{
         this.listaPacotesAgencia = listaPacotesAgencia;
     }
 
+    public Pacotes getPacotes() {
+        return pacotes;
+    }
+
+    public void setPacotes(Pacotes pacotes) {
+        this.pacotes = pacotes;
+    }
+
     
     
     public String novoPacotes(){
@@ -86,7 +95,16 @@ public class PacoteMB implements Serializable{
     }
     
     public String retornarPacoteImportado(Pacotes pacote){
-        
+        pacotes = new Pacotes();
+        pacotes.setPacotetrechoList(pacote.getPacotetrechoList());
+        pacotes.setDescricao(pacote.getDescricao());
+        pacotes.setCliente(pacote.getCliente());
+        pacotes.setDatainicio(pacote.getDatainicio());
+        pacotes.setDatetermino(pacote.getDatetermino());
+        pacotes.setCartaovtm(pacote.getCartaovtm());
+        pacotes.setNumerocartaovtm(pacote.getNumerocartaovtm());
+        pacotes.setMoeda(pacote.getMoeda());
+        pacotes.setCambio(pacote.getCambio());
         FacesContext fc = FacesContext.getCurrentInstance();  
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);  
         session.setAttribute("pacote", pacote);
