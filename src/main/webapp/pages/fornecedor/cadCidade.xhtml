@@ -7,45 +7,18 @@
     <h:head>
         <link href="../../resources/css/css.css" rel="stylesheet" type="text/css" />
         <link href="../../resources/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
-        <script>
-            PrimeFaces.locales['pt'] = {
-                closeText: 'Fechar',
-                prevText: 'Anterior',
-                nextText: 'Próximo',
-                currentText: 'Começo',
-                monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-                monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-                dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
-                dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
-                dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
-                weekHeader: 'Semana',
-                firstDay: 0,
-                isRTL: false,
-                showMonthAfterYear: false,
-                yearSuffix: '',
-                timeOnlyTitle: 'Só Horas',
-                timeText: 'Tempo',
-                hourText: 'Hora',
-                minuteText: 'Minuto',
-                secondText: 'Segundo',
-                ampm: false,
-                month: 'Mês',
-                week: 'Semana',
-                day: 'Dia',
-                allDayText: 'Todo o Dia'
-            };
-        </script>  
+       
     </h:head>
     <h:body>
-        <h:form id="cadastrocidade" style="text-align:left;font-size: 10px;"><br></br>
+        <h:form id="cadastrocidade" style="text-align:left;font-size: 10px;">
             <title>Cadastro Cidade</title>
-                
+                <br></br>
                 <p:outputLabel value="Nome:" class="espacocobranca11"/>
-                <p:inputText value="#{fornecedorMB.pais.nome}" style="width:60%" class="espacocobranca29"/>
+                <p:inputText value="#{cadCidadeMB.cidade.nome}" style="width:65%" class="espacocobranca29"/>
                 <br></br> <br></br>
                 <p class="botaoeditareceber"><br></br>
-                    <p:commandButton class="imagemm"  icon="ui-icon-check" value="Confirmar" action="#"></p:commandButton>
-                    <p:commandButton class="espacocampos" icon="ui-icon-close" value="Cancelar" action="#{fornecedorMB.cancelarCadastro()}"></p:commandButton>
+                    <p:commandButton class="imagemm"  icon="ui-icon-check" value="Confirmar" action="#{cadCidadeMB.salvar()}"></p:commandButton>
+                    <p:commandButton class="espacocampos" icon="ui-icon-close" value="Cancelar" action="#{cadCidadeMB.cancelarCadastro()}"></p:commandButton>
                 </p>
         </h:form>     
     </h:body>

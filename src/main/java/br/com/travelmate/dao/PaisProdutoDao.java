@@ -38,4 +38,13 @@ public class PaisProdutoDao {
         manager.getTransaction().commit();
         return listaPaisProduto;
     }
+    
+    public List<Paisproduto> listar() throws SQLException{
+        manager = ConectionFactory.getConnection();
+        manager.getTransaction().begin();
+        Query q = manager.createQuery("select p from Paisproduto p order by p.pais.nome");
+        List<Paisproduto> listaPaisProduto = q.getResultList();
+        manager.getTransaction().commit();
+        return listaPaisProduto;
+    }
 }

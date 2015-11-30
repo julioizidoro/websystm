@@ -40,4 +40,13 @@ public class NotificacaoEmailFacade {
             return null;
         }
     }
+    
+    public void excluir(int idNotificacaoemail) {
+        notificacaoEmailDao = new NotificacaoEmailDao();
+        try {
+            notificacaoEmailDao.excluir(idNotificacaoemail);
+        } catch (SQLException ex) {
+            Logger.getLogger(NotificacaoEmailFacade.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

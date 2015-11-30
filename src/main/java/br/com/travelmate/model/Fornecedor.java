@@ -18,6 +18,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 
 /**
@@ -96,6 +97,8 @@ public class Fornecedor implements Serializable {
     private Double comissaoFranquia;
     @Column(name = "logo")
     private String logo;
+    @Transient
+    private boolean selecionado;
 
     public Fornecedor() {
     }
@@ -239,6 +242,16 @@ public class Fornecedor implements Serializable {
     public void setLogo(String logo) {
         this.logo = logo;
     }
+
+    public boolean isSelecionado() {
+        return selecionado;
+    }
+
+    public void setSelecionado(boolean selecionado) {
+        this.selecionado = selecionado;
+    }
+    
+    
 
     @Override
     public int hashCode() {

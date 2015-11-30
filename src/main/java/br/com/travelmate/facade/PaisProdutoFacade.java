@@ -40,6 +40,14 @@ public class PaisProdutoFacade {
         }
     }
     
-    
+    public List<Paisproduto> listar() {
+        paisProdutoDao = new PaisProdutoDao();
+        try {
+            return paisProdutoDao.listar();
+        } catch (SQLException ex) {
+            Logger.getLogger(PaisProdutoFacade.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
     
 }

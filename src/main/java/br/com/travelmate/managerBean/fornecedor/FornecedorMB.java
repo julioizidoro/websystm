@@ -3,62 +3,50 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.travelmate.managerBean;
+package br.com.travelmate.managerBean.fornecedor;
 
-import br.com.travelmate.facade.PaisFacade;
 import br.com.travelmate.facade.PaisProdutoFacade;
+import br.com.travelmate.managerBean.UsuarioLogadoMB;
 import br.com.travelmate.model.Cidade;
-import br.com.travelmate.model.Fornecedor;
+import br.com.travelmate.model.Contaspagar;
 import br.com.travelmate.model.Fornecedorcidade;
 import br.com.travelmate.model.Pais;
 import br.com.travelmate.model.Paisproduto;
 import br.com.travelmate.model.Produtos;
 import br.com.travelmate.util.GerarListas;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 import org.primefaces.context.RequestContext;
+import org.primefaces.event.SelectEvent;
 
-/**
- *
- * @author Wolverine
- */
 
 @Named
 @ViewScoped
 public class FornecedorMB implements Serializable{
     
-    
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
     @Inject
     private UsuarioLogadoMB usuarioLogadoMB;
-    @Inject
-    private ConsultaFornecedorMB consultaFornecedorMB;
     private List<Paisproduto> listaPais;
     private Pais pais;
-    private Fornecedorcidade fornecedorCidade;
     private Produtos produto;
     private List<Produtos> listaProdutos;
     private Cidade cidade;
-    private Fornecedor fornecedor;
-    private List<Fornecedor> listaFornecedor;
+    private Fornecedorcidade fornecedorCidade;
     private List<Fornecedorcidade> listaFornecedorCidade;
     
     @PostConstruct
     public void init() {
-        int idProduto = 0;
         getUsuarioLogadoMB();
         PaisProdutoFacade paisProdutoFacade = new PaisProdutoFacade();
-        idProduto = usuarioLogadoMB.getParametrosprodutos().getCursos();
-        listaPais = paisProdutoFacade.listar(idProduto);
+        listaPais = paisProdutoFacade.listar();
         listaProdutos = GerarListas.listarProdutos("");
-        if(listaFornecedor==null){
-            listaFornecedor = new ArrayList<Fornecedor>();
-        }
     }
 
     public UsuarioLogadoMB getUsuarioLogadoMB() {
@@ -127,60 +115,19 @@ public class FornecedorMB implements Serializable{
         this.listaFornecedorCidade = listaFornecedorCidade;
     }
 
-    public List<Fornecedor> getListaFornecedor() {
-        return listaFornecedor;
-    }
-
-    public void setListaFornecedor(List<Fornecedor> listaFornecedor) {
-        this.listaFornecedor = listaFornecedor;
-    }
-
-    public Fornecedor getFornecedor() {
-        return fornecedor;
-    }
-
-    public void setFornecedor(Fornecedor fornecedor) {
-        this.fornecedor = fornecedor;
-    }
-
     
     
-    
-    
-    public void listarFornecedorCidade(){
-        if ((produto!=null) && (cidade!=null)){
-            listaFornecedorCidade = GerarListas.listarFornecedorCidade(produto.getIdprodutos(), cidade.getIdcidade());
-        }
-    }
-    
-    public String selecionaFornecedorCidade(Fornecedorcidade fornecedorcidade){
-        consultaFornecedorMB.setFornecedorcidade(fornecedorcidade);
-        String retorno = consultaFornecedorMB.getRetorno();
-        consultaFornecedorMB.setRetorno("");
-        return retorno;
-    }
-    
-    public String consFornecedor(){
-        return "consFornecedores";
+    public String consFornecedor(Cidade cidade, Produtos produtos){
+        FacesContext fc = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+        session.setAttribute("produtos", produtos);    
+        session.setAttribute("cidade", cidade); 
+        RequestContext.getCurrentInstance().openDialog("consFornecedores");
+        return "";
     }
     
     public String consPais(){
         return "consPais";
-    }
-    
-    public String cadPais(){
-        RequestContext.getCurrentInstance().openDialog("cadPais");
-        return "";
-    }
-    
-    public String cadCidade(){
-        RequestContext.getCurrentInstance().openDialog("cadCidade");
-        return "";
-    }
-    
-    public String cancelarCadastro(){
-        RequestContext.getCurrentInstance().closeDialog("null");
-        return "";
     }
     
     public String cadFornecedorCidade(){
@@ -192,7 +139,14 @@ public class FornecedorMB implements Serializable{
         return "";
     }
     
-    public String voltar(){
-        return "consFornecedorPais";
+    public void listarFornecedorCidade(){
+        if ((produto!=null) && (cidade!=null)){
+            listaFornecedorCidade = GerarListas.listarFornecedorCidade(produto.getIdprodutos(), cidade.getIdcidade());
+        }
     }
+    
+    public void retornoDialogNovo(SelectEvent event){
+       Fornecedorcidade fornecedorcidade = (Fornecedorcidade) event.getObject();
+       listaFornecedorCidade.add(fornecedorcidade);
+   }
 }

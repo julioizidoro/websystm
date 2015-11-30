@@ -41,4 +41,14 @@ public class NotificacaoEmailDao {
         }
         return null;
     }
+    
+    public void excluir(int idNotificacaoemail) throws SQLException{
+        manager = ConectionFactory.getConnection();
+        //abrindo uma transação
+        manager.getTransaction().begin();
+        Notificacaoemail notificacaoemail = manager.find(Notificacaoemail.class, idNotificacaoemail);
+        //fechando uma transação
+        manager.remove(notificacaoemail);
+        manager.getTransaction().commit();
+    }
 }

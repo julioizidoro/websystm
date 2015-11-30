@@ -60,8 +60,9 @@ public class CadUsuarioMB implements Serializable{
     public String salvarUsuario(){
         for(int i=0;i<listaUsuarioEmail.size();i++){
             if(listaUsuarioEmail.get(i).isSelecionado()){
-                notificacaoemail.setProdutos(produtos);
+                notificacaoemail = new Notificacaoemail();
                 notificacaoemail.setUsuario(listaUsuarioEmail.get(i));
+                notificacaoemail.setProdutos(produtos);
                 NotificacaoEmailFacade notificacaoEmailFacade = new NotificacaoEmailFacade();
                 notificacaoEmailFacade.salvar(notificacaoemail);
             }
@@ -71,7 +72,9 @@ public class CadUsuarioMB implements Serializable{
     }
     
     public String cancelar(){
-        RequestContext.getCurrentInstance().closeDialog(notificacaoemail);
+        RequestContext.getCurrentInstance().closeDialog(null);
         return "";
     }
+    
+    
 }

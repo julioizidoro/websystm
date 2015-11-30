@@ -19,40 +19,39 @@
                         <f:attribute name="listaPais" value="#{fornecedorMB.listaPais}"/>
                         <p:ajax event="change" update="cidade"/> 
                     </p:selectOneMenu>
-                    <p:outputLabel value="Produto:" for="produto" class="espacocampos" style="font-size: 11px;color:#fff"/>
-                    <p:selectOneMenu id="produto" value="#{fornecedorMB.produto}" style="width:20%;font-size: 10px" class="espacocampos" 
-                                     converter="ProdutoConverter" filter="true" filterMatchMode="startsWith">
-                        <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
-                        <f:selectItems id="idproduto" value="#{fornecedorMB.listaProdutos}" var="cproduto" itemLabel="#{cproduto.descricao}" itemValue="#{cproduto}"/>
-                        <f:attribute name="listaFornecedorCidade" value="#{fornecedorMB.listaProdutos}"/>
-                    </p:selectOneMenu>
                     <p:outputLabel value="Cidade:" for="cidade" class="espacocobranca28" style="font-size: 11px;color:#fff"/>
                     <p:selectOneMenu id="cidade" value="#{fornecedorMB.cidade}" style="width:21%;" class="espacocobranca29" 
                                      converter="CidadeConverter" filter="true" filterMatchMode="startsWith">
                         <f:selectItem itemLabel="Cidade" itemValue="0" noSelectionOption="true"/> 
                         <f:selectItems id="idcidade2" value="#{fornecedorMB.pais.cidadeList}" var="cursocidade" itemLabel="#{cursocidade.nome}" itemValue="#{cursocidade}"/>
                         <f:attribute name="listaCidade" value="#{fornecedorMB.pais.cidadeList}"/>
+                        <p:ajax event="change"/>
                     </p:selectOneMenu>
+                    <p:outputLabel value="Produto:" for="produto" class="espacocampos" style="font-size: 11px;color:#fff"/>
+                    <p:selectOneMenu id="produto" value="#{fornecedorMB.produto}" style="width:20%;font-size: 10px" class="espacocampos" 
+                                     converter="ProdutoConverter" filter="true" filterMatchMode="startsWith">
+                        <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
+                        <f:selectItems id="idproduto" value="#{fornecedorMB.listaProdutos}" var="cproduto" itemLabel="#{cproduto.descricao}" itemValue="#{cproduto}"/>
+                        <f:attribute name="listaProdutos" value="#{fornecedorMB.listaProdutos}"/>
+                        <p:ajax event="change"  listener="#{fornecedorMB.listarFornecedorCidade()}" update="tabelafornecedorpais"/> 
+                    </p:selectOneMenu>
+                    
 
 
                     <br></br> <br></br>
                     <legend id="iUsu2" ><b>Consulta de Fornecedor</b></legend>
-                    <p:commandButton id="bntfornecedor" class="espacocobranca22botao" style="font-size:12px;" value="Fornecedores" action="#{fornecedorMB.consFornecedor()}"/>
+                    <p:commandButton id="bntfornecedor" class="espacocobranca22botao" style="font-size:12px;" value="Fornecedores" action="#{fornecedorMB.consFornecedor(fornecedorMB.cidade, fornecedorMB.produto)}">
+                        <p:ajax event="dialogReturn" listener="#{fornecedorMB.retornoDialogNovo}" process="@this" update=":consultafornecedor:tabelafornecedorpais"/>                        
+                    </p:commandButton>
                     <p:commandButton id="bntpais" class="espacocobranca21botao" style="font-size:12px;" value="País" action="#{fornecedorMB.consPais()}" />
                     <p:commandButton id="bntfornecedorcidade" class="espacocobranca21botao" style="font-size:12px;" value="Fornecedor Cidade" action="#{fornecedorMB.cadFornecedorCidade()}" />
                     <p:commandButton id="bntfornecedorcomissao" class="espacocobranca21botao" style="font-size:12px;" value="Fornecedor Comissão" action="#{fornecedorMB.cadFornecedorComissao()}" /> 
 
                     <p:dataTable id="tabelafornecedorpais" var="fornecedorpais"  value="#{fornecedorMB.listaFornecedorCidade}" class="tabela5" 
-                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
-                                 paginator="true" rows="10" style="margin-bottom:20px" >
-                        <f:facet name="{Exporters}">
-                            <h:commandLink>
-                                <img src="../../resources/img/excel.png" width="20" class="imagens"/>
-                                <p:dataExporter type="xls" target="fornecedor" fileName="fornecedor" />
-                            </h:commandLink>
-                        </f:facet>
-                        <p:column headerText="Fornecedor" style="text-align:center;" sortBy="#">
-                            <p:commandLink value="#{fornecedorpais.fornecedor.nome}" action="#{fornecedorMB.selecionaFornecedorCidade(fornecedor)}" />
+                                 scrollable="true" scrollHeight="410"  style="margin-bottom:20px" >
+                     
+                        <p:column headerText="Fornecedor" >
+                            <p:outputLabel value="#{fornecedorpais.fornecedor.nome}"/>
                         </p:column>
                     </p:dataTable>
                     <br></br>

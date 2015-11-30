@@ -1,12 +1,14 @@
 package br.com.travelmate.managerBean.produto;
 
 import br.com.travelmate.facade.NotificacaoEmailFacade;
+import br.com.travelmate.facade.SeguroViagemFacade;
 import br.com.travelmate.model.Notificacaoemail;
 import br.com.travelmate.model.Produtos;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
@@ -66,5 +68,14 @@ public class UsuarioProdutoMB implements Serializable{
     public void retornoDialogNovo(SelectEvent event) {
         Notificacaoemail notificacaoemail = (Notificacaoemail) event.getObject();
         listaNotificacaoEmail.add(notificacaoemail);
+    }
+    
+    public String excluir(Notificacaoemail notificacaoemail) {
+        NotificacaoEmailFacade notificacaoEmailFacade= new NotificacaoEmailFacade();
+        notificacaoEmailFacade.excluir(notificacaoemail.getIdnotificacaoEmail());
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage("Excluído com Sucesso", ""));
+        gerarListaNotificacaoEmail();
+        return "";
     }
 }

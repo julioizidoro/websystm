@@ -13,41 +13,31 @@
                     <br></br> 
                     <legend id="iUsu2" ><b>Consulta de País</b></legend>
                     <p:outputLabel value="País:" for="pais" class="espacocobranca23" style="font-size: 11px;color: #fff"/>
-                    <p:selectOneMenu id="pais" value="#{fornecedorMB.pais}" style="width:25%;font-size: 10px" class="espacocampos" 
-                                     converter="PaisConverter" filter="true" filterMatchMode="startsWith" >
+                    <p:selectOneMenu id="pais" value="#{paisMB.pais}" style="width:25%;font-size: 10px" class="espacocampos" 
+                                     converter="PaisFornecedorConverter" filter="true" filterMatchMode="startsWith" >
                         <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
-                        <f:selectItems id="idpais" value="#{fornecedorMB.listaPais}" var="cpais" itemLabel="#{cpais.pais.nome}" itemValue="#{cpais.pais}"/>
-                        <f:attribute name="listaPais" value="#{fornecedorMB.listaPais}"/>
+                        <f:selectItems id="idpais" value="#{paisMB.listaPais}" var="cpais" itemLabel="#{cpais.nome}" itemValue="#{cpais}"/>
+                        <f:attribute name="listaPaisFornecedor" value="#{paisMB.listaPais}"/>
                         <p:ajax event="change" update=":consultapais:tabelacidade"/> 
                     </p:selectOneMenu>
-                    
+                    <p:commandButton id="bntnovopais" class="espacocobranca22botao" icon="ui-icon-plus" style="font-size:12px;margin-left: 30%" value="Novo Pais" action="#{paisMB.cadPais()}">
+                        <p:ajax event="dialogReturn" listener="#{paisMB.retornoDialogNovoPais}" process="@this" update=":consultapais:pais"/>                        
+                    </p:commandButton>
                     <legend id="iUsu2" ><b>Consulta de Cidade</b></legend>
-                    <p:commandButton id="bntnovopais" class="espacocobranca22botao" icon="ui-icon-plus" style="font-size:12px;" value="Novo Pais" action="#{fornecedorMB.cadPais()}"/>
-                    <p:commandButton id="bntnovocidade" class="espacocobranca21botao" icon="ui-icon-plus" style="font-size:12px;" value="Nova Cidade" action="#{fornecedorMB.cadCidade()}"/>
+                    <p:commandButton id="bntnovocidade" class="espacocobranca21botao" icon="ui-icon-plus" style="font-size:12px;margin-left:53%" value="Nova Cidade" action="#{paisMB.cadCidade()}">
+                        <p:ajax event="dialogReturn" listener="#{paisMB.retornoDialogNovoCidade}" process="@this" update=":consultapais:tabelacidade"/>                        
+                    </p:commandButton>
                     <p:commandButton id="bntvoltar" class="espacocobranca21botao" style="font-size:12px;" value="Voltar" action="#{fornecedorMB.voltar()}"/>
-                    <p:dataTable id="tabelacidade" var="cidade"  value="#{fornecedorMB.pais.cidadeList}" class="tabela5" 
-                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-                                 paginator="true" rows="10" style="margin-bottom:20px" >
+                    <p:dataTable id="tabelacidade" var="cidade"  value="#{paisMB.pais.cidadeList}" class="tabela5" 
+                                 scrollable="true" scrollHeight="460"  style="margin-bottom:20px" >
                         
                         <p:column headerText="Fornecedor"  >
                             <p:outputLabel value="#{cidade.nome}" />
                         </p:column>
                     </p:dataTable>
                     <br></br>
-                    <br></br>
                 </div>
             </h:form> 
-            <h:form id="formAdicionar">
-                <p:dialog id="dialog_adicionarFornecedor" header="Cadastrar Fornecedor" widgetVar="novofornecedor" width="30%" style="background:#d0e9c6;text-align: left;font-size: 10px;" >
-                    <br></br>
-                    <p:outputLabel value="Nome do Fornecedor:"/>
-                    <p:inputText value="#" style="width:70%;"/>
-                    <br></br>
-                    <p:commandButton id="bntconfirmar" action="#" icon="ui-icon-shuffle" class="espacocobranca24botao" style="font-size:11px;" value="Confirmar"   ajax="false"/>
-                    <p:commandButton id="bntcancelar" action="#" icon="ui-icon-close" class="espacocobranca24botao" style="font-size:11px;" value="Cancelar" oncomplete="novofornecedor.hide()"/>
-                    <br></br>
-                </p:dialog>
-            </h:form>
         </ui:define>
     </ui:composition>
 </html>

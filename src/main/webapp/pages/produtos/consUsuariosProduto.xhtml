@@ -32,7 +32,7 @@
                             <h:outputText value="#{usuarios.usuario.email}"/>
                         </p:column>
                         <p:column style="text-align: center;width: 45px">
-                            <p:commandButton title="Excluir" icon="ui-icon-trash"/>
+                            <p:commandButton title="Excluir" icon="ui-icon-trash" action="#{usuarioProdutoMB.excluir(usuarios)}" update="idtabelausuarios"/>
                         </p:column>
                     </p:dataTable>
                      
