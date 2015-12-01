@@ -28,23 +28,7 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "fornecedorcidade")
-@NamedQueries({
-    @NamedQuery(name = "Fornecedorcidade.findAll", query = "SELECT f FROM Fornecedorcidade f")})
 public class Fornecedorcidade implements Serializable {
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedorcidade")
-    private List<Ocurso> ocursoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedorcidade")
-    private List<Orcamentocurso> orcamentocursoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedorcidade")
-    private List<Coprodutos> coprodutosList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedorcidade")
-    private List<Valoresprogramasteens> valoresprogramasteensList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedorcidade")
-    private List<Valoreshighschool> valoreshighschoolList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedorcidade")
-    private List<Vendas> vendasList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedorcidade")
-    private List<Valoresseguro> valoresseguroList;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -146,60 +130,5 @@ public class Fornecedorcidade implements Serializable {
         return "br.com.travelmate.model.Fornecedorcidade[ idfornecedorcidade=" + idfornecedorcidade + " ]";
     }
 
-    public List<Valoresseguro> getValoresseguroList() {
-        return valoresseguroList;
-    }
-
-    public void setValoresseguroList(List<Valoresseguro> valoresseguroList) {
-        this.valoresseguroList = valoresseguroList;
-    }
-
-    public List<Valoreshighschool> getValoreshighschoolList() {
-        return valoreshighschoolList;
-    }
-
-    public void setValoreshighschoolList(List<Valoreshighschool> valoreshighschoolList) {
-        this.valoreshighschoolList = valoreshighschoolList;
-    }
-
-    public List<Vendas> getVendasList() {
-        return vendasList;
-    }
-
-    public void setVendasList(List<Vendas> vendasList) {
-        this.vendasList = vendasList;
-    }
-
-    public List<Valoresprogramasteens> getValoresprogramasteensList() {
-        return valoresprogramasteensList;
-    }
-
-    public void setValoresprogramasteensList(List<Valoresprogramasteens> valoresprogramasteensList) {
-        this.valoresprogramasteensList = valoresprogramasteensList;
-    }
-
-    public List<Coprodutos> getCoprodutosList() {
-        return coprodutosList;
-    }
-
-    public void setCoprodutosList(List<Coprodutos> coprodutosList) {
-        this.coprodutosList = coprodutosList;
-    }
-
-    public List<Orcamentocurso> getOrcamentocursoList() {
-        return orcamentocursoList;
-    }
-
-    public void setOrcamentocursoList(List<Orcamentocurso> orcamentocursoList) {
-        this.orcamentocursoList = orcamentocursoList;
-    }
-
-    public List<Ocurso> getOcursoList() {
-        return ocursoList;
-    }
-
-    public void setOcursoList(List<Ocurso> ocursoList) {
-        this.ocursoList = ocursoList;
-    }
     
 }
