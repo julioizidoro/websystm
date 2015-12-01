@@ -13,7 +13,6 @@ import br.com.travelmate.model.Idioma;
 import br.com.travelmate.model.Pais;
 import br.com.travelmate.model.Paisproduto;
 import br.com.travelmate.model.Valorcoprodutos;
-import br.com.travelmate.util.GerarListas;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -58,23 +57,22 @@ public class CoProdutosMB implements Serializable{
         session.removeAttribute("coprodutos");
         fornecedorCidadeIdioma =  (Fornecedorcidadeidioma) session.getAttribute("fornecedorcidadeidioma");
         session.removeAttribute("coprodutos");
+        session.removeAttribute("fornecedorciadeidioma");
         PaisProdutoFacade paisProdutoFacade = new PaisProdutoFacade();
         idProduto = usuarioLogadoMB.getParametrosprodutos().getCursos();
         listaPais = paisProdutoFacade.listar(idProduto);
         if(coprodutos==null){
             fornecedorCidadeIdioma = new Fornecedorcidadeidioma();
             pais = new Pais();
-            cidade = new Cidade();   
+            cidade = new Cidade();  
+            listarForCidadeIdioma();
         }else{
-            //fornecedorCidadeIdioma = coprodutos.getFornecedorcidade().get
+            idioma = fornecedorCidadeIdioma.getIdioma();
             pais = coprodutos.getFornecedorcidade().getCidade().getPais();
             cidade = coprodutos.getFornecedorcidade().getCidade();
-           // listarFornecedorCidade("0");
-            listarCoProdutos();
             listarForCidadeIdioma();
+            listarCoProdutos();
         }
-        
-        
     }
 
     public UsuarioLogadoMB getUsuarioLogadoMB() {

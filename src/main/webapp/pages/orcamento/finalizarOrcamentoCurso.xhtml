@@ -30,7 +30,8 @@
                         <br></br>
                         <h:panelGrid columns="6">
                             <p:inputText id="idpercentual2" value="#{finalizarOrcamentoCursoMB.formaPagamento.percentualEntrada2}" style="margin-left:10%">
-                                <p:ajax event="blur" listener="#{finalizarOrcamentoCursoMB.calcularParcelamento()}" update="idvalorentrada2, idvalorsaldo2, idpercentual2"/>
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                                <p:ajax event="blur" listener="#{finalizarOrcamentoCursoMB.calcularParcelamento()}" update="idparcelamentoantesviagem"/>
                             </p:inputText>
                             <p:inputText id="idvalorentrada2" value="#{finalizarOrcamentoCursoMB.formaPagamento.valorEntrada2}" style="margin-left: 2%;margin-left: 20%">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
@@ -61,10 +62,12 @@
                                 <f:selectItem itemLabel="22" itemValue="22"/> 
                                 <f:selectItem itemLabel="23" itemValue="23"/> 
                                 <f:selectItem itemLabel="24" itemValue="24"/> 
-                                <p:ajax event="blur" listener="#{finalizarOrcamentoCursoMB.calcularParcelamento()}" update="idvalorparcela2"/>
+                                <p:ajax listener="#{finalizarOrcamentoCursoMB.calcularParcelamento()}" update="idparcelamentoantesviagem"/>
                             </p:selectOneMenu>
                             <p:inputText id="idpersentualsaldo2" value="#{finalizarOrcamentoCursoMB.formaPagamento.percentualSaldo2}" style="margin-left: 2%;margin-left: 20%">
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 <p:ajax event="blur" listener="#{finalizarOrcamentoCursoMB.calcularParcelamento()}" update="idvalorsaldo2, idvalorparcela2"/>
+
                             </p:inputText>
                             <p:inputText id="idvalorsaldo2" value="#{finalizarOrcamentoCursoMB.formaPagamento.valorSaldo2}" style="margin-left: 2%;margin-left: 20%">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
@@ -86,6 +89,7 @@
                         <br></br>
                         <h:panelGrid columns="6">
                             <p:inputText id="idpercentualentrada3" value="#{finalizarOrcamentoCursoMB.formaPagamento.percentualEntrada3}" style="margin-left:10%">
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                 <p:ajax event="blur" listener="#{finalizarOrcamentoCursoMB.calcularParcelamento()}" update="idvalorentrada3, idvalorsaldo3, idpercentualentrada3"/>
                             </p:inputText>
                             <p:inputText id="idvalorentrada3" value="#{finalizarOrcamentoCursoMB.formaPagamento.valorEntrada3}" style="margin-left: 2%;margin-left: 20%">
@@ -105,10 +109,10 @@
                                 <f:selectItem itemLabel="10" itemValue="10"/> 
                                 <f:selectItem itemLabel="11" itemValue="11"/> 
                                 <f:selectItem itemLabel="12" itemValue="12"/>
-                                <p:ajax event="blur" listener="#{finalizarOrcamentoCursoMB.calcularParcelamento()}" update="idvalorparcela3"/>
+                                <p:ajax listener="#{finalizarOrcamentoCursoMB.calcularParcelamento()}" update="idvalorparcela3"/>
                              </p:selectOneMenu>
                             <p:inputText value="#{finalizarOrcamentoCursoMB.formaPagamento.percentualSaldo3}" style="margin-left: 2%;margin-left: 20%">
-                            
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                             </p:inputText>
                             <p:inputText id="idvalorsaldo3" value="#{finalizarOrcamentoCursoMB.formaPagamento.valorSaldo3}" style="margin-left: 2%;margin-left: 20%">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
@@ -150,7 +154,7 @@
                                 <f:selectItem itemLabel="22" itemValue="22"/> 
                                 <f:selectItem itemLabel="23" itemValue="23"/> 
                                 <f:selectItem itemLabel="24" itemValue="24"/> 
-                                 <p:ajax event="change" listener="#{finalizarOrcamentoCursoMB.calcularParcelamento()}" update="idvalorfinanciamento"/>
+                                 <p:ajax listener="#{finalizarOrcamentoCursoMB.calcularParcelamento()}" update="idvalorfinanciamento"/>
                             </p:selectOneMenu>
                             <p:inputText id="idvalorfinanciamento" value="#{finalizarOrcamentoCursoMB.formaPagamento.finaciamento}" style="margin-left: 2%;margin-left: 20%">
                                 <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />

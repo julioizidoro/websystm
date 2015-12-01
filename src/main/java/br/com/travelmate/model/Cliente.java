@@ -31,15 +31,7 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "cliente")
-@NamedQueries({
-    @NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c")})
 public class Cliente implements Serializable {
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
-    private List<Ocurso> ocursoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
-    private List<Orcamentocurso> orcamentocursoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
-    private List<Vendas> vendasList;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -548,30 +540,5 @@ public class Cliente implements Serializable {
     @Override
     public String toString() {
         return getNome();
-    }
-
-    public List<Vendas> getVendasList() {
-        return vendasList;
-    }
-
-    public void setVendasList(List<Vendas> vendasList) {
-        this.vendasList = vendasList;
-    }
-
-    public List<Orcamentocurso> getOrcamentocursoList() {
-        return orcamentocursoList;
-    }
-
-    public void setOrcamentocursoList(List<Orcamentocurso> orcamentocursoList) {
-        this.orcamentocursoList = orcamentocursoList;
-    }
-
-    public List<Ocurso> getOcursoList() {
-        return ocursoList;
-    }
-
-    public void setOcursoList(List<Ocurso> ocursoList) {
-        this.ocursoList = ocursoList;
-    }
-    
+    }    
 }

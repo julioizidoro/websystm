@@ -15,8 +15,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -28,8 +26,6 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "ocurso")
-@NamedQueries({
-    @NamedQuery(name = "Ocurso.findAll", query = "SELECT o FROM Ocurso o")})
 public class Ocurso implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -55,6 +51,8 @@ public class Ocurso implements Serializable {
     private Float totalmoedanacional;
     @Column(name = "desconto")
     private Float desconto;
+    @Column(name = "valorcambio")
+    private Float valorcambio;
     @Column(name = "dataorcamento")
     @Temporal(TemporalType.DATE)
     private Date dataorcamento;
@@ -64,9 +62,9 @@ public class Ocurso implements Serializable {
     @JoinColumn(name = "cliente_idcliente", referencedColumnName = "idcliente")
     @ManyToOne(optional = false)
     private Cliente cliente;
-    @JoinColumn(name = "fornecedorcidade_idfornecedorcidade", referencedColumnName = "idfornecedorcidade")
+    @JoinColumn(name = "fornecedorcidadeidioma_idfornecedorcidadeidioma", referencedColumnName = "idfornecedorcidadeidioma")
     @ManyToOne(optional = false)
-    private Fornecedorcidade fornecedorcidade;
+    private Fornecedorcidadeidioma fornecedorcidadeidioma;
     @JoinColumn(name = "idioma_ididioma", referencedColumnName = "ididioma")
     @ManyToOne(optional = false)
     private Idioma idioma;
@@ -76,6 +74,9 @@ public class Ocurso implements Serializable {
     @JoinColumn(name = "produtosOrcamento_idprodutosOrcamento", referencedColumnName = "idprodutosOrcamento")
     @ManyToOne(optional = false)
     private Produtosorcamento produtosorcamento;
+    @JoinColumn(name = "usuario_idusuario", referencedColumnName = "idusuario")
+    @ManyToOne(optional = false)
+    private Usuario usuario;
 
     public Ocurso() {
     }
@@ -172,13 +173,23 @@ public class Ocurso implements Serializable {
         this.cliente = cliente;
     }
 
-    public Fornecedorcidade getFornecedorcidade() {
-        return fornecedorcidade;
+    public Float getValorcambio() {
+        return valorcambio;
     }
 
-    public void setFornecedorcidade(Fornecedorcidade fornecedorcidade) {
-        this.fornecedorcidade = fornecedorcidade;
+    public void setValorcambio(Float valorcambio) {
+        this.valorcambio = valorcambio;
     }
+
+    public Fornecedorcidadeidioma getFornecedorcidadeidioma() {
+        return fornecedorcidadeidioma;
+    }
+
+    public void setFornecedorcidadeidioma(Fornecedorcidadeidioma fornecedorcidadeidioma) {
+        this.fornecedorcidadeidioma = fornecedorcidadeidioma;
+    }
+
+    
 
     public Idioma getIdioma() {
         return idioma;
@@ -202,6 +213,14 @@ public class Ocurso implements Serializable {
 
     public void setProdutosorcamento(Produtosorcamento produtosorcamento) {
         this.produtosorcamento = produtosorcamento;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     @Override

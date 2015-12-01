@@ -25,8 +25,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "acesso")
-@NamedQueries({
-    @NamedQuery(name = "Acesso.findAll", query = "SELECT a FROM Acesso a")})
 public class Acesso implements Serializable {
     @Column(name = "cursoalterarescola")
     private Integer cursoalterarescola;
@@ -248,8 +246,7 @@ public class Acesso implements Serializable {
     private Integer valorHighSchoolEditar;
     @Column(name = "valorHighSchoolSituacao")
     private Integer valorHighSchoolSituacao;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "acesso")
-    private List<Grupoacesso> grupoacessoList;
+    
 
     public Acesso() {
     }
@@ -1112,14 +1109,6 @@ public class Acesso implements Serializable {
 
     public void setValorHighSchoolSituacao(Integer valorHighSchoolSituacao) {
         this.valorHighSchoolSituacao = valorHighSchoolSituacao;
-    }
-
-    public List<Grupoacesso> getGrupoacessoList() {
-        return grupoacessoList;
-    }
-
-    public void setGrupoacessoList(List<Grupoacesso> grupoacessoList) {
-        this.grupoacessoList = grupoacessoList;
     }
 
     @Override

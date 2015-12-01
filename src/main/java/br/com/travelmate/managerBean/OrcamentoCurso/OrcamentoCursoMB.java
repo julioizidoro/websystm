@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package br.com.travelmate.managerBean.OrcamentoCurso;
 
 import br.com.travelmate.facade.PaisProdutoFacade;
@@ -20,7 +25,11 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 
-@Named
+/**
+ *
+ * @author Wolverine
+ */
+    @Named
 @ViewScoped
 public class OrcamentoCursoMB implements Serializable{
     
@@ -220,6 +229,19 @@ public class OrcamentoCursoMB implements Serializable{
                 totalRS = totalRS + filtrarEscolaMB.getFornecedorProdutosBean().getListaOpcionais().get(i).getValorOriginalRS();
              }
          }
+         for(int i=0;i<filtrarEscolaMB.getFornecedorProdutosBean().getListaTransfer().size();i++){
+             if (filtrarEscolaMB.getFornecedorProdutosBean().getListaTransfer().get(i).isSelecionado()){
+                total = total + filtrarEscolaMB.getFornecedorProdutosBean().getListaTransfer().get(i).getValorOrigianl();
+                totalRS = totalRS + filtrarEscolaMB.getFornecedorProdutosBean().getListaTransfer().get(i).getValorOrigianl() * filtrarEscolaMB.getFornecedorProdutosBean().getCambio().getValor();
+             }
+         }
+         
+         for(int i=0;i<filtrarEscolaMB.getFornecedorProdutosBean().getListaAcomodacoes().size();i++){
+             if (filtrarEscolaMB.getFornecedorProdutosBean().getListaAcomodacoes().get(i).isSelecionado()){
+                total = total + filtrarEscolaMB.getFornecedorProdutosBean().getListaAcomodacoes().get(i).getValorOrigianl();
+                totalRS = totalRS + filtrarEscolaMB.getFornecedorProdutosBean().getListaAcomodacoes().get(i).getValorOriginalRS();
+             }
+         }
          
          valorTotal = total;
          valorTotalRS = totalRS;
@@ -280,23 +302,38 @@ public class OrcamentoCursoMB implements Serializable{
         return "resultadoFiltroOrcamento";
     }
     
+    public void verificarAcomodacaoSelecionada(ProdutosOrcamentoBean produtosOrcamentoBean) {
+        if (produtosOrcamentoBean.isSelecionado()) {
+            List<ProdutosOrcamentoBean> listaAcomodacao = filtrarEscolaMB.getFornecedorProdutosBean().getListaAcomodacoes();
+            for (int i = 0; i < listaAcomodacao.size(); i++) {
+                if (listaAcomodacao.get(i).isSelecionado()) {
+                    if (!listaAcomodacao.get(i).equals(produtosOrcamentoBean)) {
+                        produtosOrcamentoBean.setSelecionado(false);
+                    }
+                }
+            }
+        } else {
+            calcularValorAcomodacao(produtosOrcamentoBean);
+        }
+    }
+    
     
     public void calcularValorAcomodacao(ProdutosOrcamentoBean produtosOrcamentoBean) {
-        Double numeroSemanas = produtosOrcamentoBean.getNumeroSemanas();
-        produtosOrcamentoBean.setValorOrigianl(numeroSemanas.floatValue() * produtosOrcamentoBean.getValorcoprodutos().getValororiginal());
-        produtosOrcamentoBean.setValorOriginalRS(numeroSemanas.floatValue() * (produtosOrcamentoBean.getValorcoprodutos().getValororiginal() * filtrarEscolaMB.getFornecedorProdutosBean().getCambio().getValor()));
-        calcularTotais();
-        valorTotal = valorTotal + produtosOrcamentoBean.getValorOrigianl();
-        valorTotalRS = valorTotalRS + produtosOrcamentoBean.getValorOriginalRS();
-
+        if (produtosOrcamentoBean.isSelecionado()) {
+            Double numeroSemanas = produtosOrcamentoBean.getNumeroSemanas();
+            produtosOrcamentoBean.setValorOrigianl(numeroSemanas.floatValue() * produtosOrcamentoBean.getValorcoprodutos().getValororiginal());
+            produtosOrcamentoBean.setValorOriginalRS(numeroSemanas.floatValue() * (produtosOrcamentoBean.getValorcoprodutos().getValororiginal() * filtrarEscolaMB.getFornecedorProdutosBean().getCambio().getValor()));
+            calcularTotais();
+        } else {
+            produtosOrcamentoBean.setValorOrigianl(0.0f);
+            produtosOrcamentoBean.setValorOriginalRS(0.0f);
+            produtosOrcamentoBean.setNumeroSemanas(0);
+            calcularTotais();
+        }
     }
     
-    public void calcularValorTransfer(ProdutosOrcamentoBean produtosOrcamentoBean){
-          calcularTotais();
-            valorTotal = valorTotal + produtosOrcamentoBean.getValorOrigianl();
-            valorTotalRS = valorTotalRS + produtosOrcamentoBean.getValorOriginalRS();
-       
-    }
+    
+    
     
     public String finalizarOrcamentoCurso(){
         gerarListaProdutosSelecionados();

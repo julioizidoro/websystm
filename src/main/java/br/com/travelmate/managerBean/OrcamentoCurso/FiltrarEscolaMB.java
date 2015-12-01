@@ -20,12 +20,10 @@
     import br.com.travelmate.model.Fornecedorferias;
     import br.com.travelmate.model.Idioma;
     import br.com.travelmate.model.Ocurso;
-    import br.com.travelmate.model.Pacotes;
     import br.com.travelmate.model.Pais;
     import br.com.travelmate.model.Paisproduto;
     import br.com.travelmate.model.Publicidade;
     import br.com.travelmate.model.Valorcoprodutos;
-    import br.com.travelmate.model.Vendas;
     import br.com.travelmate.util.Formatacao;
     import java.io.Serializable;
     import java.sql.SQLException;
@@ -88,11 +86,12 @@
                 cambio = new Cambio();
                 idioma = new Idioma();
                 ocurso.setCliente(new Cliente());
+                ocurso.setUsuario(usuarioLogadoMB.getUsuario());
                 selecionarCliente = false;
                 nomeBotao = "Pesquisar";
             } else {
-                pais = ocurso.getFornecedorcidade().getCidade().getPais();
-                cidade = ocurso.getFornecedorcidade().getCidade();
+                pais = ocurso.getFornecedorcidadeidioma().getFornecedorcidade().getCidade().getPais();
+                cidade = ocurso.getFornecedorcidadeidioma().getFornecedorcidade().getCidade();
                 idioma = ocurso.getIdioma();
                 selecionarCliente = true;
                 nomeBotao = "Editar";
@@ -235,9 +234,7 @@
         public String localizarFornecedorCidade(){
             String sql=null;
             if (ocurso.getIdocurso()!=null){
-                sql = "Select f from Fornecedorcidadeidioma f where f.idioma.ididioma=" + idioma.getIdidioma() + " and f.fornecedorcidade.cidade.idcidade=" +
-                    cidade.getIdcidade() + " and f.fornecedorcidade.produtos.idprodutos=" + usuarioLogadoMB.getParametrosprodutos().getCursos() +
-                        "f.fornecedorcidade.idfornecedorcidade=" + ocurso.getFornecedorcidade().getIdfornecedorcidade() + 
+                sql = "Select f from Fornecedorcidadeidioma f where f.idfornecedorcidadeidioma= " + ocurso.getFornecedorcidadeidioma().getIdfornecedorcidadeidioma() + 
                             " order by f.fornecedorcidade.peso desc";
             }else {
                 sql = "Select f from Fornecedorcidadeidioma f where f.idioma.ididioma=" + idioma.getIdidioma() + " and f.fornecedorcidade.cidade.idcidade=" +
@@ -274,7 +271,7 @@
             listaFornecedorProdutosBean = new ArrayList<FornecedorProdutosBean>();
             for(int i=0;i<listaFornecedorCidadeIdioma.size();i++){
                 FornecedorProdutosBean fpb = new FornecedorProdutosBean();
-                fpb.setFornecedorCidade(listaFornecedorCidadeIdioma.get(i).getFornecedorcidade());
+                fpb.setFornecedorcidadeidioma(listaFornecedorCidadeIdioma.get(i));
                 Ocurso nocurso = new Ocurso();
                 if (ocurso.getDataorcamento()==null){
                     nocurso.setDataorcamento(new Date());
@@ -283,7 +280,7 @@
                 }
                 nocurso.setDatainicio(ocurso.getDatainicio());
                 nocurso.setDatatermino(calcularDataTermino());
-                nocurso.setFornecedorcidade(listaFornecedorCidadeIdioma.get(i).getFornecedorcidade());
+                nocurso.setFornecedorcidadeidioma(listaFornecedorCidadeIdioma.get(i));
                 nocurso.setIdioma(ocurso.getIdioma());
                 nocurso.setNivelidioma(ocurso.getNivelidioma());
                 nocurso.setNumerosemanas(ocurso.getNumerosemanas());
@@ -298,7 +295,7 @@
                 fpb.setListaTransfer(gerarListaValorCoProdutos(fpb, "Transfer"));
                 fpb.setValorDesconto(0.0f);
                 fpb.setValorMoedaEstrangeira(valorMoedaEstrangeira(fpb));
-                fpb.setValorMoedaNacional(calcularValorMoedaNacioanl(fpb));
+                fpb.setValorMoedaNacional(fpb.getValorMoedaEstrangeira() * fpb.getCambio().getValor());
                 fpb.setSvalorDesconto(Formatacao.formatarFloatString(fpb.getValorDesconto()));
                 fpb.setSvalorMoedaEstrangeira(fpb.getCambio().getMoedas().getSigla() + " " +  Formatacao.formatarFloatString(fpb.getValorMoedaEstrangeira()));
                 fpb.setSvalorMoedaNacional("R$ " + Formatacao.formatarFloatString(fpb.getValorMoedaNacional()));
@@ -312,7 +309,7 @@
             Cambio cambio=null;
             Date data = new Date();
             while (cambio==null){
-                cambio = cambioFacade.consultarCambioMoeda(Formatacao.ConvercaoDataSql(data), fornecedorProdutosBean.getFornecedorCidade().getCidade().getPais().getMoedas().getIdmoedas());
+                cambio = cambioFacade.consultarCambioMoeda(Formatacao.ConvercaoDataSql(data), fornecedorProdutosBean.getFornecedorcidadeidioma().getFornecedorcidade().getCidade().getPais().getMoedas().getIdmoedas());
                 try {
                     data = Formatacao.SomarDiasDatas(data, -1);
                 } catch (Exception ex) {
@@ -325,24 +322,7 @@
             return null;
         }
 
-        public Float calcularValorMoedaNacioanl(FornecedorProdutosBean fornecedorProdutosBean){
-            float valorMoeda = 0.0f;
-             if (fornecedorProdutosBean.getListaObrigaroerios() != null) {
-                for (int i = 0; i < fornecedorProdutosBean.getListaObrigaroerios().size(); i++) {
-                    if (fornecedorProdutosBean.getListaObrigaroerios() != null) {
-                        valorMoeda = valorMoeda + (fornecedorProdutosBean.getListaObrigaroerios().get(i).getValorOriginalRS());
-                    }
-                }
-            }
-
-            if (fornecedorProdutosBean.getListaOpcionais() != null) {
-                for (int i = 0; i < fornecedorProdutosBean.getListaOpcionais().size(); i++) {
-                    valorMoeda = valorMoeda + (fornecedorProdutosBean.getListaObrigaroerios().get(i).getValorOriginalRS());
-                }
-                return valorMoeda;
-            }
-            return valorMoeda;
-        }
+        
 
         public Float valorMoedaEstrangeira(FornecedorProdutosBean fornecedorProdutosBean) {
             float total = 0;
@@ -369,10 +349,10 @@
             CoProdutosFacade coProdutosFacade = new CoProdutosFacade();
             String sql = null;
             if (tipo.equalsIgnoreCase("Obrigatorio")){
-                sql = "Select c from Coprodutos c where c.fornecedorcidade.idfornecedorcidade=" + fornecedorProdutosBean.getFornecedorCidade().getIdfornecedorcidade() + 
+                sql = "Select c from Coprodutos c where c.fornecedorcidade.idfornecedorcidade=" + fornecedorProdutosBean.getFornecedorcidadeidioma().getFornecedorcidade().getIdfornecedorcidade() + 
                     " and c.tipo='" + tipo + "' and c.produtosorcamento.idprodutosOrcamento=" + ocurso.getProdutosorcamento().getIdprodutosOrcamento();
             }else {
-                sql = "Select c from Coprodutos c where c.fornecedorcidade.idfornecedorcidade=" + fornecedorProdutosBean.getFornecedorCidade().getIdfornecedorcidade() + 
+                sql = "Select c from Coprodutos c where c.fornecedorcidade.idfornecedorcidade=" + fornecedorProdutosBean.getFornecedorcidadeidioma().getFornecedorcidade().getIdfornecedorcidade() + 
                     " and c.tipo='" + tipo + "'";
             }
 

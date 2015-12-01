@@ -10,11 +10,11 @@
         <ui:define name="corpo">
             <h:form id="orcamentoCurso">
                 <div id="centro"> <br></br>
-                    <img  src="#{orcamentoCursoMB.srcLogo(orcamentoCursoMB.filtrarEscolaMB.fornecedorProdutosBean.fornecedorCidade.fornecedor)}" /> 
+                    <img  src="#{orcamentoCursoMB.srcLogo(orcamentoCursoMB.filtrarEscolaMB.fornecedorProdutosBean.fornecedorcidadeidioma.fornecedorcidade.fornecedor)}" /> 
                     <h:panelGrid columns="1" style="width: 100%;margin-left:12%;margin-top: -8%">
-                        <h:outputText value="#{orcamentoCursoMB.filtrarEscolaMB.fornecedorProdutosBean.fornecedorCidade.produtos.descricao}" style="font-weight:bold;font-size: 20px;color: #fff" class="espacocobranca29"/>
-                        <p:commandLink value="#{orcamentoCursoMB.filtrarEscolaMB.fornecedorProdutosBean.fornecedorCidade.fornecedor.nome}" title="Descrição" style="font-weight:bold;font-size: 19px;color: #fff" class="espacocobranca29" oncomplete="PF('descricaoEscola').show()"/>
-                        <p:commandLink value="#{orcamentoCursoMB.filtrarEscolaMB.fornecedorProdutosBean.fornecedorCidade.cidade.nome}" title="Mapa" style="font-weight:bold;font-size: 13px;color: #fff" class="espacocobranca29"  oncomplete="PF('mapaEscola').show()"/>
+                        <h:outputText value="#{orcamentoCursoMB.filtrarEscolaMB.fornecedorProdutosBean.fornecedorcidadeidioma.fornecedorcidade.produtos.descricao}" style="font-weight:bold;font-size: 20px;color: #fff" class="espacocobranca29"/>
+                        <p:commandLink value="#{orcamentoCursoMB.filtrarEscolaMB.fornecedorProdutosBean.fornecedorcidadeidioma.fornecedorcidade.fornecedor.nome}" title="Descrição" style="font-weight:bold;font-size: 19px;color: #fff" class="espacocobranca29" oncomplete="PF('descricaoEscola').show()"/>
+                        <p:commandLink value="#{orcamentoCursoMB.filtrarEscolaMB.fornecedorProdutosBean.fornecedorcidadeidioma.fornecedorcidade.cidade.nome}" title="Mapa" style="font-weight:bold;font-size: 13px;color: #fff" class="espacocobranca29"  oncomplete="PF('mapaEscola').show()"/>
                     </h:panelGrid>
                     <p:commandButton id="bntvoltar" class="espacocobranca3botao" style="font-size:12px;margin-left:91%" value="Voltar"  action="#{orcamentoCursoMB.voltar()}" icon="ui-icon-arrowreturnthick-1-w" />
                     <br></br>
@@ -138,7 +138,7 @@
                     <p:dataScroller id="idtabelaAcomodacao" value="#{orcamentoCursoMB.filtrarEscolaMB.fornecedorProdutosBean.listaAcomodacoes}" var="acomodacao" chunkSize="10" style="background:#fff" >
                         <p:outputPanel style="text-align: left;width:100%">
                             <p:selectBooleanCheckbox  id="idcbacomodacao" value="#{acomodacao.selecionado}" >
-                                <p:ajax event="change" listener="#{orcamentoCursoMB.calcularValorAcomodacao(acomodacao)}" update="orcamentoCurso:tabelatotal"/>
+                                <p:ajax listener="#{orcamentoCursoMB.verificarAcomodacaoSelecionada(acomodacao)}" update="idcbacomodacao, orcamentoCurso:idtabelaAcomodacao, orcamentoCurso:tabelatotal"/>
                             </p:selectBooleanCheckbox>
                             <h:outputText value="#{acomodacao.valorcoprodutos.coprodutos.descricao}" style="font-weight:bold;font-size: 13px;width: 20%;margin-left: 1%"/>
                             <br></br> <br></br>
@@ -198,7 +198,7 @@
                                 <f:selectItem itemLabel="46" itemValue="46"/> 
                                 <f:selectItem itemLabel="47" itemValue="47"/> 
                                 <f:selectItem itemLabel="48" itemValue="48"/> 
-                                <p:ajax event="change" listener="#{orcamentoCursoMB.calcularValorAcomodacao(acomodacao)}" update="orcamentoCurso:idtabelaAcomodacao, orcamentoCurso:tabelatotal"/>
+                                <p:ajax listener="#{orcamentoCursoMB.calcularValorAcomodacao(acomodacao)}" update="orcamentoCurso:idtabelaAcomodacao, orcamentoCurso:tabelatotal"/>
                             </p:selectOneMenu>
 
                             <h:outputText value="#{orcamentoCursoMB.filtrarEscolaMB.fornecedorProdutosBean.cambio.moedas.sigla}" style="margin-left:4%" class="espacocobranca29"/>
@@ -220,7 +220,7 @@
                     <p:dataScroller id="idtabelaTransfer" value="#{orcamentoCursoMB.filtrarEscolaMB.fornecedorProdutosBean.listaTransfer}" var="transfer" chunkSize="10" style="background:#fff" >
                         <p:outputPanel style="text-align: left;width:100%">
                             <p:selectBooleanCheckbox value="#{transfer.selecionado}" >
-                                <p:ajax listener="#{orcamentoCursoMB.calcularValorTransfer(transfer)}" update="orcamentoCurso:tabelatotal"/>
+                                <p:ajax listener="#{orcamentoCursoMB.calcularTotais()}" update="orcamentoCurso:tabelatotal"/>
                             </p:selectBooleanCheckbox>
                             <h:outputText value="#{transfer.valorcoprodutos.coprodutos.descricao}" style="font-weight:bold;font-size: 13px;width: 20%;margin-left: 1%"/>
                             <br></br> 

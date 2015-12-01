@@ -41,6 +41,8 @@ import org.primefaces.context.RequestContext;
 public class FinalizarOrcamentoCursoMB implements Serializable{
     
     @Inject
+    private FiltrarEscolaMB FiltrarEscolaMB;
+    @Inject
     private UsuarioLogadoMB usuarioLogadoMB;
     private List<Ocrusoprodutos> listaProdutos;
     private Ocursoformapagamento formaPagamento;
@@ -54,8 +56,25 @@ public class FinalizarOrcamentoCursoMB implements Serializable{
         ocurso = (Ocurso) session.getAttribute("ocurso");
         session.removeAttribute("ocurso");
         session.removeAttribute("listaProdutos");
-        formaPagamento = new Ocursoformapagamento();
-        formaPagamento.setAVista(ocurso.getTotalmoedanacional());
+        if (formaPagamento==null){
+            formaPagamento = new Ocursoformapagamento();
+            formaPagamento.setNumeroParcelas02(0);
+            formaPagamento.setFinaciamento(0.0f);
+            formaPagamento.setNumeroParcelas03(0);
+            formaPagamento.setNumeroParcelasFinanciamento(0);
+            formaPagamento.setPercentualEntrada2(0.0);
+            formaPagamento.setPercentualEntrada3(0.0);
+            formaPagamento.setPercentualSaldo2(0.0);
+            formaPagamento.setPercentualSaldo3(0.0);
+            formaPagamento.setValorEntrada2(0.0f);
+            formaPagamento.setValorEntrada3(0.0f);
+            formaPagamento.setValorParcela02(0.0f);
+            formaPagamento.setValorParcela03(0.0f);
+            formaPagamento.setValorSaldo2(0.0f);
+            formaPagamento.setValorSaldo3(0.0f);
+            formaPagamento.setAVista(ocurso.getTotalmoedanacional());
+        }
+        
     }
 
     public List<Ocrusoprodutos> getListaProdutos() {
@@ -104,7 +123,7 @@ public class FinalizarOrcamentoCursoMB implements Serializable{
             valorSaldo = ocurso.getTotalmoedanacional() - valorEntrada;
             formaPagamento.setValorEntrada2(valorEntrada.floatValue());
             formaPagamento.setValorSaldo2(valorSaldo.floatValue());
-            formaPagamento.setPercentualEntrada2(saldo.doubleValue());
+            formaPagamento.setPercentualSaldo2(saldo);
         }
         valorSaldo = 0.0;
         if (formaPagamento.getNumeroParcelas02() > 0) {
@@ -167,6 +186,8 @@ public class FinalizarOrcamentoCursoMB implements Serializable{
         OCursoFacade orCursoFacade = new OCursoFacade();
         try {
             ocurso.setOcursoformapagamento(formaPagamento);
+            ocurso.setCambio(FiltrarEscolaMB.getFornecedorProdutosBean().getCambio());
+            ocurso.setFornecedorcidadeidioma(FiltrarEscolaMB.getFornecedorProdutosBean().getFornecedorcidadeidioma());
             ocurso = orCursoFacade.salvar(ocurso);
         } catch (SQLException ex) {
             Logger.getLogger(FinalizarOrcamentoCursoMB.class.getName()).log(Level.SEVERE, null, ex);
