@@ -29,70 +29,70 @@
                         <legend id="iUsu2" ><b>Relatório Fatura de Franquia</b></legend>
                         
                         <p:dataTable id="idtabelafaturafraquia" var="faturafranquia"  value="#{faturaFranquiaMB.listaFatura}" class="tabela" scrollable="true" scrollHeight="450" rowStyleClass="#{empty rowIx or rowIx mod 2 ne 0 ? 'even-row' : 'odd-row'}"
-                                          rowIndexVar="rowIx" style="margin-bottom:20px;">
+                                          rowIndexVar="rowIx" style="margin-bottom:20px;font-size: 10px;">
                                
-                                <p:column headerText="Mês Cobrança" style="width:60px;">
-                                    <h:outputText  value="#{faturaFranquiaMB.gerarMesPagamento(faturafranquia)}"/>
+                                <p:column headerText="Mês Cobrança" style="width:80px;">
+                                    <h:outputText  value="#{faturaFranquiaMB.gerarMesPagamento(faturafranquia)}" style="font-size: 9px" />
                                 </p:column>
                                 <p:column headerText="Cliente"  >
                                     <h:outputText value="#{faturafranquia.vendascomissao.vendas.cliente.nome}"/>
                                 </p:column>
-                                <p:column headerText="Data Venda"  style="width:55px;" >
+                                <p:column headerText="Data Venda"  style="width:58.5px;" >
                                     <h:outputText value="#{faturafranquia.vendascomissao.vendas.dataVenda}">
                                         <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                                     </h:outputText>
                                 </p:column>
-                                <p:column headerText="Programa/ Produto" style="width:70px;"  >
+                                <p:column headerText="Programa/ Produto" style="width:64px;"  >
                                     <h:outputText value="#{faturafranquia.vendascomissao.vendas.produtos.descricao}"/>
                                 </p:column>
-                                <p:column headerText="Fornecedor" style="width:70px;"  >
+                                <p:column headerText="Fornecedor" style="width:65px;"  >
                                     <h:outputText value="#{faturafranquia.vendascomissao.vendas.fornecedorcidade.fornecedor.nome}"/>
                                 </p:column> 
-                                <p:column headerText="Valor Bruto" style="width:55px;"  >
-                                    <h:outputText value="#{faturafranquia.vendascomissao.valorbruto}">
+                                <p:column headerText="Valor Bruto" style="width:52px;text-align: right"  >
+                                    <h:outputText value="#{faturafranquia.vendascomissao.valorbruto}" >
                                         <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                     </h:outputText>
                                 </p:column>
-                                <p:column headerText="Valor Comissionavel" style="width:60px;"  >
-                                    <h:outputText value="#{faturafranquia.vendascomissao.valorcomissionavel}">
+                                <p:column headerText="Valor Comissionavel" style="width:75.5px;text-align: right"  >
+                                    <h:outputText value="#{faturafranquia.vendascomissao.valorcomissionavel}" >
                                         <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                     </h:outputText>
                                 </p:column>
-                                <p:column headerText="% Comissão" style="width:50px;"  >
-                                    <h:outputText value="#{faturaFranquiaMB.calcularPercentualComissao(faturafranquia.vendascomissao)}"/>
+                                <p:column headerText="% Comissão" style="width:55px;text-align: right"  >
+                                    <h:outputText value="#{faturaFranquiaMB.calcularPercentualComissao(faturafranquia.vendascomissao)}" />
                                 </p:column> 
-                                <p:column headerText="Comissão" style="width:60px;"  >
-                                    <h:outputText value="#{faturafranquia.vendascomissao.comissaofraquia}">
+                                <p:column headerText="Comissão" style="width:56px;text-align: right"  >
+                                    <h:outputText value="#{faturafranquia.vendascomissao.comissaofraquia}" >
                                         <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                     </h:outputText>
                                 </p:column>
-                                <p:column headerText="Taxa TM" style="width:60px;"  >
-                                    <h:outputText value="#{faturafranquia.vendascomissao.taxatm}">
+                                <p:column headerText="Taxa TM" style="width:40px;text-align: right"  >
+                                    <h:outputText value="#{faturafranquia.vendascomissao.taxatm}"  >
                                         <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                     </h:outputText>
                                 </p:column>
-                                <p:column headerText="Deságio" style="width:60px;"  >
+                                <p:column headerText="Deságio" style="width:47px;text-align: right"  >
                                     <h:outputText value="#{faturafranquia.vendascomissao.desagio}">
                                         <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                     </h:outputText>
                                 </p:column>
-                                <p:column headerText="Desconto Matriz" style="width:60px;"  >
-                                    <h:outputText value="#{faturafranquia.vendascomissao.descontotm}">
+                                <p:column headerText="Desconto Matriz" style="width:55px;text-align: right"  >
+                                    <h:outputText value="#{faturafranquia.vendascomissao.descontotm}"  >
                                         <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                     </h:outputText>
                                 </p:column>
-                                <p:column headerText="Desconto Loja" style="width:60px;"  >
-                                    <h:outputText value="#{faturafranquia.vendascomissao.descontoloja}">
+                                <p:column headerText="Desconto Loja" style="width:55px;text-align: right"  >
+                                    <h:outputText value="#{faturafranquia.vendascomissao.descontoloja}" >
                                         <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                     </h:outputText>
                                 </p:column>
-                                <p:column headerText="Recebido na Matriz" style="width:60px;"  >
-                                    <h:outputText value="#{faturafranquia.pagomatriz}">
+                                <p:column headerText="Recebido Matriz" style="width:60px;text-align:  right"  >
+                                    <h:outputText value="#{faturafranquia.pagomatriz}" >
                                         <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                     </h:outputText>
                                 </p:column>
-                                 <p:column headerText="Total" style="width:60px;"  >
-                                     <h:outputText value="#{faturafranquia.liquidopagar}">
+                                 <p:column headerText="Total" style="width:45px;text-align: right"  >
+                                     <h:outputText value="#{faturafranquia.liquidopagar}" >
                                         <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                     </h:outputText>
                                 </p:column>
