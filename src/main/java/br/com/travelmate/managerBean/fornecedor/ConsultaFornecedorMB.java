@@ -23,6 +23,7 @@ public class ConsultaFornecedorMB implements Serializable{
     private List<Fornecedor> listaFornecedor;
     private Cidade cidade;
     private Produtos produto;
+    private Fornecedor fornecedor;
 
     public ConsultaFornecedorMB() {
         FacesContext fc = FacesContext.getCurrentInstance();
@@ -32,6 +33,7 @@ public class ConsultaFornecedorMB implements Serializable{
         session.removeAttribute("produtos");
         session.removeAttribute("cidade");
         gerarListaFornecedor();
+        fornecedor = new Fornecedor();
     }
 
     public Fornecedorcidade getFornecedorcidade() {
@@ -61,6 +63,15 @@ public class ConsultaFornecedorMB implements Serializable{
     public Produtos getProduto() {
         return produto;
     }
+
+    public Fornecedor getFornecedor() {
+        return fornecedor;
+    }
+
+    public void setFornecedor(Fornecedor fornecedor) {
+        this.fornecedor = fornecedor;
+    }
+    
 
     public void setProduto(Produtos produto) {
         this.produto = produto;
@@ -99,4 +110,14 @@ public class ConsultaFornecedorMB implements Serializable{
         return "";
     }
    
+    public String novo(){
+        RequestContext.getCurrentInstance().openDialog("cadFornecedor");
+        return "";
+    }
+    
+    public String salvar(){
+        FornecedorFacade fornecedorFacade = new FornecedorFacade();
+        fornecedor = fornecedorFacade.salvar(fornecedor);
+        return "";
+    }
 }

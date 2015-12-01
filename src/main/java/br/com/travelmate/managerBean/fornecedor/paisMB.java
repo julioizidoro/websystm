@@ -3,13 +3,13 @@ package br.com.travelmate.managerBean.fornecedor;
 import br.com.travelmate.facade.PaisFacade;
 import br.com.travelmate.model.Cidade;
 import br.com.travelmate.model.Pais;
-import br.com.travelmate.model.Paisproduto;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
@@ -26,6 +26,7 @@ public class paisMB implements Serializable{
     
     @PostConstruct
     public void init() {
+        pais = new Pais();
         gerarListaPais();
     }
 
@@ -66,6 +67,9 @@ public class paisMB implements Serializable{
             HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
             session.setAttribute("pais", pais);    
             RequestContext.getCurrentInstance().openDialog("cadCidade");
+        }else{
+            FacesMessage mensagem = new FacesMessage("Pais não selecionado! ", "campos obrigatorios não preenchidos.");
+            FacesContext.getCurrentInstance().addMessage(null, mensagem);
         }
         return "";
     }

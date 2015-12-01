@@ -14,8 +14,8 @@
             <title>Produtos</title>
                     <p:growl id="growl" showDetail="true" sticky="true"/>
                     <br></br> 
-                    <p:commandButton id="bntnovo" class="espacocobranca22botao" icon="ui-icon-plus" style="font-size:12px;" value="Novo Fornecedor" update=":formAdicionar:dialog_adicionarFornecedor" oncomplete="PF('novofornecedor').show()"/>
-                    <p:commandButton id="bntvoltar" class="espacocobranca21botao" style="font-size:12px;" value="Voltar" action="#{consultaFornecedorMB.cancelar()}"/>
+                    <p:commandButton id="bntnovo"  icon="ui-icon-plus" style="font-size:12px;margin-left:60%" value="Novo Fornecedor" update=":formAdicionar:dialog_adicionarFornecedor" oncomplete="PF('novofornecedor').show()"/>
+                    <p:commandButton id="bntvoltar"  style="font-size:12px;" value="Voltar" action="#{consultaFornecedorMB.cancelar()}"/>
                     <p:dataTable id="idtabelafornecedor" var="fornecedor"  value="#{consultaFornecedorMB.listaFornecedor}" class="tabela5" 
                                  scrollable="true" scrollHeight="340" style="margin-bottom:20px" >
                         <p:column headerText="Fornecedor"  >
@@ -32,13 +32,13 @@
                     <br></br>
             </h:form> 
             <h:form id="formAdicionar">
-                <p:dialog id="dialog_adicionarFornecedor" header="Cadastrar Fornecedor" widgetVar="novofornecedor" width="35%" style="background:#d0e9c6;text-align: left;font-size: 11px;" >
+                <p:dialog id="dialog_adicionarFornecedor" header="Cadastrar Fornecedor" widgetVar="novofornecedor" width="60%" style="background:#d0e9c6;text-align: left;font-size: 11px;" >
                     <br></br>
-                    <p:outputLabel value="Nome do Fornecedor:"/>
-                    <p:inputText value="#" style="width:70%;" class="espacocobranca29"/>
+                    <p:outputLabel value="Nome do Fornecedor:" style="margin-left: 2%"/>
+                    <p:inputText value="#{consultaFornecedorMB.fornecedor.nome}" style="width:94%;" class="espacocobranca29"/>
                     <br></br><br></br>
-                    <p:commandButton id="bntconfirmar" action="#" icon="ui-icon-shuffle" class="espacocobranca24botao" style="font-size:11px;" value="Confirmar"   ajax="false"/>
-                    <p:commandButton id="bntcancelar" action="#" icon="ui-icon-close" class="espacocobranca24botao" style="font-size:11px;" value="Cancelar" oncomplete="novofornecedor.hide()"/>
+                    <p:commandButton id="bntconfirmar" actionListener="#{consultaFornecedorMB.salvar()}" action="#{consultaFornecedorMB.gerarListaFornecedor()}" oncomplete="novofornecedor.hide()" update=":idtelaconsultafornecedor:idtabelafornecedor" icon="ui-icon-shuffle" class="espacocobranca24botao" style="font-size:11px;margin-left:48%" value="Confirmar"   ajax="false"/>
+                    <p:commandButton id="bntcancelar" icon="ui-icon-close" class="espacocobranca24botao" style="font-size:11px;" value="Cancelar" oncomplete="novofornecedor.hide()"/>
                     <br></br>
                 </p:dialog>
                

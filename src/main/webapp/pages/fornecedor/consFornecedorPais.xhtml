@@ -40,11 +40,10 @@
 
                     <br></br> <br></br>
                     <legend id="iUsu2" ><b>Consulta de Fornecedor</b></legend>
-                    <p:commandButton id="bntfornecedor" class="espacocobranca22botao" style="font-size:12px;" value="Fornecedores" action="#{fornecedorMB.consFornecedor(fornecedorMB.cidade, fornecedorMB.produto)}">
+                    <p:commandButton id="bntfornecedor" class="espacocobranca22botao" style="font-size:12px;margin-left:34.3%" value="Fornecedores" action="#{fornecedorMB.consFornecedor(fornecedorMB.cidade, fornecedorMB.produto)}">
                         <p:ajax event="dialogReturn" listener="#{fornecedorMB.retornoDialogNovo}" process="@this" update=":consultafornecedor:tabelafornecedorpais"/>                        
                     </p:commandButton>
                     <p:commandButton id="bntpais" class="espacocobranca21botao" style="font-size:12px;" value="País" action="#{fornecedorMB.consPais()}" />
-                    <p:commandButton id="bntfornecedorcidade" class="espacocobranca21botao" style="font-size:12px;" value="Fornecedor Cidade" action="#{fornecedorMB.cadFornecedorCidade()}" />
                     <p:commandButton id="bntfornecedorcomissao" class="espacocobranca21botao" style="font-size:12px;" value="Fornecedor Comissão" action="#{fornecedorMB.cadFornecedorComissao()}" /> 
 
                     <p:dataTable id="tabelafornecedorpais" var="fornecedorpais"  value="#{fornecedorMB.listaFornecedorCidade}" class="tabela5" 

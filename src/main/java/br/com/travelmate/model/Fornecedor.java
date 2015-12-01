@@ -31,6 +31,8 @@ import javax.validation.constraints.Size;
     @NamedQuery(name = "Fornecedor.findAll", query = "SELECT f FROM Fornecedor f")})
 public class Fornecedor implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedor")
+    private List<Fornecedorcomissaocurso> fornecedorcomissaocursoList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedor")
     private List<Orcamentocurso> orcamentocursoList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedor")
     private List<Programasteens> programasteensList;
@@ -332,6 +334,14 @@ public class Fornecedor implements Serializable {
 
     public void setOrcamentocursoList(List<Orcamentocurso> orcamentocursoList) {
         this.orcamentocursoList = orcamentocursoList;
+    }
+
+    public List<Fornecedorcomissaocurso> getFornecedorcomissaocursoList() {
+        return fornecedorcomissaocursoList;
+    }
+
+    public void setFornecedorcomissaocursoList(List<Fornecedorcomissaocurso> fornecedorcomissaocursoList) {
+        this.fornecedorcomissaocursoList = fornecedorcomissaocursoList;
     }
 
     
