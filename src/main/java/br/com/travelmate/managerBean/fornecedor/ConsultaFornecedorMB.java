@@ -9,14 +9,14 @@ import br.com.travelmate.model.Produtos;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 import org.primefaces.context.RequestContext;
 
 @Named
-@SessionScoped
+@ViewScoped
 public class ConsultaFornecedorMB implements Serializable{
     
     private Fornecedorcidade fornecedorcidade;

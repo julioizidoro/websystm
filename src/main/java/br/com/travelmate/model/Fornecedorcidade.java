@@ -49,6 +49,8 @@ public class Fornecedorcidade implements Serializable {
     @JoinColumn(name = "produtos_idprodutos", referencedColumnName = "idprodutos")
     @ManyToOne(optional = false)
     private Produtos produtos;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedorcidade")
+    private List<Valoresseguro> valoresseguroList;
 
     public Fornecedorcidade() {
     }
@@ -104,6 +106,16 @@ public class Fornecedorcidade implements Serializable {
     public void setProdutos(Produtos produtos) {
         this.produtos = produtos;
     }
+
+    public List<Valoresseguro> getValoresseguroList() {
+        return valoresseguroList;
+    }
+
+    public void setValoresseguroList(List<Valoresseguro> valoresseguroList) {
+        this.valoresseguroList = valoresseguroList;
+    }
+    
+    
 
     @Override
     public int hashCode() {

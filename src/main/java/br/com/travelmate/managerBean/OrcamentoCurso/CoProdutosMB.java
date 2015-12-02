@@ -248,4 +248,19 @@ public class CoProdutosMB implements Serializable{
         Coprodutos coproduto = (Coprodutos) event.getObject();
         listaCoProdutos.add(coproduto);
     }
+    
+    public void retornoDialogoEditar(){
+        listarCoProdutos();
+    }
+    
+    public String editar(Coprodutos coprodutos){
+        FacesContext fc = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+        session.setAttribute("fornecedorcidadeidioma", fornecedorCidadeIdioma);
+        session.setAttribute("coprodutos", coprodutos);
+        Map<String, Object> options = new HashMap<String, Object>();
+        options.put("contentWidth", 500);
+        RequestContext.getCurrentInstance().openDialog("cadProdutos", options, null);
+        return "";
+    }
 }

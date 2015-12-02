@@ -21,6 +21,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 
 /**
@@ -83,6 +84,8 @@ public class Seguroviagem implements Serializable {
     @JoinColumn(name = "vendas_idvendas", referencedColumnName = "idvendas")
     @ManyToOne(optional = false)
     private Vendas vendas;
+    @Transient
+    private Float valorMoedaEstrangeira; 
 
     public Seguroviagem() {
     }
@@ -218,6 +221,17 @@ public class Seguroviagem implements Serializable {
     public void setVendas(Vendas vendas) {
         this.vendas = vendas;
     }
+
+    public Float getValorMoedaEstrangeira() {
+        return valorMoedaEstrangeira;
+    }
+
+    public void setValorMoedaEstrangeira(Float valorMoedaEstrangeira) {
+        this.valorMoedaEstrangeira = valorMoedaEstrangeira;
+    }
+
+    
+    
 
     @Override
     public int hashCode() {

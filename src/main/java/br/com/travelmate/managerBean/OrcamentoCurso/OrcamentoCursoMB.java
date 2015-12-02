@@ -47,8 +47,8 @@ public class OrcamentoCursoMB implements Serializable{
     private float valorTotalRS;
     private Valoresseguro valorSeguro;
     private String acomodacaoHabiliada;
-   
-    
+    private String style="font-weight:bold;font-size: 13px;margin-left:0%;color:#1F8871";
+    private String styleDados="font-weight:bold;font-size: 13px;margin-left:0%;color:#fff";
 
     @PostConstruct
     public void init() {
@@ -172,6 +172,15 @@ public class OrcamentoCursoMB implements Serializable{
     public void setProdutosOrcamentoBean(ProdutosOrcamentoBean produtosOrcamentoBean) {
         this.produtosOrcamentoBean = produtosOrcamentoBean;
     }
+
+    public String getStyleDados() {
+        return styleDados;
+    }
+
+    public void setStyleDados(String styleDados) {
+        this.styleDados = styleDados;
+    }
+    
     
     
     
@@ -180,6 +189,14 @@ public class OrcamentoCursoMB implements Serializable{
             return acomodacaoHabiliada="false";
         }
         return acomodacaoHabiliada="true";
+    }
+
+    public String getStyle() {
+        return style;
+    }
+
+    public void setStyle(String style) {
+        this.style = style;
     }
     
    
@@ -295,7 +312,7 @@ public class OrcamentoCursoMB implements Serializable{
                 calcularTotais();
             }
         }
-        
+         valorSeguroMoedaEstrangeira();
     }
      
     public String voltar(){
@@ -387,5 +404,33 @@ public class OrcamentoCursoMB implements Serializable{
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
         session.setAttribute("listaProdutos", listaProdutos);
         session.setAttribute("ocurso", filtrarEscolaMB.getFornecedorProdutosBean().getOcurso());
+    }
+    
+    public String corDescricaoSeguro(){
+        if (seguroSelecionado){
+          style="font-weight:bold;font-size: 13px;margin-left:0%;color: #fff";
+        }else{
+            style="font-weight:bold;font-size: 13px;margin-left:0%;color: #1F8871";
+        }
+       
+        return style;
+    }
+    
+    public void valorSeguroMoedaEstrangeira() {
+        if (seguroviagem.getValorSeguro() != null) {
+            seguroviagem.setValorMoedaEstrangeira(seguroviagem.getValorSeguro() / filtrarEscolaMB.getFornecedorProdutosBean().getCambio().getValor());
+        }
+    }
+    
+    public String corDescricaoDadosSeguro(){
+        if (seguroSelecionado){
+          style="font-weight:bold;font-size: 13px;margin-left:0%;color: #fff";
+          styleDados="font-weight:bold;font-size: 15px;margin-left:0%;color: #fff";
+        }else{
+            style="font-weight:bold;font-size: 13px;margin-left:0%;color: #1F8871";
+            styleDados="font-weight:bold;font-size: 15px;margin-left:0%;color: #1F8871";
+        }
+       
+        return style;
     }
 }

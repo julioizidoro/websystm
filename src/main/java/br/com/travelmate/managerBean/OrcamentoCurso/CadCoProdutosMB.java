@@ -37,10 +37,18 @@ public class CadCoProdutosMB implements Serializable{
         FacesContext fc = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
         Fornecedorcidadeidioma fornecedorcidadeidioma = (Fornecedorcidadeidioma) session.getAttribute("fornecedorcidadeidioma");
+        coprodutos = (Coprodutos) session.getAttribute("coprodutos");
+        session.removeAttribute("coprodutos");
         fornecedorcidade =  fornecedorcidadeidioma.getFornecedorcidade();
         getUsuarioLogadoMB();
-        coprodutos = new Coprodutos();
-        prdutoOrcamento = new Produtosorcamento();
+        if(coprodutos==null){
+            coprodutos = new Coprodutos();
+            prdutoOrcamento = new Produtosorcamento();
+        }else{
+            gerarListaProdutosOrcamento();
+            prdutoOrcamento = coprodutos.getProdutosorcamento();
+        }
+        
         
      }
 
