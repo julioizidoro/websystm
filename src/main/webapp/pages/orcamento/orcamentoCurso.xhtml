@@ -263,6 +263,34 @@
                     </p:dataScroller>
                     </p:fieldset>
                     <br></br> <br></br>
+                    <p:fieldset legend="Descontos" toggleable="true" style="font-size: 12px;" >
+                        <p:dataScroller id="idtabelaDesconto" value="#{orcamentoCursoMB.filtrarEscolaMB.ocurso.ocursodescontoList}" var="desconto" chunkSize="10" style="background:#fff" >
+                        <p:outputPanel style="text-align: left;width:100%">
+                            <p:selectBooleanCheckbox value="#{desconto.selecionado}" >
+                            </p:selectBooleanCheckbox>
+                            <h:outputText value="#{desconto.produtosorcamento.descricao}" style="font-weight:bold;font-size: 13px;width: 20%;margin-left: 1%"/>
+                           
+                            <br></br> 
+                            <h:outputText value="Valor R$" style="font-weight:bold;font-size: 12px;margin-left:60%"/>
+                            <p:inputText id="valordesconto" value="#{desconto.valormoedanacional}"   style="font-size:11px;text-align: right;margin-left:1%;width: 10%" placeholder="Valor R$">
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                                <p:ajax event="blur" listener="#{orcamentoCursoMB.calcularTotais()}" update="orcamentoCurso:tabelatotal"/>
+                                <p:ajax event="blur" listener="#{orcamentoCursoMB.valorDesconto()}" update="valordescontomoedaEstrangueira"/>
+                            </p:inputText>
+                            <h:outputText value="Valor" style="font-weight:bold;font-size: 12px;margin-left:3%"/>
+                            <h:outputText value="#{orcamentoCursoMB.filtrarEscolaMB.fornecedorProdutosBean.cambio.moedas.sigla}" style="font-weight:bold;font-size: 12px;margin-left:0.3%"/>
+                            <p:inputText id="valordescontomoedaEstrangueira" value="#{desconto.valormoedanacional}"  style="font-size:11px;text-align: right;margin-left:1%;width:10%" placeholder="Valor">
+                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                                <p:ajax event="blur" listener="#{orcamentoCursoMB.calcularTotais()}" update="orcamentoCurso:tabelatotal"/>
+                                <p:ajax event="blur" listener="#{orcamentoCursoMB.valorDesconto()}" update="valordesconto"/>
+                            </p:inputText>
+                            <br></br><br></br>
+                            <div class="line_1"></div>
+                            <br></br>
+                        </p:outputPanel>
+                    </p:dataScroller>
+                    </p:fieldset>
+                    <br></br> <br></br>
                     <p:dataScroller id="tabelatotal" value="#" var="totais" chunkSize="10" style="background:#fff" >
                         <h:panelGrid columns="1" cellpadding="5" style="text-align: right;width:50%;margin-left: 50%"> 
                             <p:outputPanel style="text-align: right;width:100%" >

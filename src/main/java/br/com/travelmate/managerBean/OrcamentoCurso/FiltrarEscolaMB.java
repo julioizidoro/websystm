@@ -8,6 +8,7 @@
     import br.com.travelmate.facade.FornecedorFeriasFacade;
     import br.com.travelmate.facade.IdiomaFacade;
     import br.com.travelmate.facade.PaisProdutoFacade;
+import br.com.travelmate.facade.ProdutoOrcamentoFacade;
     import br.com.travelmate.facade.PublicidadeFacade;
     import br.com.travelmate.facade.ValorCoProdutosFacade;
     import br.com.travelmate.managerBean.UsuarioLogadoMB;
@@ -20,8 +21,10 @@
     import br.com.travelmate.model.Fornecedorferias;
     import br.com.travelmate.model.Idioma;
     import br.com.travelmate.model.Ocurso;
+import br.com.travelmate.model.Ocursodesconto;
     import br.com.travelmate.model.Pais;
     import br.com.travelmate.model.Paisproduto;
+import br.com.travelmate.model.Produtosorcamento;
     import br.com.travelmate.model.Publicidade;
     import br.com.travelmate.model.Valorcoprodutos;
     import br.com.travelmate.util.Formatacao;
@@ -80,15 +83,7 @@
             gerarListaIdioma();
             gerarListaPublicidade();
             if (ocurso == null) {
-                pais = new Pais();
-                cidade = new Cidade();
-                ocurso = new Ocurso();
-                cambio = new Cambio();
-                idioma = new Idioma();
-                ocurso.setCliente(new Cliente());
-                ocurso.setUsuario(usuarioLogadoMB.getUsuario());
-                selecionarCliente = false;
-                nomeBotao = "Pesquisar";
+                iniciarNovoOrcamento();
             } else {
                 pais = ocurso.getFornecedorcidadeidioma().getFornecedorcidade().getCidade().getPais();
                 cidade = ocurso.getFornecedorcidadeidioma().getFornecedorcidade().getCidade();
@@ -97,6 +92,31 @@
                 nomeBotao = "Editar";
                 cambio = ocurso.getCambio();
             }
+        }
+        
+        
+        public void iniciarNovoOrcamento() {
+            pais = new Pais();
+            cidade = new Cidade();
+            ocurso = new Ocurso();
+            cambio = new Cambio();
+            idioma = new Idioma();
+            ocurso.setCliente(new Cliente());
+            ocurso.setUsuario(usuarioLogadoMB.getUsuario());
+            selecionarCliente = false;
+            nomeBotao = "Pesquisar";
+            String sql = "Select p from Produtosorcamento p where p.tipo='S' order by p.descricao";
+            ProdutoOrcamentoFacade produtosOrcamentoFacade = new ProdutoOrcamentoFacade();
+            List<Produtosorcamento> listaProdutos;
+            listaProdutos = produtosOrcamentoFacade.listarProdutosOrcamentoSql(sql);
+            ocurso.setOcursodescontoList(new ArrayList<Ocursodesconto>());
+            for (int i=0; listaProdutos.size() > i; i++){
+                Ocursodesconto ocursodesconto = new Ocursodesconto();
+                ocursodesconto.setProdutosorcamento(listaProdutos.get(i));
+                ocursodesconto.setValormoedaestrangeira(0.0f);
+                ocursodesconto.setValormoedanacional(0.0f);
+                ocurso.getOcursodescontoList().add(ocursodesconto);
+             }
         }
 
 
@@ -287,6 +307,7 @@
                 nocurso.setProdutosorcamento(ocurso.getProdutosorcamento());
                 nocurso.setCliente(ocurso.getCliente());
                 nocurso.setDataorcamento(ocurso.getDataorcamento());
+                nocurso.setOcursodescontoList(ocurso.getOcursodescontoList());
                 fpb.setCambio(consultarCambio(fpb));
                 fpb.setOcurso(nocurso);
                 fpb.setListaObrigaroerios(gerarListaValorCoProdutos(fpb, "Obrigatorio"));

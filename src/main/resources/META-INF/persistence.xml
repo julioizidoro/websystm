@@ -70,6 +70,7 @@
     <class>br.com.travelmate.model.Notificacaoemail</class>
     <class>br.com.travelmate.model.Fornecedorcomissaocurso</class>
     <class>br.com.travelmate.model.Fornecedorcomissaocursoproduto</class>
+    <class>br.com.travelmate.model.Ocursodesconto</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
     <validation-mode>NONE</validation-mode>

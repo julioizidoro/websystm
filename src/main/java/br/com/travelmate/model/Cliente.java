@@ -32,6 +32,8 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "cliente")
 public class Cliente implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
+    private List<Ocurso> ocursoList;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -541,4 +543,12 @@ public class Cliente implements Serializable {
     public String toString() {
         return getNome();
     }    
+
+    public List<Ocurso> getOcursoList() {
+        return ocursoList;
+    }
+
+    public void setOcursoList(List<Ocurso> ocursoList) {
+        this.ocursoList = ocursoList;
+    }
 }

@@ -33,6 +33,8 @@ import javax.persistence.TemporalType;
 @NamedQueries({
     @NamedQuery(name = "Cambio.findAll", query = "SELECT c FROM Cambio c")})
 public class Cambio implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cambio")
+    private List<Ocurso> ocursoList;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -111,6 +113,14 @@ public class Cambio implements Serializable {
     @Override
     public String toString() {
         return "br.com.travelmate.model.Cambio[ idcambio=" + idcambio + " ]";
+    }
+
+    public List<Ocurso> getOcursoList() {
+        return ocursoList;
+    }
+
+    public void setOcursoList(List<Ocurso> ocursoList) {
+        this.ocursoList = ocursoList;
     }
 
     

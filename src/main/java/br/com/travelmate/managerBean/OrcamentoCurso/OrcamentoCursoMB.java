@@ -11,6 +11,7 @@ import br.com.travelmate.model.Cambio;
 import br.com.travelmate.model.Fornecedor;
 import br.com.travelmate.model.Fornecedorcidade;
 import br.com.travelmate.model.Ocrusoprodutos;
+import br.com.travelmate.model.Ocursodesconto;
 import br.com.travelmate.model.Paisproduto;
 import br.com.travelmate.model.Seguroviagem;
 import br.com.travelmate.model.Valoresseguro;
@@ -49,6 +50,7 @@ public class OrcamentoCursoMB implements Serializable{
     private String acomodacaoHabiliada;
     private String style="font-weight:bold;font-size: 13px;margin-left:0%;color:#1F8871";
     private String styleDados="font-weight:bold;font-size: 13px;margin-left:0%;color:#fff";
+    private List<Ocursodesconto> listadesconto;
 
     @PostConstruct
     public void init() {
@@ -181,6 +183,22 @@ public class OrcamentoCursoMB implements Serializable{
         this.styleDados = styleDados;
     }
     
+    public String getStyle() {
+        return style;
+    }
+
+    public void setStyle(String style) {
+        this.style = style;
+    }
+    
+
+    public List<Ocursodesconto> getListadesconto() {
+        return listadesconto;
+    }
+
+    public void setListadesconto(List<Ocursodesconto> listadesconto) {
+        this.listadesconto = listadesconto;
+    }
     
     
     
@@ -191,16 +209,7 @@ public class OrcamentoCursoMB implements Serializable{
         return acomodacaoHabiliada="true";
     }
 
-    public String getStyle() {
-        return style;
-    }
-
-    public void setStyle(String style) {
-        this.style = style;
-    }
-    
    
-    
      public String srcLogo(Fornecedor fornecedor){
         String logo ="";
         if (fornecedor!=null){
@@ -424,7 +433,6 @@ public class OrcamentoCursoMB implements Serializable{
     
     public String corDescricaoDadosSeguro(){
         if (seguroSelecionado){
-          style="font-weight:bold;font-size: 13px;margin-left:0%;color: #fff";
           styleDados="font-weight:bold;font-size: 15px;margin-left:0%;color: #fff";
         }else{
             style="font-weight:bold;font-size: 13px;margin-left:0%;color: #1F8871";
@@ -432,5 +440,15 @@ public class OrcamentoCursoMB implements Serializable{
         }
        
         return style;
+    }
+    
+    public void valorDesconto() {
+        for (int i = 0; i < filtrarEscolaMB.getOcurso().getOcursodescontoList().size(); i++) {
+            if (filtrarEscolaMB.getOcurso().getOcursodescontoList().get(i).getValormoedanacional() != null) {
+                filtrarEscolaMB.getOcurso().getOcursodescontoList().get(i).setValormoedaestrangeira(filtrarEscolaMB.getOcurso().getOcursodescontoList().get(i).getValormoedanacional() * filtrarEscolaMB.getFornecedorProdutosBean().getCambio().getValor());
+            }else{
+                filtrarEscolaMB.getOcurso().getOcursodescontoList().get(i).setValormoedanacional(filtrarEscolaMB.getOcurso().getOcursodescontoList().get(i).getValormoedaestrangeira() / filtrarEscolaMB.getFornecedorProdutosBean().getCambio().getValor());
+            }
+        }
     }
 }

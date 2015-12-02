@@ -37,6 +37,14 @@ public class ProdutoOrcamentoDao {
         return q.getResultList();
     }
     
+    public List<Produtosorcamento> listarProdutosOrcamentoSql(String sql) throws SQLException{
+        manager = ConectionFactory.getConnection();
+        manager.getTransaction().begin();
+        Query q = manager.createQuery(sql);
+        manager.getTransaction().commit();
+        return q.getResultList();
+    }
+    
     public Produtosorcamento consultar(int idProdutoOrcamento) throws SQLException{
         manager = ConectionFactory.getConnection();
         manager.getTransaction().begin();

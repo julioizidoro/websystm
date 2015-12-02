@@ -26,6 +26,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "acesso")
 public class Acesso implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "acesso")
+    private List<Grupoacesso> grupoacessoList;
     @Column(name = "cursoalterarescola")
     private Integer cursoalterarescola;
     private static final long serialVersionUID = 1L;
@@ -1142,6 +1144,14 @@ public class Acesso implements Serializable {
 
     public void setCursoalterarescola(Integer cursoalterarescola) {
         this.cursoalterarescola = cursoalterarescola;
+    }
+
+    public List<Grupoacesso> getGrupoacessoList() {
+        return grupoacessoList;
+    }
+
+    public void setGrupoacessoList(List<Grupoacesso> grupoacessoList) {
+        this.grupoacessoList = grupoacessoList;
     }
     
 }

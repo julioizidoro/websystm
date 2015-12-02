@@ -7,7 +7,9 @@ package br.com.travelmate.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,6 +17,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,6 +30,7 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "ocurso")
 public class Ocurso implements Serializable {
+    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -77,6 +81,8 @@ public class Ocurso implements Serializable {
     @JoinColumn(name = "usuario_idusuario", referencedColumnName = "idusuario")
     @ManyToOne(optional = false)
     private Usuario usuario;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ocurso")
+    private List<Ocursodesconto> ocursodescontoList;
 
     public Ocurso() {
     }
@@ -246,6 +252,14 @@ public class Ocurso implements Serializable {
     @Override
     public String toString() {
         return "br.com.travelmate.model.Ocurso[ idocurso=" + idocurso + " ]";
+    }
+
+    public List<Ocursodesconto> getOcursodescontoList() {
+        return ocursodescontoList;
+    }
+
+    public void setOcursodescontoList(List<Ocursodesconto> ocursodescontoList) {
+        this.ocursodescontoList = ocursodescontoList;
     }
     
 }

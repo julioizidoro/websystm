@@ -38,9 +38,6 @@ public class FornecedorProdutosBean {
     public void setFornecedorcidadeidioma(Fornecedorcidadeidioma fornecedorcidadeidioma) {
         this.fornecedorcidadeidioma = fornecedorcidadeidioma;
     }
-        
-
-   
     
     public Float getValorMoedaEstrangeira() {
         return valorMoedaEstrangeira;
@@ -138,7 +135,6 @@ public class FornecedorProdutosBean {
         this.listaTransfer = listaTransfer;
     }
 
-    
     
     
     

@@ -10,10 +10,7 @@ import java.sql.SQLException;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-/**
- *
- * @author Wolverine
- */
+
 public class PacotesPassagemDao {
     
     private EntityManager manager;

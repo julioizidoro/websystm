@@ -69,6 +69,7 @@ public class Grupoacesso implements Serializable {
         this.descricao = descricao;
     }
 
+    
     public Acesso getAcesso() {
         return acesso;
     }

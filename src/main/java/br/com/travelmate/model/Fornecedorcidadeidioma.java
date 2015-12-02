@@ -6,7 +6,9 @@
 package br.com.travelmate.model;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,6 +18,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -27,6 +30,8 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "Fornecedorcidadeidioma.findAll", query = "SELECT f FROM Fornecedorcidadeidioma f")})
 public class Fornecedorcidadeidioma implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fornecedorcidadeidioma")
+    private List<Ocurso> ocursoList;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -94,6 +99,14 @@ public class Fornecedorcidadeidioma implements Serializable {
     @Override
     public String toString() {
         return "br.com.travelmate.model.Fornecedorcidadeidioma[ idfornecedorcidadeidioma=" + idfornecedorcidadeidioma + " ]";
+    }
+
+    public List<Ocurso> getOcursoList() {
+        return ocursoList;
+    }
+
+    public void setOcursoList(List<Ocurso> ocursoList) {
+        this.ocursoList = ocursoList;
     }
     
 }

@@ -10,10 +10,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-/**
- *
- * @author Wolverine
- */
+
 public class PlanoContaDao {
     
     private EntityManager manager;
