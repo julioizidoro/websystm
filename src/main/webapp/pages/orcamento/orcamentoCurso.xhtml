@@ -30,6 +30,7 @@
                                 </p:outputPanel>
                             </h:panelGrid>
                         </p:outputPanel>
+                        <br></br>
                         <p:outputPanel style="text-align: right;width:100%;margin-top: -3%" >
                             <h:panelGrid columns="1" cellpadding="5" style="text-align: right;width:100%">
                                 <p:commandLink id="valorPromocional" value="#{orcamentoCursoMB.retornarValorString(obrigatorio.valorOrigianl, orcamentoCursoMB.filtrarEscolaMB.fornecedorProdutosBean.cambio.moedas.sigla)}"  style="font-weight:bold;font-size:14px;text-align: right;"/>
@@ -63,6 +64,7 @@
                                 </p:outputPanel>
                             </h:panelGrid>
                         </p:outputPanel>
+                         <br></br>
                         <p:outputPanel style="text-align: right;width:100%;margin-top: -3%" >
                             <h:panelGrid id="valoresOpcional" columns="1" cellpadding="5" style="text-align: right;width:100%">
                                 <p:commandLink id="valorPromocional" value="#{orcamentoCursoMB.retornarValorString(opcional.valorOrigianl, orcamentoCursoMB.filtrarEscolaMB.fornecedorProdutosBean.cambio.moedas.sigla)}"  style="font-weight:bold;font-size:14px;text-align: right;"/>
@@ -156,7 +158,7 @@
                             <p:ajax event="blur" listener="#{orcamentoCursoMB.calcularTotais()}" update="orcamentoCurso:tabelatotal"/>
                              <p:ajax event="blur" listener="#{orcamentoCursoMB.corDescricaoSeguro()}" update="idsiglacambio, idnumerosemanas, idvirgula"/>
                         </p:inputMask>
-                        <p:outputLabel value="Valor do Seguro:" for="valorseguro" style="font-weight:bold;font-size: 13px;margin-left:5%"/>
+                        <p:outputLabel value="Valor do Seguro:" for="valorseguro" style="font-weight:bold;font-size: 13px;margin-left:13.5%"/>
                         <p:inputText id="valorseguro" value="#{orcamentoCursoMB.seguroviagem.valorSeguro}" style="width:11%;margin-left:1%" maxlength="45" readonly="true" class="loginButtonr" disabled="#{orcamentoCursoMB.habilitarSeguro()}">
                             <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                         </p:inputText>

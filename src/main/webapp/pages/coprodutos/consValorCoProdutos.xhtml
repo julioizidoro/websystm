@@ -18,8 +18,7 @@
                      <br></br> <br></br>
                     
                     <p:dataTable id="tabelavalorprodutos" var="valorproduto"  value="#{valorCoProdutosMB.listaValores}" class="tabela" 
-                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-                                 paginator="true" rows="10" style="margin-bottom:20px" >
+                                 scrollable="true" scrollHeight="400" style="margin-bottom:20px" >
                         
                         
                         <p:column headerText="Data Início"  style="width:70px;" >

@@ -23,30 +23,30 @@
                             <p:inputText id="idemail" style="width:30%;" maxlength="100"  value="#{filtrarEscolaMB.ocurso.cliente.email}"  class="espacocobranca29"/>
                            
                             <br></br><br></br>
-                            <p:outputLabel value="Fone Residencial:" for="idfoneresidencial" style="margin-left:2%"/>
-                            <p:inputText id="idfoneresidencial" style="width:11%;" maxlength="100"  value="#{filtrarEscolaMB.ocurso.cliente.foneResidencial}"  class="espacocobranca29"/>
+                            <p:outputLabel value="Fone Residencial:" for="idfoneresidencial" style="margin-left:3%"/>
+                            <p:inputText id="idfoneresidencial" style="width:13%;" maxlength="100"  value="#{filtrarEscolaMB.ocurso.cliente.foneResidencial}"  class="espacocobranca29"/>
                             <p:outputLabel value="Fone Celular:" for="idfonecelular" style="margin-left: 4%"/>
                             <p:inputText id="idfonecelular" style="width:11%;" maxlength="100"  value="#{filtrarEscolaMB.ocurso.cliente.foneCelular}"  class="espacocobranca29"/>
-                            <p:outputLabel value="Como conheceu a TravelMate?" for="idconheceutravel" style="margin-left: 4%"/>
-                            <p:selectOneMenu class="espacocobranca29" id="idconheceutravel"  value="#{filtrarEscolaMB.ocurso.cliente.publicidade}"  style="width:21.3%;" 
+                            <p:outputLabel value="Como conheceu a TravelMate?" for="idconheceutravel" style="margin-left:5.7%"/>
+                            <p:selectOneMenu class="espacocobranca29" id="idconheceutravel"  value="#{filtrarEscolaMB.ocurso.cliente.publicidade}"  style="width:22%;" 
                                              converter="PublicidadeConverter">
                                 <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"  />
                                 <f:selectItems id="idlistaconheceutravel" value="#{filtrarEscolaMB.listaPublicidades}" var="publicidade" itemLabel="#{publicidade.descricao}" itemValue="#{publicidade}"/>
                             </p:selectOneMenu>
                             <br></br><br></br><br></br>
-                            <p:outputLabel value="Data de Nascimento:" for="datanasci" />
+                            <p:outputLabel value="Data de Nascimento:" for="datanasci" style="margin-left:1.5%"/>
                             <p:inputMask value="#{filtrarEscolaMB.ocurso.cliente.dataNascimento}" mask="99/99/9999"  id="datanasci" class="espacocobranca29" style="width:13%;">
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </p:inputMask>
-                            <p:outputLabel value="Idioma:" for="idioma" class="espacocobranca20"/>
-                            <p:selectOneMenu class="espacocobranca29" id="idioma"  value="#{filtrarEscolaMB.idioma}"  style="width:24%;"
+                            <p:outputLabel value="Idioma:" for="idioma" style="margin-left:11%"/>
+                            <p:selectOneMenu class="espacocobranca29" id="idioma"  value="#{filtrarEscolaMB.idioma}"  style="width:20%;"
                                              converter="IdiomaConverter">
                                 <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"  />
                                 <f:selectItems id="ididioma" value="#{filtrarEscolaMB.listaIdiomas}" var="idiomacurso" itemLabel="#{idiomacurso.descricao}" itemValue="#{idiomacurso}"/>
                                 <f:attribute name="listaIdiomas" value="#{filtrarEscolaMB.listaIdiomas}"/>
                                 <p:ajax event="change"/> 
                             </p:selectOneMenu>
-                            <p:outputLabel value="Sexo:" for="sexo" class="espacocobranca20"/>
+                            <p:outputLabel value="Sexo:" for="sexo" style="margin-left:4%"/>
                             <p:selectOneMenu class="espacocobranca29" id="sexo"  value="#{filtrarEscolaMB.ocurso.cliente.sexo}"  style="width:22%;">
                                 <f:selectItem itemLabel="Selecione" itemValue="selecione" noSelectionOption="true"  />
                                 <f:selectItem itemLabel="Feminino" itemValue="Feminino"/> 
@@ -54,8 +54,8 @@
                             </p:selectOneMenu>
                             <br></br><br></br><br></br>
 
-                            <p:outputLabel value="Pais:" for="pais" class="espacocobranca11"/>
-                            <p:selectOneMenu id="pais" value="#{filtrarEscolaMB.pais}" style="width:18%;" class="espacocobranca29" 
+                            <p:outputLabel value="Pais:" for="pais" style="margin-left:9.3%"/>
+                            <p:selectOneMenu id="pais" value="#{filtrarEscolaMB.pais}" style="width:20%;" class="espacocobranca29" 
                                              converter="PaisConverter" filter="true" filterMatchMode="startsWith" panelStyle="width:180px" >
                                 <f:selectItem itemLabel="País" itemValue="0" noSelectionOption="true"/> 
                                 <f:selectItems id="idpais" value="#{filtrarEscolaMB.listaPais}" var="cursopais" itemLabel="#{cursopais.pais.nome}" itemValue="#{cursopais.pais}"/>
@@ -63,7 +63,7 @@
                                 <p:ajax event="change" update="cidade"/> 
                             </p:selectOneMenu>
                             <p:outputLabel value="Cidade:" for="cidade" class="espacocobranca28" />
-                            <p:selectOneMenu id="cidade" value="#{filtrarEscolaMB.cidade}" style="width:21%;" class="espacocobranca29" 
+                            <p:selectOneMenu id="cidade" value="#{filtrarEscolaMB.cidade}" style="width:20%;" class="espacocobranca29" 
                                              converter="CidadeConverter" filter="true" filterMatchMode="startsWith">
                                 <f:selectItem itemLabel="Cidade" itemValue="0" noSelectionOption="true"/> 
                                 <f:selectItems id="idcidade2" value="#{filtrarEscolaMB.pais.cidadeList}" var="cursocidade" itemLabel="#{cursocidade.nome}" itemValue="#{cursocidade}"/>
@@ -78,8 +78,8 @@
                             </p:selectOneMenu>
                             <br></br><br></br><br></br>
 
-                            <p:outputLabel value="Nível:" for="nivel" class="espacocobranca41"/> 
-                            <p:selectOneMenu class="espacocobranca29" id="nivel"  value="#{filtrarEscolaMB.ocurso.nivelidioma}"  style="width:20%;">
+                            <p:outputLabel value="Nível:" for="nivel" style="margin-left:8.5%"/> 
+                            <p:selectOneMenu class="espacocobranca29" id="nivel"  value="#{filtrarEscolaMB.ocurso.nivelidioma}"  style="width:23%;">
                                 <f:selectItem itemLabel="Selecione" itemValue="selecione" noSelectionOption="true"  />
                                 <f:selectItem itemLabel="Básico" itemValue="Básico"/> 
                                 <f:selectItem itemLabel="Pré-Intermediário" itemValue="Pré-Intermediário"/> 
@@ -88,35 +88,15 @@
                                 <f:selectItem itemLabel="Alto" itemValue="Alto"/> 
                                 <f:selectItem itemLabel="Fluente" itemValue="Fluente"/> 
                             </p:selectOneMenu>
-                            <p:outputLabel value="Data de Início:" for="datainicio"  class="espacocobranca15"/>
+                            <p:outputLabel value="Data de Início:" for="datainicio"  style="margin-left: 9%"/>
                             <p:calendar id="datainicio" value="#{filtrarEscolaMB.ocurso.datainicio}"  locale="pt"  pattern="dd/MM/yyyy"  mask="true"  maxlength="15" class="espacocobranca29" >
                                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                             </p:calendar>
-                            <p:outputLabel value="Nº Semanas:" for="nsemanas" class="espacocobranca14" />
+                            <p:outputLabel value="Nº Semanas:" for="nsemanas" style="margin-left:7.8%" />
                             <p:inputText id="nsemanas" style="width:10.7%;" maxlength="100"  value="#{filtrarEscolaMB.ocurso.numerosemanas}"  class="espacocobranca29"/>
-                            <br></br><br></br>
-                                <p:accordionPanel style="margin-left:8%;width: 87%" activeIndex="-1">
-                                    <p:tab titleStyle="font-size:10px;" title="Câmbio">
-                                        <h:panelGrid columns="4">
-                                            <p:outputLabel value="Câmbio:" for="idcambio" class="espacocobranca28"/>
-                                            <p:selectOneMenu class="espacocobranca29" id="idcambio"  value="#{filtrarEscolaMB.cambio}"  style="width:90px;margin-left: 10%"
-                                                             converter="CambioConverter">
-                                                <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"  />
-                                                <f:selectItems id="idSiglaCambio" value="#{usuarioLogadoMB.listaCambio}" var="cambio" itemLabel="#{cambio.moedas.sigla}" itemValue="#{cambio}"/>
-                                                <f:attribute name="listaCambio" value="#{usuarioLogadoMB.listaCambio}"/>
-                                                <p:ajax event="change" update="idvalorcambio" />
-                                            </p:selectOneMenu>
-                                            <p:inputText id="idvalorcambio" value="#{filtrarEscolaMB.cambio.valor}" style="width:80%;margin-left:7%" >
-                                                <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
-                                            </p:inputText> 
-                                            <h:commandLink action="#{filtrarEscolaMB.editarcambio()}"  title="Editar Câmbio">  
-                                                <img id="editarcambio" class="" src="../../resources/img/cambio_1.png"/>
-                                            </h:commandLink>
-                                        </h:panelGrid>
-                                    </p:tab>
-                                </p:accordionPanel>
-                            <br></br>
-                                <p:commandButton style="margin-left:85%;" value="Pesquisar" icon="ui-icon-search" action="#{filtrarEscolaMB.localizarFornecedorCidade()}" />
+                            
+                            <br></br> <br></br>
+                                <p:commandButton style="margin-left:85.7%;" value="Pesquisar" icon="ui-icon-search" action="#{filtrarEscolaMB.localizarFornecedorCidade()}" />
                           <br></br><br></br>
                         </p:tab>
                     </p:accordionPanel>
