@@ -269,6 +269,13 @@ public class OrcamentoCursoMB implements Serializable{
              }
          }
          
+        for(int i=0;i<filtrarEscolaMB.getOcurso().getOcursodescontoList().size();i++){
+            if (filtrarEscolaMB.getOcurso().getOcursodescontoList().get(i).isSelecionado()){
+               total = total - filtrarEscolaMB.getOcurso().getOcursodescontoList().get(i).getValormoedaestrangeira();
+               totalRS = totalRS - filtrarEscolaMB.getOcurso().getOcursodescontoList().get(i).getValormoedanacional();
+            }
+        }
+         
          valorTotal = total;
          valorTotalRS = totalRS;
      }
@@ -445,9 +452,10 @@ public class OrcamentoCursoMB implements Serializable{
     public void valorDesconto() {
         for (int i = 0; i < filtrarEscolaMB.getOcurso().getOcursodescontoList().size(); i++) {
             if (filtrarEscolaMB.getOcurso().getOcursodescontoList().get(i).getValormoedanacional() != null) {
-                filtrarEscolaMB.getOcurso().getOcursodescontoList().get(i).setValormoedaestrangeira(filtrarEscolaMB.getOcurso().getOcursodescontoList().get(i).getValormoedanacional() * filtrarEscolaMB.getFornecedorProdutosBean().getCambio().getValor());
-            }else{
-                filtrarEscolaMB.getOcurso().getOcursodescontoList().get(i).setValormoedanacional(filtrarEscolaMB.getOcurso().getOcursodescontoList().get(i).getValormoedaestrangeira() / filtrarEscolaMB.getFornecedorProdutosBean().getCambio().getValor());
+                filtrarEscolaMB.getOcurso().getOcursodescontoList().get(i).setValormoedaestrangeira(filtrarEscolaMB.getOcurso().getOcursodescontoList().get(i).getValormoedanacional() / filtrarEscolaMB.getFornecedorProdutosBean().getCambio().getValor());
+            }
+            if (filtrarEscolaMB.getOcurso().getOcursodescontoList().get(i).getValormoedaestrangeira()!= null) {
+                filtrarEscolaMB.getOcurso().getOcursodescontoList().get(i).setValormoedanacional(filtrarEscolaMB.getOcurso().getOcursodescontoList().get(i).getValormoedaestrangeira() * filtrarEscolaMB.getFornecedorProdutosBean().getCambio().getValor());
             }
         }
     }
