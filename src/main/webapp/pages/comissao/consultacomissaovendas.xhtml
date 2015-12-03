@@ -44,11 +44,10 @@
                           
                         </p:tab>
                     </p:accordionPanel><br></br>
-                    <img src="../../resources/img/calculadora.png" class="imgadd"/>
+                    <img src="../../resources/img/calculadora.png" style="margin-left:8%"/>
                     <p:commandLink value="Calcular Comissão" update="comissao:dialog_comissao" oncomplete="PF('comissao').show()"  class="add"/><br></br><br></br>
                     <p:dataTable var="consVendaComissao" value="#{vendasComissaoMB.listaVendasComissao}" class="tabela2" 
-                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-                                 paginator="true" rows="10"    rowIndexVar="rowIx">
+                                 scrollable="true"  scrollHeight="450"  rowIndexVar="rowIx">
 
                         <p:column  style="text-align:center;width:48px;z-index: 3!important;overflow: visible!important;">
                             <p:commandButton style="float:right;" icon="ui-icon-pencil" action="#{vendasComissaoMB.editar()}" />

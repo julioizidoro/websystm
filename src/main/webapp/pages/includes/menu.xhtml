@@ -35,10 +35,12 @@
             <img src="../../resources/img/ajax-loader.gif" />
         </p:dialog>
         <navBar class="navbar navbar-default " role="navigation">
-            <img  class="logo" src="../../resources/img/logo.png" />
+            <h:panelGrid columns="3">
+                <img  class="logo" src="../../resources/img/logo.png" />
 
-            <a class="usuariologado" ><p:outputLabel value="#{usuarioLogadoMB.usuario.nome}" class="fontedez"/></a>
-            <p:commandButton icon=" ui-icon-closethick" title="Sair" class="botaodeslogar"/>
+                <p:outputLabel value="#{usuarioLogadoMB.usuario.nome}" style="font-size: 12px !important;margin-left:92%;background: #fff"/>
+                <p:commandButton icon=" ui-icon-closethick" title="Sair" class="botaodeslogar"/>
+            </h:panelGrid>
         </navBar>
         <navBar class="navbar navbar-default " role="navigation">
             <img src="../../resources/img/dinheiro.png" height="50" width="38" class="iconcambio"/> 
@@ -122,15 +124,13 @@
             <img src="../../resources/img/universidade.jpg" class="imagemlogos"/>
             <img src="../../resources/img/work.jpg" class="imagemlogos"/>
         </h:panelGrid>
-        <h:panelGrid columns="7" cellpadding="1" class="menuTravel2">
-            <p:outputLabel class="cursomenu" value="Cursos"/>
-            <p:outputLabel class="highmenu"  value="High-School"/>
-            <p:outputLabel class="teensmenu" value="Cursos Teens"/>
-            <p:outputLabel class="traineemenu" value="Trainee"/>
-            <p:outputLabel class="turismomenu" value="Turismo"/>
-            <p:outputLabel class="" value="Universidade"/>
-            <p:outputLabel class="" value="Work and Travel"/>
-        </h:panelGrid>
+        <p:outputLabel style="font-size: 13px;margin-left:31.8%" value="Cursos"/>
+        <p:outputLabel style="font-size: 13px;margin-left:5%;"  value="High-School"/>
+        <p:outputLabel style="font-size: 13px;margin-left:3%;" value="Cursos Teens"/>
+        <p:outputLabel style="font-size: 13px;margin-left:4%;" value="Trainee"/>
+        <p:outputLabel style="font-size: 13px;margin-left:5.7%;" value="Turismo"/>
+        <p:outputLabel style="font-size: 13px;margin-left:3.8%;" value="Universidade"/>
+        <p:outputLabel style="font-size: 13px;margin-left:2.5%;" value="Work and Travel"/>
 
         <div class="menu_mluv_retratil">
 
