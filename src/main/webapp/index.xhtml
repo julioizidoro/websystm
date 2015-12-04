@@ -29,16 +29,39 @@
                     <p:inputText value="#{usuarioLogadoMB.usuario.senha}" type="password"  size="40" class="espacologin"/>
                      <br></br><br></br>
                      <p:commandButton value="Login" class="loginButton" action="#{usuarioLogadoMB.validarUsuario()}"/>
-                    <p:commandButton value="Alterar Senha" action="#{usuarioLogadoMB.validarTrocarSenha()}" class="loginButton2"  oncomplete="PF('dll').show()"  />
-                                
+                     <p:commandButton value="Alterar Senha" class="loginButton2" action="#{usuarioLogadoMB.validarTrocarSenha()}"  oncomplete="PF('dll').show()" />
+                   
+                     
+                     <br></br>
+                     <p:dialog header="Alterar Senha" modal="true" showEffect="bounce" widgetVar="dll" resizable="false"  class="dialog" width="16%" height="60%">
+                         <p:outputLabel value="Nova Senha" for="novasenha"  style="margin-left: 15%;font-size: 12px" />
+
+                         <h:panelGrid columns="2" cellpadding="5" >
+                             <p:inputText  id="novasenha" value="#{usuarioLogadoMB.novaSenha}"  size="25" maxlength="50"  class="left" type="password" style="font-size: 14px;margin-left: 14%" /> 
+                         </h:panelGrid>
+
+                         <p:outputLabel value="Confirmar Senha" for="confirmarsenha"  style="margin-left: 15%;font-size: 12px" />
+
+                         <h:panelGrid columns="2" cellpadding="5" >
+                             <p:inputText  id="confirmarsenha" value="#{usuarioLogadoMB.confirmaNovaSenha}"  size="25" maxlength="50"  class="left" type="password" style="font-size: 14px;margin-left: 14%" /> 
+                         </h:panelGrid>
+
+                         <p:commandButton value="Confirmar"   action="#{usuarioLogadoMB.confirmaNovaSenha()}" style="text-decoration: none; margin-left: 58%" />
+                         <p:commandLink value="Cancelar" action="#{usuarioLogadoMB.cancelarTrocaSenha()}" style="text-decoration: none;margin-left: 2%" />
+                     </p:dialog>
+                           
                     <br></br><br></br><br></br><br></br><br></br>
+                    
                     <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
 
                     <p:dialog widgetVar="statusDialog" modal="true" style="margin-left: 45%;margin-top: 20%" draggable="false" closable="false" resizable="false" showHeader="false">
                         <img src="resources/img/ajax-loader.gif" />
                     </p:dialog>
+                   
                 </div>
+                
             </h:form>
+       
         <h:outputScript library="js" name="jquery.js" />
 	<h:outputScript library="js" name="index.js" />
     </h:body>

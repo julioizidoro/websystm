@@ -208,6 +208,13 @@ public class UsuarioLogadoMB implements Serializable{
         if ((usuario.getLogin()!=null) && (usuario.getSenha()==null)){
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro!", "Login Invalido."));
         }else{
+            String senha = "";
+            try {
+                senha = Criptografia.encript(usuario.getSenha());
+            } catch (NoSuchAlgorithmException ex) {
+                Logger.getLogger(UsuarioLogadoMB.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            usuario.setSenha(senha);
             UsuarioFacade usuarioFacade = new UsuarioFacade();
             usuario = usuarioFacade.consultar(usuario.getLogin(), usuario.getSenha());
             if (usuario==null){
