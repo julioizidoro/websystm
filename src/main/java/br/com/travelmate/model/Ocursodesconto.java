@@ -47,6 +47,8 @@ public class Ocursodesconto implements Serializable {
     private Ocurso ocurso;
     @Transient
     private boolean selecionado;
+    @Transient
+    private boolean taxaTmSelecionado;
 
     public Ocursodesconto() {
     }
@@ -101,6 +103,14 @@ public class Ocursodesconto implements Serializable {
 
     public void setSelecionado(boolean selecionado) {
         this.selecionado = selecionado;
+    }
+
+    public boolean isTaxaTmSelecionado() {
+        return taxaTmSelecionado;
+    }
+
+    public void setTaxaTmSelecionado(boolean taxaTmSelecionado) {
+        this.taxaTmSelecionado = taxaTmSelecionado;
     }
     
     

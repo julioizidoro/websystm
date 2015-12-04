@@ -271,8 +271,9 @@ public class OrcamentoCursoMB implements Serializable{
          
         for(int i=0;i<filtrarEscolaMB.getOcurso().getOcursodescontoList().size();i++){
             if (filtrarEscolaMB.getOcurso().getOcursodescontoList().get(i).isSelecionado()){
-               total = total - filtrarEscolaMB.getOcurso().getOcursodescontoList().get(i).getValormoedaestrangeira();
-               totalRS = totalRS - filtrarEscolaMB.getOcurso().getOcursodescontoList().get(i).getValormoedanacional();
+               filtrarEscolaMB.getOcurso().getOcursodescontoList().get(i).setValormoedaestrangeira(filtrarEscolaMB.getOcurso().getOcursodescontoList().get(i).getValormoedanacional() / filtrarEscolaMB.getFornecedorProdutosBean().getCambio().getValor());
+               total = total + filtrarEscolaMB.getOcurso().getOcursodescontoList().get(i).getValormoedaestrangeira();
+               totalRS = totalRS + filtrarEscolaMB.getOcurso().getOcursodescontoList().get(i).getValormoedanacional();
             }
         }
          

@@ -53,7 +53,7 @@ h1 {
 }
 #centro {
     font-size:10px;
-    margin-top:-3.1%;
+    margin-top:-3%;
     position: relative;
     background:#1F8871;
     text-align: left;
@@ -414,7 +414,7 @@ h1 {
     margin-left:3%;
 }
 .menuTravel img {
-    width: 6.5%;
+    width:5.4%;
     height: 4%;
     
   
@@ -427,8 +427,8 @@ h1 {
 }
  
 .menuTravel img:hover {
-  width:50px;
-  height:50px;
+  width:45px;
+  height:45px;
 }
 .cursomenu{
     font-size: 100%;

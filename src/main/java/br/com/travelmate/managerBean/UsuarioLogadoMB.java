@@ -17,6 +17,7 @@ import java.io.Serializable;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
@@ -296,4 +297,12 @@ public class UsuarioLogadoMB implements Serializable{
         }
         
     }
+    
+    public String deslogar(){
+        usuario.setIdusuario(null);
+        Map sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();  
+        sessionMap.clear();  
+        return "index";
+    }
+    
 }

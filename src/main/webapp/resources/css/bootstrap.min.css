@@ -92,7 +92,7 @@ ul.menu{ float:left; font-family:Verdana, Geneva, sans-serif; font-size:15px; bo
 
 
 /* ==== menu retrátil madlyluv.com ==== */
-.menu_mluv_retratil {width:129px;margin-top:-8.6%; height:103px;
+.menu_mluv_retratil {width:129px;margin-top:-7.3%; height:95px;
                      background: -moz-linear-gradient(
                          top,
                          #EEE5DE 0%,
@@ -104,7 +104,7 @@ ul.menu{ float:left; font-family:Verdana, Geneva, sans-serif; font-size:15px; bo
 .menu_mluv_retratil nav {margin: 0 5px; padding: 0; list-style: none; float: left;}
 .menu_mluv_retratil nav a {line-height:50px; color: #fff; text-transform: uppercase; padding:40px 40px; text-decoration: none;}
 .menu_mluv_retratil nav a:hover {color: #1F8871}
-.menu_mluv_retratil a.mostra-esconde-menu {width:90px;left:0px; height:103px; display: block; line-height:70px; background: -moz-linear-gradient(
+.menu_mluv_retratil a.mostra-esconde-menu {width:90px;left:0px; height:95px; display: block; line-height:70px; background: -moz-linear-gradient(
                                                top,
                                                #EEE5DE 0%,
                                                #c7d95f 20%,

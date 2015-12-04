@@ -110,11 +110,20 @@ import br.com.travelmate.model.Produtosorcamento;
             List<Produtosorcamento> listaProdutos;
             listaProdutos = produtosOrcamentoFacade.listarProdutosOrcamentoSql(sql);
             ocurso.setOcursodescontoList(new ArrayList<Ocursodesconto>());
+            int idtxtm = usuarioLogadoMB.getParametrosprodutos().getPassagemTaxaTM();
             for (int i=0; listaProdutos.size() > i; i++){
+                int idtxttmproduto = listaProdutos.get(i).getIdprodutosOrcamento();
                 Ocursodesconto ocursodesconto = new Ocursodesconto();
+                if (idtxtm==idtxttmproduto){
+                    ocursodesconto.setValormoedanacional(usuarioLogadoMB.getParametrosprodutos().getValorTaxaTM());
+                    ocursodesconto.setSelecionado(true);
+                    ocursodesconto.setTaxaTmSelecionado(true);
+                }else{
+                    ocursodesconto.setValormoedanacional(0.0f);
+                    ocursodesconto.setTaxaTmSelecionado(false);
+                }
                 ocursodesconto.setProdutosorcamento(listaProdutos.get(i));
                 ocursodesconto.setValormoedaestrangeira(0.0f);
-                ocursodesconto.setValormoedanacional(0.0f);
                 ocurso.getOcursodescontoList().add(ocursodesconto);
              }
         }
@@ -237,9 +246,6 @@ import br.com.travelmate.model.Produtosorcamento;
         public void setNomeBotao(String nomeBotao) {
             this.nomeBotao = nomeBotao;
         }
-
-
-
 
 
         public void gerarListaIdioma(){
@@ -530,8 +536,7 @@ import br.com.travelmate.model.Produtosorcamento;
                 }
             }
         }
-        
-        
-    }
+      
+}
 
 
