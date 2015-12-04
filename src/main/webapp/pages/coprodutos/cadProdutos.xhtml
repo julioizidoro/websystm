@@ -39,6 +39,7 @@
     </h:head>
     <h:body>
         <h:form id="cadastroproduto" style="text-align:left;font-size: 10px;">
+             <p:growl id="growl" showDetail="true" sticky="true"/>
             <title>Cadastro Produtos</title><br></br>
             <p:selectOneRadio id="tipoProduto" value="#{cadCoProdutosMB.coprodutos.tipo}" layout="custom">
                 <f:selectItem itemLabel="Obrigatório" itemValue="Obrigatorio" />
@@ -77,8 +78,8 @@
             
             <br></br><br></br><br></br>
             <p class="botaocadpacote"><br></br>
-                <p:commandButton class="imagemm" onclick="" icon="ui-icon-check" value="Confirmar" action="#{cadCoProdutosMB.salvarCoProduto()}"></p:commandButton>
-                <p:commandButton class="espacocampos" onclick="" icon="ui-icon-close" value="Cancelar" action="#{cadCoProdutosMB.cancelarCoProduto()}"></p:commandButton>
+                <p:commandButton class="imagemm" icon="ui-icon-check" value="Confirmar" action="#{cadCoProdutosMB.salvarCoProduto()}" update="growl"></p:commandButton>
+                <p:commandButton class="espacocampos" icon="ui-icon-close" value="Cancelar" action="#{cadCoProdutosMB.cancelarCoProduto()}"></p:commandButton>
             <br></br><br></br></p>
         </h:form>     
     </h:body>

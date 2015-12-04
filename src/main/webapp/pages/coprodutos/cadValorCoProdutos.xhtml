@@ -64,10 +64,10 @@
             <br></br><br></br>
             
             <p:outputLabel value="Período:" for="datainicio" class="espacocobranca42"/>
-            <p:inputMask id="datainicio"  value="#{cadValorCoProdutosMB.valorcoprodutos.datainicial}" size="8" mask="99/99/9999"  maxlength="15" class="espacocobranca29" >
+            <p:inputMask id="datainicio"  value="#{cadValorCoProdutosMB.valorcoprodutos.datainicial}" size="10" mask="99/99/9999"  maxlength="15" class="espacocobranca29" >
                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
             </p:inputMask>
-            <p:inputMask id="datafinal" size="8" value="#{cadValorCoProdutosMB.valorcoprodutos.datafinal}" mask="99/99/9999"  maxlength="15" class="espacocobranca29" >
+            <p:inputMask id="datafinal" size="10" value="#{cadValorCoProdutosMB.valorcoprodutos.datafinal}" mask="99/99/9999"  maxlength="15" class="espacocobranca29" >
                 <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
             </p:inputMask>
             <p:outputLabel value="Nº Semanas:" for="nsemanasinicial" class="espacocobranca42"/>

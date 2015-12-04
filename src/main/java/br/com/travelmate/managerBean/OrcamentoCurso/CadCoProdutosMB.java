@@ -12,6 +12,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -120,12 +121,18 @@ public class CadCoProdutosMB implements Serializable{
     }
     
     public String salvarCoProduto(){
-        coprodutos.setFornecedorcidade(fornecedorcidade);
-        coprodutos.setProdutosorcamento(prdutoOrcamento);
-        CoProdutosFacade coProdutosFacade = new CoProdutosFacade();
-        coprodutos = coProdutosFacade.salvar(coprodutos);
-        RequestContext.getCurrentInstance().closeDialog(coprodutos);
-        return "orcamentocurso";
+        if(coprodutos.getTipo()!=null && prdutoOrcamento==null && coprodutos.getDescricao()==null){
+            coprodutos.setFornecedorcidade(fornecedorcidade);
+            coprodutos.setProdutosorcamento(prdutoOrcamento);
+            CoProdutosFacade coProdutosFacade = new CoProdutosFacade();
+            coprodutos = coProdutosFacade.salvar(coprodutos);
+            RequestContext.getCurrentInstance().closeDialog(coprodutos);
+            return "";
+        }else{
+            FacesMessage mensagem = new FacesMessage("Atenção! ", "Campos obrigatórios não preenchidos.");
+            FacesContext.getCurrentInstance().addMessage(null, mensagem);
+            return "";
+        }
     }
     
     public String cancelarCoProduto(){

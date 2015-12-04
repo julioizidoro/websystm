@@ -8,6 +8,7 @@
     <ui:composition template="/pages/templates/default.xhtml">
         <ui:define name="corpo">
             <h:form id="orcamentocurso">
+                
                 <div id="centro">
                     <p:growl id="growl" showDetail="true" sticky="true"/> <br></br> <br></br> 
                     <p:outputLabel value="Pais:" for="pais" class="loginButtonn" style="color:#fff"/>
@@ -46,7 +47,7 @@
                     </p:selectOneMenu>
                     <br></br> <br></br> 
                     <img src="../../resources/img/add.png" class="espacocobranca29"/>
-                    <p:commandLink value="Adicionar Produto"  action="#{coProdutosMB.cadProduto()}" class="add">
+                    <p:commandLink value="Adicionar Produto"  action="#{coProdutosMB.cadProduto()}" class="add" update="growl">
                         <p:ajax event="dialogReturn" listener="#{coProdutosMB.retornoDialogoNovo}" process="@this" update=":orcamentocurso:tabelaprodutos"/>
                     </p:commandLink>
                     <br></br> <br></br>

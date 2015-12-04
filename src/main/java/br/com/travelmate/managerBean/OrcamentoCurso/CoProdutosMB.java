@@ -19,6 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -224,13 +225,19 @@ public class CoProdutosMB implements Serializable{
    
     
     public String cadProduto() {
-        FacesContext fc = FacesContext.getCurrentInstance();
-        HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
-        session.setAttribute("fornecedorcidadeidioma", fornecedorCidadeIdioma);
-        Map<String, Object> options = new HashMap<String, Object>();
-        options.put("contentWidth", 500);
-        RequestContext.getCurrentInstance().openDialog("cadProdutos", options, null);
-        return "";
+        if(cidade!=null && idioma!=null && fornecedorCidadeIdioma!=null){
+            FacesContext fc = FacesContext.getCurrentInstance();
+            HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+            session.setAttribute("fornecedorcidadeidioma", fornecedorCidadeIdioma);
+            Map<String, Object> options = new HashMap<String, Object>();
+            options.put("contentWidth", 500);
+            RequestContext.getCurrentInstance().openDialog("cadProdutos", options, null);
+            return "";
+        }else{
+            FacesMessage mensagem = new FacesMessage("Atenção! ", "Campos obrigatórios não preenchidos.");
+            FacesContext.getCurrentInstance().addMessage(null, mensagem);
+            return "";
+        }
     }
     
     

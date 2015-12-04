@@ -24,7 +24,7 @@
                         <p:ajax event="dialogReturn" listener="#{paisMB.retornoDialogNovoPais}" process="@this" update=":consultapais:pais"/>                        
                     </p:commandButton>
                     <legend id="iUsu2" ><b>Consulta de Cidade</b></legend>
-                    <p:commandButton id="bntnovocidade" class="espacocobranca21botao" icon="ui-icon-plus" style="font-size:12px;margin-left:53%" value="Nova Cidade" action="#{paisMB.cadCidade()}">
+                    <p:commandButton id="bntnovocidade" class="espacocobranca21botao" icon="ui-icon-plus" style="font-size:12px;margin-left:53%" value="Nova Cidade" action="#{paisMB.cadCidade()}" update="growl">
                         <p:ajax event="dialogReturn" listener="#{paisMB.retornoDialogNovoCidade}" process="@this" update=":consultapais:tabelacidade"/>                        
                     </p:commandButton>
                     <p:commandButton id="bntvoltar" class="espacocobranca21botao" style="font-size:12px;" value="Voltar" action="#{fornecedorMB.voltar()}"/>

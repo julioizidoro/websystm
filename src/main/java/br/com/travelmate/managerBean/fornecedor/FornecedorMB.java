@@ -17,6 +17,7 @@ import br.com.travelmate.util.GerarListas;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -118,12 +119,18 @@ public class FornecedorMB implements Serializable{
     
     
     public String consFornecedor(Cidade cidade, Produtos produtos){
-        FacesContext fc = FacesContext.getCurrentInstance();
-        HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
-        session.setAttribute("produtos", produtos);    
-        session.setAttribute("cidade", cidade); 
-        RequestContext.getCurrentInstance().openDialog("consFornecedores");
-        return "";
+        if(cidade!=null & produto!=null){
+            FacesContext fc = FacesContext.getCurrentInstance();
+            HttpSession session = (HttpSession) fc.getExternalContext().getSession(false);
+            session.setAttribute("produtos", produtos);    
+            session.setAttribute("cidade", cidade); 
+            RequestContext.getCurrentInstance().openDialog("consFornecedores");
+            return "";
+        }else{
+            FacesMessage mensagem = new FacesMessage("Atenção! ", "campos obrigatorios não preenchidos.");
+            FacesContext.getCurrentInstance().addMessage(null, mensagem);
+            return "";
+        }
     }
     
     public String consPais(){
