@@ -92,15 +92,16 @@ ul.menu{ float:left; font-family:Verdana, Geneva, sans-serif; font-size:15px; bo
 
 
 /* ==== menu retrátil madlyluv.com ==== */
-.menu_mluv_retratil {width:129px;margin-top:-7.7%; height:95px;
+.menu_mluv_retratil {width:129px;margin-top:-7.2%; height:95px;
                      background: -moz-linear-gradient(
                          top,
                          #EEE5DE 0%,
                          #c7d95f 20%,
                          #EEE5DE 30%,
-                         #c7d95f); -moz-border-radius:5px; border-radius:50px; position: relative; top: 0;  font-size:0.1px;color:#fff}
+                         #c7d95f); -moz-border-radius:5px; border-radius:50px; position: relative; top: 0;  font-size:1%;color:transparent;font-size: 14px;}
 
-.menu_mluv_retratil.esconder {width:100%; position: relative;-moz-border-radius:0px; border-radius:0px;font-size:12px;text-align:right;padding:23px 23px;color:#000}
+
+.menu_mluv_retratil.esconder {width:100%; position: relative;-moz-border-radius:0px; border-radius:0px;font-size:14px;text-align:right;padding:23px 23px;color:#000}
 .menu_mluv_retratil nav {margin: 0 5px; padding: 0; list-style: none; float: left;}
 .menu_mluv_retratil nav a {line-height:50px; color: #fff; text-transform: uppercase; padding:40px 40px; text-decoration: none;}
 .menu_mluv_retratil nav a:hover {color: #1F8871}
@@ -109,6 +110,6 @@ ul.menu{ float:left; font-family:Verdana, Geneva, sans-serif; font-size:15px; bo
                                                #EEE5DE 0%,
                                                #c7d95f 20%,
                                                #EEE5DE 30%,
-                                               #c7d95f);  position: absolute; top:0px;  font-size: 9px; font-family: 'Arial', sans-serif; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; text-align: right; color: #000;  text-shadow: 1px 1px 1px rgba(0,0,0,0.35); text-decoration: none; }
+                                               #c7d95f);  position: absolute; top:0px;  font-size: 9px; font-family: 'Arial', sans-serif; font-weight:800; letter-spacing: 2px; text-transform: uppercase; text-align: right; color: #000;  text-shadow: 1px 1px 1px rgba(0,0,0,0.35); text-decoration: none; }
 .menu_mluv_retratil a.mostra-esconde-menu.acao-menu {margin-top: 1px;}
 

@@ -24,7 +24,7 @@
                         <p:menuitem value="Email"  icon=" ui-icon-mail-closed" action="#"  />
                     </p:contextMenu>
                     <p:dataTable id="idtabelaconsultaorcamento" var="orcamento"  value="#{consultaOrcamentoMB.listaOcurso}" class="tabela" 
-                                 scrollable="true" scrollHeight="380" style="margin-bottom:20px;margin-top: -2.25%" selection="#{consultaOrcamentoMB.ocurso}" selectionMode="single" rowKey="#{orcamento.idocurso}"  >
+                                 scrollable="true" scrollHeight="380" style="margin-bottom:20px;margin-top: -1%" selection="#{consultaOrcamentoMB.ocurso}" selectionMode="single" rowKey="#{orcamento.idocurso}"  >
 
                         <p:column headerText="Cliente" >
                             <h:outputText value="#{orcamento.cliente.nome}" />

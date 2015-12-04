@@ -16,16 +16,6 @@
     
     <dependencies>
         <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi-ooxml-schemas</artifactId>
-            <version>3.11</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.5</version>
-        </dependency>
-        <dependency>
             <groupId>stax</groupId>
             <artifactId>stax-api</artifactId>
             <version>1.0.1</version>
@@ -100,6 +90,16 @@
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>org.eclipse.persistence.jpa.modelgen.processor</artifactId>
             <version>2.5.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml-schemas</artifactId>
+            <version>3.13</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.4</version>
         </dependency>
         <dependency>
             <groupId>javax</groupId>

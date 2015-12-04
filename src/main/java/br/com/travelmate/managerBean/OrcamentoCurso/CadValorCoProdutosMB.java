@@ -8,6 +8,7 @@ package br.com.travelmate.managerBean.OrcamentoCurso;
 import br.com.travelmate.facade.ValorCoProdutosFacade;
 import br.com.travelmate.model.Coprodutos;
 import br.com.travelmate.model.Valorcoprodutos;
+import br.com.travelmate.util.Formatacao;
 import java.io.Serializable;
 import java.util.ArrayList;
 import javax.faces.context.FacesContext;
@@ -34,6 +35,9 @@ public class CadValorCoProdutosMB implements Serializable{
         session.removeAttribute("valorcoprodutos");
         if (valorcoprodutos==null){
             valorcoprodutos = new Valorcoprodutos();
+            valorcoprodutos.setDatainicial(Formatacao.ConvercaoStringData("01/01/2016"));
+            valorcoprodutos.setDatafinal(Formatacao.ConvercaoStringData("31/12/2016"));
+            valorcoprodutos.setTipodata("DM");
             valorcoprodutos.setValorpromocional(0.0f);
             valorcoprodutos.setCoprodutos(coprodutos);
         }
