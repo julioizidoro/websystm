@@ -54,12 +54,12 @@ public class CadCoProdutosMB implements Serializable{
             coprodutos = new Coprodutos();
             prdutoOrcamento = new Produtosorcamento();
         }else{
-            gerarListaProdutosOrcamento();
+           gerarListaProdutosOrcamento();
            prdutoOrcamento = coprodutos.getProdutosorcamento();
            GrupoObrigatorioFacade grupoObrigatorioFacade = new GrupoObrigatorioFacade();
            grupoobrigatorio = grupoObrigatorioFacade.consultar(coprodutos.getIdcoprodutos());
            if(grupoobrigatorio!=null){
-        	   produtoVincular = grupoobrigatorio.getProdutosorcamento();
+                produtoVincular = grupoobrigatorio.getProdutosorcamento();
            }
         }
      }
@@ -128,7 +128,7 @@ public class CadCoProdutosMB implements Serializable{
 		this.grupoobrigatorio = grupoobrigatorio;
 	}
 
-	public void gerarListaProdutosVincular(){
+    public void gerarListaProdutosVincular(){
     	FiltroOrcamentoProdutoFacade filtroOrcamentoProdutoFacade = new FiltroOrcamentoProdutoFacade();
     	String sql="";
     	sql="select f from Filtroorcamentoproduto f where f.produtos.idprodutos=" + 
@@ -141,6 +141,7 @@ public class CadCoProdutosMB implements Serializable{
     }
     
     public void gerarListaProdutosOrcamento(){
+    	gerarListaProdutosVincular();
         FiltroOrcamentoProdutoFacade filtroOrcamentoProdutoFacade = new FiltroOrcamentoProdutoFacade();
         String sql="";
         if(coprodutos.getTipo().equalsIgnoreCase("Acomodacao")){
@@ -163,7 +164,6 @@ public class CadCoProdutosMB implements Serializable{
         if (listaFiltroorcamentoproduto==null){
             listaFiltroorcamentoproduto = new ArrayList<Filtroorcamentoproduto>();
         }
-        gerarListaProdutosVincular();
     }
     
     public String salvarCoProduto(){
