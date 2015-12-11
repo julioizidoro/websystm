@@ -53,6 +53,7 @@ public class CadCoProdutosMB implements Serializable{
         if(coprodutos==null){
             coprodutos = new Coprodutos();
             prdutoOrcamento = new Produtosorcamento();
+            grupoobrigatorio = new Grupoobrigatorio();
         }else{
            gerarListaProdutosOrcamento();
            prdutoOrcamento = coprodutos.getProdutosorcamento();
@@ -60,6 +61,8 @@ public class CadCoProdutosMB implements Serializable{
            grupoobrigatorio = grupoObrigatorioFacade.consultar(coprodutos.getIdcoprodutos());
            if(grupoobrigatorio!=null){
                 produtoVincular = grupoobrigatorio.getProdutosorcamento();
+           }else{
+               grupoobrigatorio = new Grupoobrigatorio();
            }
         }
      }
