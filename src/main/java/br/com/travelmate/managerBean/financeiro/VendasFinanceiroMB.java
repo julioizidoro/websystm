@@ -27,7 +27,11 @@ import org.primefaces.context.RequestContext;
 @ViewScoped
 public class VendasFinanceiroMB  implements Serializable{
     
-    @Inject
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Inject
     private UsuarioLogadoMB usuarioLogadoMB;
     private List<Vendas> listaVendas;
     private String id;

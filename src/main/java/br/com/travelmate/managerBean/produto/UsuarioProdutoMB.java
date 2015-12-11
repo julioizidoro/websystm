@@ -1,7 +1,6 @@
 package br.com.travelmate.managerBean.produto;
 
 import br.com.travelmate.facade.NotificacaoEmailFacade;
-import br.com.travelmate.facade.SeguroViagemFacade;
 import br.com.travelmate.model.Notificacaoemail;
 import br.com.travelmate.model.Produtos;
 import java.io.Serializable;
@@ -20,7 +19,11 @@ import org.primefaces.event.SelectEvent;
 @ViewScoped
 public class UsuarioProdutoMB implements Serializable{
     
-    private Produtos produtos;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Produtos produtos;
     private List<Notificacaoemail> listaNotificacaoEmail;
     
     @PostConstruct

@@ -16,7 +16,6 @@ import br.com.travelmate.facade.ProdutoFacade;
 import br.com.travelmate.facade.VendasFacade;
 import br.com.travelmate.model.Cambio;
 import br.com.travelmate.model.Cliente;
-import br.com.travelmate.model.Contaspagar;
 import br.com.travelmate.model.Formapagamento;
 import br.com.travelmate.model.Fornecedorcidade;
 import br.com.travelmate.model.Pacotes;
@@ -50,7 +49,11 @@ import org.primefaces.event.SelectEvent;
 @ViewScoped
 public class CadPacoteAgenciaMB implements Serializable {
 
-    private Pacotes pacotes;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Pacotes pacotes;
     private List<Unidadenegocio> listaUnidadeNegocio;
     private List<Pacotetrecho> listaTrecho;
     private Pacotetrecho pacotetrecho;

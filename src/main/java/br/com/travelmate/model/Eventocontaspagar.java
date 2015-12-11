@@ -26,7 +26,7 @@ import javax.validation.constraints.Size;
  *
  * @author Wolverine
  */
-@Entity
+@Entity        
 @Table(name = "eventocontaspagar")
 @NamedQueries({
     @NamedQuery(name = "Eventocontaspagar.findAll", query = "SELECT e FROM Eventocontaspagar e")})
@@ -117,7 +117,6 @@ public class Eventocontaspagar implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Eventocontaspagar)) {
             return false;
         }

@@ -33,7 +33,11 @@ import org.primefaces.event.SelectEvent;
 public class CoProdutosMB implements Serializable{
     
     
-    @Inject
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Inject
     private UsuarioLogadoMB usuarioLogadoMB;
     private Coprodutos coprodutos;
     private Valorcoprodutos valorcoproduto;
@@ -174,19 +178,6 @@ public class CoProdutosMB implements Serializable{
         this.listaIdiomas = listaIdiomas;
     }
     
-    
-    
-    
-   /*/ public void listarFornecedorCidade(String id){
-        int idProduto = Integer.parseInt(id);
-        if (usuarioLogadoMB!=null){
-            idProduto = usuarioLogadoMB.getParametrosprodutos().getCursos();
-        }
-        if ((idProduto>0) && (cidade!=null)){
-            listaFornecedorCidade = GerarListas.listarFornecedorCidade(idProduto, cidade.getIdcidade());
-        }
-    }/*/
-    
     public void listarCoProdutos(){
         if (fornecedorCidadeIdioma!=null){
             String sql = "Select c from Coprodutos c where c.fornecedorcidade.idfornecedorcidade=" + 
@@ -234,7 +225,7 @@ public class CoProdutosMB implements Serializable{
             RequestContext.getCurrentInstance().openDialog("cadProdutos", options, null);
             return "";
         }else{
-            FacesMessage mensagem = new FacesMessage("Atenção! ", "Campos obrigatórios não preenchidos.");
+            FacesMessage mensagem = new FacesMessage("Atencao! ", "Campos obrigatorios nao preenchidos.");
             FacesContext.getCurrentInstance().addMessage(null, mensagem);
             return "";
         }

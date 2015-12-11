@@ -28,7 +28,11 @@ import org.primefaces.context.RequestContext;
 public class FornecedorComissaoMB implements Serializable{
     
     
-    @Inject
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Inject
     private UsuarioLogadoMB usuarioLogadoMB;
     private Pais pais;
     private List<Pais> listaPais;

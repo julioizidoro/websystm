@@ -19,7 +19,11 @@ import org.primefaces.context.RequestContext;
 @ViewScoped
 public class ConsultaFornecedorMB implements Serializable{
     
-    private Fornecedorcidade fornecedorcidade;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Fornecedorcidade fornecedorcidade;
     private List<Fornecedor> listaFornecedor;
     private Cidade cidade;
     private Produtos produto;

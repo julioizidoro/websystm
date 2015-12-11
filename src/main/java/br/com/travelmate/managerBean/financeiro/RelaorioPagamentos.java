@@ -23,8 +23,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import net.sf.jasperreports.engine.JRException;
 import org.primefaces.context.RequestContext;
 
@@ -36,7 +34,11 @@ import org.primefaces.context.RequestContext;
 @ViewScoped
 public class RelaorioPagamentos implements Serializable{
     
-    private List<Unidadenegocio> listaUnidadeNegocio;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private List<Unidadenegocio> listaUnidadeNegocio;
     private Date dataInicio;
     private Date dataTermino;
     private Unidadenegocio unidadenegocio;
@@ -122,7 +124,7 @@ public class RelaorioPagamentos implements Serializable{
     public String gerarRelatorio() {
         ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
         String caminhoRelatorio = "/reports/financeiro/Pagamentos.jasper";  
-        Map parameters = new HashMap();
+        Map<String, Object> parameters = new HashMap();
         parameters.put("sql", gerarSql());
         parameters.put("unidade", unidadenegocio.getNomeFantasia());
         String periodo= "";

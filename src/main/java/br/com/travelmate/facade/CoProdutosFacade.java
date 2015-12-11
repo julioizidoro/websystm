@@ -1,8 +1,7 @@
 package br.com.travelmate.facade;
 
-import br.com.travelmate.dao.ClienteDao;
+
 import br.com.travelmate.dao.CoProdutosDao;
-import br.com.travelmate.model.Cliente;
 import br.com.travelmate.model.Coprodutos;
 import java.sql.SQLException;
 import java.util.List;

@@ -11,8 +11,6 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.servlet.ServletContext;
@@ -45,13 +43,13 @@ public class GerarRelatorio {
         facesContext.responseComplete();
     }
     
-    public void gerarRelatorioSqlPDF(String caminhoRelatorio, Map parameters, String nomeArquivo, String subDir ) throws JRException, IOException{
+    public void gerarRelatorioSqlPDF(String caminhoRelatorio, Map<String, Object> parameters, String nomeArquivo, String subDir ) throws JRException, IOException{
         FacesContext facesContext = FacesContext.getCurrentInstance();  
         ServletContext servletContext = (ServletContext)facesContext.getExternalContext().getContext();
         caminhoRelatorio = servletContext.getRealPath(caminhoRelatorio); 
         EntityManager mg = getConnection();
         mg.getTransaction().begin();
-        Connection conn = mg.unwrap(java.sql.Connection.class);
+        Connection conn =null;
         if (subDir!=null){
             subDir = servletContext.getRealPath(subDir);
             subDir = subDir + File.separator + "a";

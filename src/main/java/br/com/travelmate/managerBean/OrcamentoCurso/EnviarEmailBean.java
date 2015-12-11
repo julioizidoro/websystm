@@ -3,7 +3,6 @@ package br.com.travelmate.managerBean.OrcamentoCurso;
 import br.com.travelmate.model.Ocrusoprodutos;
 import br.com.travelmate.model.Ocurso;
 import br.com.travelmate.model.Ocursoformapagamento;
-import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;

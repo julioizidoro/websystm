@@ -35,7 +35,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
 import org.primefaces.context.RequestContext;
-import org.primefaces.event.SelectEvent;
 
 /**
  *
@@ -45,7 +44,11 @@ import org.primefaces.event.SelectEvent;
 @ViewScoped
 public class CadPacoteOperadoraMB implements Serializable {
 
-    private Pacotes pacotes;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Pacotes pacotes;
     private List<Unidadenegocio> listaUnidadeNegocio;
     private List<Pacotetrecho> listaTrecho;
     private Pacotetrecho pacotetrecho;

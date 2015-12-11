@@ -27,7 +27,11 @@ import org.primefaces.context.RequestContext;
 @ViewScoped
 public class CadUsuarioMB implements Serializable{
     
-    private Produtos produtos;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Produtos produtos;
     private List<Usuario> listaUsuarioEmail;
     private Notificacaoemail notificacaoemail;
     

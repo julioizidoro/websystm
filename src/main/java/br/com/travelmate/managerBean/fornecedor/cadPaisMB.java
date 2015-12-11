@@ -2,7 +2,7 @@ package br.com.travelmate.managerBean.fornecedor;
 
 import br.com.travelmate.facade.CambioFacade;
 import br.com.travelmate.facade.PaisFacade;
-import br.com.travelmate.managerBean.UsuarioLogadoMB;
+
 import br.com.travelmate.model.Moedas;
 import br.com.travelmate.model.Pais;
 import java.io.Serializable;
@@ -12,7 +12,6 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.context.RequestContext;
 
@@ -20,7 +19,11 @@ import org.primefaces.context.RequestContext;
 @ViewScoped
 public class cadPaisMB implements Serializable{
     
-    private List<Moedas> listaMoedas;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private List<Moedas> listaMoedas;
     private Pais pais;
     private Moedas moedas;
     

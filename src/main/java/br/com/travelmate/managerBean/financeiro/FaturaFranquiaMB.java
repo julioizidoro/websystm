@@ -31,7 +31,11 @@ import javax.inject.Named;
 @ViewScoped
 public class FaturaFranquiaMB implements Serializable{
     
-    @Inject 
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Inject 
     private UsuarioLogadoMB usuarioLogadoMB;
     private Unidadenegocio unidadenegocio;
     private List<Unidadenegocio> listaUnidadeNegocio;

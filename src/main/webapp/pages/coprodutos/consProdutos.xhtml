@@ -61,11 +61,12 @@
                         <p:column headerText="Tipo" style="width:180px;" >
                             <h:outputText value="#{produtos.tipo}" />
                         </p:column>
-                         <p:column headerText="Descrição" style="width:350px;text-decoration: none" >
+                        <p:column headerText="Descrição" style="width:350px;text-decoration: none" >
                              <p:commandLink value="#{produtos.descricao}" action="#{coProdutosMB.editar(produtos)}">
                                  <p:ajax event="dialogReturn" listener="#{coProdutosMB.retornoDialogoEditar()}" process="@this" update=":orcamentocurso:tabelaprodutos"/>
                              </p:commandLink>
                         </p:column>
+                       
                         <p:column style="width:90px;text-align: center;" >
                             <p:commandButton value="Valores" action="#{coProdutosMB.consValorProduto(produtos)}"/>
                         </p:column>

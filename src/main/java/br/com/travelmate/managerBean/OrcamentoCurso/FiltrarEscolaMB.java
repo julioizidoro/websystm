@@ -51,7 +51,11 @@ import br.com.travelmate.model.Produtosorcamento;
     @SessionScoped
     public class FiltrarEscolaMB implements Serializable{
 
-       @Inject
+       /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+	@Inject
         private UsuarioLogadoMB usuarioLogadoMB;
         private List<Paisproduto> listaPais;
         private Cidade cidade;
@@ -343,10 +347,7 @@ import br.com.travelmate.model.Produtosorcamento;
                     Logger.getLogger(br.com.travelmate.managerBean.OrcamentoCurso.FiltrarEscolaMB.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-            if (cambio!=null){
-                return cambio;
-            }
-            return null;
+            return cambio;
         }
 
         

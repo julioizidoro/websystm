@@ -13,7 +13,12 @@ import org.primefaces.context.RequestContext;
 public class PlanoContasMB implements Serializable{
     
     
-    public String novo(){
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public String novo(){
         Map<String,Object> options = new HashMap<String, Object>();
         options.put("contentWidth",400);
         RequestContext.getCurrentInstance().openDialog("planoconta", options, null);

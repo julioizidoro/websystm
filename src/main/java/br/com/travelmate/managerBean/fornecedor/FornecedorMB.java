@@ -8,7 +8,6 @@ package br.com.travelmate.managerBean.fornecedor;
 import br.com.travelmate.facade.PaisProdutoFacade;
 import br.com.travelmate.managerBean.UsuarioLogadoMB;
 import br.com.travelmate.model.Cidade;
-import br.com.travelmate.model.Contaspagar;
 import br.com.travelmate.model.Fornecedorcidade;
 import br.com.travelmate.model.Pais;
 import br.com.travelmate.model.Paisproduto;

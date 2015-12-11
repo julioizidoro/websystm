@@ -7,13 +7,9 @@
 package br.com.travelmate.facade;
 
 import br.com.travelmate.dao.FormaPagamentoDao;
-import br.com.travelmate.dao.VendasDao;
 import br.com.travelmate.model.Formapagamento;
-import br.com.travelmate.model.Vendas;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *

@@ -13,7 +13,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
-import org.primefaces.context.RequestContext;
+
 
 /**
  *
@@ -23,7 +23,11 @@ import org.primefaces.context.RequestContext;
 @ViewScoped
 public class VendasProdutosMB implements Serializable{
     
-    private Orcamento orcamento;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Orcamento orcamento;
     private String titulo;
     
     @PostConstruct

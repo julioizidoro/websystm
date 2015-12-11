@@ -1,7 +1,6 @@
 package br.com.travelmate.converter;
   
 import br.com.travelmate.model.Pais;
-import br.com.travelmate.model.Pais;
 import java.util.List;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;

@@ -9,63 +9,85 @@
         <ui:define name="corpo">
             <h:form>
                 <div id="centro">
-                    <br></br><br></br>
-                   <p:accordionPanel class="paineleditar2" >
-                        <p:tab titleStyle="font-size:10px;" title="Editar">
-                        <p:outputLabel value="Valor Bruto" />
-                        <p:outputLabel value="Valor Fornecedor" class="espacodialog"/>
-                        <p:outputLabel value="Comissão TM" class="espacodialog2"/>
+                    <br></br>
+                   <p:accordionPanel style="width:80%;margin-left:10%;font-size:11px" >
+                        <p:tab titleStyle="font-size:11px;" title="Editar">
+                        <p:outputLabel value="Valor Bruto" style="margin-left:15%"/>
+                        <p:outputLabel value="Valor Fornecedor" style="margin-left:18%"/>
+                        <p:outputLabel value="Comissão TM" style="margin-left:15%"/>
                         <br></br>
-                        <p:inputText value="#{vendasComissaoMB.vendascomissao.valorbruto}" style="width:23%" class="espacocampos2right"/>
-                        <p:inputText value="#{vendasComissaoMB.vendascomissao.valorfornecedor}" style="width:21%" class="espacocamposright"/>
-                        <p:inputText value="#{vendasComissaoMB.vendascomissao.comissaotm}" style="width:24%" class="espacocamposright"/>
+                        <p:inputText value="#{vendasComissaoMB.vendascomissao.valorbruto}" style="width:14%;margin-left:15%" class="espacocampos2right">
+                        	<f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                        </p:inputText>
+                        <p:inputText value="#{vendasComissaoMB.vendascomissao.valorfornecedor}" style="width:14%;margin-left:10.5%" class="espacocamposright">
+                        	<f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                        </p:inputText>
+                        <p:inputText value="#{vendasComissaoMB.vendascomissao.comissaotm}" style="width:14%;margin-left:11.7%" class="espacocamposright">
+                        	<f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                        </p:inputText>
                         <br></br><br></br>
-                        <p:outputLabel value="Taxa TM" />
-                        <p:outputLabel value="Desconto TM" class="espacodialog3"/>
-                        <p:outputLabel value="Comissão Emissor" class="espacodialog4"/>
+                        <p:outputLabel value="Taxa TM" style="margin-left:15%"/>
+                        <p:outputLabel value="Desconto TM" style="margin-left:19.5%"/>
+                        <p:outputLabel value="Comissão Emissor" style="margin-left:17.5%"/>
                         <br></br>
-                        <p:inputText value="#{vendasComissaoMB.vendascomissao.taxatm}" style="width:24%" class="espacocampos2right"/>
-                        <p:inputText value="#{vendasComissaoMB.vendascomissao.descontotm}" style="width:21%"  class="espacocamposright"/>
-                        <p:inputText value="#{vendasComissaoMB.vendascomissao.comissaoemissor}" style="width:23%"  class="espacocamposright"/>
+                        <p:inputText value="#{vendasComissaoMB.vendascomissao.taxatm}" style="width:14%;margin-left:15%" class="espacocampos2right">
+                        	<f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                        </p:inputText>
+                        <p:inputText value="#{vendasComissaoMB.vendascomissao.descontotm}" style="width:14%;margin-left:10.5%"  class="espacocamposright">
+                        	<f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                        </p:inputText>
+                        <p:inputText value="#{vendasComissaoMB.vendascomissao.comissaoemissor}" style="width:14%;margin-left:11.7%"  class="espacocamposright">
+                        	<f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                        </p:inputText>
                         <br></br><br></br>
-                        <p:outputLabel value="Comissão Gerente" />
-                        <p:outputLabel value="Comissão Terceiros" class="espacodialog5"/>
-                        <p:outputLabel value="Comissão Franquia" class="espacodialog6"/>
+                        <p:outputLabel value="Comissão Gerente" style="margin-left:15%"/>
+                        <p:outputLabel value="Comissão Terceiros" style="margin-left:13.5%"/>
+                        <p:outputLabel value="Comissão Franquia" style="margin-left:14.5%"/>
                         <br></br>
-                        <p:inputText value="#{vendasComissaoMB.vendascomissao.comissaogerente}" style="width:21%" class="espacocampos2right"/>
-                        <p:inputText value="#{vendasComissaoMB.vendascomissao.comissaoterceiros}" style="width:21%"  class="espacocamposright" />
-                        <p:inputText value="#{vendasComissaoMB.vendascomissao.comissaofraquia}" style="width:26%"  class="espacocamposright"/>
+                        <p:inputText value="#{vendasComissaoMB.vendascomissao.comissaogerente}" style="width:14%;margin-left:15%" class="espacocampos2right">
+                        	<f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                        </p:inputText>
+                        <p:inputText value="#{vendasComissaoMB.vendascomissao.comissaoterceiros}" style="width:14%;margin-left:10.5%"  class="espacocamposright" >
+                        	<f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                        </p:inputText>
+                        <p:inputText value="#{vendasComissaoMB.vendascomissao.comissaofraquia}" style="width:14%;margin-left:11.7%"  class="espacocamposright">
+                        	<f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                        </p:inputText>
                         <br></br><br></br>
-                        <p:outputLabel value="Desagio" />
-                        <p:outputLabel value="Incentivo" class="espacodialog9" />
-                        <p:outputLabel value="Total" class="espacodialog6"/>
-                        <p:outputLabel value="Paga?" class="espacodialog7"/>
+                        <p:outputLabel value="Desagio" style="margin-left:15%"/>
+                        <p:outputLabel value="Incentivo" style="margin-left:10.5%"/>
+                        <p:outputLabel value="Total" style="margin-left:15%"/>
+                        <p:outputLabel value="Paga?" style="margin-left:14.5%"/>
                          
                         <br></br>
-                        <p:inputText value="#{vendasComissaoMB.vendascomissao.desagio}" style="width:17%" class="espacocampos2right"/>
-                        <p:inputText value="#"  style="width:16%" class="espacocampos4right"/>
-                        <p:inputText value="#{vendasComissaoMB.vendascomissao.valorbruto}"  style="width:18%"  class="espacocampos4right"/>
-                        <p:selectOneMenu class="espacocampos3" style="width:18%;" value="#{vendasComissaoMB.vendascomissao.paga}" >
+                        <p:inputText value="#{vendasComissaoMB.vendascomissao.desagio}" style="width:14%;margin-left:15%" class="espacocampos2right">
+                        	<f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                        </p:inputText>
+                        <p:inputText value="#"  style="width:16%;" class="espacocampos4right"/>
+                        <p:inputText value="#{vendasComissaoMB.vendascomissao.valorbruto}"  style="width:14%;margin-left:2%"  class="espacocampos4right">
+                        	<f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
+                        </p:inputText>
+                        <p:selectOneMenu class="espacocampos3" style="width:14%;" value="#{vendasComissaoMB.vendascomissao.paga}" >
                              <f:selectItem itemLabel="Sim" itemValue="Sim"/> 
                              <f:selectItem itemLabel="Não" itemValue="Não" /> 
                         </p:selectOneMenu>
                         <br></br><br></br>
-                        <p:outputLabel value="Produto" />
-                        <p:outputLabel value="Consultor" class="left19"/>
+                        <p:outputLabel value="Produto" style="margin-left:15%"/>
+                        <p:outputLabel value="Consultor"  style="margin-left:18.5%"/>
                         <br></br>
-                        <p:inputText value="#{vendasComissaoMB.vendascomissao.produtos}" style="width:36%" class="espacocampos2"/>
-                        <p:inputText value="#{vendasComissaoMB.vendascomissao.usuario.nome}" style="width:37%" class="espacocampos"/>
-                        <br></br><br></br>
+                        <p:inputText value="#{vendasComissaoMB.vendascomissao.produtos}" style="width:20%;margin-left:15%" class="espacocampos2"/>
+                        <p:inputText value="#{vendasComissaoMB.vendascomissao.usuario.nome}" style="width:41%" class="espacocampos"/>
+                        
                        
                         
-                        <p class="botaoeditar">
+                        <p class="botaoeditar" style="width: 100%">
                             <br></br>
-                            <p:commandButton class="botaodialog" onclick="" icon="ui-icon-pencil" value="Editar"></p:commandButton>
+                            <p:commandButton class="botaodialog" style="margin-left:1%" icon="ui-icon-pencil" value="Editar"></p:commandButton>
                             <p:commandButton class="botaodialog2" onclick="" icon="ui-icon-close" value="Fechar"></p:commandButton>
                         </p>
                     </p:tab>
                     </p:accordionPanel>
-                    <br></br><br></br><br></br>
+                    <br></br>
                 </div>
             </h:form>     
         </ui:define>

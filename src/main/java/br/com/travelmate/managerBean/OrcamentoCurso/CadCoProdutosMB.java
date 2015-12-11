@@ -2,11 +2,13 @@ package br.com.travelmate.managerBean.OrcamentoCurso;
 
 import br.com.travelmate.facade.CoProdutosFacade;
 import br.com.travelmate.facade.FiltroOrcamentoProdutoFacade;
+import br.com.travelmate.facade.GrupoObrigatorioFacade;
 import br.com.travelmate.managerBean.UsuarioLogadoMB;
 import br.com.travelmate.model.Coprodutos;
 import br.com.travelmate.model.Filtroorcamentoproduto;
 import br.com.travelmate.model.Fornecedorcidade;
 import br.com.travelmate.model.Fornecedorcidadeidioma;
+import br.com.travelmate.model.Grupoobrigatorio;
 import br.com.travelmate.model.Produtosorcamento;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -25,13 +27,19 @@ import org.primefaces.context.RequestContext;
 public class CadCoProdutosMB implements Serializable{
     
     
-    @Inject
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Inject
     private UsuarioLogadoMB usuarioLogadoMB;
     private Coprodutos coprodutos;
-     private Fornecedorcidade fornecedorcidade;
+    private Fornecedorcidade fornecedorcidade;
     private List<Filtroorcamentoproduto> listaFiltroorcamentoproduto;
     private Produtosorcamento prdutoOrcamento;
-    
+    private Produtosorcamento produtoVincular;
+    private List<Filtroorcamentoproduto> listaProdutosVincular;
+    private Grupoobrigatorio grupoobrigatorio;
 
     @PostConstruct
     public void init(){
@@ -47,10 +55,13 @@ public class CadCoProdutosMB implements Serializable{
             prdutoOrcamento = new Produtosorcamento();
         }else{
             gerarListaProdutosOrcamento();
-            prdutoOrcamento = coprodutos.getProdutosorcamento();
+           prdutoOrcamento = coprodutos.getProdutosorcamento();
+           GrupoObrigatorioFacade grupoObrigatorioFacade = new GrupoObrigatorioFacade();
+           grupoobrigatorio = grupoObrigatorioFacade.consultar(coprodutos.getIdcoprodutos());
+           if(grupoobrigatorio!=null){
+        	   produtoVincular = grupoobrigatorio.getProdutosorcamento();
+           }
         }
-        
-        
      }
 
     public UsuarioLogadoMB getUsuarioLogadoMB() {
@@ -92,8 +103,42 @@ public class CadCoProdutosMB implements Serializable{
     public void setFornecedorcidade(Fornecedorcidade fornecedorcidade) {
         this.fornecedorcidade = fornecedorcidade;
     }
-
     
+    public Produtosorcamento getProdutoVincular() {
+		return produtoVincular;
+	}
+
+	public void setProdutoVincular(Produtosorcamento produtoVincular) {
+		this.produtoVincular = produtoVincular;
+	}
+
+	public List<Filtroorcamentoproduto> getListaProdutosVincular() {
+		return listaProdutosVincular;
+	}
+
+	public void setListaProdutosVincular(List<Filtroorcamentoproduto> listaProdutosVincular) {
+		this.listaProdutosVincular = listaProdutosVincular;
+	}
+	
+	public Grupoobrigatorio getGrupoobrigatorio() {
+		return grupoobrigatorio;
+	}
+
+	public void setGrupoobrigatorio(Grupoobrigatorio grupoobrigatorio) {
+		this.grupoobrigatorio = grupoobrigatorio;
+	}
+
+	public void gerarListaProdutosVincular(){
+    	FiltroOrcamentoProdutoFacade filtroOrcamentoProdutoFacade = new FiltroOrcamentoProdutoFacade();
+    	String sql="";
+    	sql="select f from Filtroorcamentoproduto f where f.produtos.idprodutos=" + 
+        usuarioLogadoMB.getParametrosprodutos().getCursos() + " and f.produtosorcamento.vincular='true' "
+        		+ "order by f.produtosorcamento.descricao";
+    	listaProdutosVincular= filtroOrcamentoProdutoFacade.pesquisar(sql);
+    	if(listaProdutosVincular == null){
+    		listaProdutosVincular = new ArrayList<Filtroorcamentoproduto>();
+    	}
+    }
     
     public void gerarListaProdutosOrcamento(){
         FiltroOrcamentoProdutoFacade filtroOrcamentoProdutoFacade = new FiltroOrcamentoProdutoFacade();
@@ -118,18 +163,25 @@ public class CadCoProdutosMB implements Serializable{
         if (listaFiltroorcamentoproduto==null){
             listaFiltroorcamentoproduto = new ArrayList<Filtroorcamentoproduto>();
         }
+        gerarListaProdutosVincular();
     }
     
     public String salvarCoProduto(){
-        if(coprodutos.getTipo()!=null && prdutoOrcamento==null && coprodutos.getDescricao()==null){
+        if(coprodutos.getTipo()!=null && prdutoOrcamento!=null && coprodutos.getDescricao()!=null){
             coprodutos.setFornecedorcidade(fornecedorcidade);
             coprodutos.setProdutosorcamento(prdutoOrcamento);
             CoProdutosFacade coProdutosFacade = new CoProdutosFacade();
             coprodutos = coProdutosFacade.salvar(coprodutos);
+            if(produtoVincular!=null){
+            	grupoobrigatorio.setCoprodutos(coprodutos);
+            	grupoobrigatorio.setProdutosorcamento(produtoVincular);
+        		GrupoObrigatorioFacade grupoObrigatorioFacade = new GrupoObrigatorioFacade();
+        		grupoobrigatorio = grupoObrigatorioFacade.salvar(grupoobrigatorio);
+        	}
             RequestContext.getCurrentInstance().closeDialog(coprodutos);
             return "";
         }else{
-            FacesMessage mensagem = new FacesMessage("Atenção! ", "Campos obrigatórios não preenchidos.");
+            FacesMessage mensagem = new FacesMessage("Atencao! ", "Campos obrigatorios nao preenchidos.");
             FacesContext.getCurrentInstance().addMessage(null, mensagem);
             return "";
         }

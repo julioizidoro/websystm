@@ -13,7 +13,6 @@ import br.com.travelmate.model.Banco;
 import br.com.travelmate.model.Contaspagar;
 import br.com.travelmate.model.Planoconta;
 import br.com.travelmate.model.Unidadenegocio;
-import br.com.travelmate.model.Vendas;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -33,7 +32,11 @@ import org.primefaces.context.RequestContext;
 @ViewScoped
 public class CadContasPagarMB implements Serializable{
     
-    @Inject
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Inject
     private UsuarioLogadoMB usuarioLogadoMB;
     private Contaspagar conta;
     private List<Unidadenegocio> listaUnidadeNegocio;

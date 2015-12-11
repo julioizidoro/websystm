@@ -29,7 +29,11 @@ import org.primefaces.context.RequestContext;
 @ViewScoped
 public class EditarValoresComissaoMB implements Serializable{
     
-    private String titulo;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String titulo;
     private String selecao;
     private Cambio cambio;
     private float valorMoeda;

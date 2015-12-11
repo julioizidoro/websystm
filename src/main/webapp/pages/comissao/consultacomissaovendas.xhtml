@@ -13,40 +13,46 @@
                     <p:accordionPanel class="painel" activeIndex="-1" >
                         <p:tab titleStyle="font-size:11px;" title="Pesquisar">
                                 <p:outputLabel value="Período" for="periodo" class="espacocobranca15"/> 
-                                <p:outputLabel value="Produto" for="produto" class="espacocobranca21"/>
-                                <p:outputLabel value="Paga"  class="espacocobranca26"/>
+                                <p:outputLabel value="Produto" for="idproduto" style="margin-left:30.7%"/>
+                                <p:outputLabel value="Paga" style="margin-left:24.3%"/>
                                 <br></br>
-                                <p:calendar id="periodo"  class="espacocobranca15"  locale="pt"  pattern="dd/MM/yyyy"  mask="true" maxlength="15" >
+                                <p:calendar id="periodo" value="#{vendasComissaoMB.dataInicial}"  class="espacocobranca15"  locale="pt"  pattern="dd/MM/yyyy"  mask="true" maxlength="15" >
                                     <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                                 </p:calendar>
-                                <p:calendar id="periodos" class="espacocobranca29" locale="pt"  pattern="dd/MM/yyyy"  mask="true" maxlength="15">
+                                <p:calendar id="periodos" value="#{vendasComissaoMB.dataFinal}" class="espacocobranca29" locale="pt"  pattern="dd/MM/yyyy"  mask="true" maxlength="15">
                                     <f:convertDateTime   pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                                 </p:calendar>
-                                <p:selectOneMenu id="produto" value="#" style="width:24%;font-size: 10px" class="espacocampos">
-                                    <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true"/> 
+                                <p:selectOneMenu id="idproduto" value="#{vendasComissaoMB.produtos}" style="width:24%;font-size: 10px;margin-left:5%" converter="ProdutoConverter">
+                                    <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
+                                    <f:selectItems value="#{vendasComissaoMB.listaProdutos}" var="produto" itemLabel="#{produto.descricao}" itemValue="#{produto}"/>
+                                    <f:attribute name="listaProdutos" value="#{vendasComissaoMB.listaProdutos}"/>
                                 </p:selectOneMenu>
-                                <p:selectOneMenu id="paga" value="#" style="width:18%;font-size: 10px" class="espacocampos">
+                                <p:selectOneMenu id="paga" value="#{vendasComissaoMB.paga}" style="width:18%;font-size: 10px;margin-left:4.3%">
                                     <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true" /> 
                                     <f:selectItem itemLabel="Sim" itemValue="Sim" />  
-                                    <f:selectItem itemLabel="Não" itemValue="Não" />      
+                                    <f:selectItem itemLabel="Não" itemValue="Nao" />      
                                 </p:selectOneMenu>
                                 <br></br><br></br>
-                                <p:outputLabel value="Unidade" for="unidade" class="espacocobranca15"/> 
-                                <p:outputLabel value="Consultor" for="consultor" class="espacocobranca9"/>
+                                <p:outputLabel value="Unidade" for="idunidade" class="espacocobranca15"/> 
+                                <p:outputLabel value="Consultor" for="idconsultor" class="espacocobranca9"/>
                             <br></br>
-                                <p:selectOneMenu id="unidade" value="#" style="width:30%;font-size: 10px" class="espacocobranca15">
-                                    <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true"/> 
+                                <p:selectOneMenu id="idunidade" value="#{vendasComissaoMB.unidadenegocio}" style="width:30%;font-size: 10px" class="espacocobranca15" converter="UnidadeNegocioConverter">
+                                    <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
+                                    <f:selectItems value="#{vendasComissaoMB.listaUnidade}" var="unidade" itemLabel="#{unidade.nomeFantasia}" itemValue="#{unidade}"/>
+                                    <f:attribute name="listaUnidade" value="#{vendasComissaoMB.listaUnidade}"/>
                                 </p:selectOneMenu>
-                                <p:selectOneMenu id="consultor" value="#" style="width:30%;font-size: 10px" class="espacodialog2">
-                                    <f:selectItem itemLabel="Selecione" itemValue="sn" noSelectionOption="true"/> 
+                                <p:selectOneMenu id="idconsultor" value="#{vendasComissaoMB.usuario}" style="width:30%;font-size: 10px" class="espacodialog2" converter="UsuarioConverter">
+                                    <f:selectItem itemLabel="Selecione" itemValue="0" noSelectionOption="true"/> 
+                                    <f:selectItems value="#{vendasComissaoMB.listaUsuario}" var="usuario" itemLabel="#{usuario.nome}" itemValue="#{usuario}"/>
+                                    <f:attribute name="listaUsuario" value="#{vendasComissaoMB.listaUsuario}"/>
                                 </p:selectOneMenu>
-                                <p:commandButton value="Pesquisar" class="espacocobranca24"  icon=" ui-icon-search " update="@all"  oncomplete="popAprovar.hide();  #{meuBean.objetos}" />
+                                <p:commandButton value="Pesquisar" action="#{vendasComissaoMB.Pesquisar()}" class="espacocobranca24"  icon=" ui-icon-search " update=":consultacomissao:idtabelaComissao" />
                           
                         </p:tab>
                     </p:accordionPanel><br></br>
                     <img src="../../resources/img/calculadora.png" style="margin-left:8%"/>
                     <p:commandLink value="Calcular Comissão" update="comissao:dialog_comissao" oncomplete="PF('comissao').show()"  class="add"/><br></br><br></br>
-                    <p:dataTable var="consVendaComissao" value="#{vendasComissaoMB.listaVendasComissao}" class="tabela2" 
+                    <p:dataTable id="idtabelaComissao" var="consVendaComissao" value="#{vendasComissaoMB.listaVendasComissao}" class="tabela2" 
                                  scrollable="true"  scrollHeight="450"  rowIndexVar="rowIx">
 
                         <p:column  style="text-align:center;width:48px;z-index: 3!important;overflow: visible!important;">
@@ -87,7 +93,7 @@
             </h:form>     
             <h:form id="dialog">
                 <p:dialog id="dialog_visualizacao" header="#{vendasComissaoMB.tituloDialog}" widgetVar="visualizacao"  width="40%" class="dialog" style="background:#d0e9c6" >
-                    <p:outputLabel value="Valor" class="espacocampos" style="font-size: 11px"/>
+                    <p:outputLabel value="Valor"  style="font-size: 11px;margin-left:-2%"/>
                     <p:outputLabel value="Data" class="leftcampo" style="font-size: 11px"/>
                     <p:outputLabel value="Produto" class="espacodialog3" style="font-size: 11px"/>
                     <br></br>
@@ -112,7 +118,7 @@
                     <p:outputLabel value="Parceiro"  class="left22" style="font-size: 11px"/>
                     <br></br>
                     <p:inputText value="#{vendasComissaoMB.vendascomissao.vendas.usuario}" id="consultor" size="32" class="espacocampos" style="font-size: 11px"/>
-                    <p:inputText value="#{vendasComissaoMB.vendascomissao.vendas.fornecedor}" id="parceiro" size="31"  class="espacocampos" style="font-size: 11px"/>
+                    <p:inputText value="#{vendasComissaoMB.vendascomissao.vendas.fornecedor.nome}" id="parceiro" size="31"  class="espacocampos" style="font-size: 11px"/>
                     <br></br><br></br>
                 </p:dialog>
 
@@ -131,8 +137,7 @@
                     
                     <br></br><br></br>
                     <p:dataTable id="comissaotabela" var="comissaotabela"  value="#{vendasComissaoMB.calcularComissao.listaComissao}" class="tabela3" 
-                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
-                                 paginator="true" rows="10" style="margin-bottom:20px;font-size: 10px;" >
+                                 scrollable="true" scrollHeight="145" style="margin-bottom:20px;font-size: 10px;" >
                         <f:facet name="{Exporters}">
                             <h:commandLink>
                                 <img src="../../resources/img/excel.png" width="20" class="imagens"/>

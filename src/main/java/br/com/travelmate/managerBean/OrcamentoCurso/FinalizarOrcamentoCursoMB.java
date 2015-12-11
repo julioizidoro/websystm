@@ -10,8 +10,7 @@ import br.com.travelmate.facade.CoeficienteJurosFacade;
 import br.com.travelmate.facade.OCursoFacade;
 import br.com.travelmate.facade.OCursoFormaPagamentoFacade;
 import br.com.travelmate.facade.OCursoProdutoFacade;
-import br.com.travelmate.managerBean.UsuarioLogadoMB;
-import br.com.travelmate.model.Cliente;
+import br.com.travelmate.managerBean.UsuarioLogadoMB;	
 import br.com.travelmate.model.Coeficientejuros;
 import br.com.travelmate.model.Ocrusoprodutos;
 import br.com.travelmate.model.Ocurso;
@@ -40,7 +39,11 @@ import org.primefaces.context.RequestContext;
 @ViewScoped
 public class FinalizarOrcamentoCursoMB implements Serializable{
     
-    @Inject
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Inject
     private FiltrarEscolaMB FiltrarEscolaMB;
     @Inject
     private UsuarioLogadoMB usuarioLogadoMB;

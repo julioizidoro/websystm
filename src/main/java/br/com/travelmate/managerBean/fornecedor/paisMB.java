@@ -21,7 +21,11 @@ import org.primefaces.event.SelectEvent;
 @ViewScoped
 public class paisMB implements Serializable{
     
-    private List<Pais> listaPais;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private List<Pais> listaPais;
     private Pais pais;
     
     @PostConstruct

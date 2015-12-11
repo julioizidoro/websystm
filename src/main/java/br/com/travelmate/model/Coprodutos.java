@@ -53,6 +53,9 @@ public class Coprodutos implements Serializable {
     @JoinColumn(name = "fornecedorcidade_idfornecedorcidade", referencedColumnName = "idfornecedorcidade")
     @ManyToOne(optional = false)
     private Fornecedorcidade fornecedorcidade;
+    @Size(max = 100)
+    @Column(name = "nome")
+    private String nome;
 
     public Coprodutos() {
     }
@@ -100,8 +103,18 @@ public class Coprodutos implements Serializable {
     public void setFornecedorcidade(Fornecedorcidade fornecedorcidade) {
         this.fornecedorcidade = fornecedorcidade;
     }
+    
+    
 
-    @Override
+    public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	@Override
     public int hashCode() {
         int hash = 0;
         hash += (idcoprodutos != null ? idcoprodutos.hashCode() : 0);
@@ -110,7 +123,7 @@ public class Coprodutos implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
+        
         if (!(object instanceof Coprodutos)) {
             return false;
         }

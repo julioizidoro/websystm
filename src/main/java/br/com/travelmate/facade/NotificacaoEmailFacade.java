@@ -6,7 +6,6 @@
 package br.com.travelmate.facade;
 
 import br.com.travelmate.dao.NotificacaoEmailDao;
-import br.com.travelmate.model.Cliente;
 import br.com.travelmate.model.Notificacaoemail;
 import java.sql.SQLException;
 import java.util.List;

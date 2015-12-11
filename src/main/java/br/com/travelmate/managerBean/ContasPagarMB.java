@@ -21,7 +21,11 @@ import org.primefaces.event.SelectEvent;
 @ViewScoped
 public class ContasPagarMB implements Serializable{
     
-    private Contaspagar conta;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Contaspagar conta;
     private List<Contaspagar> listaContasPagar;
     
     @PostConstruct

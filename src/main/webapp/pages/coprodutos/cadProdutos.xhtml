@@ -46,7 +46,7 @@
                 <f:selectItem itemLabel="Opcional" itemValue="Opcional" />
                 <f:selectItem itemLabel="Acomodação" itemValue="Acomodacao" />
                 <f:selectItem itemLabel="Transfer" itemValue="Transfer" />
-                <p:ajax event="change" listener="#{cadCoProdutosMB.gerarListaProdutosOrcamento()}" update="idlistaproduto"/>
+                <p:ajax event="change" listener="#{cadCoProdutosMB.gerarListaProdutosOrcamento()}" update="idlistaproduto, idvincularproduto"/>
             </p:selectOneRadio>
             <p:radioButton id="tipoProduto1" for="tipoProduto" itemIndex="1" class="espacocobranca29"/>
             <h:outputLabel for="tipoProduto1" value="Obrigatório" style="margin-left:1%"/>
@@ -59,19 +59,30 @@
             
             <p:radioButton id="tipoProduto4" for="tipoProduto" itemIndex="2" class="espacocobranca33"/>
             <h:outputLabel for="tipoProduto4" value="Transfer" style="margin-left:1%"/>
-             <br></br><br></br>
+            <br></br><br></br>
+            
             <p:outputLabel value="Produto:" for="idlistaproduto" style="margin-left: 2%"/>
+            <p:outputLabel value="Vincular:" for="idvincularproduto" style="margin-left:40%"/>
             <br></br>
-            <p:selectOneMenu id="idlistaproduto" value="#{cadCoProdutosMB.prdutoOrcamento}" style="width:60%;" class="espacocobranca29" 
+            <p:selectOneMenu id="idlistaproduto" value="#{cadCoProdutosMB.prdutoOrcamento}" style="width:47%;" class="espacocobranca29" 
                              converter="ProdutoOrcamentoConverter" filter="true" filterMatchMode="startsWith" >
-                <f:selectItem itemLabel="Produto" itemValue="0" noSelectionOption="true"/> 
+                <f:selectItem itemLabel="Produtos" itemValue="0" noSelectionOption="true"/> 
                 <f:selectItems id="idproduto" value="#{cadCoProdutosMB.listaFiltroorcamentoproduto}" var="produtoselecionado" itemLabel="#{produtoselecionado.produtosorcamento.descricao}" itemValue="#{produtoselecionado.produtosorcamento}"/>
                 <f:attribute name="listaProdutos" value="#{cadCoProdutosMB.listaFiltroorcamentoproduto}"/>
                 <f:ajax event="change" />
             </p:selectOneMenu>
-            
+            <p:selectOneMenu id="idvincularproduto" value="#{cadCoProdutosMB.produtoVincular}" style="width:46%;margin-left:2.7%" 
+                             converter="ProdutoOrcamentoVinculadoConverter" filter="true" filterMatchMode="startsWith" >
+                <f:selectItem itemLabel="Produto Vinculado" itemValue="0" noSelectionOption="true"/> 
+                <f:selectItems id="idprodutovinculado" value="#{cadCoProdutosMB.listaProdutosVincular}" var="produtovinculado" itemLabel="#{produtovinculado.produtosorcamento.descricao}" itemValue="#{produtovinculado.produtosorcamento}"/>
+                <f:attribute name="listaProdutosVinculado" value="#{cadCoProdutosMB.listaProdutosVincular}"/>
+                <f:ajax event="change" />
+            </p:selectOneMenu>
             <br></br><br></br>
-           
+            <p:outputLabel value="Nome:" for="idnomeproduto" style="margin-left:2%"/>
+            <br></br>
+            <p:inputText id="idnomeproduto" value="#{cadCoProdutosMB.coprodutos.nome}" style="width:95.5%;margin-left:2%"/>
+            <br></br><br></br>
             <p:outputLabel value="Descrição:" for="descricao" style="margin-left: 2%"/>
             <br></br>
             <p:inputTextarea value="#{cadCoProdutosMB.coprodutos.descricao}" id="descricao" rows="3" cols="87" class="espacocobranca29"  title="descrição do produto"/>

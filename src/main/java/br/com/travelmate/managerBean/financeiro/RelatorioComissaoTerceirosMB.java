@@ -26,7 +26,11 @@ import org.primefaces.context.RequestContext;
 public class RelatorioComissaoTerceirosMB implements Serializable{
     
     
-    private List<Terceiros> listaTerceiros;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private List<Terceiros> listaTerceiros;
     private Terceiros terceiros;
     private Date dataInicio;
     private Date dataTermino;

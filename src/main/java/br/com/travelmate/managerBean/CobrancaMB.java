@@ -6,13 +6,9 @@
 package br.com.travelmate.managerBean;
 
 import br.com.travelmate.facade.CobrancaFacade;
-import br.com.travelmate.facade.ContasReceberFacade;
-import br.com.travelmate.facade.HistoricoCobrancaFacade;
 import br.com.travelmate.model.Cobranca;
-import br.com.travelmate.model.Contasreceber;
 import br.com.travelmate.model.Historicocobranca;
 import br.com.travelmate.model.Vendas;
-import br.com.travelmate.util.Formatacao;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -34,7 +30,11 @@ import org.primefaces.context.RequestContext;
 @ViewScoped
 public class CobrancaMB implements Serializable{
     
-    @Inject 
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Inject 
     private UsuarioLogadoMB usuarioLogadoMB;
     private Vendas venda;
     private Cobranca cobranca;

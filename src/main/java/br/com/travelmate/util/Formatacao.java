@@ -25,7 +25,6 @@ import org.primefaces.model.UploadedFile;
 
 import br.com.travelmate.facade.CambioFacade;
 import br.com.travelmate.model.Cambio;
-import br.com.travelmate.model.Produtos;
 
 /**
  *
@@ -103,7 +102,7 @@ public class Formatacao {
         return Double.parseDouble(novoValor);
     }
 
-    public static JComboBox preencherComobox(List lista, JComboBox combo, boolean nulo, String valorNulo){
+    public static JComboBox preencherComobox(List<?> lista, JComboBox combo, boolean nulo, String valorNulo){
         if (nulo){
             combo.addItem(valorNulo);
         }

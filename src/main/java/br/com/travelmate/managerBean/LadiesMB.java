@@ -17,7 +17,11 @@ import javax.inject.Named;
 @ViewScoped
 public class LadiesMB implements Serializable {
      
-    private List<Ladies> listaLadies;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private List<Ladies> listaLadies;
     
     public List<Ladies> getListaLadies(){
         if (listaLadies == null) {

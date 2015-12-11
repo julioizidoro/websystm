@@ -25,7 +25,11 @@ import org.primefaces.context.RequestContext;
 @ViewScoped
 public class RelatorioContasReceberMB  implements Serializable{
     
-    private List<Unidadenegocio> listaUnidadeNegocio;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private List<Unidadenegocio> listaUnidadeNegocio;
     private Unidadenegocio unidadenegocio;
     private Date dataInicio;
     private Date dataTermino;
@@ -115,7 +119,7 @@ public class RelatorioContasReceberMB  implements Serializable{
     public String gerarRelatorio() {
         ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
         String caminhoRelatorio = "/reports/financeiro/contasreceber.jasper";  
-        Map parameters = new HashMap();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("sql", gerarSql());
         parameters.put("unidade", unidadenegocio.getNomeFantasia());
          parameters.put("titulo", tipoRelatorio);

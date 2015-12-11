@@ -20,12 +20,8 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
-import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
-import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import net.sf.jasperreports.engine.JRException;
 import org.primefaces.context.RequestContext;
 
@@ -37,7 +33,7 @@ import org.primefaces.context.RequestContext;
 @ViewScoped
 public class RelatorioConciliacaoMB implements Serializable{
     
-    
+	private static final long serialVersionUID = 1L;
     private List<Unidadenegocio> listaUnidadeNegocio;
     private List<Banco> listaBanco;
     private Date dataInicio;
@@ -116,9 +112,8 @@ public class RelatorioConciliacaoMB implements Serializable{
     }
     
     public String gerarRelatorio() {
-        ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
         String caminhoRelatorio = "/reports/financeiro/conciliacao.jasper";  
-        Map parameters = new HashMap();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("dataInicial", dataInicio);
         parameters.put("dataFinal", dataTermino);
         parameters.put("idUnidade", unidadenegocio.getIdunidadeNegocio());

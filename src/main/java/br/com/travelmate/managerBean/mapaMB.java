@@ -12,7 +12,11 @@ import org.primefaces.model.map.Marker;
 @ManagedBean
 public class mapaMB implements Serializable {
     
-    private MapModel marcacao;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private MapModel marcacao;
   
     @PostConstruct
     public void init() {

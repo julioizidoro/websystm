@@ -35,7 +35,11 @@ import org.primefaces.context.RequestContext;
 @ViewScoped
 public class EditarContasReceberMB implements Serializable{
     
-    @Inject
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Inject
     private UsuarioLogadoMB usuarioLogadoMB;
     private Contasreceber conta;
     private List<Banco> listaBanco;
@@ -114,7 +118,15 @@ public class EditarContasReceberMB implements Serializable{
    
     
     
-    public String salvar(){
+    public Banco getBanco() {
+		return banco;
+	}
+
+	public void setBanco(Banco banco) {
+		this.banco = banco;
+	}
+
+	public String salvar(){
         ContasReceberFacade contasReceberFacade = new ContasReceberFacade();
         if (conta.getIdcontasreceber() == null) {
             conta.setBoletocancelado(Boolean.FALSE);

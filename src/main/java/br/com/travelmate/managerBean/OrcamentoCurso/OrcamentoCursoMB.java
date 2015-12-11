@@ -1,9 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.travelmate.managerBean.OrcamentoCurso;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+import javax.faces.context.FacesContext;
+import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import br.com.travelmate.facade.PaisProdutoFacade;
 import br.com.travelmate.managerBean.UsuarioLogadoMB;
@@ -16,25 +20,16 @@ import br.com.travelmate.model.Paisproduto;
 import br.com.travelmate.model.Seguroviagem;
 import br.com.travelmate.model.Valoresseguro;
 import br.com.travelmate.util.Formatacao;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import javax.annotation.PostConstruct;
-import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
-import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author Wolverine
- */
-    @Named
+
+@Named
 @ViewScoped
 public class OrcamentoCursoMB implements Serializable{
-    
-    @Inject
+	
+	private static final long serialVersionUID = 1L;
+	@Inject
     private UsuarioLogadoMB usuarioLogadoMB;
     @Inject 
     private FiltrarEscolaMB filtrarEscolaMB;
@@ -461,3 +456,8 @@ public class OrcamentoCursoMB implements Serializable{
         }
     }
 }
+
+
+	
+
+

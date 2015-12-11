@@ -54,6 +54,8 @@ public class Produtosorcamento implements Serializable {
     @Size(max = 50)
     @Column(name = "descricaooutralingua")
     private String descricaooutralingua;
+    @Column(name = "vincular")
+    private Boolean vincular;
 
     public Produtosorcamento() {
     }
@@ -103,7 +105,6 @@ public class Produtosorcamento implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Produtosorcamento)) {
             return false;
         }
@@ -158,5 +159,15 @@ public class Produtosorcamento implements Serializable {
     public void setOcursodescontoList(List<Ocursodesconto> ocursodescontoList) {
         this.ocursodescontoList = ocursodescontoList;
     }
+
+	public Boolean getVincular() {
+		return vincular;
+	}
+
+	public void setVincular(Boolean vincular) {
+		this.vincular = vincular;
+	}
+    
+    
     
 }

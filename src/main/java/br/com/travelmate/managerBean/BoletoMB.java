@@ -27,7 +27,11 @@ import br.com.travelmate.util.Formatacao;
 @ViewScoped
 public class BoletoMB implements Serializable {
 
-    private List<Contasreceber> listarSelecionados;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private List<Contasreceber> listarSelecionados;
     @Inject
     private UsuarioLogadoMB usuarioLogadoMB;
 

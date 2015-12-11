@@ -16,7 +16,11 @@ import org.primefaces.context.RequestContext;
 @ViewScoped
 public class CadCidadeMB implements Serializable{
     
-    private Pais pais;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Pais pais;
     private Cidade cidade;
     
     @PostConstruct

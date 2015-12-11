@@ -5,7 +5,6 @@
  */
 package br.com.travelmate.managerBean;
 
-import br.com.travelmate.model.Formapagamento;
 import br.com.travelmate.model.Pacotes;
 import br.com.travelmate.util.GerarListas;
 import java.io.Serializable;

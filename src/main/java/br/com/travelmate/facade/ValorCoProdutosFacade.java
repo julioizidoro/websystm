@@ -1,6 +1,5 @@
 package br.com.travelmate.facade;
 
-import br.com.travelmate.dao.CoProdutosDao;
 import br.com.travelmate.dao.ValorCoProdutoDao;
 import br.com.travelmate.model.Valorcoprodutos;
 import java.sql.SQLException;

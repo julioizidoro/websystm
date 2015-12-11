@@ -1,9 +1,7 @@
 package br.com.travelmate.managerBean;
 
-import br.com.travelmate.managerBean.OrcamentoCurso.FornecedorProdutosBean;
+
 import java.io.Serializable;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -12,7 +10,11 @@ import javax.inject.Named;
 @ViewScoped
 public class CursoMB implements Serializable{
     
-    @Inject 
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Inject 
     private UsuarioLogadoMB usuarioLogadoMB;
 
     public UsuarioLogadoMB getUsuarioLogadoMB() {

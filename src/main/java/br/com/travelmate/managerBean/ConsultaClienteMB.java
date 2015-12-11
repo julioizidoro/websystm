@@ -24,7 +24,11 @@ import org.primefaces.context.RequestContext;
 @ViewScoped
 public class ConsultaClienteMB implements Serializable{
     
-    private List<Cliente> listaCliente;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private List<Cliente> listaCliente;
     private String nome;
     
     public ConsultaClienteMB() {

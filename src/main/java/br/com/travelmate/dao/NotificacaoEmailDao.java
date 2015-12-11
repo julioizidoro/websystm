@@ -7,7 +7,6 @@ package br.com.travelmate.dao;
 
 import br.com.travelmate.connection.ConectionFactory;
 import br.com.travelmate.model.Notificacaoemail;
-import br.com.travelmate.model.Usuario;
 import java.sql.SQLException;
 import java.util.List;
 import javax.persistence.EntityManager;

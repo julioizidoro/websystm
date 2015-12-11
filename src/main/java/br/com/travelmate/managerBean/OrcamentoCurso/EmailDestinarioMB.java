@@ -27,7 +27,11 @@ import org.primefaces.context.RequestContext;
 @ViewScoped
 public class EmailDestinarioMB implements Serializable{
     
-    @Inject
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Inject
     private UsuarioLogadoMB usuarioLogadoMB;
     private String emailDestinario;
     private String emailConsultor;

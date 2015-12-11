@@ -13,7 +13,11 @@ import javax.inject.Named;
 public class HighSchoolMB implements Serializable{
 
     
-    private List<Highschool> listaHighSchool;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private List<Highschool> listaHighSchool;
     
     
     public List<Highschool> getListaHighSchool() {

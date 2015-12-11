@@ -23,7 +23,11 @@ import javax.inject.Named;
 @ViewScoped
 public class ListaEscolasMB implements Serializable{
     
-    @Inject
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Inject
     private FiltrarEscolaMB filtrarEscolaMB;
     private Parametrosprodutos parametrosprodutos;
     

@@ -11,9 +11,9 @@
                 <div id="centro">
                     <p:growl id="growl" showDetail="true" sticky="true"/>
                         <br></br>
-                        <p:accordionPanel class="painel" >
+                        <p:accordionPanel style="width:98%;margin-left:1%" >
                         <p:tab titleStyle="color:#000;background:#c7d95f;" title="Pesquisar">
-                                <p:outputLabel value="Unidade" style="margin-left:4.2%;font-size: 11px"/> 
+                                <p:outputLabel value="Unidade" style="margin-left:3.5%;font-size: 11px"/> 
                                 <br></br>
                                 <h:panelGrid columns="2">
                                     <p:selectOneMenu id="unidade"  style="width:350px;margin-left:9.5%"  value="#{faturaFranquiaMB.unidadenegocio}" converter="UnidadeNegocioConverter">
@@ -26,12 +26,13 @@
                                 <br></br> 
                         </p:tab>
                     </p:accordionPanel>
+                    <br></br>
                         <legend id="iUsu2" ><b>Relatório Fatura de Franquia</b></legend>
                         
-                        <p:dataTable id="idtabelafaturafraquia" var="faturafranquia"  value="#{faturaFranquiaMB.listaFatura}" class="tabela" scrollable="true" scrollHeight="450" rowStyleClass="#{empty rowIx or rowIx mod 2 ne 0 ? 'even-row' : 'odd-row'}"
-                                          rowIndexVar="rowIx" style="margin-bottom:20px;font-size: 10px;">
+                        <p:dataTable id="idtabelafaturafraquia" var="faturafranquia"  value="#{faturaFranquiaMB.listaFatura}" scrollable="true" scrollHeight="450" rowStyleClass="#{empty rowIx or rowIx mod 2 ne 0 ? 'even-row' : 'odd-row'}"
+                                          rowIndexVar="rowIx" style="margin-bottom:20px;font-size: 10px;width:99%;margin-left:0.5%;margin-top:-1.5%">
                                
-                                <p:column headerText="Mês Cobrança" style="width:85px;">
+                                <p:column headerText="Mês Cobrança" style="width:80px;font-size:8px;">
                                     <h:outputText  value="#{faturaFranquiaMB.gerarMesPagamento(faturafranquia)}" style="font-size: 9px" />
                                 </p:column>
                                 <p:column headerText="Cliente"  >
@@ -45,7 +46,7 @@
                                 <p:column headerText="Programa/ Produto" style="width:85px;"  >
                                     <h:outputText value="#{faturafranquia.vendascomissao.vendas.produtos.descricao}"/>
                                 </p:column>
-                                <p:column headerText="Fornecedor" style="width:130px;"  >
+                                <p:column headerText="Fornecedor" style="width:110px;"  >
                                     <h:outputText value="#{faturafranquia.vendascomissao.vendas.fornecedorcidade.fornecedor.nome}"/>
                                 </p:column> 
                                 <p:column headerText="Valor Bruto" style="width:55px;text-align: right"  >
@@ -66,7 +67,7 @@
                                         <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                     </h:outputText>
                                 </p:column>
-                                <p:column headerText="Taxa TM" style="width:50px;text-align: right"  >
+                                <p:column headerText="Taxa TM" style="width:63px;text-align: right"  >
                                     <h:outputText value="#{faturafranquia.vendascomissao.taxatm}"  >
                                         <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                     </h:outputText>
@@ -91,7 +92,7 @@
                                         <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                     </h:outputText>
                                 </p:column>
-                                 <p:column headerText="Total" style="width:70px;text-align: right"  >
+                                 <p:column headerText="Total" style="width:65px;text-align: right"  >
                                      <h:outputText value="#{faturafranquia.liquidopagar}" >
                                         <f:convertNumber pattern="##,###,###,###.##" minFractionDigits="2" />
                                     </h:outputText>

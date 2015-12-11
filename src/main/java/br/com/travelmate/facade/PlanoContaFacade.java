@@ -4,11 +4,8 @@
  */
 package br.com.travelmate.facade;
 
-import br.com.travelmate.connection.ConectionFactory;
 import br.com.travelmate.dao.PlanoContaDao;
-import br.com.travelmate.dao.ProdutoDao;
 import br.com.travelmate.model.Planoconta;
-import br.com.travelmate.model.Produtos;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;

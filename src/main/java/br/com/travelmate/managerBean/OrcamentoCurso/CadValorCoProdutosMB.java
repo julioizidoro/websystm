@@ -10,7 +10,6 @@ import br.com.travelmate.model.Coprodutos;
 import br.com.travelmate.model.Valorcoprodutos;
 import br.com.travelmate.util.Formatacao;
 import java.io.Serializable;
-import java.util.ArrayList;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
@@ -25,7 +24,11 @@ import org.primefaces.context.RequestContext;
 @ViewScoped
 public class CadValorCoProdutosMB implements Serializable{
     
-    private Valorcoprodutos valorcoprodutos;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Valorcoprodutos valorcoprodutos;
 
     public CadValorCoProdutosMB() {
         FacesContext fc = FacesContext.getCurrentInstance();

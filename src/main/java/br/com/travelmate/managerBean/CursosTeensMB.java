@@ -18,7 +18,11 @@ import javax.inject.Named;
 public class CursosTeensMB implements Serializable {
  
     
-    private List<Programasteens> listaCursosTeens;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private List<Programasteens> listaCursosTeens;
     
     
     public List<Programasteens> getListaCursosTeens() {

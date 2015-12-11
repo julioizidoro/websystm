@@ -1,9 +1,8 @@
 package br.com.travelmate.managerBean.financeiro;
 
-import br.com.travelmate.facade.BancoFacade;
+
 import br.com.travelmate.facade.ProdutoFacade;
 import br.com.travelmate.facade.UnidadeNegocioFacade;
-import br.com.travelmate.model.Banco;
 import br.com.travelmate.model.Produtos;
 import br.com.travelmate.model.Unidadenegocio;
 import br.com.travelmate.util.Formatacao;
@@ -29,7 +28,11 @@ import org.primefaces.context.RequestContext;
 @ViewScoped
 public class RelatorioVendasMB implements Serializable{
     
-    private List<Unidadenegocio> listaUnidadeNegocio;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private List<Unidadenegocio> listaUnidadeNegocio;
     private Unidadenegocio unidadenegocio;
     private Date dataInicio;
     private Date dataTermino;
@@ -133,7 +136,7 @@ public class RelatorioVendasMB implements Serializable{
     public String gerarRelatorio() {
         ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
         String caminhoRelatorio = "/reports/financeiro/vendas.jasper";  
-        Map parameters = new HashMap();
+        Map<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("sql", gerarSql());
         parameters.put("unidade", unidadenegocio.getNomeFantasia());
         String periodo= "";

@@ -29,7 +29,11 @@ import org.primefaces.event.SelectEvent;
 @ViewScoped
 public class ValorCoProdutosMB implements Serializable{
     
-    private Coprodutos coprodutos;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Coprodutos coprodutos;
     private List<Valorcoprodutos> listaValores;
     
     @PostConstruct

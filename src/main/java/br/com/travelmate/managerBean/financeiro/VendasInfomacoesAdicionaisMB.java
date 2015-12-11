@@ -22,7 +22,11 @@ import org.primefaces.context.RequestContext;
 @ViewScoped
 public class VendasInfomacoesAdicionaisMB implements Serializable{
     
-    private Vendas venda;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Vendas venda;
     private String titulo;
     
     @PostConstruct

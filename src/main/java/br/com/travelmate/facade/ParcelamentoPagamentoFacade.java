@@ -6,9 +6,7 @@
 package br.com.travelmate.facade;
 
 import br.com.travelmate.dao.ParcelamentoPagamentoDao;
-import br.com.travelmate.dao.PassagemDao;
 import br.com.travelmate.model.Parcelamentopagamento;
-import br.com.travelmate.model.Passagemaerea;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;

@@ -24,7 +24,11 @@ import javax.servlet.http.HttpSession;
 @ViewScoped
 public class VendasContasReceberMB implements Serializable{
     
-    private Vendas venda;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Vendas venda;
     private String titulo;
     
     @PostConstruct

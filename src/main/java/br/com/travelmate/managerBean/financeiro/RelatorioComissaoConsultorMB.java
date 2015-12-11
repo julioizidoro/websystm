@@ -1,9 +1,8 @@
 package br.com.travelmate.managerBean.financeiro;
 
 
-import br.com.travelmate.facade.UnidadeNegocioFacade;
+
 import br.com.travelmate.facade.UsuarioFacade;
-import br.com.travelmate.model.Unidadenegocio;
 import br.com.travelmate.model.Usuario;
 import br.com.travelmate.util.Formatacao;
 import br.com.travelmate.util.GerarRelatorio;
@@ -28,7 +27,11 @@ import org.primefaces.context.RequestContext;
 @ViewScoped
 public class RelatorioComissaoConsultorMB implements Serializable{
     
-    private List<Usuario> listaConsultor;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private List<Usuario> listaConsultor;
     private Usuario usuario;
     private Date dataInicio;
     private Date dataTermino;

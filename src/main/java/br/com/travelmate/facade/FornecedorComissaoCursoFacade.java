@@ -6,8 +6,6 @@
 package br.com.travelmate.facade;
 
 import br.com.travelmate.dao.FornecedorComissaoCursoDao;
-import br.com.travelmate.dao.FornecedorDao;
-import br.com.travelmate.model.Fornecedor;
 import br.com.travelmate.model.Fornecedorcomissaocurso;
 import java.sql.SQLException;
 import java.util.List;

@@ -33,7 +33,11 @@ import org.primefaces.event.SelectEvent;
 @ViewScoped
 public class VendasFinanceiroComissaoMB implements Serializable{
     
-    private Vendas venda;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Vendas venda;
     private String titulo;
     private Vendascomissao vendascomissao;
     private List<Terceiros> listaTerceiros;

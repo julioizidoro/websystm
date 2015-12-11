@@ -20,7 +20,12 @@ import org.primefaces.context.RequestContext;
 @ViewScoped
 public class CancelamentoMB implements Serializable{
     
-     public String reembolsoCredito() {
+     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public String reembolsoCredito() {
         Map<String, Object> options = new HashMap<String, Object>();
         options.put("contentWidth", 380);
         RequestContext.getCurrentInstance().openDialog("reembolso",options,null);

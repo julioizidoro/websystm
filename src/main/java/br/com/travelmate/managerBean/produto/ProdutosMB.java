@@ -17,7 +17,11 @@ import org.primefaces.event.SelectEvent;
 @ViewScoped
 public class ProdutosMB implements Serializable{
     
-    private Produtos produtos;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Produtos produtos;
     private List<Produtos> listaProdutos;
     private String descricao="";
     

@@ -134,18 +134,6 @@
                 <br></br><br></br> <br></br> 
                 </div>
             </h:form>  
-            <h:form id="editarData">
-                <p:dialog id="dialog_editarDataVencimento" header="Editar Data" widgetVar="editarData" width="20%" style="background:#d0e9c6;text-align: left" >
-                    <p:outputLabel value="Data de Vencimento" for="dataVencimento"  style="font-size: 11px"/> 
-                    <br></br>
-                    <p:calendar id="dataVencimento" class="fontebranca" value="#{vendasFinanceiroComissaoMB.venda.dataVenda}"  pattern="dd/MM/yyyy" mask="true"  maxlength="15" locale="pt"  >
-                        <f:convertDateTime    timeZone="America/Sao_Paulo"/>
-                        <p:ajax event="change" />
-                        <p:ajax event="dateSelect" />
-                    </p:calendar>
-                    <p:commandButton value="Salvar" icon="ui-icon-check" action="#{vendasFinanceiroComissaoMB.confirmaAlterarDataVenda()}" class="espacocobranca23botao" style="font-size:11px;" update="@all"/>
-                </p:dialog>
-            </h:form>
         </ui:define>
     </ui:composition>
 </html>
